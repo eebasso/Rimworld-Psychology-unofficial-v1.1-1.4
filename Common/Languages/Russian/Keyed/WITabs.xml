@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<!-- WITab title -->
+	<TabPsyche>Психология</TabPsyche>
+
+	<!-- Sexuality disabled warning -->
+	<SexualityDisabledWarning>Система сексуальности Psychology отключена конфликтующими модами. Пожалуйста, отключите все моды, меняющие механику отношений и сексуальности.</SexualityDisabledWarning>
+
+	<!-- Kinsey display and tooltip-->
+	<KinseyRating>Рейтинг Кинси:</KinseyRating>
+	<KinseyDescription>The Kinsey scale is used to describe a person's sexual orientation, and ranges from 0, meaning exclusively heterosexual, to a 6, meaning exclusively homosexual. Alfred Kinsey recognized that the seven categories of the scale could not fully capture every individual's sexuality. He wrote that "it should be recognized that the reality includes individuals of every intermediate type, lying in a continuum between the two extremes and between each and every category on the scale." He disliked the use of the term bisexual to describe individuals who engage in sexual activity with both men and women, preferring to use bisexual in its original, biological sense as hermaphroditic; he stated, "Until it is demonstrated [that] taste in a sexual relation is dependent upon the individual containing within his anatomy both male and female structures, or male and female physiological capacities, it is unfortunate to call such individuals bisexual."</KinseyDescription>
+
+	<!-- Sex drive display and tooltip text -->
+	<SexDrive0>Асексуальность</SexDrive0>
+	<SexDrive1>Low sex drive</SexDrive1>
+	<SexDrive2>Mild sex drive</SexDrive2>
+	<SexDrive3>Moderate sex drive</SexDrive3>
+	<SexDrive4>High sex drive</SexDrive4>
+	<SexDriveDescription>Sex drive, also known as libido, describes a person's overall desire for sexual activity.</SexDriveDescription>
+	<AsexualDescription>У этого персонажа очень низкое половое влечение. Этот персонаж почти не испытывает потребностей сексуального характера и вряд ли вступит в какие-либо половые отношения.</AsexualDescription>
+
+	<!-- Romance drive display and tooltip -->
+	<RomanticDrive0>Аромантичность</RomanticDrive0>
+	<RomanticDrive1>Low romance drive</RomanticDrive1>
+	<RomanticDrive2>Mild romance drive</RomanticDrive2>
+	<RomanticDrive3>Moderate romance drive</RomanticDrive3>
+	<RomanticDrive4>High romance drive</RomanticDrive4>
+	<RomanticDriveDescription>Romance drive describes a person's overall desire for romantic relationships.</RomanticDriveDescription>
+	<AromanticDescription>У этого персонажа очень низкое романтическое влечение. Этот персонаж может и будет вступать в сексуальную связь с другими поселенцами, но вряд ли будет стремиться к романтическим отношениям или принимать предложения подобного рода.</AromanticDescription>
+
+	<!-- Display options -->
+	<ShowDistanceText3>List least</ShowDistanceText3>
+	<ShowDistanceText2>List more</ShowDistanceText2>
+	<ShowDistanceText1>List most</ShowDistanceText1>
+	<ShowDistanceText0>List all</ShowDistanceText0>
+	<WordCloud>Word cloud</WordCloud>
+	<Alphabetical>List alphabetical</Alphabetical>
+	<UseAntonyms>Use antonyms</UseAntonyms>
+
+	<!-- Dev edit text -->
+	<EditPsyche>Режим разработчика</EditPsyche>
+	<PsycheEditor>Изменение психологического портрета {PAWN_labelShort}:</PsycheEditor>
+	<PsycheEditorNewColonist>Изменение психологического портрета поселенца:</PsycheEditorNewColonist>
+	<PersonalityNodeWarning>Вы редактируете неоткорректированные показатели психологического портрета поселенца. Реальные показатели формируются за счёт других факторов.</PersonalityNodeWarning>
+	<SexDrive>Половое влечение:</SexDrive>
+	<RomanticDrive>Романтическое влечение:</RomanticDrive>
+
+	<!-- Node descriptions -->
+	<PsycheNot>Не типична</PsycheNot>
+	<PsycheSlightly>Мизерная</PsycheSlightly>
+	<PsycheLess>Слабая</PsycheLess>
+	<PsycheSomewhat>Somewhat</PsycheSomewhat>
+	<PsycheMore>Умеренная</PsycheMore>
+	<PsycheVery>Сильная</PsycheVery>
+	<PsycheExtremely>Небывалая</PsycheExtremely>
+
+	<!-- Conversation Tooltip -->
+	<ConversationTooltip>Люди будут говорить о {0}, и {1}, чтобы обсудить это между собой.</ConversationTooltip>
+	<PsycheComma>", "</PsycheComma>
+	<AntonymDescription>Antonym: {0}</AntonymDescription>
+
+</LanguageData>

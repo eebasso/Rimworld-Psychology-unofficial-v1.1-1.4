@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <TreatPyromania.label>лечить пироманию</TreatPyromania.label>
+  <TreatPyromania.description>Предотвращает пироманьяка от срывов.</TreatPyromania.description>
+  <TreatPyromania.jobString>Лечит пироманьяка.</TreatPyromania.jobString>
+
+  <TreatChemicalInterest.label>лечить интерес к «химии»</TreatChemicalInterest.label>
+  <TreatChemicalInterest.description>Помогает оставаться страдающим интересом к «химии» в завязке.</TreatChemicalInterest.description>
+  <TreatChemicalInterest.jobString>Лечит интерес к «химии».</TreatChemicalInterest.jobString>
+
+  <TreatChemicalFascination.label>лечить тягу к «химии»</TreatChemicalFascination.label>
+  <TreatChemicalFascination.description>Помогает оставаться страдающим тягой к «химии» в завязке.</TreatChemicalFascination.description>
+  <TreatChemicalFascination.jobString>Лечит тягу к «химии».</TreatChemicalFascination.jobString>
+
+  <TreatDepression.label>лечить депрессию</TreatDepression.label>
+  <TreatDepression.description>Помогает людям с депрессией лучше контролировать своё настроение.</TreatDepression.description>
+  <TreatDepression.jobString>Лечит депрессию.</TreatDepression.jobString>
+  
+  <TreatInsomnia.label>лечить бессонницу</TreatInsomnia.label>
+  <TreatInsomnia.description>Помогает страдающим бессонницей лучше спать.</TreatInsomnia.description>
+  <TreatInsomnia.jobString>Лечит бессонницу.</TreatInsomnia.jobString>
+
+  <CureAnxiety.label>излечить тревожность</CureAnxiety.label>
+  <CureAnxiety.description>Позволяет навсегда излечить посттравматическую тревожность с помощью чудес медицины миров-утопий.</CureAnxiety.description>
+  <CureAnxiety.jobString>Лечит посттравматическую тревожность.</CureAnxiety.jobString>
+
+
+
+</LanguageData>

@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+
+	<LetterLabelNewElection>Предвыборная кампания в {0}</LetterLabelNewElection>
+	<LetterNewElection>В {0} планируются выборы мэра. Некоторые поселенцы выдвинули свои кандидатуры.</LetterNewElection>
+	<LetterLabelElectionHeld>Выборы в {0}</LetterLabelElectionHeld>
+	<LetterElectionHeld>Начались выборы в {0}. В поселении организован избирательный участок, выбранный из доступных мест для сбора. Чтобы проголосовать, поселенцы будут идти туда.</LetterElectionHeld>
+	<LetterLabelElectionCandidate>Кандидат: {0_labelShort}</LetterLabelElectionCandidate>
+	<LetterElectionCandidate>{0_labelShort} выдвигает свою кандидатуру на пост мэра {1}. Это {0_possessive} избирательная платформа:\n{2}</LetterElectionCandidate>
+	<LetterLabelTieSettled>Ничья по результатам голосования разрешена в сторону {0_labelShort}</LetterLabelTieSettled>
+	<LetterTieSettled>Выборы закончились ничьей и, после продолжительных препирательств и споров, из желающих продолжать словесные баталии остаётся только {0}. Остальные кандидаты отозвали свои кандидатуры, оставляя {0_objective} победу в выборах.</LetterTieSettled>
+	<LetterLabelElectionWon>Победа в выборах: {0_labelShort}</LetterLabelElectionWon>
+	<LetterElectionWon>{0_labelShort} побеждает в выборах мэра {1}. {0_pronoun} получает голосов: {2} .\n\nНапоминание — это было {0_possessive} избирательной платформой:\n{3}\n\nТеперь к н{0_objective} в офис мэра, если такой имеется, будут приходить {0_possessive} избиратели. Если {0_labelShort} умеет хорошо общаться и понимать чувства людей, избиратели с жалобами скорее всего будут выходить от {0_gender ? него : неё} более довольными. Наличие красивого помещения для встреч и общения с избирателями не помешает.\n\nПрисматривайте за новым мэром; человеку на такой позиции некому жаловаться, а нести на своих плечах тяготы всей колонии может быть непросто, особенно если дела складываются не в лучшую сторону.</LetterElectionWon>
+	<LetterLabelFuneralPlanned>Организация погребальной церемонии для {0}</LetterLabelFuneralPlanned>
+	<LetterFuneralPlanned>{0_labelShort} организует похороны для {1_labelShort}. Служба пройдёт {2}, в {3}:00.</LetterFuneralPlanned>
+	<LetterLabelFuneralStarted>Погребальная церемония для {0}</LetterLabelFuneralStarted>
+	<LetterFuneralStarted>Начались похороны {0_labelShort}. Участие в ней ваших поселенцев зависит от предыдущих отношений с {0}.</LetterFuneralStarted>
+	<LetterLabelFuneralEnded>Похороны закончились</LetterLabelFuneralEnded>
+	<LetterFuneralEnded>Похороны {0_labelShort} закончились.\n\nУчаствовали следующие поселенцы:\n{1}</LetterFuneralEnded>
+	<LetterLabelPTSD>Посттравматическое расстройство</LetterLabelPTSD>
+	<LetterPTSD>{0_labelShort} теперь страдает посттравматическим расстройством, последовавшим за {0_possessive} нервным срывом. {0_labelShort} будет постоянно находится в состоянии тревожности. Данное заболевание поддаётся долгому симптоматическому лечению, позволяя снизить уровень тревожности до уровня, при котором {0_labelShort} сможет нормально функционировать. Любой последующий нервный срыв ухудшит {0_possessive} тревожность.\n\nСуществуют слухи, что медицинские специалисты из миров-утопий могут полностью вылечить подобные расстройства. Если вы сможете раздобыть передовые медикаменты, необычайно опытный врач, возможно, сможет излечить тревожность {0_labelShort}.</LetterPTSD>
+	<LetterLabelDatePlanned>Свидание</LetterLabelDatePlanned>
+	<LetterDatePlanned>{0_labelShort} приглашает {1_labelShort} {2} в {3}:00.\n\nСвидания могут отмениться по ряду причин. Например, если поселенец назначен работать в это время, находится в режиме призыва, обездвижен из-за ранения или занят каким-то важным делом.\n\nЕсли свидание сорвётся, оба поселенца расстроятся. Поселенцы также могут проспать своё свидание. Это ухудшит отношения между ними, но не вызовет плохих мыслей.</LetterDatePlanned>
+	
+	<!-- Replaced vanilla letters -->
+	<LetterRejectedProposalPsychology>В зависимости от их личностных характеристик, будут затронуто их настроение и отношения.</LetterRejectedProposalPsychology>
+
+</LanguageData>

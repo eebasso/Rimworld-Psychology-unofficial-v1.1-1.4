@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<!-- WITab title -->
+	<TabPsyche>Psyche</TabPsyche>
+
+	<!-- Sexuality disabled warning -->
+	<SexualityDisabledWarning>Psychology's sexuality system is disabled, either by you or by the presence of a conflicting mod on your mod list. Please disable any other mods that alter colonist sexuality or interaction.</SexualityDisabledWarning>
+
+	<!-- Kinsey display and tooltip-->
+	<KinseyRating>Kinsey rating:</KinseyRating>
+	<KinseyDescription>The Kinsey scale is used to describe a person's sexual orientation, and ranges from 0, meaning exclusively heterosexual, to a 6, meaning exclusively homosexual. Alfred Kinsey recognized that the seven categories of the scale could not fully capture every individual's sexuality. He wrote that "it should be recognized that the reality includes individuals of every intermediate type, lying in a continuum between the two extremes and between each and every category on the scale." He disliked the use of the term bisexual to describe individuals who engage in sexual activity with both men and women, preferring to use bisexual in its original, biological sense as hermaphroditic; he stated, "Until it is demonstrated [that] taste in a sexual relation is dependent upon the individual containing within his anatomy both male and female structures, or male and female physiological capacities, it is unfortunate to call such individuals bisexual."</KinseyDescription>
+
+	<!-- Sex drive display and tooltip-->
+	<SexDrive0>Asexual</SexDrive0>
+	<SexDrive1>Low sex drive</SexDrive1>
+	<SexDrive2>Mild sex drive</SexDrive2>
+	<SexDrive3>Moderate sex drive</SexDrive3>
+	<SexDrive4>High sex drive</SexDrive4>
+	<SexDriveDescription>Sex drive, also known as libido, describes a person's overall desire for sexual activity.</SexDriveDescription>
+	<AsexualDescription>This pawn has a very low sex drive. They don't experience much sexual attraction and are unlikely to engage in anything intimate.</AsexualDescription>
+
+	<!-- Romance drive display and tooltip -->
+	<RomanticDrive0>Aromantic</RomanticDrive0>
+	<RomanticDrive1>Low romance drive</RomanticDrive1>
+	<RomanticDrive2>Mild romance drive</RomanticDrive2>
+	<RomanticDrive3>Moderate romance drive</RomanticDrive3>
+	<RomanticDrive4>High romance drive</RomanticDrive4>
+	<RomanticDriveDescription>Romance drive describes a person's overall desire for romantic relationships.</RomanticDriveDescription>
+	<AromanticDescription>This pawn has a very low romantic drive. They are unlikely to make romance attempts or accept marriage proposals, but may still take lovers.</AromanticDescription>
+
+	<!-- Display options -->
+	<ShowDistanceText3>List least</ShowDistanceText3>
+	<ShowDistanceText2>List more</ShowDistanceText2>
+	<ShowDistanceText1>List most</ShowDistanceText1>
+	<ShowDistanceText0>List all</ShowDistanceText0>
+	<WordCloud>Word cloud</WordCloud>
+	<Alphabetical>List alphabetical</Alphabetical>
+	<UseAntonyms>Use antonyms</UseAntonyms>
+
+	<!-- Dev edit text -->
+	<EditPsyche>Dev edit</EditPsyche>
+	<PsycheEditor>Modifying the psyche of {PAWN_labelShort}:</PsycheEditor>
+	<PsycheEditorNewColonist>Modifying colonist's psyche:</PsycheEditorNewColonist>
+	<PersonalityNodeWarning>You are editing the raw values of a pawn's personality. The actual stats will be adjusted by other factors.</PersonalityNodeWarning>
+	<SexDrive>Sex drive:</SexDrive>
+	<RomanticDrive>Romance drive:</RomanticDrive>
+
+	<!-- Node descriptions and conversation tooltip -->
+	<PsycheNot>Not</PsycheNot>
+	<PsycheSlightly>Slightly</PsycheSlightly>
+	<PsycheLess>Less</PsycheLess>
+	<PsycheSomewhat>Somewhat</PsycheSomewhat>
+	<PsycheMore>More</PsycheMore>
+	<PsycheVery>Very</PsycheVery>
+	<PsycheExtremely>Extremely</PsycheExtremely>
+
+	<!-- Conversation Tooltip -->
+	<ConversationTooltip>"\n\nPeople will talk about {0}, and {1} to discuss this with each other." </ConversationTooltip>
+	<PsycheComma>", "</PsycheComma>
+	<AntonymDescription> Antonym: {0}</AntonymDescription>
+	
+</LanguageData>

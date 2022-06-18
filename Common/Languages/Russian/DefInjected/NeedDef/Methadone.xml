@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Methadone addiction -->
+
+  <Chemical_Methadone.label>метадоновая зависимость</Chemical_Methadone.label>
+  <Chemical_Methadone.description>Из-за метадоновой зависимости, этому персонажу необходимо постоянно употреблять данный наркотик, чтобы избежать ломки.</Chemical_Methadone.description>
+
+
+</LanguageData>

@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+	<MayorTitle>мэр</MayorTitle>
+
+<!-- Lord job reports -->
+	<LordReportAttendingElection>Посещает избирательный участок</LordReportAttendingElection>
+	<LordReportVisitingMayor>Посещает встречу</LordReportVisitingMayor>
+	<LordReportHangingOut>Проводит время с кем-то</LordReportHangingOut>
+	<LordReportDate>На свидании</LordReportDate>
+	<LordReportAttendingFuneral>Посещает похороны</LordReportAttendingFuneral>
+
+<!-- Miscellaneous thought log text -->
+	<ConversationStage>беседа о</ConversationStage>
+	<ConversationEnd>[INITIATOR_nameDef] заканчивает разговор с [RECIPIENT_nameDef].</ConversationEnd>
+	<ConversationEnded>заканчивает разговор</ConversationEnded>
+	<Complained>{0_labelShort} жалуется мэру.</Complained>
+	<Supported>{0_labelShort} высказывает свою поддержку мэру.</Supported>
+		
+<!-- Comp text -->
+	<CommandOfficeTableToggleLabel>Офис мэра</CommandOfficeTableToggleLabel>
+	<CommandOfficeTableToggleDescActive>Эта комната обозначена как офис мэра. Если он у вас есть, его встречи с поселенцами будут проходить здесь.</CommandOfficeTableToggleDescActive>
+	<CommandOfficeTableToggleDescInactive>Вы можете назначить эту комнату как офис мэра. В поселении может находиться только один офис мэра.</CommandOfficeTableToggleDescInactive>
+
+</LanguageData>

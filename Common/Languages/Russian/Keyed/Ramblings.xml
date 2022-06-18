@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+	<ParanoidRambling1>Проклятые идиоты! Мы обречены!</ParanoidRambling1>
+	<ParanoidRambling2>Они идут! Они убьют нас всех!</ParanoidRambling2>
+	<ParanoidRambling3>Это место проклято!</ParanoidRambling3>
+	<ParanoidRambling4>Мы все умрем!</ParanoidRambling4>
+	<ParanoidRambling5>Пропади это место пропадом!</ParanoidRambling5>
+	<ParanoidRambling6>Наши дни сочтены. Мы лишь тени мертвецов!</ParanoidRambling6>
+	<ParanoidRambling7>Это дыра станет для нас всех могилой!</ParanoidRambling7>
+	<ParanoidRambling8>Чем быстрее мы умрём, тем быстрее закончатся наши страдания!</ParanoidRambling8>
+	<ParanoidRambling9>Глупцы! Вы все марионетки!</ParanoidRambling9>
+	<ParanoidRambling10>Вы что, не понимаете? Нами всеми играют!</ParanoidRambling10>
+	<ParanoidRambling11>Они смеются над нами! Давятся со смеху!</ParanoidRambling11>
+	<ParanoidRambling12>Ну, довольны? Теперь мы все умрём!</ParanoidRambling12>
+	<ParanoidRambling13>Вы все на волоске от гибели!</ParanoidRambling13>
+	<ParanoidRambling14>Худшее ещё впереди! Мы не готовы!</ParanoidRambling14>
+	<ParanoidRambling15>Это безнадёжно! Мы просто тратим своё время!</ParanoidRambling15>
+	<ParanoidRambling16>Зачем мы здесь? Чтобы просто страдать?</ParanoidRambling16>
+	<ParanoidRambling17>Мы все не в себе!</ParanoidRambling17>
+	<ParanoidRambling18>Ваше безрассудство погубило нас всех!</ParanoidRambling18>
+	<ParanoidRambling19>Бегите кто может!</ParanoidRambling19>
+	<ParanoidRambling20>Этот проклятый гадюшник станет для всех нас могилой!</ParanoidRambling20>
+	<ParanoidRambling21>Мы лишь пешки в руках судьбы!</ParanoidRambling21>
+	<ParanoidRambling22>Я трачу своё время в пустую. Вы все слепы и глухи!</ParanoidRambling22>
+	<ParanoidRambling23>Лучше никогда не будет! Нам никогда не спастись!</ParanoidRambling23>
+	<ParanoidRambling24>Никогда мы не были так одиноки и забыты!</ParanoidRambling24>
+	<ParanoidRambling25>Мы работаем, мы стареем, мы умираем. Зачем?</ParanoidRambling25>
+	<ParanoidRambling26>Любой из вас может умереть прямо сейчас!</ParanoidRambling26>
+	<ParanoidRambling27>Всем нам лучше просто сдохнуть!</ParanoidRambling27>
+	<ParanoidRambling28>Это всё сон, а мы всё никак не можем проснуться!</ParanoidRambling28>
+	<ParanoidRambling29>Каждый вздох растягивает ваши мучения!</ParanoidRambling29>
+	<ParanoidRambling30>Если бы за нами кто-то присматривал, разве было бы у нас всё так плохо?</ParanoidRambling30>
+	<ParanoidRambling31>Сознание — лишь гнойная рана!</ParanoidRambling31>
+	<ParanoidRambling32>Они сведут нас с ума! Заставят нас есть друг-друга!</ParanoidRambling32>
+	<ParanoidRambling33>Они хотят держать нас тут на привязи, как животных!</ParanoidRambling33>
+	
+	<FellMurmuring1>{0_possessive} ошибка...</FellMurmuring1>
+	<FellMurmuring2>Это всё {0_possessive} ошибка...</FellMurmuring2>
+	<FellMurmuring3>Я не спущу это {0_objective} с рук...</FellMurmuring3>
+	<FellMurmuring4>{0_pronoun} он думает наверное, что {0_gender ? самый : самая} {0_gender ? умный : умная}, да?</FellMurmuring4>
+	<FellMurmuring5>Я {0_objective} покажу...</FellMurmuring5>
+	<FellMurmuring6>Предатели... саботажники... заговорщики...</FellMurmuring6>
+	<FellMurmuring7>{0_pronoun} издевается надо мной...</FellMurmuring7>
+	<FellMurmuring8>Да как {0_pronoun} смеет...</FellMurmuring8>
+	<FellMurmuring9>{0_pronoun} думает, я не замечу?</FellMurmuring9>
+	<FellMurmuring10>Я всё сделаю самостоятельно... никому нельзя доверять.</FellMurmuring10>
+	<FellMurmuring11>Ради общего блага...</FellMurmuring11>
+	<FellMurmuring12>Я решу эту проблему своими руками...</FellMurmuring12>
+	<FellMurmuring13>[бормотание]</FellMurmuring13>
+	<FellMurmuring14>[рычание]</FellMurmuring14>
+	<FellMurmuring15>[шипение]</FellMurmuring15>
+	<FellMurmuring16>[шепот]</FellMurmuring16>
+	<FellMurmuring17>[непонятный бубнёж]</FellMurmuring17>
+	<FellMurmuring18>Идиот!</FellMurmuring18>
+	<FellMurmuring19>Дьявол!</FellMurmuring19>
+	<FellMurmuring20>Кровопийца!</FellMurmuring20>
+	<FellMurmuring21>Чудовище!</FellMurmuring21>
+	<FellMurmuring22>Лжец!</FellMurmuring22>
+	<FellMurmuring23>За моей спиной... всегда за моей спиной...</FellMurmuring23>
+	<FellMurmuring24>Причина всех моих проблем...</FellMurmuring24>
+	<FellMurmuring25>{0_pronoun} даже не догадается...</FellMurmuring25>
+	<FellMurmuring26>Я всё спланирую...</FellMurmuring26>
+	<FellMurmuring27>Я всё обдумаю...</FellMurmuring27>
+	<FellMurmuring28>Я дождусь нужного момента...</FellMurmuring28>
+	<FellMurmuring29>Я спасу мир от этой чумы!</FellMurmuring29>
+	<FellMurmuring30>Кто это сделает, если не я?</FellMurmuring30>
+	<FellMurmuring31>Никто из них не понимает... они все слепцы...</FellMurmuring31>
+	<FellMurmuring32>Я могу это сделать... Я должен это сделать...</FellMurmuring32>
+	<FellMurmuring33>Даже сейчас, {0_pronoun} смеётся надо мной...</FellMurmuring33>
+	<FellMurmuring34>Так {0_objective} и надо...</FellMurmuring34>
+	<FellMurmuring35>{0_pronoun} погубит меня...</FellMurmuring35>
+	<FellMurmuring36>Мне стоило сделать это ещё давным-давно...</FellMurmuring36>
+</LanguageData>

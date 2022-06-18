@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+
+	<TreatedTrait>{0_labelShort} {0_gender ? был : была} успешно {0_gender ? вылечен : вылечена} от {1}.</TreatedTrait>
+	<MessageElectionCalledOff>Выборы в {0} были отменены из-за ситуации на избирательном участке.</MessageElectionCalledOff>
+	<MessageElectionCancelled>Выборы в {0} были отменены из-за отсутствия места для избирательного участка.</MessageElectionCancelled>
+	<MessageFuneralCalledOff>Похороны были отменены из-за ситуации в поселении.</MessageFuneralCalledOff>
+	
+</LanguageData>
