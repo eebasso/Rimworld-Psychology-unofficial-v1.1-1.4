@@ -57,7 +57,7 @@
 
 	<!-- Conversation Tooltip -->
 	<ConversationTooltip>Люди будут говорить о {0}, и {1}, чтобы обсудить это между собой.</ConversationTooltip>
-	<PsycheComma>", "</PsycheComma>
+	<PsycheComma>, </PsycheComma>
 	<AntonymDescription>Antonym: {0}</AntonymDescription>
 
 </LanguageData>

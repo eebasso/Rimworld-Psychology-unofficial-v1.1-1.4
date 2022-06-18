@@ -1,0 +1,53 @@
+﻿<Properties>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Psychology/Defs/PersonalityNodeDefOf.cs">
+    <Files>
+      <File FileName="Psychology/Defs/PersonalityNodeDefOf.cs" Line="1" Column="1" />
+      <File FileName="Psychology/Main/Personality/PersonalityNodeDef.cs" Line="45" Column="1" />
+      <File FileName="Psychology/Main/PsycheCardUtility.cs" Line="513" Column="1" />
+      <File FileName="../../Common/Languages/English/Keyed/WITabs.xml" Line="12" Column="304" />
+      <File FileName="../../Common/Defs/PersonalityDefs/PersonalityNodes.xml" Line="169" Column="3" />
+      <File FileName="Psychology/Main/PsycheHelper.cs" Line="27" Column="10" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="PsychologyUnofficialMac" expanded="True">
+            <Node name="PsychologyMac" expanded="True">
+              <Node name="Common" expanded="True">
+                <Node name="Defs" expanded="True">
+                  <Node name="PersonalityDefs" expanded="True" />
+                </Node>
+                <Node name="Languages" expanded="True">
+                  <Node name="English" expanded="True">
+                    <Node name="Keyed" expanded="True" />
+                  </Node>
+                  <Node name="German" expanded="True">
+                    <Node name="Keyed" expanded="True" />
+                  </Node>
+                  <Node name="Russian" expanded="True">
+                    <Node name="Keyed" expanded="True" />
+                  </Node>
+                </Node>
+              </Node>
+              <Node name="Defs" expanded="True">
+                <Node name="PersonalityNodeDefOf.cs" selected="True" />
+              </Node>
+              <Node name="Main" expanded="True">
+                <Node name="Personality" expanded="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State />
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+</Properties>

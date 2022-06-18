@@ -85,13 +85,13 @@ namespace Psychology
 
                 string AlphabeticalText = "Alphabetical".Translate();
                 Vector2 AlphabeticalSize = Text.CalcSize(AlphabeticalText);
-                float alphabeticalWidth = AlphabeticalSize.x + 26f;
-                float alphabeticalHeight = Mathf.Max(AlphabeticalSize.y, 26f);
+                float alphabeticalWidth = AlphabeticalSize.x + 29f;
+                float alphabeticalHeight = Mathf.Max(AlphabeticalSize.y, 29f);
 
                 string UseAntonymsText = "UseAntonyms".Translate();
                 Vector2 UseAntonymsSize = Text.CalcSize(UseAntonymsText);
-                float useAntonymsWidth = UseAntonymsSize.x + 26f;
-                float useAntonymsHeight = Mathf.Max(UseAntonymsSize.y, 26f);
+                float useAntonymsWidth = UseAntonymsSize.x + 29f;
+                float useAntonymsHeight = Mathf.Max(UseAntonymsSize.y, 29f);
 
                 string EditPsycheText = "EditPsyche".Translate();
                 Vector2 EditPsycheSize = Text.CalcSize(EditPsycheText);
@@ -102,7 +102,7 @@ namespace Psychology
                 float sexualityWidth = Mathf.Max(kinseyTextSize.x, sexDriveWidth, romanticDriveWidth, optionsWidth, alphabeticalWidth, useAntonymsWidth);
                 float sexualityHeight = kinseyTextSize.y + sexDriveHeight + romanticDriveHeight + optionsHeight + 5f * RowTopPadding;
 
-                Rect kinseyRect = new Rect(totalRect.xMax - sexualityWidth - 10f, totalRect.y + 10f, kinseyTextSize.x, kinseyTextSize.y);
+                Rect kinseyRect = new Rect(totalRect.xMax - sexualityWidth - 10f, totalRect.y + 10f, sexualityWidth - 29f, kinseyTextSize.y);
                 Rect sexDriveRect = new Rect(kinseyRect.x, kinseyRect.yMax + RowTopPadding, sexualityWidth, sexDriveHeight);
                 Rect romanticDriveRect = new Rect(kinseyRect.x, sexDriveRect.yMax + RowTopPadding, sexualityWidth, romanticDriveHeight);
 
@@ -127,15 +127,58 @@ namespace Psychology
                     int sexDriveInt = (pawnSexDrive > 1f) ? 4 : (pawnSexDrive > 0.7f) ? 3 : ((pawnSexDrive > 0.4f) ? 2 : (pawnSexDrive > 0.1f) ? 1 : 0);
                     int romDriveInt = (pawnRomDrive > 1f) ? 4 : (pawnRomDrive > 0.7f) ? 3 : ((pawnRomDrive > 0.4f) ? 2 : (pawnRomDrive > 0.1f) ? 1 : 0);
 
+                    //Kinsey rating
                     Widgets.Label(kinseyRect, kinseyText);
                     kinseyRect.xMin -= 3.5f;
                     Widgets.DrawHighlightIfMouseover(kinseyRect);
+                    Func<String> KinseyString = delegate
+                    {
+                        return "KinseyDescription".Translate();
+                    };
+                    TooltipHandler.TipRegion(kinseyRect, KinseyString, 89140);
+
+                    //Sex drive
                     Widgets.Label(sexDriveRect, sexDriveText[sexDriveInt]);
                     sexDriveRect.xMin -= 3.5f;
                     Widgets.DrawHighlightIfMouseover(sexDriveRect);
+                    Func<String> SexDriveString = delegate
+                    {
+                        string sexString = "SexDriveDescription".Translate();
+                        if (sexDriveInt == 0)
+                        {
+                            sexString += "\n\n" + "AsexualDescription".Translate();
+                        }
+                        if (Prefs.DevMode)
+                        {
+                            string rawRating = PsycheHelper.Comp(pawn).Sexuality.sexDrive.ToString("##0.000%", CultureInfo.InvariantCulture).Colorize(new Color(1f, 1f, 0f));
+                            string adjRating = PsycheHelper.Comp(pawn).Sexuality.AdjustedSexDrive.ToString("##0.000%", CultureInfo.InvariantCulture).Colorize(new Color(1f, 1f, 0f));
+                            sexString += "\n\nRaw: " + rawRating + "  Adjusted: " + adjRating;
+                        }
+                        return sexString;
+                    };
+                    TooltipHandler.TipRegion(sexDriveRect, SexDriveString, 89141);
+
+                    //Romantic drive
                     Widgets.Label(romanticDriveRect, romanticDriveText[romDriveInt]);
                     romanticDriveRect.xMin -= 3.5f;
                     Widgets.DrawHighlightIfMouseover(romanticDriveRect);
+                    Func<String> RomanticDriveString = delegate
+                    {
+                        string romString = "RomanticDriveDescription".Translate();
+                        if (romDriveInt == 0)
+                        {
+                            romString += "\n\n" + "AromanticDescription".Translate();
+                        }
+                        if (Prefs.DevMode)
+                        {
+                            string rawRating = PsycheHelper.Comp(pawn).Sexuality.romanticDrive.ToString("##0.000%", CultureInfo.InvariantCulture).Colorize(new Color(1f, 1f, 0f));
+                            string adjRating = PsycheHelper.Comp(pawn).Sexuality.AdjustedRomanticDrive.ToString("##0.000%", CultureInfo.InvariantCulture).Colorize(new Color(1f, 1f, 0f));
+                            romString += "\n\nRaw: " + rawRating + "  Adjusted: " + adjRating;
+                        }
+                        return romString;
+                    };
+                    TooltipHandler.TipRegion(romanticDriveRect, RomanticDriveString, 89141);
+
                 }
                 else if (notOnMenu)
                 {
@@ -228,7 +271,7 @@ namespace Psychology
                 string categoryText = ("Psyche" + nodeDescription).Translate();
                 Vector2 categoryTextSize = Text.CalcSize(categoryText);
                 categoryWidth = Mathf.Max(categoryWidth, 1.05f * categoryTextSize.x);
-                categoryNodeHeight = Mathf.Max(categoryNodeHeight, 1.05f * categoryTextSize.y);
+                categoryNodeHeight = Mathf.Max(categoryNodeHeight, categoryTextSize.y);
             }
             var labelNodeList = new List<Tuple<string, float, PersonalityNode>>();
             foreach (PersonalityNode node in PsycheHelper.Comp(pawn).Psyche.PersonalityNodes)
@@ -238,7 +281,7 @@ namespace Psychology
                 string antoText = node.def.oppositeName;
                 Vector2 labelSize = Text.CalcSize(labelText);
                 Vector2 antoSize = Text.CalcSize(antoText);
-                nodeWidth = Mathf.Max(nodeWidth, labelSize.x, antoSize.x);
+                nodeWidth = Mathf.Max(nodeWidth, 1.05f * labelSize.x, 1.05f * antoSize.x);
                 categoryNodeHeight = Mathf.Max(categoryNodeHeight, labelSize.y, antoSize.y);
                 if (UseAntonymsBool)
                 {
@@ -292,9 +335,9 @@ namespace Psychology
                 PersonalityNode node = labelNodeList[personalityIndexList[j]].Item3;
                 int category = categoryIndexList[j];
                 string categoryText = categoryTextList[j];
-                float categoryRectX = personalityRect.center.x - 0.65f * categoryWidth - 0.5f * nodeWidth;
+                float categoryRectX = viewRect.center.x - 0.75f * categoryWidth - 0.5f * nodeWidth;
                 Rect categoryRect = new Rect(categoryRectX, categoryNodeVerticalPosition, categoryWidth, categoryNodeHeight);
-                Rect nodeRect = new Rect(categoryRect.xMax + 0.3f * categoryWidth, categoryNodeVerticalPosition, nodeWidth, categoryNodeHeight);
+                Rect nodeRect = new Rect(categoryRect.xMax + 0.5f * categoryWidth, categoryNodeVerticalPosition, nodeWidth, categoryNodeHeight);
                 //nodeRect.xMax = viewRect.xMax;
                 style.alignment = newAlignment;
                 style.fontSize = newFontSize;
@@ -306,8 +349,8 @@ namespace Psychology
                 style.fontSize = oldFontSize;
 
                 Rect highlightRect = categoryRect;
-                highlightRect.xMin -= 5f;
-                highlightRect.xMax += 5f;
+                highlightRect.xMin = viewRect.xMin;
+                highlightRect.xMax = viewRect.xMax;
                 DrawHighlightAndTooltip(highlightRect, node, j);
                 categoryNodeVerticalPosition += categoryNodeHeight;
             }
@@ -368,7 +411,7 @@ namespace Psychology
                             float CreativeX = textRect.x;
                             for (int c = 0; c < CreativeLetters.Count(); c++)
                             {
-                                GUI.color = HSVtoColor(new Vector3(CreativeHues[c], Mathf.Lerp(0f, 1f, 1.1f * Mathf.Abs(displacement)), 1f));
+                                GUI.color = HSVtoColor(new Vector3(CreativeHues[c], Mathf.Lerp(0.25f, 1f, 2.2f * displacement), Mathf.Lerp(0.75f, 1f, 2.2f * displacement)));
                                 Widgets.Label(new Rect(CreativeX, textRect.y, CreativeLetterWidths[c], textRect.height), CreativeLetters[c]);
                                 CreativeX += CreativeLetterWidths[c];
                             }
@@ -440,17 +483,18 @@ namespace Psychology
                 {
                     nodeName = node.def.descriptionLabel.Colorize(nodeColor);
                 }
-                string tooltipString = node.def.description.Translate(nodeName);
+                //string tooltipString = node.def.description.Translate(nodeName);
+                string tooltipString = node.def.description.ReplaceFirst("{0}", nodeName);
                 if (node.def.conversationTopics != null)
                 {
                     //tooltipString += "\n\nPeople will talk about " + string.Join(", ", node.def.conversationTopics.Take(node.def.conversationTopics.Count - 1).ToArray()) + ", and " + node.def.conversationTopics.Last() + " to discuss this with each other.";
-                    tooltipString += "ConversationTooltip".Translate(string.Join("PsycheComma".Translate(), node.def.conversationTopics.Take(node.def.conversationTopics.Count - 1).ToArray()), node.def.conversationTopics.Last());
+                    tooltipString += "\n\n" + "ConversationTooltip".Translate(string.Join("PsycheComma".Translate(), node.def.conversationTopics.Take(node.def.conversationTopics.Count - 1).ToArray()), node.def.conversationTopics.Last());
                 }
                 if (Prefs.DevMode && Prefs.LogVerbose)
                 {
-                    string rawRating = (100f * node.rawRating).ToString("##0.###%", CultureInfo.InvariantCulture).Colorize(new Color(1f, 1f, 0f));
-                    string adjRating = (100f * node.AdjustedRating).ToString("##0.000%", CultureInfo.InvariantCulture).Colorize(new Color(1f, 1f, 0f));
-                    tooltipString += "\n\nRaw rating: " + rawRating + "   Adjusted rating: " + adjRating;
+                    string rawRating = node.rawRating.ToString("##0.000%", CultureInfo.InvariantCulture).Colorize(new Color(1f, 1f, 0f));
+                    string adjRating = node.AdjustedRating.ToString("##0.000%", CultureInfo.InvariantCulture).Colorize(new Color(1f, 1f, 0f));
+                    tooltipString += "\n\nRaw: " + rawRating + "  Adjusted: " + adjRating;
                 }
                 return tooltipString;
             };
@@ -466,6 +510,7 @@ namespace Psychology
             Vector3 HSV2 = def.oppositeHSV;
             float H1 = HSV1.x % 360f;
             float H2 = HSV2.x % 360f;
+
             if (H1 < 180f)
             {
                 H2 += H1 + 180f < H2 ? -360f : 0f;
@@ -517,22 +562,5 @@ namespace Psychology
                 return new Color(M, m, zm);
             }
         }
-
-        public static float ErfApprox(float xi)
-        {
-            // constants
-            float a1 = 0.254829592f;
-            float a2 = -0.284496736f;
-            float a3 = 1.421413741f;
-            float a4 = -1.453152027f;
-            float a5 = 1.061405429f;
-            float p = 0.3275911f;
-            // A&S formula 7.1.26
-            float x = Math.Abs(xi);
-            float t = 1f / (1f + p * x);
-            float y = 1f - (((((a5 * t + a4) * t) + a3) * t + a2) * t + a1) * t * Mathf.Exp(-x * x);
-            return Mathf.Sign(xi) * y;
-        }
-
     }
 }
