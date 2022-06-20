@@ -39,7 +39,7 @@ namespace Psychology
                 //int defSeed = this.def.defName.GetHashCode();
                 //this.rawRating = Rand.ValueSeeded(this.pawn.GetComp<CompPsychology>().Psyche.upbringing + defSeed + Find.World.info.Seed);
                 int upbringingInt = this.pawn.GetComp<CompPsychology>().Psyche.upbringing;
-                int upbringingDefBit = Mathf.FloorToInt(Mathf.Pow(2f, -CoreDefNames.IndexOf(this.def.defName)) * upbringingInt) % 2;
+                int upbringingDefBit = PsycheHelper.Mod(Mathf.FloorToInt(Mathf.Pow(2f, -CoreDefNames.IndexOf(this.def.defName)) * upbringingInt), 2);
                 int defSeed = this.def.defName.GetHashCode();
                 float rating = 0.375f * Rand.ValueSeeded(this.pawn.HashOffset() + defSeed) + 0.125f * Rand.ValueSeeded(Find.World.info.Seed + defSeed);
                 this.rawRating = Mathf.Clamp01(upbringingDefBit == 1 ? rating : 1f - rating);

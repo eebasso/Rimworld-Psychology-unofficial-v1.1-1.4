@@ -476,19 +476,20 @@ namespace Psychology
                 {
                     for (int c = 0; c < CreativeLetters.Count(); c++)
                     {
-                        nodeName += CreativeLetters[c].Colorize(HSVtoColor(new Vector3(CreativeHues[c], 1f, 1f)));
+                        nodeName += CreativeLetters[c].Colorize(HSVtoColor(new Vector3(CreativeHues[c], 0.8f, 1f)));
                     }
                 }
                 else
                 {
                     nodeName = node.def.descriptionLabel.Colorize(nodeColor);
                 }
-                //string tooltipString = node.def.description.Translate(nodeName);
                 string tooltipString = node.def.description.ReplaceFirst("{0}", nodeName);
+                string antonymString = " " + "AntonymDescription".Translate() + " ";
+                tooltipString += antonymString + node.def.oppositeName.Colorize(oppositeColor);
                 if (node.def.conversationTopics != null)
                 {
-                    //tooltipString += "\n\nPeople will talk about " + string.Join(", ", node.def.conversationTopics.Take(node.def.conversationTopics.Count - 1).ToArray()) + ", and " + node.def.conversationTopics.Last() + " to discuss this with each other.";
-                    tooltipString += "\n\n" + "ConversationTooltip".Translate(string.Join("PsycheComma".Translate(), node.def.conversationTopics.Take(node.def.conversationTopics.Count - 1).ToArray()), node.def.conversationTopics.Last());
+                    string convoString = "\n\n" + "ConversationTooltip".Translate(string.Join("PsycheComma".Translate(), node.def.conversationTopics.Take(node.def.conversationTopics.Count - 1).ToArray()), node.def.conversationTopics.Last());
+                    tooltipString += convoString;
                 }
                 if (Prefs.DevMode && Prefs.LogVerbose)
                 {
@@ -503,63 +504,59 @@ namespace Psychology
 
         public static Color RatingColor(PersonalityNodeDef def, float x)
         {
-            //Vector3 HSV = x < 0 ? def.oppositeHSV : def.nodeHSV;
-            //HSV.y = Mathf.Lerp(0f, HSV.y, Mathf.Abs(x));
-            //HSV.z = Mathf.Lerp(1f, HSV.z, Mathf.Abs(x));
             Vector3 HSV1 = def.nodeHSV;
             Vector3 HSV2 = def.oppositeHSV;
-            float H1 = HSV1.x % 360f;
-            float H2 = HSV2.x % 360f;
-
-            if (H1 < 180f)
-            {
-                H2 += H1 + 180f < H2 ? -360f : 0f;
-            }
-            else
-            {
-                H2 += H2 < H1 - 180f ? 360f : 0f;
-            }
-            float cutoff = 0.9f;
-            float r = 0.5f + (x / cutoff);
-            float H = Mathf.Lerp(H2, H1, r);
-            float S = Mathf.Lerp(HSV2.y, HSV1.y, r);
-            float V = Mathf.Lerp(HSV2.z, HSV1.z, r);
-            //float S = Mathf.Lerp(0.5f, x > 0f ? HSV1.y : HSV2.y, Mathf.Abs(2f * x / cutoff));
-            //float V = Mathf.Lerp(0.5f, x > 0f ? HSV1.z : HSV2.z, Mathf.Abs(2f * x / cutoff));
-            return HSVtoColor(new Vector3(H, S, V));
+            //float H1 = HSV1.x;
+            //float H2 = HSV2.x;
+            //if (H1 < 180f)
+            //{
+            //    H2 += H1 + 180f < H2 ? -360f : 0f;
+            //}
+            //else
+            //{
+            //    H2 += H2 < H1 - 180f ? 360f : 0f;
+            //}
+            //float cutoff = 0.05f;
+            //float r = 0.5f + (x / cutoff);
+            //float H = PsycheHelper.Mod(Mathf.Lerp(H2, H1, r), 360f);
+            //float S = Mathf.Lerp(0.5f, 0 < x ? HSV2.y : HSV1.y, Mathf.Abs(2f * x / 0.05f));
+            //float V = Mathf.Lerp(0.5f, 0 < x ? HSV2.z : HSV1.z, Mathf.Abs(2f * x / 0.05f));
+            //float S = Mathf.Lerp(HSV2.y, HSV1.y, r);
+            //float V = Mathf.Lerp(HSV2.z, HSV1.z, r);
+            //return HSVtoColor(new Vector3(H, S, V));
+            return HSVtoColor(x < 0 ? HSV2 : HSV1);
         }
 
         public static Color HSVtoColor(Vector3 HSV)
         {
-            float H = HSV.x % 360f;
+            float H = HSV.x;
             float S = HSV.y;
             float V = HSV.z;
-            float M = V;
             float m = V * (1f - S);
-            float zm = V * (1f - Mathf.Abs((H / 60f % 2f) - 1f)) + m;
+            float z = V * S * (1f - Mathf.Abs((H / 60f % 2f) - 1f)) + m;
             if (0f <= H && H < 60f)
             {
-                return new Color(M, zm, m);
+                return new Color(V, z, m);
             }
             if (60f <= H && H < 120f)
             {
-                return new Color(zm, M, m);
+                return new Color(z, V, m);
             }
             if (120f <= H && H < 180f)
             {
-                return new Color(m, M, zm);
+                return new Color(m, V, z);
             }
             if (180f <= H && H < 240f)
             {
-                return new Color(m, zm, M);
+                return new Color(m, z, V);
             }
             if (240f <= H && H < 300f)
             {
-                return new Color(zm, m, M);
+                return new Color(z, m, V);
             }
             else
             {
-                return new Color(M, m, zm);
+                return new Color(V, m, z);
             }
         }
     }

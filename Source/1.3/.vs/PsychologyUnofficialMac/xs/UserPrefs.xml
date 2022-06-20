@@ -1,14 +1,19 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Psychology/Defs/PersonalityNodeDefOf.cs">
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.Workbench ActiveDocument="Psychology/main/PsycheCardUtility.cs">
     <Files>
       <File FileName="Psychology/Defs/PersonalityNodeDefOf.cs" Line="1" Column="1" />
-      <File FileName="Psychology/Main/Personality/PersonalityNodeDef.cs" Line="45" Column="1" />
-      <File FileName="Psychology/Main/PsycheCardUtility.cs" Line="513" Column="1" />
-      <File FileName="../../Common/Languages/English/Keyed/WITabs.xml" Line="12" Column="304" />
-      <File FileName="../../Common/Defs/PersonalityDefs/PersonalityNodes.xml" Line="169" Column="3" />
-      <File FileName="Psychology/Main/PsycheHelper.cs" Line="27" Column="10" />
+      <File FileName="Psychology/Main/Personality/PersonalityNodeDef.cs" Line="14" Column="35" />
+      <File FileName="Psychology/Main/PsycheCardUtility.cs" Line="527" Column="52" />
+      <File FileName="../../Common/Defs/PersonalityDefs/PersonalityNodes.xml" Line="1311" Column="12" />
+      <File FileName="Psychology/Main/PsycheHelper.cs" Line="51" Column="29" />
+      <File FileName="Psychology/Main/ThoughtWorkers/ThoughtWorker_RandomMoodBipolar.cs" Line="13" Column="144" />
+      <File FileName="Psychology/Harmony/PawnObserver.cs" Line="37" Column="160" />
+      <File FileName="Psychology/Main/Personality/PersonalityNode.cs" Line="42" Column="149" />
+      <File FileName="Psychology/Main/Pawn_PsycheTracker.cs" Line="24" Column="97" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -31,11 +36,15 @@
                   </Node>
                 </Node>
               </Node>
-              <Node name="Defs" expanded="True">
-                <Node name="PersonalityNodeDefOf.cs" selected="True" />
-              </Node>
+              <Node name="Defs" expanded="True" />
+              <Node name="Harmony" expanded="True" />
               <Node name="Main" expanded="True">
+                <Node name="Conversations" expanded="True" />
+                <Node name="Elections" expanded="True" />
                 <Node name="Personality" expanded="True" />
+                <Node name="Recruiting" expanded="True" />
+                <Node name="ThoughtWorkers" expanded="True" />
+                <Node name="PsycheCardUtility.cs" selected="True" />
               </Node>
             </Node>
           </Node>
@@ -47,7 +56,5 @@
     </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>
