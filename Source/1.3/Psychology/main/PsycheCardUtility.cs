@@ -34,7 +34,7 @@ namespace Psychology
         private static bool UseAntonymsBool = true;
         private static string[] CreativeLetters = { "C", "r", "e", "a", "t", "i", "v", "e" };
         //private static Color[] CreativeColors = { new Color(1f, 0f, 0f), new Color(1f, 0.5f, 0f), new Color(1f, 1f, 0f), new Color(0f, 1f, 0f), new Color(0f, 1f, 1f), new Color(0f, 0f, 1f), new Color(0.5f, 0f, 1f), new Color(1f, 0, 0.5f) };
-        private static float[] CreativeHues = { 0f, 30f, 60f, 120f, 180f, 240f, 270f, 300f };
+        private static float[] CreativeHues = { 0f, 30f, 60f, 120f, 180f, 230f, 270f, 300f };
 
         public static void DrawPsycheCard(Rect totalRect, Pawn pawn, bool notOnMenu)
         {

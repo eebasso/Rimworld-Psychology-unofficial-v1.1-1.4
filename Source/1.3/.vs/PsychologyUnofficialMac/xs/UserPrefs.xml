@@ -3,12 +3,12 @@
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.Workbench ActiveDocument="Psychology/main/PsycheCardUtility.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="../../Common/Defs/PersonalityDefs/PersonalityNodes.xml">
     <Files>
-      <File FileName="Psychology/Defs/PersonalityNodeDefOf.cs" Line="1" Column="1" />
+      <File FileName="Psychology/Defs/PersonalityNodeDefOf.cs" Line="5" Column="16" />
       <File FileName="Psychology/Main/Personality/PersonalityNodeDef.cs" Line="14" Column="35" />
       <File FileName="Psychology/Main/PsycheCardUtility.cs" Line="527" Column="52" />
-      <File FileName="../../Common/Defs/PersonalityDefs/PersonalityNodes.xml" Line="1311" Column="12" />
+      <File FileName="../../Common/Defs/PersonalityDefs/PersonalityNodes.xml" Line="1620" Column="39" />
       <File FileName="Psychology/Main/PsycheHelper.cs" Line="51" Column="29" />
       <File FileName="Psychology/Main/ThoughtWorkers/ThoughtWorker_RandomMoodBipolar.cs" Line="13" Column="144" />
       <File FileName="Psychology/Harmony/PawnObserver.cs" Line="37" Column="160" />
@@ -26,7 +26,9 @@
                 </Node>
                 <Node name="Languages" expanded="True">
                   <Node name="English" expanded="True">
-                    <Node name="Keyed" expanded="True" />
+                    <Node name="Keyed" expanded="True">
+                      <Node name="Conversations.xml" selected="True" />
+                    </Node>
                   </Node>
                   <Node name="German" expanded="True">
                     <Node name="Keyed" expanded="True" />
@@ -44,7 +46,6 @@
                 <Node name="Personality" expanded="True" />
                 <Node name="Recruiting" expanded="True" />
                 <Node name="ThoughtWorkers" expanded="True" />
-                <Node name="PsycheCardUtility.cs" selected="True" />
               </Node>
             </Node>
           </Node>

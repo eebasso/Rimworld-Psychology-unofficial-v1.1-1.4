@@ -5,8 +5,8 @@
 		<defName>Confident</defName>
 		<label>confident</label>
 		<oppositeName>insecure</oppositeName>
-		<nodeHSV>(15,0.9,1)</nodeHSV>
-		<oppositeHSV>(255,0.5,1)</oppositeHSV>
+		<nodeHSV>(15,1,1)</nodeHSV>
+		<oppositeHSV>(285,1,0.8)</oppositeHSV>
 		<descriptionLabel>confident</descriptionLabel>
 		<description>A {0} person has high self-assurance and self-esteem.</description>
 	</Psychology.PersonalityNodeDef>
@@ -15,8 +15,8 @@
 		<defName>Experimental</defName>
 		<label>experimental</label>
 		<oppositeName>conservative</oppositeName>
-		<nodeHSV>(120,0.7,0.9)</nodeHSV>
-		<oppositeHSV>(240,0.25,0.75)</oppositeHSV>
+		<nodeHSV>(120,1,1)</nodeHSV>
+		<oppositeHSV>(270,0.5,1)</oppositeHSV>
 		<descriptionLabel>experimental</descriptionLabel>
 		<description>Someone {0} is likely to try everything once, enjoy surprises, and be more experienced.</description>
 	</Psychology.PersonalityNodeDef>
@@ -26,13 +26,13 @@
 		<label>intelligent</label>
 		<oppositeName>dim-witted</oppositeName>
 		<nodeHSV>(150,1,1)</nodeHSV>
-		<oppositeHSV>(150,0,0.5)</oppositeHSV>
+		<oppositeHSV>(360,0,0.5)</oppositeHSV>
 		<descriptionLabel>intelligent</descriptionLabel>
 		<description>An {0} person possesses a lot of raw brain-power.</description>
 		<traitModifiers>
 			<li>
 				<trait>TooSmart</trait>
-				<modifier>0.4</modifier>
+				<modifier>0.5</modifier>
 			</li>
 		</traitModifiers>
 	</Psychology.PersonalityNodeDef>
@@ -41,8 +41,8 @@
 		<defName>Extroverted</defName>
 		<label>extroverted</label>
 		<oppositeName>introverted</oppositeName>
-		<nodeHSV>(45,0.8,1)</nodeHSV>
-		<oppositeHSV>(285,0.9,0.9)</oppositeHSV>
+		<nodeHSV>(45,1,1)</nodeHSV>
+		<oppositeHSV>(180,1,1)</oppositeHSV>
 		<descriptionLabel>Extroverted</descriptionLabel>
 		<description>{0} people enjoy getting out, experiencing things, and being active.</description>
 	</Psychology.PersonalityNodeDef>
@@ -51,19 +51,24 @@
 		<defName>Emotional</defName>
 		<label>emotional</label>
 		<oppositeName>stoic</oppositeName>
-		<!--<oppositeName>cold</oppositeName>-->
-		<nodeHSV>(330,0.85,1)</nodeHSV>
-		<oppositeHSV>(210,0.85,0.75)</oppositeHSV>
+		<nodeHSV>(330,1,1)</nodeHSV>
+		<oppositeHSV>(210,1,1)</oppositeHSV>
 		<descriptionLabel>emotional</descriptionLabel>
 		<description>Someone {0} has a lot of raw capacity for feeling emotion.</description>
+		<traitModifiers>
+			<li>
+				<trait>Psychopath</trait>
+				<modifier>-0.5</modifier>
+			</li>
+		</traitModifiers>
 	</Psychology.PersonalityNodeDef>
 
 	<Psychology.PersonalityNodeDef>
 		<defName>Independent</defName>
 		<label>independent</label>
 		<oppositeName>dependent</oppositeName>
-		<nodeHSV>(20,0.9,1)</nodeHSV>
-		<oppositeHSV>(260,0.7,1)</oppositeHSV>
+		<nodeHSV>(15,0.75,1)</nodeHSV>
+		<oppositeHSV>(285,1,1)</oppositeHSV>
 		<descriptionLabel>independent</descriptionLabel>
 		<description>An {0} person is perfectly happy being on their own and doesn't rely on others.</description>
 		<controversiality>1.15</controversiality>
@@ -169,8 +174,8 @@
 		<defName>Aggressive</defName>
 		<label>aggressive</label>
 		<oppositeName>passive</oppositeName>
-		<nodeHSV>(0,0.9,0.9)</nodeHSV>
-		<oppositeHSV>(240,0.75,1)</oppositeHSV>
+		<nodeHSV>(0,1,1)</nodeHSV>
+		<oppositeHSV>(255,0.7,1)</oppositeHSV>
 		<descriptionLabel>aggressive</descriptionLabel>
 		<description>An {0} person is straightforward, blunt, and usually combative when they don't get what they want.</description>
 		<controversiality>1.25</controversiality>
@@ -215,8 +220,8 @@
 		<defName>Adventurous</defName>
 		<label>adventurous</label>
 		<oppositeName>cautious</oppositeName>
-		<nodeHSV>(35,0.75,1)</nodeHSV>
-		<oppositeHSV>(275,0.75,0.75)</oppositeHSV>
+		<nodeHSV>(30,1,1)</nodeHSV>
+		<oppositeHSV>(270,0.9,1)</oppositeHSV>
 		<descriptionLabel>adventurous</descriptionLabel>
 		<description>Someone who is {0} feels more fulfilled when they try new things, expand their horizons, and go new places.</description>
 		<controversiality>0.7</controversiality>
@@ -262,8 +267,8 @@
 		<defName>DrugFriendly</defName>
 		<label>drug-friendly</label>
 		<oppositeName>straight-edge</oppositeName>
-		<nodeHSV>(120,0.7,0.9)</nodeHSV>
-		<oppositeHSV>(240,0.25,0.75)</oppositeHSV>
+		<nodeHSV>(120,0.75,0.75)</nodeHSV>
+		<oppositeHSV>(360,0,0.9)</oppositeHSV>
 		<descriptionLabel>drug-friendly</descriptionLabel>
 		<description>A {0} person sees nothing wrong with drugs and makes no effort to avoid them.</description>
 		<controversiality>1.2</controversiality>
@@ -319,8 +324,8 @@
 		<defName>Spontaneous</defName>
 		<label>spontaneous</label>
 		<oppositeName>measured</oppositeName>
-		<nodeHSV>(30,0.9,1)</nodeHSV>
-		<oppositeHSV>(150,0.9,1)</oppositeHSV>
+		<nodeHSV>(30,0.75,1)</nodeHSV>
+		<oppositeHSV>(270,0.7,1)</oppositeHSV>
 		<descriptionLabel>spontaneous</descriptionLabel>
 		<description>A {0} person tends to be impulsive and enjoy surprising others.</description>
 		<controversiality>0.8</controversiality>
@@ -346,8 +351,8 @@
 		<defName>Rational</defName>
 		<label>rational</label>
 		<oppositeName>irrational</oppositeName>
-		<nodeHSV>(150,0.9,1)</nodeHSV>
-		<oppositeHSV>(270,0.5,0.5)</oppositeHSV>
+		<nodeHSV>(135,1,0.8)</nodeHSV>
+		<oppositeHSV>(345,0.5,1)</oppositeHSV>
 		<descriptionLabel>rational</descriptionLabel>
 		<description>The more {0} someone is, the more capable they are of thinking about things from a factual, objective standpoint.</description>
 		<controversiality>1</controversiality>
@@ -381,8 +386,8 @@
 		<defName>Logical</defName>
 		<label>logical</label>
 		<oppositeName>illogical</oppositeName>
-		<nodeHSV>(150,0.9,1)</nodeHSV>
-		<oppositeHSV>(30,0.5,0.5)</oppositeHSV>
+		<nodeHSV>(135,0.5,1)</nodeHSV>
+		<oppositeHSV>(330,1,0.8)</oppositeHSV>
 		<descriptionLabel>logical</descriptionLabel>
 		<description>A {0} person is highly capable of connecting cause and effect, and predicting the consequences of actions.</description>
 		<controversiality>1</controversiality>
@@ -430,9 +435,10 @@
 		<label>creative</label>
 		<!--<oppositeName>boring</oppositeName>-->
 		<!--<oppositeName>uncreative</oppositeName>-->
-		<oppositeName>conventional</oppositeName>
-		<nodeHSV>(46,1,1)</nodeHSV>
-		<oppositeHSV>(286,0,0.67)</oppositeHSV>
+		<!--<oppositeName>conventional</oppositeName>-->
+		<oppositeName>boring</oppositeName>
+		<nodeHSV>(360,0,1)</nodeHSV>
+		<oppositeHSV>(360,0,0.6)</oppositeHSV>
 		<descriptionLabel>Creative</descriptionLabel>
 		<description>{0} people can imagine things in vivid detail, whether they ever existed or not.</description>
 		<controversiality>0.75</controversiality>
@@ -484,8 +490,8 @@
 		<defName>Passionate</defName>
 		<label>passionate</label>
 		<oppositeName>apathetic</oppositeName>
-		<nodeHSV>(330,0.9,1)</nodeHSV>
-		<oppositeHSV>(210,0.5,0.5)</oppositeHSV>
+		<nodeHSV>(345,1,1)</nodeHSV>
+		<oppositeHSV>(210,1,0.85)</oppositeHSV>
 		<descriptionLabel>passionate</descriptionLabel>
 		<description>People who are {0} feel very strongly about things and tend to express themselves emphatically.</description>
 		<controversiality>0.85</controversiality>
@@ -516,9 +522,9 @@
 	<Psychology.PersonalityNodeDef>
 		<defName>Nostalgic</defName>
 		<label>nostalgic</label>
-		<oppositeName>future-oriented</oppositeName>
-		<nodeHSV>(330,0.75,0.75)</nodeHSV>
-		<oppositeHSV>(210,0.75,1)</oppositeHSV>
+		<oppositeName>unsentimental</oppositeName>
+		<nodeHSV>(300,0.9,0.8)</nodeHSV>
+		<oppositeHSV>(165,1,0.8)</oppositeHSV>
 		<descriptionLabel>nostalgic</descriptionLabel>
 		<description>Someone {0} has a very strong connection to their past and anything that evokes those memories.</description>
 		<controversiality>0.7</controversiality>
@@ -564,8 +570,8 @@
 		<defName>Empathetic</defName>
 		<label>empathetic</label>
 		<oppositeName>cold-hearted</oppositeName>
-		<nodeHSV>(300,0.8,1)</nodeHSV>
-		<oppositeHSV>(240,0.7,1)</oppositeHSV>
+		<nodeHSV>(330,0.5,1)</nodeHSV>
+		<oppositeHSV>(225,0.7,1)</oppositeHSV>
 		<descriptionLabel>empathetic</descriptionLabel>
 		<description>An {0} person is able to put themselves into the shoes of others and understand their feelings.</description>
 		<controversiality>1.4</controversiality>
@@ -594,10 +600,6 @@
 				<modifier>-1</modifier>
 			</li>
 			<li>
-				<trait>Cannibal</trait>
-				<modifier>-0.5</modifier>
-			</li>
-			<li>
 				<trait>Bloodlust</trait>
 				<modifier>-0.5</modifier>
 			</li>
@@ -607,7 +609,7 @@
 			</li>
 			<li>
 				<trait>Kind</trait>
-				<modifier>0.25</modifier>
+				<modifier>0.5</modifier>
 			</li>
 			<li>
 				<trait>BleedingHeart</trait>
@@ -625,8 +627,8 @@
 		<defName>Competitive</defName>
 		<label>competitive</label>
 		<oppositeName>cooperative</oppositeName>
-		<nodeHSV>(25,0.75,1)</nodeHSV>
-		<oppositeHSV>(265,0.5,1)</oppositeHSV>
+		<nodeHSV>(0,0.75,1)</nodeHSV>
+		<oppositeHSV>(285,0.75,1)</oppositeHSV>
 		<controversiality>0.9</controversiality>
 		<descriptionLabel>competitive</descriptionLabel>
 		<description>For a {0} person, it's not enough that they succeed, others must fail.</description>
@@ -664,8 +666,8 @@
 		<defName>Polite</defName>
 		<label>polite</label>
 		<oppositeName>rude</oppositeName>
-		<nodeHSV>(240,0.3,1)</nodeHSV>
-		<oppositeHSV>(0,0.9,0.9)</oppositeHSV>
+		<nodeHSV>(255,0.5,1)</nodeHSV>
+		<oppositeHSV>(0,1,0.8)</oppositeHSV>
 		<descriptionLabel>polite</descriptionLabel>
 		<description>A {0} person is well-mannered and makes an effort not to offend other people.</description>
 		<controversiality>0.78</controversiality>
@@ -718,8 +720,8 @@
 		<defName>Cool</defName>
 		<label>cool</label>
 		<oppositeName>square</oppositeName>
-		<nodeHSV>(200,0.85,1)</nodeHSV>
-		<oppositeHSV>(80,0.5,0.5)</oppositeHSV>
+		<nodeHSV>(195,1,1)</nodeHSV>
+		<oppositeHSV>(360,0,0.7)</oppositeHSV>
 		<descriptionLabel>cool</descriptionLabel>
 		<description>Someone who's {0} is edgy, unique, and interesting, and people tend to like them more.</description>
 		<controversiality>1</controversiality>
@@ -796,9 +798,9 @@
 	<Psychology.PersonalityNodeDef>
 		<defName>Romantic</defName>
 		<label>romantic</label>
-		<nodeHSV>(330,0.75,1)</nodeHSV>
-		<oppositeHSV>(210,0.5,0.5)</oppositeHSV>
 		<oppositeName>detached</oppositeName>
+		<nodeHSV>(300,0.9,1)</nodeHSV>
+		<oppositeHSV>(210,0.6,1)</oppositeHSV>
 		<descriptionLabel>romantic</descriptionLabel>
 		<description>Someone {0} likes long-term, meaningful relationships, commitment, and intimate gestures.</description>
 		<controversiality>1.25</controversiality>
@@ -852,8 +854,8 @@
 		<label>thoughtful</label>
 		<!--<oppositeName>careless</oppositeName>-->
 		<oppositeName>reckless</oppositeName>
-		<nodeHSV>(150,0.9,1)</nodeHSV>
-		<oppositeHSV>(30,0.9,1)</oppositeHSV>
+		<nodeHSV>(165,0.5,1)</nodeHSV>
+		<oppositeHSV>(30,0.95,0.8)</oppositeHSV>
 		<descriptionLabel>Thoughtful</descriptionLabel>
 		<description>{0} people are introspective and critical, and tend to plan ahead.</description>
 		<controversiality>1</controversiality>
@@ -894,8 +896,8 @@
 		<defName>Geeky</defName>
 		<label>geeky</label>
 		<oppositeName>normie</oppositeName>
-		<nodeHSV>(90,1,1)</nodeHSV>
-		<oppositeHSV>(210,0,0.5)</oppositeHSV>
+		<nodeHSV>(150,0.5,1)</nodeHSV>
+		<oppositeHSV>(360,0,0.8)</oppositeHSV>
 		<descriptionLabel>geeky</descriptionLabel>
 		<description>Someone who is {0} is intellectual, eccentric, and frequently socially awkward.</description>
 		<controversiality>0.8</controversiality>
@@ -947,8 +949,8 @@
 		<defName>Cultured</defName>
 		<label>cultured</label>
 		<oppositeName>crude</oppositeName>
-		<nodeHSV>(263,0.5,1)</nodeHSV>
-		<oppositeHSV>(23,1,0.6)</oppositeHSV>
+		<nodeHSV>(150,1,0.8)</nodeHSV>
+		<oppositeHSV>(15,1,0.8)</oppositeHSV>
 		<descriptionLabel>cultured</descriptionLabel>
 		<description>A {0} person is well-read, well-educated, and refined.</description>
 		<controversiality>0.8</controversiality>
@@ -979,8 +981,8 @@
 		<defName>Organized</defName>
 		<label>organized</label>
 		<oppositeName>messy</oppositeName>
-		<nodeHSV>(150,0.9,1)</nodeHSV>
-		<oppositeHSV>(30,0.9,1)</oppositeHSV>
+		<nodeHSV>(165,1,1)</nodeHSV>
+		<oppositeHSV>(60,1,0.8)</oppositeHSV>
 		<descriptionLabel>organized</descriptionLabel>
 		<description>An {0} person keeps everything tidy, neat, and minimalistic.</description>
 		<controversiality>0.7</controversiality>
@@ -1029,8 +1031,8 @@
 		<defName>Naive</defName>
 		<label>naive</label>
 		<oppositeName>skeptical</oppositeName>
-		<nodeHSV>(270,0.5,1)</nodeHSV>
-		<oppositeHSV>(150,0.9,1)</oppositeHSV>
+		<nodeHSV>(300,0.5,1)</nodeHSV>
+		<oppositeHSV>(180,0.5,1)</oppositeHSV>
 		<descriptionLabel>naive</descriptionLabel>
 		<description>Someone {0} is guileless and often superstitious.</description>
 		<controversiality>1.3</controversiality>
@@ -1074,8 +1076,8 @@
 		<defName>Upbeat</defName>
 		<label>upbeat</label>
 		<oppositeName>melancholy</oppositeName>
-		<nodeHSV>(60,0.8,1)</nodeHSV>
-		<oppositeHSV>(240,0.8,1)</oppositeHSV>
+		<nodeHSV>(60,1,1)</nodeHSV>
+		<oppositeHSV>(240,1,1)</oppositeHSV>
 		<descriptionLabel>Upbeat</descriptionLabel>
 		<description>{0} people are happy, warm, and pleasant to be around.</description>
 		<controversiality>0.75</controversiality>
@@ -1132,8 +1134,8 @@
 		<defName>Outspoken</defName>
 		<label>outspoken</label>
 		<oppositeName>reserved</oppositeName>
-		<nodeHSV>(30,0.9,1)</nodeHSV>
-		<oppositeHSV>(270,0.5,1)</oppositeHSV>
+		<nodeHSV>(30,0.5,1)</nodeHSV>
+		<oppositeHSV>(255,0.85,1)</oppositeHSV>
 		<descriptionLabel>outspoken</descriptionLabel>
 		<description>An {0} person has a lot of strong opinions and doesn't hesitate to share them.</description>
 		<controversiality>1.5</controversiality>
@@ -1168,8 +1170,8 @@
 		<defName>Ambitious</defName>
 		<label>ambitious</label>
 		<oppositeName>content</oppositeName>
-		<nodeHSV>(20,0.9,0.9)</nodeHSV>
-		<oppositeHSV>(260,0.5,1)</oppositeHSV>
+		<nodeHSV>(15,0.5,1)</nodeHSV>
+		<oppositeHSV>(285,0.5,1)</oppositeHSV>
 		<descriptionLabel>ambitious</descriptionLabel>
 		<description>Someone {0} sets large, difficult goals for themselves and wants to be successful.</description>
 		<controversiality>0.9</controversiality>
@@ -1235,7 +1237,7 @@
 		<defName>LaidBack</defName>
 		<label>laid-back</label>
 		<oppositeName>anxious</oppositeName>
-		<nodeHSV>(200,0.85,1)</nodeHSV>
+		<nodeHSV>(195,1,0.8)</nodeHSV>
 		<oppositeHSV>(90,1,1)</oppositeHSV>
 		<descriptionLabel>Laid-back</descriptionLabel>
 		<description>{0} people don't get stressed out about things very easily and tend not to worry.</description>
@@ -1311,8 +1313,8 @@
 		<defName>Pure</defName>
 		<label>pure</label>
 		<oppositeName>debauched</oppositeName>
-		<nodeHSV>(0,0,1)</nodeHSV>
-		<oppositeHSV>(0,0.8,0.8)</oppositeHSV>
+		<nodeHSV>(360,0,1)</nodeHSV>
+		<oppositeHSV>(0,0.5,0.9)</oppositeHSV>
 		<descriptionLabel>pure</descriptionLabel>
 		<description>People who are {0} try to be chaste, traditional, and wholesome.</description>
 		<controversiality>1.48</controversiality>
@@ -1362,8 +1364,8 @@
 		<defName>Moralistic</defName>
 		<label>moralistic</label>
 		<oppositeName>amoral</oppositeName>
-		<nodeHSV>(270,0.7,1)</nodeHSV>
-		<oppositeHSV>(0,0.8,0.8)</oppositeHSV>
+		<nodeHSV>(315,0.9,0.8)</nodeHSV>
+		<oppositeHSV>(225,0.5,1)</oppositeHSV>
 		<descriptionLabel>moralistic</descriptionLabel>
 		<description>Someone who is {0} adheres to traditional ideas of morality.</description>
 		<controversiality>1.45</controversiality>
@@ -1408,8 +1410,8 @@
 		<defName>Trusting</defName>
 		<label>trusting</label>
 		<oppositeName>cynical</oppositeName>
-		<nodeHSV>(60,0.8,1)</nodeHSV>
-		<oppositeHSV>(180,0.9,0.4)</oppositeHSV>
+		<nodeHSV>(45,0.5,1)</nodeHSV>
+		<oppositeHSV>(180,1,0.8)</oppositeHSV>
 		<descriptionLabel>trusting</descriptionLabel>
 		<description>Someone who is {0} tends to take people at their word and see the good in people.</description>
 		<controversiality>1.3</controversiality>
@@ -1438,10 +1440,10 @@
 	<Psychology.PersonalityNodeDef>
 		<defName>Judgmental</defName>
 		<label>judgmental</label>
-		<!--<oppositeName>tolerant</oppositeName>-->
-		<oppositeName>open</oppositeName>
-		<nodeHSV>(5,0.8,0.8)</nodeHSV>
-		<oppositeHSV>(245,0.5,1)</oppositeHSV>
+		<oppositeName>tolerant</oppositeName>
+		<!--<oppositeName>open</oppositeName>-->
+		<nodeHSV>(345,1,0.8)</nodeHSV>
+		<oppositeHSV>(195,0.5,1)</oppositeHSV>
 		<descriptionLabel>judgmental</descriptionLabel>
 		<description>A {0} person tends to form their opinions of people quickly and superficially, and is affected more by the actions of others.</description>
 		<controversiality>1.3</controversiality>
@@ -1497,8 +1499,8 @@
 		<defName>Friendly</defName>
 		<label>friendly</label>
 		<oppositeName>unfriendly</oppositeName>
-		<nodeHSV>(60,0.8,1)</nodeHSV>
-		<oppositeHSV>(240,0.8,1)</oppositeHSV>
+		<nodeHSV>(45,0.75,1)</nodeHSV>
+		<oppositeHSV>(240,0.5,1)</oppositeHSV>
 		<descriptionLabel>friendly</descriptionLabel>
 		<description>Someone {0} is kind, tolerant, and inviting to talk to.</description>
 		<controversiality>0.7</controversiality>
@@ -1519,19 +1521,16 @@
 			</li>
 			<li>
 				<node>Judgmental</node>
-				<modifier>2</modifier>
+				<modifier>1</modifier>
 			</li>
 		</parents>
 		<traitModifiers>
 			<li>
 				<trait>Chatty</trait>
-				<!--<modifier>0.1</modifier>-->
 				<modifier>0.2</modifier>
 			</li>
-			<!-- added modifier for Kind trait here -->
 			<li>
 				<trait>Kind</trait>
-				<!--<modifier>0.1</modifier>-->
 				<modifier>0.5</modifier>
 			</li>
 		</traitModifiers>
@@ -1541,8 +1540,8 @@
 		<defName>Optimistic</defName>
 		<label>optimistic</label>
 		<oppositeName>pessimistic</oppositeName>
-		<nodeHSV>(60,0.8,1)</nodeHSV>
-		<oppositeHSV>(240,0.8,1)</oppositeHSV>
+		<nodeHSV>(60,0.5,1)</nodeHSV>
+		<oppositeHSV>(240,0.75,1)</oppositeHSV>
 		<descriptionLabel>optimistic</descriptionLabel>
 		<description>Someone who is {0} looks on the bright side of life.</description>
 		<controversiality>1.1</controversiality>
@@ -1571,8 +1570,8 @@
 		<defName>Compassionate</defName>
 		<label>compassionate</label>
 		<oppositeName>callous</oppositeName>
-		<nodeHSV>(300,0.8,1)</nodeHSV>
-		<oppositeHSV>(240,0.8,1)</oppositeHSV>
+		<nodeHSV>(315,0.9,1)</nodeHSV>
+		<oppositeHSV>(225,1,1)</oppositeHSV>
 		<descriptionLabel>Compassionate</descriptionLabel>
 		<description>{0} people are concerned about other people's struggles and try to help them.</description>
 		<controversiality>1.3</controversiality>
@@ -1605,15 +1604,19 @@
 				<trait>Bloodlust</trait>
 				<modifier>-0.8</modifier>
 			</li>
+			<li>
+				<trait>Kind</trait>
+				<modifier>0.8</modifier>
+			</li>
 		</traitModifiers>
 	</Psychology.PersonalityNodeDef>
 	
 	<Psychology.PersonalityNodeDef>
 		<defName>Generous</defName>
 		<label>generous</label>
-		<oppositeName>selfish</oppositeName>
-		<nodeHSV>(300,0.8,1)</nodeHSV>
-		<oppositeHSV>(240,0.8,1)</oppositeHSV>
+		<oppositeName>stingy</oppositeName>
+		<nodeHSV>(315,0.5,1)</nodeHSV>
+		<oppositeHSV>(105,1,0.7)</oppositeHSV>
 		<descriptionLabel>Generous</descriptionLabel>
 		<description>{0} people care less about having things and are more likely to give them to others.</description>
 		<controversiality>1.2</controversiality>
