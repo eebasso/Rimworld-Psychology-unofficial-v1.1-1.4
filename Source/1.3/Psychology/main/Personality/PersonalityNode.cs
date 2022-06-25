@@ -30,19 +30,21 @@ namespace Psychology
 
         public void Initialize()
         {
-            if (this.Core && this.def.defName != "Intelligent")
+            int[] upbringingSigns = PsycheHelper.GetSignArray(this.pawn.GetComp<CompPsychology>().Psyche.upbringing, 5);
+            string defName = this.def.defName;
+            //if (this.Core && this.def.defName != "Intelligent")
+            if (CoreDefNames.Contains(defName))
             {
-                /* "Core" nodes are seeded based on a pawn's upbringing, separating pawns into 16 categories, similar to the Meyers-Brigg test.
-                 * Two pawns with the same upbringing will always have the same core personality ratings.
-                 * Pawns will never have conversations about core nodes, they exist only to influence child nodes.
-                 */
-                //int defSeed = this.def.defName.GetHashCode();
-                //this.rawRating = Rand.ValueSeeded(this.pawn.GetComp<CompPsychology>().Psyche.upbringing + defSeed + Find.World.info.Seed);
-                int upbringingInt = this.pawn.GetComp<CompPsychology>().Psyche.upbringing;
-                int upbringingDefBit = PsycheHelper.Mod(Mathf.FloorToInt(Mathf.Pow(2f, -CoreDefNames.IndexOf(this.def.defName)) * upbringingInt), 2);
-                int defSeed = this.def.defName.GetHashCode();
-                float rating = 0.375f * Rand.ValueSeeded(this.pawn.HashOffset() + defSeed) + 0.125f * Rand.ValueSeeded(Find.World.info.Seed + defSeed);
-                this.rawRating = Mathf.Clamp01(upbringingDefBit == 1 ? rating : 1f - rating);
+                /* "Core" nodes are seeded based on a pawn's upbringing, separating pawns into 32 categories based on the Big Five personality model. */
+                /* Two pawns with the same upbringing will always have the similar core personality ratings. */
+                int pawnSeed = this.pawn.HashOffset();
+                int defSeed = defName.GetHashCode();
+                int worldSeed = Find.World.info.Seed;
+                /* 80% of a pawn's core personality will be the same regardless of what world they live on */
+                float displacement = 0.1f + 0.3f * Rand.ValueSeeded(pawnSeed + defSeed) + 0.1f * Rand.ValueSeeded(2 * pawnSeed + defSeed + worldSeed);
+                //float displacement = 0.375f * Rand.ValueSeeded(pawnSeed + defSeed) + 0.125f * Rand.ValueSeeded(2 * pawnSeed + defSeed + worldSeed);
+                int coreNodeIndex = CoreDefNames.IndexOf(defName);
+                this.rawRating = 0.5f + upbringingSigns[coreNodeIndex] * displacement;
             }
             else
             {
@@ -83,76 +85,60 @@ namespace Psychology
                 den += Mathf.Abs(M);
                 m.Add(M);
             }
-            //foreach (KeyValuePair<PersonalityNodeDef, PersonalityNodeParent> kvp in this.def.ParentNodes)
-            //{
-            //    PersonalityNode parent = kvp.Key;
-            //    Log.Message("Inside foreach of " + this.def.label + "for parent = " + parent.def.label);
-            //    float M = def.GetModifier(parent.def);
-            //    Log.Message("Getting adjusted rating");
-            //    num += M * (parent.AdjustedRating - 0.5f);
-            //    den += Mathf.Abs(M);
-            //    m.Add(M);
-            //}
-            //Log.Message(this.def.label + " has " + m.Count.ToString() + " parents.");
-            float zi = num / den;
-            float zf = zi;
-            //Log.Message("Before if loops");
-            if (m.Count - 1 == 0)
+            if (m.Count == 1)
             {
-                //Log.Message("m.Count == 0 start");
                 return rating;
             }
-            if (m.Count - 1 == 1)
+            float zi = num / den;
+            float zf;
+            if (m.Count == 2)
             {
-                //Log.Message("m.Count == 1 start");
                 zf = AdjustForOneParent(zi, m[1] / m[0]);
             }
-            if (m.Count - 1 == 2)
+            else if (m.Count == 3)
             {
-                //Log.Message("m.Count == 2 start");
                 zf = AdjustForTwoParents(zi, m[1] / m[0], m[2] / m[0]);
             }
-            if (m.Count - 1 == 3)
+            else if (m.Count == 4)
             {
-                //Log.Message("m.Count == 3 start");
                 zf = AdjustForThreeParents(zi, m[1] / m[0], m[2] / m[0], m[3] / m[0]);
             }
+            else
+            {
+                zf = AdjustForMoreParentsApprox(zi, m);
+            }
             Log.Message("Reached end of AdjustForParents for " + this.def.label + "rating changed from " + rating.ToString() + " to " + (zf + 0.5f).ToString());
-            return Mathf.Clamp01(zf + 0.5f);
+            //return Mathf.Clamp01(zf + 0.5f);
+            return zf + 0.5f;
         }
 
         [LogPerformance]
         public float AdjustForCircumstance(float rating)
         {
+            float totalModifier = 0f;
             if (this.def.traitModifiers != null && this.def.traitModifiers.Any())
             {
                 foreach (PersonalityNodeTraitModifier traitMod in this.def.traitModifiers)
                 {
                     if (this.pawn.story.traits.HasTrait(traitMod.trait) && this.pawn.story.traits.DegreeOfTrait(traitMod.trait) == traitMod.degree)
                     {
-                        rating += traitMod.modifier;
+                        totalModifier += traitMod.modifier;
                     }
                 }
-                //rating = Mathf.Clamp01(rating);
             }
             if (this.def.skillModifiers != null && this.def.skillModifiers.Any())
             {
-                int totalLearning = 0;
-                foreach (SkillRecord s in this.pawn.skills.skills)
-                {
-                    totalLearning += s.Level;
-                }
-                int skillWeight = 0;
+                //float totalLearning = 0f;
+                //foreach (SkillRecord s in this.pawn.skills.skills)
+                //{
+                //    totalLearning += s.Level;
+                //}
+                float skillWeight = 0f;
                 foreach (PersonalityNodeSkillModifier skillMod in this.def.skillModifiers)
                 {
                     skillWeight += this.pawn.skills.GetSkill(skillMod.skill).Level;
                 }
-                if (totalLearning > 0)
-                {
-                    float totalWeight = skillWeight / totalLearning;
-                    rating += Mathf.InverseLerp(.05f, .4f, totalWeight);
-                    //rating = Mathf.Clamp01(rating);
-                }
+                totalModifier += Mathf.Pow(skillWeight / 20f, 2);
             }
             if (this.def.incapableModifiers != null && this.def.incapableModifiers.Any())
             {
@@ -160,18 +146,17 @@ namespace Psychology
                 {
                     if (this.pawn.WorkTypeIsDisabled(incapableMod.type))
                     {
-                        rating += incapableMod.modifier;
+                        totalModifier += incapableMod.modifier;
                     }
                 }
                 //rating = Mathf.Clamp01(rating);
             }
             if (this.def == PersonalityNodeDefOf.Cool && RelationsUtility.IsDisfigured(this.pawn))
             {
-                //rating = Mathf.Clamp01(rating - 0.1f);
-                rating += -0.1f;
+                totalModifier += -0.1f;
             }
-            //return rating;
-            return Mathf.Clamp01(rating);
+            totalModifier = Mathf.Clamp(totalModifier, -1f, 1f);
+            return (1 - Mathf.Abs(totalModifier)) * rating + (totalModifier > 0 ? totalModifier : 0f);
         }
 
         [LogPerformance]
@@ -179,21 +164,38 @@ namespace Psychology
         {
             if (this.def.femaleModifier > 0f && this.pawn.gender == Gender.Female && PsychologyBase.ActivateKinsey())
             {
-                rating = Rand.ValueSeeded(pawn.HashOffset()) < 0.8f ? rating * Mathf.Lerp(this.def.femaleModifier, 1f, this.pawn.GetComp<CompPsychology>().Sexuality.kinseyRating / 6) : rating;
+                rating *= Rand.ValueSeeded(pawn.HashOffset()) < 0.8f ? Mathf.Lerp(this.def.femaleModifier, 1f, this.pawn.GetComp<CompPsychology>().Sexuality.kinseyRating / 6) : 1f;
             }
             else if (this.def.femaleModifier > 0f && this.pawn.gender == Gender.Female)
             {
-                rating = this.pawn.story.traits.HasTrait(TraitDefOf.Gay) ? rating : rating * this.def.femaleModifier;
+                rating *= this.pawn.story.traits.HasTrait(TraitDefOf.Gay) ? 1f : this.def.femaleModifier;
             }
-            //return rating;
             return Mathf.Clamp01(rating);
         }
 
-        public bool Core
+        public bool HasNoParents
         {
             get
             {
                 return this.def.ParentNodes == null || !this.def.ParentNodes.Any();
+            }
+        }
+
+        public bool HasNoPlatformIssue
+        {
+            get
+            {
+                Log.Message("this.def.platformIssueHigh == null: " + (this.def.platformIssueHigh == null).ToString());
+                Log.Message("!this.def.platformIssueHigh.Any(): " + (!this.def.platformIssueHigh.Any()).ToString());
+                return this.def.platformIssueHigh == null || !this.def.platformIssueHigh.Any();
+            }
+        }
+
+        public bool HasNoConvoTopics
+        {
+            get
+            {
+                return this.def.conversationTopics == null || !this.def.conversationTopics.Any();
             }
         }
 
@@ -202,57 +204,17 @@ namespace Psychology
             [LogPerformance]
             get
             {
-                //Log.Message("Inside PersonalityNode.ParentNodes for " + this.def.label);
                 if (this.parents == null || this.pawn.IsHashIntervalTick(500))
                 {
-                    //Log.Message("Parents were null for node " + this.def.label);
                     this.parents = new HashSet<PersonalityNode>();
-                    //Log.Message("Created new HashSet for parents for " + this.def.label);
                     if (this.def.ParentNodes != null && this.def.ParentNodes.Any())
                     {
-                        //Log.Message("Actually populating parents for " + this.def.label);
                         this.parents.AddRange(this.pawn.GetComp<CompPsychology>().Psyche.PersonalityNodes.Where(p => this.def.ParentNodes.ContainsKey(p.def)));
-                        //Log.Message("Finished populating parents for " + this.def.label);
                     }
-                    //Log.Message("Past inner if loop of PersonalityNode.ParentNodes for " + this.def.label);
                 }
                 return this.parents;
             }
         }
-
-        //public HashSet<PersonalityNode> ParentNodes
-        //{
-        //    [LogPerformance]
-        //    get
-        //    {
-        //        Log.Message("Inside PersonalityNode.ParentNodes for " + this.def.label);
-        //        if (this.parents == null || this.pawn.IsHashIntervalTick(500))
-        //        {
-        //            Log.Message("Parents were null for node " + this.def.label);
-        //            this.parents = new HashSet<PersonalityNode>();
-        //            Log.Message("Created new HashSet for parents for " + this.def.label);
-        //            //bool bool1 = this.def.ParentNodes != null;
-        //            //Log.Message("this.def.ParentNodes != null is " + bool1.ToString());
-        //            //bool bool2 = this.def.ParentNodes.Any();
-        //            //Log.Message("this.def.ParentNodes.Any() is " + bool2.ToString());
-        //            if (this.def.ParentNodes != null && this.def.ParentNodes.Any())
-        //            {
-        //                Log.Message("Actually populating parents for " + this.def.label);
-        //                this.parents = (from p in this.pawn.GetComp<CompPsychology>().Psyche.PersonalityNodes
-        //                                where this.def.ParentNodes.ContainsKey(p.def)
-        //                                select p) as HashSet<PersonalityNode>;
-        //                Log.Message("Finished populating parents for " + this.def.label);
-        //            }
-        //            Log.Message("Past inner if loop of PersonalityNode.ParentNodes for " + this.def.label);
-        //        }
-        //        //Log.Message("Obtaining this.def.label");
-        //        //string string1 = this.def.label;
-        //        //Log.Message("Obtaining this.parents.Count.ToString()");
-        //        //string string2 = this.parents.Count.ToString();
-        //        //Log.Message("Finished PersonalityNode.ParentNodes for " + string1 + " with parent count = " + string2);
-        //        return this.parents;
-        //    }
-        //}
 
         public string PlatformIssue
         {
@@ -280,25 +242,13 @@ namespace Psychology
             [LogPerformance]
             get
             {
-                //Log.Message("Inside adjusted rating for " + this.def.label);
-                //Log.Message("cachedRating < 0f is " + (cachedRating < 0f).ToString());
-                //Log.Message("this.pawn.IsHashIntervalTick(100) is " + this.pawn.IsHashIntervalTick(100).ToString());
                 if (cachedRating < 0f || this.pawn.IsHashIntervalTick(100))
                 {
-                    //float adjustedRating = AdjustForCircumstance(this.rawRating);
-                    //adjustedRating = AdjustHook(adjustedRating);
-                    //adjustedRating = AdjustGender(adjustedRating);
-                    //cachedRating = AdjustForParents(adjustedRating);
-                    //adjustedRating = AdjustForParents(adjustedRating);
-                    //adjustedRating = ((3 * adjustedRating) + rawRating) / 4f; //Prevent it from being adjusted too strongly
-                    //cachedRating = Mathf.Clamp01(adjustedRating);
-                    //Log.Message(this.def.label + ": raw = " + this.rawRating.ToString() + ", adjusted = " + cachedRating.ToString());
                     float adjustedRating = AdjustForParents(this.rawRating);
-                    adjustedRating = AdjustForCircumstance(adjustedRating);
                     adjustedRating = AdjustGender(adjustedRating);
+                    adjustedRating = AdjustForCircumstance(adjustedRating);
                     cachedRating = AdjustHook(adjustedRating);
                 }
-                //Log.Message(this.def.label + ": raw = " + this.rawRating.ToString() + ", adjusted = " + cachedRating);
                 return cachedRating;
             }
         }
@@ -377,7 +327,7 @@ namespace Psychology
             else
             {
                 Log.Message("Using AdjustForMoreParentsApprox");
-                Fout = AdjustForMoreParentsApprox(z, new List<float>() { m1, m2 });
+                Fout = AdjustForMoreParentsApprox(z, new List<float>() { 1f, m1, m2 });
             }
             if ((Fout < 0f || 0.5f < Fout) && z <= 0.5f)
             {
@@ -477,7 +427,7 @@ namespace Psychology
             else
             {
                 Log.Message("Using AdjustForMoreParentsApprox");
-                Fout = AdjustForMoreParentsApprox(z, new List<float>() { m1, m2, m3 });
+                Fout = AdjustForMoreParentsApprox(z, new List<float>() { 1f, m1, m2, m3 });
             }
             if ((Fout < 0f || 0.5f < Fout) && z <= 0.5f)
             {
@@ -487,15 +437,45 @@ namespace Psychology
             return Mathf.Sign(zi) * Fout;
         }
 
+        public static float AdjustForNParentsExact(float z, List<float> mlist)
+        {
+            int n = mlist.Count();
+            float mTotal = mlist.Sum(x => Mathf.Abs(x));
+            float[] y = new float[n];
+            float den = 2f;
+            for (int k = 0; k < n; k++)
+            {
+                float frac = mlist[k] / mTotal;
+                y[k] = frac;
+                den *= (k + 1) * frac;
+            }
+            float Fout = 0f;
+            int num = (int)Math.Pow(2, n);
+            for (int i = 0; i < num; i++)
+            {
+                int[] eta = PsycheHelper.GetSignArray(i, n);
+                float arg = z;
+                float fAddition = 1f;
+                for (int k = 0; k < n; k++)
+                {
+                    fAddition *= eta[k];
+                    arg += -0.5f * eta[k] * y[k];
+                }
+                fAddition *= Mathf.Pow(-arg, n) * Math.Sign(arg);
+                Fout += fAddition;
+            }
+            Fout /= den;
+            if (Mathf.Abs(Fout) > 0.5f)
+            {
+                Log.Message("AdjustForNParentsExact has an error for n = " + n.ToString());
+            }
+            return Fout;
+        }
+
         public float AdjustForMoreParentsApprox(float z, List<float> mlist)
         {
-            float top = 1f;
-            float bot = 1f;
-            foreach (float m in mlist)
-            {
-                top += m * m;
-                bot += Mathf.Abs(m);
-            }
+            float top = mlist.Sum(m => m * m);
+            float bot = mlist.Sum(m => Mathf.Abs(m));
             float sigma = Mathf.Sqrt(top / 6f) / bot;
             return 0.5f * ErfApprox(z / sigma) / ErfApprox(0.5f / sigma);
         }

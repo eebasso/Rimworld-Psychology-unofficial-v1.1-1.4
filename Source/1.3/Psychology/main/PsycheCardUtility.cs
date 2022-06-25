@@ -34,7 +34,8 @@ namespace Psychology
         private static bool UseAntonymsBool = true;
         private static string[] CreativeLetters = { "C", "r", "e", "a", "t", "i", "v", "e" };
         //private static Color[] CreativeColors = { new Color(1f, 0f, 0f), new Color(1f, 0.5f, 0f), new Color(1f, 1f, 0f), new Color(0f, 1f, 0f), new Color(0f, 1f, 1f), new Color(0f, 0f, 1f), new Color(0.5f, 0f, 1f), new Color(1f, 0, 0.5f) };
-        private static float[] CreativeHues = { 0f, 30f, 60f, 120f, 180f, 230f, 270f, 300f };
+        //private static float[] CreativeHues = { 355f, 25f, 55f, 115f, 175f, 215f, 275f, 295f };
+        private static Vector3[] CreativeHSVs = { new Vector3(0f, 1f, 1f), new Vector3(30f, 1f, 1f), new Vector3(55f, 1f, 1f), new Vector3(120f, 0.9f, 0.9f), new Vector3(180f, 0.9f, 0.9f), new Vector3(240f, 0.6f, 1f), new Vector3(270f, 0.8f, 1f), new Vector3(300f, 0.8f, 0.9f) };
 
         public static void DrawPsycheCard(Rect totalRect, Pawn pawn, bool notOnMenu)
         {
@@ -411,7 +412,9 @@ namespace Psychology
                             float CreativeX = textRect.x;
                             for (int c = 0; c < CreativeLetters.Count(); c++)
                             {
-                                GUI.color = HSVtoColor(new Vector3(CreativeHues[c], Mathf.Lerp(0.25f, 1f, 2.2f * displacement), Mathf.Lerp(0.75f, 1f, 2.2f * displacement)));
+                                //GUI.color = HSVtoColor(new Vector3(CreativeHues[c], Mathf.Lerp(0.25f, 1f, 2.2f * displacement), Mathf.Lerp(0.75f, 1f, 2.2f * displacement)));
+                                //GUI.color = HSVtoColor(new Vector3(CreativeHues[c], 1f, 1f));
+                                GUI.color = HSVtoColor(CreativeHSVs[c]);
                                 Widgets.Label(new Rect(CreativeX, textRect.y, CreativeLetterWidths[c], textRect.height), CreativeLetters[c]);
                                 CreativeX += CreativeLetterWidths[c];
                             }
@@ -476,16 +479,18 @@ namespace Psychology
                 {
                     for (int c = 0; c < CreativeLetters.Count(); c++)
                     {
-                        nodeName += CreativeLetters[c].Colorize(HSVtoColor(new Vector3(CreativeHues[c], 0.8f, 1f)));
+                        //nodeName += CreativeLetters[c].Colorize(HSVtoColor(new Vector3(CreativeHues[c], 1f, 1f)));
+                        nodeName += CreativeLetters[c].Colorize(HSVtoColor(CreativeHSVs[c]));
                     }
                 }
                 else
                 {
                     nodeName = node.def.descriptionLabel.Colorize(nodeColor);
                 }
+                nodeName = "<b><i>" + nodeName + "</i></b>";
                 string tooltipString = node.def.description.ReplaceFirst("{0}", nodeName);
-                string antonymString = " " + "AntonymDescription".Translate() + " ";
-                tooltipString += antonymString + node.def.oppositeName.Colorize(oppositeColor);
+                string antonymString = " " +  "AntonymDescription".Translate() + " ";
+                tooltipString += antonymString + "<b><i>" + node.def.oppositeName.Colorize(oppositeColor) + "</i></b>";
                 if (node.def.conversationTopics != null)
                 {
                     string convoString = "\n\n" + "ConversationTooltip".Translate(string.Join("PsycheComma".Translate(), node.def.conversationTopics.Take(node.def.conversationTopics.Count - 1).ToArray()), node.def.conversationTopics.Last());

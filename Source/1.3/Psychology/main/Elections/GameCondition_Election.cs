@@ -86,7 +86,7 @@ namespace Psychology
         {
             List<PersonalityNodeDef> issues = new List<PersonalityNodeDef>();
             IEnumerable<PersonalityNodeDef> nodeDefs = from node in PsycheHelper.Comp(candidate).Psyche.PersonalityNodes
-                                                       where !node.Core
+                                                       where !node.HasNoPlatformIssue
                                                        select node.def;
             int tries2 = 0;
             while (issues.Count < 5 && tries2 < 500)

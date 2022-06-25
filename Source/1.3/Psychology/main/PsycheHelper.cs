@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Verse;
+using UnityEngine;
 
 namespace Psychology
 {
@@ -48,16 +50,24 @@ namespace Psychology
             }
         }
 
-        public static float Mod(float x, float m)
+        public static float Mod(this float x, float m)
         {
             float r = x % m;
             return r < 0 ? r + m : r;
         }
 
-        public static int Mod(int x, int m)
+        public static int Mod(this int x, int m)
         {
             int r = x % m;
             return r < 0 ? r + m : r;
+        }
+
+        public static int[] GetSignArray(int X, int length)
+        {
+            int binaryBase = (int)Math.Pow(2, length);
+            int X2 = X.Mod(binaryBase) + binaryBase;
+            BitArray bitArray = new BitArray(new int[] { X2 });
+            return bitArray.Cast<bool>().Select(b => b ? 1 : -1).Take(length).ToArray();
         }
     }
 }

@@ -23,7 +23,6 @@ namespace Psychology
             //this.upbringing = Mathf.RoundToInt(Rand.ValueSeeded(this.pawn.HashOffset()) * (PersonalityCategories - 1)) + 1;
             this.upbringing = Mathf.CeilToInt(Rand.ValueSeeded(this.pawn.HashOffset()) * PersonalityCategories);
             this.nodes = new HashSet<PersonalityNode>();
-
             foreach (PersonalityNodeDef def in DefDatabase<PersonalityNodeDef>.AllDefsListForReading)
             {
                 nodes.Add(PersonalityNodeMaker.MakeNode(def, this.pawn));
