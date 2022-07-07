@@ -35,8 +35,10 @@
 	<ShowDistanceText1>List most</ShowDistanceText1>
 	<ShowDistanceText0>List all</ShowDistanceText0>
 	<WordCloud>Word cloud</WordCloud>
-	<Alphabetical>List alphabetical</Alphabetical>
+	<UseColors>Colorize traits</UseColors>
+	<ListAlphabetical>List alphabetical</ListAlphabetical>
 	<UseAntonyms>Use antonyms</UseAntonyms>
+	<FiveFactorModel>Five Factor Model</FiveFactorModel>
 
 	<!-- Dev edit text -->
 	<EditPsyche>Dev edit</EditPsyche>

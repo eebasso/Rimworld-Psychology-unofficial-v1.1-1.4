@@ -8,6 +8,7 @@ using UnityEngine;
 
 namespace Psychology
 {
+
     public static class PsycheHelper
     {
         public static bool PsychologyEnabled(Pawn pawn)
@@ -84,7 +85,7 @@ namespace Psychology
         // This function is invariant under both x,y -> y,x and x,y -> 1-x,1-y transformations
         // This function reaches its maximum of +1 when x and y are both 0 or 1 (complete agreement on a topic)
         // This function reaches its minimum of -1 when x=0 and y=1 or vice versa (complete disagreement on a topic)
-        public static float SaddleShapeFunction(float x, float y, float f0 = 0.5f, float gamma = 4f) 
+        public static float SaddleShapeFunction(float x, float y, float f0 = 0.5f, float gamma = 4f)
         {
             return (f0 - (1f + f0 + gamma) * Mathf.Pow(x - y, 2) + (1f - f0) * Mathf.Pow(x + y - 1f, 2)) / (1f + gamma * Mathf.Pow(x - y, 2));
         }

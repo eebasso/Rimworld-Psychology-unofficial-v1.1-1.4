@@ -7,7 +7,12 @@ namespace Psychology
 {
     public class PolygonUtility
     {
-        public static Material PsycheHighlightMat = SolidColorMaterials.SimpleSolidColorMaterial(new Color(1f, 1f, 1f, 0.1f));
+        private static Material PsycheHighlightMat;
+
+        static PolygonUtility()
+        {
+            PsycheHighlightMat = SolidColorMaterials.SimpleSolidColorMaterial(new Color(1f, 1f, 1f, 0.1f));
+        }
 
         public static float TriangleSign(Vector2 p1, Vector2 p2, Vector2 p3)
         {
@@ -48,10 +53,14 @@ namespace Psychology
 
         public static void DrawPolygon(List<Vector2> verticies, List<int[]> triangles, Material mat)
         {
+            if (Event.current.type != EventType.Repaint)
+            {
+                return;
+            }
             int sides = verticies.Count();
-            GL.PushMatrix();
+            //GL.PushMatrix();
             mat.SetPass(0);
-            GL.LoadIdentity();
+            //GL.LoadIdentity();
             if (sides == 3)
             {
                 GL.Begin(GL.TRIANGLES);
@@ -81,7 +90,7 @@ namespace Psychology
                 }
                 GL.End();
             }
-            GL.PopMatrix();
+            //GL.PopMatrix();
         }
     }
 }

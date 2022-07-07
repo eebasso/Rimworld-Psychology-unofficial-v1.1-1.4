@@ -10,6 +10,7 @@ using UnityEngine;
 
 namespace Psychology
 {
+
     public class PersonalityNode : IExposable
     {
         public Pawn pawn;

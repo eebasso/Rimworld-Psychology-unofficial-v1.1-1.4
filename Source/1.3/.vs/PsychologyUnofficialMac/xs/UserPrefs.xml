@@ -1,39 +1,26 @@
 ﻿<Properties>
-  <MultiItemStartupConfigurations />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
       <Breakpoint file="/Users/edwardbasso/Library/Application Support/Steam/steamapps/common/RimWorld/RimWorldMac.app/Mods/Rimworld-Psychology-unofficial-v1.1-1.3/Source/1.3/Psychology/Harmony/ThoughtWorker_Pretty.cs" relfile="Psychology/Harmony/ThoughtWorker_Pretty.cs" line="17" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.Workbench ActiveDocument="Psychology/main/Elections/LordJob_Joinable_Election.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Psychology/Main/PolygonTooltipHandler.cs">
     <Files>
-      <File FileName="Psychology/Main/Personality/PersonalityNode.cs" Line="21" Column="1" IsPinned="True" />
-      <File FileName="Psychology/main/PsycheCardUtility.cs" Line="70" Column="48" IsPinned="True" />
-      <File FileName="Psychology/main/PolygonToolTip.cs" Line="42" Column="1" IsPinned="True" />
-      <File FileName="Psychology/main/Polygon.cs" Line="49" Column="58" IsPinned="True" />
-      <File FileName="Psychology/Main/ITab_Pawn_Psyche.cs" Line="17" Column="34" />
-      <File FileName="Psychology/Main/PsycheHelper.cs" Line="83" Column="68" />
-      <File FileName="Psychology/Main/ThoughtWorkers/ThoughtWorker_LDR.cs" Line="22" Column="18" />
-      <File FileName="Psychology/Harmony/ThoughtWorker_Disfigured.cs" Line="20" Column="61" />
-      <File FileName="Psychology/main/Elections/LordJob_Joinable_Election.cs" Line="80" Column="67" />
+      <File FileName="Psychology/Main/Personality/PersonalityNode.cs" Line="267" Column="2" IsPinned="True" />
+      <File FileName="Psychology/main/PsycheCardUtility.cs" Line="16" Column="2" IsPinned="True" />
+      <File FileName="Psychology/Main/PolygonTooltipHandler.cs" Line="13" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="PsychologyUnofficialMac" expanded="True">
             <Node name="PsychologyMac" expanded="True">
-              <Node name="References" expanded="True" />
-              <Node name="Common" expanded="True">
-                <Node name="Defs" expanded="True">
-                  <Node name="PersonalityDefs" expanded="True" />
-                </Node>
-              </Node>
               <Node name="Harmony" expanded="True" />
               <Node name="Main" expanded="True">
                 <Node name="Elections" expanded="True" />
                 <Node name="Personality" expanded="True" />
-                <Node name="Recruiting" expanded="True" />
                 <Node name="ThoughtWorkers" expanded="True" />
+                <Node name="PolygonTooltipHandler.cs" selected="True" />
               </Node>
             </Node>
           </Node>
@@ -45,5 +32,6 @@
     </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
 </Properties>
