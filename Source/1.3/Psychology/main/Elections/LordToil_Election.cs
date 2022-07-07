@@ -24,7 +24,7 @@ namespace Psychology
                 this.lord.ownedPawns[i].mindState.duty = new PawnDuty(DutyDefOfPsychology.Vote, this.spot, -1f);
             }
         }
-        
+
         public override ThinkTreeDutyHook VoluntaryJoinDutyHookFor(Pawn p)
         {
             return DutyDefOfPsychology.Vote.hook;
@@ -34,37 +34,47 @@ namespace Psychology
         public override void Notify_ReachedDutyLocation(Pawn voter)
         {
             LordJob_Joinable_Election election = voter.GetLord().LordJob as LordJob_Joinable_Election;
-            if(election != null && PsycheHelper.PsychologyEnabled(voter) && !election.voters.Contains(voter.GetHashCode()))
+            if (election == null || !PsycheHelper.PsychologyEnabled(voter) || election.voters.Contains(voter.GetHashCode()))
             {
-                election.voters.Add(voter.GetHashCode());
-                if(election.candidates.Find(c => c.pawn == voter) == null)
+                return;
+            }
+            election.voters.Add(voter.GetHashCode());
+            if (election.candidates.Find(c => c.pawn == voter) == null)
+            {
+                List<Pair<Pawn, float>> possibleVotes = new List<Pair<Pawn, float>>();
+                foreach (Candidate candidate in election.candidates)
                 {
-                    List<Pair<Pawn, float>> possibleVotes = new List<Pair<Pawn, float>>();
-                    foreach (Candidate candidate in election.candidates)
+                    float issueWeighting = 0f;
+                    //candidate.nodes.ForEach(p => issueWeighting += Mathf.Pow(1f - Mathf.Abs(PsycheHelper.Comp(candidate.pawn).Psyche.GetPersonalityRating(p) - PsycheHelper.Comp(voter).Psyche.GetPersonalityRating(p)), 5f) * Mathf.Pow(2.5f, p.controversiality));
+                    foreach (PersonalityNodeDef issue in candidate.nodes)
                     {
-                        float issueWeighting = 0f;
-                        candidate.nodes.ForEach(p => issueWeighting += (4f * Mathf.Pow(1f - Mathf.Abs(PsycheHelper.Comp(candidate.pawn).Psyche.GetPersonalityRating(p) - PsycheHelper.Comp(voter).Psyche.GetPersonalityRating(p)), 5f)) * Mathf.Pow(2.5f, p.controversiality));
-                        possibleVotes.Add(new Pair<Pawn, float>(candidate.pawn, issueWeighting+voter.relations.OpinionOf(candidate.pawn)));
+                        float candidateStance = PsycheHelper.Comp(candidate.pawn).Psyche.GetPersonalityRating(issue);
+                        float voterStance = PsycheHelper.Comp(voter).Psyche.GetPersonalityRating(issue);
+                        issueWeighting += issue.controversiality * PsycheHelper.SaddleShapeFunction(voterStance, candidateStance, 0.33f, 6f);
                     }
+                    issueWeighting += 0.05f * voter.relations.OpinionOf(candidate.pawn);
+                    possibleVotes.Add(new Pair<Pawn, float>(candidate.pawn, issueWeighting ));
+                }
+                if (Prefs.DevMode && Prefs.LogVerbose)
+                {
                     IEnumerable<Pair<Pawn, float>> orderedPossibleVotes = (from v in possibleVotes
                                                                            orderby v.Second descending
                                                                            select v);
-                    if (Prefs.DevMode && Prefs.LogVerbose)
+                    StringBuilder voteString = new StringBuilder("Psychology :: Vote weights for voter " + voter.LabelShort + ": ");
+                    foreach (Pair<Pawn, float> v in orderedPossibleVotes)
                     {
-                        StringBuilder voteString = new StringBuilder("Psychology :: Vote weights for " + voter.LabelShort + ": ");
-                        foreach (Pair<Pawn, float> v in orderedPossibleVotes)
-                        {
-                            voteString.Append(v.First.LabelShort + " " + v.Second + " ");
-                        }
-                        Log.Message(voteString.ToString());
+                        voteString.Append("\n" + v.First.LabelShort + " with weight " + v.Second);
                     }
-                    election.votes.Add(orderedPossibleVotes.First().First.LabelShort);
+                    Log.Message(voteString.ToString());
                 }
-                else
-                {
-                    election.votes.Add(voter.LabelShort);
-                }
+                //election.votes.Add(orderedPossibleVotes.First().First.LabelShort);
+                election.votes.Add(possibleVotes.RandomElementByWeight(pv => Mathf.Max(pv.Second, 0.0000001f)).First.LabelShort);
             }
+            else
+            {
+                election.votes.Add(voter.LabelShort);
+            }
+
         }
 
         private IntVec3 spot;

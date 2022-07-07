@@ -532,17 +532,17 @@ namespace Psychology
                         if (pawn.story.traits.HasTrait(TraitDefOf.Gay))
                         {
                             RemoveTrait(pawn, TraitDefOf.Gay);
-                            PsycheHelper.Comp(pawn).Sexuality.kinseyRating = Pawn_SexualityTracker.RandKinsey(0f, 0f, 0f, 0f, 0f, 1f, 2f);
+                            PsycheHelper.Comp(pawn).Sexuality.GenerateSexuality(0f, 0f, 0f, 0f, 0f, 1f, 2f);
                         }
                         if (pawn.story.traits.HasTrait(TraitDefOf.Bisexual))
                         {
                             RemoveTrait(pawn, TraitDefOf.Bisexual);
-                            PsycheHelper.Comp(pawn).Sexuality.kinseyRating = Pawn_SexualityTracker.RandKinsey(0f, 0f, 1f, 2f, 1f, 0f, 0f);
+                            PsycheHelper.Comp(pawn).Sexuality.GenerateSexuality(0f, 0f, 1f, 2f, 1f, 0f, 0f);
                         }
                         if (pawn.story.traits.HasTrait(TraitDefOf.Asexual))
                         {
                             RemoveTrait(pawn, TraitDefOf.Asexual);
-                            PsycheHelper.Comp(pawn).Sexuality.sexDrive = Rand.Value * 0.10f;
+                            PsycheHelper.Comp(pawn).Sexuality.sexDrive = 0.10f * Rand.ValueSeeded(11 * pawn.HashOffset() + 8);
                         }
                     }
                 }

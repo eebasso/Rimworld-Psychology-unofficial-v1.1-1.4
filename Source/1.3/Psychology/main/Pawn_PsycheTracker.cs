@@ -20,7 +20,6 @@ namespace Psychology
         [LogPerformance]
         public void Initialize()
         {
-            //this.upbringing = Mathf.RoundToInt(Rand.ValueSeeded(this.pawn.HashOffset()) * (PersonalityCategories - 1)) + 1;
             this.upbringing = Mathf.CeilToInt(Rand.ValueSeeded(this.pawn.HashOffset()) * PersonalityCategories);
             this.nodes = new HashSet<PersonalityNode>();
             foreach (PersonalityNodeDef def in DefDatabase<PersonalityNodeDef>.AllDefsListForReading)
@@ -62,7 +61,7 @@ namespace Psychology
              * This isn't a perfect system, but the weights will be closer together the higher totalOpinionModifiers is.
              */
             IEnumerable<Thought_MemorySocialDynamic> convoMemories;
-            float weight = 10f / (Mathf.Lerp(1f + (8 * def.controversiality), 1f + (def.controversiality / 2), Mathf.Clamp01(this.TotalThoughtOpinion(otherPawn, out convoMemories) / 75) + this.GetPersonalityRating(PersonalityNodeDefOf.Aggressive)));
+            float weight = 10f / Mathf.Lerp(1f + (8 * def.controversiality), 1f + (def.controversiality / 2), Mathf.Clamp01(this.TotalThoughtOpinion(otherPawn, out convoMemories) / 75) + this.GetPersonalityRating(PersonalityNodeDefOf.Aggressive));
             /* Polite pawns will avoid topics they already know are contentious. */
             Pair<string, string> disagreementKey = new Pair<string, string>(otherPawn.ThingID, def.defName);
             if (cachedDisagreementWeights.ContainsKey(disagreementKey) && !recalcNodeDisagreement[disagreementKey])
@@ -74,11 +73,12 @@ namespace Psychology
                 float knownDisagreements = (from m in convoMemories
                                             where m.opinionOffset < 0f && m.CurStage.label == def.defName
                                             select Math.Abs(m.opinionOffset)).Sum();
-                float disagree = 1f;
-                if (knownDisagreements > 0)
-                {
-                    disagree = Mathf.Clamp01(1f / (knownDisagreements / 50)) * Mathf.Lerp(0.25f, 1f, this.GetPersonalityRating(PersonalityNodeDefOf.Polite));
-                }
+                //float disagree = 1f;
+                //if (knownDisagreements > 0)
+                //{
+                //    disagree = Mathf.Clamp01(1f / (knownDisagreements / 50)) * Mathf.Lerp(0.25f, 1f, this.GetPersonalityRating(PersonalityNodeDefOf.Polite));
+                //}
+                float disagree = Mathf.Lerp(1f, 0.25f, 0.1f * knownDisagreements * this.GetPersonalityRating(PersonalityNodeDefOf.Polite) - 0.25f);
                 cachedDisagreementWeights[disagreementKey] = disagree;
                 recalcNodeDisagreement[disagreementKey] = false;
                 weight *= disagree;

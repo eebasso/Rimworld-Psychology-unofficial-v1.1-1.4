@@ -256,6 +256,8 @@
     <Compile Include="Main\Medical\Hediff_Anxiety.cs" />
     <Compile Include="Main\ThoughtWorkers\ThoughtWorker_RandomMoodBipolar.cs" />
     <Compile Include="Defs\TraitDefOfPsychology.cs" />
+    <Compile Include="main\PolygonTooltipHandler.cs" />
+    <Compile Include="main\PolygonUtility.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\About\preview.png">

@@ -188,6 +188,7 @@ namespace Psychology.Harmony
 
             /* INITIATOR KNOWN SEXUALITY FACTOR */
             //People who have hit on someone in the past and been rejected because of their sexuality will rarely attempt to hit on them again.
+            //float knownSexualityFactor = (PsycheHelper.PsychologyEnabled(initiator) && PsychologyBase.ActivateKinsey() && PsycheHelper.Comp(initiator).Sexuality.IncompatibleSexualityKnown(recipient) && !initiator.story.traits.HasTrait(TraitDefOfPsychology.Lecher)) ? 0.05f : (PsycheHelper.PsychologyEnabled(initiator) ? (initiator.gender == recipient.gender ? (initiator.story.traits.HasTrait(TraitDefOf.Gay) && recipient.story.traits.HasTrait(TraitDefOf.Gay) ? 1f : 0.15f) : (!initiator.story.traits.HasTrait(TraitDefOf.Gay) && !recipient.story.traits.HasTrait(TraitDefOf.Gay) ? 1f : 0.15f)) : 1f);
             float knownSexualityFactor = (PsycheHelper.PsychologyEnabled(initiator) && PsychologyBase.ActivateKinsey() && PsycheHelper.Comp(initiator).Sexuality.IncompatibleSexualityKnown(recipient) && !initiator.story.traits.HasTrait(TraitDefOfPsychology.Lecher)) ? 0.05f : (PsycheHelper.PsychologyEnabled(initiator) ? (initiator.gender == recipient.gender ? (initiator.story.traits.HasTrait(TraitDefOf.Gay) && recipient.story.traits.HasTrait(TraitDefOf.Gay) ? 1f : 0.15f) : (!initiator.story.traits.HasTrait(TraitDefOf.Gay) && !recipient.story.traits.HasTrait(TraitDefOf.Gay) ? 1f : 0.15f)) : 1f);
 
             /* INCEST FACTOR */
@@ -201,7 +202,7 @@ namespace Psychology.Harmony
             /* MULTIPLY ALL FACTORS TOGETHER */
             __result = PsychologyBase.RomanceChance() * romanceChanceFactor * initiatorOpinionFactor;
             __result *= existingLovePartnerFactor * personalityFactor * knownSexualityFactor * incestFactor;
-
+            __result *= PsycheHelper.Comp(initiator).Sexuality.AdjustedRomanticDrive;
             return;
         }
     }

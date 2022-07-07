@@ -15,18 +15,18 @@
 	<SexDrive0>Asexual</SexDrive0>
 	<SexDrive1>Low sex drive</SexDrive1>
 	<SexDrive2>Mild sex drive</SexDrive2>
-	<SexDrive3>Moderate sex drive</SexDrive3>
-	<SexDrive4>High sex drive</SexDrive4>
+	<SexDrive3>Typical sex drive</SexDrive3>
+	<SexDrive4>Strong sex drive</SexDrive4>
 	<SexDriveDescription>Sex drive, also known as libido, describes a person's overall desire for sexual activity.</SexDriveDescription>
-	<AsexualDescription>This pawn has a very low sex drive. They don't experience much sexual attraction and are unlikely to engage in anything intimate.</AsexualDescription>
+	<AsexualDescription>This pawn has a very low sex drive. They don't experience much sexual attraction and are unlikely to engage in anything intimate, but may still engage in romance.</AsexualDescription>
 
 	<!-- Romance drive display and tooltip -->
 	<RomanticDrive0>Aromantic</RomanticDrive0>
-	<RomanticDrive1>Low romance drive</RomanticDrive1>
-	<RomanticDrive2>Mild romance drive</RomanticDrive2>
-	<RomanticDrive3>Moderate romance drive</RomanticDrive3>
-	<RomanticDrive4>High romance drive</RomanticDrive4>
-	<RomanticDriveDescription>Romance drive describes a person's overall desire for romantic relationships.</RomanticDriveDescription>
+	<RomanticDrive1>Low romantic drive</RomanticDrive1>
+	<RomanticDrive2>Mild romantic drive</RomanticDrive2>
+	<RomanticDrive3>Typical romantic drive</RomanticDrive3>
+	<RomanticDrive4>Strong romantic drive</RomanticDrive4>
+	<RomanticDriveDescription>Romantic drive describes a person's overall desire for romantic relationships.</RomanticDriveDescription>
 	<AromanticDescription>This pawn has a very low romantic drive. They are unlikely to make romance attempts or accept marriage proposals, but may still take lovers.</AromanticDescription>
 
 	<!-- Display options -->
@@ -58,6 +58,19 @@
 	<!-- Conversation Tooltip -->
 	<ConversationTooltip>People will talk about {0}, and {1} to discuss this with each other.</ConversationTooltip>
 	<PsycheComma>, </PsycheComma>
-	<AntonymDescription>Antonym:</AntonymDescription>
-	
+	<AntonymColon>Antonym:</AntonymColon>
+
+	<!-- Big Five descriptions -->
+	<BigFiveOTitle>Openness to experience</BigFiveOTitle>
+	<BigFiveODescription>{0} characterizes the willingness to embrace novel feelings, fantasy, aesthetics, ideas, values, and actions.</BigFiveODescription>
+	<BigFiveCTitle>Conscientiousness</BigFiveCTitle>
+	<BigFiveCDescription>{0} indicates the likelihood to act diligent, efficient, organized, self-disciplined, dutiful, and hard-working.</BigFiveCDescription>
+	<BigFiveETitle>Extroversion</BigFiveETitle>
+	<BigFiveEDescription>{0} describes how often gratification is sought from outside oneself, and manifests itself in outgoing, talkative, energetic, assertive, and gregarious behavior.</BigFiveEDescription>
+	<BigFiveATitle>Agreeableness</BigFiveATitle>
+	<BigFiveADescription>{0} manifests itself in behaviors that are perceived as kind, sympathetic, cooperative, warm, and considerate.</BigFiveADescription>
+	<BigFiveNTitle>Neuroticism</BigFiveNTitle>
+	<BigFiveNDescription>{0} rates the tendency to experience feelings such as anxiety, worry, fear, anger, frustration, envy, jealousy, guilt, depressed mood, and loneliness.</BigFiveNDescription>
+
+
 </LanguageData>

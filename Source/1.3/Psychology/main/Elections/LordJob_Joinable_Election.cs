@@ -9,11 +9,11 @@ using Verse.AI.Group;
 
 namespace Psychology
 {
-    class LordJob_Joinable_Election: LordJob_VoluntarilyJoinable
+    class LordJob_Joinable_Election : LordJob_VoluntarilyJoinable
     {
         public LordJob_Joinable_Election()
         { }
-        
+
         public LordJob_Joinable_Election(IntVec3 spot)
         {
             this.spot = spot;
@@ -50,7 +50,7 @@ namespace Psychology
             stateGraph.AddTransition(transition2);
             return stateGraph;
         }
-        
+
         public override void ExposeData()
         {
             Scribe_Values.Look(ref this.spot, "spot", default(IntVec3));
@@ -68,19 +68,19 @@ namespace Psychology
             foreach (Candidate candidate in this.candidates)
             {
                 IEnumerable<string> votesForMe = (from v in this.votes
-                                           where v == candidate.pawn.LabelShort
-                                           select v);
+                                                  where v == candidate.pawn.LabelShort
+                                                  select v);
                 voteTally.Add(new Pair<Pawn, int>(candidate.pawn, votesForMe.Count()));
             }
             //If there ends up being a tie, we'll just assume the least competitive candidates drop out.
             //The chances of there being a tie after that are exceedingly slim, but the result will be essentially random.
             IEnumerable<Pair<Pawn, int>> orderedTally = (from v in voteTally
-                                                                   orderby PsycheHelper.Comp(v.First).Psyche.GetPersonalityRating(PersonalityNodeDefOf.Competitive) descending
-                                                                   orderby v.Second descending
-                                                                   select v);
+                                                         orderby PsycheHelper.Comp(v.First).Psyche.GetPersonalityRating(PersonalityNodeDefOf.Competitive) descending
+                                                         orderby v.Second descending
+                                                         select v);
             if (Prefs.DevMode && Prefs.LogVerbose)
             {
-                foreach(Pair<Pawn, int> t in orderedTally)
+                foreach (Pair<Pawn, int> t in orderedTally)
                 {
                     Log.Message("Psychology :: Votes for " + t.First + ": " + t.Second);
                 }
@@ -95,7 +95,7 @@ namespace Psychology
             {
                 issuesString.AppendFormat("{0}) {1}{2}", i + 1, PsycheHelper.Comp(winningCandidate.First).Psyche.GetPersonalityNodeOfDef(candidates.Find(c => c.pawn == winningCandidate.First).nodes[i]).PlatformIssue, (i != candidates.Find(c => c.pawn == winningCandidate.First).nodes.Count - 1 ? "\n" : ""));
             }
-            if(this.map == null)
+            if (this.map == null)
             {
                 this.map = winningCandidate.First.Map;
             }
@@ -106,22 +106,22 @@ namespace Psychology
             winningCandidate.First.needs.mood.thoughts.memories.TryGainMemory(ThoughtDefOfPsychology.WonElection);
             Find.LetterStack.ReceiveLetter("LetterLabelElectionWon".Translate(winningCandidate.First), "LetterElectionWon".Translate(winningCandidate.First, this.baseName, winningCandidate.Second, issuesString.ToString()), LetterDefOf.NeutralEvent, winningCandidate.First);
         }
-        
+
         public override string GetReport(Pawn pawn)
         {
             return "LordReportAttendingElection".Translate();
         }
-        
+
         private bool IsInvited(Pawn p)
         {
             return p.Faction == this.lord.faction;
         }
-        
+
         private bool IsPartyAboutToEnd()
         {
             return this.timeoutTrigger.TicksLeft < 1200;
         }
-        
+
         private bool ShouldBeCalledOff()
         {
             return !GatheringsUtility.AcceptableGameConditionsToContinueGathering(base.Map) || candidates.Count < 1;
@@ -130,7 +130,7 @@ namespace Psychology
         [LogPerformance]
         private bool ShouldPawnKeepVoting(Pawn p)
         {
-            if(!PsycheHelper.PsychologyEnabled(p))
+            if (!PsycheHelper.PsychologyEnabled(p))
             {
                 return false;
             }
@@ -161,7 +161,7 @@ namespace Psychology
             }
             return 30f;
         }
-        
+
         private IntVec3 spot;
         private Map map;
         private string baseName;

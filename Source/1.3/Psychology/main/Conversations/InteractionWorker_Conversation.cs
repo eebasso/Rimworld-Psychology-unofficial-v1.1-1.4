@@ -59,7 +59,7 @@ namespace Psychology
             letterDef = null;
             lookTargets = null;
             PersonalityNode topic = (from node in PsycheHelper.Comp(initiator).Psyche.PersonalityNodes
-                                     where !node.Core
+                                     where node.HasConvoTopics
                                      select node).RandomElementByWeight(node => PsycheHelper.Comp(initiator).Psyche.GetConversationTopicWeight(node.def, recipient));
             string convoTopic = topic.def.conversationTopics.RandomElement();
             Hediff_Conversation initiatorHediff = (Hediff_Conversation)HediffMaker.MakeHediff(HediffDefOfPsychology.HoldingConversation, initiator);

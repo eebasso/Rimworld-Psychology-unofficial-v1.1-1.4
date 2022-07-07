@@ -55,7 +55,7 @@ namespace Psychology
         public float GetModifier(PersonalityNodeDef def)
         {
             float m = ParentNodes[def].modifier;
-            return m > 0 ? -1f / m : 1f / Mathf.Abs(m - 1f);   
+            return m == 0f ? 1f : m;
         }
 
         public Dictionary<PersonalityNodeDef, PersonalityNodeParent> ParentNodes
