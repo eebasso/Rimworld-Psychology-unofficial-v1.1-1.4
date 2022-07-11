@@ -11,29 +11,53 @@ namespace Psychology
     public class Dialog_EditPsyche : Window
     {
         private Pawn pawn;
-        
+        private static Vector2 nodeScrollPosition = Vector2.zero;
+        private List<Pair<string, float>> cachedList = new List<Pair<string, float>>();
+        private Dictionary<string, string> descriptions = new Dictionary<string, string>();
+        private int pawnKinseyRating = 0;
+        private float pawnSexDrive = 0f;
+        private float pawnRomanticDrive = 0f;
+        private float sexualityWidth = 0f;
+        private float nodeWidth = 0f;
+        private float labelHeight = 0f;
+        private string kinseyRatingText = "KinseyRating".Translate();
+        private string sexDriveText = "SexDrive".Translate();
+        private string romDriveText = "RomanticDrive".Translate();
+
         public Dialog_EditPsyche(Pawn editFor)
         {
             pawn = editFor;
-            if(PsychologyBase.ActivateKinsey())
+            Text.Font = GameFont.Small;
+            if (PsychologyBase.ActivateKinsey())
             {
                 pawnKinseyRating = PsycheHelper.Comp(pawn).Sexuality.kinseyRating;
                 pawnSexDrive = PsycheHelper.Comp(pawn).Sexuality.sexDrive;
                 pawnRomanticDrive = PsycheHelper.Comp(pawn).Sexuality.romanticDrive;
+                Vector2 kinseySize = Text.CalcSize(kinseyRatingText);
+                Vector2 sexDriveSize = Text.CalcSize(sexDriveText);
+                Vector2 romDriveSize = Text.CalcSize(romDriveText);
+                sexualityWidth = Mathf.Max(kinseySize.x, sexDriveSize.x, romDriveSize.x);
             }
             foreach (PersonalityNode node in PsycheHelper.Comp(pawn).Psyche.PersonalityNodes)
             {
-                cachedList.Add(new Pair<string, float>(node.def.label.CapitalizeFirst(), node.rawRating));
-                try
-                {
-                    descriptions.Add(node.def.label.CapitalizeFirst(), node.def.description);
-                }
-                catch(ArgumentException e)
-                {
-                    Log.Error("[Psychology] "+"DuplicateDefLabel".Translate(node.def.defName));
-                    descriptions.Add(node.def.defName.CapitalizeFirst(), node.def.description);
-                }
+                string nodeLabel = node.def.label.CapitalizeFirst();
+                Vector2 nodeSize = Text.CalcSize(nodeLabel);
+                nodeWidth = Mathf.Max(nodeWidth, 1.05f * nodeSize.x);
+                labelHeight = Mathf.Max(labelHeight, nodeSize.y);
+                cachedList.Add(new Pair<string, float>(nodeLabel, node.rawRating));
+                string descriptionString = node.def.description.ReplaceFirst("{0}", node.def.descriptionLabel) + " " + "AntonymColon".Translate() + " " + node.def.oppositeName;
+                descriptions.Add(nodeLabel, descriptionString);
+                //try
+                //{
+                //    descriptions.Add(node.def.label.CapitalizeFirst(), node.def.description);
+                //}
+                //catch(ArgumentException e)
+                //{
+                //    Log.Error("[Psychology] "+"DuplicateDefLabel".Translate(node.def.defName));
+                //    descriptions.Add(node.def.defName.CapitalizeFirst(), node.def.description);
+                //}
             }
+            labelHeight = Mathf.Max(26f, labelHeight);
             cachedList.SortBy(n => n.First);
         }
 
@@ -52,14 +76,16 @@ namespace Psychology
                 flag2 = true;
                 Event.current.Use();
             }
-            Rect windowRect = inRect.ContractedBy(17f);
-            Rect mainRect = new Rect(windowRect.x, windowRect.y, windowRect.width, windowRect.height - 20f);
-            Rect okRect = new Rect(inRect.width/4 - 20f, mainRect.yMax+10f, inRect.width / 4f, 30f);
-            Rect cancelRect = new Rect(okRect.xMax + 40f, mainRect.yMax+10f, inRect.width / 4f, 30f);
+            Rect mainRect = inRect.ContractedBy(17f);
+            mainRect.height -= 20f;
+
+            Rect okRect = new Rect(0.25f * inRect.width - 20f, mainRect.yMax + 10f, 0.25f * inRect.width, 30f);
+            Rect cancelRect = new Rect(okRect.xMax + 40f, okRect.y, okRect.width, okRect.height);
+
             Text.Font = GameFont.Medium;
             if (pawn.LabelShort != null || pawn.LabelShort != "")
             {
-                Widgets.Label(mainRect, "PsycheEditorNewColonist".Translate());
+                Widgets.Label(mainRect, "PsycheEditor".Translate(pawn.LabelShortCap));
             }
             else
             {
@@ -67,68 +93,77 @@ namespace Psychology
             }
             mainRect.yMin += 35f;
             Text.Font = GameFont.Small;
-            float warningSize = Mathf.Max(50f, Text.CalcHeight("PersonalityNodeWarning".Translate(), mainRect.width));
-            Widgets.Label(mainRect, "PersonalityNodeWarning".Translate());
-            mainRect.yMin += warningSize;
-            float labelSize = Mathf.Max(26f, Text.CalcHeight("SexDrive".Translate(), mainRect.width));
-            Rect nodeRect = new Rect(mainRect.x, mainRect.y, mainRect.width, mainRect.height - labelSize*3 - 20f);
-            Rect sexDriveRect = new Rect(mainRect.x, nodeRect.yMax + 10f, mainRect.width, labelSize);
-            Rect romanticDriveRect = new Rect(mainRect.x, sexDriveRect.yMax, mainRect.width, labelSize);
-            Rect kinseyRect = new Rect(mainRect.x, romanticDriveRect.yMax, mainRect.width, labelSize+10f);
-            Widgets.DrawLineHorizontal(nodeRect.x, nodeRect.yMax, nodeRect.width);
-            float num = 0f;
-            foreach (PersonalityNode node in PsycheHelper.Comp(pawn).Psyche.PersonalityNodes)
-            {
-                num += Mathf.Max(26f, Text.CalcHeight(node.def.label, nodeRect.width));
-            }
-            Rect viewRect = new Rect(0f, 0f, nodeRect.width-20f, num);
+
+            string warningText = "PersonalityNodeWarning".Translate();
+            Widgets.Label(mainRect, warningText);
+            mainRect.yMin += Text.CalcHeight(warningText, mainRect.width);
+
+            Rect nodeRect = new Rect(mainRect.x, mainRect.y, mainRect.width, mainRect.height - 3 * labelHeight - 20f);
+            Rect viewRect = new Rect(0f, 0f, nodeRect.width - 20f, cachedList.Count * labelHeight + 20f);
             Widgets.BeginScrollView(nodeRect, ref nodeScrollPosition, viewRect);
             float num3 = 0f;
-            for(int i = 0; i < cachedList.Count; i++)
+            for (int i = 0; i < cachedList.Count; i++)
             {
                 string label = cachedList[i].First;
-                float num4 = Mathf.Max(26f, Text.CalcHeight(label, viewRect.width));
-                Rect rect = new Rect(10f, num3, viewRect.width / 3, num4);
-                Rect rect2 = new Rect(10f + viewRect.width / 3, num3, ((2 * viewRect.width) / 3)-20f, num4);
+                Rect rect = new Rect(10f, num3, nodeWidth, labelHeight);
+                Rect rect2 = new Rect(rect.xMax, num3, viewRect.xMax - rect.xMax - 10f, labelHeight);
                 Widgets.DrawHighlightIfMouseover(rect);
                 Widgets.Label(rect, label);
                 TooltipHandler.TipRegion(rect, () => descriptions[label], 436532 + Mathf.RoundToInt(num3));
                 float newVal = Widgets.HorizontalSlider(rect2, cachedList[i].Second, 0f, 1f, true);
                 cachedList[i] = new Pair<string, float>(cachedList[i].First, newVal);
-                num3 += num4;
+                num3 += labelHeight;
             }
             Widgets.EndScrollView();
-            if(PsychologyBase.ActivateKinsey())
+
+            if (PsychologyBase.ActivateKinsey())
             {
-                Rect sexDriveLabelRect = new Rect(sexDriveRect.x, sexDriveRect.y, sexDriveRect.width / 3, sexDriveRect.height);
-                Rect sexDriveSliderRect = new Rect(sexDriveRect.x + (sexDriveRect.width / 3), sexDriveRect.y, (2 * sexDriveRect.width) / 3, sexDriveRect.height);
-                Widgets.Label(sexDriveLabelRect, "SexDrive".Translate());
-                pawnSexDrive = Widgets.HorizontalSlider(sexDriveSliderRect, pawnSexDrive, 0f, 1f, true);
-                Rect romanticDriveLabelRect = new Rect(romanticDriveRect.x, romanticDriveRect.y, romanticDriveRect.width / 3, romanticDriveRect.height);
-                Rect romanticDriveSliderRect = new Rect(romanticDriveRect.x + (romanticDriveRect.width / 3), romanticDriveRect.y, (2 * romanticDriveRect.width) / 3, romanticDriveRect.height);
-                Widgets.Label(romanticDriveLabelRect, "RomanticDrive".Translate());
-                pawnRomanticDrive = Widgets.HorizontalSlider(romanticDriveSliderRect, pawnRomanticDrive, 0f, 1f, true);
-                Rect kinseyRatingLabelRect = new Rect(kinseyRect.x, kinseyRect.y, kinseyRect.width / 3, kinseyRect.height);
-                Rect kinseyRatingSliderRect = new Rect(kinseyRect.x + (kinseyRect.width / 3), kinseyRect.y, (2 * kinseyRect.width) / 3, kinseyRect.height);
-                Widgets.Label(kinseyRatingLabelRect, "KinseyRating".Translate());
+                float x1 = mainRect.x;
+                float width1 = nodeWidth;
+                float x2 = x1 + width1;
+                float width2 = mainRect.xMax - x2;
+                float y1 = nodeRect.yMax + 10f;
+                float y2 = y1 + labelHeight;
+                float y3 = y2 + labelHeight;
+
+                Rect kinseyRatingLabelRect = new Rect(x1, y1, width1, labelHeight);
+                Rect kinseyRatingSliderRect = new Rect(x2, y1, width2, labelHeight);
+                Widgets.Label(kinseyRatingLabelRect, kinseyRatingText);
                 pawnKinseyRating = Mathf.RoundToInt(Widgets.HorizontalSlider(kinseyRatingSliderRect, pawnKinseyRating, 0f, 6f, true, leftAlignedLabel: "0", rightAlignedLabel: "6"));
+
+                Rect sexDriveLabelRect = new Rect(x1, y2, width1, labelHeight);
+                Rect sexDriveSliderRect = new Rect(x2, y2, width2, labelHeight);
+                Widgets.Label(sexDriveLabelRect, sexDriveText);
+                pawnSexDrive = Widgets.HorizontalSlider(sexDriveSliderRect, pawnSexDrive, 0f, 1f, true);
+
+                Rect romDriveLabelRect = new Rect(x1, y3, width1, labelHeight);
+                Rect romDriveSliderRect = new Rect(x2, y3, width2, labelHeight);
+                Widgets.Label(romDriveLabelRect, romDriveText);
+                pawnRomanticDrive = Widgets.HorizontalSlider(romDriveSliderRect, pawnRomanticDrive, 0f, 1f, true);
             }
             else
             {
                 GUI.color = Color.red;
-                Rect warningRect = new Rect(mainRect.x, nodeRect.yMax + 10f, mainRect.width, labelSize*3);
+                Rect warningRect = new Rect(mainRect.x, nodeRect.yMax + 10f, mainRect.width, labelHeight * 3);
                 Widgets.Label(warningRect, "SexualityDisabledWarning".Translate());
                 GUI.color = Color.white;
             }
+
+            GUI.color = new Color(1f, 1f, 1f, 0.5f);
+            Widgets.DrawLineHorizontal(mainRect.x, nodeRect.yMax, nodeRect.width);
+            GUI.color = Color.white;
+
             if (Widgets.ButtonText(okRect, "AcceptButton".Translate(), true, false, true) || flag)
             {
-                foreach(PersonalityNode node in PsycheHelper.Comp(pawn).Psyche.PersonalityNodes)
+                PsycheCardUtility.CloudTicker = PsycheCardUtility.MaxTicks;
+                PsycheCardUtility.ListTicker = PsycheCardUtility.MaxTicks;
+                foreach (PersonalityNode node in PsycheHelper.Comp(pawn).Psyche.PersonalityNodes)
                 {
                     node.rawRating = (from n in cachedList
                                       where n.First == node.def.label.CapitalizeFirst()
                                       select n).First().Second;
                 }
-                if(PsychologyBase.ActivateKinsey())
+                if (PsychologyBase.ActivateKinsey())
                 {
                     PsycheHelper.Comp(pawn).Sexuality.sexDrive = pawnSexDrive;
                     PsycheHelper.Comp(pawn).Sexuality.romanticDrive = pawnRomanticDrive;
@@ -141,12 +176,5 @@ namespace Psychology
                 this.Close(true);
             }
         }
-
-        private static Vector2 nodeScrollPosition = Vector2.zero;
-        private List<Pair<string, float>> cachedList = new List<Pair<string, float>>();
-        private Dictionary<string, string> descriptions = new Dictionary<string, string>();
-        private int pawnKinseyRating = 0;
-        private float pawnSexDrive = 0f;
-        private float pawnRomanticDrive = 0f;
     }
 }

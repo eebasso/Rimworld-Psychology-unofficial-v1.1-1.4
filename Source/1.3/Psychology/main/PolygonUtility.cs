@@ -5,14 +5,10 @@ using Verse;
 
 namespace Psychology
 {
+    [StaticConstructorOnStartup]
     public class PolygonUtility
     {
-        private static Material PsycheHighlightMat;
-
-        static PolygonUtility()
-        {
-            PsycheHighlightMat = SolidColorMaterials.SimpleSolidColorMaterial(new Color(1f, 1f, 1f, 0.1f));
-        }
+        private static readonly Material PsycheHighlightMat = SolidColorMaterials.SimpleSolidColorMaterial(new Color(1f, 1f, 1f, 0.1f));
 
         public static float TriangleSign(Vector2 p1, Vector2 p2, Vector2 p3)
         {

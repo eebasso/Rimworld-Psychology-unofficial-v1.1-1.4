@@ -14,7 +14,7 @@ namespace Psychology
     {
         public ITab_Pawn_Psyche()
         {
-            size = new Vector2(470f, 510f);
+            size = new Vector2(500f, 500f);
             //size = new Vector2(630f, 510f);
             labelKey = "TabPsyche";
             this.tutorTag = "Psyche";

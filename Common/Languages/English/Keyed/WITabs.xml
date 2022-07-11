@@ -9,32 +9,32 @@
 
 	<!-- Kinsey display and tooltip-->
 	<KinseyRating>Kinsey rating:</KinseyRating>
-	<KinseyDescription>The Kinsey scale is used to describe a person's sexual orientation, and ranges from 0, meaning exclusively heterosexual, to a 6, meaning exclusively homosexual.\n\nKinsey recognized that the seven categories of the scale could not fully capture every individual's sexuality. He wrote that "it should be recognized that the reality includes individuals of every intermediate type, lying in a continuum between the two extremes and between each and every category on the scale."<!--\n\nHe disliked the use of the term bisexual to describe individuals who engage in sexual activity with both men and women, preferring to use bisexual in its original, biological sense as hermaphroditic; he stated, "Until it is demonstrated [that] taste in a sexual relation is dependent upon the individual containing within his anatomy both male and female structures, or male and female physiological capacities, it is unfortunate to call such individuals bisexual."--></KinseyDescription>
+	<KinseyDescription>The Kinsey scale describes a person's sexual orientation, and ranges from 0, meaning exclusively heterosexual, to a 6, meaning exclusively homosexual.\n\nKinsey recognized that the seven categories of the scale could not fully capture every individual's sexuality. He wrote that "it should be recognized that the reality includes individuals of every intermediate type, lying in a continuum between the two extremes and between each and every category on the scale."<!--\n\nHe disliked the use of the term bisexual to describe individuals who engage in sexual activity with both men and women, preferring to use bisexual in its original, biological sense as hermaphroditic; he stated, "Until it is demonstrated [that] taste in a sexual relation is dependent upon the individual containing within his anatomy both male and female structures, or male and female physiological capacities, it is unfortunate to call such individuals bisexual."--></KinseyDescription>
 
 	<!-- Sex drive display and tooltip-->
 	<SexDrive0>Asexual</SexDrive0>
 	<SexDrive1>Low sex drive</SexDrive1>
-	<SexDrive2>Mild sex drive</SexDrive2>
-	<SexDrive3>Typical sex drive</SexDrive3>
-	<SexDrive4>Strong sex drive</SexDrive4>
+	<SexDrive2>Medium sex drive</SexDrive2>
+	<SexDrive3>High sex drive</SexDrive3>
+	<SexDrive4>Extreme sex drive</SexDrive4>
 	<SexDriveDescription>Sex drive, also known as libido, describes a person's overall desire for sexual activity.</SexDriveDescription>
 	<AsexualDescription>This pawn has a very low sex drive. They don't experience much sexual attraction and are unlikely to engage in anything intimate, but may still engage in romance.</AsexualDescription>
 
 	<!-- Romance drive display and tooltip -->
 	<RomanticDrive0>Aromantic</RomanticDrive0>
 	<RomanticDrive1>Low romantic drive</RomanticDrive1>
-	<RomanticDrive2>Mild romantic drive</RomanticDrive2>
-	<RomanticDrive3>Typical romantic drive</RomanticDrive3>
-	<RomanticDrive4>Strong romantic drive</RomanticDrive4>
+	<RomanticDrive2>Medium romantic drive</RomanticDrive2>
+	<RomanticDrive3>High romantic drive</RomanticDrive3>
+	<RomanticDrive4>Extreme romantic drive</RomanticDrive4>
 	<RomanticDriveDescription>Romantic drive describes a person's overall desire for romantic relationships.</RomanticDriveDescription>
 	<AromanticDescription>This pawn has a very low romantic drive. They are unlikely to make romance attempts or accept marriage proposals, but may still take lovers.</AromanticDescription>
 
 	<!-- Display options -->
-	<ShowDistanceText3>List least</ShowDistanceText3>
-	<ShowDistanceText2>List more</ShowDistanceText2>
-	<ShowDistanceText1>List most</ShowDistanceText1>
-	<ShowDistanceText0>List all</ShowDistanceText0>
-	<WordCloud>Word cloud</WordCloud>
+	<OptionsText4>Word cloud</OptionsText4>
+	<OptionsText3>List least</OptionsText3>
+	<OptionsText2>List more</OptionsText2>
+	<OptionsText1>List most</OptionsText1>
+	<OptionsText0>List all</OptionsText0>
 	<UseColors>Colorize traits</UseColors>
 	<ListAlphabetical>List alphabetical</ListAlphabetical>
 	<UseAntonyms>Use antonyms</UseAntonyms>
@@ -42,11 +42,11 @@
 
 	<!-- Dev edit text -->
 	<EditPsyche>Dev edit</EditPsyche>
-	<PsycheEditor>Modifying the psyche of {PAWN_labelShort}:</PsycheEditor>
+	<PsycheEditor>Modifying the psyche of {0}:</PsycheEditor>
 	<PsycheEditorNewColonist>Modifying colonist's psyche:</PsycheEditorNewColonist>
 	<PersonalityNodeWarning>You are editing the raw values of a pawn's personality. The actual stats will be adjusted by other factors.</PersonalityNodeWarning>
 	<SexDrive>Sex drive:</SexDrive>
-	<RomanticDrive>Romance drive:</RomanticDrive>
+	<RomanticDrive>Romantic drive:</RomanticDrive>
 
 	<!-- Node descriptions and conversation tooltip -->
 	<PsycheNot>Not</PsycheNot>
@@ -64,15 +64,14 @@
 
 	<!-- Big Five descriptions -->
 	<BigFiveOTitle>Openness to experience</BigFiveOTitle>
-	<BigFiveODescription>{0} characterizes the willingness to embrace novel feelings, fantasy, aesthetics, ideas, values, and actions.</BigFiveODescription>
+	<BigFiveODescription>{0} is the willingness to embrace novel actions, ideas, values, feelings, fantasy, and aesthetics.</BigFiveODescription>
 	<BigFiveCTitle>Conscientiousness</BigFiveCTitle>
-	<BigFiveCDescription>{0} indicates the likelihood to act diligent, efficient, organized, self-disciplined, dutiful, and hard-working.</BigFiveCDescription>
+	<BigFiveCDescription>{0} is the propensity for diligence, efficiency, organization, self-discipline, and duty.</BigFiveCDescription>
 	<BigFiveETitle>Extroversion</BigFiveETitle>
-	<BigFiveEDescription>{0} describes how often gratification is sought from outside oneself, and manifests itself in outgoing, talkative, energetic, assertive, and gregarious behavior.</BigFiveEDescription>
+	<BigFiveEDescription>{0} is the rate that gratification is sought from outside oneself, and manifests itself in outgoing, talkative, energetic, assertive, and gregarious behavior.</BigFiveEDescription>
 	<BigFiveATitle>Agreeableness</BigFiveATitle>
-	<BigFiveADescription>{0} manifests itself in behaviors that are perceived as kind, sympathetic, cooperative, warm, and considerate.</BigFiveADescription>
+	<BigFiveADescription>{0} is the capacity for kindness, sympathy, cooperation, warmth, politeness, and compassion.</BigFiveADescription>
 	<BigFiveNTitle>Neuroticism</BigFiveNTitle>
-	<BigFiveNDescription>{0} rates the tendency to experience feelings such as anxiety, worry, fear, anger, frustration, envy, jealousy, guilt, depressed mood, and loneliness.</BigFiveNDescription>
-
+	<BigFiveNDescription>{0} is the tendency towards negative emotions such as anxiety, worry, fear, anger, frustration, envy, guilt, depressed mood, and loneliness.</BigFiveNDescription>
 
 </LanguageData>

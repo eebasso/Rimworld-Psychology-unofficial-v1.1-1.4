@@ -40,9 +40,8 @@ namespace Psychology
             {
                 /* "Core" nodes are seeded based on a pawn's upbringing, separating pawns into 32 categories based on the Big Five personality model. */
                 /* Two pawns with the same upbringing will always have similar core personality ratings. */
-
                 //int worldSeed = Find.World.info.Seed;
-                //float displacement = 0.1f + 0.3f * Rand.ValueSeeded(pawnSeed + defSeed) + 0.1f * Rand.ValueSeeded(defSeed + worldSeed);
+                //float displacement = 0.1f + 0.3f * Rand.ValueSeeded(pawnSeed + defSeed) + 0.1f * Rand.ValueSeeded(pawnSeed + defSeed + worldSeed);
                 float displacement = 0.5f * Rand.ValueSeeded(2 * pawnSeed + defSeed);
                 this.rawRating = 0.5f + upbringingSigns[CoreDefNames.IndexOf(defName)] * displacement;
             }

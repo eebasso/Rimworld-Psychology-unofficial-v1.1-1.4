@@ -65,10 +65,18 @@ namespace Psychology
 
         public static int[] GetSignArray(this int X, int length)
         {
-            int binaryBase = (int)Math.Pow(2, length);
-            int X2 = X.Mod(binaryBase) + binaryBase;
-            BitArray bitArray = new BitArray(new int[] { X2 });
-            return bitArray.Cast<bool>().Select(b => b ? 1 : -1).Take(length).ToArray();
+            //int binaryBase = (int)Math.Pow(2, length);
+            //int X2 = X.Mod(binaryBase) + binaryBase;
+            //BitArray bitArray = new BitArray(new int[] { X2 });
+            //return bitArray.Cast<bool>().Select(b => b ? 1 : -1).Take(length).ToArray();
+            int[] signs = new int[length];
+            signs[0] = X % 2 == 0 ? -1 : 1;
+            for (int b = 1; b < length; b++)
+            {
+                X /= 2;
+                signs[b] = X % 2 == 0 ? -1 : 1;
+            }
+            return signs;
         }
 
         public static float RandGaussianSeeded(int specialSeed1, int specialSeed2, float centerX = 0f, float widthFactor = 1f)
