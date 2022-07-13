@@ -11,7 +11,7 @@ namespace Psychology
     public class PersonalityNodeDef : Def
     {
 
-        /* Being a woman has an 80% chance to modify this node by this amount, reduced by how gay she is.
+        /* Being a woman modifies this node by this amount, reduced by how gay she is. The opposite effect is applied to men.
          * This models the cultural impact traditional gender roles have on their personality. (Lesbians/bisexuals, obviously, tend to subvert them.)
          * Even in 55XX, the patriarchy has not been vanquished. /s
          */
@@ -35,13 +35,15 @@ namespace Psychology
         //The hours of the day that people with a high rating in this node will prefer to go on dates.
         public List<int> preferredDateHours;
         //Antonym Name
-        public string oppositeName;
+        public string antonymLabel;
         //Label for node in the description
         public string descriptionLabel;
-        //Node Color
+        //Color for node label
         public Vector3 nodeHSV;
-        //Antonym Color
-        public Vector3 oppositeHSV;
+        //Color for antonym label
+        public Vector3 antonymHSV;
+        //Modifiers to the big five summary
+        public List<float> bigFiveModifiers;
 
         //A list of the actual parent Defs of this node.
         [Unsaved]
@@ -54,8 +56,7 @@ namespace Psychology
 
         public float GetModifier(PersonalityNodeDef def)
         {
-            float m = ParentNodes[def].modifier;
-            return m == 0f ? 1f : m;
+            return ParentNodes[def].modifier;
         }
 
         public Dictionary<PersonalityNodeDef, PersonalityNodeParent> ParentNodes

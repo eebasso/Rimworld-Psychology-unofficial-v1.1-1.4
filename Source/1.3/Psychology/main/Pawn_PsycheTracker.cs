@@ -12,6 +12,17 @@ namespace Psychology
 {
     public class Pawn_PsycheTracker : IExposable
     {
+        public int upbringing;
+        public int lastDateTick = 0;
+        private Pawn pawn;
+        private HashSet<PersonalityNode> nodes;
+        private Dictionary<PersonalityNodeDef, PersonalityNode> nodeDict = new Dictionary<PersonalityNodeDef, PersonalityNode>();
+        private Dictionary<string, float> cachedOpinions = new Dictionary<string, float>();
+        private Dictionary<string, bool> recalcCachedOpinions = new Dictionary<string, bool>();
+        private Dictionary<Pair<string, string>, float> cachedDisagreementWeights = new Dictionary<Pair<string, string>, float>();
+        private Dictionary<Pair<string, string>, bool> recalcNodeDisagreement = new Dictionary<Pair<string, string>, bool>();
+        public const int PersonalityCategories = 32;
+
         public Pawn_PsycheTracker(Pawn pawn)
         {
             this.pawn = pawn;
@@ -20,6 +31,7 @@ namespace Psychology
         [LogPerformance]
         public void Initialize()
         {
+            Log.Message("Initialize() Pawn_PsycheTracker for " + pawn.LabelShortCap);
             this.upbringing = Mathf.CeilToInt(Rand.ValueSeeded(this.pawn.HashOffset()) * PersonalityCategories);
             this.nodes = new HashSet<PersonalityNode>();
             foreach (PersonalityNodeDef def in DefDatabase<PersonalityNodeDef>.AllDefsListForReading)
@@ -61,7 +73,7 @@ namespace Psychology
              * This isn't a perfect system, but the weights will be closer together the higher totalOpinionModifiers is.
              */
             IEnumerable<Thought_MemorySocialDynamic> convoMemories;
-            float weight = 10f / Mathf.Lerp(1f + (8 * def.controversiality), 1f + (def.controversiality / 2), Mathf.Clamp01(this.TotalThoughtOpinion(otherPawn, out convoMemories) / 75) + this.GetPersonalityRating(PersonalityNodeDefOf.Aggressive));
+            float weight = 10f / Mathf.Lerp(1f + 8f * def.controversiality, 1f + 0.5f * def.controversiality, this.TotalThoughtOpinion(otherPawn, out convoMemories) / 75f + this.GetPersonalityRating(PersonalityNodeDefOf.Outspoken));
             /* Polite pawns will avoid topics they already know are contentious. */
             Pair<string, string> disagreementKey = new Pair<string, string>(otherPawn.ThingID, def.defName);
             if (cachedDisagreementWeights.ContainsKey(disagreementKey) && !recalcNodeDisagreement[disagreementKey])
@@ -139,15 +151,6 @@ namespace Psychology
             }
         }
 
-        public int upbringing;
-        public int lastDateTick = 0;
-        private Pawn pawn;
-        private HashSet<PersonalityNode> nodes;
-        private Dictionary<PersonalityNodeDef, PersonalityNode> nodeDict = new Dictionary<PersonalityNodeDef, PersonalityNode>();
-        private Dictionary<string, float> cachedOpinions = new Dictionary<string, float>();
-        private Dictionary<string, bool> recalcCachedOpinions = new Dictionary<string, bool>();
-        private Dictionary<Pair<string, string>, float> cachedDisagreementWeights = new Dictionary<Pair<string, string>, float>();
-        private Dictionary<Pair<string, string>, bool> recalcNodeDisagreement = new Dictionary<Pair<string, string>, bool>();
-        public const int PersonalityCategories = 16;
+        
     }
 }

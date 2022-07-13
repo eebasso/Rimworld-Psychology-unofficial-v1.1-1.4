@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <Patch>
 	<!-- Change values of base Opinion Offsets -->
 	<!-- Disfigure -->
@@ -75,5 +76,4 @@
 		<xpath>Defs/ThoughtDef[defName="BodyPuristDisgust"]/stages/li[5]/baseOpinionOffset/text()</xpath>
 		<value> -10 </value>
 	</Operation>
-
 </Patch>

@@ -259,6 +259,7 @@
     <Compile Include="Main\PolygonTooltipHandler.cs" />
     <Compile Include="Main\PolygonUtility.cs" />
     <Compile Include="Harmony\TooltipHandler.cs" />
+    <Compile Include="Main\PatchOperationCustom.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\About\preview.png">

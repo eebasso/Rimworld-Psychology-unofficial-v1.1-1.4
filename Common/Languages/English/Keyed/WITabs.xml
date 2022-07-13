@@ -9,7 +9,10 @@
 
 	<!-- Kinsey display and tooltip-->
 	<KinseyRating>Kinsey rating:</KinseyRating>
-	<KinseyDescription>The Kinsey scale describes a person's sexual orientation, and ranges from 0, meaning exclusively heterosexual, to a 6, meaning exclusively homosexual.\n\nKinsey recognized that the seven categories of the scale could not fully capture every individual's sexuality. He wrote that "it should be recognized that the reality includes individuals of every intermediate type, lying in a continuum between the two extremes and between each and every category on the scale."<!--\n\nHe disliked the use of the term bisexual to describe individuals who engage in sexual activity with both men and women, preferring to use bisexual in its original, biological sense as hermaphroditic; he stated, "Until it is demonstrated [that] taste in a sexual relation is dependent upon the individual containing within his anatomy both male and female structures, or male and female physiological capacities, it is unfortunate to call such individuals bisexual."--></KinseyDescription>
+	<!--<KinseyDescription>The Kinsey scale describes a person's sexual orientation, and ranges from 0, meaning exclusively heterosexual, to a 6, meaning exclusively homosexual.
+		\n\nKinsey recognized that the seven categories of the scale could not fully capture every individual's sexuality. He wrote that "it should be recognized that the reality includes individuals of every intermediate type, lying in a continuum between the two extremes and between each and every category on the scale."\n\nHe disliked the use of the term bisexual to describe individuals who engage in sexual activity with both men and women, preferring to use bisexual in its original, biological sense as hermaphroditic; he stated, "Until it is demonstrated [that] taste in a sexual relation is dependent upon the individual containing within his anatomy both male and female structures, or male and female physiological capacities, it is unfortunate to call such individuals bisexual."</KinseyDescription>-->
+	<KinseyDescription0>Kinsey scale</KinseyDescription0>
+	<KinseyDescription>The {0} describes a person's sexual orientation, and ranges from 0, meaning exclusively heterosexual, to a 6, meaning exclusively homosexual.\n\nKinsey chose seven categories for the sake of simplicity, and wrote that "it should be recognized that the reality includes individuals of every intermediate type, lying in a continuum between the two extremes and between each and every category on the scale."</KinseyDescription>
 
 	<!-- Sex drive display and tooltip-->
 	<SexDrive0>Asexual</SexDrive0>
@@ -17,7 +20,8 @@
 	<SexDrive2>Medium sex drive</SexDrive2>
 	<SexDrive3>High sex drive</SexDrive3>
 	<SexDrive4>Extreme sex drive</SexDrive4>
-	<SexDriveDescription>Sex drive, also known as libido, describes a person's overall desire for sexual activity.</SexDriveDescription>
+	<SexDriveDescription0>Sex drive</SexDriveDescription0>
+	<SexDriveDescription>{0}, also known as libido, describes a person's overall desire for sexual activity.</SexDriveDescription>
 	<AsexualDescription>This pawn has a very low sex drive. They don't experience much sexual attraction and are unlikely to engage in anything intimate, but may still engage in romance.</AsexualDescription>
 
 	<!-- Romance drive display and tooltip -->
@@ -26,7 +30,8 @@
 	<RomanticDrive2>Medium romantic drive</RomanticDrive2>
 	<RomanticDrive3>High romantic drive</RomanticDrive3>
 	<RomanticDrive4>Extreme romantic drive</RomanticDrive4>
-	<RomanticDriveDescription>Romantic drive describes a person's overall desire for romantic relationships.</RomanticDriveDescription>
+	<RomanticDriveDescription0>Romantic drive</RomanticDriveDescription0>
+	<RomanticDriveDescription>{0} describes a person's overall desire for romantic relationships.</RomanticDriveDescription>
 	<AromanticDescription>This pawn has a very low romantic drive. They are unlikely to make romance attempts or accept marriage proposals, but may still take lovers.</AromanticDescription>
 
 	<!-- Display options -->
@@ -38,7 +43,7 @@
 	<UseColors>Colorize traits</UseColors>
 	<ListAlphabetical>List alphabetical</ListAlphabetical>
 	<UseAntonyms>Use antonyms</UseAntonyms>
-	<FiveFactorModel>Five Factor Model</FiveFactorModel>
+	
 
 	<!-- Dev edit text -->
 	<EditPsyche>Dev edit</EditPsyche>
@@ -63,15 +68,19 @@
 	<AntonymColon>Antonym:</AntonymColon>
 
 	<!-- Big Five descriptions -->
+	<FiveFactorModelTitle>Five Factor Model</FiveFactorModelTitle>
+	<!--<FiveFactorModelDescription>&lt;color=#ffff00&gt;The five-factor model&lt;/color&gt;, AKA Big Five, was developed in the 1980s largely on the basis of the lexical hypothesis, which suggested that the fundamental traits of personality have, over time, become encoded in language.\n\nFive factors have consistently emerged from analyses conducted on numerous data sets of descriptive trait terms from a number of languages, including English, Chinese, and German.\n\nTwin and adoption studies have revealed a substantial genetic component, and individuals’ relative standings have also been shown to be fairly stable across the adult life span.\n\nSource: Britannica</FiveFactorModelDescription>-->
+	<FiveFactorDescription0>five-factor model</FiveFactorDescription0>
+	<FiveFactorDescription>The {0} (Big Five) was developed in the late 20th century based on the lexical hypothesis, which suggested that the fundamental traits of personality are encoded in language.\n\nFive factors have consistently emerged from analyses conducted on numerous data sets of descriptive trait terms from multiple languages, including English, Chinese, and German.\n\nTwin and adoption studies have revealed a substantial genetic component, and individuals' relative standings have also been shown to be fairly stable across the adult life span.\n\nSource: Britannica</FiveFactorDescription>
 	<BigFiveOTitle>Openness to experience</BigFiveOTitle>
-	<BigFiveODescription>{0} is the willingness to embrace novel actions, ideas, values, feelings, fantasy, and aesthetics.</BigFiveODescription>
+	<BigFiveODescription>{0} is the willingness to embrace novel ideas, values, actions, feelings, fantasy, and aesthetics.</BigFiveODescription>
 	<BigFiveCTitle>Conscientiousness</BigFiveCTitle>
-	<BigFiveCDescription>{0} is the propensity for diligence, efficiency, organization, self-discipline, and duty.</BigFiveCDescription>
+	<BigFiveCDescription>{0} is the propensity for diligence, efficiency, organization, planning, responsiblity, and self-discipline.</BigFiveCDescription>
 	<BigFiveETitle>Extroversion</BigFiveETitle>
-	<BigFiveEDescription>{0} is the rate that gratification is sought from outside oneself, and manifests itself in outgoing, talkative, energetic, assertive, and gregarious behavior.</BigFiveEDescription>
+	<BigFiveEDescription>{0} is the outward pursuit of gratification, and manifests as outgoing, talkative, energetic, upbeat, assertive, and gregarious behavior.</BigFiveEDescription>
 	<BigFiveATitle>Agreeableness</BigFiveATitle>
 	<BigFiveADescription>{0} is the capacity for kindness, sympathy, cooperation, warmth, politeness, and compassion.</BigFiveADescription>
 	<BigFiveNTitle>Neuroticism</BigFiveNTitle>
-	<BigFiveNDescription>{0} is the tendency towards negative emotions such as anxiety, worry, fear, anger, frustration, envy, guilt, depressed mood, and loneliness.</BigFiveNDescription>
+	<BigFiveNDescription>{0} is the tendency towards negative emotions such as anxiety, fear, anger, envy, guilt, and sadness.</BigFiveNDescription>
 
 </LanguageData>

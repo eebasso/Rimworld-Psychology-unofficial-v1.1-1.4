@@ -239,10 +239,10 @@ namespace Psychology.Harmony
 					/* Undo the effect of this in the postfixed method. */
 					__result /= 0.2f;
 				}
-				__result *= 0.1f + PsycheHelper.Comp(initiator).Psyche.GetPersonalityRating(PersonalityNodeDefOf.Adventurous) + PsycheHelper.Comp(initiator).Psyche.GetPersonalityRating(PersonalityNodeDefOf.Romantic);
+				__result *= 0.1f + 0.9f * PsycheHelper.Comp(initiator).Psyche.GetPersonalityRating(PersonalityNodeDefOf.Adventurous) + PsycheHelper.Comp(initiator).Psyche.GetPersonalityRating(PersonalityNodeDefOf.Romantic);
                 if(PsychologyBase.ActivateKinsey())
                 {
-                    __result *= PsycheHelper.Comp(initiator).Sexuality.AdjustedRomanticDrive;
+                    __result *= 1.3f * PsycheHelper.Comp(initiator).Sexuality.AdjustedRomanticDrive;
                 }
             }
         }
