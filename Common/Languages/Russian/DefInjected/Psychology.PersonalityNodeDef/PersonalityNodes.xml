@@ -1,41 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
 
-    <Confident.label>уверенность в себе</Confident.label>
-    <Confident.antonymLabel>insecure</Confident.antonymLabel>
+    <!--<Confident.label>уверенность в себе</Confident.label>-->
+    <Confident.label>уверенная в себе</Confident.label>
+    <Confident.antonymLabel>неуверенность в себе</Confident.antonymLabel>
     <Confident.descriptionLabel>Уверенный в себе</Confident.descriptionLabel>
     <Confident.description>{0} человек не сомневается в своих решениях и не имеет проблем с самооценкой.</Confident.description>
 
-    <Experimental.label>экспериментальность</Experimental.label>
-    <Experimental.antonymLabel>conservative</Experimental.antonymLabel>
+    <!--<Experimental.label>экспериментальность</Experimental.label>-->
+    <Experimental.label>экспериментальный</Experimental.label>
+    <Experimental.antonymLabel>консерватор</Experimental.antonymLabel>
     <Experimental.descriptionLabel>Экспериментаторы</Experimental.descriptionLabel>
     <Experimental.description>{0} открыты для новых ощущений, радуются сюрпризам, стараются попробовать в этой жизни всё хотя бы раз и обычно обладают большим опытом, чем другие.</Experimental.description>
 
+    <!--<Intelligent.label>острота ума</Intelligent.label>-->
     <Intelligent.label>острота ума</Intelligent.label>
-    <Intelligent.antonymLabel>dim-witted</Intelligent.antonymLabel>
+    <Intelligent.antonymLabel>глупый</Intelligent.antonymLabel>
     <Intelligent.descriptionLabel>Умные</Intelligent.descriptionLabel>
     <Intelligent.description>{0} люди быстрее соображают и обладают большей способностью для решения абстрактных задач.</Intelligent.description>
 
+    <!--<Extroverted.label>экстраверсия</Extroverted.label>-->
     <Extroverted.label>экстраверсия</Extroverted.label>
-    <Extroverted.antonymLabel>introverted</Extroverted.antonymLabel>
+    <Extroverted.antonymLabel>интроверсия</Extroverted.antonymLabel>
     <Extroverted.descriptionLabel>Экстраверты</Extroverted.descriptionLabel>
     <Extroverted.description>{0} любят общение с людьми, шумные компании и активный социальный образ жизни.</Extroverted.description>
 
+    <!--<Emotional.label>эмоциональность</Emotional.label>-->
     <Emotional.label>эмоциональность</Emotional.label>
-    <Emotional.antonymLabel>stoic</Emotional.antonymLabel>
+    <Emotional.antonymLabel>стоический</Emotional.antonymLabel>
     <Emotional.descriptionLabel>Эмоциональные</Emotional.descriptionLabel>
     <Emotional.description>{0} люди сильнее испытывают эмоции и больше подвержены их влиянию.</Emotional.description>
 
+    <!--<Independent.label>независимость</Independent.label>-->
     <Independent.label>независимость</Independent.label>
-    <Independent.antonymLabel>dependent</Independent.antonymLabel>
+    <Independent.antonymLabel>зависимый</Independent.antonymLabel>
     <Independent.descriptionLabel>Независимые</Independent.descriptionLabel>
     <Independent.description>{0} люди прекрасно себя чувствуют сами по себе и не полагаются на других.</Independent.description>
     <Independent.conversationTopics.3>упорной работе</Independent.conversationTopics.3>
     <Independent.platformIssueHigh>Наше поселение обременено тунеядцами.</Independent.platformIssueHigh>
     <Independent.platformIssueLow>Мы сильны, когда мы вместе.</Independent.platformIssueLow>
 
+    <!--<Aggressive.label>агрессивность</Aggressive.label>-->
     <Aggressive.label>агрессивность</Aggressive.label>
-    <Aggressive.antonymLabel>passive</Aggressive.antonymLabel>
+    <Aggressive.antonymLabel>мягкий</Aggressive.antonymLabel>
     <Aggressive.descriptionLabel>Агрессивные</Aggressive.descriptionLabel>
     <Aggressive.description>{0} люди напористы, грубы и воинственны, когда не могут добиться своего.</Aggressive.description>
     <Aggressive.conversationTopics.0>разногласиях между ними</Aggressive.conversationTopics.0>
@@ -47,8 +54,9 @@
     <Aggressive.platformIssueHigh>Мы должны активнее поддерживать свободу слова.</Aggressive.platformIssueHigh>
     <Aggressive.platformIssueLow>Мы должны больше думать друг о друге.</Aggressive.platformIssueLow>
 
+    <!--<Adventurous.label>тяга к странствиям</Adventurous.label>-->
     <Adventurous.label>тяга к странствиям</Adventurous.label>
-    <Adventurous.antonymLabel>cautious</Adventurous.antonymLabel>
+    <Adventurous.antonymLabel>осторожный</Adventurous.antonymLabel>
     <Adventurous.descriptionLabel>приключений</Adventurous.descriptionLabel>
     <Adventurous.description>Любители {0} чувствуют себя счастливее, расширяя свои горизонты, открывая для себя новые места и пробуя что-то новое.</Adventurous.description>
     <Adventurous.conversationTopics.0>их жизненные цели</Adventurous.conversationTopics.0>
@@ -61,8 +69,9 @@
     <Adventurous.platformIssueHigh>У каждого должно быть больше возможностей!</Adventurous.platformIssueHigh>
     <Adventurous.platformIssueLow>В нашем поселении есть всё необходимое.</Adventurous.platformIssueLow>
 
+    <!--<DrugFriendly.label>нарколояльность</DrugFriendly.label>-->
     <DrugFriendly.label>нарколояльность</DrugFriendly.label>
-    <DrugFriendly.antonymLabel>straight-edge</DrugFriendly.antonymLabel>
+    <DrugFriendly.antonymLabel>чёткая грань</DrugFriendly.antonymLabel>
     <DrugFriendly.descriptionLabel>Лояльные к наркотикам</DrugFriendly.descriptionLabel>
     <DrugFriendly.description>{0} люди не видят в их употреблении ничего плохого и не пытаются их избегать.</DrugFriendly.description>
     <DrugFriendly.conversationTopics.2>пьянках</DrugFriendly.conversationTopics.2>
@@ -71,8 +80,9 @@
     <DrugFriendly.platformIssueHigh>Наркотики могут сделать нашу жизнь лучше и проще.</DrugFriendly.platformIssueHigh>
     <DrugFriendly.platformIssueLow>Наркотикам не место в нашем поселении.</DrugFriendly.platformIssueLow>
 
+    <!--<Spontaneous.label>спонтанность</Spontaneous.label>-->
     <Spontaneous.label>спонтанность</Spontaneous.label>
-    <Spontaneous.antonymLabel>measured</Spontaneous.antonymLabel>
+    <Spontaneous.antonymLabel>обдуманный</Spontaneous.antonymLabel>
     <Spontaneous.descriptionLabel>Спонтанные</Spontaneous.descriptionLabel>
     <Spontaneous.description>{0} люди обычно очень импульсивны и любят делать другим людям сюрпризы.</Spontaneous.description>
     <Spontaneous.conversationTopics.0>розыгрышах</Spontaneous.conversationTopics.0>
@@ -81,8 +91,9 @@
     <Spontaneous.platformIssueHigh>Если я стану мэром, я решу все наши проблемы.</Spontaneous.platformIssueHigh>
     <Spontaneous.platformIssueLow>Если я стану мэром, я буду с осторожностью подходить к решению наших проблем.</Spontaneous.platformIssueLow>
 
+    <!--<Rational.label>рациональность</Rational.label>-->
     <Rational.label>рациональность</Rational.label>
-    <Rational.antonymLabel>irrational</Rational.antonymLabel>
+    <Rational.antonymLabel>иррациональный</Rational.antonymLabel>
     <Rational.descriptionLabel>рациональнее</Rational.descriptionLabel>
     <Rational.description>Чем {0} человек, тем он более способен давать чему-либо объективную и подкреплённую фактами оценку.</Rational.description>
     <Rational.conversationTopics.5>предвзятости</Rational.conversationTopics.5>
@@ -90,8 +101,9 @@
     <Rational.platformIssueHigh>Я предложу инновационные решения для нашего поселения.</Rational.platformIssueHigh>
     <Rational.platformIssueLow>Мы должны трезво смотреть на нашу ситуацию.</Rational.platformIssueLow>
 
+    <!--<Logical.label>логичность</Logical.label>-->
     <Logical.label>логичность</Logical.label>
-    <Logical.antonymLabel>illogical</Logical.antonymLabel>
+    <Logical.antonymLabel>нелогичный</Logical.antonymLabel>
     <Logical.descriptionLabel>Логичным</Logical.descriptionLabel>
     <Logical.description>{0} людям с лёгкостью удаётся связывать причину и следствие, а также предсказывать последствия чего-либо.</Logical.description>
     <Logical.conversationTopics.0>изобретении новых вещей</Logical.conversationTopics.0>
@@ -101,8 +113,9 @@
     <Logical.platformIssueHigh>Наши проблемы поддаются решению.</Logical.platformIssueHigh>
     <Logical.platformIssueLow>Я решу наши проблемы.</Logical.platformIssueLow>
 
+    <!--<Creative.label>креативность</Creative.label>-->
     <Creative.label>креативность</Creative.label>
-    <Creative.antonymLabel>conventional</Creative.antonymLabel>
+    <Creative.antonymLabel>нетворческий</Creative.antonymLabel>
     <Creative.descriptionLabel>Креативные</Creative.descriptionLabel>
     <Creative.description>{0} люди могут с лёгкостью представлять себе различные, в том числе и несуществующие, вещи в ярких деталях.</Creative.description>
     <Creative.conversationTopics.0>литературе и искусстве</Creative.conversationTopics.0>
@@ -114,7 +127,7 @@
     <Creative.platformIssueLow>Мы должны трезво смотреть на нашу ситуацию.</Creative.platformIssueLow>
 
     <Passionate.label>пылкость</Passionate.label>
-    <Passionate.antonymLabel>apathetic</Passionate.antonymLabel>
+    <Passionate.antonymLabel>апатичный</Passionate.antonymLabel>
     <Passionate.descriptionLabel>Пылкие</Passionate.descriptionLabel>
     <Passionate.description>{0} люди относятся к жизни очень увлечённо и часто довольно выразительны в своих высказываниях.</Passionate.description>
     <Passionate.conversationTopics.0>том, что им нравится и не нравится</Passionate.conversationTopics.0>
@@ -124,7 +137,7 @@
     <Passionate.platformIssueLow>Я буду выполнять свою работу как надо.</Passionate.platformIssueLow>
 
     <Nostalgic.label>тяга к ностальгии</Nostalgic.label>
-    <Nostalgic.antonymLabel>future-oriented</Nostalgic.antonymLabel>
+    <Nostalgic.antonymLabel>несентиментальный</Nostalgic.antonymLabel>
     <Nostalgic.descriptionLabel>поностальгировать</Nostalgic.descriptionLabel>
     <Nostalgic.description>Любители {0} чувствуют очень сильную связь с их прошлым и всем, что вызывает воспоминания о нём.</Nostalgic.description>
     <Nostalgic.conversationTopics.0>былых деньках</Nostalgic.conversationTopics.0>
@@ -135,7 +148,7 @@
     <Nostalgic.platformIssueLow>Мы можем создать светлое будущее.</Nostalgic.platformIssueLow>
 
     <Empathetic.label>эмпатия</Empathetic.label>
-    <Empathetic.antonymLabel>cold-hearted</Empathetic.antonymLabel>
+    <Empathetic.antonymLabel>бесчувственный</Empathetic.antonymLabel>
     <Empathetic.descriptionLabel>Эмпатия</Empathetic.descriptionLabel>
     <Empathetic.description>{0} позволяет ставить себя на место других людей и лучше понимать их чувства.</Empathetic.description>
     <Empathetic.conversationTopics.2>понимании других людей</Empathetic.conversationTopics.2>
@@ -145,7 +158,7 @@
     <Empathetic.platformIssueLow>Мэру не стоит влезать в личные дела поселенцев..</Empathetic.platformIssueLow>
 
     <Competitive.label>конкурентность</Competitive.label>
-    <Competitive.antonymLabel>cooperative</Competitive.antonymLabel>
+    <Competitive.antonymLabel>кооператив</Competitive.antonymLabel>
     <Competitive.descriptionLabel>конкуренции</Competitive.descriptionLabel>
     <Competitive.description>Любителям {0} недостаточно одного лишь успеха, им нужно безоговорочное поражение всех остальных.</Competitive.description>
     <Competitive.conversationTopics.2>социальном статусе</Competitive.conversationTopics.2>
@@ -156,7 +169,7 @@
     <Competitive.platformIssueLow>В нашем поселении каждый имеет право на успех.</Competitive.platformIssueLow>
 
     <Polite.label>вежливость</Polite.label>
-    <Polite.antonymLabel>rude</Polite.antonymLabel>
+    <Polite.antonymLabel>грубый</Polite.antonymLabel>
     <Polite.descriptionLabel>Вежливые</Polite.descriptionLabel>
     <Polite.description>{0} люди обучены хорошим манерам и прилагают все усилия, чтобы не задевать чувства окружающих.</Polite.description>
     <Polite.conversationTopics.5>золотом правиле</Polite.conversationTopics.5>
@@ -164,7 +177,7 @@
     <Polite.platformIssueLow>Нас должны судить по нашим достижениям.</Polite.platformIssueLow>
 
     <Cool.label>крутость</Cool.label>
-    <Cool.antonymLabel>uncool</Cool.antonymLabel>
+    <Cool.antonymLabel>некрутой</Cool.antonymLabel>
     <Cool.descriptionLabel>Крутые</Cool.descriptionLabel>
     <Cool.description>{0} люди обычно резко отличаются от остальных своей уникальностью. С ними интересно и они больше нравятся людям.</Cool.description>
     <Cool.conversationTopics.0>трендах миров-утопий</Cool.conversationTopics.0>
@@ -183,18 +196,19 @@
     <Romantic.platformIssueLow>Я не буду зацикливаться на этой работе.</Romantic.platformIssueLow>
 
     <Thoughtful.label>задумчивость</Thoughtful.label>
-    <Thoughtful.antonymLabel>reckless</Thoughtful.antonymLabel>
+    <Thoughtful.antonymLabel>ненадежный</Thoughtful.antonymLabel>
     <Thoughtful.descriptionLabel>задумчивость</Thoughtful.descriptionLabel>
-    <Thoughtful.description>{0} люди критичны в своих суждениях, любят копаться в себе и планировать заранее.</Thoughtful.description>
+    <!--<Thoughtful.description>{0} люди критичны в своих суждениях, любят копаться в себе и планировать заранее.</Thoughtful.description>-->
+    <Thoughtful.description>{0} люди осторожны, усердны и планировать заранее.</Thoughtful.description>
     <Thoughtful.conversationTopics.0>будущем</Thoughtful.conversationTopics.0>
     <Thoughtful.conversationTopics.1>планах на жизнь</Thoughtful.conversationTopics.1>
     <Thoughtful.platformIssueHigh>Нам нужны планы на будущее.</Thoughtful.platformIssueHigh>
     <Thoughtful.platformIssueLow>Мы должны заниматься тем, что происходит сейчас.</Thoughtful.platformIssueLow>
 
     <Geeky.label>дотошность</Geeky.label>
-    <Geeky.antonymLabel>normie</Geeky.antonymLabel>
-    <Geeky.descriptionLabel>Дотошные</Geeky.descriptionLabel>
-    <Geeky.description>{0} ботаники обычно интеллектуальны, чудаковаты и плохо умеют общаться с другими людьми.</Geeky.description>
+    <Geeky.antonymLabel>общий</Geeky.antonymLabel>
+    <Geeky.descriptionLabel>Дотошные ботаники</Geeky.descriptionLabel>
+    <Geeky.description>{0} обычно интеллектуальны, чудаковаты и плохо умеют общаться с другими людьми.</Geeky.description>
     <Geeky.conversationTopics.0>своих хобби</Geeky.conversationTopics.0>
     <Geeky.conversationTopics.1>самовоспроизводящихся машинах</Geeky.conversationTopics.1>
     <Geeky.conversationTopics.2>кораблях-фабриках</Geeky.conversationTopics.2>
@@ -210,7 +224,7 @@
     <Geeky.platformIssueLow>Давайте будем концентрировать наше внимание на чём-то практичном.</Geeky.platformIssueLow>
 
     <Cultured.label>эрудированность</Cultured.label>
-    <Cultured.antonymLabel>crude</Cultured.antonymLabel>
+    <Cultured.antonymLabel>безграмотный</Cultured.antonymLabel>
     <Cultured.descriptionLabel>Эрудиты</Cultured.descriptionLabel>
     <Cultured.description>{0} зачастую имеют хорошее образование, начитаны и утончённы.</Cultured.description>
     <Cultured.conversationTopics.2>книгах, которые они прочитали</Cultured.conversationTopics.2>
@@ -224,7 +238,7 @@
     <Cultured.platformIssueLow>Я такой же человек, как и вы все.</Cultured.platformIssueLow>
 
     <Organized.label>организованность</Organized.label>
-    <Organized.antonymLabel>messy</Organized.antonymLabel>
+    <Organized.antonymLabel>дезорганизация</Organized.antonymLabel>
     <Organized.descriptionLabel>Организованные</Organized.descriptionLabel>
     <Organized.description>{0} люди стремятся к чистоте, порядку и минимализму во всем.</Organized.description>
     <Organized.conversationTopics.5>еде за столом</Organized.conversationTopics.5>
@@ -233,16 +247,16 @@
     <Organized.platformIssueLow>Жизнь сложна, равно как и наши проблемы.</Organized.platformIssueLow>
 
     <Naive.label>наивность</Naive.label>
-    <Naive.antonymLabel>skeptical</Naive.antonymLabel>
+    <Naive.antonymLabel>скептически</Naive.antonymLabel>
     <Naive.descriptionLabel>Наивные</Naive.descriptionLabel>
-    <Naive.description>{)} люди часто бесхитростны и суеверны.</Naive.description>
+    <Naive.description>{0} люди часто бесхитростны и суеверны.</Naive.description>
     <Naive.conversationTopics.1>жизни после смерти</Naive.conversationTopics.1>
     <Naive.conversationTopics.9>предсказателях судьбы</Naive.conversationTopics.9>
     <Naive.platformIssueHigh>Моя приверженность идеалам поможет мне стать хорошим мэром.</Naive.platformIssueHigh>
     <Naive.platformIssueLow>Мой опыт и знания помогут мне стать хорошим мэром.</Naive.platformIssueLow>
 
     <Upbeat.label>любовь к жизни</Upbeat.label>
-    <Upbeat.antonymLabel>melancholy</Upbeat.antonymLabel>
+    <Upbeat.antonymLabel>хмурый</Upbeat.antonymLabel>
     <Upbeat.descriptionLabel>Жизнелюбивые</Upbeat.descriptionLabel>
     <Upbeat.description>{0} люди радостны, сердечны и с ними просто приятно находиться рядом.</Upbeat.description>
     <Upbeat.conversationTopics.3>больных темах</Upbeat.conversationTopics.3>
@@ -253,7 +267,7 @@
     <Upbeat.platformIssueLow>Это поселение мчится прямиком к катастрофе.</Upbeat.platformIssueLow>
 
     <Outspoken.label>откровенность</Outspoken.label>
-    <Outspoken.antonymLabel>reserved</Outspoken.antonymLabel>
+    <Outspoken.antonymLabel>сдержанный</Outspoken.antonymLabel>
     <Outspoken.descriptionLabel>Откровенные</Outspoken.descriptionLabel>
     <Outspoken.description>{0} люди часто имеют по поводу всего своё чёткое мнение и не стесняются им делиться.</Outspoken.description>
     <Outspoken.conversationTopics.1>верховенстве закона</Outspoken.conversationTopics.1>
@@ -268,7 +282,7 @@
     <Outspoken.platformIssueLow>Мы нуждаемся в лидере, который будет прислушиваться к людям</Outspoken.platformIssueLow>
 
     <Ambitious.label>амбициозность</Ambitious.label>
-    <Ambitious.antonymLabel>content</Ambitious.antonymLabel>
+    <Ambitious.antonymLabel>нечестолюбивый</Ambitious.antonymLabel>
     <Ambitious.descriptionLabel>Амбициозные</Ambitious.descriptionLabel>
     <Ambitious.description>{0} люди ставят перед собой большие и сложные задачи и стремятся их разрешить.</Ambitious.description>
     <Ambitious.conversationTopics.0>своих надеждах и мечтах</Ambitious.conversationTopics.0>
@@ -281,7 +295,7 @@
     <Ambitious.platformIssueLow>Давайте оставаться в контакте с реальностью.</Ambitious.platformIssueLow>
 
     <LaidBack.label>расслабленность</LaidBack.label>
-    <LaidBack.antonymLabel>anxious</LaidBack.antonymLabel>
+    <LaidBack.antonymLabel>тревожный</LaidBack.antonymLabel>
     <LaidBack.descriptionLabel>Расслабленные</LaidBack.descriptionLabel>
     <LaidBack.description>{0} люди обычно очень спокойны и редко о чём-то волнуются.</LaidBack.description>
     <LaidBack.conversationTopics.2>своём настроении</LaidBack.conversationTopics.2>
@@ -290,7 +304,7 @@
     <LaidBack.platformIssueLow>Нам нужен лидер, способный выдерживать нагрузки.</LaidBack.platformIssueLow>
 
     <Pure.label>целомудренность</Pure.label>
-    <Pure.antonymLabel>debauched</Pure.antonymLabel>
+    <Pure.antonymLabel>развратный</Pure.antonymLabel>
     <Pure.descriptionLabel>Целомудренные</Pure.descriptionLabel>
     <Pure.description>{0} люди консервативны, благонравны и стараются ограничивать свои сексуальные желания.</Pure.description>
     <Pure.conversationTopics.2>традиционных ценностях</Pure.conversationTopics.2>
@@ -300,7 +314,7 @@
     <Pure.platformIssueLow>Мы, как люди, должны развиваться.</Pure.platformIssueLow>
 
     <Moralistic.label>моралистичность</Moralistic.label>
-    <Moralistic.antonymLabel>amoral</Moralistic.antonymLabel>
+    <Moralistic.antonymLabel>аморальный</Moralistic.antonymLabel>
     <Moralistic.descriptionLabel>морали</Moralistic.descriptionLabel>
     <Moralistic.description>Поборники {0} придерживаются системы традиционных понятий том, что правильно, а что нет.</Moralistic.description>
     <Moralistic.conversationTopics.3>изделиях из кожи человека</Moralistic.conversationTopics.3>
@@ -313,7 +327,7 @@
     <Moralistic.platformIssueLow>Мы должны заботиться только о себе.</Moralistic.platformIssueLow>
 
     <Trusting.label>доверчивость</Trusting.label>
-    <Trusting.antonymLabel>cynical</Trusting.antonymLabel>
+    <Trusting.antonymLabel>циничный</Trusting.antonymLabel>
     <Trusting.descriptionLabel>Доверчивые</Trusting.descriptionLabel>
     <Trusting.description>{0} люди не ставят под сомнение слова других.</Trusting.description>
     <Trusting.conversationTopics.0>природе человека</Trusting.conversationTopics.0>
@@ -324,7 +338,7 @@
     <Trusting.platformIssueLow>Все люди в нашем поселении разные и мы должны это понимать.</Trusting.platformIssueLow>
 
     <Judgmental.label>субъективность</Judgmental.label>
-    <Judgmental.antonymLabel>open</Judgmental.antonymLabel>
+    <Judgmental.antonymLabel>терпимый</Judgmental.antonymLabel>
     <Judgmental.descriptionLabel>Субъективные</Judgmental.descriptionLabel>
     <Judgmental.description>{0} люди формируют об окружающих поспешные и поверхностные мнения, основываясь обычно на чужих поступках.</Judgmental.description>
     <Judgmental.conversationTopics.0>последней сплетне</Judgmental.conversationTopics.0>
@@ -338,7 +352,7 @@
     <Judgmental.platformIssueLow>Я наиболее квалифицированный кандидат на эту должность.</Judgmental.platformIssueLow>
 
     <Friendly.label>приветливость</Friendly.label>
-    <Friendly.antonymLabel>unfriendly</Friendly.antonymLabel>
+    <Friendly.antonymLabel>недружелюбный</Friendly.antonymLabel>
     <Friendly.descriptionLabel>Приветливые</Friendly.descriptionLabel>
     <Friendly.description>{0} люди дружелюбны, терпимы и любят общение.</Friendly.description>
     <Friendly.conversationTopics.0>друг-друге</Friendly.conversationTopics.0>
@@ -349,7 +363,7 @@
     <Friendly.platformIssueLow>Мы сделаем всё, чтобы выжить.</Friendly.platformIssueLow>
 
     <Optimistic.label>оптимистичность</Optimistic.label>
-    <Optimistic.antonymLabel>pessimistic</Optimistic.antonymLabel>
+    <Optimistic.antonymLabel>пессимистичный</Optimistic.antonymLabel>
     <Optimistic.descriptionLabel>Оптимисты</Optimistic.descriptionLabel>
     <Optimistic.description>{0} всегда смотрят на светлую сторону жизни.</Optimistic.description>
     <Optimistic.conversationTopics.0>своих чувствах</Optimistic.conversationTopics.0>
@@ -362,7 +376,7 @@
     <Optimistic.platformIssueLow>Дела наши плохи, а будет только хуже.</Optimistic.platformIssueLow>
 
     <Compassionate.label>отзывчивость</Compassionate.label>
-    <Compassionate.antonymLabel>callous</Compassionate.antonymLabel>
+    <Compassionate.antonymLabel>безжалостный</Compassionate.antonymLabel>
     <Compassionate.descriptionLabel>Отзывчивые</Compassionate.descriptionLabel>
     <Compassionate.description>{0} люди беспокоятся о проблемах других людей и стремятся им помочь..</Compassionate.description>
     <Compassionate.conversationTopics.0>менее удачливых</Compassionate.conversationTopics.0>
@@ -377,7 +391,7 @@
     <Compassionate.platformIssueLow>Каждое общество сильно настолько, насколько сильны его самые способные члены.</Compassionate.platformIssueLow>
 
     <Generous.label>щедрость</Generous.label>
-    <Generous.antonymLabel>selfish</Generous.antonymLabel>
+    <Generous.antonymLabel>скаредный</Generous.antonymLabel>
     <Generous.descriptionLabel>Щедрые</Generous.descriptionLabel>
     <Generous.description>{0} люди меньше заботятся о том, чтобы иметь вещи, и с большей вероятностью передают их другим.</Generous.description>
     <Generous.conversationTopics.2>материальных благах</Generous.conversationTopics.2>

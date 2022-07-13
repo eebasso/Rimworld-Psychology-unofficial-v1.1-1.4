@@ -32,5 +32,23 @@
 	
 	<BenchmarkingTitle>Включить тест производительности</BenchmarkingTitle>
 	<BenchmarkingTooltip>Включите это, чтобы получать периодические отчёты о производительности мода в консоли. Вы можете копировать эти отчёты и отправлять их разработчикам для улучшения оптимизации мода. ВНИМАНИЕ: тест производительности сам по себе может негативно повлиять на производительность.\n\nИзменение данного параметра перезапустит игру.</BenchmarkingTooltip>
+
+	<ImprisonedTitle>Prisoner recruitment penalty</ImprisonedTitle>
+	<ImprisonedTooltip>Enable/disable negative opinion penalty for recruited prisoners (-40 Faction imprisoned me).</ImprisonedTooltip>
+
+	<RomanceMultiplierTitle>Romance chance multiplier</RomanceMultiplierTitle>
+	<RomanceMultiplierTooltip>Romance chance will be multiplied by this value. Setting to 0 should eliminate romance entirely.</RomanceMultiplierTooltip>
+
+	<RomanceChanceThresholdTitle>Minimum romance opinion</RomanceChanceThresholdTitle>
+	<RomanceChanceThresholdTooltip>Minimum opinion one colonist must have of another in order to be romanced.</RomanceChanceThresholdTooltip>
+
+	<MayorAgeTitle>Mayor age</MayorAgeTitle>
+	<MayorAgeTooltip>Age required for someone to be able to become a mayor.</MayorAgeTooltip>
+
+	<AllowAnxietyTitle>Allow post mental break anxiety</AllowAnxietyTitle>
+	<AllowAnxietyTooltip>Allow colonists to get anxiety after mental breaks (chance depends on colonist's psyche and mental breaks severity). Note that you might still see it as random disease.</AllowAnxietyTooltip>
+
+	<BeatyOverrideEnabledTitle>Disable opinion changes from beauty traits</BeatyOverrideEnabledTitle>
+	<BeatyOverrideEnabledToolip>Disables opinion changes from traits such as: Pretty, Beautiful, Ugly, etc. Note that Psychology's changes to those traits would still work even if you disable this option. Its recommended to keep this option enabled.</BeatyOverrideEnabledToolip>
   
 </LanguageData>

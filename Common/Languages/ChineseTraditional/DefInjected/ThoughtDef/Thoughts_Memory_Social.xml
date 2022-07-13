@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Random social interactions -->
+
+  <PrudeSeen.stages.0.label>目睹裸体</PrudeSeen.stages.0.label>
+  <PrudeSeen.stages.0.description>那个人是裸着吗？没人教教那些暴露狂怎么穿衣服吗？太恶心了。</PrudeSeen.stages.0.description>
+
+  <DynamicSocial.stages.0.label>交谈</DynamicSocial.stages.0.label>
+  <BrokeUpWithMeCodependent.stages.0.label>依赖</BrokeUpWithMeCodependent.stages.0.label>
+
+  <BrokeUpWithMeCodependentMood.stages.0.label>依赖于{0}</BrokeUpWithMeCodependentMood.stages.0.label>
+  <BrokeUpWithMeCodependentMood.stages.0.description>我想你了……求求你回来吧。</BrokeUpWithMeCodependentMood.stages.0.description>
+
+  <CheatedOnMeCodependent.stages.0.label>被背叛了</CheatedOnMeCodependent.stages.0.label>
+
+  <CheatedOnMeCodependentMood.stages.0.label>被{0}背叛了</CheatedOnMeCodependentMood.stages.0.label>
+  <CheatedOnMeCodependentMood.stages.0.description>我不明白……我到底做错了什么……</CheatedOnMeCodependentMood.stages.0.description>
+
+  <RebuffedMyRomanceAttemptLecher.stages.0.label>拒绝了我</RebuffedMyRomanceAttemptLecher.stages.0.label>
+  <CapturedMe.stages.0.label>关押了我</CapturedMe.stages.0.label>
+  <WentOnDate.stages.0.label>参加约会</WentOnDate.stages.0.label>
+  <HungOut.stages.0.label>一起游玩</HungOut.stages.0.label>
+  <MissedDate.stages.0.label>放了鸽子</MissedDate.stages.0.label>
+
+
+</LanguageData>

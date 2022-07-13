@@ -1,18 +1,19 @@
 ﻿<Properties>
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
       <Breakpoint file="/Users/edwardbasso/Library/Application Support/Steam/steamapps/common/RimWorld/RimWorldMac.app/Mods/Rimworld-Psychology-unofficial-v1.1-1.3/Source/1.3/Psychology/Harmony/ThoughtWorker_Pretty.cs" relfile="Psychology/Harmony/ThoughtWorker_Pretty.cs" line="17" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.Workbench ActiveDocument="../../Common/Languages/English/Keyed/WITabs.xml">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Psychology/Common/Languages/ChineseTraditional/DefInjected/Psychology.PersonalityNodeDef/PersonalityNodes.xml">
     <Files>
-      <File FileName="Psychology/Main/Personality/PersonalityNode.cs" Line="14" Column="27" IsPinned="True" />
-      <File FileName="Psychology/main/PsycheCardUtility.cs" Line="514" Column="86" IsPinned="True" />
-      <File FileName="Psychology/Main/PolygonTooltipHandler.cs" Line="24" Column="15" IsPinned="True" />
-      <File FileName="Psychology/Main/PolygonUtility.cs" Line="10" Column="52" IsPinned="True" />
-      <File FileName="../../Common/Defs/PersonalityDefs/PersonalityNodes.xml" Line="9" Column="28" />
-      <File FileName="Psychology/Main/ITab_Pawn_Psyche.cs" Line="17" Column="40" />
-      <File FileName="../../Common/Languages/English/Keyed/WITabs.xml" Line="75" Column="132" />
+      <File FileName="../../Common/Languages/English/Keyed/WITabs.xml" Line="75" Column="24" IsPinned="True" />
+      <File FileName="../../Common/Defs/PersonalityDefs/PersonalityNodes.xml" Line="9" Column="28" IsPinned="True" />
+      <File FileName="Psychology/Common/Languages/ChineseTraditional/DefInjected/Psychology.PersonalityNodeDef/PersonalityNodes.xml" Line="361" Column="26" IsPinned="True" />
+      <File FileName="../../Common/Languages/German/DefInjected/Psychology.PersonalityNodeDef/PersonalityNodes.xml" Line="5" Column="5" IsPinned="True" />
+      <File FileName="../../Common/Languages/Russian/DefInjected/Psychology.PersonalityNodeDef/PersonalityNodes.xml" Line="7" Column="5" IsPinned="True" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -24,10 +25,22 @@
                   <Node name="PersonalityDefs" expanded="True" />
                 </Node>
                 <Node name="Languages" expanded="True">
-                  <Node name="English" expanded="True">
-                    <Node name="Keyed" expanded="True">
-                      <Node name="WITabs.xml" selected="True" />
+                  <Node name="ChineseSimplified" expanded="True" />
+                  <Node name="ChineseTraditional" expanded="True">
+                    <Node name="DefInjected" expanded="True">
+                      <Node name="Psychology.PersonalityNodeDef" expanded="True" />
                     </Node>
+                  </Node>
+                  <Node name="German" expanded="True">
+                    <Node name="DefInjected" expanded="True">
+                      <Node name="Psychology.PersonalityNodeDef" expanded="True" />
+                    </Node>
+                  </Node>
+                  <Node name="Russian" expanded="True">
+                    <Node name="DefInjected" expanded="True">
+                      <Node name="Psychology.PersonalityNodeDef" expanded="True" />
+                    </Node>
+                    <Node name="Keyed" expanded="True" />
                   </Node>
                 </Node>
               </Node>
@@ -45,7 +58,4 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
 </Properties>

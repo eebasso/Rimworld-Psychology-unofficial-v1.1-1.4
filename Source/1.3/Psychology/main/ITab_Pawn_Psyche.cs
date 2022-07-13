@@ -14,7 +14,7 @@ namespace Psychology
     {
         public ITab_Pawn_Psyche()
         {
-            size = new Vector2(500f, 500f);
+            size = new Vector2(200f, 200f);
             //size = new Vector2(630f, 510f);
             labelKey = "TabPsyche";
             this.tutorTag = "Psyche";
@@ -51,12 +51,11 @@ namespace Psychology
 
         protected override void FillTab()
         {
-            //Log.Message("Start of FillTab()");
-            // Get total rectangle
-            Rect totalRect = new Rect(0f, 0f, size.x, size.y);
             // Initialize pawn
             Pawn pawn = PawnToShowInfoAbout;
-            //Log.Message("Call PsycheCardUtility in FillTab()");
+            // Get total rectangle
+            Rect totalRect = PsycheCardUtility.CalculateTotalRect(pawn);
+            size = totalRect.size;
             PsycheCardUtility.DrawPsycheCard(totalRect, pawn, true);
         }
     }

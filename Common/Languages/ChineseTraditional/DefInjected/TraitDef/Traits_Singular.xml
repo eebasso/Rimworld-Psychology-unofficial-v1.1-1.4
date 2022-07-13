@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <Prude.degreeDatas.0.label>衣着正经</Prude.degreeDatas.0.label>
+  <Prude.degreeDatas.0.description>[PAWN_nameDef]非常注重得体的衣着。[PAWN_pronoun]难以忍受一丝不挂，也更不想看到别人裸体，穿着破旧的衣服时，会比其他人更加不开心。</Prude.degreeDatas.0.description>
+
+  <Insomniac.degreeDatas.0.label>失眠症患者</Insomniac.degreeDatas.0.label>
+  <Insomniac.degreeDatas.0.description>[PAWN_nameDef]由于失眠症而难以入眠。[PAWN_pronoun]会睡得更少，醒得更快，而且能从睡眠中补充的精力也会变少。</Insomniac.degreeDatas.0.description>
+
+  <BleedingHeart.degreeDatas.0.label>软心肠</BleedingHeart.degreeDatas.0.label>
+  <BleedingHeart.degreeDatas.0.description>[PAWN_nameDef]心胸宽广，也更加情绪化。[PAWN_pronoun]乐于帮助他人，极度憎恶暴力与不公正的行为。[PAWN_pronoun]更容易受到那些事情的影响。</BleedingHeart.degreeDatas.0.description>
+
+  <Gourmet.degreeDatas.0.label>美食家</Gourmet.degreeDatas.0.label>
+  <Gourmet.degreeDatas.0.description>[PAWN_nameDef]一谈到食物就会变得严肃认真起来，化身批评家。[PAWN_pronoun]希望能够吃得更好，并且如果食物没有达到心理预期，[PAWN_pronoun]就会抱怨连连。</Gourmet.degreeDatas.0.description>
+
+  <Unstable.degreeDatas.0.label>反复无常</Unstable.degreeDatas.0.label>
+  <Unstable.degreeDatas.0.description>[PAWN_nameDef]的情绪总是变幻无常，有时甚至会非常极端，很少有人能猜到[PAWN_pronoun]的心思。</Unstable.degreeDatas.0.description>
+
+  <Lecher.degreeDatas.0.label>好色</Lecher.degreeDatas.0.label>
+  <Lecher.degreeDatas.0.description>[PAWN_nameDef]是个不知羞耻的好色之徒和老练的负心人，[PAWN_pronoun]会不顾后果地向任何自己看上的人下手。</Lecher.degreeDatas.0.description>
+
+  <Codependent.degreeDatas.0.label>依赖</Codependent.degreeDatas.0.label>
+  <Codependent.degreeDatas.0.description>[PAWN_nameDef]是一个浪漫主义者，如果自己不处在任何亲密关系中则会显得闷闷不乐。[PAWN_pronoun]会被不忠和分手摧毁得更加彻底。</Codependent.degreeDatas.0.description>
+
+  <Outdoorsy.degreeDatas.0.label>户外爱好者</Outdoorsy.degreeDatas.0.label>
+  <Outdoorsy.degreeDatas.0.description>[PAWN_nameDef]更喜欢待在户外。[PAWN_pronoun]头上没有屋顶时将会获得额外的情绪加成。</Outdoorsy.degreeDatas.0.description>
+
+  <Pluviophile.degreeDatas.0.label>亲雨</Pluviophile.degreeDatas.0.label>
+  <Pluviophile.degreeDatas.0.description>[PAWN_nameDef]喜欢下雨。[PAWN_pronoun]会在外面下起雨时感到心情愉快，如果自己置身于雨中，那就再好不过了。</Pluviophile.degreeDatas.0.description>
+
+  <Photosensitive.degreeDatas.0.label>光敏感</Photosensitive.degreeDatas.0.label>
+  <Photosensitive.degreeDatas.0.description>[PAWN_nameDef]不知是因为基因改造还是自然突变，拥有了一双对光线极度敏感的眼睛。[PAWN_pronoun]对明亮的光会感到非常痛苦，连室内的灯光都会让其烦恼，所以 [PAWN_pronoun] 更喜欢待在黑暗中。</Photosensitive.degreeDatas.0.description>
+
+  <Socialite.degreeDatas.0.label>上流人物</Socialite.degreeDatas.0.label>
+  <Socialite.degreeDatas.0.description>[PAWN_nameDef]热爱派对！[PAWN_possessive]存在会让殖民地中更频繁地组织派对，人人都喜欢参加[PAWN_objective]在场的派对。</Socialite.degreeDatas.0.description>
+
+  <Desensitized.degreeDatas.0.label>麻木</Desensitized.degreeDatas.0.label>
+  <Desensitized.degreeDatas.0.description>[PAWN_nameDef]已经目睹过了太多的暴力和死亡，[PAWN_objective]不会再像一开始那样为此感到震惊了。</Desensitized.degreeDatas.0.description>
+
+  <HeavySleeper.degreeDatas.0.label>熟睡</HeavySleeper.degreeDatas.0.label>
+  <HeavySleeper.degreeDatas.0.description>[PAWN_nameDef]睡着的时候像一块化石，从来不会受到不良睡眠条件的困扰，不过赖床也是常事。</HeavySleeper.degreeDatas.0.description>
+
+  <Polygamous.degreeDatas.0.label>多元之爱</Polygamous.degreeDatas.0.label>
+  <Polygamous.degreeDatas.0.description>[PAWN_nameDef]认为同时对多个人付出自己的爱是再正常不过的事情。[PAWN_pronoun]不介意自己的伴侣拥有其他爱人，但也不会对一段专一的恋情感到那么开心。</Polygamous.degreeDatas.0.description>
+
+  <OpenMinded.degreeDatas.0.label>不报成见</OpenMinded.degreeDatas.0.label>
+  <OpenMinded.degreeDatas.0.description>[PAWN_nameDef]更愿意从内在评价一个人，而并不怎么在乎他人的外表。</OpenMinded.degreeDatas.0.description>
+
+  <Sedentary.degreeDatas.0.label>久坐</Sedentary.degreeDatas.0.label>
+  <Sedentary.degreeDatas.0.description>[PAWN_nameDef]不是个太活跃的人。[PAWN_pronoun]的身体可能不是太好，不过[PAWN_pronoun]能安生地坐着干上一整天的活儿。</Sedentary.degreeDatas.0.description>
+
+  <Chatty.degreeDatas.0.label>健谈</Chatty.degreeDatas.0.label>
+  <Chatty.degreeDatas.0.description>[PAWN_nameDef]就喜欢聊天、聊天、以及…聊天。[PAWN_pronoun]会在交流上花费更多时间， 因为[PAWN_pronoun]说起话来似乎滔滔不绝。</Chatty.degreeDatas.0.description>
+
+
+</LanguageData>

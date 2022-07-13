@@ -8,38 +8,42 @@
 
 	<!-- Kinsey display and tooltip-->
 	<KinseyRating>Kinsey-Skala:</KinseyRating>
-	<KinseyDescription>The Kinsey scale is used to describe a person's sexual orientation, and ranges from 0, meaning exclusively heterosexual, to a 6, meaning exclusively homosexual.\n\nKinsey recognized that the seven categories of the scale could not fully capture every individual's sexuality. He wrote that "it should be recognized that the reality includes individuals of every intermediate type, lying in a continuum between the two extremes and between each and every category on the scale."<!-- He disliked the use of the term bisexual to describe individuals who engage in sexual activity with both men and women, preferring to use bisexual in its original, biological sense as hermaphroditic; he stated, "Until it is demonstrated [that] taste in a sexual relation is dependent upon the individual containing within his anatomy both male and female structures, or male and female physiological capacities, it is unfortunate to call such individuals bisexual."--></KinseyDescription>
+	<KinseyDescription0>Kinsey-Skala</KinseyDescription0>
+	<KinseyDescription>The {0} describes a person's sexual orientation, and ranges from 0, meaning exclusively heterosexual, to a 6, meaning exclusively homosexual.\n\nKinsey chose seven categories for the sake of simplicity, and wrote that "it should be recognized that the reality includes individuals of every intermediate type, lying in a continuum between the two extremes and between each and every category on the scale."</KinseyDescription>
 
 	<!-- Sex drive display and tooltip-->
 	<SexDrive0>Asexuell</SexDrive0>
 	<SexDrive1>Low sex drive</SexDrive1>
-	<SexDrive2>Mild sex drive</SexDrive2>
-	<SexDrive3>Moderate sex drive</SexDrive3>
-	<SexDrive4>High sex drive</SexDrive4>
-	<SexDriveDescription>Sex drive, also known as libido, describes a person's overall desire for sexual activity.</SexDriveDescription>
+	<SexDrive2>Medium sex drive</SexDrive2>
+	<SexDrive3>High sex drive</SexDrive3>
+	<SexDrive4>Extreme sex drive</SexDrive4>
+	<SexDriveDescription0>Sex drive</SexDriveDescription0>
+	<SexDriveDescription>{0}, also known as libido, describes a person's overall desire for sexual activity.</SexDriveDescription>
 	<AsexualDescription>Dieser Kolonist hat einen sehr niedrigen Sex-Drang. Diese werden nicht besonders sexuell angeregt und verzichten lieber auf intime Auseinandersetzungen.</AsexualDescription>
 
 	<!-- Romance drive display and tooltip -->
 	<RomanticDrive0>Aromantisch</RomanticDrive0>
-	<RomanticDrive1>Low romance drive</RomanticDrive1>
-	<RomanticDrive2>Mild romance drive</RomanticDrive2>
-	<RomanticDrive3>Moderate romance drive</RomanticDrive3>
-	<RomanticDrive4>High romance drive</RomanticDrive4>
-	<RomanticDriveDescription>Romance drive describes a person's overall desire for romantic relationships.</RomanticDriveDescription>
+	<RomanticDrive1>Low romantic drive</RomanticDrive1>
+	<RomanticDrive2>Medium romantic drive</RomanticDrive2>
+	<RomanticDrive3>High romantic drive</RomanticDrive3>
+	<RomanticDrive4>Extreme romantic drive</RomanticDrive4>
+	<RomanticDriveDescription0>Romantic drive</RomanticDriveDescription0>
+	<RomanticDriveDescription>{0} describes a person's overall desire for romantic relationships.</RomanticDriveDescription>
 	<AromanticDescription>Dieser Kolonist hat einen sehr niedrigen romantischen Drang. Diese werden weniger romantische Schritte unternehmen und es ist sehr unwahrscheinlich, dass sie Heiratsanträge annehmen. Sie können destotrotz Liebhaber haben.</AromanticDescription>
 
 	<!-- Display options -->
-	<ShowDistanceText3>List least</ShowDistanceText3>
-	<ShowDistanceText2>List more</ShowDistanceText2>
-	<ShowDistanceText1>List most</ShowDistanceText1>
-	<ShowDistanceText0>List all</ShowDistanceText0>
-	<WordCloud>Word cloud</WordCloud>
-	<Alphabetical>List alphabetical</Alphabetical>
+	<OptionsText4>Word cloud</OptionsText4>
+	<OptionsText3>List least</OptionsText3>
+	<OptionsText2>List more</OptionsText2>
+	<OptionsText1>List most</OptionsText1>
+	<OptionsText0>List all</OptionsText0>
+	<UseColors>Colorize traits</UseColors>
+	<ListAlphabetical>List alphabetical</ListAlphabetical>
 	<UseAntonyms>Use antonyms</UseAntonyms>
 
 	<!-- Dev edit text -->
 	<EditPsyche>Entwickler-Modus</EditPsyche>
-	<PsycheEditor>Modifiziere die Psyche von {0_labelShort}:</PsycheEditor>
+	<PsycheEditor>Modifiziere die Psyche von {0}:</PsycheEditor>
 	<PersonalityNodeWarning>Du editierst gerade die Grundwerte der Persönlichkeit eines Kolonisten. Die aktuellen Werte werden von anderen Faktoren angepasst.</PersonalityNodeWarning>
 	<SexDrive>Sexualtrieb:</SexDrive>
 	<RomanticDrive>Romantischer Trieb:</RomanticDrive>
@@ -55,8 +59,28 @@
 	<PsycheExtremely>Äußerst</PsycheExtremely>
 
 	<!-- Conversation Tooltip -->
-	<ConversationTooltip>Die Leute werden über {0}, und {1} sprechen, um dies miteinander zu besprechen.</ConversationTooltip>
+	<ConversationTooltip>Die Leute werden über {0}, und {1} sprechen um dies miteinander zu besprechen.</ConversationTooltip>
 	<PsycheComma>, </PsycheComma>
-	<AntonymDescription> Antonym: {0}</AntonymDescription>
+	<AntonymColon>Antonym:</AntonymColon>
+
+	<!-- Big Five descriptions -->
+	<FiveFactorModelTitle>Big Five Summary</FiveFactorModelTitle>
+	<FiveFactorDescription0>five-factor model</FiveFactorDescription0>
+	<FiveFactorDescription>The {0} (Big Five) was developed in the late 20th century based on the lexical hypothesis, which suggested that the fundamental traits of personality are encoded in language.\n\nFive factors have consistently emerged from analyses conducted on numerous data sets of descriptive trait terms from multiple languages, including English, Chinese, and German.\n\nTwin and adoption studies have revealed a substantial genetic component, and individuals' relative standings have also been shown to be fairly stable across the adult life span.\n\nSource: Britannica</FiveFactorDescription>
+	<BigFiveO>O</BigFiveO>
+	<BigFiveODescription0>Openness to experience</BigFiveODescription0>
+	<BigFiveODescription>{0} is the willingness to embrace novel ideas, values, actions, feelings, fantasy, and aesthetics.</BigFiveODescription>
+	<BigFiveC>C</BigFiveC>
+	<BigFiveCDescription0>Conscientiousness</BigFiveCDescription0>
+	<BigFiveCDescription>{0} is the propensity for diligence, efficiency, organization, planning, duty, and self-discipline.</BigFiveCDescription>
+	<BigFiveE>E</BigFiveE>
+	<BigFiveEDescription0>Extroversion</BigFiveEDescription0>
+	<BigFiveEDescription>{0} is the outward pursuit of gratification, and manifests as outgoing, talkative, energetic, upbeat, assertive, and gregarious behavior.</BigFiveEDescription>
+	<BigFiveA>A</BigFiveA>
+	<BigFiveADescription0>Agreeableness</BigFiveADescription0>
+	<BigFiveADescription>{0} is the capacity for kindness, sympathy, cooperation, warmth, politeness, and compassion.</BigFiveADescription>
+	<BigFiveN>N</BigFiveN>
+	<BigFiveNDescription0>Neuroticism</BigFiveNDescription0>
+	<BigFiveNDescription>{0} is the tendency towards negative emotions such as anxiety, fear, anger, envy, guilt, and sadness.</BigFiveNDescription>
 
 </LanguageData>

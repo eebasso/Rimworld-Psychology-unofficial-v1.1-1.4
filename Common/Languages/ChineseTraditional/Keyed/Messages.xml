@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <TreatedTrait>{0_labelShort} 的{1}已被治疗成功。</TreatedTrait>
+  <MessageElectionCalledOff>由于投票站发生状况，{0}的选举活动已被取消。</MessageElectionCalledOff>
+  <MessageElectionCancelled>由于没有可用的投票站，{0}的选举活动已被取消。 </MessageElectionCancelled>
+  <MessageFuneralCalledOff>由于殖民地发生状况，葬礼已被取消。</MessageFuneralCalledOff>
+
+</LanguageData>

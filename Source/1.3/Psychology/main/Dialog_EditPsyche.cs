@@ -153,7 +153,7 @@ namespace Psychology
             Widgets.DrawLineHorizontal(x0, y3, mainRect.width);
             GUI.color = Color.white;
 
-            Rect nodeRect = new Rect(x0, y3 + BoundaryPadding, mainRect.width, mainRect.yMax - y3 - BoundaryPadding - 60f);
+            Rect nodeRect = new Rect(x0, y3 + BoundaryPadding, mainRect.width, mainRect.yMax - y3 - BoundaryPadding - 45f);
             Rect viewRect = new Rect(0f, 0f, nodeRect.width - 20f, cachedList.Count * labelHeight + 5f);
             Widgets.BeginScrollView(nodeRect, ref nodeScrollPosition, viewRect);
             float num3 = 0f;
@@ -178,7 +178,7 @@ namespace Psychology
             Widgets.DrawLineHorizontal(x0, nodeRect.yMax + BoundaryPadding, mainRect.width);
             GUI.color = Color.white;
 
-            Rect okRect = new Rect(0.25f * inRect.width - 20f, mainRect.yMax - 15f, 0.25f * inRect.width, 30f);
+            Rect okRect = new Rect(0.25f * inRect.width - 20f, mainRect.yMax - 30f, 0.25f * inRect.width, 30f);
             Rect cancelRect = new Rect(okRect.xMax + 40f, okRect.y, okRect.width, okRect.height);
 
             if (Widgets.ButtonText(okRect, "AcceptButton".Translate(), true, false, true) || flag)

@@ -68,19 +68,24 @@
 	<AntonymColon>Antonym:</AntonymColon>
 
 	<!-- Big Five descriptions -->
-	<FiveFactorModelTitle>Five Factor Model</FiveFactorModelTitle>
+	<FiveFactorModelTitle>Big Five Summary</FiveFactorModelTitle>
 	<!--<FiveFactorModelDescription>&lt;color=#ffff00&gt;The five-factor model&lt;/color&gt;, AKA Big Five, was developed in the 1980s largely on the basis of the lexical hypothesis, which suggested that the fundamental traits of personality have, over time, become encoded in language.\n\nFive factors have consistently emerged from analyses conducted on numerous data sets of descriptive trait terms from a number of languages, including English, Chinese, and German.\n\nTwin and adoption studies have revealed a substantial genetic component, and individuals’ relative standings have also been shown to be fairly stable across the adult life span.\n\nSource: Britannica</FiveFactorModelDescription>-->
 	<FiveFactorDescription0>five-factor model</FiveFactorDescription0>
 	<FiveFactorDescription>The {0} (Big Five) was developed in the late 20th century based on the lexical hypothesis, which suggested that the fundamental traits of personality are encoded in language.\n\nFive factors have consistently emerged from analyses conducted on numerous data sets of descriptive trait terms from multiple languages, including English, Chinese, and German.\n\nTwin and adoption studies have revealed a substantial genetic component, and individuals' relative standings have also been shown to be fairly stable across the adult life span.\n\nSource: Britannica</FiveFactorDescription>
-	<BigFiveOTitle>Openness to experience</BigFiveOTitle>
+	<BigFiveO>O</BigFiveO>
+	<BigFiveODescription0>Openness to experience</BigFiveODescription0>
 	<BigFiveODescription>{0} is the willingness to embrace novel ideas, values, actions, feelings, fantasy, and aesthetics.</BigFiveODescription>
-	<BigFiveCTitle>Conscientiousness</BigFiveCTitle>
-	<BigFiveCDescription>{0} is the propensity for diligence, efficiency, organization, planning, responsiblity, and self-discipline.</BigFiveCDescription>
-	<BigFiveETitle>Extroversion</BigFiveETitle>
+	<BigFiveC>C</BigFiveC>
+	<BigFiveCDescription0>Conscientiousness</BigFiveCDescription0>
+	<BigFiveCDescription>{0} is the propensity for diligence, efficiency, organization, planning, duty, and self-discipline.</BigFiveCDescription>
+	<BigFiveE>E</BigFiveE>
+	<BigFiveEDescription0>Extroversion</BigFiveEDescription0>
 	<BigFiveEDescription>{0} is the outward pursuit of gratification, and manifests as outgoing, talkative, energetic, upbeat, assertive, and gregarious behavior.</BigFiveEDescription>
-	<BigFiveATitle>Agreeableness</BigFiveATitle>
+	<BigFiveA>A</BigFiveA>
+	<BigFiveADescription0>Agreeableness</BigFiveADescription0>
 	<BigFiveADescription>{0} is the capacity for kindness, sympathy, cooperation, warmth, politeness, and compassion.</BigFiveADescription>
-	<BigFiveNTitle>Neuroticism</BigFiveNTitle>
+	<BigFiveN>N</BigFiveN>
+	<BigFiveNDescription0>Neuroticism</BigFiveNDescription0>
 	<BigFiveNDescription>{0} is the tendency towards negative emotions such as anxiety, fear, anger, envy, guilt, and sadness.</BigFiveNDescription>
 
 </LanguageData>

@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <MethadoneHigh.label>美沙酮</MethadoneHigh.label>
+  <MethadoneHigh.description>美沙酮摄入过多</MethadoneHigh.description>
+
+
+  <!-- Methadone addiction -->
+
+  <MethadoneTolerance.label>美沙酮耐受</MethadoneTolerance.label>
+  <MethadoneTolerance.description>美沙酮耐受</MethadoneTolerance.description>
+
+  <MethadoneAddiction.label>美沙酮成瘾</MethadoneAddiction.label>
+  <MethadoneAddiction.description>美沙酮成瘾</MethadoneAddiction.description>
+  <MethadoneAddiction.stages.1.label>戒断</MethadoneAddiction.stages.1.label>
+
+
+</LanguageData>

@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <ParanoidRambling1>你们这些蠢货！我们完蛋了！</ParanoidRambling1>
+  <ParanoidRambling2>他们就要降临了！他们将会带来彻底的毁灭！</ParanoidRambling2>
+  <ParanoidRambling3>这是个诅咒之地！</ParanoidRambling3>
+  <ParanoidRambling4>我们所有人都逃不掉！</ParanoidRambling4>
+  <ParanoidRambling5>我诅咒这片土地！</ParanoidRambling5>
+  <ParanoidRambling6>过去的生活将不复存在！无尽的阴影将笼罩这里！</ParanoidRambling6>
+  <ParanoidRambling7>这将是我们的葬身之地。</ParanoidRambling7>
+  <ParanoidRambling8>早死早超生！让这一切快点结束吧！</ParanoidRambling8>
+  <ParanoidRambling9>你们这些傻瓜！你们都是提线木偶罢了！</ParanoidRambling9>
+  <ParanoidRambling10>你们看不见吗！我们只是玩物！屏幕外那个家伙的玩物而已！</ParanoidRambling10>
+  <ParanoidRambling11>他们正嘲笑我们的痛苦！他们乐此不疲！</ParanoidRambling11>
+  <ParanoidRambling12>你现在开心了？我们死定了！</ParanoidRambling12>
+  <ParanoidRambling13>你们终将被埋葬在遗忘的废墟里！</ParanoidRambling13>
+  <ParanoidRambling14>最坏的情况还没来！可我们却毫无准备！</ParanoidRambling14>
+  <ParanoidRambling15>根本没有希望！我们做什么都只是浪费时间而已。</ParanoidRambling15>
+  <ParanoidRambling16>为什么我们还得活着受苦受难！</ParanoidRambling16>
+  <ParanoidRambling17>这不是我们的意志！这不是我们的！</ParanoidRambling17>
+  <ParanoidRambling18>你的愚蠢终将葬送我们所有人！</ParanoidRambling18>
+  <ParanoidRambling19>快跑啊！傻孩子们！快跑！</ParanoidRambling19>
+  <ParanoidRambling20>我们终将堕入地狱，那由我们亲手造就的地狱……</ParanoidRambling20>
+  <ParanoidRambling21>在命运面前，我们只是一颗微不足道的棋子！</ParanoidRambling21>
+  <ParanoidRambling22>你们这些聋子和瞎子！我真是在浪费时间！</ParanoidRambling22>
+  <ParanoidRambling23>永远也不会有什么希望了，没人能够给我们带来救赎！</ParanoidRambling23>
+  <ParanoidRambling24>我们已经被完全抛弃了！</ParanoidRambling24>
+  <ParanoidRambling25>我们工作，我们生病，我们死去，这一切毫无意义！</ParanoidRambling25>
+  <ParanoidRambling26>你们中的每一个人随时都可能暴毙而亡！</ParanoidRambling26>
+  <ParanoidRambling27>我们还不如现在死了更好！</ParanoidRambling27>
+  <ParanoidRambling28>这一切都只是一场虚幻的梦境！但我们还有机会醒来！我们必须醒来！</ParanoidRambling28>
+  <ParanoidRambling29>这罪恶的空气，每呼吸一口都让我感到痛苦！</ParanoidRambling29>
+  <ParanoidRambling30>神啊！如果有什么神明正在看着我们，请为我们带来解脱！</ParanoidRambling30>
+  <ParanoidRambling31>这溃烂的意识！</ParanoidRambling31>
+  <ParanoidRambling32>他们喜欢看着我们疯狂、喜欢让我们自相残杀！</ParanoidRambling32>
+  <ParanoidRambling33>他们想把我们永远关在这电子囚笼里不得翻身！</ParanoidRambling33>
+
+  <FellMurmuring1>是 {0_possessive} 错了……</FellMurmuring1>
+  <FellMurmuring2>全都是 {0_possessive} 的错……</FellMurmuring2>
+  <FellMurmuring3>我绝不会让 {0_objective} 逍遥法外……</FellMurmuring3>
+  <FellMurmuring4>{0_pronoun} 认为 {0_pronoun} 很聪明， 果真如此吗？</FellMurmuring4>
+  <FellMurmuring5>我会让你们看看 {0_objective} 的真面目！</FellMurmuring5>
+  <FellMurmuring6>叛徒…… 破坏者…… 同谋……</FellMurmuring6>
+  <FellMurmuring7>{0_pronoun} 嘲笑了我……</FellMurmuring7>
+  <FellMurmuring8>{0_pronoun} 怎么敢这么做……</FellMurmuring8>
+  <FellMurmuring9>{0_pronoun} 以为我会注意不到吗？</FellMurmuring9>
+  <FellMurmuring10>我必须自己做这件事……我绝不会信任任何人。</FellMurmuring10>
+  <FellMurmuring11>这全都是为了我们大家好……</FellMurmuring11>
+  <FellMurmuring12>我会一个人把这个问题彻底解决！</FellMurmuring12>
+  <FellMurmuring13>[喃喃自语]</FellMurmuring13>
+  <FellMurmuring14>[低声吼叫]</FellMurmuring14>
+  <FellMurmuring15>[唏嘘]</FellMurmuring15>
+  <FellMurmuring16>[低声抱怨]</FellMurmuring16>
+  <FellMurmuring17>[胡言乱语]</FellMurmuring17>
+  <FellMurmuring18>白痴！</FellMurmuring18>
+  <FellMurmuring19>恶魔！</FellMurmuring19>
+  <FellMurmuring20>秃鹫！</FellMurmuring20>
+  <FellMurmuring21>怪兽！</FellMurmuring21>
+  <FellMurmuring22>骗子！</FellMurmuring22>
+  <FellMurmuring23>总是背着我……为什么有人总是喜欢背着我做事……</FellMurmuring23>
+  <FellMurmuring24>一切问题的根源所在就是……</FellMurmuring24>
+  <FellMurmuring25>{0_pronoun} 再也看不见明天的太阳了……</FellMurmuring25>
+  <FellMurmuring26>我已经做好了周密的计划……</FellMurmuring26>
+  <FellMurmuring27>我已经想好了各种对策……</FellMurmuring27>
+  <FellMurmuring28>我会等待最佳时机的到来……</FellMurmuring28>
+  <FellMurmuring29>我会让这个枯萎的地方重新复苏！</FellMurmuring29>
+  <FellMurmuring30>如果别人不做，那我就亲自动手！</FellMurmuring30>
+  <FellMurmuring31>没人看见真相……这群瞎子……</FellMurmuring31>
+  <FellMurmuring32>我能做到的……我必须这么做……</FellMurmuring32>
+  <FellMurmuring33>到了现在， {0_pronoun} 还在嘲笑我。</FellMurmuring33>
+  <FellMurmuring34>{0_objective} 就是活该！</FellMurmuring34>
+  <FellMurmuring35>{0_pronoun} 一定会死在我的手下……</FellMurmuring35>
+  <FellMurmuring36>我早就该这么做了……</FellMurmuring36>
+
+</LanguageData>

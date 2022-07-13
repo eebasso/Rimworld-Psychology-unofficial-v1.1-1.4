@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <NumberOfShortTalks>10</NumberOfShortTalks>
+  <ShortTalk1>{INITIATOR_labelShort} 和 {RECIPIENT_labelShort} 简单地聊了两句，关于 {0} 。</ShortTalk1>
+  <ShortTalk2>{INITIATOR_labelShort} 和 {RECIPIENT_labelShort} 聊了一会儿，关于 {0}。</ShortTalk2>
+  <ShortTalk3>{INITIATOR_labelShort} 和 {RECIPIENT_labelShort} 进行了短暂的交谈，关于 {0}。</ShortTalk3>
+  <ShortTalk4>{INITIATOR_labelShort} 和 {RECIPIENT_labelShort} 迅速讨论了 {0} 。</ShortTalk4>
+  <ShortTalk5>{INITIATOR_labelShort} 和 {RECIPIENT_labelShort} 闲聊{0}</ShortTalk5>
+  <ShortTalk6>{INITIATOR_labelShort} 顺便和 {RECIPIENT_labelShort} 讨论了 {0}。</ShortTalk6>
+  <ShortTalk7>{INITIATOR_labelShort} 向 {RECIPIENT_labelShort} 简单评价了 {0}。</ShortTalk7>
+  <ShortTalk8>{INITIATOR_labelShort} 和 {RECIPIENT_labelShort} 着重讨论了 {0}。</ShortTalk8>
+  <ShortTalk9>{INITIATOR_labelShort} 就 {0} 和{RECIPIENT_labelShort} 交换了一下意见。</ShortTalk9>
+  <ShortTalk10>{INITIATOR_labelShort} 和 {RECIPIENT_labelShort} 简短地交流了 {0}。</ShortTalk10>
+
+  <NumberOfNormalTalks>12</NumberOfNormalTalks>
+  <NormalTalk1>{INITIATOR_labelShort} 和 {RECIPIENT_labelShort} 谈论了 {0} 很长一段时间。</NormalTalk1>
+  <NormalTalk2>{INITIATOR_labelShort} 就 {0} 和 {RECIPIENT_labelShort} 交谈了一段时间。</NormalTalk2>
+  <NormalTalk3>{INITIATOR_labelShort} 和 {RECIPIENT_labelShort} 讨论了{0}。</NormalTalk3>
+  <NormalTalk4>{INITIATOR_labelShort} 和 {RECIPIENT_labelShort} 比较了一下关于 {0} 的想法</NormalTalk4>
+  <NormalTalk5>{INITIATOR_labelShort} 和 {RECIPIENT_labelShort} 仔细聊着关于 {0} 的事。</NormalTalk5>
+  <NormalTalk6>{INITIATOR_labelShort} 随意地和 {RECIPIENT_labelShort} 聊着 {0}。</NormalTalk6>
+  <NormalTalk7>{INITIATOR_labelShort} 和 {RECIPIENT_labelShort} 详细讨论了 {0}。</NormalTalk7>
+  <NormalTalk8>{INITIATOR_labelShort} 侧耳倾听着 {RECIPIENT_labelShort} 对 {0} 的看法。</NormalTalk8>
+  <NormalTalk9>{INITIATOR_labelShort} 向 {RECIPIENT_labelShort} 分享着关于 {0} 的想法。</NormalTalk9>
+  <NormalTalk10>{INITIATOR_labelShort} 和 {RECIPIENT_labelShort} 一起就 {0} 的话题头脑风暴。</NormalTalk10>
+  <NormalTalk11>{INITIATOR_labelShort} 就 {0} 的事情与 {RECIPIENT_labelShort} 争辩。</NormalTalk11>
+  <NormalTalk12>{INITIATOR_labelShort} 和 {RECIPIENT_labelShort} 商量着 {0} 的事情。</NormalTalk12>
+
+  <NumberOfLongTalks>8</NumberOfLongTalks>
+  <LongTalk1>{INITIATOR_labelShort} 和 {RECIPIENT_labelShort} 详细讨论了 {0} 很长一段时间。</LongTalk1>
+  <LongTalk2>{INITIATOR_labelShort} 就 {0} 和 {RECIPIENT_labelShort} 进行了一场长长的对话。</LongTalk2>
+  <LongTalk3>{INITIATOR_labelShort} 和 {RECIPIENT_labelShort} 交流了 {0} 一段时间。</LongTalk3>
+  <LongTalk4>{INITIATOR_labelShort} 和 {RECIPIENT_labelShort} 彻底讨论了 {0}。</LongTalk4>
+  <LongTalk5>{INITIATOR_labelShort} 就 {0} 的话题和 {RECIPIENT_labelShort} 越聊越开。</LongTalk5>
+  <LongTalk6>{INITIATOR_labelShort} 了解了很多 {RECIPIENT_labelShort} 关于 {0} 的想法。</LongTalk6>
+  <LongTalk7>{INITIATOR_labelShort} 和 {RECIPIENT_labelShort} 一起深深思考着 {0}。</LongTalk7>
+  <LongTalk8>{INITIATOR_labelShort} 就 {0} 与 {RECIPIENT_labelShort} 进行了长时间的辩论。</LongTalk8>
+
+  <NumberOfEpicTalks>6</NumberOfEpicTalks>
+  <EpicTalk1>{INITIATOR_labelShort} 和 {1_nameDef} 讨论了 {0} 好几个小时。</EpicTalk1>
+  <EpicTalk2>{INITIATOR_labelShort} 和 {RECIPIENT_labelShort} 漫无边际地谈论着 {0}。</EpicTalk2>
+  <EpicTalk3>{INITIATOR_labelShort} 就 {0} 和 {RECIPIENT_labelShort} 进行了一场世纪性长度的会谈。</EpicTalk3>
+  <EpicTalk4>{INITIATOR_labelShort} 和 {RECIPIENT_labelShort} 就 {0} 进行着一场无休无止的辩论。</EpicTalk4>
+  <EpicTalk5>{INITIATOR_labelShort} 反反复复地和 {RECIPIENT_labelShort} 交谈 {0} 的事。</EpicTalk5>
+  <EpicTalk6>{INITIATOR_labelShort} 把自己关于 {0} 的所有看法都向 {RECIPIENT_labelShort} 一一倾诉。</EpicTalk6>
+
+  <ConversationAnd>，以及</ConversationAnd>
+
+</LanguageData>

@@ -202,7 +202,7 @@ namespace Psychology
         {
             float gM = (this.pawn.gender == Gender.Female) ? this.def.femaleModifier : -this.def.femaleModifier;
             gM *= PsychologyBase.ActivateKinsey() ? 1f - this.pawn.GetComp<CompPsychology>().Sexuality.kinseyRating / 6f : this.pawn.story.traits.HasTrait(TraitDefOf.Gay) ? 0f : 1f;
-            if (gM != 0f)
+            if (Mathf.Abs(gM) > 0.001f)
             {
                 //float kinseyFactor = PsychologyBase.ActivateKinsey() ? 1f - this.pawn.GetComp<CompPsychology>().Sexuality.kinseyRating / 6f : this.pawn.story.traits.HasTrait(TraitDefOf.Gay) ? 0f : 1f;
                 //float genderWeight = Mathf.Lerp(-0.33f, 1f, Rand.ValueSeeded(5 * pawn.HashOffset() + this.def.GetHashCode())) * kinseyFactor * genderModifier;

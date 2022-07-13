@@ -5,7 +5,7 @@
 		<defName>Experimental</defName>
 		<label>experimental</label>
 		<antonymLabel>conservative</antonymLabel>
-		<nodeHSV>(120,1,0.95)</nodeHSV>
+		<nodeHSV>(120,1,1)</nodeHSV>
 		<antonymHSV>(270,0.35,0.75)</antonymHSV>
 		<descriptionLabel>experimental</descriptionLabel>
 		<description>Someone {0} is likely to try everything once, enjoy surprises, and be more experienced.</description>
@@ -32,13 +32,16 @@
 		<nodeHSV>(180,1,0.9)</nodeHSV>
 		<antonymHSV>(30,1,0.85)</antonymHSV>
 		<descriptionLabel>Thoughtful</descriptionLabel>
-		<description>{0} people are careful, diligent, and tend to plan ahead.</description>
+		<description>{0} people are introspective, diligent, and tend to plan ahead.</description>
 		<controversiality>1</controversiality>
 		<conversationTopics>
 			<li>the future</li>
 			<li>life goals</li>
 			<li>priorities</li>
 			<li>solutions</li>
+			<li>memory</li>
+			<li>brainstorming</li>
+			<li>dreams</li>
 			<li>procastination</li>
 			<li>punctuality</li>
 			<li>responsibility</li>
@@ -237,7 +240,7 @@
 			<li>
 				<trait>Neurotic</trait>
 				<degree>1</degree>
-				<modifier>-0.75</modifier>
+				<modifier>-0.8</modifier>
 			</li>
 			<li>
 				<trait>Neurotic</trait>
@@ -666,7 +669,7 @@
 	<Psychology.PersonalityNodeDef>
 		<defName>Upbeat</defName>
 		<label>upbeat</label>
-		<antonymLabel>melancholy</antonymLabel>
+		<antonymLabel>gloomy</antonymLabel>
 		<nodeHSV>(60,1,1)</nodeHSV>
 		<antonymHSV>(240,0.7,1)</antonymHSV>
 		<descriptionLabel>Upbeat</descriptionLabel>
@@ -878,7 +881,7 @@
 	<Psychology.PersonalityNodeDef>
 		<defName>Compassionate</defName>
 		<label>compassionate</label>
-		<antonymLabel>callous</antonymLabel>
+		<antonymLabel>ruthless</antonymLabel>
 		<nodeHSV>(300,0.925,0.925)</nodeHSV>
 		<antonymHSV>(225,0.97,1)</antonymHSV>
 		<descriptionLabel>Compassionate</descriptionLabel>
@@ -1395,7 +1398,7 @@
 		<defName>DrugFriendly</defName>
 		<label>drug-friendly</label>
 		<antonymLabel>straight-edge</antonymLabel>
-		<nodeHSV>(120,1,0.85)</nodeHSV>
+		<nodeHSV>(120,0.9,0.825)</nodeHSV>
 		<antonymHSV>(360,0,0.85)</antonymHSV>
 		<descriptionLabel>drug-friendly</descriptionLabel>
 		<description>A {0} person sees nothing wrong with drugs and makes no effort to avoid them.</description>
@@ -1583,7 +1586,7 @@
 		<defName>Organized</defName>
 		<label>organized</label>
 		<antonymLabel>messy</antonymLabel>
-		<nodeHSV>(180,0.6,0.9)</nodeHSV>
+		<nodeHSV>(180,0.6,1)</nodeHSV>
 		<antonymHSV>(75,0.9,0.8)</antonymHSV>
 		<descriptionLabel>organized</descriptionLabel>
 		<description>An {0} person keeps everything tidy, neat, and minimalistic.</description>
@@ -1640,12 +1643,12 @@
 			<li>
 				<trait>Neurotic</trait>
 				<degree>2</degree>
-				<modifier>0.5</modifier>
+				<modifier>0.7</modifier>
 			</li>
 			<li>
 				<trait>Neurotic</trait>
 				<degree>1</degree>
-				<modifier>0.25</modifier>
+				<modifier>0.4</modifier>
 			</li>
 		</traitModifiers>
 		<incapableModifiers>

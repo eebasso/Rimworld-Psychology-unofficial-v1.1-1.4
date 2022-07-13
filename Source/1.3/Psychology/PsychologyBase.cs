@@ -267,7 +267,7 @@ namespace Psychology
                 romanceChanceThreshold = Settings.GetHandle<float>("RomanceChanceThreshold", "RomanceChanceThresholdTitle".Translate(), "RomanceChanceThresholdTooltip".Translate(), 5f);
                 mayorAge = Settings.GetHandle<float>("MayorAge", "MayorAgeTitle".Translate(), "MayorAgeTooltip".Translate(), 20f, (String s) => float.Parse(s) >= 0.1f);
                 // 1.2 configs
-                beautyOverrideEnabled = Settings.GetHandle<bool>("BeautyOverrideEnabled", "BeautyOverrideEnabledTitle".Translate(), "BeautyOverrideEnabledToolip".Translate(), true);
+                beautyOverrideEnabled = Settings.GetHandle<bool>("BeautyOverrideEnabled", "BeatyOverrideEnabledTitle".Translate(), "BeatyOverrideEnabledToolip".Translate(), true);
 
                 kinsey = toggleKinsey.Value;
                 notBabyMode = toggleIndividuality.Value;

@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <ComplaintLabel>向镇长倾诉</ComplaintLabel>
+  <ComplaintDesc>向镇长倾诉让我产生了一些新的感受。</ComplaintDesc>
+
+  <VisitLabel>被选民拜访</VisitLabel>
+  <VisitDesc>被选民拜访让我产生了一些新的想法。</VisitDesc>
+
+  <AttendedFuneralThought>出席{0}的葬礼</AttendedFuneralThought>
+  <AttendedFuneralDesc>我依然对{0_pronoun}的死感到难以置信， 但……一场体面的葬礼让我的心情平复了一些。</AttendedFuneralDesc>
+
+</LanguageData>

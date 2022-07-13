@@ -49,7 +49,7 @@
 	<AllowAnxietyTitle>Allow post mental break anxiety</AllowAnxietyTitle>
 	<AllowAnxietyTooltip>Allow colonists to get anxiety after mental breaks (chance depends on colonist's psyche and mental breaks severity). Note that you might still see it as random disease.</AllowAnxietyTooltip>
 
-	<BeautyOverrideEnabledTitle>Disable opinion changes from beauty traits</BeautyOverrideEnabledTitle>
-	<BeautyOverrideEnabledToolip>Disables opinion changes from traits such as: Pretty, Beautiful, Ugly, etc. Note that Psychology's changes to those traits would still work even if you disable this option. Its recommended to keep this option enabled.</BeautyOverrideEnabledToolip>
+	<BeatyOverrideEnabledTitle>Disable opinion changes from beauty traits</BeatyOverrideEnabledTitle>
+	<BeatyOverrideEnabledToolip>Disables opinion changes from traits such as: Pretty, Beautiful, Ugly, etc. Note that Psychology's changes to those traits would still work even if you disable this option. Its recommended to keep this option enabled.</BeatyOverrideEnabledToolip>
   
 </LanguageData>

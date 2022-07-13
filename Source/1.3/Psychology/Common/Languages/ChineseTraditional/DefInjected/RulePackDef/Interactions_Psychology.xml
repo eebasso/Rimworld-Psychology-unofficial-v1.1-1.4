@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Random social interactions -->
+
+  <Sentence_SocialFightConvoInitiatorStarted.rulePack.rulesStrings.0>sent->他们的矛盾逐步升级直到 [INITIATOR_nameDef] 挑起了打斗!</Sentence_SocialFightConvoInitiatorStarted.rulePack.rulesStrings.0>
+  <Sentence_SocialFightConvoRecipientStarted.rulePack.rulesStrings.0>sent->他们的矛盾逐步升级直到 [RECIPIENT_nameDef] 挑起了打斗!</Sentence_SocialFightConvoRecipientStarted.rulePack.rulesStrings.0>
+
+
+</LanguageData>
