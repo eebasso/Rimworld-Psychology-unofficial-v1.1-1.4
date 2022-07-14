@@ -12,5 +12,6 @@ namespace Psychology
     class PsychologyTexCommand
     {
         public static readonly Texture2D OfficeTable = ContentFinder<Texture2D>.Get("UI/Commands/MayoralTable", true);
+        public static readonly Texture2D PsycheButton = ContentFinder<Texture2D>.Get("Buttons/ButtonPsyche", true);
     }
 }

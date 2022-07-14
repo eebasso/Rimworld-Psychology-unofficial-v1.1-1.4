@@ -40,7 +40,7 @@ namespace Psychology.Harmony
         {
             if (PsycheHelper.PsychologyEnabled(pawn))
             {
-                Rect rect = new Rect(panelRect.xMax + 300f, 3f, 22f, 22f);
+                Rect rect = new Rect(panelRect.xMax + 300f, 0f, 28f, 28f);
                 Color old = GUI.color;
                 if (rect.Contains(Event.current.mousePosition))
                 {
@@ -50,11 +50,11 @@ namespace Psychology.Harmony
                 {
                     GUI.color = new Color(0.623529f, 0.623529f, 0.623529f);
                 }
-                GUI.DrawTexture(rect, ContentFinder<Texture2D>.Get("Buttons/ButtonPsyche", true));
+                GUI.DrawTexture(rect, PsychologyTexCommand.PsycheButton);
                 if (Widgets.ButtonInvisible(rect, false))
                 {
                     SoundDefOf.Tick_Low.PlayOneShotOnCamera(null);
-                    Find.WindowStack.Add(new Dialog_ViewPsyche(pawn));
+                    Find.WindowStack.Add(new Dialog_ViewPsyche(pawn, false));
                 }
                 GUI.color = old;
             }

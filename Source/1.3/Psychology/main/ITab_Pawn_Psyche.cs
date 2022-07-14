@@ -56,7 +56,7 @@ namespace Psychology
             // Get total rectangle
             Rect totalRect = PsycheCardUtility.CalculateTotalRect(pawn);
             size = totalRect.size;
-            PsycheCardUtility.DrawPsycheCard(totalRect, pawn, true);
+            PsycheCardUtility.DrawPsycheCard(totalRect, pawn, false);
         }
     }
 }

@@ -43,7 +43,7 @@
 	<UseAntonyms>Use antonyms</UseAntonyms>
 
 	<!-- Dev edit text -->
-	<EditPsyche>Режим разработчика</EditPsyche>
+	<EditPsyche>Редактировать</EditPsyche>
 	<PsycheEditor>Изменение психологического портрета {0}:</PsycheEditor>
 	<PsycheEditorNewColonist>Изменение психологического портрета поселенца:</PsycheEditorNewColonist>
 	<PersonalityNodeWarning>Вы редактируете неоткорректированные показатели психологического портрета поселенца. Реальные показатели формируются за счёт других факторов.</PersonalityNodeWarning>
@@ -60,9 +60,9 @@
 	<PsycheExtremely>Небывалая</PsycheExtremely>
 
 	<!-- Conversation Tooltip -->
-	<ConversationTooltip>Люди будут говорить о {0}, и {1}, чтобы обсудить это между собой.</ConversationTooltip>
+	<ConversationTooltip>Люди будут говорить о {0}, и {1} чтобы обсудить это между собой.</ConversationTooltip>
 	<PsycheComma>, </PsycheComma>
-	<AntonymColon>Antonym:</AntonymColon>
+	<AntonymColon> Antonym: {0}.</AntonymColon>
 
 	<!-- Big Five descriptions -->
 	<FiveFactorModelTitle>Big Five Summary</FiveFactorModelTitle>

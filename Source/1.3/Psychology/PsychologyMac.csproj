@@ -85,6 +85,9 @@
       <HintPath>..\..\..\..\..\Contents\Resources\Data\Managed\UnityEngine.TextRenderingModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="CharacterEditor">
+      <HintPath>..\..\..\..\..\..\..\..\workshop\content\294100\1874644848\v1.3\Assemblies\CharacterEditor.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Defs\DutyDefOfPsychology.cs" />
@@ -651,9 +654,6 @@
     <None Include="Common\Languages\ChineseTraditional\DefInjected\ThoughtDef\Thoughts_Memory_Death.xml" />
     <None Include="Common\Languages\ChineseTraditional\DefInjected\ThoughtDef\Thoughts_Memory_Eating.xml" />
     <None Include="Common\Languages\ChineseTraditional\DefInjected\NeedDef\Methadone.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Harmony\EdBPrepareCarefully\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -46,7 +46,7 @@
 	
 
 	<!-- Dev edit text -->
-	<EditPsyche>Dev edit</EditPsyche>
+	<EditPsyche>Edit</EditPsyche>
 	<PsycheEditor>Modifying the psyche of {0}:</PsycheEditor>
 	<PsycheEditorNewColonist>Modifying colonist's psyche:</PsycheEditorNewColonist>
 	<PersonalityNodeWarning>You are editing the raw values of a pawn's personality. The actual stats will be adjusted by other factors.</PersonalityNodeWarning>
@@ -65,7 +65,7 @@
 	<!-- Conversation Tooltip -->
 	<ConversationTooltip>People will talk about {0}, and {1} to discuss this with each other.</ConversationTooltip>
 	<PsycheComma>, </PsycheComma>
-	<AntonymColon>Antonym:</AntonymColon>
+	<AntonymColon> Antonym: {0}.</AntonymColon>
 
 	<!-- Big Five descriptions -->
 	<FiveFactorModelTitle>Big Five Summary</FiveFactorModelTitle>

@@ -13,9 +13,12 @@ namespace Psychology
 
         private Pawn pawn;
 
-        public Dialog_ViewPsyche(Pawn editFor)
+        private bool editAllowedBool;
+
+        public Dialog_ViewPsyche(Pawn editFor, bool editBool)
         {
             pawn = editFor;
+            editAllowedBool = editBool;
         }
 
         [LogPerformance]
@@ -28,17 +31,19 @@ namespace Psychology
                 Event.current.Use();
             }
             GUI.EndGroup();
-
             //Vector2 center = Find.WindowStack.currentlyDrawnWindow.windowRect.center;
             Rect mainRect = PsycheCardUtility.CalculateTotalRect(pawn);
             inRect = new Rect(mainRect.x, mainRect.y, mainRect.width, mainRect.height + 30f + 2f * PsycheCardUtility.BoundaryPadding);
             Find.WindowStack.currentlyDrawnWindow.windowRect = inRect;
             //Find.WindowStack.currentlyDrawnWindow.windowRect.center = new Vector2(0.5f * Screen.width, 0.5f * Screen.height);
             //Find.WindowStack.currentlyDrawnWindow.windowRect.center = new Vector2(0.2f * Screen.width, 0.2f * Screen.height);
-            Find.WindowStack.currentlyDrawnWindow.windowRect.position = new Vector2(200f, 200f);
+            //Find.WindowStack.currentlyDrawnWindow.windowRect.position = new Vector2(200f, 200f);
+            //Find.WindowStack.currentlyDrawnWindow.windowRect.center = new Vector2(0.5f * UI.screenWidth, 0.5f * UI.screenHeight);
+            Find.WindowStack.currentlyDrawnWindow.windowRect.x = 0.5f * UI.screenWidth - inRect.width;
+            Find.WindowStack.currentlyDrawnWindow.windowRect.y = 0.5f * UI.screenHeight - 0.5f * inRect.height;
 
             GUI.BeginGroup(inRect);
-            PsycheCardUtility.DrawPsycheCard(mainRect, pawn, false);
+            PsycheCardUtility.DrawPsycheCard(mainRect, pawn, editAllowedBool);
             GUI.color = new Color(1f, 1f, 1f, 0.5f);
             Widgets.DrawLineHorizontal(inRect.x, mainRect.yMax, inRect.width);
             GUI.color = Color.white;

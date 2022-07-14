@@ -27,9 +27,9 @@ namespace Psychology
         private static byte FiveFactorTitleFontSize = 18;
         private static byte CategoryNodeFontSize = 16;
 
-        private static Color TitleColor = ColoredText.TipSectionTitleColor;
-        private static Color RatingColor = Color.yellow;
-        private static string RatingFormat = "##0.000%";
+        public static Color TitleColor = ColoredText.TipSectionTitleColor;
+        public static Color RatingColor = Color.yellow;
+        public static string RatingFormat = "##0.000%";
 
         public static byte DistanceFromMiddle = 4;
         public static byte DistanceFromMiddleCached = 4;
@@ -219,7 +219,7 @@ namespace Psychology
             return new Rect(0f, 0f, totalRectWidth, totalRectHeight);
         }
 
-        public static void DrawPsycheCard(Rect totalRect, Pawn pawn, bool notOnMenu)
+        public static void DrawPsycheCard(Rect totalRect, Pawn pawn, bool editBool)
         {
             if (!PsycheHelper.PsychologyEnabled(pawn))
             {
@@ -328,7 +328,7 @@ namespace Psychology
                 }, 89142);
 
             }
-            else if (notOnMenu)
+            else
             {
                 Rect disabledRect = new Rect(kinseyRect.x, kinseyRect.y, kinseyRect.width, romDriveRect.yMax - kinseyRect.y);
                 //style.fontSize = SexualityFontSize;
@@ -487,7 +487,7 @@ namespace Psychology
             }
 
             //Edit Psyche button
-            if (Prefs.DevMode)
+            if (Prefs.DevMode || editBool)
             {
                 if (Widgets.ButtonText(editRect, EditText, true, false, true))
                 {
@@ -495,7 +495,6 @@ namespace Psychology
                 }
             }
 
-            
             GUI.EndGroup();
         }
 
@@ -785,7 +784,7 @@ namespace Psychology
                     nodeName = nodeName.Colorize(ColoredText.TipSectionTitleColor);
                     antonymLabel = antonymLabel.Colorize(ColoredText.TipSectionTitleColor);
                 }
-                string tooltipString = node.def.description.ReplaceFirst("{0}", nodeName) + " " + ((string)"AntonymColon".Translate()) + " " + antonymLabel + ".";
+                string tooltipString = node.def.description.ReplaceFirst("{0}", nodeName) + ((string)"AntonymColon".Translate()).ReplaceFirst("{0}", antonymLabel);
 
                 List<string> convoTopics = node.def.conversationTopics;
                 if (convoTopics != null)

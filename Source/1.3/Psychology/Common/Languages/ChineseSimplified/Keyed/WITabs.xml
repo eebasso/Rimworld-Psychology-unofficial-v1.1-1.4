@@ -14,7 +14,7 @@
   <AromanticDescription>这个小人不怎么喜欢追逐浪漫。 他们不太可能尝试谈情说爱或接受求婚，但是依然可能会接受恋爱关系。</AromanticDescription>
 
   <!-- Dialog text -->
-  <EditPsyche>开发者编辑</EditPsyche>
+  <EditPsyche>编辑</EditPsyche>
   <PsycheEditor>改变 {PAWN_labelShort} 的心智:</PsycheEditor>
   <PsycheEditorNewColonist>修改殖民者的心智:</PsycheEditorNewColonist>
   <PersonalityNodeWarning>你正在修改人物特性的原始数值，实际数据也会受到其它因素的影响。</PersonalityNodeWarning>

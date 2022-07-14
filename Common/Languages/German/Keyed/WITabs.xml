@@ -41,8 +41,8 @@
 	<ListAlphabetical>List alphabetical</ListAlphabetical>
 	<UseAntonyms>Use antonyms</UseAntonyms>
 
-	<!-- Dev edit text -->
-	<EditPsyche>Entwickler-Modus</EditPsyche>
+	<!-- Edit text -->
+	<EditPsyche>Bearbeiten</EditPsyche>
 	<PsycheEditor>Modifiziere die Psyche von {0}:</PsycheEditor>
 	<PersonalityNodeWarning>Du editierst gerade die Grundwerte der Persönlichkeit eines Kolonisten. Die aktuellen Werte werden von anderen Faktoren angepasst.</PersonalityNodeWarning>
 	<SexDrive>Sexualtrieb:</SexDrive>
@@ -61,7 +61,7 @@
 	<!-- Conversation Tooltip -->
 	<ConversationTooltip>Die Leute werden über {0}, und {1} sprechen um dies miteinander zu besprechen.</ConversationTooltip>
 	<PsycheComma>, </PsycheComma>
-	<AntonymColon>Antonym:</AntonymColon>
+	<AntonymColon> Antonym: {0}.</AntonymColon>
 
 	<!-- Big Five descriptions -->
 	<FiveFactorModelTitle>Big Five Summary</FiveFactorModelTitle>

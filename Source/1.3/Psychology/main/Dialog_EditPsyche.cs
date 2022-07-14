@@ -26,6 +26,7 @@ namespace Psychology
         private string romDriveText = "RomanticDrive".Translate();
         private float BoundaryPadding = PsycheCardUtility.BoundaryPadding;
         private float HighlightPadding = PsycheCardUtility.HighlightPadding;
+        private float SliderShiftDown = 5f;
 
         public Dialog_EditPsyche(Pawn editFor)
         {
@@ -49,7 +50,9 @@ namespace Psychology
                 nodeWidth = Mathf.Max(nodeWidth, 1.05f * nodeSize.x);
                 labelHeight = Mathf.Max(labelHeight, nodeSize.y);
                 cachedList.Add(new Pair<string, float>(nodeLabel, node.rawRating));
-                string descriptionString = node.def.description.ReplaceFirst("{0}", node.def.descriptionLabel) + " " + "AntonymColon".Translate() + " " + node.def.antonymLabel;
+                //string descriptionString = node.def.description.ReplaceFirst("{0}", node.def.descriptionLabel)
+                string descriptionString = node.def.description.ReplaceFirst("{0}", node.def.descriptionLabel.Colorize(PsycheCardUtility.TitleColor));
+                descriptionString += ((string)"AntonymColon".Translate()).ReplaceFirst("{0}", node.def.antonymLabel.Colorize(PsycheCardUtility.TitleColor));
                 descriptions.Add(nodeLabel, descriptionString);
                 //try
                 //{
@@ -61,14 +64,15 @@ namespace Psychology
                 //    descriptions.Add(node.def.defName.CapitalizeFirst(), node.def.description);
                 //}
             }
-            sexualityWidth = Mathf.Max(26f, sexualityWidth);
-            labelHeight = Mathf.Max(26f, labelHeight);
+            //sexualityWidth = Mathf.Max(26f, sexualityWidth);
+            //labelHeight = Mathf.Max(26f, labelHeight);
             cachedList.SortBy(n => n.First);
         }
 
         [LogPerformance]
         public override void DoWindowContents(Rect inRect)
         {
+            GUI.EndGroup();
             bool flag = false;
             if (Event.current.type == EventType.KeyDown && Event.current.keyCode == KeyCode.Return)
             {
@@ -81,6 +85,10 @@ namespace Psychology
                 flag2 = true;
                 Event.current.Use();
             }
+            
+            Find.WindowStack.currentlyDrawnWindow.windowRect.x = 0.5f * UI.screenWidth + inRect.width;
+            Find.WindowStack.currentlyDrawnWindow.windowRect.y = 0.5f * UI.screenHeight - 0.5f * inRect.height;
+
             Rect mainRect = inRect.ContractedBy(BoundaryPadding);
 
             Text.Font = GameFont.Medium;
@@ -97,18 +105,18 @@ namespace Psychology
             float width0 = sexualityWidth;
             float x1 = x0 + width0 + BoundaryPadding;
             float width1 = mainRect.xMax - HighlightPadding - x1;
-            float y0 = mainRect.y + 10f;
+            float y0 = mainRect.y + 5f;
             float y1 = y0 + sexualityHeight;
             float y2 = y1 + sexualityHeight;
             float y3 = y2 + sexualityHeight + BoundaryPadding;
             if (PsychologyBase.ActivateKinsey())
             {
                 Rect kinseyRatingLabelRect = new Rect(x0, y0, width0, sexualityHeight);
-                Rect kinseyRatingSliderRect = new Rect(x1, y0, width1, sexualityHeight);
+                Rect kinseyRatingSliderRect = new Rect(x1, y0 + SliderShiftDown, width1, sexualityHeight);
                 Rect sexDriveLabelRect = new Rect(x0, y1, width0, sexualityHeight);
-                Rect sexDriveSliderRect = new Rect(x1, y1, width1, sexualityHeight);
+                Rect sexDriveSliderRect = new Rect(x1, y1 + SliderShiftDown, width1, sexualityHeight);
                 Rect romDriveLabelRect = new Rect(x0, y2, width0, sexualityHeight);
-                Rect romDriveSliderRect = new Rect(x1, y2, width1, sexualityHeight);
+                Rect romDriveSliderRect = new Rect(x1, y2 + SliderShiftDown, width1, sexualityHeight);
 
                 TextAnchor oldAnchor = Text.Anchor;
                 Text.Anchor = TextAnchor.MiddleLeft;

@@ -1,40 +1,45 @@
 ﻿<Properties>
-  <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
       <Breakpoint file="/Users/edwardbasso/Library/Application Support/Steam/steamapps/common/RimWorld/RimWorldMac.app/Mods/Rimworld-Psychology-unofficial-v1.1-1.3/Source/1.3/Psychology/Harmony/ThoughtWorker_Pretty.cs" relfile="Psychology/Harmony/ThoughtWorker_Pretty.cs" line="17" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Psychology/Common/Languages/ChineseTraditional/DefInjected/Psychology.PersonalityNodeDef/PersonalityNodes.xml">
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Psychology/Main/Dialog_ViewPsyche.cs">
     <Files>
-      <File FileName="../../Common/Languages/English/Keyed/WITabs.xml" Line="75" Column="24" IsPinned="True" />
-      <File FileName="../../Common/Defs/PersonalityDefs/PersonalityNodes.xml" Line="9" Column="28" IsPinned="True" />
-      <File FileName="Psychology/Common/Languages/ChineseTraditional/DefInjected/Psychology.PersonalityNodeDef/PersonalityNodes.xml" Line="361" Column="26" IsPinned="True" />
-      <File FileName="../../Common/Languages/German/DefInjected/Psychology.PersonalityNodeDef/PersonalityNodes.xml" Line="5" Column="5" IsPinned="True" />
-      <File FileName="../../Common/Languages/Russian/DefInjected/Psychology.PersonalityNodeDef/PersonalityNodes.xml" Line="7" Column="5" IsPinned="True" />
+      <File FileName="Psychology/Main/PsycheCardUtility.cs" Line="222" Column="83" />
+      <File FileName="Psychology/Main/Dialog_ViewPsyche.cs" Line="18" Column="25" />
+      <File FileName="Psychology/Main/Dialog_EditPsyche.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="PsychologyUnofficialMac" expanded="True">
             <Node name="PsychologyMac" expanded="True">
+              <Node name="References" expanded="True" />
               <Node name="Common" expanded="True">
                 <Node name="Defs" expanded="True">
                   <Node name="PersonalityDefs" expanded="True" />
                 </Node>
                 <Node name="Languages" expanded="True">
-                  <Node name="ChineseSimplified" expanded="True" />
+                  <Node name="ChineseSimplified" expanded="True">
+                    <Node name="Keyed" expanded="True" />
+                  </Node>
                   <Node name="ChineseTraditional" expanded="True">
                     <Node name="DefInjected" expanded="True">
                       <Node name="Psychology.PersonalityNodeDef" expanded="True" />
                     </Node>
+                    <Node name="Keyed" expanded="True" />
+                  </Node>
+                  <Node name="English" expanded="True">
+                    <Node name="Keyed" expanded="True" />
                   </Node>
                   <Node name="German" expanded="True">
                     <Node name="DefInjected" expanded="True">
                       <Node name="Psychology.PersonalityNodeDef" expanded="True" />
                     </Node>
+                    <Node name="Keyed" expanded="True" />
                   </Node>
                   <Node name="Russian" expanded="True">
                     <Node name="DefInjected" expanded="True">
@@ -43,11 +48,15 @@
                     <Node name="Keyed" expanded="True" />
                   </Node>
                 </Node>
+                <Node name="Textures" expanded="True">
+                  <Node name="Buttons" expanded="True" />
+                </Node>
               </Node>
+              <Node name="Defs" expanded="True" />
+              <Node name="Harmony" expanded="True" />
               <Node name="Main" expanded="True">
-                <Node name="Elections" expanded="True" />
-                <Node name="Personality" expanded="True" />
-                <Node name="ThoughtWorkers" expanded="True" />
+                <Node name="PrepareCarefully" expanded="True" />
+                <Node name="Dialog_ViewPsyche.cs" selected="True" />
               </Node>
             </Node>
           </Node>
@@ -58,4 +67,5 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>
