@@ -7,7 +7,7 @@ using RimWorld.Planet;
 using Verse;
 using HarmonyLib;
 
-namespace Psychology.Harmony
+namespace Psychology.Harm
 {
     [HarmonyPatch(typeof(ThoughtWorker_WantToSleepWithSpouseOrLover), "CurrentStateInternal")]
     public class ThoughtWorker_WantToSleepWithSpouseOrLoverPatch

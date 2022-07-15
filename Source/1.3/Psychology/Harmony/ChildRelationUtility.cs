@@ -7,7 +7,7 @@ using Verse;
 using RimWorld;
 using HarmonyLib;
 
-namespace Psychology.Harmony
+namespace Psychology.Harm
 {
     [HarmonyPatch(typeof(ChildRelationUtility), nameof(ChildRelationUtility.ChanceOfBecomingChildOf))]
     public static class ChildRelationUtility_ChanceOfBecomingChildOf_Patch

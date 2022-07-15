@@ -2,5 +2,6 @@
 /Users/edwardbasso/Library/Application Support/Steam/steamapps/common/RimWorld/RimWorldMac.app/Mods/Rimworld-Psychology-unofficial-v1.1-1.3/1.3/Assemblies/Psychology.pdb
 /Users/edwardbasso/Library/Application Support/Steam/steamapps/common/RimWorld/RimWorldMac.app/Mods/Rimworld-Psychology-unofficial-v1.1-1.3/Source/1.3/Psychology/obj/Debug/PsychologyMac.csproj.AssemblyReference.cache
 /Users/edwardbasso/Library/Application Support/Steam/steamapps/common/RimWorld/RimWorldMac.app/Mods/Rimworld-Psychology-unofficial-v1.1-1.3/Source/1.3/Psychology/obj/Debug/PsychologyMac.csproj.CoreCompileInputs.cache
+/Users/edwardbasso/Library/Application Support/Steam/steamapps/common/RimWorld/RimWorldMac.app/Mods/Rimworld-Psychology-unofficial-v1.1-1.3/Source/1.3/Psychology/obj/Debug/PsychologyMac.csproj.CopyComplete
 /Users/edwardbasso/Library/Application Support/Steam/steamapps/common/RimWorld/RimWorldMac.app/Mods/Rimworld-Psychology-unofficial-v1.1-1.3/Source/1.3/Psychology/obj/Debug/Psychology.dll
 /Users/edwardbasso/Library/Application Support/Steam/steamapps/common/RimWorld/RimWorldMac.app/Mods/Rimworld-Psychology-unofficial-v1.1-1.3/Source/1.3/Psychology/obj/Debug/Psychology.pdb

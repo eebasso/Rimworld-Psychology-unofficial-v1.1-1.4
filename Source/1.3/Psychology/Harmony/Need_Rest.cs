@@ -7,7 +7,7 @@ using Verse;
 using Verse.AI;
 using HarmonyLib;
 
-namespace Psychology.Harmony
+namespace Psychology.Harm
 {
     [HarmonyPatch(typeof(Need_Rest), nameof(Need_Rest.NeedInterval))]
     public static class Need_Rest_IntervalDreamPatch

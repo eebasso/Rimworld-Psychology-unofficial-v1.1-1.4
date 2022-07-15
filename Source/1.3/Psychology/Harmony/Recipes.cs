@@ -7,7 +7,7 @@ using Verse.Sound;
 using RimWorld;
 using HarmonyLib;
 
-namespace Psychology.Harmony
+namespace Psychology.Harm
 {
     [HarmonyPatch(typeof(HealthCardUtility), nameof(HealthCardUtility.DrawPawnHealthCard))]
     public static class HealthCardUtility_DrawPawnHealthCardPatch

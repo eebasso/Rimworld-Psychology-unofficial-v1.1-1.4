@@ -8,7 +8,6 @@ using UnityEngine;
 
 namespace Psychology
 {
-
     public static class PsycheHelper
     {
         public static bool PsychologyEnabled(Pawn pawn)

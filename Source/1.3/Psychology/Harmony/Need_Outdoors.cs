@@ -7,7 +7,7 @@ using RimWorld;
 using HarmonyLib;
 using System.Reflection.Emit;
 
-namespace Psychology.Harmony
+namespace Psychology.Harm
 {
     [HarmonyPatch(typeof(Need_Outdoors), nameof(Need_Outdoors.NeedInterval))]
     public static class Need_OutdoorsPatch

@@ -8,7 +8,7 @@ using Verse.AI;
 using HarmonyLib;
 using UnityEngine;
 
-namespace Psychology.Harmony
+namespace Psychology.Harm
 {
     [HarmonyPatch(typeof(JobGiver_DoLovin), "TryGiveJob")]
     public static class JobGiver_DoLovin_JobPatch

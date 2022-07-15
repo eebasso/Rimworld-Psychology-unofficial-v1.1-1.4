@@ -8,7 +8,7 @@ using HarmonyLib;
 using UnityEngine;
 using System.Reflection;
 
-namespace Psychology.Harmony
+namespace Psychology.Harm
 {
     [HarmonyPatch(typeof(PawnGenerator), "GenerateTraits")]
     public static class PawnGenerator_GenerateTraitsPatch

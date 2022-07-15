@@ -6,7 +6,7 @@ using RimWorld;
 using Verse;
 using HarmonyLib;
 
-namespace Psychology.Harmony
+namespace Psychology.Harm
 {
     [HarmonyPatch(typeof(ThoughtWorker_AlwaysActive), "CurrentStateInternal")]
     public static class ThoughtWorker_AlwaysActivePatch

@@ -6,7 +6,7 @@ using RimWorld;
 using Verse;
 using HarmonyLib;
 
-namespace Psychology.Harmony
+namespace Psychology.Harm
 {
     [HarmonyPatch(typeof(ThoughtWorker_HardWorkerVsLazy), "CurrentSocialStateInternal")]
     public static class ThoughtWorker_HardWorkerVsLazyPatch

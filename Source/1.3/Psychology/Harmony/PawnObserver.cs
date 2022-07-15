@@ -7,7 +7,7 @@ using RimWorld;
 using Verse;
 using HarmonyLib;
 
-namespace Psychology.Harmony
+namespace Psychology.Harm
 {
     [HarmonyPatch(typeof(PawnObserver), "ObserveSurroundingThings")]
     public static class PawnObserver_ObserveSurroundingPatch

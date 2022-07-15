@@ -44,16 +44,16 @@ namespace Psychology
             Scribe_Collections.Look(ref this.knownSexualities, "knownSexualities", LookMode.Reference, LookMode.Value, ref this.knownSexualitiesWorkingKeys, ref this.knownSexualitiesWorkingValues);
         }
 
-        public void GenerateSexuality()
+        public void GenerateSexuality(int inputSeed = 0)
         {
-            GenerateSexuality(1f, 1f, 1f, 1f, 1f, 1f, 1f);
+            GenerateSexuality(1f, 1f, 1f, 1f, 1f, 1f, 1f, inputSeed);
         }
 
-        public void GenerateSexuality(float b0, float b1, float b2, float b3, float b4, float b5, float b6)
+        public void GenerateSexuality(float b0, float b1, float b2, float b3, float b4, float b5, float b6, int inputSeed = 0)
         {
-            kinseyRating = RandKinsey(b0, b1, b2, b3, b4, b5, b6);
-            sexDrive = GenerateSexDrive(1);
-            romanticDrive = GenerateRomanticDrive();
+            kinseyRating = RandKinsey(b0, b1, b2, b3, b4, b5, b6, inputSeed);
+            sexDrive = GenerateSexDrive(inputSeed);
+            romanticDrive = GenerateRomanticDrive(inputSeed);
         }
 
         /*
@@ -72,119 +72,8 @@ namespace Psychology
          * Percent chance of being more or less bisexual:   20.6344 %
          * Percent chance of being more or less gay:         5.5418 %
          */
-        //public static int RandKinsey(float b0, float b1, float b2, float b3, float b4, float b5, float b6)
-        //{
-        //    float k0 = 1f;
-        //    float k1 = 1f;
-        //    float k2 = 1f;
-        //    float k3 = 1f;
-        //    float k4 = 1f;
-        //    float k5 = 1f;
-        //    float k6 = 1f;
-
-        //    if (PsychologyBase.KinseyFormula() == PsychologyBase.KinseyMode.Realistic)
-        //    {
-        //        k0 *= 62.4949f;
-        //        k1 *= 11.3289f;
-        //        k2 *= 9.2658f;
-        //        k3 *= 6.8466f;
-        //        k4 *= 4.5220f;
-        //        k5 *= 2.7806f;
-        //        k6 *= 2.7612f;
-        //    }
-        //    else if (PsychologyBase.KinseyFormula() == PsychologyBase.KinseyMode.Invisible)
-        //    {
-        //        k0 *= 7.07013f;
-        //        k1 *= 11.8092f;
-        //        k2 *= 19.5541f;
-        //        k3 *= 23.1332f;
-        //        k4 *= 19.5541f;
-        //        k5 *= 11.8092f;
-        //        k6 *= 7.07013f;
-        //    }
-        //    else if (PsychologyBase.KinseyFormula() == PsychologyBase.KinseyMode.Gaypocalypse)
-        //    {
-        //        k0 *= 2.7612f;
-        //        k1 *= 2.7806f;
-        //        k2 *= 4.5220f;
-        //        k3 *= 6.8466f;
-        //        k4 *= 9.2658f;
-        //        k5 *= 11.3289f;
-        //        k6 *= 62.4949f;
-        //    }
-        //    else if (PsychologyBase.KinseyFormula() == PsychologyBase.KinseyMode.Custom)
-        //    {
-        //        k0 *= PsychologyBase.kinsey0Weight();
-        //        k1 *= PsychologyBase.kinsey1Weight();
-        //        k2 *= PsychologyBase.kinsey2Weight();
-        //        k3 *= PsychologyBase.kinsey3Weight();
-        //        k4 *= PsychologyBase.kinsey4Weight();
-        //        k5 *= PsychologyBase.kinsey5Weight();
-        //        k6 *= PsychologyBase.kinsey6Weight();
-        //    }
-        //    float kbsum = k0 * b0 + k1 * b1 + k2 * b2 + k3 * b3 + k4 * b4 + k5 * b5 + k6 * b6;
-        //    if (kbsum > 0f)
-        //    {
-        //        return RandKinseyCustom(k0 * b0, k1 * b1, k2 * b2, k3 * b3, k4 * b4, k5 * b5, kbsum);
-        //    }
-        //    float ksum = k0 + k1 + k2 + k3 + k4 + k5 + k6;
-        //    if (ksum > 0f)
-        //    {
-        //        return RandKinseyCustom(k0, k1, k2, k3, k4, k5, ksum);
-        //    }
-        //    float bsum = b0 + b1 + b2 + b3 + b4 + b5 + b6;
-        //    if (bsum > 0f)
-        //    {
-        //        return RandKinseyCustom(b0, b1, b2, b3, b4, b5, bsum);
-        //    }
-        //    else
-        //    {
-        //        return RandKinseyCustom(1f, 1f, 1f, 1f, 1f, 1f, 7f);
-        //    }
-        //}
-
-        //public static int RandKinseyCustom(float k0, float k1, float k2, float k3, float k4, float k5, float ksum)
-        //{
-        //    float kinseyRandSeed = Rand.Value;
-        //    float kinseyFrac = k0 / ksum;
-
-
-        //    if (kinseyRandSeed < kinseyFrac)
-        //    {
-        //        return 0;
-        //    }
-        //    kinseyFrac += k1 / ksum;
-        //    if (kinseyRandSeed < kinseyFrac)
-        //    {
-        //        return 1;
-        //    }
-        //    kinseyFrac += k2 / ksum;
-        //    if (kinseyRandSeed < kinseyFrac)
-        //    {
-        //        return 2;
-        //    }
-        //    kinseyFrac += k3 / ksum;
-        //    if (kinseyRandSeed < kinseyFrac)
-        //    {
-        //        return 3;
-        //    }
-        //    kinseyFrac += k4 / ksum;
-        //    if (kinseyRandSeed < kinseyFrac)
-        //    {
-        //        return 4;
-        //    }
-        //    kinseyFrac += k5 / ksum;
-        //    if (kinseyRandSeed < kinseyFrac)
-        //    {
-        //        return 5;
-        //    }
-        //    else
-        //    {
-        //        return 6;
-        //    }
-        //}
-
-        public int RandKinsey(float b0, float b1, float b2, float b3, float b4, float b5, float b6)
+        
+        public int RandKinsey(float b0, float b1, float b2, float b3, float b4, float b5, float b6, int inputSeed = 0)
         {
             List<float> bList = new List<float> { b0, b1, b2, b3, b4, b5, b6 };
             List<float> kList = new List<float> { 1f, 1f, 1f, 1f, 1f, 1f, 1f };
@@ -214,23 +103,21 @@ namespace Psychology
             List<float> kbCumSumList = new List<float>();
             for (int i = 0; i < bList.Count(); i++)
             {
-                float k = kList[i];
-                float kb = k * bList[i];
-                kSum += k;
-                kbSum += kb;
+                kSum += kList[i];
+                kbSum += kList[i] * bList[i];
                 kCumSumList.Add(kSum);
                 kbCumSumList.Add(kbSum);
             }
             if (kbCumSumList[6] > 0f)
             {
-                return RandKinseyByWeight(kbCumSumList);
+                return RandKinseyByWeight(kbCumSumList, inputSeed);
             }
-            return RandKinseyByWeight(kCumSumList);
+            return RandKinseyByWeight(kCumSumList, inputSeed);
         }
 
-        public int RandKinseyByWeight(List<float> kCumSumList)
+        public int RandKinseyByWeight(List<float> kCumSumList, int inputSeed = 0)
         {
-            float randValue = Rand.ValueSeeded(17 * pawn.GetHashCode() + 31) * kCumSumList[6];
+            float randValue = Rand.ValueSeeded(17 * pawn.GetHashCode() + 31 + 11 * inputSeed) * kCumSumList[6];
             for (int s = 0; s < 6; s++)
             {
                 if (randValue <= kCumSumList[s])
@@ -241,13 +128,13 @@ namespace Psychology
             return 6;
         }
 
-        public float GenerateSexDrive(int inputSeed)
+        public float GenerateSexDrive(int inputSeed = 0)
         {
             float drive = -1f;
             int kill = 0;
             int pawnSeed = this.pawn.GetHashCode();
-            int seed1 = 11 * pawnSeed + 131 * inputSeed;
-            int seed2 = 13 * pawnSeed + 89 * inputSeed;
+            int seed1 = 11 * pawnSeed + 131 + 2 * inputSeed;
+            int seed2 = 13 * pawnSeed + 89 + 7 * inputSeed;
             while ((drive < 0f || 1f < drive) && kill < 500)
             {
                 //drive = Rand.Gaussian(1.1f, 0.26f);
@@ -259,9 +146,9 @@ namespace Psychology
             return Mathf.Clamp01(drive);
         }
 
-        public float GenerateRomanticDrive()
+        public float GenerateRomanticDrive(int inputSeed = 0)
         {
-            return GenerateSexDrive(859456);
+            return GenerateSexDrive(859456 + inputSeed);
         }
 
         public float AdjustedSexDrive

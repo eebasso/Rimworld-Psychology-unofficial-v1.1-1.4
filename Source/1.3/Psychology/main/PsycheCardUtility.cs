@@ -10,16 +10,14 @@ namespace Psychology
     [StaticConstructorOnStartup]
     public class PsycheCardUtility
     {
+        public static Rect PsycheRect = new Rect(0f, 0f, 1f, 1f);
+
         public const float RowTopPadding = 0.5f;
         public const float BoundaryPadding = 7f;
         public const float HighlightPadding = 3.5f;
         public const float TraitListPadding = 30f;
         public const float SliderWidth = 20f;
 
-        //private static TextAnchor OldSmallAlignment = Text.fontStyles[1].alignment;
-        //private static TextAnchor OldMediumAlignment = Text.fontStyles[2].alignment;
-        //private static TextAnchor NewSmallAlignment = TextAnchor.MiddleLeft;
-        //private static TextAnchor NewMediumAlignment = TextAnchor.MiddleCenter;
         private static int OldSmallFontSize = Text.fontStyles[1].fontSize;
         private static int OldMediumFontSize = Text.fontStyles[2].fontSize;
         private static byte SexualityFontSize = 16;
@@ -39,6 +37,7 @@ namespace Psychology
         public static bool AlphabeticalBoolCached = false;
         public static bool UseAntonymsBool = true;
         public static bool UseAntonymsBoolCached = true;
+        //public static bool ShowEditBool = false;
 
         private static Pawn PawnCached;
         public const int MaxTicks = 1000;
@@ -96,12 +95,12 @@ namespace Psychology
         private static Material PsycheYellowMat = SolidColorMaterials.SimpleSolidColorMaterial(new Color(1f, 1f, 0f, 0.5f));
         private static float HighlightRadius = 0f;
 
+        public static float NodeWidth = 0f;
+        private static float CategoryWidth = 0f;
+        private static float CategoryNodeHeight = 0f;
         private static readonly string[] NodeDescriptions = { "Not", "Slightly", "Less", "Somewhat", "More", "Very", "Extremely" };
         private static readonly Color[] CategoryColors = { new Color(1f, 0.2f, 0.2f, 0.8f), new Color(1f, 0.4f, 0.4f, 0.6f), new Color(1f, 0.6f, 0.6f, 0.4f), new Color(1f, 1f, 1f, 0.2f), new Color(0.6f, 1f, 0.6f, 0.4f), new Color(0.4f, 1f, 0.4f, 0.6f), new Color(0.2f, 1f, 0.2f, 0.8f) };
-        public static bool NeedToCalculateNodeWidthBool = true;
-        private static float CategoryWidth = 0f;
-        public static float NodeWidth = 0f;
-        private static float CategoryNodeHeight = 0f;
+        //public static bool NeedToCalculateNodeWidthBool = true;
         private static Vector2 NodeScrollPosition = Vector2.zero;
         private static List<Tuple<string, PersonalityNode, string>> LabelNodeList = new List<Tuple<string, PersonalityNode, string>>();
         
@@ -123,8 +122,6 @@ namespace Psychology
         private static readonly string[] CreativeLetters = { "C", "r", "e", "a", "t", "i", "v", "e" };
         private static readonly Vector3[] CreativeHSVs = { new Vector3(0f, 0.9f, 1f), new Vector3(30f, 1f, 1f), new Vector3(55f, 0.9f, 0.85f), new Vector3(120f, 0.8f, 0.8f), new Vector3(195f, 1f, 1f), new Vector3(210f, 1f, 1f), new Vector3(280f, 0.8f, 1f), new Vector3(305f, 1f, 0.85f) };
         private static string CreativeRainbow = "";
-
-
 
         static PsycheCardUtility()
         {
@@ -203,37 +200,42 @@ namespace Psychology
             //Text.Anchor = oldAnchor;
         }
 
-        public static Rect CalculateTotalRect(Pawn pawn)
+        public static Rect CalculatePsycheRect(Pawn pawn)
         {
-            if (NeedToCalculateNodeWidthBool)
+            if (PsycheRect != new Rect(0f, 0f, 1f, 1f) || !PsycheHelper.PsychologyEnabled(pawn))
             {
-                CalculateNodeWidth(pawn);
-                NeedToCalculateNodeWidthBool = false;
+                return PsycheRect;
             }
+            CalculateNodeWidth(pawn);
             float personalityRectWidth = BoundaryPadding + TraitListPadding + CategoryWidth + TraitListPadding + SliderWidth + NodeWidth + TraitListPadding + BoundaryPadding;
             float forbiddenRectWidth = BoundaryPadding + HighlightPadding + SexualityWidth + BoundaryPadding;
             float totalRectWidth = personalityRectWidth + forbiddenRectWidth;
             float forbiddenRectHeight = BoundaryPadding + KinseyTextSize.y + RowTopPadding + SexDriveHeight + RowTopPadding + RomDriveHeight + BoundaryPadding + OptionsHeight + BoundaryPadding + UseColorsHeight + BoundaryPadding;
             HighlightRadius = 0.506f * forbiddenRectWidth;
             float totalRectHeight = forbiddenRectHeight + AlphabeticalHeight + BoundaryPadding + UseAntonymsHeight + BoundaryPadding + FiveFactorSize.y + BoundaryPadding + 2f * HighlightRadius + BoundaryPadding + EditHeight + BoundaryPadding;
-            return new Rect(0f, 0f, totalRectWidth, totalRectHeight);
+            PsycheRect = new Rect(0f, 0f, totalRectWidth, totalRectHeight);
+            return PsycheRect;
         }
 
-        public static void DrawPsycheCard(Rect totalRect, Pawn pawn, bool editBool)
+        public static void DrawPsycheCard(Rect totalRect, Pawn pawn, bool OnMenu = false)
         {
+            GUI.BeginGroup(totalRect);
+            totalRect.position = Vector2.zero;
+            Text.Font = GameFont.Small;
+            GUI.color = Color.white;
+            GUIStyle style = Text.fontStyles[1];
+            TextAnchor OldAnchor = Text.Anchor;
+
             if (!PsycheHelper.PsychologyEnabled(pawn))
             {
                 return;
             }
-            if (PawnCached == null)
-            {
-                PawnCached = pawn;
-            }
-            
+            PawnCached = PawnCached == null ? pawn : PawnCached;
+            CalculateNodeWidth(pawn);
             //float totalRectX = CategoryWidth + NodeWidth + SexualityWidth + 4f * BoundaryPadding + 3f * TraitListPadding + 3f * TraitListPadding;
             //Rect totalRect = new Rect(0f, 0f, totalRectWidth, totalRectHeight);
 
-            Rect kinseyRect = new Rect(totalRect.xMax - SexualityWidth - BoundaryPadding, totalRect.y + BoundaryPadding, KinseyWidth, KinseyTextSize.y);
+            Rect kinseyRect = new Rect(totalRect.xMax - SexualityWidth - BoundaryPadding, totalRect.y + BoundaryPadding, OnMenu ? SexualityWidth : KinseyWidth, KinseyTextSize.y);
             Rect sexDriveRect = new Rect(kinseyRect.x, kinseyRect.yMax + RowTopPadding, SexualityWidth, SexDriveHeight);
             Rect romDriveRect = new Rect(kinseyRect.x, sexDriveRect.yMax + RowTopPadding, SexualityWidth, RomDriveHeight);
 
@@ -254,14 +256,6 @@ namespace Psychology
 
             personalityRect.xMax = totalRect.xMax - SexualityWidth - HighlightPadding - 2f * BoundaryPadding;
 
-
-            GUI.BeginGroup(totalRect);
-            Text.Font = GameFont.Small;
-            GUI.color = Color.white;
-            GUIStyle style = Text.fontStyles[1];
-
-            TextAnchor OldAnchor = Text.Anchor;
-            
             // Draw the widgets for sexuality panel
             if (PsychologyBase.ActivateKinsey())
             {
@@ -288,7 +282,6 @@ namespace Psychology
                 }, 89140);
 
                 //Sex drive
-
                 sexDriveRect.xMin -= HighlightPadding;
                 Widgets.DrawHighlightIfMouseover(sexDriveRect);
                 TooltipHandler.TipRegion(sexDriveRect, delegate
@@ -308,7 +301,6 @@ namespace Psychology
                 }, 89141);
 
                 //Romantic drive
-
                 romDriveRect.xMin -= HighlightPadding;
                 Widgets.DrawHighlightIfMouseover(romDriveRect);
                 TooltipHandler.TipRegion(romDriveRect, delegate
@@ -487,14 +479,13 @@ namespace Psychology
             }
 
             //Edit Psyche button
-            if (Prefs.DevMode || editBool)
-            {
-                if (Widgets.ButtonText(editRect, EditText, true, false, true))
-                {
-                    Find.WindowStack.Add(new Dialog_EditPsyche(pawn));
-                }
-            }
-
+            //if (Prefs.DevMode || showEditBool)
+            //{
+            //    if (Widgets.ButtonText(editRect, EditText, true, false, true))
+            //    {
+            //        Find.WindowStack.Add(new Dialog_EditPsyche(pawn));
+            //    }
+            //}
             GUI.EndGroup();
         }
 
@@ -514,7 +505,6 @@ namespace Psychology
             {
                 Log.Message("ListTicker = " + ListTicker);
             }
-
             if (ListTicker > 0 && pawn == PawnCached && DistanceFromMiddle == DistanceFromMiddleCached && UseColorsBool == UseColorsBoolCached && UseAntonymsBool == UseAntonymsBoolCached && AlphabeticalBool == AlphabeticalBoolCached && LabelNodeList.Any())
             {
                 ListTicker--;
@@ -563,6 +553,10 @@ namespace Psychology
 
         public static void CalculateNodeWidth(Pawn pawn)
         {
+            if (NodeWidth != 0f)
+            {
+                return;
+            }
             Text.Font = GameFont.Small;
             GUIStyle style = Text.fontStyles[1];
             style.fontSize = CategoryNodeFontSize;
@@ -890,6 +884,18 @@ namespace Psychology
                 bigFiveArray[p] = Mathf.Clamp(0.5f + bigFiveScalings[p] * (bigFiveNumerators[p] / bigFiveDenominators[p]), 0f, 1f);
             }
             return bigFiveArray;
+        }
+
+        // Legacy method
+        public static void DrawPsycheMenuCard(Rect totalRect, Pawn pawn)
+        {
+            Find.WindowStack.Add(new Dialog_ViewPsyche(pawn, true));
+        }
+
+        //Legacy method
+        public static void DrawDebugOptions(Rect totalRect, Pawn pawn)
+        {
+            Find.WindowStack.Add(new Dialog_EditPsyche(pawn));
         }
     }
 }

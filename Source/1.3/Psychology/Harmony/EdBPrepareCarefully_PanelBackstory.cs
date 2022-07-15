@@ -7,23 +7,23 @@ using RimWorld;
 using Verse;
 using Verse.Sound;
 using HarmonyLib;
-using EdB.PrepareCarefully;
+//using EdB.PrepareCarefully;
 
-namespace Psychology.Harmony
+namespace Psychology.Harm
 {
-    [HarmonyPatch(typeof(PanelBackstory), nameof(PanelBackstory.Draw))]
-    public static class EdBPrepareCarefully_PanelTraits_PsychologyPatch
+    [HarmonyPatch(typeof(EdB.PrepareCarefully.PanelBackstory), nameof(EdB.PrepareCarefully.PanelBackstory.Draw))]
+    public static class EdBPrepareCarefully_PanelBackstory
     {
         [HarmonyPrefix]
-        public static void Draw(State state, float y)
+        public static void Draw(EdB.PrepareCarefully.State state, float y)
         {
             Pawn pawn = state.CurrentPawn.Pawn;
-            float y2 = y + PanelModule.Margin.y;
+            float y2 = y + EdB.PrepareCarefully.PanelModule.Margin.y;
             if (PsycheHelper.PsychologyEnabled(pawn))
             {
                 Rect psycheRect = new Rect(230f, y2 + 5f, 28f, 28f);
                 Color oldColor = GUI.color;
-                GUI.color = psycheRect.Contains(Event.current.mousePosition) ? new Color(0.97647f, 0.97647f, 0.97647f) : new Color(0.623529f, 0.623529f, 0.623529f);
+                GUI.color = psycheRect.Contains(Event.current.mousePosition) ? PsychColor.ButtonLightColor : PsychColor.ButtonDarkColor;
                 GUI.DrawTexture(psycheRect, PsychologyTexCommand.PsycheButton);
                 GUI.color = oldColor;
                 if (Widgets.ButtonInvisible(psycheRect, false))

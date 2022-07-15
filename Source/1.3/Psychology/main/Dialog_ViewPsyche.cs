@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿//using System;
+//using System.Collections.Generic;
 //using System.Linq;
 //using System.Text;
 using UnityEngine;
@@ -10,15 +10,13 @@ namespace Psychology
 {
     public class Dialog_ViewPsyche : Window
     {
-
         private Pawn pawn;
+        private bool EditAllowedBool;
 
-        private bool editAllowedBool;
-
-        public Dialog_ViewPsyche(Pawn editFor, bool editBool)
+        public Dialog_ViewPsyche(Pawn editFor, bool editBool = false)
         {
             pawn = editFor;
-            editAllowedBool = editBool;
+            EditAllowedBool = editBool;
         }
 
         [LogPerformance]
@@ -31,34 +29,36 @@ namespace Psychology
                 Event.current.Use();
             }
             GUI.EndGroup();
-            //Vector2 center = Find.WindowStack.currentlyDrawnWindow.windowRect.center;
-            Rect mainRect = PsycheCardUtility.CalculateTotalRect(pawn);
-            inRect = new Rect(mainRect.x, mainRect.y, mainRect.width, mainRect.height + 30f + 2f * PsycheCardUtility.BoundaryPadding);
+
+            Rect psycheRect = PsycheCardUtility.CalculatePsycheRect(pawn);
+            inRect = psycheRect;
+            Rect editRect = new Rect(0f, 0f, 1f, 1f);
+            if (EditAllowedBool)
+            {
+                float editWidth = EditPsycheUtility.CalculateEditWidth(pawn);
+                editRect = new Rect(psycheRect.xMax, psycheRect.y, editWidth, psycheRect.height);
+                inRect.width += editWidth;
+            }
+
             Find.WindowStack.currentlyDrawnWindow.windowRect = inRect;
-            //Find.WindowStack.currentlyDrawnWindow.windowRect.center = new Vector2(0.5f * Screen.width, 0.5f * Screen.height);
-            //Find.WindowStack.currentlyDrawnWindow.windowRect.center = new Vector2(0.2f * Screen.width, 0.2f * Screen.height);
-            //Find.WindowStack.currentlyDrawnWindow.windowRect.position = new Vector2(200f, 200f);
-            //Find.WindowStack.currentlyDrawnWindow.windowRect.center = new Vector2(0.5f * UI.screenWidth, 0.5f * UI.screenHeight);
             Find.WindowStack.currentlyDrawnWindow.windowRect.x = 0.5f * UI.screenWidth - inRect.width;
-            Find.WindowStack.currentlyDrawnWindow.windowRect.y = 0.5f * UI.screenHeight - 0.5f * inRect.height;
+            Find.WindowStack.currentlyDrawnWindow.windowRect.y = 0.5f * (UI.screenHeight - inRect.height);
 
             GUI.BeginGroup(inRect);
-            PsycheCardUtility.DrawPsycheCard(mainRect, pawn, editAllowedBool);
-            GUI.color = new Color(1f, 1f, 1f, 0.5f);
-            Widgets.DrawLineHorizontal(inRect.x, mainRect.yMax, inRect.width);
-            GUI.color = Color.white;
-            Rect okRect = new Rect(inRect.width / 3f, inRect.yMax - 30f - PsycheCardUtility.BoundaryPadding, inRect.width / 3f, 30f);
-            if (Widgets.ButtonText(okRect, "CloseButton".Translate(), true, false, true) || flag)
+            PsycheCardUtility.DrawPsycheCard(psycheRect, pawn);
+            if (EditAllowedBool)
+            {
+                EditPsycheUtility.DrawEditPsyche(editRect, pawn);
+                GUI.color = new Color(1f, 1f, 1f, 0.5f);
+                Widgets.DrawLineVertical(editRect.x, editRect.y, editRect.height);
+                GUI.color = Color.white;
+            }
+            GUI.EndGroup();
+
+            if (flag)
             {
                 this.Close(true);
             }
-            GUI.EndGroup();
         }
     }
 }
-
-//Find.WindowStack.currentlyDrawnWindow.windowRect.x += 0.5f * (Find.WindowStack.currentlyDrawnWindow.windowRect.width - inRect.width);
-//Find.WindowStack.currentlyDrawnWindow.windowRect.y += 0.5f * (Find.WindowStack.currentlyDrawnWindow.windowRect.height - inRect.height);
-//Find.WindowStack.currentlyDrawnWindow.windowRect.width = inRect.width;
-//Find.WindowStack.currentlyDrawnWindow.windowRect.height = inRect.height;
-//Find.WindowStack.currentlyDrawnWindow.windowRect.center = center;

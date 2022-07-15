@@ -1,64 +1,38 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="/Users/edwardbasso/Library/Application Support/Steam/steamapps/common/RimWorld/RimWorldMac.app/Mods/Rimworld-Psychology-unofficial-v1.1-1.3/Source/1.3/Psychology/Harmony/ThoughtWorker_Pretty.cs" relfile="Psychology/Harmony/ThoughtWorker_Pretty.cs" line="17" column="1" />
-    </BreakpointStore>
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Psychology/Main/Dialog_ViewPsyche.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Psychology/Main/Personality/PersonalityNode.cs">
     <Files>
-      <File FileName="Psychology/Main/PsycheCardUtility.cs" Line="222" Column="83" />
-      <File FileName="Psychology/Main/Dialog_ViewPsyche.cs" Line="18" Column="25" />
-      <File FileName="Psychology/Main/Dialog_EditPsyche.cs" Line="1" Column="1" />
+      <File FileName="Psychology/Harmony/CharacterEditor_DialogPsychology.cs" Line="28" Column="4" />
+      <File FileName="Psychology/Main/Dialog_ViewPsyche.cs" Line="39" Column="71" />
+      <File FileName="Psychology/Main/Dialog_EditPsyche.cs" Line="130" Column="87" />
+      <File FileName="Psychology/Main/PsycheCardUtility.cs" Line="538" Column="94" />
+      <File FileName="Psychology/Main/CompPsychology.cs" Line="44" Column="48" />
+      <File FileName="Psychology/Main/Personality/PersonalityNode.cs" Line="17" Column="39" />
+      <File FileName="Psychology/Main/Pawn_PsycheTracker.cs" Line="32" Column="21" />
+      <File FileName="Psychology/Harmony/CEditor_EditorUI_AStartPsychologyUI.cs" Line="11" Column="1" />
+      <File FileName="Psychology/Harmony/ThoughtWorker_ChemicalInterestVsTeetotaler.cs" Line="1" Column="1" />
+      <File FileName="Psychology/Harmony/ThoughtUtility.cs" Line="1" Column="1" />
+      <File FileName="Psychology/Harmony/Recipe_Surgery.cs" Line="1" Column="1" />
+      <File FileName="Psychology/Harmony/ThoughtWorker_AnnoyingVoice.cs" Line="11" Column="48" />
+      <File FileName="Psychology/Main/CompProperties_Psychology.cs" Line="1" Column="1" />
+      <File FileName="Psychology/Harmony/Pawn.cs" Line="1" Column="1" />
+      <File FileName="Psychology/Harmony/MentalStateWorker_BingingDrug.cs" Line="1" Column="1" />
+      <File FileName="Psychology/Harmony/Building_Grave.cs" Line="1" Column="1" />
+      <File FileName="Psychology/Harmony/ChildRelationUtility.cs" Line="1" Column="1" />
+      <File FileName="Psychology/Harmony/EdBPrepareCarefully_PanelBackstory.cs" Line="1" Column="1" />
+      <File FileName="Psychology/Harmony/Dialog_FormCaravan.cs" Line="14" Column="38" />
+      <File FileName="Psychology/Harmony/InteractionUtility.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="PsychologyUnofficialMac" expanded="True">
-            <Node name="PsychologyMac" expanded="True">
-              <Node name="References" expanded="True" />
-              <Node name="Common" expanded="True">
-                <Node name="Defs" expanded="True">
-                  <Node name="PersonalityDefs" expanded="True" />
-                </Node>
-                <Node name="Languages" expanded="True">
-                  <Node name="ChineseSimplified" expanded="True">
-                    <Node name="Keyed" expanded="True" />
-                  </Node>
-                  <Node name="ChineseTraditional" expanded="True">
-                    <Node name="DefInjected" expanded="True">
-                      <Node name="Psychology.PersonalityNodeDef" expanded="True" />
-                    </Node>
-                    <Node name="Keyed" expanded="True" />
-                  </Node>
-                  <Node name="English" expanded="True">
-                    <Node name="Keyed" expanded="True" />
-                  </Node>
-                  <Node name="German" expanded="True">
-                    <Node name="DefInjected" expanded="True">
-                      <Node name="Psychology.PersonalityNodeDef" expanded="True" />
-                    </Node>
-                    <Node name="Keyed" expanded="True" />
-                  </Node>
-                  <Node name="Russian" expanded="True">
-                    <Node name="DefInjected" expanded="True">
-                      <Node name="Psychology.PersonalityNodeDef" expanded="True" />
-                    </Node>
-                    <Node name="Keyed" expanded="True" />
-                  </Node>
-                </Node>
-                <Node name="Textures" expanded="True">
-                  <Node name="Buttons" expanded="True" />
-                </Node>
-              </Node>
-              <Node name="Defs" expanded="True" />
-              <Node name="Harmony" expanded="True" />
-              <Node name="Main" expanded="True">
-                <Node name="PrepareCarefully" expanded="True" />
-                <Node name="Dialog_ViewPsyche.cs" selected="True" />
-              </Node>
-            </Node>
+            <Node name="PsychologyMac" expanded="True" />
           </Node>
         </State>
       </Pad>
@@ -67,5 +41,4 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

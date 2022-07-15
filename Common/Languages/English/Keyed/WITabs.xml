@@ -44,14 +44,14 @@
 	<ListAlphabetical>List alphabetical</ListAlphabetical>
 	<UseAntonyms>Use antonyms</UseAntonyms>
 	
-
-	<!-- Dev edit text -->
+	<!-- Edit Psyche text -->
 	<EditPsyche>Edit</EditPsyche>
 	<PsycheEditor>Modifying the psyche of {0}:</PsycheEditor>
 	<PsycheEditorNewColonist>Modifying colonist's psyche:</PsycheEditorNewColonist>
 	<PersonalityNodeWarning>You are editing the raw values of a pawn's personality. The actual stats will be adjusted by other factors.</PersonalityNodeWarning>
 	<SexDrive>Sex drive:</SexDrive>
 	<RomanticDrive>Romantic drive:</RomanticDrive>
+	<PsycheResetTooltip>Reset this pawn's psyche to default based on their unique HashCode ID.</PsycheResetTooltip>
 
 	<!-- Node descriptions and conversation tooltip -->
 	<PsycheNot>Not</PsycheNot>

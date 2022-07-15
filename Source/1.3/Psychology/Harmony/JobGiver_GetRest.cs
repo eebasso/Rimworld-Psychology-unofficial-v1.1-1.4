@@ -6,7 +6,7 @@ using RimWorld;
 using System.Reflection;
 using HarmonyLib;
 
-namespace Psychology.Harmony
+namespace Psychology.Harm
 {
     [HarmonyPatch(typeof(JobGiver_GetRest), nameof(JobGiver_GetRest.GetPriority))]
     public static class JobGiver_GetRest_PriorityPatch

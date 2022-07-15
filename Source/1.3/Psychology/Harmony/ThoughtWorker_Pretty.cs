@@ -8,7 +8,7 @@ using HarmonyLib;
 
 // TODO: CHANGE BEAUTY OVERRIDE TO A MULTIPLIER THAT REDUCES MAGNITUDE OF OPINION CHANGES FROM VARIOUS TRAITS INCLUDING BODYMODDER/TRANSHUMANIST
 
-namespace Psychology.Harmony
+namespace Psychology.Harm
 {
     [HarmonyPatch(typeof(ThoughtWorker_Pretty), "CurrentSocialStateInternal")]
     public static class ThoughtWorker_PrettyPatch

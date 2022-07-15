@@ -9,7 +9,7 @@ using HarmonyLib;
 using System.Reflection;
 using System.Reflection.Emit;
 
-namespace Psychology.Harmony
+namespace Psychology.Harm
 {
 	[HarmonyPatch(typeof(InteractionWorker_MarriageProposal), nameof(InteractionWorker_MarriageProposal.AcceptanceChance))]
 	public static class InteractionWorker_MarriageProposal_AcceptanceChancePatch

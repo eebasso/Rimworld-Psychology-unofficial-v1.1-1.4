@@ -90,6 +90,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Krafs.Publicizer" Version="1.0.2" />
+  </ItemGroup>
+  <ItemGroup>
+    <Publicize Include="CharacterEditor" />
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="Defs\DutyDefOfPsychology.cs" />
     <Compile Include="Defs\IncidentDefOfPsychology.cs" />
     <Compile Include="Defs\GameConditionDefOfPsychology.cs" />
@@ -264,6 +270,11 @@
     <Compile Include="Harmony\TooltipHandler.cs" />
     <Compile Include="Main\PatchOperationCustom.cs" />
     <Compile Include="Harmony\EdBPrepareCarefully_PanelBackstory.cs" />
+    <Compile Include="Harmony\CharacterEditor_DialogPsychology.cs" />
+    <Compile Include="Harmony\CEditor_EditorUI_AStartPsychologyUI.cs" />
+    <Compile Include="Main\EditPsycheUtility.cs" />
+    <Compile Include="Main\PsychColor.cs" />
+    <Compile Include="Harmony\HarmonyInitialize.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\About\preview.png">

@@ -10,7 +10,7 @@ using Verse;
 using Verse.AI;
 using HarmonyLib;
 
-namespace Psychology.Harmony
+namespace Psychology.Harm
 {
     [HarmonyPatch(typeof(VoluntarilyJoinableLordsStarter), "Tick_TryStartParty")]
     public static class VoluntarilyJoinableLordsStarter_StartPartyPatch

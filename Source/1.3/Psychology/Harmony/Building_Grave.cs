@@ -7,7 +7,7 @@ using Verse;
 using UnityEngine;
 using HarmonyLib;
 
-namespace Psychology.Harmony
+namespace Psychology.Harm
 {
     [HarmonyPatch(typeof(Building_Grave), nameof(Building_Grave.Notify_CorpseBuried))]
     public static class Building_Grave_NotifyCorpseBuried_Patch

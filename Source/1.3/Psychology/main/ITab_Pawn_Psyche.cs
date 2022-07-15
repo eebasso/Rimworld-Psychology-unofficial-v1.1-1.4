@@ -54,9 +54,25 @@ namespace Psychology
             // Initialize pawn
             Pawn pawn = PawnToShowInfoAbout;
             // Get total rectangle
-            Rect totalRect = PsycheCardUtility.CalculateTotalRect(pawn);
+            Rect psycheRect = PsycheCardUtility.CalculatePsycheRect(pawn);
+            Rect totalRect = psycheRect;
+            Rect editRect = new Rect(0f, 0f, 1f, 1f);
+            if (Prefs.DevMode)
+            {
+                editRect = new Rect(psycheRect.xMax, psycheRect.y, EditPsycheUtility.CalculateEditWidth(pawn), psycheRect.height);
+                totalRect.width += editRect.width;
+            }
             size = totalRect.size;
-            PsycheCardUtility.DrawPsycheCard(totalRect, pawn, false);
+            GUI.BeginGroup(totalRect);
+            PsycheCardUtility.DrawPsycheCard(psycheRect, pawn);
+            if (Prefs.DevMode)
+            {
+                EditPsycheUtility.DrawEditPsyche(editRect, pawn);
+                GUI.color = PsychColor.LineColor;
+                Widgets.DrawLineVertical(editRect.x, editRect.y, editRect.height);
+                GUI.color = Color.white;
+            }
+            GUI.EndGroup();
         }
     }
 }

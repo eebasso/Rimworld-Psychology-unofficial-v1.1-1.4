@@ -8,7 +8,7 @@ using Verse;
 using RimWorld;
 using HarmonyLib;
 
-namespace Psychology.Harmony
+namespace Psychology.Harm
 {
     [HarmonyPatch(typeof(LovePartnerRelationUtility),nameof(LovePartnerRelationUtility.LovePartnerRelationGenerationChance))]
     public static class LovePartnerRelationUtility_GenerationChancePatch

@@ -33,7 +33,7 @@ namespace Psychology
         public void Initialize()
         {
             int[] upbringingSigns = PsycheHelper.GetSignArray(this.pawn.GetComp<CompPsychology>().Psyche.upbringing, 5);
-            Log.Message(pawn.LabelShortCap + ": Upbringing = " + this.pawn.GetComp<CompPsychology>().Psyche.upbringing + ": " + string.Join(", ", upbringingSigns));
+            //Log.Message(pawn.LabelShortCap + ": Upbringing = " + this.pawn.GetComp<CompPsychology>().Psyche.upbringing + ": " + string.Join(", ", upbringingSigns));
             string defName = this.def.defName;
             int defSeed = defName.GetHashCode();
             int pawnSeed = this.pawn.HashOffset();
@@ -51,7 +51,7 @@ namespace Psychology
                 //this.rawRating = Rand.Value;
                 this.rawRating = Rand.ValueSeeded(2 * pawnSeed + defSeed);
             }
-            Log.Message(pawn.LabelShortCap + ": Node = " + defName + " Raw = " + this.rawRating);
+            //Log.Message(pawn.LabelShortCap + ": Node = " + defName + " Raw = " + this.rawRating);
         }
 
         public void ExposeData()

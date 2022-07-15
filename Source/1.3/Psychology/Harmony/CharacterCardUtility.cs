@@ -10,7 +10,7 @@ using UnityEngine;
 using System.Reflection;
 using System.Reflection.Emit;
 
-namespace Psychology.Harmony
+namespace Psychology.Harm
 {
     [HarmonyPatch(typeof(CharacterCardUtility), nameof(CharacterCardUtility.DrawCharacterCard))]
     public static class CharacterCardUtility_ButtonPatch
@@ -40,23 +40,16 @@ namespace Psychology.Harmony
         {
             if (PsycheHelper.PsychologyEnabled(pawn))
             {
-                Rect rect = new Rect(panelRect.xMax + 300f, 0f, 28f, 28f);
-                Color old = GUI.color;
-                if (rect.Contains(Event.current.mousePosition))
-                {
-                    GUI.color = new Color(0.97647f, 0.97647f, 0.97647f);
-                }
-                else
-                {
-                    GUI.color = new Color(0.623529f, 0.623529f, 0.623529f);
-                }
+                Rect rect = new Rect(panelRect.xMax + 300f, 0f, 30f, 30f);
+                Color oldColor = GUI.color;
+                GUI.color = rect.Contains(Event.current.mousePosition) ? PsychColor.ButtonLightColor : PsychColor.ButtonDarkColor;
                 GUI.DrawTexture(rect, PsychologyTexCommand.PsycheButton);
                 if (Widgets.ButtonInvisible(rect, false))
                 {
                     SoundDefOf.Tick_Low.PlayOneShotOnCamera(null);
-                    Find.WindowStack.Add(new Dialog_ViewPsyche(pawn, false));
+                    Find.WindowStack.Add(new Dialog_ViewPsyche(pawn, Prefs.DevMode));
                 }
-                GUI.color = old;
+                GUI.color = oldColor;
             }
         }
     }

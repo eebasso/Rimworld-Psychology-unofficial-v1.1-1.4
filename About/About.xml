@@ -8,6 +8,7 @@
 		<li>1.2</li>
 		<li>1.3</li>
 	</supportedVersions>
+	<packageId>Community.Psychology.UnofficialUpdate</packageId>
 	<modDependencies>
 		<li>
 			<packageId>UnlimitedHugs.HugsLib</packageId>
@@ -24,6 +25,8 @@
 	<loadAfter>
 		<li>brrainz.harmony</li>
 		<li>UnlimitedHugs.HugsLib</li>
+		<li>void.charactereditor</li>
+		<li>EdB.PrepareCarefully</li>
 	</loadAfter>
 	<description>&lt;b&gt;Doesn't break saves!&lt;/b&gt;  &lt;b&gt;Mod options available!&lt;/b&gt;
 
@@ -77,6 +80,5 @@ Nationality: initial patching for Rimworld 1.1.
 Russian translation by Паулк, German translation by Chaos.
 KEMPER: further fixes for Rimworld 1.1.
 
-</description>
-	<packageId>Community.Psychology.UnofficialUpdate</packageId>
+	</description>
 </ModMetaData>

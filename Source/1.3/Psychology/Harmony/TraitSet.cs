@@ -8,7 +8,7 @@ using HarmonyLib;
 using UnityEngine;
 using System.Reflection;
 
-namespace Psychology.Harmony
+namespace Psychology.Harm
 {
     [HarmonyPatch(typeof(TraitSet), nameof(TraitSet.GainTrait))]
     public static class TraitSet_GainTraitPatch

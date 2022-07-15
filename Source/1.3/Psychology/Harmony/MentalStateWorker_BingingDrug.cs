@@ -7,7 +7,7 @@ using Verse.AI;
 using Verse;
 using HarmonyLib;
 
-namespace Psychology.Harmony
+namespace Psychology.Harm
 {
     [HarmonyPatch(typeof(MentalStateWorker_BingingDrug), nameof(MentalStateWorker_BingingDrug.StateCanOccur), new Type[] { typeof(Pawn) })]
     public static class MentalStateWorker_BingingDrugPatch
