@@ -12,18 +12,18 @@ namespace Psychology
     {
         public static Rect PsycheRect = new Rect(0f, 0f, 1f, 1f);
 
-        public const float RowTopPadding = 0.5f;
+        public const float RowTopPadding = 0f;
         public const float BoundaryPadding = 7f;
         public const float HighlightPadding = 3.5f;
         public const float TraitListPadding = 30f;
-        public const float SliderWidth = 20f;
+        public const float SliderWidth = 17f;
 
-        private static int OldSmallFontSize = Text.fontStyles[1].fontSize;
-        private static int OldMediumFontSize = Text.fontStyles[2].fontSize;
-        private static byte SexualityFontSize = 16;
-        private static byte OptionsFontSize = 16;
-        private static byte FiveFactorTitleFontSize = 18;
-        private static byte CategoryNodeFontSize = 16;
+        public static int OldSmallFontSize = Text.fontStyles[1].fontSize;
+        public static int OldMediumFontSize = Text.fontStyles[2].fontSize;
+        public static byte SexualityFontSize = 16;
+        public static byte OptionsFontSize = 16;
+        public static byte FiveFactorTitleFontSize = 18;
+        public static byte CategoryNodeFontSize = 16;
 
         public static Color TitleColor = ColoredText.TipSectionTitleColor;
         public static Color RatingColor = Color.yellow;
@@ -37,91 +37,91 @@ namespace Psychology
         public static bool AlphabeticalBoolCached = false;
         public static bool UseAntonymsBool = true;
         public static bool UseAntonymsBoolCached = true;
-        //public static bool ShowEditBool = false;
+        public static bool ShowNumbersBool = false;
 
-        private static Pawn PawnCached;
+        public static Pawn PawnCached;
+        //public static Rect TotalRectCached = new Rect(0f, 0f, 1f, 1f);
         public const int MaxTicks = 1000;
-        public static int ListTicker = 0;
-        public static int CloudTicker = 0;
+        public static int Ticker = 0;
 
-        private static Vector2 KinseyTextSize;
-        private static List<string> SexDriveText = new List<string>();
-        private static List<Vector2> SexDriveSize = new List<Vector2>();
-        private static float SexDriveWidth;
-        private static float SexDriveHeight;
-        private static List<string> RomDriveText = new List<string>();
-        private static List<Vector2> RomDriveSize = new List<Vector2>();
-        private static float RomDriveWidth;
-        private static float RomDriveHeight;
+        public static Vector2 KinseyTextSize;
+        public static List<string> SexDriveText = new List<string>();
+        public static List<Vector2> SexDriveSize = new List<Vector2>();
+        public static float SexDriveWidth;
+        public static float SexDriveHeight;
+        public static List<string> RomDriveText = new List<string>();
+        public static List<Vector2> RomDriveSize = new List<Vector2>();
+        public static float RomDriveWidth;
+        public static float RomDriveHeight;
 
-        private static List<string> OptionsText = new List<string>();
-        private static List<Vector2> OptionsSize = new List<Vector2>();
-        private static float OptionsWidth;
-        private static float OptionsHeight;
+        public static List<string> OptionsText = new List<string>();
+        public static List<Vector2> OptionsSize = new List<Vector2>();
+        public static float OptionsWidth;
+        public static float OptionsHeight;
 
-        private static string UseColorsText = "UseColors".Translate();
-        private static Vector2 UseColorsSize;
-        private static float UseColorsWidth;
-        private static float UseColorsHeight;
+        public static string UseColorsText = "UseColors".Translate();
+        public static Vector2 UseColorsSize;
+        public static float UseColorsWidth;
+        public static float UseColorsHeight;
 
-        private static string AlphabeticalText = "ListAlphabetical".Translate();
-        private static Vector2 AlphabeticalSize;
-        private static float AlphabeticalWidth;
-        private static float AlphabeticalHeight;
+        public static string AlphabeticalText = "ListAlphabetical".Translate();
+        public static Vector2 AlphabeticalSize;
+        public static float AlphabeticalWidth;
+        public static float AlphabeticalHeight;
 
-        private static string UseAntonymsText = "UseAntonyms".Translate();
-        private static Vector2 UseAntonymsSize;
-        private static float UseAntonymsWidth;
-        private static float UseAntonymsHeight;
+        public static string UseAntonymsText = "UseAntonyms".Translate();
+        public static Vector2 UseAntonymsSize;
+        public static float UseAntonymsWidth;
+        public static float UseAntonymsHeight;
 
-        private static string FiveFactorText = "FiveFactorModelTitle".Translate();
-        private static Vector2 FiveFactorSize;
+        public static string FiveFactorText = "FiveFactorModelTitle".Translate();
+        public static Vector2 FiveFactorSize;
 
-        private static string EditText = "EditPsyche".Translate();
-        private static Vector2 EditSize;
-        private static float EditWidth;
-        private static float EditHeight;
+        public static string EditText = "EditPsyche".Translate();
+        public static Vector2 EditSize;
+        public static float EditWidth;
+        public static float EditHeight;
 
-        private static float SexualityWidth;
-        private static float KinseyWidth;
+        public static float SexualityWidth;
+        public static float KinseyWidth;
 
-        private static readonly string[] BigFiveLetters = { "O", "C", "E", "A", "N" };
-        private static readonly Vector2[] BigFiveSpacings = { new Vector2(0f, -1f), new Vector2(1f, -0.32492f), new Vector2(0.726543f, 1f), new Vector2(-0.726543f, 1f), new Vector2(-1f, -0.32492f) };
-        private static readonly Vector3[] BigFiveHSVs = { new Vector3(125f, 1f, 0.95f), new Vector3(185f, 1f, 0.95f), new Vector3(55f, 1f, 0.95f), new Vector3(285f, 0.9f, 1f), new Vector3(345f, 1f, 0.95f) };
-        private static readonly Color[] BigFiveColors = new Color[5];
-        private const byte RadialCategories = 2;
-        private const float SideScaling = 0.809017f;
-        private static Texture2D PsycheLineTex = new Texture2D(1, 3, TextureFormat.ARGB32, mipChain: false);
-        private static Material PsycheYellowMat = SolidColorMaterials.SimpleSolidColorMaterial(new Color(1f, 1f, 0f, 0.5f));
-        private static float HighlightRadius = 0f;
+        public static readonly string[] BigFiveLetters = { "O", "C", "E", "A", "N" };
+        public static readonly Vector2[] BigFiveSpacings = { new Vector2(0f, -1f), new Vector2(1f, -0.32492f), new Vector2(0.726543f, 1f), new Vector2(-0.726543f, 1f), new Vector2(-1f, -0.32492f) };
+        public static readonly Vector3[] BigFiveHSVs = { new Vector3(125f, 1f, 0.95f), new Vector3(185f, 1f, 0.95f), new Vector3(55f, 1f, 0.95f), new Vector3(285f, 0.9f, 1f), new Vector3(345f, 1f, 0.95f) };
+        public static readonly Color[] BigFiveColors = new Color[5];
+        public const byte RadialCategories = 2;
+        public const float SideScaling = 0.809017f;
+        public static Texture2D PsycheLineTex = new Texture2D(1, 3, TextureFormat.ARGB32, mipChain: false);
+        public static Material PsycheYellowMat = SolidColorMaterials.SimpleSolidColorMaterial(new Color(1f, 1f, 0f, 0.5f));
+        public static float HighlightRadius = 0f;
 
         public static float NodeWidth = 0f;
-        private static float CategoryWidth = 0f;
-        private static float CategoryNodeHeight = 0f;
-        private static readonly string[] NodeDescriptions = { "Not", "Slightly", "Less", "Somewhat", "More", "Very", "Extremely" };
-        private static readonly Color[] CategoryColors = { new Color(1f, 0.2f, 0.2f, 0.8f), new Color(1f, 0.4f, 0.4f, 0.6f), new Color(1f, 0.6f, 0.6f, 0.4f), new Color(1f, 1f, 1f, 0.2f), new Color(0.6f, 1f, 0.6f, 0.4f), new Color(0.4f, 1f, 0.4f, 0.6f), new Color(0.2f, 1f, 0.2f, 0.8f) };
+        public static float CategoryWidth = 0f;
+        public static float CategoryNodeHeight = 0f;
+        public static readonly string[] NodeDescriptions = { "Not", "Slightly", "Less", "Somewhat", "More", "Very", "Extremely" };
+        public static readonly Color[] CategoryColors = { new Color(1f, 0.2f, 0.2f, 0.8f), new Color(1f, 0.4f, 0.4f, 0.6f), new Color(1f, 0.6f, 0.6f, 0.4f), new Color(1f, 1f, 1f, 0.2f), new Color(0.6f, 1f, 0.6f, 0.4f), new Color(0.4f, 1f, 0.4f, 0.6f), new Color(0.2f, 1f, 0.2f, 0.8f) };
         //public static bool NeedToCalculateNodeWidthBool = true;
-        private static Vector2 NodeScrollPosition = Vector2.zero;
-        private static List<Tuple<string, PersonalityNode, string>> LabelNodeList = new List<Tuple<string, PersonalityNode, string>>();
-        
-        //private static float ViewRectHeight = 0f;
+        public static Vector2 NodeScrollPosition = Vector2.zero;
+        public static List<Tuple<string, PersonalityNode, string>> LabelNodeList = new List<Tuple<string, PersonalityNode, string>>();
 
-        private static List<Rect> CloudTextRects = new List<Rect>();
-        private static List<Rect> CloudTightRects = new List<Rect>();
-        //private static List<Rect> CloudHighlightRects = new List<Rect>();
-        private static List<string> CloudTexts = new List<string>();
-        private static List<PersonalityNode> CloudNodes = new List<PersonalityNode>();
-        private static List<int> CloudFontSizes = new List<int>();
-        private const float PointsOnSpiral = 2000f;
-        private const float kSpiral = 60f * Mathf.PI;
-        private static float xMinTightScaling = 0.0125f;
-        private static float xMaxTightScaling = 0.0125f;
-        private static float yMinTightScaling = -0.135f;
-        private static float yMaxTightScaling = -0.000f;
+        //public static float ViewRectHeight = 0f;
 
-        private static readonly string[] CreativeLetters = { "C", "r", "e", "a", "t", "i", "v", "e" };
-        private static readonly Vector3[] CreativeHSVs = { new Vector3(0f, 0.9f, 1f), new Vector3(30f, 1f, 1f), new Vector3(55f, 0.9f, 0.85f), new Vector3(120f, 0.8f, 0.8f), new Vector3(195f, 1f, 1f), new Vector3(210f, 1f, 1f), new Vector3(280f, 0.8f, 1f), new Vector3(305f, 1f, 0.85f) };
-        private static string CreativeRainbow = "";
+        public static List<Rect> CloudTextRects = new List<Rect>();
+        public static List<Rect> CloudTightRects = new List<Rect>();
+        //public static List<Rect> CloudHighlightRects = new List<Rect>();
+        public static List<string> CloudTexts = new List<string>();
+        public static List<PersonalityNode> CloudNodes = new List<PersonalityNode>();
+        public static List<int> CloudFontSizes = new List<int>();
+        public const float PointsOnSpiral = 2000f;
+        public const float kSpiral = 60f * Mathf.PI;
+        public static float xMinTightScaling = 0.0125f;
+        public static float xMaxTightScaling = 0.0125f;
+        public static float yMinTightScaling = -0.135f;
+        public static float yMaxTightScaling = -0.000f;
+
+        public static readonly string[] CreativeLetters = { "C", "r", "e", "a", "t", "i", "v", "e" };
+        public static readonly Vector3[] CreativeHSVs = { new Vector3(0f, 0.9f, 1f), new Vector3(30f, 1f, 1f), new Vector3(55f, 0.9f, 0.85f), new Vector3(120f, 0.8f, 0.8f), new Vector3(195f, 1f, 1f), new Vector3(210f, 1f, 1f), new Vector3(280f, 0.8f, 1f), new Vector3(305f, 1f, 0.85f) };
+        public static string CreativeRainbow = "";
 
         static PsycheCardUtility()
         {
@@ -196,17 +196,17 @@ namespace Psychology
                 CategoryWidth = Mathf.Max(CategoryWidth, 1.025f * categoryTextSize.x);
                 CategoryNodeHeight = Mathf.Max(CategoryNodeHeight, categoryTextSize.y);
             }
-            style.fontSize = OldSmallFontSize;
-            //Text.Anchor = oldAnchor;
-        }
-
-        public static Rect CalculatePsycheRect(Pawn pawn)
-        {
-            if (PsycheRect != new Rect(0f, 0f, 1f, 1f) || !PsycheHelper.PsychologyEnabled(pawn))
+            foreach (PersonalityNodeDef def in DefDatabase<PersonalityNodeDef>.AllDefsListForReading)
             {
-                return PsycheRect;
+                string labelText = def.label.CapitalizeFirst();
+                string antoText = def.antonymLabel.CapitalizeFirst();
+                Vector2 labelSize = Text.CalcSize(labelText);
+                Vector2 antoSize = Text.CalcSize(antoText);
+                NodeWidth = Mathf.Max(NodeWidth, 1.025f * labelSize.x, 1.025f * antoSize.x);
+                CategoryNodeHeight = Mathf.Max(CategoryNodeHeight, labelSize.y, antoSize.y);
             }
-            CalculateNodeWidth(pawn);
+            style.fontSize = OldSmallFontSize;
+
             float personalityRectWidth = BoundaryPadding + TraitListPadding + CategoryWidth + TraitListPadding + SliderWidth + NodeWidth + TraitListPadding + BoundaryPadding;
             float forbiddenRectWidth = BoundaryPadding + HighlightPadding + SexualityWidth + BoundaryPadding;
             float totalRectWidth = personalityRectWidth + forbiddenRectWidth;
@@ -214,10 +214,19 @@ namespace Psychology
             HighlightRadius = 0.506f * forbiddenRectWidth;
             float totalRectHeight = forbiddenRectHeight + AlphabeticalHeight + BoundaryPadding + UseAntonymsHeight + BoundaryPadding + FiveFactorSize.y + BoundaryPadding + 2f * HighlightRadius + BoundaryPadding + EditHeight + BoundaryPadding;
             PsycheRect = new Rect(0f, 0f, totalRectWidth, totalRectHeight);
-            return PsycheRect;
         }
 
-        public static void DrawPsycheCard(Rect totalRect, Pawn pawn, bool OnMenu = false)
+        //public static Rect CalculatePsycheRect(Pawn pawn)
+        //{
+        //    //if (PsycheRect != new Rect(0f, 0f, 1f, 1f) || !PsycheHelper.PsychologyEnabled(pawn))
+        //    //{
+        //    //    return PsycheRect;
+        //    //}
+        //    //CalculateNodeWidth(pawn);
+        //    return PsycheRect;
+        //}
+
+        public static void DrawPsycheCard(Rect totalRect, Pawn pawn, bool OnWindow = true, bool ShowNumbers = false)
         {
             GUI.BeginGroup(totalRect);
             totalRect.position = Vector2.zero;
@@ -231,11 +240,12 @@ namespace Psychology
                 return;
             }
             PawnCached = PawnCached == null ? pawn : PawnCached;
-            CalculateNodeWidth(pawn);
+            ShowNumbersBool = ShowNumbers || Prefs.DevMode;
+            //CalculateNodeWidth(pawn);
             //float totalRectX = CategoryWidth + NodeWidth + SexualityWidth + 4f * BoundaryPadding + 3f * TraitListPadding + 3f * TraitListPadding;
             //Rect totalRect = new Rect(0f, 0f, totalRectWidth, totalRectHeight);
-
-            Rect kinseyRect = new Rect(totalRect.xMax - SexualityWidth - BoundaryPadding, totalRect.y + BoundaryPadding, OnMenu ? SexualityWidth : KinseyWidth, KinseyTextSize.y);
+            float kWidth = OnWindow || Prefs.DevMode ? SexualityWidth : KinseyWidth;
+            Rect kinseyRect = new Rect(totalRect.xMax - SexualityWidth - BoundaryPadding, totalRect.y + BoundaryPadding, kWidth, KinseyTextSize.y);
             Rect sexDriveRect = new Rect(kinseyRect.x, kinseyRect.yMax + RowTopPadding, SexualityWidth, SexDriveHeight);
             Rect romDriveRect = new Rect(kinseyRect.x, sexDriveRect.yMax + RowTopPadding, SexualityWidth, RomDriveHeight);
 
@@ -291,7 +301,7 @@ namespace Psychology
                     {
                         sexString += "\n\n" + (string)"AsexualDescription".Translate();
                     }
-                    if (Prefs.DevMode)
+                    if (ShowNumbersBool)
                     {
                         string rawRating = PsycheHelper.Comp(pawn).Sexuality.sexDrive.ToString(RatingFormat, CultureInfo.InvariantCulture).Colorize(RatingColor);
                         string adjRating = PsycheHelper.Comp(pawn).Sexuality.AdjustedSexDrive.ToString(RatingFormat, CultureInfo.InvariantCulture).Colorize(RatingColor);
@@ -310,7 +320,7 @@ namespace Psychology
                     {
                         romString += "\n\n" + (string)"AromanticDescription".Translate();
                     }
-                    if (Prefs.DevMode)
+                    if (ShowNumbersBool)
                     {
                         string rawRating = PsycheHelper.Comp(pawn).Sexuality.romanticDrive.ToString(RatingFormat, CultureInfo.InvariantCulture).Colorize(RatingColor);
                         string adjRating = PsycheHelper.Comp(pawn).Sexuality.AdjustedRomanticDrive.ToString(RatingFormat, CultureInfo.InvariantCulture).Colorize(RatingColor);
@@ -419,6 +429,7 @@ namespace Psychology
                         }
                     }
                 }
+
                 //float[] bigFiveList = { 0.8f, 0.3f, 0.5f, 0.1f, 0.6f };
                 float[] bigFiveList = BigFiveRatings(pawn);
 
@@ -431,11 +442,7 @@ namespace Psychology
                 }
                 yellowVerticies.Add(pentaCenter);
                 PolygonUtility.DrawPolygon(yellowVerticies, yellowTriangles, PsycheYellowMat);
-                //for (int p = 0; p < 5; p++)
-                //{
-                //    PsycheCardDrawLine(yellowVerticies[p], yellowVerticies[(p + 1) % 5], new Color(1f, 1f, 0.25f, 0.75f), 2.5f);
-                //}
-                
+
                 for (byte p = 0; p < 5; p++)
                 {
                     string letter = BigFiveLetters[p];
@@ -466,7 +473,7 @@ namespace Psychology
                     {
                         string bigFiveDescription = ("BigFive" + letter + "Description").Translate();
                         bigFiveDescription = bigFiveDescription.ReplaceFirst("{0}", ("BigFive" + letter + "Description0").Translate().Colorize(bigFiveTitleColor));
-                        if (Prefs.DevMode)
+                        if (ShowNumbersBool)
                         {
                             bigFiveDescription += "\n\nRating: " + bigFiveRating.ToString(RatingFormat, CultureInfo.InvariantCulture).Colorize(RatingColor);
                         }
@@ -501,17 +508,17 @@ namespace Psychology
         [LogPerformance]
         public static void PersonalityTraitList(Rect personalityRect, Pawn pawn)
         {
-            if (ListTicker % 100 == 0)
+            //if (ListTicker % 100 == 0)
+            //{
+            //    Log.Message("ListTicker = " + ListTicker);
+            //}
+            if (Ticker > 0 && pawn == PawnCached && DistanceFromMiddle == DistanceFromMiddleCached && UseColorsBool == UseColorsBoolCached && UseAntonymsBool == UseAntonymsBoolCached && AlphabeticalBool == AlphabeticalBoolCached && LabelNodeList.Any())
             {
-                Log.Message("ListTicker = " + ListTicker);
-            }
-            if (ListTicker > 0 && pawn == PawnCached && DistanceFromMiddle == DistanceFromMiddleCached && UseColorsBool == UseColorsBoolCached && UseAntonymsBool == UseAntonymsBoolCached && AlphabeticalBool == AlphabeticalBoolCached && LabelNodeList.Any())
-            {
-                ListTicker--;
+                Ticker--;
                 DrawTraitList(personalityRect);
                 return;
             }
-            ListTicker = MaxTicks;
+            Ticker = MaxTicks;
             PawnCached = pawn;
             DistanceFromMiddleCached = DistanceFromMiddle;
             UseColorsBoolCached = UseColorsBool;
@@ -551,26 +558,26 @@ namespace Psychology
             DrawTraitList(personalityRect);
         }
 
-        public static void CalculateNodeWidth(Pawn pawn)
-        {
-            if (NodeWidth != 0f)
-            {
-                return;
-            }
-            Text.Font = GameFont.Small;
-            GUIStyle style = Text.fontStyles[1];
-            style.fontSize = CategoryNodeFontSize;
-            foreach (PersonalityNode node in PsycheHelper.Comp(pawn).Psyche.PersonalityNodes)
-            {
-                string labelText = node.def.label.CapitalizeFirst();
-                string antoText = node.def.antonymLabel.CapitalizeFirst();
-                Vector2 labelSize = Text.CalcSize(labelText);
-                Vector2 antoSize = Text.CalcSize(antoText);
-                NodeWidth = Mathf.Max(NodeWidth, 1.025f * labelSize.x, 1.025f * antoSize.x);
-                CategoryNodeHeight = Mathf.Max(CategoryNodeHeight, labelSize.y, antoSize.y);
-            }
-            style.fontSize = OldSmallFontSize;
-        }
+        //public static void CalculateNodeWidth(Pawn pawn)
+        //{
+        //    if (NodeWidth != 0f)
+        //    {
+        //        return;
+        //    }
+        //    Text.Font = GameFont.Small;
+        //    GUIStyle style = Text.fontStyles[1];
+        //    style.fontSize = CategoryNodeFontSize;
+        //    foreach (PersonalityNode node in PsycheHelper.Comp(pawn).Psyche.PersonalityNodes)
+        //    {
+        //        string labelText = node.def.label.CapitalizeFirst();
+        //        string antoText = node.def.antonymLabel.CapitalizeFirst();
+        //        Vector2 labelSize = Text.CalcSize(labelText);
+        //        Vector2 antoSize = Text.CalcSize(antoText);
+        //        NodeWidth = Mathf.Max(NodeWidth, 1.025f * labelSize.x, 1.025f * antoSize.x);
+        //        CategoryNodeHeight = Mathf.Max(CategoryNodeHeight, labelSize.y, antoSize.y);
+        //    }
+        //    style.fontSize = OldSmallFontSize;
+        //}
 
         public static void DrawTraitList(Rect personalityRect)
         {
@@ -578,12 +585,12 @@ namespace Psychology
             GUIStyle style = Text.fontStyles[1];
             TextAnchor oldAnchor = Text.Anchor;
             float yCompression = 0.9f;
-            float highlightShift = 0.7f * (1f - yCompression);
-            
-            Rect viewRect = new Rect(0f, 0f, personalityRect.width - 20f, yCompression * CategoryNodeHeight * LabelNodeList.Count() + 10f);
+            float highlightShift = 0.07f;
+
+            Rect viewRect = new Rect(0f, 0f, personalityRect.width - 20f, LabelNodeList.Count() * yCompression * CategoryNodeHeight + 4f);
             //Rect viewRect = new Rect(personalityRect.x, personalityRect.y, 0.9f * personalityRect.width, (categoryNodeHeight + RowTopPadding) * categoryIndexList.Count);
             Widgets.BeginScrollView(personalityRect, ref NodeScrollPosition, viewRect);
-            float categoryNodeVerticalPosition = personalityRect.y;
+            float categoryNodeVerticalPosition = 0f;
             //float xSpacing = BoundaryPadding;
             float xSpacing = Mathf.Max(BoundaryPadding, 0.33f * (viewRect.width - NodeWidth - CategoryWidth));
             float categoryRectX = viewRect.center.x - 0.5f * (CategoryWidth + xSpacing + NodeWidth);
@@ -616,18 +623,18 @@ namespace Psychology
 
         public static void PersonalityWordCloud(Rect totalRect, Vector2 cloudCenter, Rect forbiddenRect, Pawn pawn, Rect editPsycheRect)
         {
-            if (CloudTicker % 100 == 0)
+            //if (Ticker % 100 == 0)
+            //{
+            //    Log.Message("Ticker = " + Ticker);
+            //}
+            if (Ticker > 0 && pawn == PawnCached && DistanceFromMiddle == DistanceFromMiddleCached && UseColorsBool == UseColorsBoolCached && CloudTextRects.Any())
             {
-                Log.Message("CloudTicker = " + CloudTicker);
-            }
-            if (CloudTicker > 0 && pawn == PawnCached && DistanceFromMiddle == DistanceFromMiddleCached && UseColorsBool == UseColorsBoolCached && CloudTextRects.Any())
-            {
-                CloudTicker--;
+                Ticker--;
                 DrawWordCloud();
                 return;
             }
-            Log.Message("Recompute cloud");
-            CloudTicker = MaxTicks;
+            //Log.Message("Recompute cloud");
+            Ticker = MaxTicks;
             PawnCached = pawn;
             DistanceFromMiddleCached = DistanceFromMiddle;
             UseColorsBoolCached = UseColorsBool;
@@ -657,7 +664,7 @@ namespace Psychology
                 //style.fontSize = Mathf.RoundToInt(Mathf.Clamp(35f * Mathf.Pow(Mathf.Abs(2 * displacement), 0.5f), 10f, 35f));
                 //style.fontSize = Mathf.FloorToInt(30f * Mathf.Pow(Mathf.Abs(2 * displacement), 0.25f)) + 5;
                 //style.fontSize = Mathf.RoundToInt(Mathf.Lerp(35f, 8f, i / 36f));
-                
+
                 UseAntonymsBool = true;
                 string personalityText = ColorizedNodeText(node, displacement);
                 UseAntonymsBool = UseAntonymsBoolCached;
@@ -718,7 +725,7 @@ namespace Psychology
             DrawWordCloud();
         }
 
-        private static void DrawWordCloud()
+        public static void DrawWordCloud()
         {
             Text.Font = GameFont.Medium;
             GUIStyle style = Text.fontStyles[2];
@@ -735,7 +742,7 @@ namespace Psychology
             Text.Font = GameFont.Small;
         }
 
-        private static bool RectDoesNotOverlapWordCloud(Rect foundRectangle, Rect totalRect, Rect forbiddenRect1, Rect forbiddenRect2)
+        public static bool RectDoesNotOverlapWordCloud(Rect foundRectangle, Rect totalRect, Rect forbiddenRect1, Rect forbiddenRect2)
         {
             foreach (Rect rect in CloudTightRects)
             {
@@ -786,7 +793,7 @@ namespace Psychology
                     string convoString = "\n\n" + "ConversationTooltip".Translate(string.Join("PsycheComma".Translate(), convoTopics.Take(convoTopics.Count - 1).ToArray()), convoTopics.Last());
                     tooltipString += convoString;
                 }
-                if (Prefs.DevMode)
+                if (ShowNumbersBool)
                 {
                     string rawRating = node.rawRating.ToString(RatingFormat, CultureInfo.InvariantCulture).Colorize(RatingColor);
                     string adjRating = node.AdjustedRating.ToString(RatingFormat, CultureInfo.InvariantCulture).Colorize(RatingColor);

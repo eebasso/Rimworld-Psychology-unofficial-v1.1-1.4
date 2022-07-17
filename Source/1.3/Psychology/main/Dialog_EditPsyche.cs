@@ -28,7 +28,8 @@ namespace Psychology
             }
             GUI.EndGroup();
 
-            float editHeight = PsycheCardUtility.CalculatePsycheRect(pawn).height;
+            //float editHeight = PsycheCardUtility.CalculatePsycheRect(pawn).height;
+            float editHeight = PsycheCardUtility.PsycheRect.height;
             float editWidth = EditPsycheUtility.CalculateEditWidth(pawn);
 
             inRect = new Rect(0f, 0f, editWidth, editHeight);

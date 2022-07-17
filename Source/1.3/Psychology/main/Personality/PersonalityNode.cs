@@ -60,36 +60,6 @@ namespace Psychology
             Scribe_Values.Look(ref this.rawRating, "rawRating", -1f, false);
         }
 
-        public override int GetHashCode()
-        {
-            return this.def.defName.GetHashCode();
-        }
-
-        public bool HasPlatformIssue
-        {
-            get
-            {
-                Log.Message("Defname = " + this.def.defName);
-                Log.Message("this.def.platformIssueHigh != null: " + (this.def.platformIssueHigh != null).ToString());
-                return this.def.platformIssueHigh != null;
-            }
-        }
-
-        public bool HasConvoTopics
-        {
-            get
-            {
-                Log.Message("Defname = " + this.def.defName);
-                Log.Message("this.def.conversationTopics != null: " + (this.def.conversationTopics != null).ToString());
-                if (this.def.conversationTopics != null)
-                {
-                    Log.Message("this.def.conversationTopics.Any(): " + this.def.conversationTopics.Any().ToString());
-                    return this.def.conversationTopics.Any();
-                }
-                return false;
-            }
-        }
-
         public HashSet<PersonalityNode> ParentNodes
         {
             [LogPerformance]
@@ -106,15 +76,6 @@ namespace Psychology
                 return this.parents;
             }
         }
-
-        public string PlatformIssue
-        {
-            get
-            {
-                return this.AdjustedRating < 0.5f ? this.def.platformIssueLow : this.def.platformIssueHigh;
-            }
-        }
-
 
         public float AdjustedRating
         {
@@ -264,6 +225,44 @@ namespace Psychology
         public float AdjustHook(float rating)
         {
             return rating;
+        }
+
+        public override int GetHashCode()
+        {
+            return this.def.defName.GetHashCode();
+        }
+
+        public bool HasPlatformIssue
+        {
+            get
+            {
+                Log.Message("Defname = " + this.def.defName);
+                Log.Message("this.def.platformIssueHigh != null: " + (this.def.platformIssueHigh != null).ToString());
+                return this.def.platformIssueHigh != null;
+            }
+        }
+
+        public bool HasConvoTopics
+        {
+            get
+            {
+                Log.Message("Defname = " + this.def.defName);
+                Log.Message("this.def.conversationTopics != null: " + (this.def.conversationTopics != null).ToString());
+                if (this.def.conversationTopics != null)
+                {
+                    Log.Message("this.def.conversationTopics.Any(): " + this.def.conversationTopics.Any().ToString());
+                    return this.def.conversationTopics.Any();
+                }
+                return false;
+            }
+        }
+
+        public string PlatformIssue
+        {
+            get
+            {
+                return this.AdjustedRating < 0.5f ? this.def.platformIssueLow : this.def.platformIssueHigh;
+            }
         }
 
     }

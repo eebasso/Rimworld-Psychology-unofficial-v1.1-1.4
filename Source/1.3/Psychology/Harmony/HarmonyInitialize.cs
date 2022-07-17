@@ -10,29 +10,37 @@ namespace Psychology.Harm
 
         static HarmonyInitialize()
         {
-            harmonyInstance = new Harmony("Psychology");
+            Log.Message("Initializing Psychology Patches");
+            harmonyInstance = new Harmony("Community.Psychology.UnofficialUpdate");
             harmonyInstance.PatchAll();
-
-            if (ModsConfig.IsActive("CharacterEditor"))
+            Log.Message("Done with PatchAll");
+            if (ModsConfig.IsActive("void.charactereditor"))
             {
-                harmonyInstance.Patch(
+                Log.Message("Running CEditor patch");
+                HarmonyPatches.DoCharacterEditorPatch(harmonyInstance);
+            }
+            if (ModsConfig.IsActive("EdB.PrepareCarefully"))
+            {
+                Log.Message("Running PrepareCarefully patch");
+                HarmonyPatches.DoPrepareCarefullyPatch(harmonyInstance);
+            }
+        }
+    }
+    public class HarmonyPatches
+    {
+        public static void DoCharacterEditorPatch(Harmony harmonyInstance)
+        {
+            harmonyInstance.Patch(
                     AccessTools.Method(typeof(CharacterEditor.DialogPsychology), nameof(CharacterEditor.DialogPsychology.DoWindowContents)),
-                    postfix: new HarmonyMethod(typeof(), nameof())
-                );
-
-            }
-
-            if (!ModsConfig.IsActive("EdB.PrepareCarefully"))
-            {
-                harmonyInstance.Patch(
-                    AccessTools.Method(typeof(VerbTracker), "GetVerbsCommands"),
-                    postfix: new HarmonyMethod(patchType, nameof(VerbTrackerGetVerbsCommands_Postfix))
-                );
-                harmonyInstance.Patch(
-                    AccessTools.Method(typeof(PawnGenerator), "PostProcessGeneratedGear"),
-                    postfix: new HarmonyMethod(patchType, nameof(PawnGeneratorPostProcessGeneratedGear_Postfix))
-                );
-            }
+                    prefix: new HarmonyMethod(typeof(CharacterEditor_DialogPsychology_Patch), nameof(CharacterEditor_DialogPsychology_Patch.DoWindowContents))
+            );
+        }
+        public static void DoPrepareCarefullyPatch(Harmony harmonyInstance)
+        {
+            harmonyInstance.Patch(
+                    AccessTools.Method(typeof(EdB.PrepareCarefully.PanelBackstory), nameof(EdB.PrepareCarefully.PanelBackstory.Draw)),
+                    prefix: new HarmonyMethod(typeof(EdBPrepareCarefully_PanelBackstory_Patch), nameof(EdBPrepareCarefully_PanelBackstory_Patch.Draw))
+            );
         }
     }
 }

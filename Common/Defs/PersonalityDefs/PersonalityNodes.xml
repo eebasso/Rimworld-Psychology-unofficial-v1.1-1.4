@@ -220,42 +220,42 @@
 			<li>
 				<trait>Nerves</trait>
 				<degree>2</degree>
-				<modifier>0.85</modifier>
+				<modifier>0.95</modifier>
 			</li>
 			<li>
 				<trait>Nerves</trait>
 				<degree>1</degree>
-				<modifier>0.7</modifier>
+				<modifier>0.9</modifier>
 			</li>
 			<li>
 				<trait>Nerves</trait>
 				<degree>-1</degree>
-				<modifier>-0.7</modifier>
+				<modifier>-0.9</modifier>
 			</li>
 			<li>
 				<trait>Nerves</trait>
 				<degree>-2</degree>
-				<modifier>-0.85</modifier>
+				<modifier>-0.95</modifier>
 			</li>
 			<li>
 				<trait>Neurotic</trait>
 				<degree>1</degree>
-				<modifier>-0.8</modifier>
+				<modifier>-0.9</modifier>
 			</li>
 			<li>
 				<trait>Neurotic</trait>
 				<degree>2</degree>
-				<modifier>-0.9</modifier>
+				<modifier>-0.95</modifier>
 			</li>
 			<li>
 				<trait>NaturalMood</trait>
 				<degree>-1</degree>
-				<modifier>-0.6</modifier>
+				<modifier>-0.8</modifier>
 			</li>
 			<li>
 				<trait>NaturalMood</trait>
 				<degree>-2</degree>
-				<modifier>-0.8</modifier>
+				<modifier>-0.9</modifier>
 			</li>
 			<li>
 				<trait>Jealous</trait>
@@ -264,6 +264,10 @@
 			<li>
 				<trait>TooSmart</trait>
 				<modifier>-0.25</modifier>
+			</li>
+			<li>
+				<trait>TorturedArtist</trait>
+				<modifier>-0.8</modifier>
 			</li>
 		</traitModifiers>
 		<preferredDateHours>
@@ -345,13 +349,17 @@
 				<trait>BleedingHeart</trait>
 				<modifier>0.25</modifier>
 			</li>
+			<li>
+				<trait>Unstable</trait>
+				<modifier>0.95</modifier>
+			</li>
 		</traitModifiers>
 		<bigFiveModifiers>
 			<li>0</li>
 			<li>0</li>
 			<li>0.25</li>
 			<li>0</li>
-			<li>0.75</li>
+			<li>1</li>
         </bigFiveModifiers>
 	</Psychology.PersonalityNodeDef>
 
@@ -387,11 +395,11 @@
 		<traitModifiers>
 			<li>
 				<trait>Psychopath</trait>
-				<modifier>-0.9</modifier>
+				<modifier>-0.95</modifier>
 			</li>
 			<li>
 				<trait>Bloodlust</trait>
-				<modifier>-0.5</modifier>
+				<modifier>-0.75</modifier>
 			</li>
 			<li>
 				<trait>Desensitized</trait>
@@ -399,11 +407,11 @@
 			</li>
 			<li>
 				<trait>Kind</trait>
-				<modifier>0.5</modifier>
+				<modifier>0.6</modifier>
 			</li>
 			<li>
 				<trait>BleedingHeart</trait>
-				<modifier>0.75</modifier>
+				<modifier>0.95</modifier>
 			</li>
 		</traitModifiers>
 		<preferredDateHours>
@@ -412,7 +420,7 @@
 			<li>18</li>
 		</preferredDateHours>
 		<bigFiveModifiers>
-			<li>0</li>
+			<li>0.25</li>
 			<li>0</li>
 			<li>0</li>
 			<li>1</li>
@@ -523,10 +531,10 @@
 			</li>
 		</traitModifiers>
 		<bigFiveModifiers>
-			<li>-1</li>
+			<li>-0.5</li>
 			<li>0</li>
 			<li>0</li>
-			<li>-1</li>
+			<li>-0.5</li>
 			<li>1</li>
         </bigFiveModifiers>
 	</Psychology.PersonalityNodeDef>
@@ -558,7 +566,7 @@
 		<parents>
 			<li>
 				<node>Experimental</node>
-				<modifier>-0.5</modifier>
+				<modifier>-0.8</modifier>
 			</li>
 			<li>
 				<node>Thoughtful</node>
@@ -706,22 +714,22 @@
 			<li>
 				<trait>NaturalMood</trait>
 				<degree>2</degree>
-				<modifier>0.9</modifier>
+				<modifier>0.95</modifier>
 			</li>
 			<li>
 				<trait>NaturalMood</trait>
 				<degree>1</degree>
-				<modifier>0.5</modifier>
+				<modifier>0.9</modifier>
 			</li>
 			<li>
 				<trait>NaturalMood</trait>
 				<degree>-1</degree>
-				<modifier>-0.5</modifier>
+				<modifier>-0.9</modifier>
 			</li>
 			<li>
 				<trait>NaturalMood</trait>
 				<degree>-2</degree>
-				<modifier>-0.9</modifier>
+				<modifier>-0.95</modifier>
 			</li>
 		</traitModifiers>
 		<preferredDateHours>
@@ -919,20 +927,20 @@
 		<traitModifiers>
 			<li>
 				<trait>Psychopath</trait>
-				<modifier>-0.8</modifier>
+				<modifier>-0.9</modifier>
 			</li>
 			<li>
 				<trait>Kind</trait>
-				<modifier>0.5</modifier>
+				<modifier>0.6</modifier>
 			</li>
 			<li>
 				<trait>BleedingHeart</trait>
-				<modifier>0.8</modifier>
+				<modifier>0.9</modifier>
 			</li>
 		</traitModifiers>
 		<bigFiveModifiers>
 			<li>0</li>
-			<li>0.5</li>
+			<li>0</li>
 			<li>0</li>
 			<li>1</li>
 			<li>0</li>
@@ -970,15 +978,15 @@
 		<parents>
 			<li>
 				<node>Experimental</node>
-				<modifier>0.7</modifier>
+				<modifier>0.8</modifier>
 			</li>
 			<li>
 				<node>Intelligent</node>
-				<modifier>0.3</modifier>
+				<modifier>0.6</modifier>
 			</li>
 			<li>
 				<node>Spontaneous</node>
-				<modifier>0.2</modifier>
+				<modifier>0.4</modifier>
 			</li>
 		</parents>
 		<skillModifiers>
@@ -986,6 +994,12 @@
 				<skill>Artistic</skill>
 			</li>
 		</skillModifiers>
+		<traitModifiers>
+			<li>
+				<trait>TorturtedArtist</trait>
+				<modifier>0.95</modifier>
+			</li>
+		</traitModifiers>
 		<incapableModifiers>
 			<li>
 				<type>Art</type>
@@ -1039,7 +1053,7 @@
 			</li>
 			<li>
 				<node>Trusting</node>
-				<modifier>0.7</modifier>
+				<modifier>1</modifier>
 			</li>
 			<li>
 				<node>Judgmental</node>
@@ -1053,7 +1067,7 @@
 			</li>
 			<li>
 				<trait>Kind</trait>
-				<modifier>0.5</modifier>
+				<modifier>0.8</modifier>
 			</li>
 		</traitModifiers>
 		<bigFiveModifiers>
@@ -1176,7 +1190,7 @@
 			<li>0</li>
 			<li>0</li>
 			<li>0</li>
-			<li>0</li>
+			<li>0.5</li>
         </bigFiveModifiers>
 	</Psychology.PersonalityNodeDef>
 
@@ -1205,41 +1219,49 @@
 		<parents>
 			<li>
 				<node>Confident</node>
-				<modifier>0.25</modifier>
+				<modifier>0.3</modifier>
 			</li>
 			<li>
 				<node>Upbeat</node>
-				<modifier>0.75</modifier>
+				<modifier>0.8</modifier>
+			</li>
+			<li>
+				<node>LaidBack</node>
+				<modifier>0.5</modifier>
 			</li>
 		</parents>
 		<traitModifiers>
 			<li>
 				<trait>NaturalMood</trait>
 				<degree>2</degree>
-				<modifier>0.85</modifier>
+				<modifier>0.95</modifier>
 			</li>
 			<li>
 				<trait>NaturalMood</trait>
 				<degree>1</degree>
-				<modifier>0.85</modifier>
+				<modifier>0.95</modifier>
 			</li>
 			<li>
 				<trait>NaturalMood</trait>
 				<degree>-1</degree>
-				<modifier>-0.85</modifier>
+				<modifier>-0.95</modifier>
 			</li>
 			<li>
 				<trait>NaturalMood</trait>
 				<degree>-2</degree>
+				<modifier>-0.95</modifier>
+			</li>
+			<li>
+				<trait>TorturedArtist</trait>
 				<modifier>-0.85</modifier>
 			</li>
 		</traitModifiers>
 		<bigFiveModifiers>
 			<li>0</li>
-			<li>0.15</li>
-			<li>0.35</li>
-			<li>0.15</li>
-			<li>-0.35</li>
+			<li>0</li>
+			<li>0.5</li>
+			<li>0</li>
+			<li>-0.5</li>
         </bigFiveModifiers>
 	</Psychology.PersonalityNodeDef>
 
@@ -1265,11 +1287,7 @@
 		<parents>
 			<li>
 				<node>Emotional</node>
-				<modifier>0.67</modifier>
-			</li>
-			<li>
-				<node>Extroverted</node>
-				<modifier>0.33</modifier>
+				<modifier>1</modifier>
 			</li>
 		</parents>
 		<preferredDateHours>
@@ -1342,7 +1360,7 @@
 		</preferredDateHours>
 		<bigFiveModifiers>
 			<li>0</li>
-			<li>1</li>
+			<li>0.5</li>
 			<li>0</li>
 			<li>-1</li>
 			<li>0</li>
@@ -1386,7 +1404,7 @@
 			</li>
 		</parents>
 		<bigFiveModifiers>
-			<li>0.33</li>
+			<li>0.5</li>
 			<li>0</li>
 			<li>0</li>
 			<li>0</li>
@@ -1421,15 +1439,19 @@
 		<parents>
 			<li>
 				<node>Creative</node>
-				<modifier>0.2</modifier>
+				<modifier>0.25</modifier>
 			</li>
 			<li>
 				<node>Pure</node>
-				<modifier>-0.4</modifier>
+				<modifier>-0.5</modifier>
 			</li>
 			<li>
 				<node>Adventurous</node>
-				<modifier>0.3</modifier>
+				<modifier>0.5</modifier>
+			</li>
+			<li>
+				<node>Experimental</node>
+				<modifier>0.75</modifier>
 			</li>
 		</parents>
 		<traitModifiers>
@@ -1441,7 +1463,7 @@
 			<li>
 				<trait>DrugDesire</trait>
 				<degree>1</degree>
-				<modifier>0.65</modifier>
+				<modifier>0.9</modifier>
 			</li>
 			<li>
 				<trait>DrugDesire</trait>
@@ -1499,15 +1521,15 @@
 		<parents>
 			<li>
 				<node>Logical</node>
-				<modifier>0.22</modifier>
+				<modifier>0.3</modifier>
 			</li>
 			<li>
 				<node>Creative</node>
-				<modifier>0.22</modifier>
+				<modifier>0.2</modifier>
 			</li>
 			<li>
 				<node>Extroverted</node>
-				<modifier>-0.22</modifier>
+				<modifier>-0.3</modifier>
 			</li>
 		</parents>
 		<traitModifiers>
@@ -1570,7 +1592,7 @@
 		<traitModifiers>
 			<li>
 				<trait>Greedy</trait>
-				<modifier>-0.75</modifier>
+				<modifier>-0.9</modifier>
 			</li>
 		</traitModifiers>
 		<bigFiveModifiers>
@@ -1768,7 +1790,7 @@
 			<li>0</li>
 			<li>0</li>
 			<li>0</li>
-			<li>-0.1</li>
+			<li>-0.5</li>
         </bigFiveModifiers>
 	</Psychology.PersonalityNodeDef>
 
@@ -1831,9 +1853,9 @@
 		</preferredDateHours>
 		<bigFiveModifiers>
 			<li>0</li>
-			<li>0.15</li>
+			<li>0.2</li>
 			<li>0</li>
-			<li>0.5</li>
+			<li>0.6</li>
 			<li>0</li>
         </bigFiveModifiers>
 	</Psychology.PersonalityNodeDef>
@@ -1920,11 +1942,11 @@
 			<li>2</li>
 		</preferredDateHours>
 		<bigFiveModifiers>
-			<li>0.33</li>
+			<li>0.25</li>
 			<li>0</li>
-			<li>0.33</li>
+			<li>0.5</li>
 			<li>0</li>
-			<li>0.33</li>
+			<li>-0.5</li>
         </bigFiveModifiers>
 	</Psychology.PersonalityNodeDef>
 
@@ -1959,7 +1981,7 @@
 			</li>
 			<li>
 				<node>Confident</node>
-				<modifier>0.2</modifier>
+				<modifier>0.5</modifier>
 			</li>
 			<li>
 				<node>Romantic</node>
@@ -2044,10 +2066,10 @@
 		</incapableModifiers>
 		<bigFiveModifiers>
 			<li>0</li>
+			<li>0.2</li>
+			<li>-0.2</li>
 			<li>0</li>
-			<li>-0.25</li>
-			<li>0</li>
-			<li>0</li>
+			<li>-0.2</li>
         </bigFiveModifiers>
 	</Psychology.PersonalityNodeDef>
 
@@ -2085,26 +2107,26 @@
 		<traitModifiers>
 			<li>
 				<trait>Cannibal</trait>
-				<modifier>-0.6</modifier>
-			</li>
-			<li>
-				<trait>Bloodlust</trait>
 				<modifier>-0.7</modifier>
 			</li>
 			<li>
-				<trait>Psychopath</trait>
+				<trait>Bloodlust</trait>
 				<modifier>-0.8</modifier>
 			</li>
 			<li>
+				<trait>Psychopath</trait>
+				<modifier>-0.9</modifier>
+			</li>
+			<li>
 				<trait>Desensitized</trait>
-				<modifier>-0.5</modifier>
+				<modifier>-0.7</modifier>
 			</li>
 		</traitModifiers>
 		<bigFiveModifiers>
+			<li>-0.2</li>
 			<li>0</li>
 			<li>0</li>
-			<li>0</li>
-			<li>0.25</li>
+			<li>0.4</li>
 			<li>0</li>
         </bigFiveModifiers>
 	</Psychology.PersonalityNodeDef>
@@ -2134,31 +2156,22 @@
 		<platformIssueHigh>My commitment to ideals would make me a good leader.</platformIssueHigh>
 		<platformIssueLow>My experience and know-how would make me a good leader.</platformIssueLow>
 		<parents>
-			<!--<li>
+			<li>
 				<node>Experimental</node>
-				<modifier>-0.33</modifier>
+				<modifier>-0.5</modifier>
 			</li>
 			<li>
-				<node>Rational</node>
-				<modifier>-0.33</modifier>
-			</li>-->
-			<!--<li>
 				<node>Trusting</node>
-				<modifier>0.33</modifier>
-            </li>-->
+				<modifier>0.5</modifier>
+            </li>
 			<li>
 				<node>Cultured</node>
 				<modifier>-0.5</modifier>
 			</li>
 			<li>
 				<node>Rational</node>
-				<modifier>-0.25</modifier>
+				<modifier>-0.5</modifier>
 			</li>
-			<li>
-				<node>Emotional</node>
-				<modifier>0.25</modifier>
-			</li>
-
 		</parents>
 		<preferredDateHours>
 			<li>9</li>
@@ -2167,11 +2180,11 @@
 			<li>12</li>
 		</preferredDateHours>
 		<bigFiveModifiers>
+			<li>-0.2</li>
 			<li>0</li>
 			<li>0</li>
 			<li>0</li>
-			<li>0</li>
-			<li>0</li>
+			<li>0.2</li>
         </bigFiveModifiers>
 	</Psychology.PersonalityNodeDef>
 

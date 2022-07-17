@@ -30,7 +30,8 @@ namespace Psychology
             }
             GUI.EndGroup();
 
-            Rect psycheRect = PsycheCardUtility.CalculatePsycheRect(pawn);
+            //Rect psycheRect = PsycheCardUtility.CalculatePsycheRect(pawn);
+            Rect psycheRect = PsycheCardUtility.PsycheRect;
             inRect = psycheRect;
             Rect editRect = new Rect(0f, 0f, 1f, 1f);
             if (EditAllowedBool)
@@ -41,11 +42,10 @@ namespace Psychology
             }
 
             Find.WindowStack.currentlyDrawnWindow.windowRect = inRect;
-            Find.WindowStack.currentlyDrawnWindow.windowRect.x = 0.5f * UI.screenWidth - inRect.width;
-            Find.WindowStack.currentlyDrawnWindow.windowRect.y = 0.5f * (UI.screenHeight - inRect.height);
+            Find.WindowStack.currentlyDrawnWindow.windowRect.center = 0.5f * new Vector2(UI.screenWidth, UI.screenHeight);
 
             GUI.BeginGroup(inRect);
-            PsycheCardUtility.DrawPsycheCard(psycheRect, pawn);
+            PsycheCardUtility.DrawPsycheCard(psycheRect, pawn, true);
             if (EditAllowedBool)
             {
                 EditPsycheUtility.DrawEditPsyche(editRect, pawn);

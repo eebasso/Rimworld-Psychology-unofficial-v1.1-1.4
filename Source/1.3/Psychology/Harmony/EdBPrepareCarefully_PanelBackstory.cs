@@ -1,20 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿//using System;
+//using System.Collections.Generic;
+//using System.Linq;
+//using System.Text;
 using UnityEngine;
 using RimWorld;
 using Verse;
 using Verse.Sound;
-using HarmonyLib;
+//using HarmonyLib;
 //using EdB.PrepareCarefully;
 
 namespace Psychology.Harm
 {
-    [HarmonyPatch(typeof(EdB.PrepareCarefully.PanelBackstory), nameof(EdB.PrepareCarefully.PanelBackstory.Draw))]
-    public static class EdBPrepareCarefully_PanelBackstory
+    //[HarmonyPatch(typeof(EdB.PrepareCarefully.PanelBackstory), nameof(EdB.PrepareCarefully.PanelBackstory.Draw))]
+    public static class EdBPrepareCarefully_PanelBackstory_Patch
     {
-        [HarmonyPrefix]
+        //[HarmonyPrefix]
         public static void Draw(EdB.PrepareCarefully.State state, float y)
         {
             Pawn pawn = state.CurrentPawn.Pawn;

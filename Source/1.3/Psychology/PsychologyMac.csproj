@@ -87,6 +87,7 @@
     </Reference>
     <Reference Include="CharacterEditor">
       <HintPath>..\..\..\..\..\..\..\..\workshop\content\294100\1874644848\v1.3\Assemblies\CharacterEditor.dll</HintPath>
+      <Private>False</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -271,7 +272,6 @@
     <Compile Include="Main\PatchOperationCustom.cs" />
     <Compile Include="Harmony\EdBPrepareCarefully_PanelBackstory.cs" />
     <Compile Include="Harmony\CharacterEditor_DialogPsychology.cs" />
-    <Compile Include="Harmony\CEditor_EditorUI_AStartPsychologyUI.cs" />
     <Compile Include="Main\EditPsycheUtility.cs" />
     <Compile Include="Main\PsychColor.cs" />
     <Compile Include="Harmony\HarmonyInitialize.cs" />
