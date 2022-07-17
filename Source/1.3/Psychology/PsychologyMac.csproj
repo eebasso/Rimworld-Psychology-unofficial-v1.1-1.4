@@ -616,55 +616,117 @@
     <None Include="..\..\..\Common\Defs\Incidents\Incidents_Psychology.xml">
       <Link>Common\Defs\Incidents\Incidents_Psychology.xml</Link>
     </None>
-    <None Include="Common\Languages\ChineseSimplified\Keyed\Mod_Settings.xml" />
-    <None Include="Common\Languages\ChineseSimplified\Keyed\Conversations.xml" />
-    <None Include="Common\Languages\ChineseSimplified\Keyed\Mod_Errors.xml" />
-    <None Include="Common\Languages\ChineseSimplified\Keyed\Ramblings.xml" />
-    <None Include="Common\Languages\ChineseSimplified\Keyed\Alerts.xml" />
-    <None Include="Common\Languages\ChineseSimplified\Keyed\Misc_Gameplay.xml" />
-    <None Include="Common\Languages\ChineseSimplified\Keyed\Letters.xml" />
-    <None Include="Common\Languages\ChineseSimplified\Keyed\Thoughts.xml" />
-    <None Include="Common\Languages\ChineseSimplified\Keyed\WITabs.xml" />
-    <None Include="Common\Languages\ChineseSimplified\Keyed\Messages.xml" />
-    <None Include="Common\Languages\ChineseSimplified\DefInjected\RoomRoleDef\RoomRoles.xml" />
-    <None Include="Common\Languages\ChineseSimplified\DefInjected\IncidentDef\Incidents_Psychology.xml" />
-    <None Include="Common\Languages\ChineseTraditional\Keyed\Mod_Settings.xml" />
-    <None Include="Common\Languages\ChineseTraditional\Keyed\Conversations.xml" />
-    <None Include="Common\Languages\ChineseTraditional\Keyed\Mod_Errors.xml" />
-    <None Include="Common\Languages\ChineseTraditional\Keyed\Ramblings.xml" />
-    <None Include="Common\Languages\ChineseTraditional\Keyed\Alerts.xml" />
-    <None Include="Common\Languages\ChineseTraditional\Keyed\Misc_Gameplay.xml" />
-    <None Include="Common\Languages\ChineseTraditional\Keyed\Letters.xml" />
-    <None Include="Common\Languages\ChineseTraditional\Keyed\Thoughts.xml" />
-    <None Include="Common\Languages\ChineseTraditional\Keyed\WITabs.xml" />
-    <None Include="Common\Languages\ChineseTraditional\Keyed\Messages.xml" />
-    <None Include="Common\Languages\ChineseTraditional\DefInjected\RoomRoleDef\RoomRoles.xml" />
-    <None Include="Common\Languages\ChineseTraditional\DefInjected\IncidentDef\Incidents_Psychology.xml" />
-    <None Include="Common\Languages\ChineseTraditional\DefInjected\JobDef\Jobs_Misc.xml" />
-    <None Include="Common\Languages\ChineseTraditional\DefInjected\TraitDef\Traits_Singular.xml" />
-    <None Include="Common\Languages\ChineseTraditional\DefInjected\Psychology.PersonalityNodeDef\PersonalityNodes.xml" />
-    <None Include="Common\Languages\ChineseTraditional\DefInjected\InteractionDef\Interactions_Psychology.xml" />
-    <None Include="Common\Languages\ChineseTraditional\DefInjected\RecipeDef\Recipes_Psychology.xml" />
-    <None Include="Common\Languages\ChineseTraditional\DefInjected\GameConditionDef\GameConditions_Psychology.xml" />
-    <None Include="Common\Languages\ChineseTraditional\DefInjected\RulePackDef\Interactions_Psychology.xml" />
-    <None Include="Common\Languages\ChineseTraditional\DefInjected\MentalStateDef\MentalStates_Psychology.xml" />
-    <None Include="Common\Languages\ChineseTraditional\DefInjected\ThingDef\Methadone.xml" />
-    <None Include="Common\Languages\ChineseTraditional\DefInjected\HediffDef\Methadone.xml" />
-    <None Include="Common\Languages\ChineseTraditional\DefInjected\HediffDef\Hediffs_Global_Misc.xml" />
-    <None Include="Common\Languages\ChineseTraditional\DefInjected\HediffDef\Hediffs_Local_Chronic.xml" />
-    <None Include="Common\Languages\ChineseTraditional\DefInjected\MentalBreakDef\MentalStates_Psychology.xml" />
-    <None Include="Common\Languages\ChineseTraditional\DefInjected\ChemicalDef\Methadone.xml" />
-    <None Include="Common\Languages\ChineseTraditional\DefInjected\TaleDef\Tales_Psychology.xml" />
-    <None Include="Common\Languages\ChineseTraditional\DefInjected\StatDef\Stats_Pawns_Psychology.xml" />
-    <None Include="Common\Languages\ChineseTraditional\DefInjected\ThoughtDef\Thoughts_Situation_Special.xml" />
-    <None Include="Common\Languages\ChineseTraditional\DefInjected\ThoughtDef\Thoughts_Memory_Misc.xml" />
-    <None Include="Common\Languages\ChineseTraditional\DefInjected\ThoughtDef\Methadone.xml" />
-    <None Include="Common\Languages\ChineseTraditional\DefInjected\ThoughtDef\Thoughts_Situation_Traits.xml" />
-    <None Include="Common\Languages\ChineseTraditional\DefInjected\ThoughtDef\Thoughts_Memory_Social.xml" />
-    <None Include="Common\Languages\ChineseTraditional\DefInjected\ThoughtDef\Thoughts_Situation_General.xml" />
-    <None Include="Common\Languages\ChineseTraditional\DefInjected\ThoughtDef\Thoughts_Memory_Death.xml" />
-    <None Include="Common\Languages\ChineseTraditional\DefInjected\ThoughtDef\Thoughts_Memory_Eating.xml" />
-    <None Include="Common\Languages\ChineseTraditional\DefInjected\NeedDef\Methadone.xml" />
+    <None Include="..\..\..\Common\Languages\ChineseTraditional\Keyed\Mod_Settings.xml">
+      <Link>Common\Languages\ChineseTraditional\Keyed\Mod_Settings.xml</Link>
+    </None>
+    <None Include="..\..\..\Common\Languages\ChineseTraditional\Keyed\Conversations.xml">
+      <Link>Common\Languages\ChineseTraditional\Keyed\Conversations.xml</Link>
+    </None>
+    <None Include="..\..\..\Common\Languages\ChineseTraditional\Keyed\Mod_Errors.xml">
+      <Link>Common\Languages\ChineseTraditional\Keyed\Mod_Errors.xml</Link>
+    </None>
+    <None Include="..\..\..\Common\Languages\ChineseTraditional\Keyed\Ramblings.xml">
+      <Link>Common\Languages\ChineseTraditional\Keyed\Ramblings.xml</Link>
+    </None>
+    <None Include="..\..\..\Common\Languages\ChineseTraditional\Keyed\Alerts.xml">
+      <Link>Common\Languages\ChineseTraditional\Keyed\Alerts.xml</Link>
+    </None>
+    <None Include="..\..\..\Common\Languages\ChineseTraditional\Keyed\Misc_Gameplay.xml">
+      <Link>Common\Languages\ChineseTraditional\Keyed\Misc_Gameplay.xml</Link>
+    </None>
+    <None Include="..\..\..\Common\Languages\ChineseTraditional\Keyed\Letters.xml">
+      <Link>Common\Languages\ChineseTraditional\Keyed\Letters.xml</Link>
+    </None>
+    <None Include="..\..\..\Common\Languages\ChineseTraditional\Keyed\Thoughts.xml">
+      <Link>Common\Languages\ChineseTraditional\Keyed\Thoughts.xml</Link>
+    </None>
+    <None Include="..\..\..\Common\Languages\ChineseTraditional\Keyed\WITabs.xml">
+      <Link>Common\Languages\ChineseTraditional\Keyed\WITabs.xml</Link>
+    </None>
+    <None Include="..\..\..\Common\Languages\ChineseTraditional\Keyed\Messages.xml">
+      <Link>Common\Languages\ChineseTraditional\Keyed\Messages.xml</Link>
+    </None>
+    <None Include="..\..\..\Common\Languages\ChineseTraditional\DefInjected\RoomRoleDef\RoomRoles.xml">
+      <Link>Common\Languages\ChineseTraditional\DefInjected\RoomRoleDef\RoomRoles.xml</Link>
+    </None>
+    <None Include="..\..\..\Common\Languages\ChineseTraditional\DefInjected\IncidentDef\Incidents_Psychology.xml">
+      <Link>Common\Languages\ChineseTraditional\DefInjected\IncidentDef\Incidents_Psychology.xml</Link>
+    </None>
+    <None Include="..\..\..\Common\Languages\ChineseTraditional\DefInjected\JobDef\Jobs_Misc.xml">
+      <Link>Common\Languages\ChineseTraditional\DefInjected\JobDef\Jobs_Misc.xml</Link>
+    </None>
+    <None Include="..\..\..\Common\Languages\ChineseTraditional\DefInjected\TraitDef\Traits_Singular.xml">
+      <Link>Common\Languages\ChineseTraditional\DefInjected\TraitDef\Traits_Singular.xml</Link>
+    </None>
+    <None Include="..\..\..\Common\Languages\ChineseTraditional\DefInjected\Psychology.PersonalityNodeDef\PersonalityNodes.xml">
+      <Link>Common\Languages\ChineseTraditional\DefInjected\Psychology.PersonalityNodeDef\PersonalityNodes.xml</Link>
+    </None>
+    <None Include="..\..\..\Common\Languages\ChineseTraditional\DefInjected\InteractionDef\Interactions_Psychology.xml">
+      <Link>Common\Languages\ChineseTraditional\DefInjected\InteractionDef\Interactions_Psychology.xml</Link>
+    </None>
+    <None Include="..\..\..\Common\Languages\ChineseTraditional\DefInjected\RecipeDef\Recipes_Psychology.xml">
+      <Link>Common\Languages\ChineseTraditional\DefInjected\RecipeDef\Recipes_Psychology.xml</Link>
+    </None>
+    <None Include="..\..\..\Common\Languages\ChineseTraditional\DefInjected\GameConditionDef\GameConditions_Psychology.xml">
+      <Link>Common\Languages\ChineseTraditional\DefInjected\GameConditionDef\GameConditions_Psychology.xml</Link>
+    </None>
+    <None Include="..\..\..\Common\Languages\ChineseTraditional\DefInjected\RulePackDef\Interactions_Psychology.xml">
+      <Link>Common\Languages\ChineseTraditional\DefInjected\RulePackDef\Interactions_Psychology.xml</Link>
+    </None>
+    <None Include="..\..\..\Common\Languages\ChineseTraditional\DefInjected\MentalStateDef\MentalStates_Psychology.xml">
+      <Link>Common\Languages\ChineseTraditional\DefInjected\MentalStateDef\MentalStates_Psychology.xml</Link>
+    </None>
+    <None Include="..\..\..\Common\Languages\ChineseTraditional\DefInjected\ThingDef\Methadone.xml">
+      <Link>Common\Languages\ChineseTraditional\DefInjected\ThingDef\Methadone.xml</Link>
+    </None>
+    <None Include="..\..\..\Common\Languages\ChineseTraditional\DefInjected\HediffDef\Methadone.xml">
+      <Link>Common\Languages\ChineseTraditional\DefInjected\HediffDef\Methadone.xml</Link>
+    </None>
+    <None Include="..\..\..\Common\Languages\ChineseTraditional\DefInjected\HediffDef\Hediffs_Global_Misc.xml">
+      <Link>Common\Languages\ChineseTraditional\DefInjected\HediffDef\Hediffs_Global_Misc.xml</Link>
+    </None>
+    <None Include="..\..\..\Common\Languages\ChineseTraditional\DefInjected\HediffDef\Hediffs_Local_Chronic.xml">
+      <Link>Common\Languages\ChineseTraditional\DefInjected\HediffDef\Hediffs_Local_Chronic.xml</Link>
+    </None>
+    <None Include="..\..\..\Common\Languages\ChineseTraditional\DefInjected\MentalBreakDef\MentalStates_Psychology.xml">
+      <Link>Common\Languages\ChineseTraditional\DefInjected\MentalBreakDef\MentalStates_Psychology.xml</Link>
+    </None>
+    <None Include="..\..\..\Common\Languages\ChineseTraditional\DefInjected\ChemicalDef\Methadone.xml">
+      <Link>Common\Languages\ChineseTraditional\DefInjected\ChemicalDef\Methadone.xml</Link>
+    </None>
+    <None Include="..\..\..\Common\Languages\ChineseTraditional\DefInjected\TaleDef\Tales_Psychology.xml">
+      <Link>Common\Languages\ChineseTraditional\DefInjected\TaleDef\Tales_Psychology.xml</Link>
+    </None>
+    <None Include="..\..\..\Common\Languages\ChineseTraditional\DefInjected\StatDef\Stats_Pawns_Psychology.xml">
+      <Link>Common\Languages\ChineseTraditional\DefInjected\StatDef\Stats_Pawns_Psychology.xml</Link>
+    </None>
+    <None Include="..\..\..\Common\Languages\ChineseTraditional\DefInjected\ThoughtDef\Thoughts_Situation_Special.xml">
+      <Link>Common\Languages\ChineseTraditional\DefInjected\ThoughtDef\Thoughts_Situation_Special.xml</Link>
+    </None>
+    <None Include="..\..\..\Common\Languages\ChineseTraditional\DefInjected\ThoughtDef\Thoughts_Memory_Misc.xml">
+      <Link>Common\Languages\ChineseTraditional\DefInjected\ThoughtDef\Thoughts_Memory_Misc.xml</Link>
+    </None>
+    <None Include="..\..\..\Common\Languages\ChineseTraditional\DefInjected\ThoughtDef\Methadone.xml">
+      <Link>Common\Languages\ChineseTraditional\DefInjected\ThoughtDef\Methadone.xml</Link>
+    </None>
+    <None Include="..\..\..\Common\Languages\ChineseTraditional\DefInjected\ThoughtDef\Thoughts_Situation_Traits.xml">
+      <Link>Common\Languages\ChineseTraditional\DefInjected\ThoughtDef\Thoughts_Situation_Traits.xml</Link>
+    </None>
+    <None Include="..\..\..\Common\Languages\ChineseTraditional\DefInjected\ThoughtDef\Thoughts_Memory_Social.xml">
+      <Link>Common\Languages\ChineseTraditional\DefInjected\ThoughtDef\Thoughts_Memory_Social.xml</Link>
+    </None>
+    <None Include="..\..\..\Common\Languages\ChineseTraditional\DefInjected\ThoughtDef\Thoughts_Situation_General.xml">
+      <Link>Common\Languages\ChineseTraditional\DefInjected\ThoughtDef\Thoughts_Situation_General.xml</Link>
+    </None>
+    <None Include="..\..\..\Common\Languages\ChineseTraditional\DefInjected\ThoughtDef\Thoughts_Memory_Death.xml">
+      <Link>Common\Languages\ChineseTraditional\DefInjected\ThoughtDef\Thoughts_Memory_Death.xml</Link>
+    </None>
+    <None Include="..\..\..\Common\Languages\ChineseTraditional\DefInjected\ThoughtDef\Thoughts_Memory_Eating.xml">
+      <Link>Common\Languages\ChineseTraditional\DefInjected\ThoughtDef\Thoughts_Memory_Eating.xml</Link>
+    </None>
+    <None Include="..\..\..\Common\Languages\ChineseTraditional\DefInjected\NeedDef\Methadone.xml">
+      <Link>Common\Languages\ChineseTraditional\DefInjected\NeedDef\Methadone.xml</Link>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

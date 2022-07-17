@@ -13,6 +13,10 @@
   <KinseyMode_Invisible>中置</KinseyMode_Invisible>
   <KinseyMode_Gaypocalypse>反向</KinseyMode_Gaypocalypse>
   <KinseyMode_Uniform>统一</KinseyMode_Uniform>
+  <KinseyMode_Custom>Custom</KinseyMode_Custom>
+
+  <KWTitle>Kinsey {0}</KWTitle>
+  <KWTooltip>When custom mode is enabled, this sets the relative weight for {0} on the Kinsey scale for generated pawns.</KWTooltip>
 
   <IndividualityTitle>启用个性思维</IndividualityTitle>
   <IndividualityTooltip>如果您的小人正因撞衫而苦恼，您可以禁用这个选项来消除那些影响。这个选项会增加额外的难度，所以您可以随时禁用它，但还是建议您开着比较好。</IndividualityTooltip>
@@ -46,5 +50,11 @@
 
   <BeatyOverrideEnabledTitle>禁用外貌影响更改</BeatyOverrideEnabledTitle>
   <BeatyOverrideEnabledToolip>禁用对诸如：美貌、漂亮、丑陋等特征的影响更改。请注意，即使禁用此选项，此心理学mod对这些特征的更改仍然有效。建议保持此选项处于启用状态。</BeatyOverrideEnabledToolip>
+
+
+
+
+
+
 
 </LanguageData>

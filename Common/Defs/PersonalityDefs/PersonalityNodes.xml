@@ -111,12 +111,12 @@
 			<li>
 				<trait>NaturalMood</trait>
 				<degree>2</degree>
-				<modifier>0.65</modifier>
+				<modifier>0.7</modifier>
 			</li>
 			<li>
 				<trait>NaturalMood</trait>
 				<degree>1</degree>
-				<modifier>0.35</modifier>
+				<modifier>0.4</modifier>
 			</li>
         </traitModifiers>
 		<incapableModifiers>
@@ -250,12 +250,12 @@
 			<li>
 				<trait>NaturalMood</trait>
 				<degree>-1</degree>
-				<modifier>-0.8</modifier>
+				<modifier>-0.5</modifier>
 			</li>
 			<li>
 				<trait>NaturalMood</trait>
 				<degree>-2</degree>
-				<modifier>-0.9</modifier>
+				<modifier>-0.75</modifier>
 			</li>
 			<li>
 				<trait>Jealous</trait>
@@ -581,6 +581,10 @@
 			<li>
 				<trait>Prude</trait>
 				<modifier>0.6</modifier>
+			</li>
+			<li>
+				<trait>Lecher</trait>
+				<modifier>-0.9</modifier>
 			</li>
 		</traitModifiers>
 		<preferredDateHours>
@@ -996,7 +1000,7 @@
 		</skillModifiers>
 		<traitModifiers>
 			<li>
-				<trait>TorturtedArtist</trait>
+				<trait>TorturedArtist</trait>
 				<modifier>0.95</modifier>
 			</li>
 		</traitModifiers>

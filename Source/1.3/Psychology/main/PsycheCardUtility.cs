@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Linq;
 using UnityEngine;
 using Verse;
+using UnityEditor;
 
 namespace Psychology
 {
@@ -77,10 +78,10 @@ namespace Psychology
         public static string FiveFactorText = "FiveFactorModelTitle".Translate();
         public static Vector2 FiveFactorSize;
 
-        public static string EditText = "EditPsyche".Translate();
-        public static Vector2 EditSize;
-        public static float EditWidth;
-        public static float EditHeight;
+        //public static string EditText = "EditPsyche".Translate();
+        //public static Vector2 EditSize;
+        //public static float EditWidth;
+        //public static float EditHeight;
 
         public static float SexualityWidth;
         public static float KinseyWidth;
@@ -93,6 +94,8 @@ namespace Psychology
         public const float SideScaling = 0.809017f;
         public static Texture2D PsycheLineTex = new Texture2D(1, 3, TextureFormat.ARGB32, mipChain: false);
         public static Material PsycheYellowMat = SolidColorMaterials.SimpleSolidColorMaterial(new Color(1f, 1f, 0f, 0.5f));
+        //public static Texture2D HexagonTexture;
+
         public static float HighlightRadius = 0f;
 
         public static float NodeWidth = 0f;
@@ -175,10 +178,10 @@ namespace Psychology
             //FiveFactorText = "<b>" + FiveFactorText + "</b>";
             FiveFactorSize = Text.CalcSize(FiveFactorText) * scalingVector;
 
-            style.fontSize = OldSmallFontSize;
-            EditSize = Text.CalcSize(EditText) * scalingVector;
-            EditWidth = 20f + EditSize.x;
-            EditHeight = 5f + EditSize.y;
+            //style.fontSize = OldSmallFontSize;
+            //EditSize = Text.CalcSize(EditText) * scalingVector;
+            //EditWidth = 20f + EditSize.x;
+            //EditHeight = 5f + EditSize.y;
 
             SexualityWidth = Mathf.Max(KinseyTextSize.x, SexDriveWidth, RomDriveWidth, OptionsWidth, UseColorsWidth, AlphabeticalWidth, UseAntonymsWidth, FiveFactorSize.x);
             KinseyWidth = SexualityWidth + BoundaryPadding - 27f;
@@ -212,8 +215,22 @@ namespace Psychology
             float totalRectWidth = personalityRectWidth + forbiddenRectWidth;
             float forbiddenRectHeight = BoundaryPadding + KinseyTextSize.y + RowTopPadding + SexDriveHeight + RowTopPadding + RomDriveHeight + BoundaryPadding + OptionsHeight + BoundaryPadding + UseColorsHeight + BoundaryPadding;
             HighlightRadius = 0.506f * forbiddenRectWidth;
-            float totalRectHeight = forbiddenRectHeight + AlphabeticalHeight + BoundaryPadding + UseAntonymsHeight + BoundaryPadding + FiveFactorSize.y + BoundaryPadding + 2f * HighlightRadius + BoundaryPadding + EditHeight + BoundaryPadding;
+            float totalRectHeight = forbiddenRectHeight + AlphabeticalHeight + BoundaryPadding + UseAntonymsHeight + BoundaryPadding + FiveFactorSize.y + BoundaryPadding + 2f * HighlightRadius + BoundaryPadding;// + FiveFactorSize.y + BoundaryPadding;
             PsycheRect = new Rect(0f, 0f, totalRectWidth, totalRectHeight);
+
+            //TestTexture = new Texture2D(128, 128, TextureFormat.ARGB32, mipChain: false);
+            //Color32[] colorArray = TestTexture.GetPixels32();
+            //for (int i = 0; i < colorArray.Count(); i++)
+            //{
+            //    Log.Message("Setting to cyan");
+            //    colorArray[i] = Color.cyan;
+            //}
+            //TestTexture.SetPixels32(colorArray);
+            
+            //Texture2D TestTexture = ContentFinder<Texture2D>.Get("UI/RedSquare", true);
+            //RenderTexture newTexture = new RenderTexture(TestTexture);
+
+            //HexagonTexture = ColoredHexagon2.GetHexagonTexture(PsychologyTexCommand.TestTexture);
         }
 
         //public static Rect CalculatePsycheRect(Pawn pawn)
@@ -254,7 +271,7 @@ namespace Psychology
             Rect useColorsRect = new Rect(kinseyRect.x, optionsRect.yMax + BoundaryPadding, UseColorsWidth, UseColorsHeight);
             Rect alphabeticalRect = new Rect(kinseyRect.x, useColorsRect.yMax + BoundaryPadding, AlphabeticalWidth, AlphabeticalHeight);
             Rect useAntonymsRect = new Rect(kinseyRect.x, alphabeticalRect.yMax + BoundaryPadding, UseAntonymsWidth, UseAntonymsHeight);
-            Rect editRect = new Rect(totalRect.xMax - EditWidth - BoundaryPadding, totalRect.yMax - EditHeight - BoundaryPadding, EditWidth, EditHeight);
+            //Rect editRect = new Rect(totalRect.xMax - EditWidth - BoundaryPadding, totalRect.yMax - EditHeight - BoundaryPadding, EditWidth, EditHeight);
 
             //Calculate personality rectangle
             Rect personalityRect = totalRect;
@@ -272,8 +289,8 @@ namespace Psychology
                 string kinseyText = "KinseyRating".Translate() + " " + PsycheHelper.Comp(pawn).Sexuality.kinseyRating;
                 float pawnSexDrive = PsycheHelper.Comp(pawn).Sexuality.AdjustedSexDrive;
                 float pawnRomDrive = PsycheHelper.Comp(pawn).Sexuality.AdjustedRomanticDrive;
-                int sexDriveInt = (pawnSexDrive > 1.3f) ? 4 : (pawnSexDrive > 0.85f) ? 3 : (pawnSexDrive > 0.5f) ? 2 : (pawnSexDrive > 0.1f) ? 1 : 0;
-                int romDriveInt = (pawnRomDrive > 1.3f) ? 4 : (pawnRomDrive > 0.67f) ? 3 : (pawnRomDrive > 0.33f) ? 2 : (pawnRomDrive > 0.1f) ? 1 : 0;
+                int sexDriveInt = (pawnSexDrive > 1.30f) ? 4 : (pawnSexDrive > 0.85f) ? 3 : (pawnSexDrive > 0.50f) ? 2 : (pawnSexDrive > 0.10f) ? 1 : 0;
+                int romDriveInt = (pawnRomDrive > 1.20f) ? 4 : (pawnRomDrive > 0.80f) ? 3 : (pawnRomDrive > 0.40f) ? 2 : (pawnRomDrive > 0.10f) ? 1 : 0;
 
                 //Kinsey rating
                 Text.Anchor = TextAnchor.MiddleLeft;
@@ -379,7 +396,7 @@ namespace Psychology
                 Vector2 cloudCenter = totalRect.center;
                 cloudCenter.x = 0.5f * totalRect.center.x + 0.5f * personalityRect.center.x;
                 //Vector2 cloudCenter = new Vector2(0.5f * totalRect.center.x + 0.25f * forbiddenRect.x, 0.5f * totalRect.center.x + 0.25f * forbiddenRect.yMax + 0.25f * totalRect.yMax);
-                PersonalityWordCloud(totalRect, cloudCenter, forbiddenRect, pawn, editRect);
+                PersonalityWordCloud(totalRect, cloudCenter, forbiddenRect, pawn);//, editRect);
             }
             else
             {
@@ -587,7 +604,7 @@ namespace Psychology
             float yCompression = 0.9f;
             float highlightShift = 0.07f;
 
-            Rect viewRect = new Rect(0f, 0f, personalityRect.width - 20f, LabelNodeList.Count() * yCompression * CategoryNodeHeight + 4f);
+            Rect viewRect = new Rect(0f, 0f, personalityRect.width - 20f, LabelNodeList.Count() * yCompression * CategoryNodeHeight + 3f);
             //Rect viewRect = new Rect(personalityRect.x, personalityRect.y, 0.9f * personalityRect.width, (categoryNodeHeight + RowTopPadding) * categoryIndexList.Count);
             Widgets.BeginScrollView(personalityRect, ref NodeScrollPosition, viewRect);
             float categoryNodeVerticalPosition = 0f;
@@ -601,6 +618,24 @@ namespace Psychology
             highlightRect.xMin = viewRect.xMin;
             highlightRect.xMax = viewRect.xMax;
             highlightRect.height *= yCompression;
+            //Rect textureRect = new Rect(0f, 0f, 0.8f * CategoryNodeHeight, 0.8f * CategoryNodeHeight);
+            //Rect hexagonRect = new Rect(0.8f * CategoryNodeHeight + BoundaryPadding, 0f, 0.8f * CategoryNodeHeight, 0.8f * CategoryNodeHeight);
+
+            //Vector3[] newVertices = { new Vector2(0f, 0f), new Vector2(10f, 5f), new Vector2(0f, 10f) };
+            //Vector2[] newUVs = new Vector2[newVertices.Length];
+            //int[] newTriangles = { 0, 1, 2 };
+            //for (int i = 0; i < newUVs.Length; i++)
+            //{
+            //    newUVs[i] = new Vector2(newVertices[i].x, newVertices[i].z);
+            //}
+
+            //Mesh mesh = new Mesh();
+            //mesh.vertices = newVertices;
+            //mesh.uv = newUVs;
+            //mesh.triangles = newTriangles;
+
+            //List<Vector2> vertices = new List<Vector2>(){ new Vector2(10f, 0f), new Vector2(20f, 5f), new Vector2(10f, 10f) };
+            //List<int[]> triangles = new List<int[]> { new int[3] {0, 1, 2 } };
 
             style.fontSize = CategoryNodeFontSize;
             for (int j = 0; j < LabelNodeList.Count(); j++)
@@ -608,6 +643,22 @@ namespace Psychology
                 categoryRect.y = categoryNodeVerticalPosition;
                 nodeRect.y = categoryNodeVerticalPosition;
                 highlightRect.y = categoryNodeVerticalPosition + highlightShift * CategoryNodeHeight;
+
+                //mesh.vertices[0].y = 0f + categoryNodeVerticalPosition;
+                //mesh.vertices[1].y = 5f + categoryNodeVerticalPosition;
+                //mesh.vertices[2].y = 10f + categoryNodeVerticalPosition;
+                //Graphics.DrawMesh(mesh, Matrix4x4.identity, PsycheYellowMat, 0);
+                //Graphics.DrawMesh(mesh, Matrix4x4.identity, PsycheYellowMat, 1);
+                //Graphics.DrawMesh(mesh, Matrix4x4.identity, PsycheYellowMat, 2);
+                //Graphics.DrawMesh(mesh, Matrix4x4.identity, PsycheYellowMat, 3);
+
+                //vertices[0] = new Vector2(10f, 8f + categoryNodeVerticalPosition);
+                //vertices[1] = new Vector2(20f, 13f + categoryNodeVerticalPosition);
+                //vertices[2] = new Vector2(10f, 18f + categoryNodeVerticalPosition);
+                //if (NodeScrollPosition.y < vertices[0].y && vertices[2].y < NodeScrollPosition.y + personalityRect.height)
+                //{
+                //    PolygonUtility.DrawPolygon(vertices, triangles, PsycheYellowMat);
+                //}
                 Text.Anchor = TextAnchor.MiddleLeft;
                 Widgets.Label(nodeRect, LabelNodeList[j].Item1);
                 //Text.Anchor = TextAnchor.MiddleRight;
@@ -621,7 +672,7 @@ namespace Psychology
             Widgets.EndScrollView();
         }
 
-        public static void PersonalityWordCloud(Rect totalRect, Vector2 cloudCenter, Rect forbiddenRect, Pawn pawn, Rect editPsycheRect)
+        public static void PersonalityWordCloud(Rect totalRect, Vector2 cloudCenter, Rect forbiddenRect, Pawn pawn)//, Rect editPsycheRect)
         {
             //if (Ticker % 100 == 0)
             //{
@@ -646,7 +697,7 @@ namespace Psychology
 
             Rect cloudRect = totalRect.ContractedBy(BoundaryPadding);
             Rect forbiddenRect1 = forbiddenRect.ExpandedBy(BoundaryPadding);
-            Rect forbiddenRect2 = editPsycheRect.ExpandedBy(BoundaryPadding);
+            //Rect forbiddenRect2 = editPsycheRect.ExpandedBy(BoundaryPadding);
             List<PersonalityNode> allNodes = (from n in PsycheHelper.Comp(pawn).Psyche.PersonalityNodes
                                               orderby Mathf.Abs(n.AdjustedRating - 0.5f) descending, n.def.defName
                                               select n).ToList();
@@ -704,7 +755,7 @@ namespace Psychology
                 //}
                 for (float t = dt; t < 1.414; t += dt)
                 {
-                    if (RectDoesNotOverlapWordCloud(tightRect, cloudRect, forbiddenRect1, forbiddenRect2))
+                    if (RectDoesNotOverlapWordCloud(tightRect, cloudRect, forbiddenRect1))//, forbiddenRect2))
                     {
                         textRect.x = tightRect.x + xMinTightScaling * textRect.width;
                         textRect.y = tightRect.y + yMinTightScaling * textRect.height;
@@ -742,7 +793,7 @@ namespace Psychology
             Text.Font = GameFont.Small;
         }
 
-        public static bool RectDoesNotOverlapWordCloud(Rect foundRectangle, Rect totalRect, Rect forbiddenRect1, Rect forbiddenRect2)
+        public static bool RectDoesNotOverlapWordCloud(Rect foundRectangle, Rect totalRect, Rect forbiddenRect1)//, Rect forbiddenRect2)
         {
             foreach (Rect rect in CloudTightRects)
             {
@@ -751,7 +802,7 @@ namespace Psychology
                     return false;
                 }
             }
-            if (foundRectangle.Overlaps(forbiddenRect1) || foundRectangle.Overlaps(forbiddenRect2))
+            if (foundRectangle.Overlaps(forbiddenRect1))// || foundRectangle.Overlaps(forbiddenRect2))
             {
                 return false;
             }

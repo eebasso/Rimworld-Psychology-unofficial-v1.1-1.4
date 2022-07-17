@@ -209,7 +209,7 @@ namespace Psychology
             mainRect.yMin += BoundaryPadding;
 
             Rect scrollRect = new Rect(mainRect.x - HighlightPadding, mainRect.y, totalRect.xMax - mainRect.x - BoundaryPadding, ScrollHeight);
-            Rect viewRect = new Rect(0f, 0f, scrollRect.width - SliderBarWidth, CachedList.Count * yCompression * NodeHeight + 5f);
+            Rect viewRect = new Rect(0f, 0f, scrollRect.width - SliderBarWidth, CachedList.Count * yCompression * NodeHeight + 4f);
 
             Rect labelRect = new Rect(HighlightPadding, 0f, NodeWidth, NodeHeight);
             Rect sliderRect = new Rect(labelRect.xMax + BoundaryPadding, SliderShiftDown, SliderWidth, NodeHeight);

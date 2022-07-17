@@ -13,17 +13,8 @@
   <ConversationStage>交流</ConversationStage>
   <ConversationEnd>[INITIATOR_nameDef] 结束了和 [RECIPIENT_nameDef] 的谈话。</ConversationEnd>
   <ConversationEnded>结束交流</ConversationEnded>
-  <Complained>{0_labelShort} 向镇长抱怨， {1_labelShort}.</Complained>
-  <Supported>{0_labelShort} 表达了 {0_possessive} 对镇长的支持， {1_labelShort}.</Supported>
-
-  <!-- Node descriptions -->
-  <PsycheNot>无</PsycheNot>
-  <PsycheSlightly>轻微</PsycheSlightly>
-  <PsycheLess>较少</PsycheLess>
-  <PsycheMore>较多</PsycheMore>
-  <PsycheVery>非常</PsycheVery>
-  <PsycheExtremely>极度</PsycheExtremely>
-  <ConversationTooltip>人们会就 {0} 为话题相互讨论。</ConversationTooltip>
+  <Complained>{0_labelShort} 向镇长抱怨，{1_labelShort}.</Complained>
+  <Supported>{0_labelShort} 表达了 {0_possessive} 对镇长的支持，{1_labelShort}.</Supported>
 
   <!-- Comp text -->
   <CommandOfficeTableToggleLabel>镇长办公室</CommandOfficeTableToggleLabel>

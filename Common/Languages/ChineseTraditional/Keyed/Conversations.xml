@@ -2,10 +2,10 @@
 <LanguageData>
 
   <NumberOfShortTalks>10</NumberOfShortTalks>
-  <ShortTalk1>{INITIATOR_labelShort} 和 {RECIPIENT_labelShort} 简单地聊了两句，关于 {0} 。</ShortTalk1>
+  <ShortTalk1>{INITIATOR_labelShort} 和 {RECIPIENT_labelShort} 简单地聊了两句，关于 {0}。</ShortTalk1>
   <ShortTalk2>{INITIATOR_labelShort} 和 {RECIPIENT_labelShort} 聊了一会儿，关于 {0}。</ShortTalk2>
   <ShortTalk3>{INITIATOR_labelShort} 和 {RECIPIENT_labelShort} 进行了短暂的交谈，关于 {0}。</ShortTalk3>
-  <ShortTalk4>{INITIATOR_labelShort} 和 {RECIPIENT_labelShort} 迅速讨论了 {0} 。</ShortTalk4>
+  <ShortTalk4>{INITIATOR_labelShort} 和 {RECIPIENT_labelShort} 迅速讨论了 {0}。</ShortTalk4>
   <ShortTalk5>{INITIATOR_labelShort} 和 {RECIPIENT_labelShort} 闲聊{0}</ShortTalk5>
   <ShortTalk6>{INITIATOR_labelShort} 顺便和 {RECIPIENT_labelShort} 讨论了 {0}。</ShortTalk6>
   <ShortTalk7>{INITIATOR_labelShort} 向 {RECIPIENT_labelShort} 简单评价了 {0}。</ShortTalk7>

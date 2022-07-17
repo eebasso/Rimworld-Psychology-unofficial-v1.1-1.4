@@ -1,38 +1,37 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Psychology/Main/Personality/PersonalityNode.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="../../Common/Languages/German/Keyed/WITabs.xml">
     <Files>
-      <File FileName="Psychology/Harmony/CharacterEditor_DialogPsychology.cs" Line="28" Column="4" />
-      <File FileName="Psychology/Main/Dialog_ViewPsyche.cs" Line="39" Column="71" />
-      <File FileName="Psychology/Main/Dialog_EditPsyche.cs" Line="130" Column="87" />
-      <File FileName="Psychology/Main/PsycheCardUtility.cs" Line="538" Column="94" />
-      <File FileName="Psychology/Main/CompPsychology.cs" Line="44" Column="48" />
-      <File FileName="Psychology/Main/Personality/PersonalityNode.cs" Line="17" Column="39" />
-      <File FileName="Psychology/Main/Pawn_PsycheTracker.cs" Line="32" Column="21" />
-      <File FileName="Psychology/Harmony/CEditor_EditorUI_AStartPsychologyUI.cs" Line="11" Column="1" />
-      <File FileName="Psychology/Harmony/ThoughtWorker_ChemicalInterestVsTeetotaler.cs" Line="1" Column="1" />
-      <File FileName="Psychology/Harmony/ThoughtUtility.cs" Line="1" Column="1" />
-      <File FileName="Psychology/Harmony/Recipe_Surgery.cs" Line="1" Column="1" />
-      <File FileName="Psychology/Harmony/ThoughtWorker_AnnoyingVoice.cs" Line="11" Column="48" />
-      <File FileName="Psychology/Main/CompProperties_Psychology.cs" Line="1" Column="1" />
-      <File FileName="Psychology/Harmony/Pawn.cs" Line="1" Column="1" />
-      <File FileName="Psychology/Harmony/MentalStateWorker_BingingDrug.cs" Line="1" Column="1" />
-      <File FileName="Psychology/Harmony/Building_Grave.cs" Line="1" Column="1" />
-      <File FileName="Psychology/Harmony/ChildRelationUtility.cs" Line="1" Column="1" />
-      <File FileName="Psychology/Harmony/EdBPrepareCarefully_PanelBackstory.cs" Line="1" Column="1" />
-      <File FileName="Psychology/Harmony/Dialog_FormCaravan.cs" Line="14" Column="38" />
-      <File FileName="Psychology/Harmony/InteractionUtility.cs" Line="1" Column="1" />
+      <File FileName="../../Common/Languages/German/Keyed/WITabs.xml" Line="8" Column="38" />
+      <File FileName="Psychology/Main/PsycheCardUtility.cs" Line="302" Column="56" />
+      <File FileName="../../Common/Languages/English/Keyed/WITabs.xml" Line="23" Column="3" />
+      <File FileName="../../Common/Languages/Russian/Keyed/WITabs.xml" Line="23" Column="192" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="PsychologyUnofficialMac" expanded="True">
-            <Node name="PsychologyMac" expanded="True" />
+            <Node name="PsychologyMac" expanded="True">
+              <Node name="Common" expanded="True">
+                <Node name="Languages" expanded="True">
+                  <Node name="ChineseTraditional" expanded="True">
+                    <Node name="DefInjected" expanded="True">
+                      <Node name="Psychology.PersonalityNodeDef" expanded="True" />
+                    </Node>
+                  </Node>
+                  <Node name="German" expanded="True">
+                    <Node name="DefInjected" expanded="True">
+                      <Node name="Psychology.PersonalityNodeDef" expanded="True" />
+                    </Node>
+                    <Node name="Keyed" expanded="True">
+                      <Node name="WITabs.xml" selected="True" />
+                    </Node>
+                  </Node>
+                </Node>
+              </Node>
+            </Node>
           </Node>
         </State>
       </Pad>
@@ -41,4 +40,7 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
 </Properties>

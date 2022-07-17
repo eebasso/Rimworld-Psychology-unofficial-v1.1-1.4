@@ -2,22 +2,34 @@
 <LanguageData>
 
   <Confident.label>自信</Confident.label>
-  <Confident.description>一个自信的人有着很高的自尊和自我认同。</Confident.description>
+  <Confident.antonymLabel>不自信</Confident.antonymLabel>
+  <Confident.descriptionLabel>自信</Confident.descriptionLabel>
+  <Confident.description>一个{0}的人有着很高的自尊和自我认同。</Confident.description>
 
   <Experimental.label>实验精神</Experimental.label>
-  <Experimental.description>具有实验精神的人什么都可能尝试一次，这些人的生命不会单调，并且享受着不断探索的乐趣。</Experimental.description>
+  <Experimental.antonymLabel>守舊</Experimental.antonymLabel>
+  <Experimental.descriptionLabel>实验精神</Experimental.descriptionLabel>
+  <Experimental.description>具有{0}的人什么都可能尝试一次，这些人的生命不会单调，并且享受着不断探索的乐趣。</Experimental.description>
 
   <Intelligent.label>聪颖过人</Intelligent.label>
-  <Intelligent.description>智力超群，有个聪明的大脑，总能解决各种难题。</Intelligent.description>
+  <Intelligent.antonymLabel>不聰明</Intelligent.antonymLabel>
+  <Intelligent.descriptionLabel>智力</Intelligent.descriptionLabel>
+  <Intelligent.description>{0}超群，有个聪明的大脑，总能解决各种难题。</Intelligent.description>
 
   <Extroverted.label>外向</Extroverted.label>
-  <Extroverted.description>外向的人通常也喜欢户外活动，乐于尝试新鲜事物，积极对待各种人和事。</Extroverted.description>
+  <Extroverted.antonymLabel>內向</Extroverted.antonymLabel>
+  <Extroverted.descriptionLabel>外向</Extroverted.descriptionLabel>
+  <Extroverted.description>{0}的人通常也喜欢户外活动，乐于尝试新鲜事物，积极对待各种人和事。</Extroverted.description>
 
   <Emotional.label>情绪化</Emotional.label>
-  <Emotional.description>情绪化的人天生就更能敏感地感知情绪，这是好事还是坏事呢？</Emotional.description>
+  <Emotional.antonymLabel>堅忍</Emotional.antonymLabel>
+  <Emotional.descriptionLabel>情绪化</Emotional.descriptionLabel>
+  <Emotional.description>{0}的人天生就更能敏感地感知情绪，这是好事还是坏事呢？</Emotional.description>
 
   <Independent.label>独立</Independent.label>
-  <Independent.description>独立的人也享受独处，而且从不依赖他人。</Independent.description>
+  <Independent.antonymLabel>依賴</Independent.antonymLabel>
+  <Independent.descriptionLabel>独立</Independent.descriptionLabel>
+  <Independent.description>{0}的人也享受独处，而且从不依赖他人。</Independent.description>
   <Independent.conversationTopics.0>孤独</Independent.conversationTopics.0>
   <Independent.conversationTopics.1>内向</Independent.conversationTopics.1>
   <Independent.conversationTopics.2>外向</Independent.conversationTopics.2>
@@ -34,7 +46,9 @@
   
 
   <Aggressive.label>好斗</Aggressive.label>
-  <Aggressive.description>一个好斗的人是直截了当、直言不讳的，当他们得不到想要的东西时，通常会变得更有攻击性。</Aggressive.description>
+  <Aggressive.antonymLabel>和緩</Aggressive.antonymLabel>
+  <Aggressive.descriptionLabel>好斗</Aggressive.descriptionLabel>
+  <Aggressive.description>一个{0}的人是直截了当、直言不讳的，当他们得不到想要的东西时，通常会变得更有攻击性。</Aggressive.description>
   <Aggressive.conversationTopics.0>存在分歧</Aggressive.conversationTopics.0>
   <Aggressive.conversationTopics.1>存在冲突</Aggressive.conversationTopics.1>
   <Aggressive.conversationTopics.2>各过各的</Aggressive.conversationTopics.2>
@@ -48,7 +62,9 @@
   <Aggressive.platformIssueLow>我们应该多想想对方的感受。</Aggressive.platformIssueLow>
 	
   <Adventurous.label>冒险精神</Adventurous.label>
-  <Adventurous.description>有冒险精神的人在尝试新事物、拓展视野和去到新地方时会感到更充实。</Adventurous.description>
+  <Adventurous.antonymLabel>謹慎</Adventurous.antonymLabel>
+  <Adventurous.descriptionLabel>冒险精神</Adventurous.descriptionLabel>
+  <Adventurous.description>有{0}的人在尝试新事物、拓展视野和去到新地方时会感到更充实。</Adventurous.description>
   <Adventurous.conversationTopics.0>游玩</Adventurous.conversationTopics.0>
   <Adventurous.conversationTopics.1>宝藏</Adventurous.conversationTopics.1>
   <Adventurous.conversationTopics.2>到处闲逛</Adventurous.conversationTopics.2>
@@ -64,7 +80,9 @@
   <Adventurous.platformIssueLow>还是家里好啊。</Adventurous.platformIssueLow>
 
   <DrugFriendly.label>成瘾品亲和</DrugFriendly.label>
-  <DrugFriendly.description>一个成瘾品亲和的人不会觉得吸食毒品有什么错，也不会避免去吸食它们。</DrugFriendly.description>
+  <DrugFriendly.antonymLabel>禁慾</DrugFriendly.antonymLabel>
+  <DrugFriendly.descriptionLabel>成瘾品亲和</DrugFriendly.descriptionLabel>
+  <DrugFriendly.description>一个{0}的人不会觉得吸食毒品有什么错，也不会避免去吸食它们。</DrugFriendly.description>
   <DrugFriendly.conversationTopics.0>吸一口</DrugFriendly.conversationTopics.0>
   <DrugFriendly.conversationTopics.1>灌酒</DrugFriendly.conversationTopics.1>
   <DrugFriendly.conversationTopics.2>喝酒</DrugFriendly.conversationTopics.2>
@@ -80,7 +98,9 @@
   <DrugFriendly.platformIssueLow>成瘾品就不应该存在于这片土地上。</DrugFriendly.platformIssueLow>
 
   <Spontaneous.label>莽撞</Spontaneous.label>
-  <Spontaneous.description>莽撞的人虽然行事总是很冲动，但有时候也能别人带来惊喜。</Spontaneous.description>
+  <Spontaneous.antonymLabel>自律</Spontaneous.antonymLabel>
+  <Spontaneous.descriptionLabel>莽撞</Spontaneous.descriptionLabel>
+  <Spontaneous.description>{0}的人虽然行事总是很冲动，但有时候也能别人带来惊喜。</Spontaneous.description>
   <Spontaneous.conversationTopics.0>恶作剧</Spontaneous.conversationTopics.0>
   <Spontaneous.conversationTopics.1>幽默</Spontaneous.conversationTopics.1>
   <Spontaneous.conversationTopics.2>双关</Spontaneous.conversationTopics.2>
@@ -92,7 +112,9 @@
   <Spontaneous.platformIssueLow>要是我来领导这个殖民地，事无巨细一定都会被我处理得井井有条。</Spontaneous.platformIssueLow>
 
   <Rational.label>理性</Rational.label>
-  <Rational.description>越理性的人总是越能从事物的本质和客观的角度思考问题。</Rational.description>
+  <Rational.antonymLabel>非理性</Rational.antonymLabel>
+  <Rational.descriptionLabel>理性</Rational.descriptionLabel>
+  <Rational.description>越{0}的人总是越能从事物的本质和客观的角度思考问题。</Rational.description>
   <Rational.conversationTopics.0>哲学</Rational.conversationTopics.0>
   <Rational.conversationTopics.1>成熟</Rational.conversationTopics.1>
   <Rational.conversationTopics.2>现实</Rational.conversationTopics.2>
@@ -104,7 +126,9 @@
   <Rational.platformIssueLow>历史由胜利者书写，真理由强大者定义。</Rational.platformIssueLow>
 
   <Logical.label>逻辑思维</Logical.label>
-  <Logical.description>一个具有逻辑思维能力的人更有能力将事物的因果关系串联起来，从而预测事物的发展和行动的后果。</Logical.description>
+  <Logical.antonymLabel>不合邏輯</Logical.antonymLabel>
+  <Logical.descriptionLabel>逻辑思维</Logical.descriptionLabel>
+  <Logical.description>一个具有{0}能力的人更有能力将事物的因果关系串联起来，从而预测事物的发展和行动的后果。</Logical.description>
   <Logical.conversationTopics.0>发明创造</Logical.conversationTopics.0>
   <Logical.conversationTopics.1>阴谋论</Logical.conversationTopics.1>
   <Logical.conversationTopics.2>逻辑谬误</Logical.conversationTopics.2>
@@ -120,7 +144,9 @@
   <Logical.platformIssueLow>我会试着解决问题。</Logical.platformIssueLow>
   
   <Creative.label>创造思维</Creative.label>
-  <Creative.description>具有创造思维的人往往更有想象力，总能生动地想象出事物的细节，即使那些事物可能根本不存在。</Creative.description>
+  <Creative.antonymLabel>沒有創意</Creative.antonymLabel>
+  <Creative.descriptionLabel>创造思维</Creative.descriptionLabel>
+  <Creative.description>具有{0}的人往往更有想象力，总能生动地想象出事物的细节，即使那些事物可能根本不存在。</Creative.description>
   <Creative.conversationTopics.0>写写画画</Creative.conversationTopics.0>
   <Creative.conversationTopics.1>艺术</Creative.conversationTopics.1>
   <Creative.conversationTopics.2>剧院</Creative.conversationTopics.2>
@@ -136,7 +162,9 @@
   <Creative.platformIssueLow>我们应该注重实事求是。</Creative.platformIssueLow>
   
   <Passionate.label>激情</Passionate.label>
-  <Passionate.description>具有激情的人总是对各种事物都充满兴趣，并且更热衷于表现自己。</Passionate.description>
+  <Passionate.antonymLabel>冷漠</Passionate.antonymLabel>
+  <Passionate.descriptionLabel>激情</Passionate.descriptionLabel>
+  <Passionate.description>具有{0}的人总是对各种事物都充满兴趣，并且更热衷于表现自己。</Passionate.description>
   <Passionate.conversationTopics.0>他们喜欢或讨厌的东西</Passionate.conversationTopics.0>
   <Passionate.conversationTopics.1>优美</Passionate.conversationTopics.1>
   <Passionate.conversationTopics.2>渴求</Passionate.conversationTopics.2>
@@ -147,7 +175,9 @@
   <Passionate.platformIssueLow>我已经做好了自己分内的事。</Passionate.platformIssueLow>
 
   <Nostalgic.label>恋旧</Nostalgic.label>
-  <Nostalgic.description>恋旧的人常常喜欢追忆过去，也很容易触景生情。</Nostalgic.description>
+  <Nostalgic.antonymLabel>不恋旧</Nostalgic.antonymLabel>
+  <Nostalgic.descriptionLabel>恋旧</Nostalgic.descriptionLabel>
+  <Nostalgic.description>{0}的人常常喜欢追忆过去，也很容易触景生情。</Nostalgic.description>
   <Nostalgic.conversationTopics.0>旧时光</Nostalgic.conversationTopics.0>
   <Nostalgic.conversationTopics.1>童年</Nostalgic.conversationTopics.1>
   <Nostalgic.conversationTopics.2>遗憾</Nostalgic.conversationTopics.2>
@@ -160,7 +190,9 @@
   <Nostalgic.platformIssueLow>没有未来，我们来创造未来。</Nostalgic.platformIssueLow>
   
   <Empathetic.label>共情</Empathetic.label>
-  <Empathetic.description>有共情能力的人更能够设身处地为他人着想，理解他人的感受。</Empathetic.description>
+  <Empathetic.antonymLabel>不善解人意</Empathetic.antonymLabel>
+  <Empathetic.descriptionLabel>共情</Empathetic.descriptionLabel>
+  <Empathetic.description>有{0}能力的人更能够设身处地为他人着想，理解他人的感受。</Empathetic.description>
   <Empathetic.conversationTopics.0>心理疾病</Empathetic.conversationTopics.0>
   <Empathetic.conversationTopics.1>孤立主义</Empathetic.conversationTopics.1>
   <Empathetic.conversationTopics.2>互相理解</Empathetic.conversationTopics.2>
@@ -174,7 +206,9 @@
   <Empathetic.platformIssueLow>镇长不应该干涉人们的私事。</Empathetic.platformIssueLow>
 
   <Competitive.label>争强好胜</Competitive.label>
-  <Competitive.description>对于一个争强好胜的人来说，仅仅自己成功是不够的，除了自己，其他人必须失败。</Competitive.description>
+  <Competitive.antonymLabel>合作社</Competitive.antonymLabel>
+  <Competitive.descriptionLabel>争强好胜</Competitive.descriptionLabel>
+  <Competitive.description>对于一个{0}的人来说，仅仅自己成功是不够的，除了自己，其他人必须失败。</Competitive.description>
   <Competitive.conversationTopics.0>成功</Competitive.conversationTopics.0>
   <Competitive.conversationTopics.1>骄傲</Competitive.conversationTopics.1>
   <Competitive.conversationTopics.2>社会地位</Competitive.conversationTopics.2>
@@ -186,8 +220,10 @@
   <Competitive.platformIssueLow>人人都应该有平等的资格。</Competitive.platformIssueLow>
   
   <Polite.label>礼貌</Polite.label>
-  <Polite.description>有礼貌的人总是举止得体，努力不冒犯他人。</Polite.description>
-   <Polite.conversationTopics.0>伦理</Polite.conversationTopics.0>
+  <Polite.antonymLabel>無禮</Polite.antonymLabel>
+  <Polite.descriptionLabel>礼貌</Polite.descriptionLabel>
+  <Polite.description>有{0}的人总是举止得体，努力不冒犯他人。</Polite.description>
+  <Polite.conversationTopics.0>伦理</Polite.conversationTopics.0>
   <Polite.conversationTopics.1>机智</Polite.conversationTopics.1>
   <Polite.conversationTopics.2>文明</Polite.conversationTopics.2>
   <Polite.conversationTopics.3>感情</Polite.conversationTopics.3>
@@ -201,8 +237,10 @@
   <Polite.platformIssueLow>我们应该认清自己的优劣。</Polite.platformIssueLow>
 
   <Cool.label>酷</Cool.label>
-  <Cool.description>真正酷炫的人总是独特、前卫、有趣的人，人人都喜欢他们</Cool.description>
-   <Cool.conversationTopics.0>闪耀世界的潮流</Cool.conversationTopics.0>
+  <Cool.antonymLabel>不酷</Cool.antonymLabel>
+  <Cool.descriptionLabel>酷</Cool.descriptionLabel>
+  <Cool.description>真正{0}炫的人总是独特、前卫、有趣的人，人人都喜欢他们</Cool.description>
+  <Cool.conversationTopics.0>闪耀世界的潮流</Cool.conversationTopics.0>
   <Cool.conversationTopics.1>潮牌</Cool.conversationTopics.1>
   <Cool.conversationTopics.2>发型</Cool.conversationTopics.2>
   <Cool.conversationTopics.3>化妆</Cool.conversationTopics.3>
@@ -213,7 +251,9 @@
   <Cool.platformIssueLow>把票投给最适合这份工作的人。</Cool.platformIssueLow>
 
   <Romantic.label>浪漫</Romantic.label>
-  <Romantic.description>浪漫的人喜欢长期、有意义的关系，希望建立永恒的承诺。</Romantic.description>
+  <Romantic.antonymLabel>不浪漫</Romantic.antonymLabel>
+  <Romantic.descriptionLabel>浪漫</Romantic.descriptionLabel>
+  <Romantic.description>{0}的人喜欢长期、有意义的关系，希望建立永恒的承诺。</Romantic.description>
   <Romantic.conversationTopics.0>关系</Romantic.conversationTopics.0>
   <Romantic.conversationTopics.1>烟花</Romantic.conversationTopics.1>
   <Romantic.conversationTopics.2>孩子</Romantic.conversationTopics.2>
@@ -229,7 +269,9 @@
   <Romantic.platformIssueLow>我不会惦记着这个岗位，但是如果人们需要我，我也绝不会推辞。</Romantic.platformIssueLow>
 
   <Thoughtful.label>深思熟虑</Thoughtful.label>
-  <Thoughtful.description>有思想的人是内省和批判的，并且倾向于提前计划。</Thoughtful.description>
+  <Thoughtful.antonymLabel>粗心</Thoughtful.antonymLabel>
+  <Thoughtful.descriptionLabel>有思想</Thoughtful.descriptionLabel>
+  <Thoughtful.description>{0}人是内省和批判的，并且倾向于提前计划。</Thoughtful.description>
   <Thoughtful.conversationTopics.0>未来</Thoughtful.conversationTopics.0>
   <Thoughtful.conversationTopics.1>生活目标</Thoughtful.conversationTopics.1>
   <Thoughtful.conversationTopics.2>优先级</Thoughtful.conversationTopics.2>
@@ -238,11 +280,16 @@
   <Thoughtful.conversationTopics.5>自立</Thoughtful.conversationTopics.5>
   <Thoughtful.conversationTopics.6>头脑风暴</Thoughtful.conversationTopics.6>
   <Thoughtful.conversationTopics.7>梦想</Thoughtful.conversationTopics.7>
-  <Thoughtful.platformIssueHigh>我们应该做好未来的打算</Thoughtful.platformIssueHigh>
+  <Thoughtful.conversationTopics.8>拖延</Thoughtful.conversationTopics.8>
+  <Thoughtful.conversationTopics.9>准时</Thoughtful.conversationTopics.9>
+  <Thoughtful.conversationTopics.10>责任</Thoughtful.conversationTopics.10>
+  <Thoughtful.platformIssueHigh>我们应该做好未来的打算。</Thoughtful.platformIssueHigh>
   <Thoughtful.platformIssueLow>我们应该立足当下。</Thoughtful.platformIssueLow>
 
   <Geeky.label>极客</Geeky.label>
-  <Geeky.description>极客聪明又古怪，但在社交场合总会很尴尬。</Geeky.description>
+  <Geeky.antonymLabel>普通</Geeky.antonymLabel>
+  <Geeky.descriptionLabel>极客</Geeky.descriptionLabel>
+  <Geeky.description>{0}聪明又古怪，但在社交场合总会很尴尬。</Geeky.description>
   <Geeky.conversationTopics.0>他们的爱好</Geeky.conversationTopics.0>
   <Geeky.conversationTopics.1>图灵机</Geeky.conversationTopics.1>
   <Geeky.conversationTopics.2>世代飞船</Geeky.conversationTopics.2>
@@ -263,7 +310,9 @@
   <Geeky.platformIssueLow>我们要把注意力放在实际的事物上。</Geeky.platformIssueLow>
 
   <Cultured.label>有教养</Cultured.label>
-  <Cultured.description>一个有教养的人通常博览群书，受过良好教育，总是保持举止优雅。</Cultured.description>
+  <Cultured.antonymLabel>無知</Cultured.antonymLabel>
+  <Cultured.descriptionLabel>有教养</Cultured.descriptionLabel>
+  <Cultured.description>一个{0}的人通常博览群书，受过良好教育，总是保持举止优雅。</Cultured.description>
   <Cultured.conversationTopics.0>美学</Cultured.conversationTopics.0>
   <Cultured.conversationTopics.1>电视</Cultured.conversationTopics.1>
   <Cultured.conversationTopics.2>他们看过的书</Cultured.conversationTopics.2>
@@ -280,7 +329,9 @@
   <Cultured.platformIssueLow>我像大家一样，是个普通人。</Cultured.platformIssueLow>
 
   <Organized.label>整洁</Organized.label>
-  <Organized.description>一个整洁的人也擅长把各种繁多的事务打理得井井有条。</Organized.description>
+  <Organized.antonymLabel>雜亂無章</Organized.antonymLabel>
+  <Organized.descriptionLabel>整洁</Organized.descriptionLabel>
+  <Organized.description>一个{0}的人也擅长把各种繁多的事务打理得井井有条。</Organized.description>
   <Organized.conversationTopics.0>清洁</Organized.conversationTopics.0>
   <Organized.conversationTopics.1>宠物</Organized.conversationTopics.1>
   <Organized.conversationTopics.2>洗衣服</Organized.conversationTopics.2>
@@ -290,10 +341,12 @@
   <Organized.conversationTopics.6>污秽</Organized.conversationTopics.6>
   <Organized.conversationTopics.7>新奇动物</Organized.conversationTopics.7>
   <Organized.platformIssueHigh>越简单越好。</Organized.platformIssueHigh>
-  <Organized.platformIssueLow>世界是复杂的，我们的问题也是</Organized.platformIssueLow>
+  <Organized.platformIssueLow>世界是复杂的，我们的问题也是。</Organized.platformIssueLow>
 
   <Naive.label>天真</Naive.label>
-  <Naive.description>天真的人思想质朴，但往往会有些小迷信。</Naive.description>
+  <Naive.antonymLabel>持懷疑態度</Naive.antonymLabel>
+  <Naive.descriptionLabel>天真</Naive.descriptionLabel>
+  <Naive.description>{0}的人思想质朴，但往往会有些小迷信。</Naive.description>
   <Naive.conversationTopics.1>死后的世界</Naive.conversationTopics.1>
   <Naive.conversationTopics.2>荣耀</Naive.conversationTopics.2>
   <Naive.conversationTopics.3>命运</Naive.conversationTopics.3>
@@ -308,7 +361,9 @@
   <Naive.platformIssueLow>我拥有成为一个合格的镇长所需要的所有经验。</Naive.platformIssueLow>
 
   <Upbeat.label>积极向上</Upbeat.label>
-  <Upbeat.description>积极向上的人总是能保持开心的心境，也乐于把温暖带给身边的人，他们很好相处。</Upbeat.description>
+  <Upbeat.antonymLabel>陰沉</Upbeat.antonymLabel>
+  <Upbeat.descriptionLabel>积极向上</Upbeat.descriptionLabel>
+  <Upbeat.description>{0}的人总是能保持开心的心境，也乐于把温暖带给身边的人，他们很好相处。</Upbeat.description>
   <Upbeat.conversationTopics.0>生活</Upbeat.conversationTopics.0>
   <Upbeat.conversationTopics.1>成年</Upbeat.conversationTopics.1>
   <Upbeat.conversationTopics.2>噩梦</Upbeat.conversationTopics.2>
@@ -322,7 +377,9 @@
   <Upbeat.platformIssueLow>小镇正面临灾难。</Upbeat.platformIssueLow>
 
   <Outspoken.label>直言不讳</Outspoken.label>
-  <Outspoken.description>直言不讳的人总会有很多立场鲜明的观点，而且从不避讳提出它们。</Outspoken.description>
+  <Outspoken.antonymLabel>保留</Outspoken.antonymLabel>
+  <Outspoken.descriptionLabel>直言不讳</Outspoken.descriptionLabel>
+  <Outspoken.description>{0}的人总会有很多立场鲜明的观点，而且从不避讳提出它们。</Outspoken.description>
   <Outspoken.conversationTopics.0>政治</Outspoken.conversationTopics.0>
   <Outspoken.conversationTopics.1>法典</Outspoken.conversationTopics.1>
   <Outspoken.conversationTopics.2>政府</Outspoken.conversationTopics.2>
@@ -340,8 +397,10 @@
   <Outspoken.platformIssueLow>我们需要一个爱民如子的镇长。</Outspoken.platformIssueLow>
 
   <Ambitious.label>志向远大</Ambitious.label>
-  <Ambitious.description>志向远大的人会给自己设立雄大而艰巨的目标，并且渴望着实现它们。</Ambitious.description>
-   <Ambitious.conversationTopics.0>他们的理想</Ambitious.conversationTopics.0>
+  <Ambitious.antonymLabel>内容</Ambitious.antonymLabel>
+  <Ambitious.descriptionLabel>志向远大</Ambitious.descriptionLabel>
+  <Ambitious.description>{0}的人会给自己设立雄大而艰巨的目标，并且渴望着实现它们。</Ambitious.description>
+  <Ambitious.conversationTopics.0>他们的理想</Ambitious.conversationTopics.0>
   <Ambitious.conversationTopics.1>他们害怕的东西</Ambitious.conversationTopics.1>
   <Ambitious.conversationTopics.2>生活挑战</Ambitious.conversationTopics.2>
   <Ambitious.conversationTopics.3>毅力</Ambitious.conversationTopics.3>
@@ -353,7 +412,9 @@
   <Ambitious.platformIssueLow>我们应该立足于我们自身的情况。</Ambitious.platformIssueLow>
 
   <LaidBack.label>悠闲</LaidBack.label>
-  <LaidBack.description>悠闲的人不容易感受到压力，他们总是自由自在，无忧无虑。</LaidBack.description>
+  <LaidBack.antonymLabel>焦虑</LaidBack.antonymLabel>
+  <LaidBack.descriptionLabel>悠闲</LaidBack.descriptionLabel>
+  <LaidBack.description>{0}的人不容易感受到压力，他们总是自由自在，无忧无虑。</LaidBack.description>
   <LaidBack.conversationTopics.0>努力</LaidBack.conversationTopics.0>
   <LaidBack.conversationTopics.1>压力</LaidBack.conversationTopics.1>
   <LaidBack.conversationTopics.2>情绪</LaidBack.conversationTopics.2>
@@ -366,8 +427,10 @@
   <LaidBack.platformIssueLow>你需要一个能产生压力的镇长。</LaidBack.platformIssueLow>
 
   <Pure.label>纯洁</Pure.label>
-  <Pure.description>纯洁的人更倾向于保持传统，贞洁和健康。</Pure.description>
-    <Pure.conversationTopics.0>宗教</Pure.conversationTopics.0>
+  <Pure.antonymLabel>放荡</Pure.antonymLabel>
+  <Pure.descriptionLabel>纯洁</Pure.descriptionLabel>
+  <Pure.description>{0}的人更倾向于保持传统，贞洁和健康。</Pure.description>
+  <Pure.conversationTopics.0>宗教</Pure.conversationTopics.0>
   <Pure.conversationTopics.1>灵性</Pure.conversationTopics.1>
   <Pure.conversationTopics.2>传统价值</Pure.conversationTopics.2>
   <Pure.conversationTopics.3>性道德</Pure.conversationTopics.3>
@@ -382,7 +445,9 @@
   <Pure.platformIssueLow>我们应该拥有先进的价值观。</Pure.platformIssueLow>
 
   <Moralistic.label>道德主义</Moralistic.label>
-  <Moralistic.description>道德主义者倾向于坚持传统的道德观念。</Moralistic.description>
+  <Moralistic.antonymLabel>不道德</Moralistic.antonymLabel>
+  <Moralistic.descriptionLabel>道德主义</Moralistic.descriptionLabel>
+  <Moralistic.description>{0}者倾向于坚持传统的道德观念。</Moralistic.description>
   <Moralistic.conversationTopics.0>伦理</Moralistic.conversationTopics.0>
   <Moralistic.conversationTopics.1>道德</Moralistic.conversationTopics.1>
   <Moralistic.conversationTopics.2>自相残杀</Moralistic.conversationTopics.2>
@@ -398,8 +463,10 @@
   <Moralistic.platformIssueLow>我们只要做对我们有利的事。</Moralistic.platformIssueLow>
 
   <Trusting.label>信任</Trusting.label>
-  <Trusting.description>很容易相信别人，也擅长发现别人的优点。</Trusting.description>
-   <Trusting.conversationTopics.0>人性</Trusting.conversationTopics.0>
+  <Trusting.antonymLabel>愤世嫉俗</Trusting.antonymLabel>
+  <Trusting.descriptionLabel>相信别人</Trusting.descriptionLabel>
+  <Trusting.description>很容易{0}，也擅长发现别人的优点。</Trusting.description>
+  <Trusting.conversationTopics.0>人性</Trusting.conversationTopics.0>
   <Trusting.conversationTopics.1>诚实</Trusting.conversationTopics.1>
   <Trusting.conversationTopics.2>诚信</Trusting.conversationTopics.2>
   <Trusting.conversationTopics.3>交流的艺术</Trusting.conversationTopics.3>
@@ -413,7 +480,11 @@
   <Trusting.platformIssueLow>这个殖民地应该包容各种各样的人。</Trusting.platformIssueLow>
 
   <Judgmental.label>妄下评判</Judgmental.label>
-  <Judgmental.description>他们会迅速而肤浅地形成对他人的看法，并且更多地受到他人行为的影响。</Judgmental.description>
+  <Judgmental.antonymLabel>宽容</Judgmental.antonymLabel>
+  <Judgmental.descriptionLabel>妄下评判</Judgmental.descriptionLabel>
+  <!--<Judgmental.description>他们会迅速而肤浅地形成对他人的看法，并且更多地受到他人行为的影响。</Judgmental.description>-->
+  <Judgmental.description>{0}人倾向于快速而肤浅地形成他们对他人的看法，并且更多地受到他人行为的影响。</Judgmental.description>
+
   <Judgmental.conversationTopics.0>八卦</Judgmental.conversationTopics.0>
   <Judgmental.conversationTopics.1>戏剧</Judgmental.conversationTopics.1>
   <Judgmental.conversationTopics.2>文化</Judgmental.conversationTopics.2>
@@ -429,7 +500,9 @@
   <Judgmental.platformIssueLow>我会是最好的镇长。</Judgmental.platformIssueLow>
 
   <Friendly.label>友善</Friendly.label>
-  <Friendly.description>心地善良，能宽容地对待他人，也乐于交谈。</Friendly.description>
+  <Friendly.antonymLabel>不友好</Friendly.antonymLabel>
+  <Friendly.descriptionLabel>友善</Friendly.descriptionLabel>
+  <Friendly.description>{0}人心地善良，能宽容地对待他人，也乐于交谈。</Friendly.description>
   <Friendly.conversationTopics.0>彼此</Friendly.conversationTopics.0>
   <Friendly.conversationTopics.1>交朋友</Friendly.conversationTopics.1>
   <Friendly.conversationTopics.2>原谅</Friendly.conversationTopics.2>
@@ -441,7 +514,9 @@
   <Friendly.platformIssueLow>我们只是为了活下去才凑在一起。</Friendly.platformIssueLow>
 
   <Optimistic.label>乐观</Optimistic.label>
-  <Optimistic.description>乐观的人总能看到事物光明的一面。</Optimistic.description>
+  <Optimistic.antonymLabel>悲观</Optimistic.antonymLabel>
+  <Optimistic.descriptionLabel>乐观</Optimistic.descriptionLabel>
+  <Optimistic.description>{0}的人总能看到事物光明的一面。</Optimistic.description>
   <Optimistic.conversationTopics.0>他们的感受</Optimistic.conversationTopics.0>
   <Optimistic.conversationTopics.1>生活的意义</Optimistic.conversationTopics.1>
   <Optimistic.conversationTopics.2>死亡的必然性</Optimistic.conversationTopics.2>
@@ -454,7 +529,9 @@
   <Optimistic.platformIssueLow>有些事已经很坏了，但还会更坏。</Optimistic.platformIssueLow>
 
   <Compassionate.label>慈悲</Compassionate.label>
-  <Compassionate.description>慈悲的人会更关心他人的悲惨境遇，并尽量试图帮助那些人。</Compassionate.description>
+  <Compassionate.antonymLabel>无情</Compassionate.antonymLabel>
+  <Compassionate.descriptionLabel>慈悲</Compassionate.descriptionLabel>
+  <Compassionate.description>{0}的人会更关心他人的悲惨境遇，并尽量试图帮助那些人。</Compassionate.description>
   <Compassionate.conversationTopics.0>不幸</Compassionate.conversationTopics.0>
   <Compassionate.conversationTopics.1>帮助被压迫者</Compassionate.conversationTopics.1>
   <Compassionate.conversationTopics.2>帮助病人</Compassionate.conversationTopics.2>
@@ -468,7 +545,9 @@
   <Compassionate.platformIssueLow>我们应该根据社会中的强者来评价一个社会的好坏。</Compassionate.platformIssueLow>
 
   <Generous.label>慷慨</Generous.label>
-  <Generous.description>慷慨的人不怎么在乎自己所拥有的东西，他们更愿意把东西和他人一起分享。</Generous.description>
+  <Generous.antonymLabel>慷慨</Generous.antonymLabel>
+  <Generous.descriptionLabel>慷慨</Generous.descriptionLabel>
+  <Generous.description>{0}的人不怎么在乎自己所拥有的东西，他们更愿意把东西和他人一起分享。</Generous.description>
   <Generous.conversationTopics.0>慈善</Generous.conversationTopics.0>
   <Generous.conversationTopics.1>慈善事业</Generous.conversationTopics.1>
   <Generous.conversationTopics.2>物质财富</Generous.conversationTopics.2>

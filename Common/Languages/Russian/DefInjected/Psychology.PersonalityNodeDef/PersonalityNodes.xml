@@ -197,7 +197,7 @@
 
     <Thoughtful.label>задумчивость</Thoughtful.label>
     <Thoughtful.antonymLabel>ненадежный</Thoughtful.antonymLabel>
-    <Thoughtful.descriptionLabel>задумчивость</Thoughtful.descriptionLabel>
+    <Thoughtful.descriptionLabel>Эадумчивость</Thoughtful.descriptionLabel>
     <!--<Thoughtful.description>{0} люди критичны в своих суждениях, любят копаться в себе и планировать заранее.</Thoughtful.description>-->
     <Thoughtful.description>{0} люди осторожны, усердны и планировать заранее.</Thoughtful.description>
     <Thoughtful.conversationTopics.0>будущем</Thoughtful.conversationTopics.0>
