@@ -364,22 +364,27 @@ namespace Psychology
                 list.Add(new FloatMenuOption(OptionsText[4], delegate
                 {
                     DistanceFromMiddle = 4;
+                    //PsychologyBase.UpdatePersonalityDisplaySetting();
                 }));
                 list.Add(new FloatMenuOption(OptionsText[3], delegate
                 {
                     DistanceFromMiddle = 3;
+                    //PsychologyBase.UpdatePersonalityDisplaySetting();
                 }));
                 list.Add(new FloatMenuOption(OptionsText[2], delegate
                 {
                     DistanceFromMiddle = 2;
+                    //PsychologyBase.UpdatePersonalityDisplaySetting();
                 }));
                 list.Add(new FloatMenuOption(OptionsText[1], delegate
                 {
                     DistanceFromMiddle = 1;
+                    //PsychologyBase.UpdatePersonalityDisplaySetting();
                 }));
                 list.Add(new FloatMenuOption(OptionsText[0], delegate
                 {
                     DistanceFromMiddle = 0;
+                    //PsychologyBase.UpdatePersonalityDisplaySetting();
                 }));
                 Find.WindowStack.Add(new FloatMenu(list));
             }
@@ -511,6 +516,7 @@ namespace Psychology
             //    }
             //}
             GUI.EndGroup();
+            //PsychologyBase.UpdatePersonalityDisplaySetting();
         }
 
         public static string ColorizedNodeText(PersonalityNode node, float displacement)

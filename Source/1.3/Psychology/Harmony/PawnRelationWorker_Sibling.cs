@@ -8,7 +8,7 @@ using Verse;
 using RimWorld;
 using HarmonyLib;
 
-namespace Psychology.Harm
+namespace Psychology.Harmony
 {
     [HarmonyPatch(typeof(PawnRelationWorker_Sibling), "GenerateParent")]
     public static class PawnRelationWorker_Sibling_GenerateParentPatch

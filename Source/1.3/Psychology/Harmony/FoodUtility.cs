@@ -6,7 +6,7 @@ using Verse;
 using RimWorld;
 using HarmonyLib;
 
-namespace Psychology.Harm
+namespace Psychology.Harmony
 {
     [HarmonyPatch(typeof(FoodUtility), nameof(FoodUtility.ThoughtsFromIngesting))]
     public static class FoodUtility_AddPickyThoughts_Patch

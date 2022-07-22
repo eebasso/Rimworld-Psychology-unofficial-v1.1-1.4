@@ -5,7 +5,7 @@ using Verse;
 using RimWorld;
 using HarmonyLib;
 
-namespace Psychology.Harm
+namespace Psychology.Harmony
 {
     [HarmonyPatch(typeof(Recipe_InstallNaturalBodyPart), nameof(Recipe_InstallNaturalBodyPart.ApplyOnPawn))]
     public static class Recipe_InstallNaturalBodyPart_ApplyPatch

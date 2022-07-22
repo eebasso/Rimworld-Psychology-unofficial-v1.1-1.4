@@ -10,7 +10,7 @@ using UnityEngine;
 using System.Reflection;
 using System.Reflection.Emit;
 
-namespace Psychology.Harm
+namespace Psychology.Harmony
 {
     [HarmonyPatch(typeof(CharacterCardUtility), nameof(CharacterCardUtility.DrawCharacterCard))]
     public static class CharacterCardUtility_ButtonPatch

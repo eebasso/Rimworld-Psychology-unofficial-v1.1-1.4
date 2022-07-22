@@ -10,7 +10,7 @@ using Verse.AI.Group;
 using HarmonyLib;
 using System.Reflection.Emit;
 
-namespace Psychology.Harm
+namespace Psychology.Harmony
 {
     [HarmonyPatch(typeof(Pawn_StoryTracker))]
     [HarmonyPatch(nameof(Pawn_StoryTracker.TitleShort), MethodType.Getter)]

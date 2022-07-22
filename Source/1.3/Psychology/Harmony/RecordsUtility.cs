@@ -6,7 +6,7 @@ using Verse;
 using RimWorld;
 using HarmonyLib;
 
-namespace Psychology.Harm
+namespace Psychology.Harmony
 {
     [HarmonyPatch(typeof(RecordsUtility), nameof(RecordsUtility.Notify_BillDone))]
     public static class RecordsUtility_BillDonePatch

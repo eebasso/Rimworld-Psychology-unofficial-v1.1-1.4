@@ -9,7 +9,7 @@ using Verse.AI.Group;
 using HarmonyLib;
 using UnityEngine;
 
-namespace Psychology.Harm
+namespace Psychology.Harmony
 
 {
     [HarmonyPatch(typeof(InteractionWorker_RecruitAttempt), "DoRecruit")]

@@ -54,9 +54,9 @@ namespace Psychology
             parentDict.Clear();
         }
 
-        public float GetModifier(PersonalityNodeDef def)
+        public float GetModifier(PersonalityNodeDef parentDef)
         {
-            return ParentNodes[def].modifier;
+            return ParentNodes[parentDef].modifier;
         }
 
         public Dictionary<PersonalityNodeDef, PersonalityNodeParent> ParentNodes
@@ -94,8 +94,5 @@ namespace Psychology
         {
             return this.defName.GetHashCode();
         }
-
-
-
     }
 }

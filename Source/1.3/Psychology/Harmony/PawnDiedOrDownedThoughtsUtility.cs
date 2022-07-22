@@ -11,7 +11,7 @@ using Verse;
 using Verse.AI;
 using HarmonyLib;
 
-namespace Psychology.Harm
+namespace Psychology.Harmony
 {
     [HarmonyPatch(typeof(PawnDiedOrDownedThoughtsUtility), "AppendThoughts_ForHumanlike")]
     public static class PawnDiedOrDownedThoughtUtility_AppendThoughtsPatch

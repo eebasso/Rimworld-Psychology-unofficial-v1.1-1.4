@@ -1,79 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Patch>
-	<!-- Change values of base Opinion Offsets -->
-	<!-- Disfigure -->
-	<Operation Class="PatchOperationReplace">
+	<Operation Class="Psychology.PatchOperationCustom">
 		<xpath>Defs/ThoughtDef[defName="Disfigured"]/stages/li[1]/baseOpinionOffset/text()</xpath>
-		<value> -5 </value>
 	</Operation>
-	<!-- Pretty -->
-	<Operation Class="PatchOperationReplace">
+
+	<Operation Class="Psychology.PatchOperationCustom">
 		<xpath>Defs/ThoughtDef[defName="Pretty"]/stages/li[1]/baseOpinionOffset/text()</xpath>
-		<value> 5 </value>
 	</Operation>
-	<Operation Class="PatchOperationReplace">
+	<Operation Class="Psychology.PatchOperationCustom">
 		<xpath>Defs/ThoughtDef[defName="Pretty"]/stages/li[2]/baseOpinionOffset/text()</xpath>
-		<value> 10 </value>
 	</Operation>
-	<!-- Ugly -->
-	<Operation Class="PatchOperationReplace">
+
+	<Operation Class="Psychology.PatchOperationCustom">
 		<xpath>Defs/ThoughtDef[defName="Ugly"]/stages/li[1]/baseOpinionOffset/text()</xpath>
-		<value> -5 </value>
 	</Operation>
-	<Operation Class="PatchOperationReplace">
+	<Operation Class="Psychology.PatchOperationCustom">
 		<xpath>Defs/ThoughtDef[defName="Ugly"]/stages/li[2]/baseOpinionOffset/text()</xpath>
-		<value> -10 </value>
 	</Operation>
-	<!-- Annoying Voice-->
-	<Operation Class="PatchOperationReplace">
+
+	<Operation Class="Psychology.PatchOperationCustom">
 		<xpath>Defs/ThoughtDef[defName="AnnoyingVoice"]/stages/li[1]/baseOpinionOffset/text()</xpath>
-		<value> -0 </value>
 	</Operation>
-	<!-- Creepy Breathing -->
-	<Operation Class="PatchOperationReplace">
+
+	<Operation Class="Psychology.PatchOperationCustom">
 		<xpath>Defs/ThoughtDef[defName="CreepyBreathing"]/stages/li[1]/baseOpinionOffset/text()</xpath>
-		<value> -10 </value>
 	</Operation>
-	<!-- Body Modder Appreciation -->
-	<Operation Class="PatchOperationReplace">
+
+	<Operation Class="Psychology.PatchOperationCustom">
 		<xpath>Defs/ThoughtDef[defName="TranshumanistAppreciation"]/stages/li[1]/baseOpinionOffset/text()</xpath>
-		<value> 2 </value>
 	</Operation>
-	<Operation Class="PatchOperationReplace">
+	<Operation Class="Psychology.PatchOperationCustom">
 		<xpath>Defs/ThoughtDef[defName="TranshumanistAppreciation"]/stages/li[2]/baseOpinionOffset/text()</xpath>
-		<value> 4 </value>
 	</Operation>
-	<Operation Class="PatchOperationReplace">
+	<Operation Class="Psychology.PatchOperationCustom">
 		<xpath>Defs/ThoughtDef[defName="TranshumanistAppreciation"]/stages/li[3]/baseOpinionOffset/text()</xpath>
-		<value> 6 </value>
 	</Operation>
-	<Operation Class="PatchOperationReplace">
+	<Operation Class="Psychology.PatchOperationCustom">
 		<xpath>Defs/ThoughtDef[defName="TranshumanistAppreciation"]/stages/li[4]/baseOpinionOffset/text()</xpath>
-		<value> 8 </value>
 	</Operation>
-	<Operation Class="PatchOperationReplace">
+	<Operation Class="Psychology.PatchOperationCustom">
 		<xpath>Defs/ThoughtDef[defName="TranshumanistAppreciation"]/stages/li[5]/baseOpinionOffset/text()</xpath>
-		<value> 10 </value>
 	</Operation>
-	<!-- Body Purist Disgust -->
-	<Operation Class="PatchOperationReplace">
+
+	<Operation Class="Psychology.PatchOperationCustom">
 		<xpath>Defs/ThoughtDef[defName="BodyPuristDisgust"]/stages/li[1]/baseOpinionOffset/text()</xpath>
-		<value> -2 </value>
 	</Operation>
-	<Operation Class="PatchOperationReplace">
+	<Operation Class="Psychology.PatchOperationCustom">
 		<xpath>Defs/ThoughtDef[defName="BodyPuristDisgust"]/stages/li[2]/baseOpinionOffset/text()</xpath>
-		<value> -4 </value>
 	</Operation>
-	<Operation Class="PatchOperationReplace">
+	<Operation Class="Psychology.PatchOperationCustom">
 		<xpath>Defs/ThoughtDef[defName="BodyPuristDisgust"]/stages/li[3]/baseOpinionOffset/text()</xpath>
-		<value> -6 </value>
 	</Operation>
-	<Operation Class="PatchOperationReplace">
+	<Operation Class="Psychology.PatchOperationCustom">
 		<xpath>Defs/ThoughtDef[defName="BodyPuristDisgust"]/stages/li[4]/baseOpinionOffset/text()</xpath>
-		<value> -8 </value>
 	</Operation>
-	<Operation Class="PatchOperationReplace">
+	<Operation Class="Psychology.PatchOperationCustom">
 		<xpath>Defs/ThoughtDef[defName="BodyPuristDisgust"]/stages/li[5]/baseOpinionOffset/text()</xpath>
-		<value> -10 </value>
 	</Operation>
+
+
+
+
+
+
 </Patch>

@@ -7,7 +7,7 @@ using Verse;
 using Verse.AI;
 using HarmonyLib;
 
-namespace Psychology.Harm
+namespace Psychology.Harmony
 {
     [HarmonyPatch(typeof(MentalBreaker), nameof(MentalBreaker.TryDoRandomMoodCausedMentalBreak))]
     public static class MentalBreaker_AnxietyPatch

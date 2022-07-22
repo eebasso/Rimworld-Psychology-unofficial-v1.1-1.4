@@ -7,7 +7,7 @@ using RimWorld;
 using HarmonyLib;
 using System.Reflection;
 
-namespace Psychology.Harm
+namespace Psychology.Harmony
 {
     [HarmonyPatch(typeof(InteractionWorker_Breakup), nameof(InteractionWorker_Breakup.Interacted))]
     public static class InteractionWorker_Breakup_Interacted_Patch

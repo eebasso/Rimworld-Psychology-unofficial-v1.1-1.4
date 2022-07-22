@@ -7,7 +7,7 @@ using Verse;
 using HarmonyLib;
 using System.Reflection.Emit;
 
-namespace Psychology.Harm
+namespace Psychology.Harmony
 {
 	[HarmonyPatch(typeof(InteractionUtility), "CanReceiveRandomInteraction")]
 	public static class InteractionUtility_CanReceive_Patch

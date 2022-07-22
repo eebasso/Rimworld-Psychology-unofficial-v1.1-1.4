@@ -51,5 +51,11 @@
 
 	<BeatyOverrideEnabledTitle>Disable opinion changes from beauty traits</BeatyOverrideEnabledTitle>
 	<BeatyOverrideEnabledToolip>Disables opinion changes from traits such as: Pretty, Beautiful, Ugly, etc. Note that Psychology's changes to those traits would still work even if you disable this option. Its recommended to keep this option enabled.</BeatyOverrideEnabledToolip>
+
+	<DisplayOptionsTitle>Psyche tab display options</DisplayOptionsTitle>
+	<DisplayOptionsTooltip>Change the default display option for the Psyche tab.</DisplayOptionsTooltip>
+	<UseColorsTooltip>Colorize traits displayed in the Psyche tab.</UseColorsTooltip>
+	<ListAlphabeticalTooltip>List the traits alphabetically in the Psyche tab.</ListAlphabeticalTooltip>
+	<UseAntonymsTooltip>Use trait antonyms in the Psyche tab.</UseAntonymsTooltip>
   
 </LanguageData>

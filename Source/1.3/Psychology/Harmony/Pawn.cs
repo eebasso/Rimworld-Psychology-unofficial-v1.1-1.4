@@ -8,9 +8,10 @@ using Verse;
 using Verse.AI;
 using Verse.AI.Group;
 using HarmonyLib;
+using System.Reflection;
 using System.Reflection.Emit;
 
-namespace Psychology.Harm
+namespace Psychology.Harmony
 {
     [HarmonyPatch(typeof(Pawn), nameof(Pawn.CheckAcceptArrest))]
     public static class Pawn_ArrestPatch

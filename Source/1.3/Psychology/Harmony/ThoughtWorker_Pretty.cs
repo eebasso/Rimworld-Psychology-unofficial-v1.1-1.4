@@ -6,9 +6,7 @@ using RimWorld;
 using Verse;
 using HarmonyLib;
 
-// TODO: CHANGE BEAUTY OVERRIDE TO A MULTIPLIER THAT REDUCES MAGNITUDE OF OPINION CHANGES FROM VARIOUS TRAITS INCLUDING BODYMODDER/TRANSHUMANIST
-
-namespace Psychology.Harm
+namespace Psychology.Harmony
 {
     [HarmonyPatch(typeof(ThoughtWorker_Pretty), "CurrentSocialStateInternal")]
     public static class ThoughtWorker_PrettyPatch
@@ -17,20 +15,20 @@ namespace Psychology.Harm
         [HarmonyPostfix]
         public static void Disable(ref ThoughtState __result, Pawn pawn, Pawn other)
         {
-            if (__result.StageIndex != ThoughtState.Inactive.StageIndex && PsychologyBase.BeautyOverride())
+            if (__result.StageIndex != ThoughtState.Inactive.StageIndex)
             {
-                if (pawn.health.capacities.GetLevel(PawnCapacityDefOf.Sight) == 0f)
+                if (pawn.health.capacities.GetLevel(PawnCapacityDefOf.Sight) == 0f || PsychologyBase.TraitOpinionMultiplier() == 0f)
                 {
                     __result = false;
                 }
-                if (RelationsUtility.IsDisfigured(other))
-                {
-                    __result = false;
-                }
-                if (PsycheHelper.PsychologyEnabled(pawn) && PsycheHelper.PsychologyEnabled(other))
-                {
-                    __result = false;
-                }
+                //if (RelationsUtility.IsDisfigured(other))
+                //{
+                //    __result = false;
+                //}
+                //if (PsycheHelper.PsychologyEnabled(pawn) && PsycheHelper.PsychologyEnabled(other))
+                //{
+                //    __result = false;
+                //}
             }
         }
     }

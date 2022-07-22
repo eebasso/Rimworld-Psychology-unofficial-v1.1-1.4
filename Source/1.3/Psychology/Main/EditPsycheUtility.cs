@@ -271,6 +271,7 @@ namespace Psychology
 
             if (Widgets.ButtonText(resetRect, ResetButtonText, true, false, true))
             {
+                PsycheHelper.Comp(pawn).Psyche.InitializeUpbringing();
                 for (int i = 0; i < CachedList.Count; i++)
                 {
                     string nodeLabel = CachedList[i].First;

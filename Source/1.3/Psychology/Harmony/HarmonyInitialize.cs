@@ -1,17 +1,17 @@
 ﻿using HarmonyLib;
 using Verse;
 
-namespace Psychology.Harm
+namespace Psychology.Harmony
 {
     [StaticConstructorOnStartup]
     public static class HarmonyInitialize
     {
-        public static Harmony harmonyInstance;
+        public static HarmonyLib.Harmony harmonyInstance;
 
         static HarmonyInitialize()
         {
             Log.Message("Initializing Psychology Patches");
-            harmonyInstance = new Harmony("Community.Psychology.UnofficialUpdate");
+            harmonyInstance = new HarmonyLib.Harmony("Community.Psychology.UnofficialUpdate");
             harmonyInstance.PatchAll();
             Log.Message("Done with PatchAll");
             if (ModsConfig.IsActive("void.charactereditor"))
@@ -28,14 +28,14 @@ namespace Psychology.Harm
     }
     public class HarmonyPatches
     {
-        public static void DoCharacterEditorPatch(Harmony harmonyInstance)
+        public static void DoCharacterEditorPatch(HarmonyLib.Harmony harmonyInstance)
         {
             harmonyInstance.Patch(
                     AccessTools.Method(typeof(CharacterEditor.DialogPsychology), nameof(CharacterEditor.DialogPsychology.DoWindowContents)),
                     prefix: new HarmonyMethod(typeof(CharacterEditor_DialogPsychology_Patch), nameof(CharacterEditor_DialogPsychology_Patch.DoWindowContents))
             );
         }
-        public static void DoPrepareCarefullyPatch(Harmony harmonyInstance)
+        public static void DoPrepareCarefullyPatch(HarmonyLib.Harmony harmonyInstance)
         {
             harmonyInstance.Patch(
                     AccessTools.Method(typeof(EdB.PrepareCarefully.PanelBackstory), nameof(EdB.PrepareCarefully.PanelBackstory.Draw)),

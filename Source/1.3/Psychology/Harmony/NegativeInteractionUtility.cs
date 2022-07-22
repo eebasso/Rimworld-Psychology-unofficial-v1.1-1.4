@@ -6,7 +6,7 @@ using RimWorld;
 using Verse;
 using HarmonyLib;
 
-namespace Psychology.Harm
+namespace Psychology.Harmony
 {
     [HarmonyPatch(typeof(NegativeInteractionUtility), nameof(NegativeInteractionUtility.NegativeInteractionChanceFactor))]
     public static class NegativeInteractionUtility_ChancePatch

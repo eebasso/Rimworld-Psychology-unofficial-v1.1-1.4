@@ -5,7 +5,7 @@ using Verse;
 //using HarmonyLib;
 //using CharacterEditor;
 
-namespace Psychology.Harm
+namespace Psychology.Harmony
 {
     //[HarmonyPatch(typeof(CharacterEditor.DialogPsychology), nameof(CharacterEditor.DialogPsychology.DoWindowContents))]
     public class CharacterEditor_DialogPsychology_Patch

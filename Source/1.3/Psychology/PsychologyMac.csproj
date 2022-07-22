@@ -89,6 +89,8 @@
       <HintPath>..\..\..\..\..\..\..\..\workshop\content\294100\1874644848\v1.3\Assemblies\CharacterEditor.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Krafs.Publicizer" Version="1.0.2" />
@@ -275,6 +277,8 @@
     <Compile Include="Main\EditPsycheUtility.cs" />
     <Compile Include="Main\PsychColor.cs" />
     <Compile Include="Harmony\HarmonyInitialize.cs" />
+    <Compile Include="Harmony\Thought_ChemicalInterestVsTeetotaler.cs" />
+    <Compile Include="Main\Personality\PersonalityNodeParentMatrix.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\About\preview.png">

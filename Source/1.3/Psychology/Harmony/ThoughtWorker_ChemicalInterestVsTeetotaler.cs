@@ -6,7 +6,7 @@ using RimWorld;
 using Verse;
 using HarmonyLib;
 
-namespace Psychology.Harm
+namespace Psychology.Harmony
 {
     [HarmonyPatch(typeof(ThoughtWorker_ChemicalInterestVsTeetotaler), "CurrentSocialStateInternal")]
     public static class ThoughtWorker_ChemicalInterestVsTeetotalerPatch
@@ -17,7 +17,8 @@ namespace Psychology.Harm
         {
             if (__result.StageIndex != ThoughtState.Inactive.StageIndex)
             {
-                if (PsycheHelper.PsychologyEnabled(p) && PsycheHelper.PsychologyEnabled(other))
+                //if (PsycheHelper.PsychologyEnabled(p) && PsycheHelper.PsychologyEnabled(other) && 0.25f == 0f)
+                if (PsychologyBase.TraitOpinionMultiplier() == 0f)
                 {
                     __result = false;
                 }

@@ -38,9 +38,8 @@ namespace Psychology
         public static float mayorAgeConfig = 20f; // v1.1
         public static bool dateLetters = true;
         public static bool benchmark = false;
-        public static bool beautyOverrideConfig = true; // 1.2
+        public static float traitOpinionMultplierConfig = 0.25f; // 1.2
         private SettingHandle<bool> toggleKinsey;
-        private SettingHandle<bool> toggleEmpathy;
         private SettingHandle<KinseyMode> kinseyMode;
         private SettingHandle<float> kinsey0WeightSettingHandle;
         private SettingHandle<float> kinsey1WeightSettingHandle;
@@ -49,6 +48,7 @@ namespace Psychology
         private SettingHandle<float> kinsey4WeightSettingHandle;
         private SettingHandle<float> kinsey5WeightSettingHandle;
         private SettingHandle<float> kinsey6WeightSettingHandle;
+        private SettingHandle<bool> toggleEmpathy;
         private SettingHandle<bool> toggleIndividuality;
         private SettingHandle<bool> toggleElections;
         private SettingHandle<float> conversationDuration;
@@ -59,7 +59,12 @@ namespace Psychology
         private SettingHandle<float> romanceChanceMultiplier; // v1.1
         private SettingHandle<float> romanceChanceThreshold; // v1.1
         private SettingHandle<float> mayorAge; // v1.1
-        private SettingHandle<bool> beautyOverrideEnabled; // v1.2
+        //private SettingHandle<float> traitOpinionMultplier; // v1.2
+        //private static SettingHandle<PersonalityDisplayOptions> DistanceFromMiddleSettingsHandle;
+        //private static SettingHandle<bool> UseColorsSettingsHandle; // v1.3
+        //private static SettingHandle<bool> ListAlphabeticalSettingsHandle; // v1.3
+        //private static SettingHandle<bool> UseAntonymsSettingsHandle; // v1.3
+
         public static Backstory child = new Backstory();
 
         public enum KinseyMode
@@ -70,6 +75,65 @@ namespace Psychology
             Gaypocalypse,
             Custom
         };
+
+        //public enum PersonalityDisplayOptions
+        //{
+        //    Text4,
+        //    Text3,
+        //    Text2,
+        //    Text1,
+        //    Text0
+        //};
+
+        //public static byte DistanceFromMiddleSettingToByte(PersonalityDisplayOptions option)
+        //{
+        //    if (option == PersonalityDisplayOptions.Text4)
+        //    {
+        //        return 4;
+        //    }
+        //    if (option == PersonalityDisplayOptions.Text3)
+        //    {
+        //        return 3;
+        //    }
+        //    if (option == PersonalityDisplayOptions.Text2)
+        //    {
+        //        return 2;
+        //    }
+        //    if (option == PersonalityDisplayOptions.Text1)
+        //    {
+        //        return 1;
+        //    }
+        //    return 0;
+        //}
+
+        //public static PersonalityDisplayOptions DistanceFromMiddleByteToSetting(byte distance)
+        //{
+        //    if (distance == 4)
+        //    {
+        //        return PersonalityDisplayOptions.Text4;
+        //    }
+        //    if (distance == 3)
+        //    {
+        //        return PersonalityDisplayOptions.Text3;
+        //    }
+        //    if (distance == 2)
+        //    {
+        //        return PersonalityDisplayOptions.Text2;
+        //    }
+        //    if (distance == 1)
+        //    {
+        //        return PersonalityDisplayOptions.Text1;
+        //    }
+        //    return PersonalityDisplayOptions.Text0;
+        //}
+
+        //public static void UpdatePersonalityDisplaySetting()
+        //{
+        //    DistanceFromMiddleSettingsHandle.Value = DistanceFromMiddleByteToSetting(PsycheCardUtility.DistanceFromMiddle);
+        //    UseColorsSettingsHandle.Value = PsycheCardUtility.UseColorsBool;
+        //    ListAlphabeticalSettingsHandle.Value = PsycheCardUtility.AlphabeticalBool;
+        //    UseAntonymsSettingsHandle.Value = PsycheCardUtility.UseAntonymsBool;
+        //}
 
         static public bool ActivateKinsey()
         {
@@ -161,10 +225,24 @@ namespace Psychology
             return mayorAgeConfig;
         }
 
-        static public bool BeautyOverride()
+        static public float TraitOpinionMultiplier()
         {
-            return beautyOverrideConfig;
+            return traitOpinionMultplierConfig;
         }
+
+        //public float TraitOpinionMultiplier
+        //{
+        //    get
+        //    {
+        //        return traitOpinionMultplierConfig;
+        //    }
+        //    set
+        //    {
+        //        traitOpinionMultplierConfig = value;
+        //    }
+        //}
+
+
 
         static public bool EnablePerformanceTesting()
         {
@@ -230,7 +308,12 @@ namespace Psychology
             romanceChanceConfig = romanceChanceMultiplier.Value; //v1.1
             romanceThresholdConfig = romanceChanceThreshold.Value; //v1.1
             mayorAgeConfig = mayorAge.Value; //v1.1
-            beautyOverrideConfig = beautyOverrideEnabled.Value; //1.2
+            //PsycheCardUtility.DistanceFromMiddle = DistanceFromMiddleSettingToByte(DistanceFromMiddleSettingsHandle.Value);
+            //PsycheCardUtility.UseColorsBool = UseColorsSettingsHandle.Value;
+            //PsycheCardUtility.AlphabeticalBool = ListAlphabeticalSettingsHandle.Value;
+            //PsycheCardUtility.UseAntonymsBool = UseAntonymsSettingsHandle.Value;
+            //float oldTraitOpinionModifier = traitOpinionMultplierConfig;
+            //traitOpinionMultplierConfig = traitOpinionMultplier.Value; //1.2
             bool oldBenchmarkVal = benchmark;
             benchmark = toggleBenchmarking.Value;
             // The game has to be restarted for benchmarking to be applied/removed.
@@ -260,31 +343,26 @@ namespace Psychology
                 conversationDuration = Settings.GetHandle<float>("ConversationDuration", "DurationTitle".Translate(), "DurationTooltip".Translate(), 60f, (String s) => float.Parse(s) >= 15f && float.Parse(s) <= 180f);
                 toggleDateLetters = Settings.GetHandle<bool>("SendDateLetters", "SendDateLettersTitle".Translate(), "SendDateLettersTooltip".Translate(), true);
                 toggleBenchmarking = Settings.GetHandle<bool>("Benchmarking", "BenchmarkingTitle".Translate(), "BenchmarkingTooltip".Translate(), false);
+
                 // 1.1 exclusive configs
                 imprisonedDebuff = Settings.GetHandle<bool>("ImprisonedOpinion", "ImprisonedTitle".Translate(), "ImprisonedTooltip".Translate(), true);
                 anxiety = Settings.GetHandle<bool>("AllowAnxiety", "AllowAnxietyTitle".Translate(), "AllowAnxietyTooltip".Translate(), true);
-                romanceChanceMultiplier = Settings.GetHandle<float>("RomanceChanceMultiplier", "RomanceMultiplierTitle".Translate(), "RomanceMultiplierTooltip".Translate(), 1f, (String s) => float.Parse(s) >= 0.1f);
+                romanceChanceMultiplier = Settings.GetHandle<float>("RomanceChanceMultiplier", "RomanceMultiplierTitle".Translate(), "RomanceMultiplierTooltip".Translate(), 1f, (String s) => float.Parse(s) >= 0f);
                 romanceChanceThreshold = Settings.GetHandle<float>("RomanceChanceThreshold", "RomanceChanceThresholdTitle".Translate(), "RomanceChanceThresholdTooltip".Translate(), 5f);
                 mayorAge = Settings.GetHandle<float>("MayorAge", "MayorAgeTitle".Translate(), "MayorAgeTooltip".Translate(), 20f, (String s) => float.Parse(s) >= 0.1f);
+
                 // 1.2 configs
-                beautyOverrideEnabled = Settings.GetHandle<bool>("BeautyOverrideEnabled", "BeatyOverrideEnabledTitle".Translate(), "BeatyOverrideEnabledToolip".Translate(), true);
 
+                // 1.3 configs
+                //traitOpinionMultplier = Settings.GetHandle<float>("TraitOpinionMultplier", "TraitOpinionMultplierTitle".Translate(), "TraitOpinionMultplierTooltip".Translate(), 0.25f, (String s) => float.Parse(s) >= 0f && float.Parse(s) <= 5f);
+                //DistanceFromMiddleSettingsHandle = Settings.GetHandle<PersonalityDisplayOptions>("DisplayOptions", "DisplayOptionsTitle".Translate(), "DisplayOptionsTooltip".Translate(), PersonalityDisplayOptions.Text4, null, "Options");
+                //UseColorsSettingsHandle = Settings.GetHandle<bool>("UseColorsSettingName", "UseColors".Translate(), "UseColorsTooltip".Translate(), true);
+                //ListAlphabeticalSettingsHandle = Settings.GetHandle<bool>("ListAlphabeticalSettingName", "ListAlphabetical".Translate(), "ListAlphabeticalTooltip".Translate(), false);
+                //UseAntonymsSettingsHandle = Settings.GetHandle<bool>("UseAntonymsSettingName", "UseAntonyms".Translate(), "UseAntonymsTooltip".Translate(), true);
+
+
+                // Set values
                 kinsey = toggleKinsey.Value;
-                notBabyMode = toggleIndividuality.Value;
-                elections = toggleElections.Value;
-                dateLetters = toggleDateLetters.Value;
-                benchmark = toggleBenchmarking.Value;
-                convoDuration = conversationDuration.Value;
-
-                imprisonedDebuffEnabled = imprisonedDebuff.Value; // Imprisoned opinion penalty, added in v1.1
-                anxietyEnabled = anxiety.Value; //v1.1
-                romanceChanceConfig = romanceChanceMultiplier.Value; // Romance chance, added in v1.1
-
-                romanceThresholdConfig = romanceChanceThreshold.Value; //v1.1
-                mayorAgeConfig = mayorAge.Value; //v1.1
-
-                beautyOverrideConfig = beautyOverrideEnabled.Value; //1.2
-
                 if (PsychologyBase.ActivateKinsey())
                 {
                     mode = kinseyMode.Value;
@@ -296,6 +374,21 @@ namespace Psychology
                     kinsey5WeightConfig = kinsey5WeightSettingHandle.Value;
                     kinsey6WeightConfig = kinsey6WeightSettingHandle.Value;
                 }
+                notBabyMode = toggleIndividuality.Value;
+                elections = toggleElections.Value;
+                dateLetters = toggleDateLetters.Value;
+                benchmark = toggleBenchmarking.Value;
+                convoDuration = conversationDuration.Value;
+                imprisonedDebuffEnabled = imprisonedDebuff.Value; // Imprisoned opinion penalty, added in v1.1
+                anxietyEnabled = anxiety.Value; //v1.1
+                romanceChanceConfig = romanceChanceMultiplier.Value; // Romance chance, added in v1.1
+                romanceThresholdConfig = romanceChanceThreshold.Value; //v1.1
+                mayorAgeConfig = mayorAge.Value; //v1.1
+                //traitOpinionMultplierConfig = traitOpinionMultplier.Value; //1.3
+                //PsycheCardUtility.DistanceFromMiddle = DistanceFromMiddleSettingToByte(DistanceFromMiddleSettingsHandle.Value); //1.3
+                //PsycheCardUtility.UseColorsBool = UseColorsSettingsHandle.Value; //1.3
+                //PsycheCardUtility.AlphabeticalBool = ListAlphabeticalSettingsHandle.Value; //1.3
+                //PsycheCardUtility.UseAntonymsBool = UseAntonymsSettingsHandle.Value; //1.3
 
                 /* Mod conflict detection */
                 /*

@@ -6,7 +6,7 @@ using Verse;
 using RimWorld;
 using HarmonyLib;
 
-namespace Psychology.Harm
+namespace Psychology.Harmony
 {
     [HarmonyPatch(typeof(Recipe_Surgery), "CheckSurgeryFail")]
     public static class Recipe_Surgery_FailPatch

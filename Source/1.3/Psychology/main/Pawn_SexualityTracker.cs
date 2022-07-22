@@ -148,7 +148,7 @@ namespace Psychology
 
         public float GenerateRomanticDrive(int inputSeed = 0)
         {
-            return GenerateSexDrive(859456 + inputSeed);
+            return GenerateSexDrive(859456 + 3 * inputSeed);
         }
 
         public float AdjustedSexDrive
@@ -168,6 +168,9 @@ namespace Psychology
                 {
                     ageFactor = MaleSexDriveCurve.Evaluate(pawn.ageTracker.AgeBiologicalYears);
                 }
+
+
+
                 return ageFactor * this.sexDrive;
             }
         }
@@ -181,18 +184,20 @@ namespace Psychology
                     return 1f;
                 }
                 float ageFactor = 1f;
-                if (pawn.gender == Gender.Female)
-                {
-                    ageFactor = FemaleSexDriveCurve.Evaluate(pawn.ageTracker.AgeBiologicalYears);
-                }
-                else if (pawn.gender == Gender.Male)
-                {
-                    ageFactor = MaleSexDriveCurve.Evaluate(pawn.ageTracker.AgeBiologicalYears);
-                }
-                if (ageFactor < 0.001f)
-                {
-                    return 0f;
-                }
+                //if (pawn.gender == Gender.Female)
+                //{
+                //    ageFactor = FemaleSexDriveCurve.Evaluate(pawn.ageTracker.AgeBiologicalYears);
+                //}
+                //else if (pawn.gender == Gender.Male)
+                //{
+                //    ageFactor = MaleSexDriveCurve.Evaluate(pawn.ageTracker.AgeBiologicalYears);
+                //}
+                //if (ageFactor < 0.001f)
+                //{
+                //    return 0f;
+                //}
+
+
                 return 0.5f * (1f + ageFactor) * this.romanticDrive;
             }
         }
@@ -241,6 +246,30 @@ namespace Psychology
             },
             {
                 new CurvePoint(80, 0.6f),
+                true
+            },
+        };
+
+        private static readonly SimpleCurve RomanticDriveCurve = new SimpleCurve
+        {
+            {
+                new CurvePoint(10, 0f),
+                true
+            },
+            {
+                new CurvePoint(15, 1f),
+                true
+            },
+            {
+                new CurvePoint(25, 1.6f),
+                true
+            },
+            {
+                new CurvePoint(50, 1f),
+                true
+            },
+            {
+                new CurvePoint(80, 1f),
                 true
             },
         };

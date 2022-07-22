@@ -7,7 +7,7 @@ using Verse.Sound;
 using RimWorld;
 using HarmonyLib;
 
-namespace Psychology.Harm
+namespace Psychology.Harmony
 {
     [HarmonyPatch(typeof(TendUtility), nameof(TendUtility.DoTend))]
     public static class TendUtility_TendPatch

@@ -1,35 +1,43 @@
 ﻿<Properties>
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="/Users/edwardbasso/Library/Application Support/Steam/steamapps/common/RimWorld/RimWorldMac.app/Mods/Rimworld-Psychology-unofficial-v1.1-1.3/Source/1.3/Psychology/Main/Personality/PersonalityNodeMatrix.cs" relfile="Psychology/Main/Personality/PersonalityNodeMatrix.cs" line="4" column="1" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.Workbench ActiveDocument="../../Common/Languages/German/Keyed/WITabs.xml">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="../../Common/Defs/PersonalityDefs/PersonalityNodes.xml">
     <Files>
-      <File FileName="../../Common/Languages/German/Keyed/WITabs.xml" Line="8" Column="38" />
-      <File FileName="Psychology/Main/PsycheCardUtility.cs" Line="302" Column="56" />
-      <File FileName="../../Common/Languages/English/Keyed/WITabs.xml" Line="23" Column="3" />
-      <File FileName="../../Common/Languages/Russian/Keyed/WITabs.xml" Line="23" Column="192" />
+      <File FileName="Psychology/Main/Pawn_PsycheTracker.cs" Line="86" Column="35" IsPinned="True" />
+      <File FileName="Psychology/Main/PsycheHelper.cs" Line="138" Column="10" IsPinned="True" />
+      <File FileName="Psychology/Main/Personality/PersonalityNodeParentMatrix.cs" Line="72" Column="64" IsPinned="True" />
+      <File FileName="../../Common/Defs/PersonalityDefs/PersonalityNodes.xml" Line="297" Column="50" IsPinned="True" />
+      <File FileName="Psychology/Main/Personality/PersonalityNode.cs" Line="21" Column="11" />
+      <File FileName="Psychology/Main/EditPsycheUtility.cs" Line="258" Column="49" />
+      <File FileName="Psychology/Main/Personality/PersonalityNodeDef.cs" Line="59" Column="20" />
+      <File FileName="Psychology/Main/PsycheCardUtility.cs" Line="850" Column="94" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="PsychologyUnofficialMac" expanded="True">
             <Node name="PsychologyMac" expanded="True">
+              <Node name="References" expanded="True" />
+              <Node name="Packages" expanded="True" />
               <Node name="Common" expanded="True">
-                <Node name="Languages" expanded="True">
-                  <Node name="ChineseTraditional" expanded="True">
-                    <Node name="DefInjected" expanded="True">
-                      <Node name="Psychology.PersonalityNodeDef" expanded="True" />
-                    </Node>
-                  </Node>
-                  <Node name="German" expanded="True">
-                    <Node name="DefInjected" expanded="True">
-                      <Node name="Psychology.PersonalityNodeDef" expanded="True" />
-                    </Node>
-                    <Node name="Keyed" expanded="True">
-                      <Node name="WITabs.xml" selected="True" />
-                    </Node>
+                <Node name="Defs" expanded="True">
+                  <Node name="PersonalityDefs" expanded="True">
+                    <Node name="PersonalityNodes.xml" selected="True" />
                   </Node>
                 </Node>
+              </Node>
+              <Node name="Harmony" expanded="True" />
+              <Node name="Main" expanded="True">
+                <Node name="Elections" expanded="True" />
+                <Node name="Funerals" expanded="True" />
+                <Node name="MentalStates" expanded="True" />
+                <Node name="Personality" expanded="True" />
               </Node>
             </Node>
           </Node>
@@ -40,7 +48,4 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
 </Properties>

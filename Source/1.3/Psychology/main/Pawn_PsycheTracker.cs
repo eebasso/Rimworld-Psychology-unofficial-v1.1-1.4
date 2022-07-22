@@ -7,6 +7,9 @@ using Verse;
 using Verse.AI;
 using HarmonyLib;
 using UnityEngine;
+//using Accord.Math;
+//using Accord.Math.Decompositions;
+//using MathNet.Numerics.LinearAlgebra;
 
 namespace Psychology
 {
@@ -16,12 +19,17 @@ namespace Psychology
         public int lastDateTick = 0;
         private Pawn pawn;
         private HashSet<PersonalityNode> nodes;
+        public int AdjustedRatingTicker = 0;
         private Dictionary<PersonalityNodeDef, PersonalityNode> nodeDict = new Dictionary<PersonalityNodeDef, PersonalityNode>();
         private Dictionary<string, float> cachedOpinions = new Dictionary<string, float>();
         private Dictionary<string, bool> recalcCachedOpinions = new Dictionary<string, bool>();
         private Dictionary<Pair<string, string>, float> cachedDisagreementWeights = new Dictionary<Pair<string, string>, float>();
         private Dictionary<Pair<string, string>, bool> recalcNodeDisagreement = new Dictionary<Pair<string, string>, bool>();
         public const int PersonalityCategories = 32;
+        //public float[] rawNormalDisplacementList;
+        //public Vector<float> rawNormalDisplacementList;
+        //public Dictionary<PersonalityNodeDef, float> parentAdjRatingDict = new Dictionary<PersonalityNodeDef, float>();
+        public float[] rawNormalDisplacementList;
 
         public Pawn_PsycheTracker(Pawn pawn)
         {
@@ -32,7 +40,7 @@ namespace Psychology
         public void Initialize()
         {
             Log.Message("Initialize() Pawn_PsycheTracker for " + pawn.LabelShortCap);
-            this.upbringing = Mathf.CeilToInt(Rand.ValueSeeded(this.pawn.HashOffset()) * PersonalityCategories);
+            InitializeUpbringing();
             this.nodes = new HashSet<PersonalityNode>();
             foreach (PersonalityNodeDef def in DefDatabase<PersonalityNodeDef>.AllDefsListForReading)
             {
@@ -42,6 +50,11 @@ namespace Psychology
             {
                 nodeDict[n.def] = n;
             }
+        }
+
+        public void InitializeUpbringing(int inputSeed = 0)
+        {
+            this.upbringing = Mathf.CeilToInt(Rand.ValueSeeded(this.pawn.HashOffset() + inputSeed) * PersonalityCategories);
         }
 
         public void ExposeData()
@@ -58,7 +71,7 @@ namespace Psychology
         [LogPerformance]
         public float GetPersonalityRating(PersonalityNodeDef def)
         {
-            return GetPersonalityNodeOfDef(def).AdjustedRating;
+            return nodeDict[def].AdjustedRating;
         }
 
         public PersonalityNode GetPersonalityNodeOfDef(PersonalityNodeDef def)
@@ -151,6 +164,41 @@ namespace Psychology
             }
         }
 
-        
+        public void ConstructRawDisplacementList()
+        {
+            //rawNormalDisplacementList = new float[PersonalityNodeParentMatrix.defList.Count()];
+            rawNormalDisplacementList = new float[37];
+
+            foreach (PersonalityNodeDef def in PersonalityNodeParentMatrix.defList)
+            {
+                int index = PersonalityNodeParentMatrix.indexDict[def];
+                float rawRating = nodeDict[def].rawRating;
+                rawRating = nodeDict[def].AdjustForCircumstance(rawRating, true);
+                //float displacement = Mathf.Clamp(2f * rawRating - 1f, -0.99999f, 0.99999f);
+                //rawNormalDisplacementList[index] = (float)Special.Ierf(displacement);
+                rawNormalDisplacementList[index] = PsycheHelper.NormalCDFInv(rawRating);
+            }
+        }
+
+        [LogPerformance]
+        public void CalculateAdjustedRatings(bool calcRaw = true)
+        {
+            if (calcRaw || rawNormalDisplacementList == null)
+            {
+                ConstructRawDisplacementList();
+            }
+            //float[] adjNormalDisplacementList = PersonalityNodeParentMatrix.parentTransformMatrix.Dot(rawNormalDisplacementList);
+            float[] adjNormalDisplacementList = PersonalityNodeParentMatrix.MatrixVectorProduct(PersonalityNodeParentMatrix.parentTransformMatrix, rawNormalDisplacementList, 37);
+            //parentAdjRatingDict.Clear();
+            foreach (PersonalityNodeDef def in PersonalityNodeParentMatrix.defList)
+            {
+                int index = PersonalityNodeParentMatrix.indexDict[def];
+                float adjustedRating = PsycheHelper.NormalCDF(adjNormalDisplacementList[index]);
+                adjustedRating = nodeDict[def].AdjustForCircumstance(adjustedRating, true);
+                adjustedRating = nodeDict[def].AdjustHook(adjustedRating);
+                //parentAdjRatingDict.Add(def, adjustedRating);
+                nodeDict[def].cachedRating = adjustedRating;
+            }
+        }
     }
 }

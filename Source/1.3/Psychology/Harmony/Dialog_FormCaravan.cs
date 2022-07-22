@@ -9,7 +9,7 @@ using HarmonyLib;
 using UnityEngine;
 
 
-namespace Psychology.Harm
+namespace Psychology.Harmony
 {
     [HarmonyPatch(typeof(Dialog_FormCaravan), "AddPawnsToTransferables")]
     public static class Dialog_FormCaravan_AddPawnsToTransferables_Patch

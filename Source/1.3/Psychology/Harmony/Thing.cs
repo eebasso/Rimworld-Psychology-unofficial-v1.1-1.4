@@ -6,7 +6,7 @@ using RimWorld;
 using Verse;
 using HarmonyLib;
 
-namespace Psychology.Harm
+namespace Psychology.Harmony
 {
     [HarmonyPatch(typeof(Thing), "Ingested")]
     public static class Thing_IngestedThoughtsPatch

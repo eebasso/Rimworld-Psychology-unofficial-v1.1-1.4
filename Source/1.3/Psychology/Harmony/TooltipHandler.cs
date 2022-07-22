@@ -4,7 +4,7 @@ using Verse;
 using HarmonyLib;
 
 
-namespace Psychology.Harm
+namespace Psychology.Harmony
 {
     [HarmonyPatch(typeof(TooltipHandler), nameof(TooltipHandler.DoTooltipGUI))]
     public class TooltipHandler_DoTooltipGUI_PsychologyPatch

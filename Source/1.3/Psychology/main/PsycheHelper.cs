@@ -96,5 +96,45 @@ namespace Psychology
         {
             return (f0 - (1f + f0 + gamma) * Mathf.Pow(x - y, 2) + (1f - f0) * Mathf.Pow(x + y - 1f, 2)) / (1f + gamma * Mathf.Pow(x - y, 2));
         }
+
+        public static float NormalCDF(float x)
+        {
+            // constants
+            float a1 = 0.127414796f;
+            float a2 = -0.142248368f;
+            float a3 = 0.710706871f;
+            float a4 = -0.726576014f;
+            float a5 = 0.530702716f;
+            float p = 0.231641888f;
+            // Save the sign of x
+            bool sign = x > 0;
+            x = Math.Abs(x);
+            // A&S formula 7.1.26
+            float t = 1f / (1f + p * x);
+            float z = (((((a5 * t + a4) * t) + a3) * t + a2) * t + a1) * t * Mathf.Exp(- 0.5f * x * x);
+            return sign ? 1f - z : z;
+        }
+
+        public static float NormalCDFInv(float p)
+        {
+            p = Mathf.Clamp(p, 0.00001f, 0.99999f);
+            if (p < 0.5)
+            {
+                return -RationalApproximation(Mathf.Sqrt(-2f * Mathf.Log(p)));
+            }
+            else
+            {
+                return RationalApproximation(Mathf.Sqrt(-2f * Mathf.Log(1f - p)));
+            }
+        }
+
+        public static float RationalApproximation(float t)
+        {
+            // Abramowitz and Stegun formula 26.2.23.
+            // The absolute value of the error should be less than 4.5 e-4.
+            float[] c = { 2.515517f, 0.802853f, 0.010328f };
+            float[] d = { 1.432788f, 0.189269f, 0.001308f };
+            return t - ((c[2] * t + c[1]) * t + c[0]) / (((d[2] * t + d[1]) * t + d[0]) * t + 1f);
+        }
     }
 }

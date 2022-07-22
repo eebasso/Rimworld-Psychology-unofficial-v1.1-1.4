@@ -1,4 +1,4 @@
-﻿ using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Reflection.Emit;
@@ -7,7 +7,7 @@ using RimWorld;
 using Verse;
 using HarmonyLib;
 
-namespace Psychology.Harm
+namespace Psychology.Harmony
 {
     [HarmonyPatch(typeof(PawnObserver), "ObserveSurroundingThings")]
     public static class PawnObserver_ObserveSurroundingPatch
@@ -15,10 +15,10 @@ namespace Psychology.Harm
         [HarmonyTranspiler]
         public static IEnumerable<CodeInstruction> DesensitizeViaCorpse(IEnumerable<CodeInstruction> instrs)
         {
-            foreach(CodeInstruction itr in instrs)
+            foreach (CodeInstruction itr in instrs)
             {
                 yield return itr;
-                if(itr.opcode == OpCodes.Callvirt && itr.operand == AccessTools.Method(typeof(IObservedThoughtGiver), nameof(IObservedThoughtGiver.GiveObservedThought), new Type[] { }))
+                if (itr.opcode == OpCodes.Callvirt && itr.operand == AccessTools.Method(typeof(IObservedThoughtGiver), nameof(IObservedThoughtGiver.GiveObservedThought), new Type[] { }))
                 {
                     yield return new CodeInstruction(OpCodes.Ldarg_0);
                     yield return new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(typeof(PawnObserver), "pawn"));

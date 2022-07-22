@@ -9,7 +9,7 @@ using Verse.Sound;
 //using HarmonyLib;
 //using EdB.PrepareCarefully;
 
-namespace Psychology.Harm
+namespace Psychology.Harmony
 {
     //[HarmonyPatch(typeof(EdB.PrepareCarefully.PanelBackstory), nameof(EdB.PrepareCarefully.PanelBackstory.Draw))]
     public static class EdBPrepareCarefully_PanelBackstory_Patch
@@ -21,7 +21,7 @@ namespace Psychology.Harm
             float y2 = y + EdB.PrepareCarefully.PanelModule.Margin.y;
             if (PsycheHelper.PsychologyEnabled(pawn))
             {
-                Rect psycheRect = new Rect(230f, y2 + 5f, 28f, 28f);
+                Rect psycheRect = new Rect(224f, y2 + 5f, 28f, 28f);
                 Color oldColor = GUI.color;
                 GUI.color = psycheRect.Contains(Event.current.mousePosition) ? PsychColor.ButtonLightColor : PsychColor.ButtonDarkColor;
                 GUI.DrawTexture(psycheRect, PsychologyTexCommand.PsycheButton);

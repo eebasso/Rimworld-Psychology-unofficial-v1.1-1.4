@@ -7,7 +7,7 @@ using RimWorld;
 using UnityEngine;
 using HarmonyLib;
 
-namespace Psychology.Harm
+namespace Psychology.Harmony
 {
     [HarmonyPatch(typeof(ThoughtWorker_Hediff), "CurrentStateInternal")]
     public static class ThoughtWorker_HediffPsychology

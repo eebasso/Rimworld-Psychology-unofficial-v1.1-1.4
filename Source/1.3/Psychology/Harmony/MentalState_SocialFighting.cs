@@ -9,7 +9,7 @@ using Verse;
 using Verse.AI;
 using HarmonyLib;
 
-namespace Psychology.Harm
+namespace Psychology.Harmony
 {
     [HarmonyPatch(typeof(MentalState_SocialFighting), nameof(MentalState_SocialFighting.PostEnd))]
     public static class MentalState_SocialFighting_ThoughtPatch
@@ -55,7 +55,8 @@ namespace Psychology.Harm
         {
             if(PsycheHelper.PsychologyEnabled(pawn))
             {
-                return 1f - PsycheHelper.Comp(pawn).Psyche.GetPersonalityNodeOfDef(PersonalityNodeDefOf.Aggressive).AdjustedRating;
+                //return 1f - PsycheHelper.Comp(pawn).Psyche.GetPersonalityNodeOfDef(PersonalityNodeDefOf.Aggressive).AdjustedRating;
+                return 1f - PsycheHelper.Comp(pawn).Psyche.GetPersonalityRating(PersonalityNodeDefOf.Aggressive);
             }
             return 0.5f;
         }
