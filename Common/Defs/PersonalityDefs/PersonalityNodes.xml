@@ -190,11 +190,11 @@
 			<li>18</li>
 		</preferredDateHours>
 		<bigFiveModifiers>
-			<li>0.25</li>
 			<li>0</li>
 			<li>0</li>
-			<li>1</li>
 			<li>0</li>
+			<li>0.85</li>
+			<li>0.5</li>
         </bigFiveModifiers>
 	</Psychology.PersonalityNodeDef>
 
@@ -278,7 +278,7 @@
 			</li>
 		</traitModifiers>
 		<bigFiveModifiers>
-			<li>0</li>
+			<li>0.5</li>
 			<li>0</li>
 			<li>0</li>
 			<li>0</li>
@@ -320,11 +320,11 @@
 			</li>
 			<li>
 				<node>Empathetic</node>
-				<modifier>-1</modifier>
+				<modifier>-0.8</modifier>
 			</li>
 			<li>
 				<node>Optimistic</node>
-				<modifier>-1</modifier>
+				<modifier>-0.5</modifier>
 			</li>
 			<li>
 				<node>Confident</node>
@@ -363,7 +363,7 @@
 			<li>0</li>
 			<li>0</li>
 			<li>0</li>
-			<li>-1</li>
+			<li>-0.7</li>
 			<li>0</li>
         </bigFiveModifiers>
 	</Psychology.PersonalityNodeDef>
@@ -381,11 +381,11 @@
 		<parents>
 			<li>
 				<node>Ambitious</node>
-				<modifier>0.75</modifier>
+				<modifier>0.85</modifier>
 			</li>
 			<li>
 				<node>Extroverted</node>
-				<modifier>0.5</modifier>
+				<modifier>0.7</modifier>
 			</li>
 			<li>
 				<node>Optimistic</node>
@@ -395,9 +395,9 @@
 		<bigFiveModifiers>
 			<li>0</li>
 			<li>0</li>
+			<li>0.8</li>
 			<li>0</li>
-			<li>0</li>
-			<li>-1</li>
+			<li>-0.6</li>
         </bigFiveModifiers>
 	</Psychology.PersonalityNodeDef>
 
@@ -430,16 +430,16 @@
 		<parents>
 			<li>
 				<node>Intelligent</node>
-				<modifier>1</modifier>
+				<modifier>0.8</modifier>
 			</li>
 			<li>
 				<node>Experimental</node>
-				<modifier>0.7</modifier>
+				<modifier>0.6</modifier>
 			</li>
 		</parents>
 		<bigFiveModifiers>
+			<li>0.85</li>
 			<li>0.5</li>
-			<li>0</li>
 			<li>0</li>
 			<li>0</li>
 			<li>0</li>
@@ -470,11 +470,15 @@
 		<parents>
 			<li>
 				<node>Experimental</node>
-				<modifier>-0.6</modifier>
+				<modifier>-0.35</modifier>
 			</li>
 			<li>
 				<node>Optimistic</node>
-				<modifier>-0.85</modifier>
+				<modifier>-0.75</modifier>
+			</li>
+			<li>
+				<node>Cultured</node>
+				<modifier>-0.5</modifier>
 			</li>
 		</parents>
 		<traitModifiers>
@@ -530,16 +534,24 @@
 		<platformIssueLow>We need to address what's happening right now.</platformIssueLow>
 		<parents>
 			<li>
+				<node>Experimental</node>
+				<modifier>-0.5</modifier>
+			</li>
+			<li>
 				<node>Intelligent</node>
 				<modifier>0.5</modifier>
 			</li>
 			<li>
 				<node>Ambitious</node>
-				<modifier>1</modifier>
+				<modifier>0.7</modifier>
 			</li>
 			<li>
 				<node>Extroverted</node>
 				<modifier>-0.5</modifier>
+			</li>
+			<li>
+				<node>Cultured</node>
+				<modifier>0.5</modifier>
 			</li>
 		</parents>
 		<preferredDateHours>
@@ -577,9 +589,9 @@
 		</traitModifiers>
 		<bigFiveModifiers>
 			<li>0</li>
-			<li>1</li>
+			<li>0.85</li>
 			<li>0</li>
-			<li>0</li>
+			<li>0.5</li>
 			<li>0</li>
         </bigFiveModifiers>
 	</Psychology.PersonalityNodeDef>
@@ -609,15 +621,23 @@
 		<parents>
 			<li>
 				<node>Aggressive</node>
-				<modifier>-1</modifier>
+				<modifier>-0.8</modifier>
 			</li>
 			<li>
 				<node>Empathetic</node>
-				<modifier>1</modifier>
+				<modifier>0.8</modifier>
 			</li>
 			<li>
 				<node>Optimistic</node>
-				<modifier>1</modifier>
+				<modifier>0.8</modifier>
+			</li>
+			<li>
+				<node>Competitive</node>
+				<modifier>-0.9</modifier>
+			</li>
+			<li>
+				<node>Ambitious</node>
+				<modifier>-0.5</modifier>
 			</li>
 		</parents>
 		<bigFiveModifiers>
@@ -658,19 +678,31 @@
 		<parents>
 			<li>
 				<node>Experimental</node>
-				<modifier>1</modifier>
+				<modifier>0.8</modifier>
 			</li>
 			<li>
 				<node>Extroverted</node>
-				<modifier>1</modifier>
+				<modifier>0.8</modifier>
 			</li>
 			<li>
 				<node>Confident</node>
-				<modifier>1</modifier>
+				<modifier>0.7</modifier>
 			</li>
 			<li>
 				<node>Optimistic</node>
-				<modifier>1</modifier>
+				<modifier>0.6</modifier>
+			</li>
+			<li>
+				<node>Thoughtful</node>
+				<modifier>-0.5</modifier>
+			</li>
+			<li>
+				<node>Ambitious</node>
+				<modifier>-0.3</modifier>
+			</li>
+			<li>
+				<node>Nostalgic</node>
+				<modifier>-0.8</modifier>
 			</li>
 		</parents>
 		<traitModifiers>
@@ -684,9 +716,9 @@
 			</li>
 		</traitModifiers>
 		<bigFiveModifiers>
-			<li>1</li>
+			<li>0.85</li>
 			<li>0</li>
-			<li>1</li>
+			<li>0.5</li>
 			<li>0</li>
 			<li>0</li>
         </bigFiveModifiers>
@@ -716,8 +748,12 @@
 		<platformIssueLow>A society is only as strong as its most capable members.</platformIssueLow>
 		<parents>
 			<li>
+				<node>Ambitious</node>
+				<modifier>-0.5</modifier>
+			</li>
+			<li>
 				<node>Empathetic</node>
-				<modifier>1</modifier>
+				<modifier>0.95</modifier>
 			</li>
 			<li>
 				<node>Thoughtful</node>
@@ -725,15 +761,15 @@
 			</li>
 			<li>
 				<node>Aggressive</node>
-				<modifier>-1</modifier>
+				<modifier>-0.85</modifier>
 			</li>
 			<li>
 				<node>Trusting</node>
-				<modifier>1</modifier>
+				<modifier>0.8</modifier>
 			</li>
 			<li>
 				<node>Optimistic</node>
-				<modifier>1</modifier>
+				<modifier>0.8</modifier>
 			</li>
 		</parents>
 		<incapableModifiers>
@@ -788,27 +824,31 @@
 		<parents>
 			<li>
 				<node>Empathetic</node>
-				<modifier>-1</modifier>
+				<modifier>-0.8</modifier>
+			</li>
+			<li>
+				<node>Optimistic</node>
+				<modifier>-0.5</modifier>
 			</li>
 			<li>
 				<node>Compassionate</node>
-				<modifier>-1</modifier>
+				<modifier>-0.8</modifier>
 			</li>
 			<li>
 				<node>Ambitious</node>
-				<modifier>1</modifier>
+				<modifier>0.8</modifier>
 			</li>
 			<li>
 				<node>Aggressive</node>
-				<modifier>1</modifier>
+				<modifier>0.8</modifier>
 			</li>
 			<li>
 				<node>Confident</node>
-				<modifier>1</modifier>
+				<modifier>0.6</modifier>
 			</li>
 			<li>
 				<node>LaidBack</node>
-				<modifier>-1</modifier>
+				<modifier>-0.8</modifier>
 			</li>
 		</parents>
 		<traitModifiers>
@@ -827,7 +867,7 @@
 			<li>0</li>
 			<li>0.5</li>
 			<li>0</li>
-			<li>-1</li>
+			<li>-0.85</li>
 			<li>0</li>
         </bigFiveModifiers>
 	</Psychology.PersonalityNodeDef>
@@ -855,20 +895,32 @@
 		<platformIssueLow>You need a leader that cares about performance.</platformIssueLow>
 		<parents>
 			<li>
+				<node>Experimental</node>
+				<modifier>0.5</modifier>
+			</li>
+			<li>
 				<node>Ambitious</node>
-				<modifier>-1</modifier>
+				<modifier>-0.9</modifier>
 			</li>
 			<li>
 				<node>Optimistic</node>
-				<modifier>1</modifier>
+				<modifier>0.7</modifier>
 			</li>
 			<li>
 				<node>Confident</node>
-				<modifier>1</modifier>
+				<modifier>0.7</modifier>
 			</li>
 			<li>
 				<node>Aggressive</node>
-				<modifier>-1</modifier>
+				<modifier>-0.8</modifier>
+			</li>
+			<li>
+				<node>Adventurous</node>
+				<modifier>0.5</modifier>
+			</li>
+			<li>
+				<node>Trusting</node>
+				<modifier>0.35</modifier>
 			</li>
 		</parents>
 		<traitModifiers>
@@ -935,10 +987,10 @@
 		</preferredDateHours>
 		<bigFiveModifiers>
 			<li>0</li>
+			<li>-0.25</li>
 			<li>0</li>
 			<li>0</li>
-			<li>0</li>
-			<li>-1</li>
+			<li>-0.85</li>
         </bigFiveModifiers>
 	</Psychology.PersonalityNodeDef>
 
@@ -969,15 +1021,19 @@
 		<parents>
 			<li>
 				<node>Intelligent</node>
-				<modifier>1</modifier>
+				<modifier>0.85</modifier>
 			</li>
 			<li>
 				<node>Thoughtful</node>
-				<modifier>0.7</modifier>
+				<modifier>0.5</modifier>
 			</li>
 			<li>
 				<node>Cultured</node>
-				<modifier>1</modifier>
+				<modifier>0.85</modifier>
+			</li>
+			<li>
+				<node>Experimental</node>
+				<modifier>0.5</modifier>
 			</li>
 		</parents>
 		<skillModifiers>
@@ -998,7 +1054,7 @@
 			<li>10</li>
 		</preferredDateHours>
 		<bigFiveModifiers>
-			<li>0</li>
+			<li>0.5</li>
 			<li>0</li>
 			<li>0</li>
 			<li>0</li>
@@ -1028,12 +1084,16 @@
 		<platformIssueLow>As a leader, I'll tackle our problems carefully.</platformIssueLow>
 		<parents>
 			<li>
+				<node>Ambitious</node>
+				<modifier>-0.7</modifier>
+            </li>
+			<li>
 				<node>Experimental</node>
-				<modifier>1</modifier>
+				<modifier>0.5</modifier>
 			</li>
 			<li>
 				<node>Thoughtful</node>
-				<modifier>-1</modifier>
+				<modifier>-0.95</modifier>
             </li>
 			<li>
 				<node>Extroverted</node>
@@ -1041,13 +1101,17 @@
             </li>
 			<li>
 				<node>Adventurous</node>
-				<modifier>1</modifier>
+				<modifier>0.9</modifier>
+            </li>
+			<li>
+				<node>LaidBack</node>
+				<modifier>0.65</modifier>
             </li>
 		</parents>
 		<bigFiveModifiers>
-			<li>1</li>
-			<li>-1</li>
-			<li>1</li>
+			<li>0.5</li>
+			<li>-0.85</li>
+			<li>0</li>
 			<li>0</li>
 			<li>0</li>
         </bigFiveModifiers>
@@ -1078,19 +1142,43 @@
 		<parents>
 			<li>
 				<node>Extroverted</node>
-				<modifier>1</modifier>
+				<modifier>0.7</modifier>
 			</li>
 			<li>
 				<node>Empathetic</node>
-				<modifier>1</modifier>
+				<modifier>0.3</modifier>
+            </li>
+			<li>
+				<node>Confident</node>
+				<modifier>0.3</modifier>
+            </li>
+			<li>
+				<node>Compassionate</node>
+				<modifier>0.3</modifier>
             </li>
 			<li>
 				<node>Optimistic</node>
-				<modifier>1</modifier>
+				<modifier>0.9</modifier>
             </li>
 			<li>
 				<node>Aggressive</node>
-				<modifier>-1</modifier>
+				<modifier>-0.8</modifier>
+            </li>
+			<li>
+				<node>LaidBack</node>
+				<modifier>0.7</modifier>
+            </li>
+			<li>
+				<node>Adventurous</node>
+				<modifier>0.5</modifier>
+            </li>
+			<li>
+				<node>Trusting</node>
+				<modifier>0.7</modifier>
+            </li>
+			<li>
+				<node>Competitive</node>
+				<modifier>-0.4</modifier>
             </li>
 		</parents>
 		<traitModifiers>
@@ -1125,9 +1213,9 @@
 		<bigFiveModifiers>
 			<li>0</li>
 			<li>0</li>
-			<li>1</li>
-			<li>0.5</li>
-			<li>-1</li>
+			<li>0.6</li>
+			<li>0</li>
+			<li>-0.8</li>
         </bigFiveModifiers>
 	</Psychology.PersonalityNodeDef>
 
@@ -1164,19 +1252,59 @@
 		<parents>
 			<li>
 				<node>Experimental</node>
-				<modifier>1</modifier>
+				<modifier>0.85</modifier>
+			</li>
+			<li>
+				<node>Ambitious</node>
+				<modifier>-0.5</modifier>
+			</li>
+			<li>
+				<node>Extroverted</node>
+				<modifier>-0.5</modifier>
+			</li>
+			<li>
+				<node>Confident</node>
+				<modifier>-0.5</modifier>
 			</li>
 			<li>
 				<node>Intelligent</node>
-				<modifier>1</modifier>
+				<modifier>0.85</modifier>
 			</li>
 			<li>
 				<node>Spontaneous</node>
-				<modifier>1</modifier>
+				<modifier>0.6</modifier>
 			</li>
 			<li>
 				<node>Optimistic</node>
-				<modifier>-1</modifier>
+				<modifier>-0.6</modifier>
+			</li>
+			<li>
+				<node>Upbeat</node>
+				<modifier>-0.5</modifier>
+			</li>
+			<li>
+				<node>Cultured</node>
+				<modifier>0.5</modifier>
+			</li>
+			<li>
+				<node>Organized</node>
+				<modifier>-0.5</modifier>
+			</li>
+			<li>
+				<node>Nostalgic</node>
+				<modifier>-0.5</modifier>
+			</li>
+			<li>
+				<node>Thoughtful</node>
+				<modifier>0.5</modifier>
+			</li>
+			<li>
+				<node>Empathetic</node>
+				<modifier>0.5</modifier>
+			</li>
+			<li>
+				<node>Logical</node>
+				<modifier>0.35</modifier>
 			</li>
 		</parents>
 		<skillModifiers>
@@ -1227,23 +1355,23 @@
 		<parents>
 			<li>
 				<node>Extroverted</node>
-				<modifier>1</modifier>
+				<modifier>0.25</modifier>
 			</li>
 			<li>
 				<node>Empathetic</node>
-				<modifier>0.7</modifier>
+				<modifier>0.5</modifier>
 			</li>
 			<li>
 				<node>Aggressive</node>
-				<modifier>1</modifier>
+				<modifier>0.65</modifier>
 			</li>
 			<li>
 				<node>LaidBack</node>
-				<modifier>-1.5</modifier>
+				<modifier>-0.65</modifier>
 			</li>
 			<li>
 				<node>Optimistic</node>
-				<modifier>-1.5</modifier>
+				<modifier>-0.65</modifier>
 			</li>
 		</parents>
 		<traitModifiers>
@@ -1263,9 +1391,9 @@
 		<bigFiveModifiers>
 			<li>0</li>
 			<li>0</li>
-			<li>0.25</li>
+			<li>0.6</li>
 			<li>0</li>
-			<li>1</li>
+			<li>0.8</li>
         </bigFiveModifiers>
 	</Psychology.PersonalityNodeDef>
 
@@ -1292,23 +1420,51 @@
 		<parents>
 			<li>
 				<node>Compassionate</node>
-				<modifier>1</modifier>
+				<modifier>0.85</modifier>
 			</li>
 			<li>
 				<node>Empathetic</node>
+				<modifier>0.75</modifier>
+			</li>
+			<li>
+				<node>Optimistic</node>
 				<modifier>0.5</modifier>
 			</li>
 			<li>
 				<node>Nostalgic</node>
-				<modifier>-0.5</modifier>
+				<modifier>-0.75</modifier>
 			</li>
 			<li>
 				<node>Moralistic</node>
-				<modifier>1</modifier>
+				<modifier>0.85</modifier>
 			</li>
 			<li>
 				<node>Competitive</node>
-				<modifier>-1</modifier>
+				<modifier>-0.95</modifier>
+			</li>
+			<li>
+				<node>Aggressive</node>
+				<modifier>-0.5</modifier>
+			</li>
+			<li>
+				<node>Ambitious</node>
+				<modifier>-0.5</modifier>
+			</li>
+			<li>
+				<node>LaidBack</node>
+				<modifier>0.5</modifier>
+			</li>
+			<li>
+				<node>DrugFriendly</node>
+				<modifier>0.5</modifier>
+			</li>
+			<li>
+				<node>Trusting</node>
+				<modifier>0.75</modifier>
+			</li>
+			<li>
+				<node>Generous</node>
+				<modifier>0.75</modifier>
 			</li>
 		</parents>
 		<traitModifiers>
@@ -1321,8 +1477,8 @@
 			<li>0</li>
 			<li>0</li>
 			<li>0</li>
-			<li>1</li>
-			<li>0</li>
+			<li>0.85</li>
+			<li>-0.5</li>
         </bigFiveModifiers>
 	</Psychology.PersonalityNodeDef>
 
@@ -1352,23 +1508,31 @@
 		<parents>
 			<li>
 				<node>Ambitious</node>
-				<modifier>1</modifier>
+				<modifier>0.9</modifier>
 			</li>
 			<li>
 				<node>Nostalgic</node>
-				<modifier>-1</modifier>
+				<modifier>-0.7</modifier>
 			</li>
 			<li>
 				<node>Thoughtful</node>
-				<modifier>1</modifier>
+				<modifier>0.8</modifier>
 			</li>
 			<li>
 				<node>LaidBack</node>
-				<modifier>-1</modifier>
+				<modifier>-0.8</modifier>
 			</li>
 			<li>
 				<node>Spontaneous</node>
-				<modifier>-1</modifier>
+				<modifier>-0.8</modifier>
+			</li>
+			<li>
+				<node>Adventurous</node>
+				<modifier>-0.3</modifier>
+			</li>
+			<li>
+				<node>Competitive</node>
+				<modifier>0.4</modifier>
 			</li>
 		</parents>
 		<traitModifiers>
@@ -1421,10 +1585,10 @@
 		</preferredDateHours>
 		<bigFiveModifiers>
 			<li>0</li>
-			<li>1</li>
+			<li>0.85</li>
 			<li>0</li>
 			<li>0</li>
-			<li>0</li>
+			<li>0.25</li>
         </bigFiveModifiers>
 	</Psychology.PersonalityNodeDef>
 
@@ -1457,23 +1621,43 @@
 		<parents>
 			<li>
 				<node>Experimental</node>
-				<modifier>1.5</modifier>
+				<modifier>0.95</modifier>
 			</li>
 			<li>
 				<node>Ambitious</node>
-				<modifier>-0.7</modifier>
+				<modifier>-0.5</modifier>
 			</li>
 			<li>
 				<node>Optimistic</node>
-				<modifier>-0.7</modifier>
+				<modifier>-0.4</modifier>
 			</li>
 			<li>
 				<node>Adventurous</node>
-				<modifier>1.5</modifier>
+				<modifier>0.7</modifier>
 			</li>
 			<li>
 				<node>Creative</node>
-				<modifier>1</modifier>
+				<modifier>0.7</modifier>
+			</li>
+			<li>
+				<node>Nostalgic</node>
+				<modifier>-0.5</modifier>
+			</li>
+			<li>
+				<node>Spontaneous</node>
+				<modifier>0.8</modifier>
+			</li>
+			<li>
+				<node>Cultured</node>
+				<modifier>0.75</modifier>
+			</li>
+			<li>
+				<node>Thoughtful</node>
+				<modifier>-0.65</modifier>
+			</li>
+			<li>
+				<node>LaidBack</node>
+				<modifier>0.65</modifier>
 			</li>
 		</parents>
 		<traitModifiers>
@@ -1503,11 +1687,11 @@
 			<li>2</li>
 		</preferredDateHours>
 		<bigFiveModifiers>
-			<li>1</li>
-			<li>-0.25</li>
+			<li>0.85</li>
 			<li>0</li>
 			<li>0</li>
 			<li>0</li>
+			<li>0.5</li>
         </bigFiveModifiers>
 	</Psychology.PersonalityNodeDef>
 
@@ -1542,20 +1726,32 @@
 		<platformIssueLow>Let's focus on what's practical.</platformIssueLow>
 		<parents>
 			<li>
+				<node>Intelligent</node>
+				<modifier>0.75</modifier>
+			</li>
+			<li>
 				<node>Logical</node>
-				<modifier>1</modifier>
+				<modifier>0.75</modifier>
+			</li>
+			<li>
+				<node>Rational</node>
+				<modifier>0.5</modifier>
 			</li>
 			<li>
 				<node>Cultured</node>
-				<modifier>1</modifier>
+				<modifier>0.9</modifier>
 			</li>
 			<li>
 				<node>Creative</node>
-				<modifier>1</modifier>
+				<modifier>0.75</modifier>
 			</li>
 			<li>
 				<node>Extroverted</node>
-				<modifier>-1</modifier>
+				<modifier>-0.65</modifier>
+			</li>
+			<li>
+				<node>Upbeat</node>
+				<modifier>-0.3</modifier>
 			</li>
 		</parents>
 		<traitModifiers>
@@ -1573,9 +1769,9 @@
 			</li>
 		</traitModifiers>
 		<bigFiveModifiers>
-			<li>0.25</li>
+			<li>0.85</li>
 			<li>0</li>
-			<li>-0.25</li>
+			<li>-0.5</li>
 			<li>0</li>
 			<li>0</li>
         </bigFiveModifiers>
@@ -1603,23 +1799,39 @@
 		<parents>
 			<li>
 				<node>Emotional</node>
-				<modifier>1.5</modifier>
+				<modifier>0.95</modifier>
 			</li>
 			<li>
 				<node>Thoughtful</node>
-				<modifier>-0.5</modifier>
+				<modifier>-0.25</modifier>
 			</li>
 			<li>
 				<node>Aggressive</node>
-				<modifier>1</modifier>
+				<modifier>0.65</modifier>
 			</li>
 			<li>
 				<node>LaidBack</node>
-				<modifier>-1</modifier>
+				<modifier>-0.8</modifier>
 			</li>
 			<li>
 				<node>Geeky</node>
-				<modifier>1</modifier>
+				<modifier>0.5</modifier>
+			</li>
+			<li>
+				<node>Moralistic</node>
+				<modifier>0.5</modifier>
+			</li>
+			<li>
+				<node>Ambitious</node>
+				<modifier>0.5</modifier>
+			</li>
+			<li>
+				<node>Extroverted</node>
+				<modifier>0.25</modifier>
+			</li>
+			<li>
+				<node>Rational</node>
+				<modifier>-0.25</modifier>
 			</li>
 		</parents>
 		<preferredDateHours>
@@ -1632,9 +1844,9 @@
 		<bigFiveModifiers>
 			<li>0</li>
 			<li>0</li>
-			<li>0.5</li>
+			<li>0.8</li>
 			<li>0</li>
-			<li>0.5</li>
+			<li>0.6</li>
         </bigFiveModifiers>
 	</Psychology.PersonalityNodeDef>
 
@@ -1665,7 +1877,7 @@
 		<parents>
 			<li>
 				<node>Experimental</node>
-				<modifier>-1</modifier>
+				<modifier>-0.9</modifier>
 			</li>
 			<li>
 				<node>Ambitious</node>
@@ -1677,15 +1889,35 @@
 			</li>
 			<li>
 				<node>Cultured</node>
-				<modifier>-0.75</modifier>
+				<modifier>-0.7</modifier>
 			</li>
 			<li>
 				<node>Nostalgic</node>
-				<modifier>1</modifier>
+				<modifier>0.8</modifier>
 			</li>
 			<li>
 				<node>DrugFriendly</node>
-				<modifier>-1</modifier>
+				<modifier>-0.9</modifier>
+			</li>
+			<li>
+				<node>Adventurous</node>
+				<modifier>-0.8</modifier>
+			</li>
+			<li>
+				<node>Spontaneous</node>
+				<modifier>-0.8</modifier>
+			</li>
+			<li>
+				<node>Thoughtful</node>
+				<modifier>0.65</modifier>
+			</li>
+			<li>
+				<node>Trusting</node>
+				<modifier>0.25</modifier>
+			</li>
+			<li>
+				<node>Creative</node>
+				<modifier>-0.85</modifier>
 			</li>
 		</parents>
 		<traitModifiers>
@@ -1709,7 +1941,7 @@
 			<li>10</li>
 		</preferredDateHours>
 		<bigFiveModifiers>
-			<li>-1</li>
+			<li>-0.7</li>
 			<li>0</li>
 			<li>0</li>
 			<li>0</li>
@@ -1739,16 +1971,24 @@
 		<platformIssueLow>We need to trust our instincts.</platformIssueLow>
 		<parents>
 			<li>
+				<node>Experimental</node>
+				<modifier>0.5</modifier>
+			</li>
+			<li>
+				<node>Cultured</node>
+				<modifier>0.8</modifier>
+			</li>
+			<li>
 				<node>Intelligent</node>
-				<modifier>0.85</modifier>
+				<modifier>0.8</modifier>
 			</li>
 			<li>
 				<node>Logical</node>
-				<modifier>0.85</modifier>
+				<modifier>0.8</modifier>
 			</li>
 			<li>
 				<node>Emotional</node>
-				<modifier>-1</modifier>
+				<modifier>-0.95</modifier>
 			</li>
 			<li>
 				<node>LaidBack</node>
@@ -1756,10 +1996,14 @@
 			</li>
 			<li>
 				<node>Thoughtful</node>
-				<modifier>0.7</modifier>
+				<modifier>0.5</modifier>
 			</li>
 			<li>
 				<node>Nostalgic</node>
+				<modifier>-0.25</modifier>
+			</li>
+			<li>
+				<node>Pure</node>
 				<modifier>-0.5</modifier>
 			</li>
 		</parents>
@@ -1772,7 +2016,7 @@
 			<li>14</li>
 		</preferredDateHours>
 		<bigFiveModifiers>
-			<li>0</li>
+			<li>0.85</li>
 			<li>0</li>
 			<li>0</li>
 			<li>0</li>
@@ -1804,24 +2048,52 @@
 		<platformIssueLow>Vote for the person who will do the best job.</platformIssueLow>
 		<parents>
 			<li>
-				<node>LaidBack</node>
-				<modifier>1.5</modifier>
-			</li>
-			<li>
-				<node>DrugFriendly</node>
+				<node>Extroverted</node>
 				<modifier>0.5</modifier>
 			</li>
 			<li>
+				<node>Upbeat</node>
+				<modifier>0.3</modifier>
+			</li>
+			<li>
+				<node>LaidBack</node>
+				<modifier>0.85</modifier>
+			</li>
+			<li>
+				<node>DrugFriendly</node>
+				<modifier>0.85</modifier>
+			</li>
+			<li>
 				<node>Geeky</node>
-				<modifier>-0.5</modifier>
+				<modifier>-0.65</modifier>
 			</li>
 			<li>
 				<node>Experimental</node>
-				<modifier>1</modifier>
+				<modifier>0.8</modifier>
 			</li>
 			<li>
 				<node>Confident</node>
-				<modifier>1</modifier>
+				<modifier>0.85</modifier>
+			</li>
+			<li>
+				<node>Pure</node>
+				<modifier>-0.85</modifier>
+			</li>
+			<li>
+				<node>Adventurous</node>
+				<modifier>0.85</modifier>
+			</li>
+			<li>
+				<node>Naive</node>
+				<modifier>-0.5</modifier>
+			</li>
+			<li>
+				<node>Nostalgic</node>
+				<modifier>-0.5</modifier>
+			</li>
+			<li>
+				<node>Spontaneous</node>
+				<modifier>0.5</modifier>
 			</li>
 		</parents>
 		<traitModifiers>
@@ -1870,11 +2142,11 @@
 			<li>2</li>
 		</preferredDateHours>
 		<bigFiveModifiers>
-			<li>0.25</li>
 			<li>0</li>
-			<li>0.5</li>
 			<li>0</li>
-			<li>-0.5</li>
+			<li>1</li>
+			<li>0</li>
+			<li>0</li>
         </bigFiveModifiers>
 	</Psychology.PersonalityNodeDef>
 
@@ -1906,19 +2178,39 @@
 		<parents>
 			<li>
 				<node>Empathetic</node>
-				<modifier>1</modifier>
+				<modifier>0.8</modifier>
 			</li>
 			<li>
 				<node>Compassionate</node>
-				<modifier>1</modifier>
+				<modifier>0.85</modifier>
 			</li>
 			<li>
 				<node>Pure</node>
-				<modifier>1</modifier>
+				<modifier>0.85</modifier>
+			</li>
+			<li>
+				<node>Trusting</node>
+				<modifier>0.5</modifier>
+			</li>
+			<li>
+				<node>Optimistic</node>
+				<modifier>0.5</modifier>
 			</li>
 			<li>
 				<node>Cultured</node>
-				<modifier>1</modifier>
+				<modifier>0.65</modifier>
+			</li>
+			<li>
+				<node>Aggressive</node>
+				<modifier>-0.5</modifier>
+			</li>
+			<li>
+				<node>Competitive</node>
+				<modifier>-0.5</modifier>
+			</li>
+			<li>
+				<node>Thoughtful</node>
+				<modifier>0.5</modifier>
 			</li>
 		</parents>
 		<traitModifiers>
@@ -1940,10 +2232,10 @@
 			</li>
 		</traitModifiers>
 		<bigFiveModifiers>
-			<li>-0.2</li>
 			<li>0</li>
 			<li>0</li>
-			<li>0.4</li>
+			<li>0</li>
+			<li>0.7</li>
 			<li>0</li>
         </bigFiveModifiers>
 	</Psychology.PersonalityNodeDef>
@@ -1975,26 +2267,48 @@
 		<parents>
 			<li>
 				<node>Experimental</node>
-				<modifier>-1</modifier>
+				<modifier>-0.9</modifier>
 			</li>
 			<li>
 				<node>Rational</node>
-				<modifier>-2</modifier>
+				<modifier>-0.9</modifier>
 			</li>
 			<li>
+				<node>Logical</node>
+				<modifier>-0.75</modifier>
+            </li>
+			<li>
+				<node>Intelligent</node>
+				<modifier>-0.75</modifier>
+            </li>
+			<li>
 				<node>Pure</node>
-				<modifier>2</modifier>
+				<modifier>0.9</modifier>
 			</li>
 			<li>
 				<node>Cultured</node>
-				<modifier>-1</modifier>
+				<modifier>-0.85</modifier>
 			</li>
 			<li>
 				<node>Trusting</node>
-				<modifier>0.75</modifier>
+				<modifier>0.4</modifier>
             </li>
-			
-			
+			<li>
+				<node>Adventurous</node>
+				<modifier>-0.7</modifier>
+            </li>
+			<li>
+				<node>DrugFriendly</node>
+				<modifier>-0.6</modifier>
+            </li>
+			<li>
+				<node>Naive</node>
+				<modifier>0.65</modifier>
+            </li>
+			<li>
+				<node>Spontaneous</node>
+				<modifier>-0.5</modifier>
+            </li>
 		</parents>
 		<preferredDateHours>
 			<li>9</li>
@@ -2003,11 +2317,11 @@
 			<li>12</li>
 		</preferredDateHours>
 		<bigFiveModifiers>
-			<li>-0.2</li>
+			<li>-0.5</li>
 			<li>0</li>
 			<li>0</li>
 			<li>0</li>
-			<li>0.2</li>
+			<li>0</li>
         </bigFiveModifiers>
 	</Psychology.PersonalityNodeDef>
 
@@ -2036,12 +2350,20 @@
 		<platformIssueLow>We should be judged on our merits.</platformIssueLow>
 		<parents>
 			<li>
+				<node>Extroverted</node>
+				<modifier>-0.5</modifier>
+			</li>
+			<li>
+				<node>Confident</node>
+				<modifier>-0.65</modifier>
+			</li>
+			<li>
 				<node>Aggressive</node>
-				<modifier>-1</modifier>
+				<modifier>-0.9</modifier>
 			</li>
 			<li>
 				<node>Pure</node>
-				<modifier>1</modifier>
+				<modifier>0.8</modifier>
 			</li>
 			<li>
 				<node>Cultured</node>
@@ -2049,7 +2371,59 @@
 			</li>
 			<li>
 				<node>Moralistic</node>
-				<modifier>1</modifier>
+				<modifier>0.25</modifier>
+			</li>
+			<li>
+				<node>Spontaneous</node>
+				<modifier>-0.5</modifier>
+			</li>
+			<li>
+				<node>Competitive</node>
+				<modifier>-0.8</modifier>
+			</li>
+			<li>
+				<node>Upbeat</node>
+				<modifier>0.5</modifier>
+			</li>
+			<li>
+				<node>Empathetic</node>
+				<modifier>0.5</modifier>
+			</li>
+			<li>
+				<node>Optimistic</node>
+				<modifier>0.2</modifier>
+			</li>
+			<li>
+				<node>Thoughtful</node>
+				<modifier>0.8</modifier>
+			</li>
+			<li>
+				<node>Compassionate</node>
+				<modifier>0.7</modifier>
+			</li>
+			<li>
+				<node>Trusting</node>
+				<modifier>0.7</modifier>
+			</li>
+			<li>
+				<node>Passionate</node>
+				<modifier>-0.25</modifier>
+			</li>
+			<li>
+				<node>Emotional</node>
+				<modifier>-0.25</modifier>
+			</li>
+			<li>
+				<node>Cool</node>
+				<modifier>-0.5</modifier>
+			</li>
+			<li>
+				<node>Naive</node>
+				<modifier>0.5</modifier>
+			</li>
+			<li>
+				<node>Generous</node>
+				<modifier>0.5</modifier>
 			</li>
 		</parents>
 		<skillModifiers>
@@ -2105,24 +2479,76 @@
 		<platformIssueLow>This job won't go to my head.</platformIssueLow>
 		<parents>
 			<li>
+				<node>Experimental</node>
+				<modifier>-0.35</modifier>
+			</li>
+			<li>
+				<node>Adventurous</node>
+				<modifier>-0.65</modifier>
+			</li>
+			<li>
 				<node>Nostalgic</node>
-				<modifier>1</modifier>
+				<modifier>0.5</modifier>
 			</li>
 			<li>
 				<node>Trusting</node>
-				<modifier>2</modifier>
+				<modifier>0.95</modifier>
 			</li>
 			<li>
 				<node>Passionate</node>
-				<modifier>1</modifier>
+				<modifier>0.75</modifier>
 			</li>
 			<li>
 				<node>Pure</node>
-				<modifier>1</modifier>
+				<modifier>0.75</modifier>
 			</li>
 			<li>
 				<node>Spontaneous</node>
-				<modifier>-0.7</modifier>
+				<modifier>-0.5</modifier>
+			</li>
+			<li>
+				<node>Polite</node>
+				<modifier>0.25</modifier>
+			</li>
+			<li>
+				<node>Empathetic</node>
+				<modifier>0.5</modifier>
+			</li>
+			<li>
+				<node>Compassionate</node>
+				<modifier>0.5</modifier>
+			</li>
+			<li>
+				<node>Thoughtful</node>
+				<modifier>0.4</modifier>
+			</li>
+			<li>
+				<node>Optimistic</node>
+				<modifier>0.6</modifier>
+			</li>
+			<li>
+				<node>Confident</node>
+				<modifier>-0.3</modifier>
+			</li>
+			<li>
+				<node>Aggressive</node>
+				<modifier>-0.3</modifier>
+			</li>
+			<li>
+				<node>Cool</node>
+				<modifier>-0.5</modifier>
+			</li>
+			<li>
+				<node>Competitive</node>
+				<modifier>-0.5</modifier>
+			</li>
+			<li>
+				<node>Moralistic</node>
+				<modifier>0.5</modifier>
+			</li>
+			<li>
+				<node>Naive</node>
+				<modifier>0.3</modifier>
 			</li>
 		</parents>
 		<traitModifiers>
@@ -2146,9 +2572,9 @@
 		</preferredDateHours>
 		<bigFiveModifiers>
 			<li>0</li>
-			<li>0.2</li>
 			<li>0</li>
-			<li>0.6</li>
+			<li>0</li>
+			<li>0.7</li>
 			<li>0</li>
         </bigFiveModifiers>
 	</Psychology.PersonalityNodeDef>
@@ -2181,20 +2607,56 @@
 		<platformIssueLow>We're stronger when we're united.</platformIssueLow>
 		<parents>
 			<li>
+				<node>Ambitious</node>
+				<modifier>0.8</modifier>
+			</li>
+			<li>
+				<node>Empathetic</node>
+				<modifier>-0.3</modifier>
+			</li>
+			<li>
+				<node>Organized</node>
+				<modifier>0.8</modifier>
+			</li>
+			<li>
 				<node>Extroverted</node>
-				<modifier>-1</modifier>
+				<modifier>-0.8</modifier>
 			</li>
 			<li>
 				<node>Confident</node>
-				<modifier>1</modifier>
+				<modifier>0.8</modifier>
 			</li>
 			<li>
 				<node>Romantic</node>
-				<modifier>-1</modifier>
+				<modifier>-0.95</modifier>
 			</li>
 			<li>
 				<node>Competitive</node>
-				<modifier>1</modifier>
+				<modifier>0.8</modifier>
+			</li>
+			<li>
+				<node>Aggressive</node>
+				<modifier>0.3</modifier>
+			</li>
+			<li>
+				<node>LaidBack</node>
+				<modifier>0.3</modifier>
+			</li>
+			<li>
+				<node>Nostalgic</node>
+				<modifier>-0.5</modifier>
+			</li>
+			<li>
+				<node>Thoughtful</node>
+				<modifier>0.7</modifier>
+			</li>
+			<li>
+				<node>Trusting</node>
+				<modifier>-0.5</modifier>
+			</li>
+			<li>
+				<node>Compassionate</node>
+				<modifier>-0.5</modifier>
 			</li>
 		</parents>
 		<traitModifiers>
@@ -2275,10 +2737,10 @@
 		</incapableModifiers>
 		<bigFiveModifiers>
 			<li>0</li>
-			<li>0.2</li>
-			<li>-0.2</li>
+			<li>0.85</li>
 			<li>0</li>
-			<li>-0.2</li>
+			<li>0</li>
+			<li>-0.5</li>
         </bigFiveModifiers>
 	</Psychology.PersonalityNodeDef>
 
@@ -2309,19 +2771,27 @@
 		<parents>
 			<li>
 				<node>Experimental</node>
-				<modifier>-0.75</modifier>
+				<modifier>-0.25</modifier>
+            </li>
+			<li>
+				<node>Ambitious</node>
+				<modifier>0.25</modifier>
             </li>
 			<li>
 				<node>Empathetic</node>
-				<modifier>-0.75</modifier>
+				<modifier>-0.5</modifier>
+            </li>
+			<li>
+				<node>Adventurous</node>
+				<modifier>-0.3</modifier>
             </li>
 			<li>
 				<node>Aggressive</node>
-				<modifier>0.75</modifier>
+				<modifier>0.5</modifier>
 			</li>
 			<li>
 				<node>LaidBack</node>
-				<modifier>-0.75</modifier>
+				<modifier>-0.65</modifier>
 			</li>
 			<li>
 				<node>Moralistic</node>
@@ -2332,8 +2802,28 @@
 				<modifier>0.75</modifier>
 			</li>
 			<li>
+				<node>Passionate</node>
+				<modifier>0.7</modifier>
+			</li>
+			<li>
 				<node>Emotional</node>
-				<modifier>0.75</modifier>
+				<modifier>0.7</modifier>
+			</li>
+			<li>
+				<node>Competitive</node>
+				<modifier>0.7</modifier>
+			</li>
+			<li>
+				<node>Upbeat</node>
+				<modifier>-0.5</modifier>
+			</li>
+			<li>
+				<node>DrugFriendly</node>
+				<modifier>-0.5</modifier>
+			</li>
+			<li>
+				<node>Cool</node>
+				<modifier>-0.5</modifier>
 			</li>
 		</parents>
 		<traitModifiers>
@@ -2355,10 +2845,10 @@
 			</li>
 		</traitModifiers>
 		<bigFiveModifiers>
-			<li>-0.5</li>
 			<li>0</li>
 			<li>0</li>
-			<li>-0.5</li>
+			<li>0</li>
+			<li>0</li>
 			<li>1</li>
         </bigFiveModifiers>
 	</Psychology.PersonalityNodeDef>
@@ -2391,32 +2881,72 @@
 		<platformIssueLow>We need to be more mindful of each other.</platformIssueLow>
 		<parents>
 			<li>
+				<node>Intelligent</node>
+				<modifier>0.2</modifier>
+			</li>
+			<li>
+				<node>Experimental</node>
+				<modifier>0.4</modifier>
+			</li>
+			<li>
 				<node>Extroverted</node>
 				<modifier>0.5</modifier>
 			</li>
 			<li>
 				<node>Confident</node>
-				<modifier>1</modifier>
+				<modifier>0.7</modifier>
 			</li>
 			<li>
 				<node>Spontaneous</node>
-				<modifier>1</modifier>
+				<modifier>0.8</modifier>
+			</li>
+			<li>
+				<node>Emotional</node>
+				<modifier>0.9</modifier>
 			</li>
 			<li>
 				<node>Passionate</node>
-				<modifier>1</modifier>
+				<modifier>0.9</modifier>
 			</li>
 			<li>
 				<node>Polite</node>
-				<modifier>-1</modifier>
+				<modifier>-0.65</modifier>
+			</li>
+			<li>
+				<node>Aggressive</node>
+				<modifier>0.7</modifier>
+			</li>
+			<li>
+				<node>LaidBack</node>
+				<modifier>-0.25</modifier>
+			</li>
+			<li>
+				<node>Thoughtful</node>
+				<modifier>-0.7</modifier>
+			</li>
+			<li>
+				<node>Adventurous</node>
+				<modifier>0.25</modifier>
+			</li>
+			<li>
+				<node>Compassionate</node>
+				<modifier>-0.25</modifier>
+			</li>
+			<li>
+				<node>Competitive</node>
+				<modifier>0.7</modifier>
+			</li>
+			<li>
+				<node>Judgmental</node>
+				<modifier>0.5</modifier>
 			</li>
 		</parents>
 		<bigFiveModifiers>
 			<li>0</li>
 			<li>0</li>
-			<li>0.6</li>
-			<li>-0.2</li>
-			<li>0.2</li>
+			<li>0.85</li>
+			<li>-0.5</li>
+			<li>0</li>
         </bigFiveModifiers>
 	</Psychology.PersonalityNodeDef>
 
@@ -2444,28 +2974,68 @@
 		<platformIssueLow>We do what it takes to survive.</platformIssueLow>
 		<parents>
 			<li>
+				<node>Ambitious</node>
+				<modifier>-0.3</modifier>
+			</li>
+			<li>
 				<node>Upbeat</node>
-				<modifier>0.5</modifier>
+				<modifier>0.8</modifier>
 			</li>
 			<li>
 				<node>Trusting</node>
-				<modifier>1</modifier>
+				<modifier>0.975</modifier>
 			</li>
 			<li>
 				<node>Judgmental</node>
-				<modifier>-1</modifier>
+				<modifier>-0.975</modifier>
 			</li>
 			<li>
 				<node>Aggressive</node>
-				<modifier>-1</modifier>
+				<modifier>-0.8</modifier>
 			</li>
 			<li>
 				<node>Competitive</node>
-				<modifier>-1</modifier>
+				<modifier>-0.9</modifier>
 			</li>
 			<li>
 				<node>Polite</node>
 				<modifier>0.5</modifier>
+			</li>
+			<li>
+				<node>Optimistic</node>
+				<modifier>0.5</modifier>
+			</li>
+			<li>
+				<node>Empathetic</node>
+				<modifier>0.8</modifier>
+			</li>
+			<li>
+				<node>Compassionate</node>
+				<modifier>0.8</modifier>
+			</li>
+			<li>
+				<node>Outspoken</node>
+				<modifier>-0.5</modifier>
+			</li>
+			<li>
+				<node>Cool</node>
+				<modifier>0.3</modifier>
+			</li>
+			<li>
+				<node>Generous</node>
+				<modifier>0.8</modifier>
+			</li>
+			<li>
+				<node>LaidBack</node>
+				<modifier>0.5</modifier>
+			</li>
+			<li>
+				<node>Moralistic</node>
+				<modifier>0.5</modifier>
+			</li>
+			<li>
+				<node>Romantic</node>
+				<modifier>0.75</modifier>
 			</li>
 		</parents>
 		<traitModifiers>
@@ -2481,8 +3051,8 @@
 		<bigFiveModifiers>
 			<li>0</li>
 			<li>0</li>
-			<li>0</li>
-			<li>1</li>
+			<li>0.5</li>
+			<li>0.85</li>
 			<li>0</li>
         </bigFiveModifiers>
 	</Psychology.PersonalityNodeDef>

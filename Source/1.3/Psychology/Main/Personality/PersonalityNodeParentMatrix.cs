@@ -68,8 +68,8 @@ namespace Psychology
                 {
                     int k = indexDict[kvp.Key];
                     float modifier = kvp.Value.modifier;
-                    parentModifierMatrix[i + k * order] += 2 * modifier;
-                    parentModifierMatrix[k + i * order] += 2 * modifier;
+                    parentModifierMatrix[i + k * order] += modifier;
+                    parentModifierMatrix[k + i * order] += modifier;
                 }
             }
             Log.Message("Start Decomposition");
@@ -78,24 +78,16 @@ namespace Psychology
             bool flag = false;
             int ticker = 0;
             int size = order * order;
-            while (flag == false && ticker < 500)
+            int maxTicks = 500;
+            while (flag == false && ticker < maxTicks)
             {
                 flag = true;
                 ticker++;
-                for (int diagIndex = 0; diagIndex < size; diagIndex += order + 1)
-                {
-                    //if (C[diagIndex] != 1f)
-                    if (Mathf.Abs(C[diagIndex] - 1f) > 1e-4f)
-                    {
-                        C[diagIndex] = 1f;
-                        flag = false;
-                    }
-                }
-                (V, d) = EigenDecomp(C, order);
                 for (int i = 0; i < order; ++i)
                 {
                     if (d[i] < 0f)
                     {
+                        //trace -= 0.5f * d[i];
                         d[i] = 0f;
                         flag = false;
                     }
@@ -103,6 +95,23 @@ namespace Psychology
                 if (flag == false)
                 {
                     C = VtimesDtimesTransposeOfV(V, d, order);
+                    float[] S = new float[order];
+                    for (int diagIndex = 0; diagIndex < size; diagIndex += order + 1)
+                    {
+                        S[diagIndex] = Mathf.Abs(C[diagIndex]) > 0.1f ? 1 / Mathf.Sqrt(C[diagIndex]) : 1 / Mathf.Sqrt(10f);
+                    }
+                    for (int ij = 0; ij < size; ++ij)
+                    {
+                        C[ij] *= S[ij % order] * S[ij / order];
+                    }
+                    (V, d) = EigenDecomp(C, order);
+                }
+            }
+            for (int i = 0; i < order; ++i)
+            {
+                if (d[i] < 0f)
+                {
+                    d[i] = 0f;
                 }
             }
             Log.Message("ticker = " + ticker);
