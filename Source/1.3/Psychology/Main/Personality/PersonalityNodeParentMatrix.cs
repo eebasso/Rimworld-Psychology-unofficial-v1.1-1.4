@@ -19,40 +19,31 @@ namespace Psychology
     {
         public static List<PersonalityNodeDef> defList;
         public static Dictionary<PersonalityNodeDef, int> indexDict;
-        //public static float[] parentModifierMatrix;
-        //public static float[] parentTransformMatrix;
-        //public static Matrix<float> parentModifierMatrix;
-        //public static Matrix<float> parentTransformMatrix;
+        public static Dictionary<int, float[]> PartiaProjectionMatrixDict;
         public static float[] parentModifierMatrix;
         public static float[] parentTransformMatrix;
+        public static int order;
+        public static int size;
+        public static List<float[]> bigFiveVectors = new List<float[]>();
+        public static float[] bigFiveStandardDevInvs = new float[5];
 
         static PersonalityNodeParentMatrix()
         {
-            Log.Message("Initializing PersonalityNodeParentMatrix");
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start();
+            //Log.Message("Initializing PersonalityNodeParentMatrix");
             defList = DefDatabase<PersonalityNodeDef>.AllDefsListForReading;
-            Log.Message("Initializing indexDict");
+
+            //Log.Message("Initializing indexDict");
             indexDict = new Dictionary<PersonalityNodeDef, int>();
-            Log.Message("Define n");
-            int order = defList.Count();
+
+            //Log.Message("Define order and size");
+            order = defList.Count();
+            size = order * order;
+
             Log.Message("Initialize parentModifierMatrix");
-            //parentModifierMatrix = Matrix.Identity<float>(n);
-
             parentModifierMatrix = IdentityMatrix(order);
-            Log.Message("parentModifierMatrix[3, 3] = " + parentModifierMatrix[3 + 3 * order]);
-            Log.Message("parentModifierMatrix[4, 5] = " + parentModifierMatrix[4 + 5 * order]);
             int index = 0;
-
-            float[] testMatrix = { 0f, 1f, 1f, 0f };
-            (float[] testV, float[] testD) = EigenDecomp(testMatrix, 2);
-            float[] testVDVT = VtimesDtimesTransposeOfV(testV, testD, 2);
-            Log.Message("Diagonal matrix D = " + string.Join(", ", testD));
-            Log.Message("Eigenvector matrix V= " + string.Join(", ", testV));
-            Log.Message("V * D * V^T = " + string.Join(", ", testVDVT));
-            float[] M = { 1f, 2f, 3f, 4f };
-            float[] vec = { 5f, 6f };
-            float[] MtimesVec = MatrixVectorProduct(M, vec, 2);
-            Log.Message("MtimesVec = " + string.Join(", ", MtimesVec));
-
             foreach (PersonalityNodeDef def in defList)
             {
                 //Log.Message("indexDict gained element: (" + index + ", " + def.defName + ")");
@@ -72,105 +63,172 @@ namespace Psychology
                     parentModifierMatrix[k + i * order] += modifier;
                 }
             }
-            Log.Message("Start Decomposition");
-            float[] C = parentModifierMatrix;
-            (float[] V, float[] d) = EigenDecomp(C, order);
-            bool flag = false;
-            int ticker = 0;
-            int size = order * order;
-            int maxTicks = 500;
-            while (flag == false && ticker < maxTicks)
+
+            Log.Message("Get Big Five Vectors");
+            for (int bf = 0; bf < 5; bf++)
             {
-                flag = true;
-                ticker++;
-                for (int i = 0; i < order; ++i)
+                float norm = 0f;
+                float[] vector = new float[order];
+                foreach (PersonalityNodeDef def in defList)
                 {
-                    if (d[i] < 0f)
+                    int n = indexDict[def];
+                    float modifier = def.bigFiveModifiers[bf];
+                    vector[n] = modifier;
+                    norm += modifier * modifier;
+                }
+                norm = Mathf.Sqrt(norm);
+                for (int n = 0; n < order; n++)
+                {
+                    vector[n] /= norm;
+                }
+                bigFiveVectors.Add(vector);
+                Log.Message("Big five vector " + bf + ": " + string.Join(", ", vector));
+            }
+
+            Log.Message("Get weights of Ten Aspects");
+            //List<float[]> tenAspectsVectors = new List<float[]>();
+            List<float[]> tenAspectsWeights = new List<float[]>();
+            for (int t = 0; t < 10; t++)
+            {
+                float norm = 0f;
+                float[] vector = new float[order];
+                foreach (PersonalityNodeDef def in defList)
+                {
+                    float weight = def.TenAspects[t];
+                    vector[indexDict[def]] = weight;
+                    norm += weight * weight;
+                    if (weight != 0f)
                     {
-                        //trace -= 0.5f * d[i];
-                        d[i] = 0f;
-                        flag = false;
+                        //Log.Message("Aspect " + t + ": " + def.defName + ", " + def.TenAspects[t]);
                     }
                 }
-                if (flag == false)
+                tenAspectsWeights.Add(vector);
+                //norm = Mathf.Sqrt(norm);
+                //for (int n = 0; n < order; n++)
+                //{
+                //    vector[n] /= norm;
+                //}
+                //tenAspectsVectors.Add(vector);
+                //Log.Message("norm = " + norm);
+                //Log.Message("Ten Aspects Weights " + t + ": " + String.Join(", ", tenAspectsWeights[t]));
+            }
+            //float[] cBigFive0 = new float[size];
+            float[] cTen0 = new float[size];
+            for (int s = 0; s < size; s++)
+            {
+                (int i, int j) = Get2Dindicies(s);
+                //cBigFive0[s] = 0f;
+                //for (int bf = 0; bf < 5; bf++)
+                //{
+                //    cBigFive0[s] += 0.2f * order * bigFiveVectors[bf][i] * bigFiveVectors[bf][j];
+                //}
+                cTen0[s] = 0f;
+                for (int t = 0; t < 10; t += 2)
                 {
-                    C = VtimesDtimesTransposeOfV(V, d, order);
-                    float[] S = new float[order];
-                    for (int diagIndex = 0; diagIndex < size; diagIndex += order + 1)
-                    {
-                        S[diagIndex] = Mathf.Abs(C[diagIndex]) > 0.1f ? 1 / Mathf.Sqrt(C[diagIndex]) : 1 / Mathf.Sqrt(10f);
-                    }
-                    for (int ij = 0; ij < size; ++ij)
-                    {
-                        C[ij] *= S[ij % order] * S[ij / order];
-                    }
-                    (V, d) = EigenDecomp(C, order);
+                    //cTen0[s] += tenAspectsVectors[t][i] * tenAspectsVectors[t][j];
+                    //cTen0[s] += tenAspectsVectors[t + 1][i] * tenAspectsVectors[t + 1][j];
+                    //cTen0[s] += 0.33f * tenAspectsVectors[t][i] * tenAspectsVectors[t + 1][j];
+                    //cTen0[s] += 0.33f * tenAspectsVectors[t + 1][i] * tenAspectsVectors[t][j];
+                    //cTen0[s] *= 0.1f * order;
+                    cTen0[s] += tenAspectsWeights[t][i] * tenAspectsWeights[t][j];
+                    cTen0[s] += tenAspectsWeights[t + 1][i] * tenAspectsWeights[t + 1][j];
+                    cTen0[s] += 0.33f * tenAspectsWeights[t][i] * tenAspectsWeights[t + 1][j];
+                    cTen0[s] += 0.33f * tenAspectsWeights[t + 1][i] * tenAspectsWeights[t][j];
                 }
             }
-            for (int i = 0; i < order; ++i)
+
+            //Log.Message("Get nearest correlation matrix");
+            //float[] cParent0 = NearCorr(parentModifierMatrix);
+            //Log.Message("Calculate Big Five correlation matrix");
+            //float[] cBigFive1 = NearCorr(cBigFive0);
+            Log.Message("Calculate Ten Aspects correlation matrix");
+            float[] cTen1 = NearCorr(cTen0);
+
+            //Log.Message("Construct ultimate mixture matrix");
+            float[] cMix = new float[size];
+            for (int s = 0; s < size; s++)
             {
-                if (d[i] < 0f)
-                {
-                    d[i] = 0f;
-                }
+                //List<float> list = new List<float>() { parentModifierMatrix[s], cParent0[s], 0f * cBigFive0[s] + 1f * cTen0[s], 0f * cBigFive1[s] + 1f * cTen1[s] };
+                //cMix[s] = list.OrderBy(x => -Mathf.Abs(x)).First();
+                cMix[s] = Mathf.Abs(parentModifierMatrix[s]) > 0.01f ? parentModifierMatrix[s] : cTen1[s];
+
+                //Log.Message("list = " + string.Join(", ", list));
+                //Log.Message("max = " + cMix[s]);
             }
-            Log.Message("ticker = " + ticker);
-            Log.Message("Eigenvalues = " + String.Join(", ", d));
-            string diagonalElements = "Diagonal elements of C = " + C[0];
-            for (int diagIndex = order + 1; diagIndex < size; diagIndex += order + 1)
-            {
-                diagonalElements += ", " + C[diagIndex];
-            }
-            Log.Message(diagonalElements);
+            //(float[] vMix, float[] dMix) = EigenDecomp(cMix, order);
+            //float[] cMixTest = VtimesDtimesTransposeOfV(vMix, dMix);
+            //Log.Message("Test VtimesDtimesTransposeOfV: " + MatrixNorm(MatrixDiff(cMix, cMixTest)));
 
 
+            //Log.Message("Calculate ultimate correlation matrix");
+            //float[] C = NearCorr(cMix);
+            //Log.Message("Start Decomposition");
+            //(float[] V, float[] d) = EigenDecomp(C, order);
             //for (int i = 0; i < order; i++)
             //{
-            //    Log.Message("Row = " + i);
-            //    string rowOfM = "Row " + i + " of M = " + parentModifierMatrix[i];
-            //    string rowOfC = "Row " + i + " of C = " + C[i];
-            //    for (int j = 1; j < order; ++j)
+            //    d[i] = 0.85f * d[i] + 0.15f;
+            //}
+            //C = VtimesDtimesTransposeOfV(V, d);
+            //C = NearCorr(C);
+            //(V, d) = EigenDecomp(C, order);
+
+            //(float[] vParent, float[] dParent) = EigenDecomp(parentModifierMatrix, order);
+            (float[] vTen0, float[] dten0) = EigenDecomp(cTen0, order);
+            (float[] vTen1, float[] dten1) = EigenDecomp(cTen1, order);
+            //Log.Message("Eigenvalues of parentModifierMatrix = " + string.Join(", ", dParent.Reverse()));
+            Log.Message("Eigenvalues of cTen0 = " + string.Join(", ", dten0.Reverse()));
+            Log.Message("Eigenvalues of cTen1 = " + string.Join(", ", dten1.Reverse()));
+            //Log.Message("Eigenvalues of C = " + string.Join(", ", d.Reverse()));
+
+            //string bigFiveVariances = "Big five variances = ";
+            //for (int bf = 0; bf < 5; bf++)
+            //{
+            //    float variance = DotProduct(bigFiveVectors[bf], MatrixVectorProduct(C, bigFiveVectors[bf]));
+            //    bigFiveStandardDevInvs[bf] = 1f / Mathf.Sqrt(variance);
+            //    bigFiveVariances += variance + ", ";
+            //}
+            //Log.Message(bigFiveVariances);
+
+            //float[] dSqrt = new float[order];
+            //for (int i = 0; i < order; ++i)
+            //{
+            //    dSqrt[i] = Mathf.Sqrt(Mathf.Abs(d[i]));
+            //}
+            //parentTransformMatrix = VtimesDtimesTransposeOfV(V, dSqrt);
+            //Log.Message("PersonalityNodeParentMatrix initialized");
+
+            //foreach (PersonalityNodeDef def in defList)
+            //{
+            //    int i = indexDict[def];
+            //    string rowOfMCP = def.defName + ": ";
+            //    foreach (PersonalityNodeDef def2 in defList)
             //    {
-            //        rowOfM += ", " + parentModifierMatrix[i + j * order];
-            //        rowOfC += ", " + C[i + j * order];
+            //        int j = indexDict[def2];
+            //        float num1 = cTen0[i + j * order];
+            //        float num2 = C[i + j * order];
+            //        float num3 = parentTransformMatrix[i + j * order];
+            //        rowOfMCP += "{" + def2.defName + " " + num1 + ", " + num2 + ", " + num3 + "}, ";
             //    }
-            //    Log.Message(rowOfM);
-            //    Log.Message(rowOfC);
+            //    Log.Message(rowOfMCP);
             //}
 
-
-
-
-
-            //float[] Dsqrt = Matrix.Identity<float>(n);
-            //Matrix<float> Dsqrt = Matrix<float>.Build.DenseDiagonal(n, 1f);
-            float[] dSqrt = new float[order];
-            for (int i = 0; i < order; ++i)
-            {
-                dSqrt[i] = Mathf.Sqrt(Mathf.Abs(d[i]));
-            }
-            //parentTransformMatrix = V.Dot(Dsqrt).Dot(V.Inverse());
-            //parentTransformMatrix = MatrixProduct(V, MatrixProduct(Dsqrt, MatrixInverse(V, order), order), order);
-            parentTransformMatrix = VtimesDtimesTransposeOfV(V, dSqrt, order);
-            Log.Message("PersonalityNodeParentMatrix initialized");
-
-            foreach (PersonalityNodeDef def in defList)
-            {
-                int i = indexDict[def];
-                string rowOfMCP = def.defName + ": ";
-                foreach (PersonalityNodeDef def2 in defList)
-                {
-                    int j = indexDict[def2];
-                    float num1 = parentModifierMatrix[i + j * order];
-                    float num2 = C[i + j * order];
-                    float num3 = parentTransformMatrix[i + j * order];
-                    rowOfMCP += " {" + def2.defName + " " + num1 + ", " + num2 + ", " + num3 + "},";
-                }
-                Log.Message(rowOfMCP);
-            }
+            //for (int j = 0; j < 10; j++)
+            //{
+            //    List<Pair<string, float>> vecList = new List<Pair<string, float>>();
+            //    foreach (PersonalityNodeDef def in defList)
+            //    {
+            //        int i = indexDict[def];
+            //        vecList.Add(new Pair<string, float>(def.defName, V[i + (order - 1 - j) * order]));
+            //    }
+            //    vecList = vecList.OrderBy(pair => -Mathf.Abs(pair.Second)).ToList();
+            //    Log.Message("Eigenvector " + j + ": " + string.Join(", ", vecList));
+            //}
+            stopwatch.Stop();
+            TimeSpan ts = stopwatch.Elapsed;
+            Log.Message("Run time in minutes:seconds:milliseconds = " + String.Format("{0:00}:{1:00}:{2:000}", ts.Minutes, ts.Seconds, ts.Milliseconds));
         }
 
-        public static (int, int) Get2Dindicies(int s, int order)
+        public static (int, int) Get2Dindicies(int s)
         {
             //Log.Message("s = " + s + " i,j = " + s / order + ", " + s % order);
             return (s % order, s / order);
@@ -554,13 +612,12 @@ namespace Psychology
             return 0f;
         }
 
-        public static float[] VtimesDtimesTransposeOfV(float[] V, float[] d, int order)
+        public static float[] VtimesDtimesTransposeOfV(float[] V, float[] d)
         {
-            int size = order * order;
             float[] matrix = new float[size];
             for (int s = 0; s < size; ++s)
             {
-                (int i, int j) = Get2Dindicies(s, order);
+                (int i, int j) = Get2Dindicies(s);
                 for (int k = 0; k < order; ++k)
                 {
                     matrix[s] += V[i + k * order] * d[k] * V[j + k * order];
@@ -577,11 +634,9 @@ namespace Psychology
         {
             // return an order x order Identity matrix
             float[] identity = new float[order * order];
-            int i;
-            int j;
             for (int s = 0; s < order * order; ++s)
             {
-                (i, j) = Get2Dindicies(s, order);
+                (int i, int j) = Get2Dindicies(s);
                 identity[s] = i == j ? 1f : 0f;
             }
             return identity;
@@ -589,332 +644,179 @@ namespace Psychology
 
         // --------------------------------------------------
 
-        //public static float[] MatrixProduct(float[] A, float[] B, int order)
-        //{
-        //    float[] C = new float[order * order];
-        //    for (int s = 0; s < order * order; ++s)
-        //    {
-        //        //(int i, int j) = Get2Dindicies(s, order);
-        //        int j = s % order;
-        //        float num = 0f;
-        //        for (int k = 0; k < order; ++k)
-        //        {
-        //            num += A[s - j + k] * B[order * k + j];
-        //        }
-        //        C[s] = num;
-        //    }
-        //    return C;
-        //}
+        public static float[] MatrixProduct(float[] A, float[] B)
+        {
+            float[] C = new float[order * order];
+            for (int s = 0; s < order * order; ++s)
+            {
+                //(int i, int j) = Get2Dindicies(s, order);
+                int j = s % order;
+                float num = 0f;
+                for (int k = 0; k < order; ++k)
+                {
+                    num += A[s - j + k] * B[order * k + j];
+                }
+                C[s] = num;
+            }
+            return C;
+        }
 
         // --------------------------------------------------
 
         // result of multiplying an order x order matrix by a order x 1 column vector (yielding an order x 1 column vector)
-        public static float[] MatrixVectorProduct(float[] A, float[] b, int order)
+        public static float[] MatrixVectorProduct(float[] A, float[] b)
         {
             float[] c = new float[order];
-            //float sum;
-            //for (int i = 0; i < order; ++i)
-            //{
-            //    sum = 0f;
-            //    int jj = 0;
-            //    for (int j = 0; j < order; ++j)
-            //    {
-            //        sum += A[i + jj] * b[j];
-            //        jj += order;
-            //    }
-            //    c[i] = sum;
-            //    //c[0] = A[0 + 0] * b[0] + A[2] * b[1]
-
-            //}
-            //for (int i = 0; i < order; ++i)
-            //{
-            //    c[i] = A[order * i] * b[0];
-            //}
-
-            for (int s = order; s < order * order; ++s)
+            for (int s = 0; s < size; ++s)
             {
                 c[s % order] += A[s] * b[s / order];
             }
-            //int j = -1;
-            //for (int s = 0; s < order * order; ++s)
-            //{
-            //    int i = s % order;
-            //    if (i == 0)
-            //    {
-            //        j += 1;
-            //    }
-            //    c[i] += A[s] * b[j];
-            //}
             return c;
         }
 
-        //public float[] ConvertMatrixToArray(float[,] matrix)
-        //{
-        //    int order = matrix.GetLength(0);
-        //    float[] matrixArray = new float[order * order];
-        //    for (int i = 0; i < order; ++i)
-        //    {
-        //        for (int j = 0; j < order; ++j)
-        //        {
-        //            matrixArray[i + j * order] = matrix[i, j];
-        //        }
-        //    }
-        //    return matrixArray;
-        //}
+        public static float DotProduct(float[] x, float[] y)
+        {
+            float sum = 0f;
+            for (int i = 0; i < order; i++)
+            {
+                sum += x[i] * y[i];
+            }
+            return sum;
+        }
 
-        //public float[,] ConvertArrayToMatrix(float[] matrixArray)
-        //{
-        //    int order = (int)Math.Sqrt(matrixArray.Count());
-        //    float[,] matrix = new float[order, order];
-        //    for (int i = 0; i < order; ++i)
-        //    {
-        //        for (int j = 0; j < order; ++j)
-        //        {
-        //            matrix[i, j] = matrixArray[i + j * order];
-        //        }
-        //    }
-        //    return matrix;
-        //}
+        public static float[] NearCorr(float[] A)
+        {
+            float tol = 1e-7f;
+            int maxits = 100;
+            float[] X = A;
+            float[] Y = A;
+            int iter = 0;
+            float relDiffX = 1e+9f;
+            float relDiffY = 1e+9f;
+            float relDiffXY = 1e+9f;
+            float[] dS = new float[size];
+            for (int i = 0; i < size; i++)
+            {
+                dS[i] = 0f;
+            }
+            float[] Xold;
+            float[] Yold;
+            float[] R;
+            while ((relDiffX > tol || relDiffY > tol || relDiffXY > tol) && iter < maxits)
+            {
+                Log.Message("Distance between X and A = " + MatrixNorm(MatrixDiff(X, A)));
+                Xold = X;
+                R = MatrixDiff(Y, dS);
+                Log.Message("Distance between R and Y = " + MatrixNorm(MatrixDiff(R, Y)));
+                Log.Message("Distance between R and A = " + MatrixNorm(MatrixDiff(R, A)));
+                X = ProjSpdEigs(R);
+                Log.Message("Distance between X and R = " + MatrixNorm(MatrixDiff(X, R)));
+                dS = MatrixDiff(X, R);
+                Yold = Y;
+                Y = ProjUnitDiag(X);
+                Log.Message("Distance between X and Y = " + MatrixNorm(MatrixDiff(X, Y)));
+                relDiffX = MatrixNorm(MatrixDiff(X, Xold)) / MatrixNorm(X);
+                relDiffY = MatrixNorm(MatrixDiff(Y, Yold)) / MatrixNorm(Y);
+                relDiffXY = MatrixNorm(MatrixDiff(Y, X)) / MatrixNorm(Y);
+                iter++;
+                Log.Message("Number of iterations for NearCorr = " + iter + ", distance = " + MatrixNorm(MatrixDiff(X, A)));
+            }
+            return X;
+        }
 
-        // --------------------------------------------------
+        public static float[] MatrixDiff(float[] A, float[] B)
+        {
+            float[] C = new float[size];
+            for (int i = 0; i < size; i++)
+            {
+                C[i] = A[i] - B[i];
+            }
+            return C;
+        }
 
-        //public static float[] MatrixDecompose(float[] matrix, out int[] perm, out int toggle, int order)
-        //{
-        //    // Doolittle LUP decomposition with partial pivoting.
-        //    // rerturns: result is L (with 1s on diagonal) and U;
-        //    // perm holds row permutations; toggle is +1 or -1 (even or odd)
-        //    float[] result = matrix;
-        //    perm = new int[order]; // set up row permutation result
-        //    for (int i = 0; i < order; ++i)
-        //    {
-        //        perm[i] = i;
-        //    }
+        public static float[] ProjSpdEigs(float[] A)
+        {
+            (float[] V, float[] d) = EigenDecomp(A, order);
+            float dMax = d.OrderBy(x => -Mathf.Abs(x)).First();
+            //List<int> indexList = new List<int>();
+            //for (int i = 0; i < order; i++)
+            //{
+            //    if (d[i] > 1e-7f * dMax)
+            //    {
+            //        indexList.Add(i);
+            //    }
+            //}
+            //float[] B = new float[size];
+            //for (int s = 0; s < size; s++)
+            //{
+            //    B[s] = 0f;
+            //    (int i, int j) = Get2Dindicies(s);
+            //    foreach (int k in indexList)
+            //    {
+            //        B[s] += V[i + k * order] * d[k] * V[j + k * order];
+            //    }
+            //}
+            for (int i = 0; i < order; i++)
+            {
+                if (d[i] < 1e-7f * dMax)
+                {
+                    d[i] = 0f;
+                }
+            }
+            float[] B = VtimesDtimesTransposeOfV(V, d);
+            return B;
+        }
 
-        //    toggle = 1; // toggle tracks row swaps.
-        //                // +1 -greater-than even, -1 -greater-than odd. used by MatrixDeterminant
+        public static float[] ProjUnitDiag(float[] A)
+        {
+            float[] B = A;
+            for (int s = 0; s < order * order; s += order + 1)
+            {
+                B[s] = 1f;
+            }
+            return B;
+        }
 
-        //    float[] rowPtr = new float[order];
-        //    for (int j = 0; j < order - 1; ++j) // each column
-        //    {
-        //        float colMax = Math.Abs(result[j + j * order]); // find largest val in col
-        //        int pRow = j;
-        //        //for (int i = j + 1; i less-than n; ++i)
-        //        //{
-        //        //  if (result[i + j * order] greater-than colMax)
-        //        //  {
-        //        //    colMax = result[i + j * order];
-        //        //    pRow = i;
-        //        //  }
-        //        //}
+        public static float MatrixNorm(float[] A)
+        {
+            float norm = 0f;
+            for (int i = 0; i < size; ++i)
+            {
+                norm += A[i] * A[i];
+            }
+            //return Mathf.Sqrt(norm);
+            return norm;
+        }
 
-        //        // reader Matt V needed this:
-        //        for (int i = j + 1; i < order; ++i)
-        //        {
-        //            if (Math.Abs(result[i + j * order]) > colMax)
-        //            {
-        //                colMax = Math.Abs(result[i + j * order]);
-        //                pRow = i;
-        //            }
-        //        }
-        //        // Not sure if this approach is needed always, or not.
-
-        //        if (pRow != j) // if largest value not on pivot, swap order
-        //        {
-        //            for (int k = 0; k < order; ++k)
-        //            {
-        //                int kCol = k * order;
-        //                rowPtr[k] = result[pRow + kCol];
-        //                result[pRow + kCol] = result[j + kCol];
-        //                result[j + kCol] = rowPtr[k];
-        //            }
-        //            //rowPtr = result[pRow];
-        //            //result[pRow] = result[j];
-        //            //result[j] = rowPtr;
-
-        //            int tmp = perm[pRow]; // and swap perm info
-        //            perm[pRow] = perm[j];
-        //            perm[j] = tmp;
-
-        //            toggle = -toggle; // adjust the row-swap toggle
-        //        }
-
-        //        // --------------------------------------------------
-        //        // This part added later (not in original)
-        //        // and replaces the 'return null' below.
-        //        // if there is a 0 on the diagonal, find a good row
-        //        // from i = j+1 down that doesn't have
-        //        // a 0 in column j, and swap that good row with row j
-        //        // --------------------------------------------------
-
-        //        if (result[j + j * order] == 0f)
-        //        {
-        //            // find a good row to swap
-        //            int goodRow = -1;
-        //            for (int row = j + 1; row < order; ++row)
-        //            {
-        //                if (result[row + j * order] != 0f)
-        //                {
-        //                    goodRow = row;
-        //                }
-        //            }
-        //            if (goodRow == -1)
-        //            {
-        //                throw new Exception("Cannot use Doolittle's method");
-        //            }
-        //            // swap order so 0.0 no longer on diagonal
-        //            //float[] rowPtr = result[goodRow];
-        //            //result[goodRow] = result[j];
-        //            //result[j] = rowPtr;
-        //            for (int k = 0; k < order; ++k)
-        //            {
-        //                int kCol = k * order;
-        //                rowPtr[k] = result[goodRow];
-        //                result[goodRow + kCol] = result[j + kCol];
-        //                result[j + kCol] = rowPtr[k];
-        //            }
-        //            int tmp = perm[goodRow]; // and swap perm info
-        //            perm[goodRow] = perm[j];
-        //            perm[j] = tmp;
-
-        //            toggle = -toggle; // adjust the row-swap toggle
-        //        }
-        //        // --------------------------------------------------
-        //        // if diagonal after swap is zero . .
-        //        //if (Math.Abs(result[j + j * order]) less-than 1.0E-20) 
-        //        //  return null; // consider a throw
-
-        //        for (int i = j + 1; i < order; ++i)
-        //        {
-        //            result[i + j * order] /= result[j + j * order];
-        //            for (int k = j + 1; k < order; ++k)
-        //            {
-        //                result[i + k * order] -= result[i + j * order] * result[j + k * order];
-        //            }
-        //        }
-
-        //    } // main j column loop
-
-        //    return result;
-        //} // MatrixDecompose
-
-        // --------------------------------------------------
-
-        //public static float[] MatrixInverse(float[] matrix, int order)
-        //{
-        //    float[] result = matrix;
-
-        //    int[] perm;
-        //    int toggle;
-        //    float[] lum = MatrixDecompose(matrix, out perm, out toggle, order);
-        //    if (lum == null)
-        //        throw new Exception("Unable to compute inverse");
-
-        //    float[] b = new float[order];
-        //    for (int i = 0; i < order; ++i)
-        //    {
-        //        for (int j = 0; j < order; ++j)
-        //        {
-        //            b[j] = i == perm[j] ? 1f : 0f;
-        //        }
-
-        //        float[] x = HelperSolve(lum, b, order); // 
-
-        //        for (int j = 0; j < order; ++j)
-        //        {
-        //            result[j + i * order] = x[j];
-        //        }
-        //    }
-        //    return result;
-        //}
-
-        // --------------------------------------------------
-
-        //static float MatrixDeterminant(float[] matrix, int order)
-        //{
-        //    int[] perm;
-        //    int toggle;
-        //    float[] lum = MatrixDecompose(matrix, out perm, out toggle, order);
-        //    if (lum == null)
-        //        throw new Exception("Unable to compute MatrixDeterminant");
-        //    float result = toggle;
-        //    for (int i = 0; i < lum.Length; ++i)
-        //        result *= lum[i + i * order];
-        //    return result;
-        //}
-
-        // --------------------------------------------------
-
-        //public static float[] HelperSolve(float[] luMatrix, float[] b, int order)
-        //{
-        //    // before calling this helper, permute b using the perm array
-        //    // from MatrixDecompose that generated luMatrix
-        //    float[] x = new float[order];
-        //    b.CopyTo(x, 0);
-
-        //    for (int i = 1; i < order; ++i)
-        //    {
-        //        float sum = x[i];
-        //        for (int j = 0; j < i; ++j)
-        //        {
-        //            sum -= luMatrix[i + j * order] * x[j];
-        //        }
-        //        x[i] = sum;
-        //    }
-
-        //    x[order - 1] /= luMatrix[order * order - 1];
-        //    for (int i = order - 2; i >= 0; --i)
-        //    {
-        //        float sum = x[i];
-        //        for (int j = i + 1; j < order; ++j)
-        //        {
-        //            sum -= luMatrix[i + j * order] * x[j];
-        //        }
-        //        x[i] = sum / luMatrix[i + i * order];
-        //    }
-
-        //    return x;
-        //}
-
-        // --------------------------------------------------
-
-        //static float[] SystemSolve(float[] A, float[] b, int order)
-        //{
-        //    // Solve Ax = b
-
-        //    // 1. decompose A
-        //    int[] perm;
-        //    int toggle;
-        //    float[] luMatrix = MatrixDecompose(A, out perm, out toggle, order);
-        //    if (luMatrix == null)
-        //    {
-        //        return null;
-        //    }
-
-
-        //    // 2. permute b according to perm[] into bp
-        //    float[] bp = new float[order];
-        //    for (int i = 0; i < order; ++i)
-        //    {
-        //        bp[i] = b[perm[i]];
-        //    }
-
-
-        //    // 3. call helper
-        //    float[] x = HelperSolve(luMatrix, bp, order);
-        //    return x;
-        //} // SystemSolve
-
-        // --------------------------------------------------
-
-        //static float[] MatrixDuplicate(float[] matrix)
-        //{
-        //    // allocates/creates a duplicate of a matrix.
-        //    float[] result = new float[matrix.Length, matrix.GetLength(1));
-        //    for (int i = 0; i < matrix.Length; ++i) // copy the values
-        //        for (int j = 0; j < matrix[i].Length; ++j)
-        //            result[i + j * order] = matrix[i + j * order];
-        //    return result;
-        //}
+        public static float[] ApplyUpbringingProjection(float[] ratingList, int upbringing)
+        {
+            float[] x = new float[order];
+            for (int i = 0; i < order; i++)
+            {
+                x[i] = PsycheHelper.NormalCDFInv(ratingList[i]);
+            }
+            int[] eta = PsycheHelper.GetBitArray(upbringing, 5);
+            float[] FinvGFVxMinusVx = new float[5];
+            for (int bf = 0; bf < 5; bf++)
+            {
+                float Vx = DotProduct(bigFiveVectors[bf], x);
+                float FVx = PsycheHelper.NormalCDF(Vx);
+                float GFVx = 0.5f * (eta[bf] + FVx);
+                float FinvGFVx = PsycheHelper.NormalCDFInv(GFVx);
+                FinvGFVxMinusVx[bf] = FinvGFVx - Vx;
+            }
+            float[] newRatings = new float[order];
+            for (int i = 0; i < order; i++)
+            {
+                float y = x[i];
+                for (int bf = 0; bf < 5; bf++)
+                {
+                    y += bigFiveVectors[bf][i] * FinvGFVxMinusVx[bf];
+                }
+                newRatings[i] = PsycheHelper.NormalCDF(y);
+            }
+            return newRatings;
+        }
 
     }
 }

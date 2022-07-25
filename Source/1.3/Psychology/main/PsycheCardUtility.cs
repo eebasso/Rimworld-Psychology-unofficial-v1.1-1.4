@@ -77,6 +77,7 @@ namespace Psychology
 
         public static string FiveFactorText = "FiveFactorModelTitle".Translate();
         public static Vector2 FiveFactorSize;
+        public static float[] bigFiveRatings = { 0f, 0f, 0f, 0f, 0f };
 
         //public static string EditText = "EditPsyche".Translate();
         //public static Vector2 EditSize;
@@ -736,8 +737,9 @@ namespace Psychology
                 tightRect.yMax = textRect.yMax + yMaxTightScaling * textRect.height;
                 float x0 = tightRect.x;
                 float y0 = tightRect.y;
-                int sign = Rand.ValueSeeded(3 * pawn.HashOffset() + 11 * i) < 0.5f ? 1 : -1;
-                float alpha0 = 2 * Mathf.PI * Rand.ValueSeeded(pawn.HashOffset() + node.GetHashCode() + i);
+                int pawnSeed = pawn.GetHashCode();
+                int sign = Rand.ValueSeeded(3 * pawnSeed + 11 * i) < 0.5f ? 1 : -1;
+                float alpha0 = 2 * Mathf.PI * Rand.ValueSeeded(-pawnSeed + node.GetHashCode() + 71 * i);
                 //for (float l = 0f; l < kSpiral; l += dl)
                 //{
                 //    if (RectDoesNotOverlapWordCloud(tightRect, cloudRect, forbiddenRect1, forbiddenRect2))
@@ -929,25 +931,23 @@ namespace Psychology
 
         public static float[] BigFiveRatings(Pawn pawn)
         {
-            float[] bigFiveNumerators = { 0f, 0f, 0f, 0f, 0f };
-            float[] bigFiveDenominators = { 0f, 0f, 0f, 0f, 0f };
+            if (Ticker > 0)
+            {
+                return bigFiveRatings;
+            }
+            float[] gaussianList = new float[PersonalityNodeParentMatrix.order];
             foreach (PersonalityNode node in PsycheHelper.Comp(pawn).Psyche.PersonalityNodes)
             {
-                List<float> bigFiveModifierList = node.def.bigFiveModifiers;
-                float displacement = node.AdjustedRating - 0.5f;
-                for (int p = 0; p < 5; p++)
-                {
-                    bigFiveNumerators[p] += bigFiveModifierList[p] * displacement;
-                    bigFiveDenominators[p] += Mathf.Abs(bigFiveModifierList[p]);
-                }
+                int index = PersonalityNodeParentMatrix.indexDict[node.def];
+                gaussianList[index] = PsycheHelper.NormalCDFInv(node.AdjustedRating);
             }
-            float[] bigFiveArray = { 0f, 0f, 0f, 0f, 0f };
-            float[] bigFiveScalings = { 1.25f, 1.2f, 1.3f, 1.2f, 1.3f };
             for (int p = 0; p < 5; p++)
             {
-                bigFiveArray[p] = Mathf.Clamp(0.5f + bigFiveScalings[p] * (bigFiveNumerators[p] / bigFiveDenominators[p]), 0f, 1f);
+                float dotProduct = PersonalityNodeParentMatrix.DotProduct(gaussianList, PersonalityNodeParentMatrix.bigFiveVectors[p]);
+                // Added 0.5f here to make the big five ratings have a bell shaped curve along the range of 0 to 1;
+                bigFiveRatings[p] = PsycheHelper.NormalCDF(0.5f * PersonalityNodeParentMatrix.bigFiveStandardDevInvs[p] * dotProduct);
             }
-            return bigFiveArray;
+            return bigFiveRatings;
         }
 
         // Legacy method

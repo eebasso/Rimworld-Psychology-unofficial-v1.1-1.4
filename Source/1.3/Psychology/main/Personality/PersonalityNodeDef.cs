@@ -42,12 +42,15 @@ namespace Psychology
         public Vector3 nodeHSV;
         //Color for antonym label
         public Vector3 antonymHSV;
-        //Modifiers to the big five summary
+        //Modifiers to the Big Five summary
         public List<float> bigFiveModifiers;
+        //Weights on the 10 Aspects
+        public List<PersonalityNodeTenAspects> tenAspects;
 
         //A list of the actual parent Defs of this node.
         [Unsaved]
         private Dictionary<PersonalityNodeDef, PersonalityNodeParent> parentDict;
+        private Dictionary<int, float> tenAspectsDict;
 
         public void ReloadParents()
         {
@@ -87,6 +90,31 @@ namespace Psychology
                 //    Log.Message("{" + thing.Key.label + ", " + thing.Value.node.label + "}");
                 //}
                 return this.parentDict;
+            }
+        }
+
+        public Dictionary<int, float> TenAspects
+        {
+            get
+            {
+                if (this.tenAspectsDict == null)
+                {
+                    this.tenAspectsDict = new Dictionary<int, float>();
+                    List<string> tenAspectsList = new List<string>(){ "Openness", "Intellect", "Industriousness", "Orderliness", "Enthusiasm", "Assertiveness", "Compassion", "Politeness", "Volatility", "Withdrawal" };
+                    for (int t = 0; t < 10; t++)
+                    {
+                        this.tenAspectsDict.Add(t, 0f);
+                    }
+                    if (this.tenAspects != null && this.tenAspects.Count > 0)
+                    {
+                        foreach (PersonalityNodeTenAspects aspect in this.tenAspects)
+                        {
+                            int t = tenAspectsList.IndexOf(aspect.aspect);
+                            this.tenAspectsDict[t] = aspect.weight;
+                        }
+                    }
+                }
+                return this.tenAspectsDict;
             }
         }
 

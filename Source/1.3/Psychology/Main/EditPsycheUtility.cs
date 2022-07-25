@@ -271,13 +271,11 @@ namespace Psychology
 
             if (Widgets.ButtonText(resetRect, ResetButtonText, true, false, true))
             {
-                PsycheHelper.Comp(pawn).Psyche.InitializeUpbringing();
+                PsycheHelper.Comp(pawn).Psyche.RandomizeUpbringingAndRatings();
                 for (int i = 0; i < CachedList.Count; i++)
                 {
                     string nodeLabel = CachedList[i].First;
                     PersonalityNode node = Nodes[nodeLabel];
-                    node.Initialize();
-                    node.cachedRating = -1f;
                     CachedList[i] = new Pair<string, float>(nodeLabel, node.rawRating);
                 }
                 if (PsychologyBase.ActivateKinsey())
@@ -296,17 +294,17 @@ namespace Psychology
 
             if (Widgets.ButtonText(randomRect, RandomButtonText, true, false, true))
             {
+                int randomSeed = Mathf.CeilToInt(1e+7f * Rand.Value);
+                PsycheHelper.Comp(pawn).Psyche.RandomizeUpbringingAndRatings(randomSeed);
                 for (int i = 0; i < CachedList.Count; i++)
                 {
                     string nodeLabel = CachedList[i].First;
                     PersonalityNode node = Nodes[nodeLabel];
-                    node.rawRating = Rand.Value;
-                    node.cachedRating = -1f;
                     CachedList[i] = new Pair<string, float>(nodeLabel, node.rawRating);
                 }
                 if (PsychologyBase.ActivateKinsey())
                 {
-                    PsycheHelper.Comp(pawn).Sexuality.GenerateSexuality(Mathf.CeilToInt(1000000f * Rand.Value));
+                    PsycheHelper.Comp(pawn).Sexuality.GenerateSexuality(Mathf.CeilToInt(1e+7f * Rand.Value));
                     pawnKinseyRating = PsycheHelper.Comp(pawn).Sexuality.kinseyRating;
                     pawnSexDrive = PsycheHelper.Comp(pawn).Sexuality.sexDrive;
                     pawnRomanticDrive = PsycheHelper.Comp(pawn).Sexuality.romanticDrive;

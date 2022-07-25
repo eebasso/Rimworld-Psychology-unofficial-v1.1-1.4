@@ -19,7 +19,7 @@ namespace Psychology
         public float cachedRating = -1f;
         //private byte AdjustedRatingTicker = 0;
         //private HashSet<PersonalityNode> parents;
-        private readonly static List<string> CoreDefNames = new List<string>() { "Experimental", "Ambitious", "Extroverted", "Empathetic", "Optimistic" };
+        //private readonly static List<string> CoreDefNames = new List<string>() { "Experimental", "Ambitious", "Extroverted", "Empathetic", "Optimistic" };
 
         public PersonalityNode()
         {
@@ -32,26 +32,10 @@ namespace Psychology
 
         public void Initialize(int inputSeed = 0)
         {
-            int[] upbringingSigns = PsycheHelper.GetSignArray(5 * PsycheHelper.Comp(pawn).Psyche.upbringing + 7, 5);
-            //Log.Message(pawn.LabelShortCap + ": Upbringing = " + this.pawn.GetComp<CompPsychology>().Psyche.upbringing + ": " + string.Join(", ", upbringingSigns));
             string defName = this.def.defName;
             int defSeed = defName.GetHashCode();
             int pawnSeed = this.pawn.HashOffset();
-            if (CoreDefNames.Contains(defName))
-            {
-                /* "Core" nodes are seeded based on a pawn's upbringing, separating pawns into 32 categories based on the Big Five personality model. */
-                /* Two pawns with the same upbringing will always have similar core personality ratings. */
-                //int worldSeed = Find.World.info.Seed;
-                //float displacement = 0.1f + 0.3f * Rand.ValueSeeded(pawnSeed + defSeed) + 0.1f * Rand.ValueSeeded(pawnSeed + defSeed + worldSeed);
-                float displacement = 0.5f * Rand.ValueSeeded(2 * pawnSeed + defSeed + inputSeed);
-                this.rawRating = 0.5f + upbringingSigns[CoreDefNames.IndexOf(defName)] * displacement;
-            }
-            else
-            {
-                //this.rawRating = Rand.Value;
-                this.rawRating = Rand.ValueSeeded(2 * pawnSeed + defSeed + inputSeed);
-            }
-            //Log.Message(pawn.LabelShortCap + ": Node = " + defName + " Raw = " + this.rawRating);
+            this.rawRating = Rand.ValueSeeded(2 * pawnSeed + defSeed + inputSeed);
         }
 
         public void ExposeData()
@@ -68,7 +52,7 @@ namespace Psychology
                 PsycheHelper.Comp(pawn).Psyche.AdjustedRatingTicker--;
                 if (cachedRating < 0f || PsycheHelper.Comp(pawn).Psyche.AdjustedRatingTicker < 0)
                 {
-                    PsycheHelper.Comp(pawn).Psyche.CalculateAdjustedRatings(true);
+                    PsycheHelper.Comp(pawn).Psyche.CalculateAdjustedRatings();
                     PsycheHelper.Comp(pawn).Psyche.AdjustedRatingTicker = 3700;
                 }
                 return cachedRating;

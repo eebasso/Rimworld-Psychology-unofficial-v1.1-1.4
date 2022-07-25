@@ -279,6 +279,7 @@
     <Compile Include="Harmony\HarmonyInitialize.cs" />
     <Compile Include="Harmony\Thought_ChemicalInterestVsTeetotaler.cs" />
     <Compile Include="Main\Personality\PersonalityNodeParentMatrix.cs" />
+    <Compile Include="Main\Personality\PersonalityNodeTenAspects.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\About\preview.png">
