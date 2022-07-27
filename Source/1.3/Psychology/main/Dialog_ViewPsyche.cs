@@ -19,7 +19,7 @@ namespace Psychology
             EditAllowedBool = editBool;
         }
 
-        [LogPerformance]
+        //[LogPerformance]
         public override void DoWindowContents(Rect inRect)
         {
             bool flag = false;

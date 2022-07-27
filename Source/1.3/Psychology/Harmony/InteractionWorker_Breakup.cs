@@ -12,7 +12,7 @@ namespace Psychology.Harmony
     [HarmonyPatch(typeof(InteractionWorker_Breakup), nameof(InteractionWorker_Breakup.Interacted))]
     public static class InteractionWorker_Breakup_Interacted_Patch
     {
-        [LogPerformance]
+        //[LogPerformance]
         [HarmonyPrefix]
         public static bool NewInteracted(InteractionWorker_Breakup __instance, Pawn initiator, Pawn recipient, List<RulePackDef> extraSentencePacks)
         {
@@ -76,7 +76,7 @@ namespace Psychology.Harmony
     [HarmonyPatch(typeof(InteractionWorker_Breakup), nameof(InteractionWorker_Breakup.RandomSelectionWeight), new[] { typeof(Pawn), typeof(Pawn) })]
     public static class InteractionWorker_RandomSelectionWeight_Patch
     {
-        [LogPerformance]
+        //[LogPerformance]
         [HarmonyPrefix]
         public static bool NewSelectionWeight(InteractionWorker_Breakup __instance, ref float __result, Pawn initiator, Pawn recipient)
         {
@@ -111,7 +111,7 @@ namespace Psychology.Harmony
 
     internal static class BreakupHelperMethods
     {
-        [LogPerformance]
+        //[LogPerformance]
         public static void AddExLover(Pawn lover, Pawn ex)
         {
             /*
@@ -135,7 +135,7 @@ namespace Psychology.Harmony
             lover.relations.AddDirectRelation(PawnRelationDefOf.ExLover, ex);
         }
 
-        [LogPerformance]
+        //[LogPerformance]
         public static void AddBrokeUpOpinion(Pawn lover, Pawn ex)
         {
             ThoughtDef brokeUpDef = new ThoughtDef();
@@ -149,7 +149,7 @@ namespace Psychology.Harmony
             lover.needs.mood.thoughts.memories.TryGainMemory(brokeUpDef, ex);
         }
 
-        [LogPerformance]
+        //[LogPerformance]
         public static void AddBrokeUpMood(Pawn lover, Pawn ex)
         {
             ThoughtDef brokeUpMoodDef = new ThoughtDef();

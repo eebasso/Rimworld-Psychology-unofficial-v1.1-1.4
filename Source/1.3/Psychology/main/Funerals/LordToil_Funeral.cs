@@ -30,7 +30,7 @@ namespace Psychology
             return DutyDefOfPsychology.Funeral.hook;
         }
 
-        [LogPerformance]
+        //[LogPerformance]
         public override void LordToilTick()
         {
             base.LordToilTick();

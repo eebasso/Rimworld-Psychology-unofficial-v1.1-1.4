@@ -57,7 +57,7 @@ namespace Psychology
             Scribe_Collections.Look(ref attendees, "attendees", LookMode.Reference);
         }
 
-        [LogPerformance]
+        //[LogPerformance]
         private void Finished()
         {
             StringBuilder attendedString = new StringBuilder();

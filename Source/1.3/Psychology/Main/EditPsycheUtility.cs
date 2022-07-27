@@ -114,7 +114,7 @@ namespace Psychology
             return EditWidth;
         }
 
-        [LogPerformance]
+        //[LogPerformance]
         public static void DrawEditPsyche(Rect totalRect, Pawn pawn)
         {
             Text.Font = GameFont.Small;

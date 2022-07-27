@@ -17,9 +17,6 @@ namespace Psychology
         public PersonalityNodeDef def;
         public float rawRating;
         public float cachedRating = -1f;
-        //private byte AdjustedRatingTicker = 0;
-        //private HashSet<PersonalityNode> parents;
-        //private readonly static List<string> CoreDefNames = new List<string>() { "Experimental", "Ambitious", "Extroverted", "Empathetic", "Optimistic" };
 
         public PersonalityNode()
         {
@@ -46,28 +43,25 @@ namespace Psychology
 
         public float AdjustedRating
         {
-            [LogPerformance]
+            //[LogPerformance]
             get
             {
                 PsycheHelper.Comp(pawn).Psyche.AdjustedRatingTicker--;
                 if (cachedRating < 0f || PsycheHelper.Comp(pawn).Psyche.AdjustedRatingTicker < 0)
                 {
                     PsycheHelper.Comp(pawn).Psyche.CalculateAdjustedRatings();
-                    PsycheHelper.Comp(pawn).Psyche.AdjustedRatingTicker = 3700;
                 }
                 return cachedRating;
             }
         }
 
-        [LogPerformance]
+        //[LogPerformance]
         public float AdjustForCircumstance(float rating, bool applyingTwice = false)
         {
             float gM = (this.pawn.gender == Gender.Female) ? this.def.femaleModifier : -this.def.femaleModifier;
             gM *= PsychologyBase.ActivateKinsey() ? 1f - this.pawn.GetComp<CompPsychology>().Sexuality.kinseyRating / 6f : this.pawn.story.traits.HasTrait(TraitDefOf.Gay) ? 0f : 1f;
             if (Mathf.Abs(gM) > 0.001f)
             {
-                //float kinseyFactor = PsychologyBase.ActivateKinsey() ? 1f - this.pawn.GetComp<CompPsychology>().Sexuality.kinseyRating / 6f : this.pawn.story.traits.HasTrait(TraitDefOf.Gay) ? 0f : 1f;
-                //float genderWeight = Mathf.Lerp(-0.33f, 1f, Rand.ValueSeeded(5 * pawn.HashOffset() + this.def.GetHashCode())) * kinseyFactor * genderModifier;
                 float gMm1 = gM - 1f;
                 rating = (gMm1 + Mathf.Sqrt(gMm1 * gMm1 + 4f * gM * rating)) / (2f * gM);
             }
@@ -105,6 +99,18 @@ namespace Psychology
             {
                 tM = RelativisticAddition(tM, -0.1f);
             }
+            if (this.def == PersonalityNodeDefOf.LaidBack)
+            {
+                foreach (Hediff hediff in pawn.health.hediffSet.hediffs)
+                {
+                    if (hediff.def == HediffDefOfPsychology.Anxiety)
+                    {
+                        float anxietyWeight = Mathf.Lerp(-0.75f, -0.999f, hediff.Severity);
+                        tM = RelativisticAddition(tM, anxietyWeight);
+                        break;
+                    }
+                }
+            }
             //tM = Mathf.Clamp(tM, -1f, 1f);
             if (applyingTwice)
             {
@@ -133,8 +139,8 @@ namespace Psychology
         {
             get
             {
-                Log.Message("Defname = " + this.def.defName);
-                Log.Message("this.def.platformIssueHigh != null: " + (this.def.platformIssueHigh != null).ToString());
+                //Log.Message("Defname = " + this.def.defName);
+                //Log.Message("this.def.platformIssueHigh != null: " + (this.def.platformIssueHigh != null).ToString());
                 return this.def.platformIssueHigh != null;
             }
         }
@@ -143,11 +149,11 @@ namespace Psychology
         {
             get
             {
-                Log.Message("Defname = " + this.def.defName);
-                Log.Message("this.def.conversationTopics != null: " + (this.def.conversationTopics != null).ToString());
+                //Log.Message("Defname = " + this.def.defName);
+                //Log.Message("this.def.conversationTopics != null: " + (this.def.conversationTopics != null).ToString());
                 if (this.def.conversationTopics != null)
                 {
-                    Log.Message("this.def.conversationTopics.Any(): " + this.def.conversationTopics.Any().ToString());
+                    //Log.Message("this.def.conversationTopics.Any(): " + this.def.conversationTopics.Any().ToString());
                     return this.def.conversationTopics.Any();
                 }
                 return false;
@@ -161,97 +167,6 @@ namespace Psychology
                 return this.AdjustedRating < 0.5f ? this.def.platformIssueLow : this.def.platformIssueHigh;
             }
         }
-
-        //[LogPerformance]
-        //public float AdjustForParents(float rating)
-        //{
-        //    //Log.Message("Inside AdjustForParents");
-        //    List<float> mList = new List<float> { 1f };
-        //    float num = rating - 0.5f;
-        //    float den = 1f;
-        //    foreach (PersonalityNodeParent parent in def.parents)
-        //    {
-        //        float M = parent.modifier;
-        //        num += M * (PsycheHelper.Comp(pawn).Psyche.GetPersonalityRating(parent.node) - 0.5f);
-        //        den += Mathf.Abs(M);
-        //        mList.Add(M);
-        //    }
-        //    //foreach (PersonalityNode parent in this.ParentNodes)
-        //    //{
-        //    //    //Log.Message("Inside foreach of " + this.def.label + " for parent = " + parent.def.label);
-        //    //    float M = def.GetModifier(parent.def);
-        //    //    //Log.Message("Getting adjusted rating");
-        //    //    num += M * (parent.AdjustedRating - 0.5f);
-        //    //    den += Mathf.Abs(M);
-        //    //    mList.Add(M);
-        //    //}
-        //    float rating2 = mList.Count > 1 ? 0.5f + AdjustForNParentsExact(num / den, mList) : rating;
-        //    //Log.Message(pawn.story.birthLastName + ": AdjustForParents for " + this.def.label + ". Rating changed from " + rating.ToString() + " to " + rating2.ToString());
-        //    return rating2;
-        //}
-
-        //public static float AdjustForNParentsExact(float z, List<float> mList)
-        //{
-        //    int n = mList.Count();
-        //    float mTotal = mList.Sum(x => Mathf.Abs(x));
-        //    float[] y = new float[n];
-        //    float den = 2f;
-        //    int count = 1;
-        //    for (int k = 0; k < n; k++)
-        //    {
-        //        float frac = mList[k] / mTotal;
-        //        y[k] = frac;
-        //        den *= (k + 1) * frac;
-        //        count *= 2;
-        //    }
-        //    float zf = 0f;
-        //    //int num = (int)Mathf.Pow(2, n);
-        //    for (int i = 0; i < count; i++)
-        //    {
-        //        int[] eta = PsycheHelper.GetSignArray(i, n);
-        //        float arg = z;
-        //        float fAddition = 1f;
-        //        for (int k = 0; k < n; k++)
-        //        {
-        //            fAddition *= eta[k];
-        //            arg += -0.5f * eta[k] * y[k];
-        //        }
-        //        fAddition *= Mathf.Pow(-arg, n) * Mathf.Sign(arg);
-        //        zf += fAddition;
-        //    }
-        //    zf /= den;
-        //    if (Mathf.Abs(zf) > 0.5f)
-        //    {
-        //        Log.Warning("AdjustForNParentsExact has an error for n = " + n.ToString());
-        //        return 0.5f * Mathf.Sign(zf);
-        //    }
-        //    return zf;
-        //}
-
-        //public HashSet<PersonalityNode> ParentNodes
-        //{
-        //    [LogPerformance]
-        //    get
-        //    {
-        //        if (this.parents == null || this.pawn.IsHashIntervalTick(500))
-        //        {
-        //            this.parents = new HashSet<PersonalityNode>();
-        //            if (this.def.ParentNodes != null && this.def.ParentNodes.Any())
-        //            {
-        //                this.parents.AddRange(this.pawn.GetComp<CompPsychology>().Psyche.PersonalityNodes.Where(p => this.def.ParentNodes.ContainsKey(p.def)));
-        //            }
-        //        }
-        //        return this.parents;
-        //    }
-        //}
-
-        //public bool HasParents
-        //{
-        //    get
-        //    {
-        //        return this.def.ParentNodes != null && this.def.ParentNodes.Any();
-        //    }
-        //}
 
     }
 }

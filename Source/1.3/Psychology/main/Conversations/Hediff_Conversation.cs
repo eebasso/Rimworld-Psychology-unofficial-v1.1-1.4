@@ -31,7 +31,7 @@ namespace Psychology
             Scribe_Values.Look(ref this.convoTopic, "convoTopic", "something");
         }
 
-        [LogPerformance]
+        //[LogPerformance]
         public override void Tick()
         {
             base.Tick();
@@ -96,7 +96,7 @@ namespace Psychology
             }
         }
 
-        [LogPerformance]
+        //[LogPerformance]
         public override void PostRemoved()
         {
             base.PostRemoved();
@@ -176,7 +176,7 @@ namespace Psychology
             }
         }
 
-        [LogPerformance]
+        //[LogPerformance]
         private ThoughtDef CreateSocialThought(out float opinionMod)
         {
             //We create a dynamic def to hold this thought so that the game won't worry about it being used anywhere else.
@@ -193,16 +193,17 @@ namespace Psychology
             float opin1 = Mathf.Clamp01(PsycheHelper.Comp(pawn).Psyche.GetPersonalityRating(topic));
             float opin2 = Mathf.Clamp01(PsycheHelper.Comp(otherPawn).Psyche.GetPersonalityRating(topic));
             // Baseline opinion modifier ranges from -1 to +1 and should have an expected value of +0.01.
-            float opinionModRaw = (0.5f - 5.5f * Mathf.Pow(opin1 - opin2, 2) + 0.5f * Mathf.Pow(opin1 + opin2 - 1, 2)) / (1 + 4f * Mathf.Pow(opin1 - opin2, 2));
-            Log.Message(pawn.story.birthLastName + " and " + otherPawn.story.birthLastName + " opinionModRaw = " + opinionModRaw.ToString());
+            //float opinionModRaw = (0.5f - 5.5f * Mathf.Pow(opin1 - opin2, 2) + 0.5f * Mathf.Pow(opin1 + opin2 - 1, 2)) / (1 + 4f * Mathf.Pow(opin1 - opin2, 2));
+            float opinionModRaw = PsycheHelper.SaddleShapeFunction(opin1, opin2);
+            Log.Message(pawn.LabelShort + " and " + otherPawn.LabelShort + " opinionModRaw = " + opinionModRaw.ToString());
 
             float opinionModRawMin = 0.1f;
             opinionMod = 20f * topic.controversiality * (opinionModRawMin * Mathf.Sign(opinionModRaw) + (1f - opinionModRawMin) * opinionModRaw);
-            Log.Message(pawn.story.birthLastName + " and " + otherPawn.story.birthLastName + " opinionMod w/o time factor = " + opinionMod.ToString());
+            Log.Message(pawn.LabelShort + " and " + otherPawn.LabelShort + " opinionMod w/o time factor = " + opinionMod.ToString());
 
             // Added time minimum to baseline to opinionMod because conversations often end very quickly
             opinionMod *= 1.0f + 6f * ((float)this.ageTicks / (float)(GenDate.TicksPerHour * 2.25f));
-            Log.Message(pawn.story.birthLastName + " and " + otherPawn.story.birthLastName + " opinionMod w/ time factor = " + opinionMod.ToString());
+            Log.Message(pawn.LabelShort + " and " + otherPawn.LabelShort + " opinionMod w time factor = " + opinionMod.ToString());
 
             // Personality multiplier controls how much personality affects the opinion multiplier. Should be a positive number.
             float personalityMultiplier = 0.50f;
@@ -239,8 +240,8 @@ namespace Psychology
                 // In low-population colonies, pawns will put aside their differences.
                 opinionMod *= PopulationModifier;
             }
-            Log.Message(pawn.story.birthLastName + " and " + otherPawn.story.birthLastName + " opinionMod before multiplier = " + opinionMod.ToString());
-            Log.Message(pawn.story.birthLastName + " and " + otherPawn.story.birthLastName + " opinionMultiplier = " + opinionMultiplier.ToString());
+            Log.Message(pawn.LabelShort + " and " + otherPawn.LabelShort + " opinionMod before multiplier = " + opinionMod.ToString());
+            Log.Message(pawn.LabelShort + " and " + otherPawn.LabelShort + " opinionMultiplier = " + opinionMultiplier.ToString());
 
             // Multiply by 1 + opinionMultiplier for positive multiplier
             if (opinionMultiplier > 0f)
@@ -253,18 +254,18 @@ namespace Psychology
             {
                 opinionMod /= 1f - opinionMultiplier;
             }
-            Log.Message(pawn.story.birthLastName + " and " + otherPawn.story.birthLastName + " opinionMod after multiplier = " + opinionMod.ToString());
+            Log.Message(pawn.LabelShort + " and " + otherPawn.LabelShort + " opinionMod after multiplier = " + opinionMod.ToString());
 
             // Set minimum and maximum absolute changes in opinion.
             float opinionModMin = 7.5f;
             float opinionModMax = 30f;
             // Weaker baseline agreement/disagreement leads to lower max absolute change in opinion
             float opinionModMaxAdjusted = Mathf.Lerp(Mathf.Max(0.5f * opinionModMax, opinionModMin), opinionModMax, 2f * Mathf.Abs(opinionModRaw));
-            Log.Message(pawn.story.birthLastName + " and " + otherPawn.story.birthLastName + " opinionModMaxAdjusted = " + opinionModMaxAdjusted.ToString());
+            Log.Message(pawn.story.birthLastName + " and " + otherPawn.LabelShort + " opinionModMaxAdjusted = " + opinionModMaxAdjusted.ToString());
 
             // Opinion must change by at least +-opinionModMin and are capped at +-opinionModMaxAdjusted
             opinionMod = Mathf.Sign(opinionMod) * Mathf.Clamp(Mathf.Abs(opinionMod), opinionModMin, opinionModMaxAdjusted);
-            Log.Message(pawn.story.birthLastName + " and " + otherPawn.story.birthLastName + " opinionMod final value = " + opinionMod.ToString());
+            Log.Message(pawn.story.birthLastName + " and " + otherPawn.LabelShort + " opinionMod final value = " + opinionMod.ToString());
 
             stage.label = "ConversationStage".Translate() + " " + convoTopic;
             stage.baseOpinionOffset = Mathf.RoundToInt(opinionMod);
@@ -272,7 +273,7 @@ namespace Psychology
             return def;
         }
 
-        [LogPerformance]
+        //[LogPerformance]
         private bool TryGainThought(ThoughtDef def, int opinionOffset)
         {
             ThoughtStage stage = def.stages.First();

@@ -15,7 +15,7 @@ namespace Psychology
             return pawn != null && pawn.GetComp<CompPsychology>() != null && pawn.GetComp<CompPsychology>().isPsychologyPawn;
         }
 
-        [LogPerformance]
+        //[LogPerformance]
         public static CompPsychology Comp(Pawn pawn)
         {
             return pawn.GetComp<CompPsychology>();
@@ -50,24 +50,8 @@ namespace Psychology
             }
         }
 
-        public static float Mod(this float x, float m)
-        {
-            float r = x % m;
-            return r < 0 ? r + m : r;
-        }
-
-        public static int Mod(this int x, int m)
-        {
-            int r = x % m;
-            return r < 0 ? r + m : r;
-        }
-
         public static int[] GetBitArray(this int X, int length)
         {
-            //int binaryBase = (int)Math.Pow(2, length);
-            //int X2 = X.Mod(binaryBase) + binaryBase;
-            //BitArray bitArray = new BitArray(new int[] { X2 });
-            //return bitArray.Cast<bool>().Select(b => b ? 1 : -1).Take(length).ToArray();
             int[] signs = new int[length];
             signs[0] = X % 2;
             for (int b = 1; b < length; b++)
@@ -117,7 +101,7 @@ namespace Psychology
 
         public static float NormalCDFInv(float p)
         {
-            p = Mathf.Clamp(p, 0.00001f, 0.99999f);
+            p = Mathf.Clamp(p, 0.0001f, 0.9999f);
             if (p < 0.5)
             {
                 return -RationalApproximation(Mathf.Sqrt(-2f * Mathf.Log(p)));

@@ -27,7 +27,7 @@ namespace Psychology.Harmony
             }
         }
 
-        [LogPerformance]
+        //[LogPerformance]
         public static Thought_Memory AddDesensitizedChance(Thought_Memory thought_Memory, Pawn pawn)
         {
             if (thought_Memory != null && thought_Memory.def == ThoughtDefOf.AteCorpse) // TEST IN 1.3. ObservedLayingCorpse missing in 1.3 ?

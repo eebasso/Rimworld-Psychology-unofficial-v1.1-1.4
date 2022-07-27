@@ -13,7 +13,7 @@ namespace Psychology.Harmony
     [HarmonyPatch(typeof(TraitSet), nameof(TraitSet.GainTrait))]
     public static class TraitSet_GainTraitPatch
     {
-        [LogPerformance]
+        //[LogPerformance]
         [HarmonyPrefix]
         public static bool KinseyException(ref TraitSet __instance, Trait trait)
         {

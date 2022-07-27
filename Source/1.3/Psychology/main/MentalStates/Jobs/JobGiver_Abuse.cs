@@ -10,7 +10,7 @@ namespace Psychology
 {
     public class JobGiver_Abuse : ThinkNode_JobGiver
     {
-        [LogPerformance]
+        //[LogPerformance]
         protected override Job TryGiveJob(Pawn pawn)
         {
             if (pawn.interactions.InteractedTooRecentlyToInteract() || lastInteractionTick > Find.TickManager.TicksGame - 500)

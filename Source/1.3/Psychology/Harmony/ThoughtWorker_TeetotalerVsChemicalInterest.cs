@@ -11,7 +11,7 @@
 //    [HarmonyPatch(typeof(ThoughtWorker_TeetotalerVsChemicalInterest), "CurrentSocialStateInternal")]
 //    public static class ThoughtWorker_TeetotalerVsChemicalInterestPatch
 //    {
-//        [LogPerformance]
+//        //[LogPerformance]
 //        [HarmonyPostfix]
 //        public static void Disable(ref ThoughtState __result, Pawn p, Pawn other)
 //        {

@@ -13,7 +13,10 @@ namespace Psychology
 {
     public class GameCondition_Election : GameCondition
     {
-        [LogPerformance]
+
+        public List<Candidate> candidates = new List<Candidate>();
+
+        //[LogPerformance]
         public override void Init()
         {
             base.Init();
@@ -27,41 +30,50 @@ namespace Psychology
             {
                 this.Duration -= (plannedStart - 18) * GenDate.TicksPerHour;
             }
-            IEnumerable<Pawn> psychologyColonists = from p in this.SingleMap.mapPawns.FreeColonistsSpawned
-                                                    where PsycheHelper.PsychologyEnabled(p) && p.HomeFaction == Faction.OfPlayer // 1.3
-                                                    select p;
-            int maxCandidatesThisColonySupports = Mathf.RoundToInt(psychologyColonists.Count() * 0.3f);
-            float totalOutspoken = 0f;
-            float totalAmbitious = 0f;
-            float totalCompetitive = 0f;
-            foreach (Pawn p in psychologyColonists)
+            IEnumerable<Pawn> colonists = from p in this.SingleMap.mapPawns.FreeColonistsSpawned
+                                          where PsycheHelper.PsychologyEnabled(p) && p.HomeFaction == Faction.OfPlayer // 1.3
+                                          select p;
+            int numColonists = colonists.Count();
+            if (numColonists < 5)
             {
-                totalOutspoken += PsycheHelper.Comp(p).Psyche.GetPersonalityRating(PersonalityNodeDefOf.Outspoken);
-                totalAmbitious += PsycheHelper.Comp(p).Psyche.GetPersonalityRating(PersonalityNodeDefOf.Ambitious);
-                totalCompetitive += PsycheHelper.Comp(p).Psyche.GetPersonalityRating(PersonalityNodeDefOf.Competitive);
+                return;
+            }
+            float maxCandidatesThisColonySupports = Mathf.Clamp(0.3f * numColonists, 0f, 4f);
+            IEnumerable<Pawn> eligibleColonists = from p in colonists
+                                                  where p.ageTracker.AgeBiologicalYearsFloat >= PsychologyBase.MayorAge() // 1.3
+                                                  select p;
+            float rowdiness = 1f;
+            Dictionary<Pawn, float> likelihoodToRun = new Dictionary<Pawn, float>();
+            foreach (Pawn p in eligibleColonists)
+            {
                 // 95% chance incumbent runs for re-election
                 if (p.health.hediffSet.HasHediff(HediffDefOfPsychology.Mayor) && Rand.Value < 0.95f)
                 {
                     List<PersonalityNodeDef> issues = GenerateIssues(p);
                     this.candidates.Add(new Candidate(p, issues));
-                    psychologyColonists = psychologyColonists.Except(p);
+                    eligibleColonists = eligibleColonists.Except(p);
+                }
+                else
+                {
+                    float outspoken = PsycheHelper.Comp(p).Psyche.GetPersonalityRating(PersonalityNodeDefOf.Outspoken);
+                    float ambitious = PsycheHelper.Comp(p).Psyche.GetPersonalityRating(PersonalityNodeDefOf.Ambitious);
+                    float competitive = PsycheHelper.Comp(p).Psyche.GetPersonalityRating(PersonalityNodeDefOf.Competitive);
+                    float score = outspoken + ambitious + competitive;
+                    rowdiness += 0.0333f * score;
+                    likelihoodToRun.Add(p, score);
                 }
             }
-            int numCandidates = Rand.RangeInclusive(Mathf.Min(maxCandidatesThisColonySupports, 1 + Mathf.RoundToInt((totalOutspoken + totalAmbitious + totalCompetitive) * 0.0333f)), maxCandidatesThisColonySupports);
+            float minCandidates = Mathf.Min(maxCandidatesThisColonySupports, rowdiness);
+            int numCandidates = Mathf.RoundToInt(Mathf.Lerp(minCandidates, maxCandidatesThisColonySupports, Rand.Value));
+
             int tries = 0;
             while (this.candidates.Count < numCandidates && tries < 500)
             {
-                Pawn candidatePawn = psychologyColonists.RandomElementByWeight(p => (p.ageTracker.AgeBiologicalYearsFloat >= PsychologyBase.MayorAge()) ? PsycheHelper.Comp(p).Psyche.GetPersonalityRating(PersonalityNodeDefOf.Outspoken) + PsycheHelper.Comp(p).Psyche.GetPersonalityRating(PersonalityNodeDefOf.Ambitious) + PsycheHelper.Comp(p).Psyche.GetPersonalityRating(PersonalityNodeDefOf.Competitive) : 0f);
+                //Pawn candidatePawn = psychologyColonists.RandomElementByWeight(p => (p.ageTracker.AgeBiologicalYearsFloat >= PsychologyBase.MayorAge()) ? PsycheHelper.Comp(p).Psyche.GetPersonalityRating(PersonalityNodeDefOf.Outspoken) + PsycheHelper.Comp(p).Psyche.GetPersonalityRating(PersonalityNodeDefOf.Ambitious) + PsycheHelper.Comp(p).Psyche.GetPersonalityRating(PersonalityNodeDefOf.Competitive) : 0f);
+                Pawn candidatePawn = eligibleColonists.RandomElementByWeight(p => likelihoodToRun[p]);
                 List<PersonalityNodeDef> issues = GenerateIssues(candidatePawn);
-                if (issues.Count >= 5)
-                {
-                    this.candidates.Add(new Candidate(candidatePawn, issues));
-                    psychologyColonists = psychologyColonists.Except(candidatePawn);
-                }
-                else if (issues.Count < 5)
-                {
-                    Log.Error("[Psychology] Could not find five unique issues for " + candidatePawn.LabelShort + "'s platform.");
-                }
+                this.candidates.Add(new Candidate(candidatePawn, issues));
+                eligibleColonists = eligibleColonists.Except(candidatePawn);
                 tries++;
             }
             if (candidates.Count == 0)
@@ -91,10 +103,14 @@ namespace Psychology
             int tries2 = 0;
             while (issues.Count < 5 && tries2 < 500)
             {
-                PersonalityNodeDef issue = nodeDefs.RandomElementByWeight(n => Mathf.Pow(Mathf.Abs(0.5f - PsycheHelper.Comp(candidate).Psyche.GetPersonalityRating(n)), 4) * Mathf.Pow(2, n.controversiality));
+                PersonalityNodeDef issue = nodeDefs.RandomElementByWeight(n => Mathf.Pow(PsycheHelper.Comp(candidate).Psyche.GetPersonalityRating(n) - 0.5f, 4) * Mathf.Pow(2, n.controversiality));
                 issues.Add(issue);
                 nodeDefs = nodeDefs.Except(issue);
                 tries2++;
+            }
+            if (issues.Count < 5)
+            {
+                Log.Error("[Psychology] Could not find five unique issues for " + candidate.LabelShort + "'s platform.");
             }
             return issues;
         }
@@ -121,7 +137,7 @@ namespace Psychology
             }
         }
 
-        [LogPerformance]
+        //[LogPerformance]
         public override void End()
         {
             base.End();
@@ -203,6 +219,6 @@ namespace Psychology
             return false;
         }
 
-        public List<Candidate> candidates = new List<Candidate>();
+        
     }
 }

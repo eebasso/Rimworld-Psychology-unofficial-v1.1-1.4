@@ -10,6 +10,9 @@ namespace Psychology
 {
     public class Candidate : IExposable
     {
+        public Pawn pawn;
+        public List<PersonalityNodeDef> nodes;
+
         public Candidate()
         {
         }
@@ -25,8 +28,5 @@ namespace Psychology
             Scribe_References.Look(ref this.pawn, "pawn");
             Scribe_Collections.Look(ref this.nodes, "nodes", LookMode.Def, new object[0]);
         }
-
-        public Pawn pawn;
-        public List<PersonalityNodeDef> nodes;
     }
 }

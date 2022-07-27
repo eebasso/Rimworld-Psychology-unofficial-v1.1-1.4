@@ -22,7 +22,7 @@ namespace Psychology
             return pawn.Position;
         }
 
-        [LogPerformance]
+        //[LogPerformance]
         protected override Job TryGiveJob(Pawn pawn)
         {
             Job job = base.TryGiveJob(pawn);

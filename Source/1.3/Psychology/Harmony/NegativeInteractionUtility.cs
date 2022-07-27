@@ -11,7 +11,7 @@ namespace Psychology.Harmony
     [HarmonyPatch(typeof(NegativeInteractionUtility), nameof(NegativeInteractionUtility.NegativeInteractionChanceFactor))]
     public static class NegativeInteractionUtility_ChancePatch
     {
-        [LogPerformance]
+        //[LogPerformance]
         [HarmonyPostfix]
         public static void NewFormula(ref float __result, Pawn initiator, Pawn recipient)
         {

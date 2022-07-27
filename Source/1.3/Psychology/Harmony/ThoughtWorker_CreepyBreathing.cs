@@ -11,7 +11,7 @@ namespace Psychology.Harmony
     [HarmonyPatch(typeof(ThoughtWorker_CreepyBreathing), "CurrentSocialStateInternal")]
     public static class ThoughtWorker_CreepyBreathingPatch
     {
-        [LogPerformance]
+        //[LogPerformance]
         [HarmonyPostfix]
         public static void Disable(ref ThoughtState __result, Pawn pawn, Pawn other)
         {

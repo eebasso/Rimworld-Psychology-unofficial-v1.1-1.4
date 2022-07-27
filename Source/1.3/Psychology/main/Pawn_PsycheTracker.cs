@@ -7,9 +7,7 @@ using Verse;
 using Verse.AI;
 using HarmonyLib;
 using UnityEngine;
-//using Accord.Math;
-//using Accord.Math.Decompositions;
-//using MathNet.Numerics.LinearAlgebra;
+using System.Diagnostics;
 
 namespace Psychology
 {
@@ -36,7 +34,7 @@ namespace Psychology
             this.pawn = pawn;
         }
 
-        [LogPerformance]
+        //[LogPerformance]
         public void Initialize(int inputSeed = 0)
         {
             Log.Message("Initialize() Pawn_PsycheTracker for " + pawn.LabelShortCap);
@@ -86,7 +84,7 @@ namespace Psychology
             }
         }
 
-        [LogPerformance]
+        //[LogPerformance]
         public float GetPersonalityRating(PersonalityNodeDef def)
         {
             return nodeDict[def].AdjustedRating;
@@ -97,7 +95,7 @@ namespace Psychology
             return nodeDict[def];
         }
 
-        [LogPerformance]
+        //[LogPerformance]
         public float GetConversationTopicWeight(PersonalityNodeDef def, Pawn otherPawn)
         {
             /* Pawns will avoid controversial topics until they know someone better.
@@ -129,7 +127,7 @@ namespace Psychology
             return weight;
         }
 
-        [LogPerformance]
+        //[LogPerformance]
         public float TotalThoughtOpinion(Pawn other, out IEnumerable<Thought_MemorySocialDynamic> convoMemories)
         {
             convoMemories = (from m in this.pawn.needs.mood.thoughts.memories.Memories.OfType<Thought_MemorySocialDynamic>()
@@ -189,29 +187,31 @@ namespace Psychology
             {
                 int index = PersonalityNodeParentMatrix.indexDict[def];
                 float rawRating = nodeDict[def].rawRating;
-                //rawRating = nodeDict[def].AdjustForCircumstance(rawRating, true);
-                //float displacement = Mathf.Clamp(2f * rawRating - 1f, -0.99999f, 0.99999f);
-                //rawNormalDisplacementList[index] = (float)Special.Ierf(displacement);
+                rawRating = nodeDict[def].AdjustForCircumstance(rawRating, true);
                 rawNormalDisplacementList[index] = PsycheHelper.NormalCDFInv(rawRating);
             }
         }
 
-        [LogPerformance]
+        //[LogPerformance]
         public void CalculateAdjustedRatings()
         {
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start();
             ConstructRawDisplacementList();
-            //float[] adjNormalDisplacementList = PersonalityNodeParentMatrix.parentTransformMatrix.Dot(rawNormalDisplacementList);
             float[] adjNormalDisplacementList = PersonalityNodeParentMatrix.MatrixVectorProduct(PersonalityNodeParentMatrix.parentTransformMatrix, rawNormalDisplacementList);
             //parentAdjRatingDict.Clear();
             foreach (PersonalityNodeDef def in PersonalityNodeParentMatrix.defList)
             {
                 int index = PersonalityNodeParentMatrix.indexDict[def];
                 float adjustedRating = PsycheHelper.NormalCDF(adjNormalDisplacementList[index]);
-                //adjustedRating = nodeDict[def].AdjustForCircumstance(adjustedRating, true);
+                adjustedRating = nodeDict[def].AdjustForCircumstance(adjustedRating, true);
                 adjustedRating = nodeDict[def].AdjustHook(adjustedRating);
-                //parentAdjRatingDict.Add(def, adjustedRating);
                 nodeDict[def].cachedRating = adjustedRating;
             }
+            stopwatch.Stop();
+            TimeSpan ts = stopwatch.Elapsed;
+            Log.Message("CalculateAdjustedRatings took " + ts.TotalMilliseconds + " ms.");
+            AdjustedRatingTicker = 3700;
         }
     }
 }

@@ -17,7 +17,7 @@ namespace Psychology
             GenerateSexuality();
         }
 
-        [LogPerformance]
+        //[LogPerformance]
         public bool IncompatibleSexualityKnown(Pawn recipient)
         {
             if (this.knownSexualities.ContainsKey(recipient))
@@ -27,7 +27,7 @@ namespace Psychology
             return false;
         }
 
-        [LogPerformance]
+        //[LogPerformance]
         public void LearnSexuality(Pawn p)
         {
             if (p != null && PsycheHelper.PsychologyEnabled(pawn) && !knownSexualities.Keys.Contains(p))

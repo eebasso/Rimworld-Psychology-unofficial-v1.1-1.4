@@ -41,6 +41,16 @@ namespace Psychology
             order = defList.Count();
             size = order * order;
 
+            //float[] a = { 0f, 1f, 2f, 0f };
+            //float[] x = { 0f, 1f, 2f, 0f };
+            //float[] y = { 0f, 1f, 2f, 0f };
+            //x = a;
+            //y = a;
+            //y = ProjUnitDiag(x, 2);
+            //Log.Message("a = " + String.Join(", ", a));
+            //Log.Message("x = " + String.Join(", ", x));
+            //Log.Message("y = " + String.Join(", ", y));
+
             Log.Message("Initialize parentModifierMatrix");
             parentModifierMatrix = IdentityMatrix(order);
             int index = 0;
@@ -64,7 +74,7 @@ namespace Psychology
                 }
             }
 
-            Log.Message("Get Big Five Vectors");
+            //Log.Message("Get Big Five Vectors");
             for (int bf = 0; bf < 5; bf++)
             {
                 float norm = 0f;
@@ -82,11 +92,11 @@ namespace Psychology
                     vector[n] /= norm;
                 }
                 bigFiveVectors.Add(vector);
-                Log.Message("Big five vector " + bf + ": " + string.Join(", ", vector));
+                //Log.Message("Big five vector " + bf + ": " + string.Join(", ", vector));
             }
 
             Log.Message("Get weights of Ten Aspects");
-            //List<float[]> tenAspectsVectors = new List<float[]>();
+            List<float[]> tenAspectsVectors = new List<float[]>();
             List<float[]> tenAspectsWeights = new List<float[]>();
             for (int t = 0; t < 10; t++)
             {
@@ -97,20 +107,15 @@ namespace Psychology
                     float weight = def.TenAspects[t];
                     vector[indexDict[def]] = weight;
                     norm += weight * weight;
-                    if (weight != 0f)
-                    {
-                        //Log.Message("Aspect " + t + ": " + def.defName + ", " + def.TenAspects[t]);
-                    }
                 }
                 tenAspectsWeights.Add(vector);
-                //norm = Mathf.Sqrt(norm);
-                //for (int n = 0; n < order; n++)
-                //{
-                //    vector[n] /= norm;
-                //}
-                //tenAspectsVectors.Add(vector);
-                //Log.Message("norm = " + norm);
-                //Log.Message("Ten Aspects Weights " + t + ": " + String.Join(", ", tenAspectsWeights[t]));
+                float[] vector2 = new float[order];
+                norm = Mathf.Sqrt(norm);
+                for (int n = 0; n < order; n++)
+                {
+                    vector2[n] = vector[n] / norm;
+                }
+                tenAspectsVectors.Add(vector2);
             }
             //float[] cBigFive0 = new float[size];
             float[] cTen0 = new float[size];
@@ -122,18 +127,21 @@ namespace Psychology
                 //{
                 //    cBigFive0[s] += 0.2f * order * bigFiveVectors[bf][i] * bigFiveVectors[bf][j];
                 //}
-                cTen0[s] = 0f;
                 for (int t = 0; t < 10; t += 2)
                 {
                     //cTen0[s] += tenAspectsVectors[t][i] * tenAspectsVectors[t][j];
                     //cTen0[s] += tenAspectsVectors[t + 1][i] * tenAspectsVectors[t + 1][j];
                     //cTen0[s] += 0.33f * tenAspectsVectors[t][i] * tenAspectsVectors[t + 1][j];
                     //cTen0[s] += 0.33f * tenAspectsVectors[t + 1][i] * tenAspectsVectors[t][j];
-                    //cTen0[s] *= 0.1f * order;
                     cTen0[s] += tenAspectsWeights[t][i] * tenAspectsWeights[t][j];
                     cTen0[s] += tenAspectsWeights[t + 1][i] * tenAspectsWeights[t + 1][j];
-                    cTen0[s] += 0.33f * tenAspectsWeights[t][i] * tenAspectsWeights[t + 1][j];
-                    cTen0[s] += 0.33f * tenAspectsWeights[t + 1][i] * tenAspectsWeights[t][j];
+                    cTen0[s] += 0.2f * tenAspectsWeights[t][i] * tenAspectsWeights[t + 1][j];
+                    cTen0[s] += 0.2f * tenAspectsWeights[t + 1][i] * tenAspectsWeights[t][j];
+                }
+                cTen0[s] *= 0.85f;
+                if (s % (order + 1) == 0)
+                {
+                    cTen0[s] += 0.15f;
                 }
             }
 
@@ -141,8 +149,8 @@ namespace Psychology
             //float[] cParent0 = NearCorr(parentModifierMatrix);
             //Log.Message("Calculate Big Five correlation matrix");
             //float[] cBigFive1 = NearCorr(cBigFive0);
-            Log.Message("Calculate Ten Aspects correlation matrix");
-            float[] cTen1 = NearCorr(cTen0);
+            //Log.Message("Calculate Ten Aspects correlation matrix");
+            //float[] cTen1 = NearCorr(cTen0);
 
             //Log.Message("Construct ultimate mixture matrix");
             float[] cMix = new float[size];
@@ -150,7 +158,7 @@ namespace Psychology
             {
                 //List<float> list = new List<float>() { parentModifierMatrix[s], cParent0[s], 0f * cBigFive0[s] + 1f * cTen0[s], 0f * cBigFive1[s] + 1f * cTen1[s] };
                 //cMix[s] = list.OrderBy(x => -Mathf.Abs(x)).First();
-                cMix[s] = Mathf.Abs(parentModifierMatrix[s]) > 0.01f ? parentModifierMatrix[s] : cTen1[s];
+                cMix[s] = Mathf.Abs(parentModifierMatrix[s]) > 0.01f ? parentModifierMatrix[s] : cTen0[s];
 
                 //Log.Message("list = " + string.Join(", ", list));
                 //Log.Message("max = " + cMix[s]);
@@ -160,10 +168,15 @@ namespace Psychology
             //Log.Message("Test VtimesDtimesTransposeOfV: " + MatrixNorm(MatrixDiff(cMix, cMixTest)));
 
 
-            //Log.Message("Calculate ultimate correlation matrix");
-            //float[] C = NearCorr(cMix);
-            //Log.Message("Start Decomposition");
-            //(float[] V, float[] d) = EigenDecomp(C, order);
+            Log.Message("Calculate ultimate correlation matrix");
+            float[] C = NearCorr(cMix);
+            for (int s = 0; s < size; s++)
+            {
+                C[s] *= 0.85f;
+                C[s] += (s % (order + 1) == 0) ? 0.15f : 0f;
+            }
+            Log.Message("Start Decomposition");
+            (float[] V, float[] d) = EigenDecomp(C, order);
             //for (int i = 0; i < order; i++)
             //{
             //    d[i] = 0.85f * d[i] + 0.15f;
@@ -171,61 +184,59 @@ namespace Psychology
             //C = VtimesDtimesTransposeOfV(V, d);
             //C = NearCorr(C);
             //(V, d) = EigenDecomp(C, order);
-
             //(float[] vParent, float[] dParent) = EigenDecomp(parentModifierMatrix, order);
             (float[] vTen0, float[] dten0) = EigenDecomp(cTen0, order);
-            (float[] vTen1, float[] dten1) = EigenDecomp(cTen1, order);
+            //(float[] vTen1, float[] dten1) = EigenDecomp(cTen1, order);
             //Log.Message("Eigenvalues of parentModifierMatrix = " + string.Join(", ", dParent.Reverse()));
             Log.Message("Eigenvalues of cTen0 = " + string.Join(", ", dten0.Reverse()));
-            Log.Message("Eigenvalues of cTen1 = " + string.Join(", ", dten1.Reverse()));
-            //Log.Message("Eigenvalues of C = " + string.Join(", ", d.Reverse()));
+            //Log.Message("Eigenvalues of cTen1 = " + string.Join(", ", dten1.Reverse()));
+            Log.Message("Eigenvalues of C = " + string.Join(", ", d.Reverse()));
 
-            //string bigFiveVariances = "Big five variances = ";
-            //for (int bf = 0; bf < 5; bf++)
-            //{
-            //    float variance = DotProduct(bigFiveVectors[bf], MatrixVectorProduct(C, bigFiveVectors[bf]));
-            //    bigFiveStandardDevInvs[bf] = 1f / Mathf.Sqrt(variance);
-            //    bigFiveVariances += variance + ", ";
-            //}
+            string bigFiveVariances = "Big five variances = ";
+            for (int bf = 0; bf < 5; bf++)
+            {
+                float variance = DotProduct(bigFiveVectors[bf], MatrixVectorProduct(C, bigFiveVectors[bf]));
+                bigFiveStandardDevInvs[bf] = 1f / Mathf.Sqrt(variance);
+                bigFiveVariances += variance + ", ";
+            }
             //Log.Message(bigFiveVariances);
 
-            //float[] dSqrt = new float[order];
-            //for (int i = 0; i < order; ++i)
-            //{
-            //    dSqrt[i] = Mathf.Sqrt(Mathf.Abs(d[i]));
-            //}
-            //parentTransformMatrix = VtimesDtimesTransposeOfV(V, dSqrt);
-            //Log.Message("PersonalityNodeParentMatrix initialized");
+            float[] dSqrt = new float[order];
+            for (int i = 0; i < order; ++i)
+            {
+                dSqrt[i] = Mathf.Sqrt(Mathf.Abs(d[i]));
+            }
+            parentTransformMatrix = VtimesDtimesTransposeOfV(V, dSqrt);
+            Log.Message("PersonalityNodeParentMatrix initialized");
 
-            //foreach (PersonalityNodeDef def in defList)
-            //{
-            //    int i = indexDict[def];
-            //    string rowOfMCP = def.defName + ": ";
-            //    foreach (PersonalityNodeDef def2 in defList)
-            //    {
-            //        int j = indexDict[def2];
-            //        float num1 = cTen0[i + j * order];
-            //        float num2 = C[i + j * order];
-            //        float num3 = parentTransformMatrix[i + j * order];
-            //        rowOfMCP += "{" + def2.defName + " " + num1 + ", " + num2 + ", " + num3 + "}, ";
-            //    }
-            //    Log.Message(rowOfMCP);
-            //}
-
-            //for (int j = 0; j < 10; j++)
-            //{
-            //    List<Pair<string, float>> vecList = new List<Pair<string, float>>();
-            //    foreach (PersonalityNodeDef def in defList)
-            //    {
-            //        int i = indexDict[def];
-            //        vecList.Add(new Pair<string, float>(def.defName, V[i + (order - 1 - j) * order]));
-            //    }
-            //    vecList = vecList.OrderBy(pair => -Mathf.Abs(pair.Second)).ToList();
-            //    Log.Message("Eigenvector " + j + ": " + string.Join(", ", vecList));
-            //}
+            foreach (PersonalityNodeDef def in defList)
+            {
+                int i = indexDict[def];
+                string rowOfMCP = def.defName + ": ";
+                foreach (PersonalityNodeDef def2 in defList)
+                {
+                    int j = indexDict[def2];
+                    float num1 = cMix[i + j * order];
+                    float num2 = C[i + j * order];
+                    float num3 = parentTransformMatrix[i + j * order];
+                    rowOfMCP += "{" + def2.defName + " " + num1 + ", " + num2 + ", " + num3 + "}, ";
+                }
+                Log.Message(rowOfMCP);
+            }
+            for (int j = 0; j < 10; j++)
+            {
+                List<Pair<string, float>> vecList = new List<Pair<string, float>>();
+                foreach (PersonalityNodeDef def in defList)
+                {
+                    int i = indexDict[def];
+                    vecList.Add(new Pair<string, float>(def.defName, V[i + (order - 1 - j) * order]));
+                }
+                vecList = vecList.OrderBy(pair => -Mathf.Abs(pair.Second)).ToList();
+                Log.Message("Eigenvector " + j + ": " + string.Join(", ", vecList));
+            }
             stopwatch.Stop();
             TimeSpan ts = stopwatch.Elapsed;
-            Log.Message("Run time in minutes:seconds:milliseconds = " + String.Format("{0:00}:{1:00}:{2:000}", ts.Minutes, ts.Seconds, ts.Milliseconds));
+            Log.Message("Run time in seconds = " + String.Format("{0:00}.{1:000}", ts.Seconds, ts.Milliseconds));
         }
 
         public static (int, int) Get2Dindicies(int s)
@@ -646,8 +657,8 @@ namespace Psychology
 
         public static float[] MatrixProduct(float[] A, float[] B)
         {
-            float[] C = new float[order * order];
-            for (int s = 0; s < order * order; ++s)
+            float[] C = new float[size];
+            for (int s = 0; s < size; ++s)
             {
                 //(int i, int j) = Get2Dindicies(s, order);
                 int j = s % order;
@@ -688,8 +699,10 @@ namespace Psychology
         {
             float tol = 1e-7f;
             int maxits = 100;
-            float[] X = A;
-            float[] Y = A;
+            float[] X = new float[size];
+            Array.Copy(A, X, size);
+            float[] Y = new float[size];
+            Array.Copy(A, Y, size);
             int iter = 0;
             float relDiffX = 1e+9f;
             float relDiffY = 1e+9f;
@@ -699,28 +712,23 @@ namespace Psychology
             {
                 dS[i] = 0f;
             }
-            float[] Xold;
-            float[] Yold;
+            float[] Xold = new float[size];
+            float[] Yold = new float[size];
             float[] R;
             while ((relDiffX > tol || relDiffY > tol || relDiffXY > tol) && iter < maxits)
             {
-                Log.Message("Distance between X and A = " + MatrixNorm(MatrixDiff(X, A)));
-                Xold = X;
+                Array.Copy(X, Xold, size);
+                Array.Copy(Y, Yold, size);
                 R = MatrixDiff(Y, dS);
-                Log.Message("Distance between R and Y = " + MatrixNorm(MatrixDiff(R, Y)));
-                Log.Message("Distance between R and A = " + MatrixNorm(MatrixDiff(R, A)));
                 X = ProjSpdEigs(R);
-                Log.Message("Distance between X and R = " + MatrixNorm(MatrixDiff(X, R)));
                 dS = MatrixDiff(X, R);
-                Yold = Y;
                 Y = ProjUnitDiag(X);
-                Log.Message("Distance between X and Y = " + MatrixNorm(MatrixDiff(X, Y)));
                 relDiffX = MatrixNorm(MatrixDiff(X, Xold)) / MatrixNorm(X);
                 relDiffY = MatrixNorm(MatrixDiff(Y, Yold)) / MatrixNorm(Y);
                 relDiffXY = MatrixNorm(MatrixDiff(Y, X)) / MatrixNorm(Y);
                 iter++;
-                Log.Message("Number of iterations for NearCorr = " + iter + ", distance = " + MatrixNorm(MatrixDiff(X, A)));
             }
+            Log.Message("Number of iterations for NearCorr = " + iter + ", distance = " + MatrixNorm(MatrixDiff(X, A)));
             return X;
         }
 
@@ -767,14 +775,15 @@ namespace Psychology
             return B;
         }
 
-        public static float[] ProjUnitDiag(float[] A)
+        public static float[] ProjUnitDiag(float[] matrix)
         {
-            float[] B = A;
-            for (int s = 0; s < order * order; s += order + 1)
+            float[] matrix2 = new float[size];
+            Array.Copy(matrix, matrix2, size);
+            for (int s = 0; s < size; s += order + 1)
             {
-                B[s] = 1f;
+                matrix2[s] = 1f;
             }
-            return B;
+            return matrix2;
         }
 
         public static float MatrixNorm(float[] A)
@@ -820,4 +829,3 @@ namespace Psychology
 
     }
 }
-

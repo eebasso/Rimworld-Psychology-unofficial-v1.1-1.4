@@ -11,7 +11,7 @@ namespace Psychology.Harmony
     [HarmonyPatch(typeof(FoodUtility), nameof(FoodUtility.ThoughtsFromIngesting))]
     public static class FoodUtility_AddPickyThoughts_Patch
     {
-        [LogPerformance]
+        //[LogPerformance]
         [HarmonyPostfix]
         public static void AddPickyThoughtsPatch(ref List<FoodUtility.ThoughtFromIngesting> __result) // TEST in 1.3
         {

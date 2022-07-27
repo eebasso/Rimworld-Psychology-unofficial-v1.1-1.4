@@ -13,7 +13,7 @@ namespace Psychology.Harmony
     [HarmonyPatch(typeof(PawnGenerator), "GenerateTraits")]
     public static class PawnGenerator_GenerateTraitsPatch
     {
-        [LogPerformance]
+        //[LogPerformance]
         [HarmonyPriority(Priority.First)]
         [HarmonyPrefix]
         public static bool KinseyException(ref Pawn pawn, PawnGenerationRequest request)

@@ -12,7 +12,7 @@ namespace Psychology.Harmony
     [HarmonyPatch(typeof(ThoughtWorker_WantToSleepWithSpouseOrLover), "CurrentStateInternal")]
     public class ThoughtWorker_WantToSleepWithSpouseOrLoverPatch
     {
-        [LogPerformance]
+        //[LogPerformance]
         [HarmonyPostfix]
         public static void CurrentStateInternal(ref ThoughtState __result, Pawn p)
         {

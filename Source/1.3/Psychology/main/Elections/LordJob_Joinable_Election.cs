@@ -11,6 +11,15 @@ namespace Psychology
 {
     class LordJob_Joinable_Election : LordJob_VoluntarilyJoinable
     {
+
+        private IntVec3 spot;
+        private Map map;
+        private string baseName;
+        private Trigger_TicksPassed timeoutTrigger;
+        public List<string> votes = new List<string>();
+        public List<int> voters = new List<int>();
+        public List<Candidate> candidates = new List<Candidate>();
+
         public LordJob_Joinable_Election()
         { }
 
@@ -61,7 +70,7 @@ namespace Psychology
             Scribe_Collections.Look(ref this.votes, "votes", LookMode.Value, new object[0]);
         }
 
-        [LogPerformance]
+        //[LogPerformance]
         private void Finished()
         {
             List<Pair<Pawn, int>> voteTally = new List<Pair<Pawn, int>>();
@@ -86,6 +95,9 @@ namespace Psychology
                 }
             }
             Pair<Pawn, int> winningCandidate = orderedTally.First();
+            Pawn newMayor = winningCandidate.First;
+
+
             if (orderedTally.Count() > 1 && orderedTally.First().Second == orderedTally.ElementAt(1).Second)
             {
                 Find.LetterStack.ReceiveLetter("LetterLabelTieSettled".Translate(winningCandidate.First), "LetterTieSettled".Translate(winningCandidate.First), LetterDefOf.NeutralEvent, winningCandidate.First);
@@ -95,16 +107,26 @@ namespace Psychology
             {
                 issuesString.AppendFormat("{0}) {1}{2}", i + 1, PsycheHelper.Comp(winningCandidate.First).Psyche.GetPersonalityNodeOfDef(candidates.Find(c => c.pawn == winningCandidate.First).nodes[i]).PlatformIssue, (i != candidates.Find(c => c.pawn == winningCandidate.First).nodes.Count - 1 ? "\n" : ""));
             }
+
             if (this.map == null)
             {
                 this.map = winningCandidate.First.Map;
             }
-            Hediff mayor = HediffMaker.MakeHediff(HediffDefOfPsychology.Mayor, winningCandidate.First);
-            (mayor as Hediff_Mayor).worldTileElectedOn = map.Tile;
-            (mayor as Hediff_Mayor).yearElected = GenLocalDate.Year(map);
-            winningCandidate.First.health.AddHediff(mayor);
-            winningCandidate.First.needs.mood.thoughts.memories.TryGainMemory(ThoughtDefOfPsychology.WonElection);
-            Find.LetterStack.ReceiveLetter("LetterLabelElectionWon".Translate(winningCandidate.First), "LetterElectionWon".Translate(winningCandidate.First, this.baseName, winningCandidate.Second, issuesString.ToString()), LetterDefOf.NeutralEvent, winningCandidate.First);
+            int mapTile = this.map.Tile;
+
+
+            MayorUtility.RemoveMayorOfThisColony(mapTile);
+
+
+            Hediff hediffMayor = HediffMaker.MakeHediff(HediffDefOfPsychology.Mayor, newMayor);
+            (hediffMayor as Hediff_Mayor).worldTileElectedOn = map.Tile;
+            (hediffMayor as Hediff_Mayor).yearElected = GenLocalDate.Year(map);
+
+            newMayor.health.AddHediff(hediffMayor);
+            MayorUtility.Mayors.Add(mapTile, new Pair<Pawn, Hediff>(newMayor, hediffMayor));
+
+            newMayor.needs.mood.thoughts.memories.TryGainMemory(ThoughtDefOfPsychology.WonElection);
+            Find.LetterStack.ReceiveLetter("LetterLabelElectionWon".Translate(newMayor), "LetterElectionWon".Translate(newMayor, this.baseName, winningCandidate.Second, issuesString.ToString()), LetterDefOf.NeutralEvent, newMayor);
         }
 
         public override string GetReport(Pawn pawn)
@@ -127,7 +149,7 @@ namespace Psychology
             return !GatheringsUtility.AcceptableGameConditionsToContinueGathering(base.Map) || candidates.Count < 1;
         }
 
-        [LogPerformance]
+        //[LogPerformance]
         private bool ShouldPawnKeepVoting(Pawn p)
         {
             if (!PsycheHelper.PsychologyEnabled(p))
@@ -162,12 +184,6 @@ namespace Psychology
             return 30f;
         }
 
-        private IntVec3 spot;
-        private Map map;
-        private string baseName;
-        private Trigger_TicksPassed timeoutTrigger;
-        public List<string> votes = new List<string>();
-        public List<int> voters = new List<int>();
-        public List<Candidate> candidates = new List<Candidate>();
+
     }
 }

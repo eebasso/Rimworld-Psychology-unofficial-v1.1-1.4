@@ -11,34 +11,11 @@ namespace Psychology
     {
         private static Dictionary<int, ActiveTip> activeTips = new Dictionary<int, ActiveTip>();
 
-        //private static int frame = 0;
-
         private static List<int> dyingTips = new List<int>(32);
 
         private static List<ActiveTip> drawingTips = new List<ActiveTip>();
 
         private static Func<ActiveTip, ActiveTip, int> compareTooltipsByPriorityCached = CompareTooltipsByPriority;
-
-        //public static void ClearTooltipsFrom(List<Vector2> vertices)
-        //{
-        //    Log.Message("Start ClearTooltipsFrom");
-        //    if (Event.current.type != EventType.Repaint || !PolygonUtility.IsMouseoverPolygon(vertices))
-        //    {
-        //        return;
-        //    }
-        //    dyingTips.Clear();
-        //    foreach (KeyValuePair<int, ActiveTip> activeTip in activeTips)
-        //    {
-        //        if (activeTip.Value.lastTriggerFrame == frame)
-        //        {
-        //            dyingTips.Add(activeTip.Key);
-        //        }
-        //    }
-        //    for (int i = 0; i < dyingTips.Count; i++)
-        //    {
-        //        activeTips.Remove(dyingTips[i]);
-        //    }
-        //}
 
         public static void TipRegion(List<Vector2> vertices, Func<string> textGetter, int uniqueId)
         {

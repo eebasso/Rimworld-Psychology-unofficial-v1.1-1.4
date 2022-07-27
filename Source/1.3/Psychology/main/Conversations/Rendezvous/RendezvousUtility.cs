@@ -32,7 +32,7 @@ namespace Psychology
             return 0f;
         }
 
-        [LogPerformance]
+        //[LogPerformance]
         public static bool AcceptableGameConditionsToStartHangingOut(Map map)
         {
             if (GatheringsUtility.AnyLordJobPreventsNewGatherings(map))

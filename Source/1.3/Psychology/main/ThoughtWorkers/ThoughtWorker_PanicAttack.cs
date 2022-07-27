@@ -6,7 +6,7 @@ namespace Psychology
 {
     public class ThoughtWorker_PanicAttack : ThoughtWorker
     {
-        [LogPerformance]
+        //[LogPerformance]
         protected override ThoughtState CurrentStateInternal(Pawn p)
         {
             if (!p.Spawned)

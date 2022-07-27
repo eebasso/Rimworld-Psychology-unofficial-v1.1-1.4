@@ -11,7 +11,7 @@ namespace Psychology.Harmony
 	[HarmonyPatch(typeof(InteractionWorker_DeepTalk), nameof(InteractionWorker_DeepTalk.RandomSelectionWeight))]
 	public static class InteractionWorker_DeepTalk_SelectionWeightPatch
     {
-        [LogPerformance]
+        //[LogPerformance]
         [HarmonyPrefix]
 		public static bool PsychologyException(InteractionWorker_DeepTalk __instance, ref float __result, Pawn initiator, Pawn recipient)
 		{

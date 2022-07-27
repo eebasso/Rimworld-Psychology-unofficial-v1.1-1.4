@@ -17,16 +17,16 @@ namespace Psychology.Harmony
             if (ModsConfig.IsActive("void.charactereditor"))
             {
                 Log.Message("Running CEditor patch");
-                HarmonyPatches.DoCharacterEditorPatch(harmonyInstance);
+                SpecialPatches.DoCharacterEditorPatch(harmonyInstance);
             }
             if (ModsConfig.IsActive("EdB.PrepareCarefully"))
             {
                 Log.Message("Running PrepareCarefully patch");
-                HarmonyPatches.DoPrepareCarefullyPatch(harmonyInstance);
+                SpecialPatches.DoPrepareCarefullyPatch(harmonyInstance);
             }
         }
     }
-    public class HarmonyPatches
+    public class SpecialPatches
     {
         public static void DoCharacterEditorPatch(HarmonyLib.Harmony harmonyInstance)
         {
@@ -35,6 +35,7 @@ namespace Psychology.Harmony
                     prefix: new HarmonyMethod(typeof(CharacterEditor_DialogPsychology_Patch), nameof(CharacterEditor_DialogPsychology_Patch.DoWindowContents))
             );
         }
+
         public static void DoPrepareCarefullyPatch(HarmonyLib.Harmony harmonyInstance)
         {
             harmonyInstance.Patch(

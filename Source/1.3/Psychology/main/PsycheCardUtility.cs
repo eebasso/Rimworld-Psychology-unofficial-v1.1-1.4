@@ -30,15 +30,16 @@ namespace Psychology
         public static Color RatingColor = Color.yellow;
         public static string RatingFormat = "##0.000%";
 
-        public static byte DistanceFromMiddle = 4;
-        public static byte DistanceFromMiddleCached = 4;
-        public static bool UseColorsBool = true;
-        public static bool UseColorsBoolCached = true;
-        public static bool AlphabeticalBool = false;
-        public static bool AlphabeticalBoolCached = false;
-        public static bool UseAntonymsBool = true;
-        public static bool UseAntonymsBoolCached = true;
+        public static byte DistanceFromMiddle;
+        public static byte DistanceFromMiddleCached;
+        public static bool UseColorsBool;
+        public static bool UseColorsBoolCached;
+        public static bool AlphabeticalBool;
+        public static bool AlphabeticalBoolCached;
+        public static bool UseAntonymsBool;
+        public static bool UseAntonymsBoolCached;
         public static bool ShowNumbersBool = false;
+        //public static bool DoThisOnceOnStartUpBool = true;
 
         public static Pawn PawnCached;
         //public static Rect TotalRectCached = new Rect(0f, 0f, 1f, 1f);
@@ -244,8 +245,26 @@ namespace Psychology
         //    return PsycheRect;
         //}
 
+        //[LogPerformance]
         public static void DrawPsycheCard(Rect totalRect, Pawn pawn, bool OnWindow = true, bool ShowNumbers = false)
         {
+            if (!PsycheHelper.PsychologyEnabled(pawn))
+            {
+                return;
+            }
+            //if (DoThisTheFirstTimeBool)
+            //{
+            //    DistanceFromMiddle = PsychologyBase.DistanceFromMiddleSettingsHandle.Value;
+            //    UseColorsBool = PsychologyBase.UseColorsSettingsHandle.Value;
+            //    AlphabeticalBool = PsychologyBase.ListAlphabeticalSettingsHandle.Value;
+            //    UseAntonymsBool = PsychologyBase.UseAntonymsSettingsHandle.Value;
+            //    DistanceFromMiddleCached = DistanceFromMiddle;
+            //    UseColorsBoolCached = UseColorsBool;
+            //    AlphabeticalBoolCached = AlphabeticalBool;
+            //    UseAntonymsBoolCached = UseAntonymsBool;
+            //    DoThisTheFirstTimeBool = false;
+            //}
+            
             GUI.BeginGroup(totalRect);
             totalRect.position = Vector2.zero;
             Text.Font = GameFont.Small;
@@ -253,10 +272,6 @@ namespace Psychology
             GUIStyle style = Text.fontStyles[1];
             TextAnchor OldAnchor = Text.Anchor;
 
-            if (!PsycheHelper.PsychologyEnabled(pawn))
-            {
-                return;
-            }
             PawnCached = PawnCached == null ? pawn : PawnCached;
             ShowNumbersBool = ShowNumbers || Prefs.DevMode;
             //CalculateNodeWidth(pawn);
@@ -287,6 +302,9 @@ namespace Psychology
             // Draw the widgets for sexuality panel
             if (PsychologyBase.ActivateKinsey())
             {
+                
+
+
                 string kinseyText = "KinseyRating".Translate() + " " + PsycheHelper.Comp(pawn).Sexuality.kinseyRating;
                 float pawnSexDrive = PsycheHelper.Comp(pawn).Sexuality.AdjustedSexDrive;
                 float pawnRomDrive = PsycheHelper.Comp(pawn).Sexuality.AdjustedRomanticDrive;
@@ -365,27 +383,22 @@ namespace Psychology
                 list.Add(new FloatMenuOption(OptionsText[4], delegate
                 {
                     DistanceFromMiddle = 4;
-                    //PsychologyBase.UpdatePersonalityDisplaySetting();
                 }));
                 list.Add(new FloatMenuOption(OptionsText[3], delegate
                 {
                     DistanceFromMiddle = 3;
-                    //PsychologyBase.UpdatePersonalityDisplaySetting();
                 }));
                 list.Add(new FloatMenuOption(OptionsText[2], delegate
                 {
                     DistanceFromMiddle = 2;
-                    //PsychologyBase.UpdatePersonalityDisplaySetting();
                 }));
                 list.Add(new FloatMenuOption(OptionsText[1], delegate
                 {
                     DistanceFromMiddle = 1;
-                    //PsychologyBase.UpdatePersonalityDisplaySetting();
                 }));
                 list.Add(new FloatMenuOption(OptionsText[0], delegate
                 {
                     DistanceFromMiddle = 0;
-                    //PsychologyBase.UpdatePersonalityDisplaySetting();
                 }));
                 Find.WindowStack.Add(new FloatMenu(list));
             }
@@ -508,16 +521,8 @@ namespace Psychology
                 PersonalityTraitList(personalityRect, pawn);
             }
 
-            //Edit Psyche button
-            //if (Prefs.DevMode || showEditBool)
-            //{
-            //    if (Widgets.ButtonText(editRect, EditText, true, false, true))
-            //    {
-            //        Find.WindowStack.Add(new Dialog_EditPsyche(pawn));
-            //    }
-            //}
             GUI.EndGroup();
-            //PsychologyBase.UpdatePersonalityDisplaySetting();
+            PsychologyBase.UpdatePersonalityDisplaySetting();
         }
 
         public static string ColorizedNodeText(PersonalityNode node, float displacement)
@@ -529,7 +534,6 @@ namespace Psychology
             return nodeText;
         }
 
-        [LogPerformance]
         public static void PersonalityTraitList(Rect personalityRect, Pawn pawn)
         {
             //if (ListTicker % 100 == 0)
@@ -554,9 +558,9 @@ namespace Psychology
             List<string> nodeTextList = new List<string>();
             foreach (PersonalityNode node in PsycheHelper.Comp(pawn).Psyche.PersonalityNodes)
             {
-                float displacement = node.AdjustedRating - 0.5f;
+                float displacement = 2f * node.AdjustedRating - 1f;
                 string nodeText = ColorizedNodeText(node, displacement);
-                float yAxis = UseAntonymsBool ? Mathf.Abs(2f * displacement) : 2f * displacement;
+                float yAxis = UseAntonymsBool ? Mathf.Abs(displacement) : displacement;
                 int category = Mathf.RoundToInt(3f + 3f * yAxis * Mathf.Sqrt(Mathf.Abs(yAxis)));
                 if (Mathf.Abs(category - 3) >= DistanceFromMiddle)
                 {
@@ -694,8 +698,8 @@ namespace Psychology
             //Log.Message("Recompute cloud");
             Ticker = MaxTicks;
             PawnCached = pawn;
-            DistanceFromMiddleCached = DistanceFromMiddle;
-            UseColorsBoolCached = UseColorsBool;
+            //DistanceFromMiddleCached = DistanceFromMiddle;
+            //UseColorsBoolCached = UseColorsBool;
             CloudTextRects.Clear();
             CloudTightRects.Clear();
             CloudTexts.Clear();
@@ -784,6 +788,7 @@ namespace Psychology
             DrawWordCloud();
         }
 
+
         public static void DrawWordCloud()
         {
             Text.Font = GameFont.Medium;
@@ -864,7 +869,7 @@ namespace Psychology
 
         public static Color HSVtoColor(Vector3 HSV)
         {
-            float H = PsycheHelper.Mod(HSV.x, 360f);
+            float H = GenMath.PositiveMod(HSV.x, 360f);
             float S = HSV.y;
             float V = HSV.z;
             float m = V * (1f - S);

@@ -11,7 +11,7 @@ namespace Psychology.Harmony
     [HarmonyPatch(typeof(ThoughtWorker_ChemicalInterestVsTeetotaler), "CurrentSocialStateInternal")]
     public static class ThoughtWorker_ChemicalInterestVsTeetotalerPatch
     {
-        [LogPerformance]
+        //[LogPerformance]
         [HarmonyPostfix]
         public static void Disable(ref ThoughtState __result, Pawn p, Pawn other)
         {

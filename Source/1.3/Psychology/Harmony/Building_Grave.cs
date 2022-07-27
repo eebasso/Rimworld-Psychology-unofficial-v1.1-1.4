@@ -12,7 +12,7 @@ namespace Psychology.Harmony
     [HarmonyPatch(typeof(Building_Grave), nameof(Building_Grave.Notify_CorpseBuried))]
     public static class Building_Grave_NotifyCorpseBuried_Patch
     {
-        [LogPerformance]
+        //[LogPerformance]
         [HarmonyPostfix]
         public static void FillGraveThought(Building_Grave __instance, Pawn worker)
         {
@@ -26,7 +26,7 @@ namespace Psychology.Harmony
     [HarmonyPatch(typeof(Building_Grave), nameof(Building_Grave.Notify_CorpseBuried))]
     public static class Building_Grave_NotifyCorpseBuriedFuneralHook
     {
-        [LogPerformance]
+        //[LogPerformance]
         [HarmonyPostfix]
         public static void PlanFuneral(Building_Grave __instance, Pawn worker)
         {

@@ -16,7 +16,7 @@ namespace Psychology
             return true;
         }
 
-        [LogPerformance]
+        //[LogPerformance]
         private static Toil AbuseTarget(Pawn target)
         {
             Toil toil = new Toil();
@@ -37,7 +37,7 @@ namespace Psychology
             return toil;
         }
 
-        [LogPerformance]
+        //[LogPerformance]
         private static Toil ReachTarget(Pawn target)
         {
             Toil toil = new Toil();

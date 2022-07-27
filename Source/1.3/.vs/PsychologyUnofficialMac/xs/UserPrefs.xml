@@ -7,16 +7,18 @@
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="../../Common/Defs/PersonalityDefs/PersonalityNodes.xml">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Psychology/Main/Elections/MayorUtility.cs">
     <Files>
-      <File FileName="Psychology/Main/Pawn_PsycheTracker.cs" Line="86" Column="35" IsPinned="True" />
-      <File FileName="Psychology/Main/PsycheHelper.cs" Line="138" Column="10" IsPinned="True" />
-      <File FileName="Psychology/Main/Personality/PersonalityNodeParentMatrix.cs" Line="72" Column="64" IsPinned="True" />
-      <File FileName="../../Common/Defs/PersonalityDefs/PersonalityNodes.xml" Line="297" Column="50" IsPinned="True" />
-      <File FileName="Psychology/Main/Personality/PersonalityNode.cs" Line="21" Column="11" />
-      <File FileName="Psychology/Main/EditPsycheUtility.cs" Line="258" Column="49" />
-      <File FileName="Psychology/Main/Personality/PersonalityNodeDef.cs" Line="59" Column="20" />
-      <File FileName="Psychology/Main/PsycheCardUtility.cs" Line="850" Column="94" />
+      <File FileName="Psychology/Main/Elections/LordJob_Joinable_Election.cs" Line="42" Column="84" IsPinned="True" />
+      <File FileName="Psychology/Main/PsycheHelper.cs" Line="20" Column="10" IsPinned="True" />
+      <File FileName="Psychology/Main/Elections/GameCondition_Election.cs" Line="27" Column="71" IsPinned="True" />
+      <File FileName="Psychology/Main/Elections/MayorUtility.cs" Line="15" Column="10" IsPinned="True" />
+      <File FileName="Psychology/PsychologyBase.cs" Line="299" Column="47" IsPinned="True" />
+      <File FileName="Psychology/Main/Elections/LordJob_VisitMayor.cs" Line="1" Column="1" />
+      <File FileName="Psychology/Main/Medical/Hediff_Anxiety.cs" Line="28" Column="74" />
+      <File FileName="Psychology/Main/PsycheCardUtility.cs" Line="41" Column="52" />
+      <File FileName="Psychology/Main/Elections/Hediff_Mayor.cs" Line="1" Column="1" />
+      <File FileName="Psychology/Harmony/InteractionUtility.cs" Line="24" Column="55" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -24,20 +26,28 @@
           <Node name="PsychologyUnofficialMac" expanded="True">
             <Node name="PsychologyMac" expanded="True">
               <Node name="References" expanded="True" />
-              <Node name="Packages" expanded="True" />
               <Node name="Common" expanded="True">
                 <Node name="Defs" expanded="True">
-                  <Node name="PersonalityDefs" expanded="True">
-                    <Node name="PersonalityNodes.xml" selected="True" />
+                  <Node name="HediffDefs" expanded="True" />
+                </Node>
+                <Node name="Languages" expanded="True">
+                  <Node name="English" expanded="True">
+                    <Node name="Keyed" expanded="True" />
+                  </Node>
+                  <Node name="Russian" expanded="True">
+                    <Node name="Keyed" expanded="True" />
                   </Node>
                 </Node>
               </Node>
+              <Node name="Defs" expanded="True" />
               <Node name="Harmony" expanded="True" />
               <Node name="Main" expanded="True">
-                <Node name="Elections" expanded="True" />
-                <Node name="Funerals" expanded="True" />
-                <Node name="MentalStates" expanded="True" />
+                <Node name="Elections" expanded="True">
+                  <Node name="MayorUtility.cs" selected="True" />
+                </Node>
+                <Node name="Medical" expanded="True" />
                 <Node name="Personality" expanded="True" />
+                <Node name="ThoughtWorkers" expanded="True" />
               </Node>
             </Node>
           </Node>

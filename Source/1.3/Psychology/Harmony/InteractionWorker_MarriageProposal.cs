@@ -14,7 +14,7 @@ namespace Psychology.Harmony
 	[HarmonyPatch(typeof(InteractionWorker_MarriageProposal), nameof(InteractionWorker_MarriageProposal.AcceptanceChance))]
 	public static class InteractionWorker_MarriageProposal_AcceptanceChancePatch
     {
-        [LogPerformance]
+        //[LogPerformance]
         [HarmonyPrefix]
 		public static bool PsychologyException(InteractionWorker_MarriageProposal __instance, ref float __result, Pawn initiator, Pawn recipient)
 		{
@@ -105,7 +105,7 @@ namespace Psychology.Harmony
             }
 		}
 
-        [LogPerformance]
+        //[LogPerformance]
         public static void RemovePsychologyThoughts(Pawn initiator, Pawn recipient)
         {
 
@@ -123,7 +123,7 @@ namespace Psychology.Harmony
             }
         }
 
-        [LogPerformance]
+        //[LogPerformance]
         public static void AddPsychRejectedThoughts(Pawn initiator, Pawn recipient)
         {
             if (PsycheHelper.PsychologyEnabled(initiator))
@@ -204,7 +204,7 @@ namespace Psychology.Harmony
             }
         }
 
-        [LogPerformance]
+        //[LogPerformance]
         public static float PsychBreakupChance(Pawn recipient)
         {
             if(recipient.story.traits.HasTrait(TraitDefOfPsychology.Codependent))

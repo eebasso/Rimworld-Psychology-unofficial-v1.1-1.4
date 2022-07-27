@@ -11,7 +11,7 @@ namespace Psychology
 {
     public class InteractionWorker_HangOut : InteractionWorker
     {
-        [LogPerformance]
+        //[LogPerformance]
         public override float RandomSelectionWeight(Pawn initiator, Pawn recipient)
         {
             if (!GatheringsUtility.ShouldGuestKeepAttendingGathering(initiator) || !GatheringsUtility.ShouldGuestKeepAttendingGathering(recipient))
@@ -66,7 +66,7 @@ namespace Psychology
             return 0.05f * initiatorFactor * recipientFactor * scheduleFactor * RendezvousUtility.ColonySizeFactor(initiator);
         }
 
-        [LogPerformance]
+        //[LogPerformance]
         public override void Interacted(Pawn initiator, Pawn recipient, List<RulePackDef> extraSentencePacks, out string letterText, out string letterLabel, out LetterDef letterDef, out LookTargets lookTargets)
         {
             letterText = null;

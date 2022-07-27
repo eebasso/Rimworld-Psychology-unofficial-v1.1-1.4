@@ -16,12 +16,13 @@ namespace Psychology.Harmony
     [HarmonyPatch(nameof(Pawn_StoryTracker.TitleShort), MethodType.Getter)]
     public static class Pawn_StoryTracker_MayorLabel
     {
-        [LogPerformance]
+        //[LogPerformance]
         [HarmonyPostfix]
-        public static void SetMayorLabel(Pawn_StoryTracker __instance, ref String __result)
+        //public static void SetMayorLabel(Pawn_StoryTracker __instance, ref String __result)
+        public static void SetMayorLabel(Pawn ___pawn, ref String __result)
         {
-            Pawn p = Traverse.Create(__instance).Field("pawn").GetValue<Pawn>();
-            if (p != null && p.health.hediffSet.HasHediff(HediffDefOfPsychology.Mayor))
+            //Pawn p = Traverse.Create(__instance).Field("pawn").GetValue<Pawn>();
+            if (___pawn != null && ___pawn.health.hediffSet.HasHediff(HediffDefOfPsychology.Mayor))
             {
                 __result = "MayorTitle".Translate();
             }

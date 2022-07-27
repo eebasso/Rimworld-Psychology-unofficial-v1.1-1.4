@@ -16,7 +16,7 @@ namespace Psychology
             return RandomSocialMode.Off;
         }
 
-        [LogPerformance]
+        //[LogPerformance]
         public override void MentalStateTick()
         {
             base.MentalStateTick();

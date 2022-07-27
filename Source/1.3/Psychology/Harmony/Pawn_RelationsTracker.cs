@@ -13,7 +13,7 @@ namespace Psychology.Harmony
     [HarmonyPatch(typeof(Pawn_RelationsTracker), nameof(Pawn_RelationsTracker.Notify_RescuedBy))]
     public static class Notify_RescuedBy_BleedingHeartPatch
     {
-        [LogPerformance]
+        //[LogPerformance]
         [HarmonyPostfix]
         public static void AddBleedingHeartThought(Pawn_RelationsTracker __instance, Pawn rescuer)
         {
@@ -27,7 +27,7 @@ namespace Psychology.Harmony
     [HarmonyPatch(typeof(Pawn_RelationsTracker), nameof(Pawn_RelationsTracker.SecondaryLovinChanceFactor))]
     public static class Pawn_RelationsTracker_LovinChancePatch
     {
-        [LogPerformance]
+        //[LogPerformance]
         [HarmonyPostfix]
         public static void PsychologyFormula(Pawn_RelationsTracker __instance, ref float __result, Pawn otherPawn)
         {
@@ -206,7 +206,7 @@ namespace Psychology.Harmony
     //[HarmonyPatch(typeof(Pawn_RelationsTracker), nameof(Pawn_RelationsTracker.SecondaryRomanceChanceFactor))]
     //public static class Pawn_RelationsTracker_RomanceChancePatch
     //{
-    //    [LogPerformance]
+    //    //[LogPerformance]
     //    [HarmonyPostfix]
     //    public static void PsychologyFormula(Pawn_RelationsTracker __instance, ref float __result, Pawn otherPawn)
     //    {

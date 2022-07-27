@@ -10,7 +10,7 @@ namespace Psychology
 {
     public class MentalStateWorker_FellPlotting : MentalStateWorker
     {
-        [LogPerformance]
+        //[LogPerformance]
         public override bool StateCanOccur(Pawn pawn)
         {
             if (pawn.Map == null)
