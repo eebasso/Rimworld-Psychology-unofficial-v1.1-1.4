@@ -105,21 +105,32 @@ namespace Psychology.Harmony
         [HarmonyPriority(Priority.Last)]
         public static void PsychologyFormula(ref float __result, Pawn pawn, Pawn partner)
         {
-            float hours = __result;
-            // Minimum age for lovin is 16
-            if (pawn.ageTracker.AgeBiologicalYearsFloat < 16f || partner.ageTracker.AgeBiologicalYearsFloat < 16f)
-            {
-                __result = -1f;
-                return;
-            }
-            float modifier = 1f;
-            if (PsycheHelper.PsychologyEnabled(pawn))
-            {
-                modifier = 0.1f + 1.25f * Mathf.Pow(PsycheHelper.Comp(pawn).Sexuality.AdjustedSexDrive, 2) + 0.25f * PsycheHelper.Comp(pawn).Sexuality.AdjustedRomanticDrive;
-                modifier *= 0.1f + 1.25f * Mathf.Pow(PsycheHelper.Comp(partner).Sexuality.AdjustedSexDrive, 2) + 0.25f * PsycheHelper.Comp(partner).Sexuality.AdjustedRomanticDrive;
-            }
-            __result = hours / modifier;
+            __result *= FixPawnPartnerFactor(pawn, partner);
+            __result *= FixPawnPartnerFactor(partner, pawn);
         }
+
+        public static float FixPawnPartnerFactor(Pawn pawn, Pawn partner)
+        {
+            if (!PsycheHelper.PsychologyEnabled(pawn))
+            {
+                return 1f;
+            }
+            float factor = 1f;
+            // Undo age factor from original formula
+            factor *= GenMath.FlatHill(0f, 14f, 16f, 25f, 80f, 0.2f, pawn.ageTracker.AgeBiologicalYearsFloat);
+            // Use adjusted drive factors, which account for age
+            factor /= 0.01f + 1.25f * Mathf.Pow(PsycheHelper.Comp(pawn).Sexuality.AdjustedSexDrive, 2) + 0.25f * PsycheHelper.Comp(pawn).Sexuality.AdjustedRomanticDrive;
+
+            // Undo secondary lovin chance factor ?
+            factor *= Mathf.Max(pawn.relations.SecondaryLovinChanceFactor(partner), 0.1f);
+
+            // Chasted pawns will want less lovin
+            float pure = PsycheHelper.Comp(pawn).Psyche.GetPersonalityRating(PersonalityNodeDefOf.Pure);
+            factor *= Mathf.Pow(8f, pure - 0.5f);
+
+            return factor;
+        }
+
     }
 
 }

@@ -138,11 +138,8 @@ namespace Psychology
                     cTen0[s] += 0.2f * tenAspectsWeights[t][i] * tenAspectsWeights[t + 1][j];
                     cTen0[s] += 0.2f * tenAspectsWeights[t + 1][i] * tenAspectsWeights[t][j];
                 }
-                cTen0[s] *= 0.85f;
-                if (s % (order + 1) == 0)
-                {
-                    cTen0[s] += 0.15f;
-                }
+                cTen0[s] *= 0.95f;
+                cTen0[s] += (s % (order + 1) == 0) ? 0.05f : 0f;
             }
 
             //Log.Message("Get nearest correlation matrix");
@@ -172,8 +169,8 @@ namespace Psychology
             float[] C = NearCorr(cMix);
             for (int s = 0; s < size; s++)
             {
-                C[s] *= 0.85f;
-                C[s] += (s % (order + 1) == 0) ? 0.15f : 0f;
+                C[s] *= 0.95f;
+                C[s] += (s % (order + 1) == 0) ? 0.05f : 0f;
             }
             Log.Message("Start Decomposition");
             (float[] V, float[] d) = EigenDecomp(C, order);
@@ -192,12 +189,12 @@ namespace Psychology
             //Log.Message("Eigenvalues of cTen1 = " + string.Join(", ", dten1.Reverse()));
             Log.Message("Eigenvalues of C = " + string.Join(", ", d.Reverse()));
 
-            string bigFiveVariances = "Big five variances = ";
+            //string bigFiveVariances = "Big five variances = ";
             for (int bf = 0; bf < 5; bf++)
             {
                 float variance = DotProduct(bigFiveVectors[bf], MatrixVectorProduct(C, bigFiveVectors[bf]));
                 bigFiveStandardDevInvs[bf] = 1f / Mathf.Sqrt(variance);
-                bigFiveVariances += variance + ", ";
+                //bigFiveVariances += variance + ", ";
             }
             //Log.Message(bigFiveVariances);
 

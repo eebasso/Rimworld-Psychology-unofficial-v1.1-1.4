@@ -1,55 +1,10 @@
 ﻿<Properties>
-  <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="/Users/edwardbasso/Library/Application Support/Steam/steamapps/common/RimWorld/RimWorldMac.app/Mods/Rimworld-Psychology-unofficial-v1.1-1.3/Source/1.3/Psychology/Main/Personality/PersonalityNodeMatrix.cs" relfile="Psychology/Main/Personality/PersonalityNodeMatrix.cs" line="4" column="1" />
-    </BreakpointStore>
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Psychology/Main/Elections/MayorUtility.cs">
-    <Files>
-      <File FileName="Psychology/Main/Elections/LordJob_Joinable_Election.cs" Line="42" Column="84" IsPinned="True" />
-      <File FileName="Psychology/Main/PsycheHelper.cs" Line="20" Column="10" IsPinned="True" />
-      <File FileName="Psychology/Main/Elections/GameCondition_Election.cs" Line="27" Column="71" IsPinned="True" />
-      <File FileName="Psychology/Main/Elections/MayorUtility.cs" Line="15" Column="10" IsPinned="True" />
-      <File FileName="Psychology/PsychologyBase.cs" Line="299" Column="47" IsPinned="True" />
-      <File FileName="Psychology/Main/Elections/LordJob_VisitMayor.cs" Line="1" Column="1" />
-      <File FileName="Psychology/Main/Medical/Hediff_Anxiety.cs" Line="28" Column="74" />
-      <File FileName="Psychology/Main/PsycheCardUtility.cs" Line="41" Column="52" />
-      <File FileName="Psychology/Main/Elections/Hediff_Mayor.cs" Line="1" Column="1" />
-      <File FileName="Psychology/Harmony/InteractionUtility.cs" Line="24" Column="55" />
-    </Files>
+  <MonoDevelop.Ide.Workbench>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="PsychologyUnofficialMac" expanded="True">
-            <Node name="PsychologyMac" expanded="True">
-              <Node name="References" expanded="True" />
-              <Node name="Common" expanded="True">
-                <Node name="Defs" expanded="True">
-                  <Node name="HediffDefs" expanded="True" />
-                </Node>
-                <Node name="Languages" expanded="True">
-                  <Node name="English" expanded="True">
-                    <Node name="Keyed" expanded="True" />
-                  </Node>
-                  <Node name="Russian" expanded="True">
-                    <Node name="Keyed" expanded="True" />
-                  </Node>
-                </Node>
-              </Node>
-              <Node name="Defs" expanded="True" />
-              <Node name="Harmony" expanded="True" />
-              <Node name="Main" expanded="True">
-                <Node name="Elections" expanded="True">
-                  <Node name="MayorUtility.cs" selected="True" />
-                </Node>
-                <Node name="Medical" expanded="True" />
-                <Node name="Personality" expanded="True" />
-                <Node name="ThoughtWorkers" expanded="True" />
-              </Node>
-            </Node>
+            <Node name="PsychologyMac" expanded="True" />
           </Node>
         </State>
       </Pad>
@@ -58,4 +13,12 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="/Users/edwardbasso/Library/Application Support/Steam/steamapps/common/RimWorld/RimWorldMac.app/Mods/Rimworld-Psychology-unofficial-v1.1-1.3/Source/1.3/Psychology/Main/Personality/PersonalityNodeMatrix.cs" relfile="Psychology/Main/Personality/PersonalityNodeMatrix.cs" line="4" column="1" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

@@ -28,6 +28,32 @@
 				<weight>1</weight>
             </li>
         </tenAspects>
+		<preceptCertaintyModifiers>
+			<li>
+				<precept>Lovin_Prohibited</precept>
+				<modifier>-2</modifier>
+            </li>
+			<li>
+				<precept>Lovin_Horrible</precept>
+				<modifier>-1.5</modifier>
+            </li>
+			<li>
+				<precept>Lovin_SpouseOnly_Strict</precept>
+				<modifier>-1</modifier>
+            </li>
+			<li>
+				<precept>Lovin_SpouseOnly_Moderate</precept>
+				<modifier>-0.5</modifier>
+            </li>
+			<li>
+				<precept>Lovin_SpouseOnly_Mild</precept>
+				<modifier>0</modifier>
+            </li>
+			<li>
+				<precept>Lovin_FreeApproved</precept>
+				<modifier>1</modifier>
+            </li>
+        </preceptCertaintyModifiers>
 	</Psychology.PersonalityNodeDef>
 
 	<Psychology.PersonalityNodeDef>
@@ -139,6 +165,30 @@
 				<weight>0.5</weight>
             </li>
         </tenAspects>
+		<memeCertaintyModifiers>
+			<li>
+				<meme>HighLife</meme>
+				<modifier>0.5</modifier>
+            </li>
+        </memeCertaintyModifiers>
+		<preceptCertaintyModifiers>
+			<li>
+				<precept>DrugUse_Prohibited</precept>
+				<modifier>-2</modifier>
+            </li>
+			<li>
+				<precept>DrugUse_MedicalOnly</precept>
+				<modifier>-1</modifier>
+            </li>
+			<li>
+				<precept>DrugUse_MedicalOrSocial</precept>
+				<modifier>-0.5</modifier>
+            </li>
+			<li>
+				<precept>DrugUse_Essential</precept>
+				<modifier>2</modifier>
+            </li>
+        </preceptCertaintyModifiers>
 	</Psychology.PersonalityNodeDef>
 
 	<Psychology.PersonalityNodeDef>
@@ -377,6 +427,54 @@
 				<weight>-1</weight>
             </li>
         </tenAspects>
+		<memeCertaintyModifiers>
+			<li>
+				<meme>Nudism</meme>
+				<modifier>1.5</modifier>
+            </li>
+        </memeCertaintyModifiers>
+		<preceptCertaintyModifiers>
+			<li>
+				<precept>Lovin_Prohibited</precept>
+				<modifier>2</modifier>
+            </li>
+			<li>
+				<precept>Lovin_Horrible</precept>
+				<modifier>1.5</modifier>
+            </li>
+			<li>
+				<precept>Lovin_SpouseOnly_Strict</precept>
+				<modifier>0.5</modifier>
+            </li>
+			<li>
+				<precept>Lovin_SpouseOnly_Moderate</precept>
+				<modifier>0.5</modifier>
+            </li>
+			<li>
+				<precept>Lovin_SpouseOnly_Mild</precept>
+				<modifier>-0.5</modifier>
+            </li>
+			<li>
+				<precept>Lovin_FreeApproved</precept>
+				<modifier>-2</modifier>
+            </li>
+			<li>
+				<precept>DrugUse_Prohibited</precept>
+				<modifier>0.5</modifier>
+            </li>
+			<li>
+				<precept>DrugUse_MedicalOnly</precept>
+				<modifier>0.25</modifier>
+            </li>
+			<li>
+				<precept>DrugUse_MedicalOrSocial</precept>
+				<modifier>0.15</modifier>
+            </li>
+			<li>
+				<precept>DrugUse_Essential</precept>
+				<modifier>-0.5</modifier>
+            </li>
+        </preceptCertaintyModifiers>
 	</Psychology.PersonalityNodeDef>
 
 	<!-- Big Five: Openness to experience / 10 Aspects: Intellect -->
@@ -413,6 +511,12 @@
 				<weight>1</weight>
             </li>
         </tenAspects>
+		<preceptCertaintyModifiers>
+			<li>
+				<precept>NeuralSupercharge_Preferred</precept>
+				<modifier>1</modifier>
+            </li>
+        </preceptCertaintyModifiers>
 	</Psychology.PersonalityNodeDef>
 
 	<Psychology.PersonalityNodeDef>
@@ -498,6 +602,32 @@
 				<weight>-0.6</weight>
             </li>
         </tenAspects>
+		<preceptCertaintyModifiers>
+			<li>
+				<precept>Research_None</precept>
+				<modifier>-2</modifier>
+            </li>
+			<li>
+				<precept>Research_ExtremelySlow</precept>
+				<modifier>-1.5</modifier>
+            </li>
+			<li>
+				<precept>Research_VerySlow</precept>
+				<modifier>-1</modifier>
+            </li>
+			<li>
+				<precept>Research_Slow</precept>
+				<modifier>-0.5</modifier>
+            </li>
+			<li>
+				<precept>Research_Fast</precept>
+				<modifier>0.5</modifier>
+            </li>
+			<li>
+				<precept>Research_VeryFast</precept>
+				<modifier>1</modifier>
+            </li>
+        </preceptCertaintyModifiers>
 	</Psychology.PersonalityNodeDef>
 
 	<Psychology.PersonalityNodeDef>
@@ -576,6 +706,32 @@
 				<weight>0.5</weight>
             </li>
         </tenAspects>
+		<preceptCertaintyModifiers>
+			<li>
+				<precept>Research_None</precept>
+				<modifier>-2</modifier>
+            </li>
+			<li>
+				<precept>Research_ExtremelySlow</precept>
+				<modifier>-1.5</modifier>
+            </li>
+			<li>
+				<precept>Research_VerySlow</precept>
+				<modifier>-1</modifier>
+            </li>
+			<li>
+				<precept>Research_Slow</precept>
+				<modifier>-0.5</modifier>
+            </li>
+			<li>
+				<precept>Research_Fast</precept>
+				<modifier>0.5</modifier>
+            </li>
+			<li>
+				<precept>Research_VeryFast</precept>
+				<modifier>1</modifier>
+            </li>
+        </preceptCertaintyModifiers>
 	</Psychology.PersonalityNodeDef>
 
 	<Psychology.PersonalityNodeDef>
@@ -894,6 +1050,12 @@
 				<weight>1</weight>
             </li>
         </tenAspects>
+		<preceptCertaintyModifiers>
+			<li>
+				<precept>WorkDrive_Tripled</precept>
+				<modifier>1</modifier>
+            </li>
+        </preceptCertaintyModifiers>
 	</Psychology.PersonalityNodeDef>
 
 	<Psychology.PersonalityNodeDef>
@@ -1095,6 +1257,38 @@
 				<weight>-0.32</weight>
             </li>
         </tenAspects>
+		<memeCertaintyModifiers>
+			<li>
+				<meme>Individualist</meme>
+				<modifier>2</modifier>
+            </li>
+			<li>
+				<meme>Collectivist</meme>
+				<modifier>-2</modifier>
+            </li>
+        </memeCertaintyModifiers>
+		<preceptCertaintyModifiers>
+			<li>
+				<precept>MarriageName_AlwaysMans</precept>
+				<modifier>-0.5</modifier>
+            </li>
+			<li>
+				<precept>MarriageName_Random</precept>
+				<modifier>-0.25</modifier>
+            </li>
+			<li>
+				<precept>MarriageName_KeepNames</precept>
+				<modifier>0.5</modifier>
+            </li>
+			<li>
+				<precept>MarriageName_UsuallyWomans</precept>
+				<modifier>-0.4</modifier>
+            </li>
+			<li>
+				<precept>MarriageName_AlwaysWomans</precept>
+				<modifier>-0.5</modifier>
+            </li>
+        </preceptCertaintyModifiers>
 	</Psychology.PersonalityNodeDef>
 
 	<!-- Big Five: Conscientiousness /  10 Aspects: Orderliness -->
@@ -1866,6 +2060,20 @@
 				<weight>1</weight>
             </li>
         </tenAspects>
+		<preceptCertaintyModifiers>
+			<li>
+				<precept>Proselytizing_Occasionally</precept>
+				<modifier>0.67</modifier>
+            </li>
+			<li>
+				<precept>Proselytizing_Sometimes</precept>
+				<modifier>1.33</modifier>
+            </li>
+			<li>
+				<precept>Proselytizing_Frequently</precept>
+				<modifier>2</modifier>
+            </li>
+        </preceptCertaintyModifiers>
 	</Psychology.PersonalityNodeDef>
 
 	<Psychology.PersonalityNodeDef>
@@ -2084,6 +2292,64 @@
 				<weight>1</weight>
             </li>
         </tenAspects>
+		<preceptCertaintyModifiers>
+			<li>
+				<precept>Execution_Abhorrent</precept>
+				<modifier>2</modifier>
+            </li>
+			<li>
+				<precept>Execution_Horrible</precept>
+				<modifier>1</modifier>
+            </li>
+			<li>
+				<precept>Execution_HorribleIfInnocent</precept>
+				<modifier>1</modifier>
+            </li>
+			<li>
+				<precept>Execution_DontCare</precept>
+				<modifier>-1</modifier>
+            </li>
+			<li>
+				<precept>Execution_RespectedIfGuilty</precept>
+				<modifier>-0.5</modifier>
+            </li>
+			<li>
+				<precept>OrganUse_Abhorrent</precept>
+				<modifier>1</modifier>
+            </li>
+			<li>
+				<precept>OrganUse_Acceptable</precept>
+				<modifier>-1</modifier>
+            </li>
+			<li>
+				<precept>Skullspike_Desired</precept>
+				<modifier>-0.5</modifier>
+            </li>
+			<li>
+				<precept>Slavery_Abhorrent</precept>
+				<modifier>2</modifier>
+            </li>
+			<li>
+				<precept>Slavery_Horrible</precept>
+				<modifier>1</modifier>
+            </li>
+			<li>
+				<precept>Slavery_Acceptable</precept>
+				<modifier>-1</modifier>
+            </li>
+			<li>
+				<precept>Slavery_Honorable</precept>
+				<modifier>-2</modifier>
+            </li>
+			<li>
+				<precept>Raiding_Respected</precept>
+				<modifier>-1</modifier>
+            </li>
+			<li>
+				<precept>Raiding_Required</precept>
+				<modifier>-1.5</modifier>
+            </li>
+        </preceptCertaintyModifiers>
 	</Psychology.PersonalityNodeDef>
 
 	<Psychology.PersonalityNodeDef>
@@ -2149,6 +2415,28 @@
 				<weight>1</weight>
             </li>
         </tenAspects>
+		<preceptCertaintyModifiers>
+			<li>
+				<precept>Skullspike_Desired</precept>
+				<modifier>-0.5</modifier>
+            </li>
+			<li>
+				<precept>Slavery_Abhorrent</precept>
+				<modifier>2</modifier>
+            </li>
+			<li>
+				<precept>Slavery_Horrible</precept>
+				<modifier>1</modifier>
+            </li>
+			<li>
+				<precept>Slavery_Acceptable</precept>
+				<modifier>-1</modifier>
+            </li>
+			<li>
+				<precept>Slavery_Honorable</precept>
+				<modifier>-2</modifier>
+            </li>
+        </preceptCertaintyModifiers>
 	</Psychology.PersonalityNodeDef>
 
 	<Psychology.PersonalityNodeDef>
@@ -2419,6 +2707,64 @@
 				<weight>0.7</weight>
             </li>
         </tenAspects>
+		<preceptCertaintyModifiers>
+			<li>
+				<precept>Cannibalism_Abhorrent</precept>
+				<modifier>0.3</modifier>
+            </li>
+			<li>
+				<precept>Cannibalism_Horrible</precept>
+				<modifier>0.2</modifier>
+            </li>
+			<li>
+				<precept>Cannibalism_Disapproved</precept>
+				<modifier>0.1</modifier>
+            </li>
+			<li>
+				<precept>Cannibalism_Acceptable</precept>
+				<modifier>-0.5</modifier>
+            </li>
+			<li>
+				<precept>Cannibalism_Preferred</precept>
+				<modifier>-1</modifier>
+            </li>
+			<li>
+				<precept>Cannibalism_RequiredStrong</precept>
+				<modifier>-1.5</modifier>
+            </li>
+			<li>
+				<precept>Execution_HorribleIfInnocent</precept>
+				<modifier>1</modifier>
+            </li>
+			<li>
+				<precept>OrganUse_Acceptable</precept>
+				<modifier>-1</modifier>
+            </li>
+			<li>
+				<precept>Slavery_Abhorrent</precept>
+				<modifier>2</modifier>
+            </li>
+			<li>
+				<precept>Slavery_Horrible</precept>
+				<modifier>1</modifier>
+            </li>
+			<li>
+				<precept>Slavery_Acceptable</precept>
+				<modifier>-1</modifier>
+            </li>
+			<li>
+				<precept>Slavery_Honorable</precept>
+				<modifier>-2</modifier>
+            </li>
+			<li>
+				<precept>Raiding_Respected</precept>
+				<modifier>-1</modifier>
+            </li>
+			<li>
+				<precept>Raiding_Required</precept>
+				<modifier>-1.5</modifier>
+            </li>
+        </preceptCertaintyModifiers>
 	</Psychology.PersonalityNodeDef>
 
 	<Psychology.PersonalityNodeDef>
@@ -2642,6 +2988,20 @@
 				<weight>0</weight>
             </li>-->
         </tenAspects>
+		<preceptCertaintyModifiers>
+			<li>
+				<precept>Charity_Essential</precept>
+				<modifier>3</modifier>
+            </li>
+			<li>
+				<precept>Charity_Important</precept>
+				<modifier>2</modifier>
+            </li>
+			<li>
+				<precept>Charity_Worthwhile</precept>
+				<modifier>1</modifier>
+            </li>
+        </preceptCertaintyModifiers>
 	</Psychology.PersonalityNodeDef>
 
 	<!-- Big Five: Agreeableness / 10 Aspects: Politeness -->
@@ -2869,6 +3229,30 @@
 				<weight>0.5</weight>
             </li>
         </tenAspects>
+		<memeCertaintyModifiers>
+			<li>
+				<meme>Raider</meme>
+				<modifier>2</modifier>
+            </li>
+			<li>
+				<meme>Supremacist</meme>
+				<modifier>2</modifier>
+            </li>
+        </memeCertaintyModifiers>
+		<preceptCertaintyModifiers>
+			<li>
+				<precept>Skullspike_Desired</precept>
+				<modifier>1</modifier>
+            </li>
+			<li>
+				<precept>Raiding_Respected</precept>
+				<modifier>1</modifier>
+            </li>
+			<li>
+				<precept>Raiding_Required</precept>
+				<modifier>1.5</modifier>
+            </li>
+        </preceptCertaintyModifiers>
 	</Psychology.PersonalityNodeDef>
 
 	<Psychology.PersonalityNodeDef>
@@ -2958,6 +3342,38 @@
 				<weight>0.6</weight>
             </li>
         </tenAspects>
+		<memeCertaintyModifiers>
+			<li>
+				<meme>Individualist</meme>
+				<modifier>2</modifier>
+            </li>
+			<li>
+				<meme>Collectivist</meme>
+				<modifier>-2</modifier>
+            </li>
+			<li>
+				<meme>Raider</meme>
+				<modifier>1</modifier>
+            </li>
+			<li>
+				<meme>Supremacist</meme>
+				<modifier>2</modifier>
+            </li>
+        </memeCertaintyModifiers>
+		<preceptCertaintyModifiers>
+			<li>
+				<precept>Execution_RespectedIfGuilty</precept>
+				<modifier>1</modifier>
+            </li>
+			<li>
+				<precept>Raiding_Respected</precept>
+				<modifier>1</modifier>
+            </li>
+			<li>
+				<precept>Raiding_Required</precept>
+				<modifier>1.5</modifier>
+            </li>
+        </preceptCertaintyModifiers>
 	</Psychology.PersonalityNodeDef>
 
 	<!-- Big Five: Neuroticism / 10 Aspects: Volatility -->
@@ -3018,6 +3434,20 @@
 				<weight>0.6</weight>
             </li>
         </tenAspects>
+		<preceptCertaintyModifiers>
+			<li>
+				<precept>Scarification_Extreme</precept>
+				<modifier>-1</modifier>
+            </li>
+			<li>
+				<precept>Scarification_Heavy</precept>
+				<modifier>-0.66</modifier>
+            </li>
+			<li>
+				<precept>Scarification_Minor</precept>
+				<modifier>-0.33</modifier>
+            </li>
+        </preceptCertaintyModifiers>
 	</Psychology.PersonalityNodeDef>
 
 	<Psychology.PersonalityNodeDef>
@@ -3269,6 +3699,54 @@
 				<weight>1</weight>
             </li>
         </tenAspects>
+		<memeCertaintyModifiers>
+			<li>
+				<meme>Loyalist</meme>
+				<modifier>2</modifier>
+            </li>
+        </memeCertaintyModifiers>
+		<preceptCertaintyModifiers>
+			<li>
+				<precept>IdeoDiversity_Abhorrent</precept>
+				<modifier>2</modifier>
+            </li>
+			<li>
+				<precept>IdeoDiversity_Horrible</precept>
+				<modifier>1</modifier>
+            </li>
+			<li>
+				<precept>IdeoDiversity_Disapproved</precept>
+				<modifier>0.5</modifier>
+            </li>
+			<li>
+				<precept>IdeoDiversity_Standard</precept>
+				<modifier>0</modifier>
+            </li>
+			<li>
+				<precept>IdeoDiversity_Approved</precept>
+				<modifier>-0.5</modifier>
+            </li>
+			<li>
+				<precept>IdeoDiversity_Respected</precept>
+				<modifier>-1</modifier>
+            </li>
+			<li>
+				<precept>IdeoDiversity_Exalted</precept>
+				<modifier>-2</modifier>
+            </li>
+			<li>
+				<precept>Apostasy_Abhorrent</precept>
+				<modifier>1.5</modifier>
+            </li>
+			<li>
+				<precept>Apostasy_Horrible</precept>
+				<modifier>1</modifier>
+            </li>
+			<li>
+				<precept>Apostasy_Disapproved</precept>
+				<modifier>0.5</modifier>
+            </li>
+        </preceptCertaintyModifiers>
 	</Psychology.PersonalityNodeDef>
 
 	<!-- Big Five: Neuroticism / 10 Aspects: Withdrawal -->
@@ -3402,6 +3880,66 @@
 				<weight>0.7</weight>
             </li>
         </tenAspects>
+		<memeCertaintyModifiers>
+			<li>
+				<meme>FleshPurity</meme>
+				<modifier>0.5</modifier>
+            </li>
+			<li>
+				<meme>Guilty</meme>
+				<modifier>0.5</modifier>
+            </li>
+			<li>
+				<meme>Transhumanist</meme>
+				<modifier>0.5</modifier>
+            </li>
+        </memeCertaintyModifiers>
+		<preceptCertaintyModifiers>
+			<li>
+				<precept>Research_None</precept>
+				<modifier>2</modifier>
+            </li>
+			<li>
+				<precept>Research_ExtremelySlow</precept>
+				<modifier>1.5</modifier>
+            </li>
+			<li>
+				<precept>Research_VerySlow</precept>
+				<modifier>1</modifier>
+            </li>
+			<li>
+				<precept>Research_Slow</precept>
+				<modifier>0.5</modifier>
+            </li>
+			<li>
+				<precept>Research_Fast</precept>
+				<modifier>-0.5</modifier>
+            </li>
+			<li>
+				<precept>Research_VeryFast</precept>
+				<modifier>-1</modifier>
+            </li>
+			<li>
+				<precept>BodyMod_Abhorrent</precept>
+				<modifier>1</modifier>
+            </li>
+			<li>
+				<precept>BodyMod_Disapproved</precept>
+				<modifier>0.5</modifier>
+            </li>
+			<li>
+				<precept>BodyMod_Approved</precept>
+				<modifier>-0.5</modifier>
+            </li>
+			<li>
+				<precept>AgeReversal_Demanded</precept>
+				<modifier>-1</modifier>
+            </li>
+			<li>
+				<precept>BioSculpter_Despised</precept>
+				<modifier>1</modifier>
+            </li>
+        </preceptCertaintyModifiers>
 	</Psychology.PersonalityNodeDef>
 
 </Defs>

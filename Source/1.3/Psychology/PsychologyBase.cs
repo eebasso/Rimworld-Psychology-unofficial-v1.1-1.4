@@ -179,20 +179,6 @@ namespace Psychology
             return traitOpinionMultplierConfig;
         }
 
-        //public float TraitOpinionMultiplier
-        //{
-        //    get
-        //    {
-        //        return traitOpinionMultplierConfig;
-        //    }
-        //    set
-        //    {
-        //        traitOpinionMultplierConfig = value;
-        //    }
-        //}
-
-
-
         //static public bool EnablePerformanceTesting()
         //{
         //    return new PsychologyBase().Settings.GetHandle<bool>("Benchmarking", "BenchmarkingTitle".Translate(), "BenchmarkingTooltip".Translate(), false).Value;
@@ -295,11 +281,10 @@ namespace Psychology
             imprisonedDebuff = Settings.GetHandle<bool>("ImprisonedOpinion", "ImprisonedTitle".Translate(), "ImprisonedTooltip".Translate(), true);
             anxiety = Settings.GetHandle<bool>("AllowAnxiety", "AllowAnxietyTitle".Translate(), "AllowAnxietyTooltip".Translate(), true);
             romanceChanceMultiplier = Settings.GetHandle<float>("RomanceChanceMultiplier", "RomanceMultiplierTitle".Translate(), "RomanceMultiplierTooltip".Translate(), 1f, (String s) => float.Parse(s) >= 0f);
-            romanceChanceThreshold = Settings.GetHandle<float>("RomanceChanceThreshold", "RomanceChanceThresholdTitle".Translate(), "RomanceChanceThresholdTooltip".Translate(), 5f);
+            romanceChanceThreshold = Settings.GetHandle<float>("RomanceChanceThreshold", "RomanceChanceThresholdTitle".Translate(), "RomanceChanceThresholdTooltip".Translate(), 5f, (String s) => float.Parse(s) >= -90f && float.Parse(s) <= 90f);
             mayorAge = Settings.GetHandle<float>("MayorAge", "MayorAgeTitle".Translate(), "MayorAgeTooltip".Translate(), 20f, (String s) => float.Parse(s) >= 0.1f);
-
             // 1.3 configs
-            traitOpinionMultplier = Settings.GetHandle<float>("TraitOpinionMultplier", "TraitOpinionMultplierTitle".Translate(), "TraitOpinionMultplierTooltip".Translate(), 0.25f, (String s) => float.Parse(s) >= 0f && float.Parse(s) <= 5f);
+            traitOpinionMultplier = Settings.GetHandle<float>("TraitOpinionMultplier", "TraitOpinionMultplierTitle".Translate(), "TraitOpinionMultplierTooltip".Translate(), 0.25f, (String s) => float.Parse(s) >= 0f && float.Parse(s) <= 2f);
 
             DistanceFromMiddleSettingsHandle = Settings.GetHandle("DisplayOptions", "DisplayOptionsTitle", "DisplayOptionsDesc", (byte)4);
             DistanceFromMiddleSettingsHandle.NeverVisible = true;
@@ -336,29 +321,15 @@ namespace Psychology
             traitOpinionMultplierConfig = traitOpinionMultplier.Value; //1.3
 
             PsycheCardUtility.DistanceFromMiddle = DistanceFromMiddleSettingsHandle.Value; //1.3
-            PsycheCardUtility.UseColorsBool = UseColorsSettingsHandle.Value; //1.3
-            PsycheCardUtility.AlphabeticalBool = ListAlphabeticalSettingsHandle.Value; //1.3
-            PsycheCardUtility.UseAntonymsBool = UseAntonymsSettingsHandle.Value; //1.3
             PsycheCardUtility.DistanceFromMiddleCached = PsycheCardUtility.DistanceFromMiddle;
+            PsycheCardUtility.UseColorsBool = UseColorsSettingsHandle.Value; //1.3
             PsycheCardUtility.UseColorsBoolCached = PsycheCardUtility.UseColorsBool;
+            PsycheCardUtility.AlphabeticalBool = ListAlphabeticalSettingsHandle.Value; //1.3
             PsycheCardUtility.AlphabeticalBoolCached = PsycheCardUtility.AlphabeticalBool;
+            PsycheCardUtility.UseAntonymsBool = UseAntonymsSettingsHandle.Value; //1.3
             PsycheCardUtility.UseAntonymsBoolCached = PsycheCardUtility.UseAntonymsBool;
 
-            /* Mod conflict detection */
-            /*
-            TraitDef bisexual = DefDatabase<TraitDef>.GetNamedSilentFail("Bisexual");
-            TraitDef asexual = DefDatabase<TraitDef>.GetNamedSilentFail("Asexual");
-            if (bisexual != null || !toggleKinsey)
-            {
-                if (toggleKinsey)
-                {
-                    Logger.Message("KinseyDisable".Translate());
-                }
-                kinsey = false;
-            }
-            */
             /* Conditional vanilla Def edits */
-
             ThoughtDef knowGuestExecuted = AddNullifyingTraits("KnowGuestExecuted", new TraitDef[] { TraitDefOfPsychology.BleedingHeart });
             if (knowGuestExecuted != null && toggleEmpathy)
             {
@@ -418,14 +389,12 @@ namespace Psychology
             /* ThingDef injection reworked by notfood */
             var zombieThinkTree = DefDatabase<ThinkTreeDef>.GetNamedSilentFail("Zombie");
 
-            IEnumerable<ThingDef> things = (
-                from def in DefDatabase<ThingDef>.AllDefs
-                where def.race?.intelligence == Intelligence.Humanlike
-                && !def.defName.Contains("AIPawn") && !def.defName.Contains("Robot")
-                && !def.defName.Contains("ChjDroid") && !def.defName.Contains("ChjBattleDroid")
-                && (zombieThinkTree == null || def.race.thinkTreeMain != zombieThinkTree)
-                select def
-            );
+            IEnumerable<ThingDef> things = from def in DefDatabase<ThingDef>.AllDefs
+                                           where def.race?.intelligence == Intelligence.Humanlike
+                                           && !def.defName.Contains("AIPawn") && !def.defName.Contains("Robot")
+                                           && !def.defName.Contains("ChjDroid") && !def.defName.Contains("ChjBattleDroid")
+                                           && (zombieThinkTree == null || def.race.thinkTreeMain != zombieThinkTree)
+                                           select def;
 
             List<string> registered = new List<string>();
             foreach (ThingDef t in things)
@@ -570,7 +539,10 @@ namespace Psychology
             {
                 Map playerFactionMap = Find.WorldObjects.SettlementBases.Find(b => b.Faction.IsPlayer).Map;
                 IEnumerable<Pawn> constituents = from p in playerFactionMap.mapPawns.FreeColonistsSpawned
-                                                 where !p.health.hediffSet.HasHediff(HediffDefOfPsychology.Mayor) && p.GetLord() == null && p.GetTimeAssignment() != TimeAssignmentDefOf.Work && p.Awake() && !p.Downed && !p.Drafted && p.health.summaryHealth.SummaryHealthPercent >= 1f && PsycheHelper.PsychologyEnabled(p)
+                                                 where !p.health.hediffSet.HasHediff(HediffDefOfPsychology.Mayor)
+                                                 && p.GetLord() == null && p.GetTimeAssignment() != TimeAssignmentDefOf.Work
+                                                 && p.Awake() && !p.Downed && !p.Drafted && p.health.summaryHealth.SummaryHealthPercent >= 1f
+                                                 && PsycheHelper.PsychologyEnabled(p)
                                                  select p;
                 if (constituents.Count() > 0)
                 {
@@ -581,7 +553,9 @@ namespace Psychology
                     //                                  select m);
                     Pawn mayor = MayorUtility.Mayors[potentialConstituent.Map.Tile].First;
                     TimeAssignmentDef timeAssDef = mayor.GetTimeAssignment();
-                    bool mayorAvailable = timeAssDef != TimeAssignmentDefOf.Sleep && mayor.GetLord() == null && mayor.Awake() && timeAssDef != TimeAssignmentDefOf.Work && !mayor.Drafted && !mayor.Downed && mayor.health.summaryHealth.SummaryHealthPercent >= 1f && (mayor.CurJob == null || mayor.CurJob.def != JobDefOf.TendPatient || mayor.CurJob.RecipeDef.workerClass.IsAssignableFrom(typeof(Recipe_Surgery)));
+                    bool mayorAvailable = timeAssDef != TimeAssignmentDefOf.Work && timeAssDef != TimeAssignmentDefOf.Sleep && mayor.GetLord() == null
+                        && mayor.Awake() && !mayor.Drafted && !mayor.Downed && mayor.health.summaryHealth.SummaryHealthPercent >= 1f
+                        && (mayor.CurJob == null || mayor.CurJob.def != JobDefOf.TendPatient || mayor.CurJob.RecipeDef.workerClass.IsAssignableFrom(typeof(Recipe_Surgery)));
 
                     if (potentialConstituent != null && mayorAvailable)
                     {
@@ -648,45 +622,36 @@ namespace Psychology
                     {
                         continue;
                     }
-                    //Elections are held in Septober (because I guess some maps don't have fall?) and during the day.
-                    if (GenDate.Quadrum(Find.TickManager.TicksAbs, Find.WorldGrid.LongLatOf(settlement.Tile).x) != Quadrum.Septober || GenLocalDate.HourOfDay(settlement.Map) < 7 || GenLocalDate.HourOfDay(settlement.Map) > 20)
-                    {
-                        continue;
-                    }
-                    //If an election has already been completed this year, don't start a new one.
-                    //IEnumerable<Pawn> activeMayors = (from m in settlement.Map.mapPawns.FreeColonistsSpawned
-                    //                                  where !m.Dead && m.health.hediffSet.HasHediff(HediffDefOfPsychology.Mayor) && ((Hediff_Mayor)m.health.hediffSet.GetFirstHediffOfDef(HediffDefOfPsychology.Mayor)).worldTileElectedOn == settlement.Map.Tile && ((Hediff_Mayor)m.health.hediffSet.GetFirstHediffOfDef(HediffDefOfPsychology.Mayor)).yearElected == GenLocalDate.Year(settlement.Map.Tile)
-                    //                                  select m);
-                    //if (activeMayors.Count() > 0)
-                    //{
-                    //    continue;
-                    //}
 
                     int mapTile = settlement.Map.Tile;
                     if (MayorUtility.Mayors.ContainsKey(mapTile))
                     {
-                        if ((MayorUtility.Mayors[mapTile].Second as Hediff_Mayor).yearElected == GenLocalDate.Year(mapTile))
+                        // Don't start another election if the mayor was elected this year
+                        int yearDiff = GenLocalDate.Year(mapTile) - (MayorUtility.Mayors[mapTile].Second as Hediff_Mayor).yearElected;
+                        if (yearDiff <= 0)
+                        {
+                            continue;
+                        }
+                        //Elections are held starting in Septober (because I guess some maps don't have fall?)
+                        if (yearDiff == 1 && GenDate.Quadrum(Find.TickManager.TicksAbs, Find.WorldGrid.LongLatOf(settlement.Tile).x) < Quadrum.Septober)
+                        {
+                            continue;
+                        }
+                        // Start elections during the day
+                        if (GenLocalDate.HourOfDay(settlement.Map) < 7 || GenLocalDate.HourOfDay(settlement.Map) > 20)
                         {
                             continue;
                         }
                     }
-
+                    else if (GenDate.Quadrum(Find.TickManager.TicksAbs, Find.WorldGrid.LongLatOf(settlement.Tile).x) < Quadrum.Septober)
+                    {
+                        continue;
+                    }
                     eligibleSettlements.Add(settlement);
-
-                    ////Try to space out the elections so they don't all proc at once.
-                    //if (Rand.RangeInclusive(1, 15 - GenLocalDate.DayOfQuadrum(settlement.Map.Tile)) > 1)
-                    //{
-                    //    continue;
-                    //}
-
-                    //IncidentParms parms = new IncidentParms();
-                    //parms.target = settlement.Map;
-                    //parms.faction = settlement.Faction;
-                    //FiringIncident fi = new FiringIncident(IncidentDefOfPsychology.Election, null, parms);
-                    //Find.Storyteller.TryFire(fi);
                 }
                 if (eligibleSettlements.Count() > 0)
                 {
+                    // Only pick one election at random to happen per 6 hour tick so they don't all proc at once.
                     Settlement settlement = eligibleSettlements.RandomElement();
                     IncidentParms parms = new IncidentParms();
                     parms.target = settlement.Map;
@@ -695,8 +660,6 @@ namespace Psychology
                     Find.Storyteller.TryFire(fi);
                 }
             }
-            
-
         }
     }
 }

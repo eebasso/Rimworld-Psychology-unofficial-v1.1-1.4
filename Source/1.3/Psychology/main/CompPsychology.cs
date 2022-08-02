@@ -10,6 +10,11 @@ namespace Psychology
 {
     public class CompPsychology : ThingComp
     {
+        private Pawn_SexualityTracker sexuality;
+        private Pawn_PsycheTracker psyche;
+        //public Pawn_TourMemories recruiting;
+        private bool beenBuried = false;
+        private int tickSinceLastSeenLover;
 
         public override void PostExposeData()
         {
@@ -120,10 +125,6 @@ namespace Psychology
             }
         }
         
-        private Pawn_SexualityTracker sexuality;
-        private Pawn_PsycheTracker psyche;
-        //public Pawn_TourMemories recruiting;
-        private bool beenBuried = false;
-        private int tickSinceLastSeenLover;
+        
     }
 }

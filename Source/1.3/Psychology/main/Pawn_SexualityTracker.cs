@@ -159,6 +159,9 @@ namespace Psychology
                 {
                     return 1f;
                 }
+                // if (ModIsActive("Androids") ... return 1f
+
+
                 float ageFactor = 1f;
                 if (pawn.gender == Gender.Female)
                 {
@@ -168,9 +171,6 @@ namespace Psychology
                 {
                     ageFactor = MaleSexDriveCurve.Evaluate(pawn.ageTracker.AgeBiologicalYears);
                 }
-
-
-
                 return ageFactor * this.sexDrive;
             }
         }
@@ -183,22 +183,18 @@ namespace Psychology
                 {
                     return 1f;
                 }
+                // if (ModIsActive("Androids") ... return 1f
+
                 float ageFactor = 1f;
-                //if (pawn.gender == Gender.Female)
-                //{
-                //    ageFactor = FemaleSexDriveCurve.Evaluate(pawn.ageTracker.AgeBiologicalYears);
-                //}
-                //else if (pawn.gender == Gender.Male)
-                //{
-                //    ageFactor = MaleSexDriveCurve.Evaluate(pawn.ageTracker.AgeBiologicalYears);
-                //}
-                //if (ageFactor < 0.001f)
-                //{
-                //    return 0f;
-                //}
-
-
-                return 0.5f * (1f + ageFactor) * this.romanticDrive;
+                if (pawn.gender == Gender.Female)
+                {
+                    ageFactor = FemaleSexDriveCurve.Evaluate(pawn.ageTracker.AgeBiologicalYears);
+                }
+                else if (pawn.gender == Gender.Male)
+                {
+                    ageFactor = MaleSexDriveCurve.Evaluate(pawn.ageTracker.AgeBiologicalYears);
+                }
+                return Mathf.Sqrt(ageFactor) * this.romanticDrive;
             }
         }
 

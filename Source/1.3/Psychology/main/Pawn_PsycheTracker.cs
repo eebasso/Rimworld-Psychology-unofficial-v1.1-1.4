@@ -28,6 +28,7 @@ namespace Psychology
         //public Vector<float> rawNormalDisplacementList;
         //public Dictionary<PersonalityNodeDef, float> parentAdjRatingDict = new Dictionary<PersonalityNodeDef, float>();
         public float[] rawNormalDisplacementList = new float[37];
+        public float cachedCertaintyChangePerDay = -2f;
 
         public Pawn_PsycheTracker(Pawn pawn)
         {
@@ -213,5 +214,61 @@ namespace Psychology
             Log.Message("CalculateAdjustedRatings took " + ts.TotalMilliseconds + " ms.");
             AdjustedRatingTicker = 3700;
         }
+
+        public float CertaintyChangePerDay()
+        {
+            if (!pawn.IsHashIntervalTick(GenDate.TicksPerDay) && cachedCertaintyChangePerDay > -1f)
+            {
+                return cachedCertaintyChangePerDay;
+            }
+            CalculateAdjustedRatings();
+            cachedCertaintyChangePerDay = 0.0005f * CompatibilityWithIdeo(pawn.Ideo);
+            return cachedCertaintyChangePerDay;
+        }
+
+        public float CompatibilityWithIdeo(Ideo ideo)
+        {
+            if (ideo == null)
+            {
+                return 0f;
+            }
+            float compatibility = 0f;
+            //foreach (MemeDef meme in ideo.memes)
+            //{
+            //    if (PersonalityNodeIdeoUtility.memesAffectedByNodes.ContainsKey(meme))
+            //    {
+            //        foreach (Pair<PersonalityNodeDef, float> pair in PersonalityNodeIdeoUtility.memesAffectedByNodes[meme])
+            //        {
+            //            float rating = PsycheHelper.Comp(pawn).Psyche.GetPersonalityRating(pair.First);
+            //            compatibility += (2f * rating - 1f) * pair.Second;
+            //        }
+            //    }
+            //}
+            foreach (KeyValuePair<MemeDef, List<Pair<PersonalityNodeDef, float>>> kvp in PersonalityNodeIdeoUtility.memesAffectedByNodes)
+            {
+                if (ideo.HasMeme(kvp.Key))
+                {
+                    foreach (Pair<PersonalityNodeDef, float> pair in kvp.Value)
+                    {
+                        float rating = PsycheHelper.Comp(pawn).Psyche.GetPersonalityRating(pair.First);
+                        compatibility += (2f * rating - 1f) * pair.Second;
+                    }
+                }
+            }
+            foreach (KeyValuePair<PreceptDef, List<Pair<PersonalityNodeDef, float>>> kvp in PersonalityNodeIdeoUtility.preceptsAffectedByNodes)
+            {
+                if (ideo.HasPrecept(kvp.Key))
+                {
+                    foreach (Pair<PersonalityNodeDef, float> pair in kvp.Value)
+                    {
+                        float rating = PsycheHelper.Comp(pawn).Psyche.GetPersonalityRating(pair.First);
+                        compatibility += (2f * rating - 1f) * pair.Second;
+                    }
+                }
+            }
+            return compatibility;
+        }
     }
 }
+
+

@@ -17,7 +17,7 @@ namespace Psychology.Harmony
         {
             if (__result.StageIndex != ThoughtState.Inactive.StageIndex)
             {
-                //if (PsycheHelper.PsychologyEnabled(p) && PsycheHelper.PsychologyEnabled(other) && 0.25f == 0f)
+                //if (PsycheHelper.PsychologyEnabled(p) && PsycheHelper.PsychologyEnabled(other))
                 if (PsychologyBase.TraitOpinionMultiplier() == 0f)
                 {
                     __result = false;

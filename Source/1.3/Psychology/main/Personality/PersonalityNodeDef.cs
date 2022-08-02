@@ -46,6 +46,10 @@ namespace Psychology
         public List<float> bigFiveModifiers;
         //Weights on the 10 Aspects
         public List<PersonalityNodeTenAspects> tenAspects;
+        //List of certainty modifiers for each meme
+        public List<PersonalityNodeMemeCertaintyModifier> memeCertaintyModifiers;
+        //List of certainty modifiers for each precept
+        public List<PersonalityNodePreceptCertaintyModifier> preceptCertaintyModifiers;
 
         //A list of the actual parent Defs of this node.
         [Unsaved]

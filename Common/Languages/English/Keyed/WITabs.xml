@@ -1,6 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
 
+	<CertaintyChangePerDay>Daily change due to mood + personality</CertaintyChangePerDay>
+
 	<!-- WITab title -->
 	<TabPsyche>Psyche</TabPsyche>
 
