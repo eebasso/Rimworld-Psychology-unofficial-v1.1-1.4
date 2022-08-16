@@ -741,6 +741,7 @@
     <None Include="..\..\..\Common\Languages\ChineseTraditional\DefInjected\NeedDef\Methadone.xml">
       <Link>Common\Languages\ChineseTraditional\DefInjected\NeedDef\Methadone.xml</Link>
     </None>
+    <None Include="Common\Languages\English\Keyed\Ideology.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

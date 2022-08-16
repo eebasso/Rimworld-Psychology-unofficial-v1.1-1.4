@@ -11,36 +11,47 @@ namespace Psychology.Harmony
     [HarmonyPatch(typeof(ConversionUtility), nameof(ConversionUtility.ConversionPowerFactor_MemesVsTraits))]
     public static class ConversionUtility_ConversionPowerFactor_MemesVsTraits_Patch
     {
-        // Note here that the value of sb gets changed afterwards
+        // The value of sb gets changed
         [HarmonyPostfix]
         public static void ConversionPowerFactor_MemesVsTraits(ref float __result, Pawn initiator, Pawn recipient, StringBuilder sb)
         {
-            float initiatorCompatWithInitiatorIdeo = 0.025f * PsycheHelper.Comp(initiator).Psyche.CompatibilityWithIdeo(initiator.Ideo);
-            float initiatorCompatWithRecipientIdeo = -0.025f * PsycheHelper.Comp(initiator).Psyche.CompatibilityWithIdeo(recipient.Ideo);
-            float recipientCompatWithInitiatorIdeo = 0.025f * PsycheHelper.Comp(recipient).Psyche.CompatibilityWithIdeo(initiator.Ideo);
-            float recipientCompatWithRecipientIdeo = -0.025f * PsycheHelper.Comp(recipient).Psyche.CompatibilityWithIdeo(recipient.Ideo);
-            float additiveFactor = initiatorCompatWithInitiatorIdeo + initiatorCompatWithRecipientIdeo + recipientCompatWithInitiatorIdeo + recipientCompatWithRecipientIdeo;
+            float reciWithInitIdeo = 0.05f * PsycheHelper.Comp(recipient).Psyche.CompatibilityWithIdeo(initiator.Ideo);
+            float reciWithReciIdeo = 0.05f * PsycheHelper.Comp(recipient).Psyche.CompatibilityWithIdeo(recipient.Ideo);
+            float initWithInitIdeo = 0.025f * PsycheHelper.Comp(initiator).Psyche.CompatibilityWithIdeo(initiator.Ideo);
+            float initWithReciIdeo = 0.025f * PsycheHelper.Comp(initiator).Psyche.CompatibilityWithIdeo(recipient.Ideo);
+            float additiveFactor = reciWithInitIdeo - reciWithReciIdeo + initWithInitIdeo - initWithReciIdeo;
+            float multiplicativeFactor = additiveFactor > 0f ? 1f + additiveFactor : 1f / (1f - additiveFactor);
+
+            string text = string.Empty;
+            Log.Message("String builder before = \n" + sb.ToString());
+            text += "   -  test";
+            Log.Message("String builder middle = \n" + sb.ToString());
+
+
             if (sb != null)
             {
                 NamedArgument initName = initiator.Named("PAWN");
                 NamedArgument reciName = recipient.Named("PAWN");
-                string text = string.Empty;
-                text += Pawn1sCompatWithPawn2sIdeo(initName, initName, initiatorCompatWithInitiatorIdeo);
-                text += Pawn1sCompatWithPawn2sIdeo(initName, reciName, initiatorCompatWithRecipientIdeo);
-                text += Pawn1sCompatWithPawn2sIdeo(reciName, initName, recipientCompatWithInitiatorIdeo);
-                text += Pawn1sCompatWithPawn2sIdeo(reciName, reciName, recipientCompatWithRecipientIdeo);
-                sb.AppendInNewLine(" - " + "AbilityIdeoConvertBreakdownPsychologyEffects".Translate() + ": " + text);
+                NamedArgument initIdeo = initiator.Ideo.Named("IDEO");
+                NamedArgument reciIdeo = recipient.Ideo.Named("IDEO");
+                
+                //text += PawnCompatWithIdeoText(reciName, initIdeo, reciWithInitIdeo, true);
+                //text += PawnCompatWithIdeoText(reciName, reciIdeo, reciWithReciIdeo, false);
+                //text += PawnCompatWithIdeoText(initName, initIdeo, initWithInitIdeo, true);
+                //text += PawnCompatWithIdeoText(initName, reciIdeo, initWithReciIdeo, false);
+                sb.AppendInNewLine(" -  " + "AbilityIdeoConvertBreakdownPsychologyEffects".Translate() + ": " + multiplicativeFactor.ToStringPercent() + text);
+                Log.Message("String builder after = \n" + sb.ToString());
             }
-            //__result *= Mathf.Exp(additiveFactor);
-            __result *= additiveFactor > 0f ? 1f + additiveFactor : 1f / (1f - additiveFactor);
+            __result *= multiplicativeFactor;
 
         }
-        public static string Pawn1sCompatWithPawn2sIdeo(NamedArgument name1, NamedArgument name2, float offset)
-        {
-            //string offsetText = offset > 0f ? "+" + offset.ToStringPercent() : offset.ToStringPercent();
-            string offsetText = (1f + offset).ToStringPercent();
-            return "\n   - " + "AbilityIdeoConvertBreakdownAsCompatWithBsIdeo".Translate(name1, name2) + ": " + offsetText;
-        }
-
+        //public static string PawnCompatWithIdeoText(NamedArgument pawnName, NamedArgument ideoName, float compat, bool isInitIdeo)
+        //{
+        //    string compatText = compat > 0 ? "AbilityIdeoConvertBreakdownPawnCompatWithIdeo" : "AbilityIdeoConvertBreakdownPawnIncompatWithIdeo";
+        //    float compatSigned = isInitIdeo ? compat : -compat;
+        //    string compatPercent = compatSigned > 0 ? "+" + compatSigned.ToStringPercent() : compatSigned.ToStringPercent();
+        //    return "\n   -  " + compatText.Translate(pawnName, ideoName) + ": " + compatPercent;
+        //}
     }
 }
+

@@ -4,24 +4,56 @@ using HarmonyLib;
 
 namespace Psychology.Harmony
 {
+    //[HarmonyPatch(typeof(CompAbilityEffect_WordOfLove), nameof(CompAbilityEffect_WordOfLove.ValidateTarget))]
+    //public static class CompAbilityEffect_WordOfLovePatch
+    //{
+    //    [HarmonyPostfix]
+    //    public static void ValidateTarget(CompAbilityEffect_WordOfLove __instance, ref bool __result, LocalTargetInfo target)
+    //    {
+    //        if (PsychologyBase.ActivateKinsey())
+    //        {
+    //            /* Until the problem with protected selectedTarget is resolved */
+    //            __result = true;
+    //        }
+    //    }
+    //}
     [HarmonyPatch(typeof(CompAbilityEffect_WordOfLove), nameof(CompAbilityEffect_WordOfLove.ValidateTarget))]
     public static class CompAbilityEffect_WordOfLovePatch
     {
-
         [HarmonyPostfix]
         public static void ValidateTarget(CompAbilityEffect_WordOfLove __instance, ref bool __result, LocalTargetInfo target)
         {
-
-            if (PsychologyBase.ActivateKinsey())
+            if (!PsychologyBase.ActivateKinsey())
             {
-                /* Until the problem with protected selectedTarget is resolved */
-                __result = true;
+                return;
             }
-
+            Pawn pawnLoved = __instance.selectedTarget.Pawn;
+            Pawn pawnInLove = target.Pawn;
+            if (pawnLoved == pawnInLove)
+            {
+                __result = false;
+                return;
+            }
+            if (pawnLoved != null && pawnInLove != null)
+            {
+                Gender genderLoved = pawnLoved.gender;
+                Gender genderInLove = pawnInLove.gender;
+                int kinseyLoved = PsycheHelper.Comp(pawnLoved).Sexuality.kinseyRating;
+                int kinseyInLove = PsycheHelper.Comp(pawnInLove).Sexuality.kinseyRating;
+                if (genderLoved == genderInLove)
+                {
+                    // A potential homosexual relationship needs both parties to be at least a little gay
+                    __result = kinseyLoved > 0 && kinseyInLove > 0;
+                    return;
+                }
+                else
+                {
+                    // A potential heurtosexual relationship needs both parties to be at least a little straight
+                    __result = kinseyLoved < 6 && kinseyInLove < 6;
+                }
+            }
         }
-
     }
-
 }
 
 /*
@@ -31,31 +63,8 @@ namespace Psychology.Harmony
 */
 
 
-/*
  
-        {
-            if (PsychologyBase.ActivateKinsey())
-            {
-                Pawn pawn = __instance.selectedTarget.Pawn;
-                Pawn pawn2 = target.Pawn;
-                if (pawn == pawn2)
-                {
-                    return false;
-                }
-                if (pawn != null && pawn2 != null && !pawn.story.traits.HasTrait(TraitDefOf.Bisexual))
-                {
-                    Gender gender = pawn.gender;
-                    Gender gender2 = pawn.story.traits.HasTrait(TraitDefOf.Gay) ? gender : gender.Opposite();
-                    if (pawn2.gender != gender2)
-                    {
-                        Messages.Message("AbilityCantApplyWrongAttractionGender".Translate(pawn, pawn2), pawn, MessageTypeDefOf.RejectInput, false);
-                        return false;
-                    }
-                }
-                return __instance.parent.ValidateTarget(target);
-            }
-
-            return __result;
+        
  
      
- */
+

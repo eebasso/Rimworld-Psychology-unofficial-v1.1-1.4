@@ -1,7 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
 
-	<CertaintyChangePerDay>Daily change due to mood + personality</CertaintyChangePerDay>
+	<!--<CertaintyChangePerDay>Daily change due to mood + personality</CertaintyChangePerDay>-->
+
+	<CertaintyChangePerDay>Mood + personality daily change</CertaintyChangePerDay>
+
+	<AbilityIdeoConvertBreakdownPsychologyEffects>Personality</AbilityIdeoConvertBreakdownPsychologyEffects>
+
+	<AbilityIdeoConvertBreakdownPawnCompatWithIdeo>{PAWN_labelShort}'s compatiblity with {IDEO}</AbilityIdeoConvertBreakdownPawnCompatWithIdeo>
+	<AbilityIdeoConvertBreakdownPawnIncompatWithIdeo>{PAWN_labelShort}'s incompatiblity with {IDEO}</AbilityIdeoConvertBreakdownPawnIncompatWithIdeo>
 
 	<!-- WITab title -->
 	<TabPsyche>Psyche</TabPsyche>

@@ -196,8 +196,8 @@ namespace Psychology
         //[LogPerformance]
         public void CalculateAdjustedRatings()
         {
-            Stopwatch stopwatch = new Stopwatch();
-            stopwatch.Start();
+            //Stopwatch stopwatch = new Stopwatch();
+            //stopwatch.Start();
             ConstructRawDisplacementList();
             float[] adjNormalDisplacementList = PersonalityNodeParentMatrix.MatrixVectorProduct(PersonalityNodeParentMatrix.parentTransformMatrix, rawNormalDisplacementList);
             //parentAdjRatingDict.Clear();
@@ -209,9 +209,9 @@ namespace Psychology
                 adjustedRating = nodeDict[def].AdjustHook(adjustedRating);
                 nodeDict[def].cachedRating = adjustedRating;
             }
-            stopwatch.Stop();
-            TimeSpan ts = stopwatch.Elapsed;
-            Log.Message("CalculateAdjustedRatings took " + ts.TotalMilliseconds + " ms.");
+            //stopwatch.Stop();
+            //TimeSpan ts = stopwatch.Elapsed;
+            //Log.Message("CalculateAdjustedRatings took " + ts.TotalMilliseconds + " ms.");
             AdjustedRatingTicker = 3700;
         }
 
@@ -222,7 +222,7 @@ namespace Psychology
                 return cachedCertaintyChangePerDay;
             }
             CalculateAdjustedRatings();
-            cachedCertaintyChangePerDay = 0.0005f * CompatibilityWithIdeo(pawn.Ideo);
+            cachedCertaintyChangePerDay = 0.001f * CompatibilityWithIdeo(pawn.Ideo);
             return cachedCertaintyChangePerDay;
         }
 

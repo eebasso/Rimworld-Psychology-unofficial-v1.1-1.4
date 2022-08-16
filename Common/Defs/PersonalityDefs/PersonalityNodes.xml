@@ -1476,8 +1476,8 @@
 	<Psychology.PersonalityNodeDef>
 		<defName>Thoughtful</defName>
 		<label>thoughtful</label>
-		<!--<antonymLabel>careless</antonymLabel>-->
-		<antonymLabel>reckless</antonymLabel>
+		<antonymLabel>careless</antonymLabel>
+		<!--<antonymLabel>reckless</antonymLabel>-->
 		<nodeHSV>(180,1,0.9)</nodeHSV>
 		<antonymHSV>(30,1,0.85)</antonymHSV>
 		<descriptionLabel>Thoughtful</descriptionLabel>
