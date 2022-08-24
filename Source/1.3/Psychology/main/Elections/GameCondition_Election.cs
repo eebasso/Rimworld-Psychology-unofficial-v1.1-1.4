@@ -20,16 +20,19 @@ namespace Psychology
         public override void Init()
         {
             base.Init();
-            //Make sure the election occurs during the day if possible.
+            // Make sure the election occurs during the day if possible.
             int plannedStart = GenDate.HourOfDay(this.Duration + Find.TickManager.TicksAbs, Find.WorldGrid.LongLatOf(this.SingleMap.Tile).x);
-            if (plannedStart < 7)
-            {
-                this.Duration += (7 - plannedStart) * GenDate.TicksPerHour;
-            }
-            else if (plannedStart > 18)
-            {
-                this.Duration -= (plannedStart - 18) * GenDate.TicksPerHour;
-            }
+            // Make election start at 7
+            this.Duration += GenMath.PositiveMod(7 - plannedStart, 24) * GenDate.TicksPerHour;
+
+            //if (plannedStart < 7)
+            //{
+            //    this.Duration += (7 - plannedStart) * GenDate.TicksPerHour;
+            //}
+            //else if (plannedStart > 18)
+            //{
+            //    this.Duration -= (plannedStart - 18) * GenDate.TicksPerHour;
+            //}
             IEnumerable<Pawn> colonists = from p in this.SingleMap.mapPawns.FreeColonistsSpawned
                                           where PsycheHelper.PsychologyEnabled(p) && p.HomeFaction == Faction.OfPlayer // 1.3
                                           select p;
@@ -38,7 +41,7 @@ namespace Psychology
             {
                 return;
             }
-            float maxCandidatesThisColonySupports = Mathf.Clamp(0.3f * numColonists, 0f, 4f);
+            float maxCandidatesThisColonySupports = Mathf.Clamp(0.3f * numColonists, 2f, 4f);
             IEnumerable<Pawn> eligibleColonists = from p in colonists
                                                   where p.ageTracker.AgeBiologicalYearsFloat >= PsychologyBase.MayorAge() // 1.3
                                                   select p;
@@ -55,21 +58,31 @@ namespace Psychology
                 }
                 else
                 {
+                    float confident = PsycheHelper.Comp(p).Psyche.GetPersonalityRating(PersonalityNodeDefOf.Confident);
                     float outspoken = PsycheHelper.Comp(p).Psyche.GetPersonalityRating(PersonalityNodeDefOf.Outspoken);
                     float ambitious = PsycheHelper.Comp(p).Psyche.GetPersonalityRating(PersonalityNodeDefOf.Ambitious);
                     float competitive = PsycheHelper.Comp(p).Psyche.GetPersonalityRating(PersonalityNodeDefOf.Competitive);
-                    float score = outspoken + ambitious + competitive;
-                    rowdiness += 0.0333f * score;
-                    likelihoodToRun.Add(p, score);
+                    float extroverted = PsycheHelper.Comp(p).Psyche.GetPersonalityRating(PersonalityNodeDefOf.Extroverted);
+                    float score = confident + outspoken + ambitious + competitive + extroverted;
+                    rowdiness += 0.2f * score;
+                    likelihoodToRun.Add(p, score * score);
                 }
             }
-            float minCandidates = Mathf.Min(maxCandidatesThisColonySupports, rowdiness);
-            int numCandidates = Mathf.RoundToInt(Mathf.Lerp(minCandidates, maxCandidatesThisColonySupports, Rand.Value));
-
+            float cutoff2 = 12f;
+            float cutoff3 = 24f;
+            float scaling = 1f / (cutoff3 - cutoff2);
+            float x = scaling * (0.5f * numColonists + rowdiness - cutoff2);
+            float p2 = x < 0 ? 1f : x < 2 ? 1f / (1f + x) : 1f / 3f;
+            float p3 = Mathf.Clamp01(x) * p2;
+            float rand = Rand.Value;
+            int numCandidates = rand < p2 ? 2 : rand < p2 + p3 ? 3 : 4;
+            if (eligibleColonists.Count() < numCandidates - this.candidates.Count)
+            {
+                return;
+            }
             int tries = 0;
             while (this.candidates.Count < numCandidates && tries < 500)
             {
-                //Pawn candidatePawn = psychologyColonists.RandomElementByWeight(p => (p.ageTracker.AgeBiologicalYearsFloat >= PsychologyBase.MayorAge()) ? PsycheHelper.Comp(p).Psyche.GetPersonalityRating(PersonalityNodeDefOf.Outspoken) + PsycheHelper.Comp(p).Psyche.GetPersonalityRating(PersonalityNodeDefOf.Ambitious) + PsycheHelper.Comp(p).Psyche.GetPersonalityRating(PersonalityNodeDefOf.Competitive) : 0f);
                 Pawn candidatePawn = eligibleColonists.RandomElementByWeight(p => likelihoodToRun[p]);
                 List<PersonalityNodeDef> issues = GenerateIssues(candidatePawn);
                 this.candidates.Add(new Candidate(candidatePawn, issues));
@@ -89,7 +102,7 @@ namespace Psychology
                 {
                     issuesString.AppendFormat("{0}) {1}{2}", i + 1, PsycheHelper.Comp(candidate.pawn).Psyche.GetPersonalityNodeOfDef(candidate.nodes[i]).PlatformIssue, (i != candidate.nodes.Count - 1 ? "\n" : ""));
                 }
-                Find.LetterStack.ReceiveLetter("LetterLabelElectionCandidate".Translate(candidate.pawn), "LetterElectionCandidate".Translate(candidate.pawn, Find.WorldObjects.ObjectsAt(candidate.pawn.Map.Tile).OfType<Settlement>().First().Label, issuesString.ToString()), LetterDefOf.NeutralEvent, candidate.pawn, null);
+                Find.LetterStack.ReceiveLetter("LetterLabelElectionCandidate".Translate(candidate.pawn), "LetterElectionCandidate".Translate(candidate.pawn, Find.WorldObjects.ObjectsAt(candidate.pawn.Tile).OfType<Settlement>().First().Label, issuesString.ToString()), LetterDefOf.NeutralEvent, candidate.pawn, null);
             }
             candidates.RemoveDuplicates();
         }

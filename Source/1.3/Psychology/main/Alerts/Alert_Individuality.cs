@@ -15,7 +15,7 @@ namespace Psychology
             this.explanationKey = "IndividualityDesc";
         }
 
-        protected override ThoughtDef Thought
+        public override ThoughtDef Thought
         {
             get
             {

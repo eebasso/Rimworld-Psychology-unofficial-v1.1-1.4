@@ -11,8 +11,10 @@ namespace Psychology
         public MayorUtility(Game game)
         {
         }
+
         public override void LoadedGame()
         {
+            Log.Message("Loading game");
             Mayors = new Dictionary<int, Pair<Pawn, Hediff>>();
             foreach (Pawn pawn in Find.WorldPawns.AllPawnsAlive)
             {
@@ -66,6 +68,8 @@ namespace Psychology
             kvp.Value.First.health.RemoveHediff(kvp.Value.Second);
             Mayors.Remove(kvp.Key);
         }
+
+        // Need to add case when pawn is banished
     }
 }
 

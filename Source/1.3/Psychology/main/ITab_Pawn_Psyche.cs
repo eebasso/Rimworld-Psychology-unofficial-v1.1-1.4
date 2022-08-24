@@ -30,7 +30,7 @@ namespace Psychology
             }
         }
 
-        private Pawn PawnToShowInfoAbout
+        public Pawn PawnToShowInfoAbout
         {
             get
             {
@@ -49,7 +49,7 @@ namespace Psychology
             }
         }
 
-        protected override void FillTab()
+        public override void FillTab()
         {
             // Initialize pawn
             Pawn pawn = PawnToShowInfoAbout;

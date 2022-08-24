@@ -45,7 +45,7 @@ namespace Psychology
             stateGraph.AddToil(lordToil_End);
             Transition transition = new Transition(lordToil_Election, lordToil_End);
             transition.AddTrigger(new Trigger_TickCondition(() => this.ShouldBeCalledOff()));
-            transition.AddTrigger(new Trigger_TickCondition(() => this.candidates.Count == 0));
+            transition.AddTrigger(new Trigger_TickCondition(() => this.candidates.Count < 1));
             transition.AddTrigger(new Trigger_PawnLostViolently());
             transition.AddPreAction(new TransitionAction_Message("MessageElectionCalledOff".Translate(this.baseName), MessageTypeDefOf.NegativeEvent, new TargetInfo(this.spot, this.Map, false)));
             stateGraph.AddTransition(transition);
@@ -83,10 +83,10 @@ namespace Psychology
             }
             //If there ends up being a tie, we'll just assume the least competitive candidates drop out.
             //The chances of there being a tie after that are exceedingly slim, but the result will be essentially random.
-            IEnumerable<Pair<Pawn, int>> orderedTally = (from v in voteTally
-                                                         orderby PsycheHelper.Comp(v.First).Psyche.GetPersonalityRating(PersonalityNodeDefOf.Competitive) descending
-                                                         orderby v.Second descending
-                                                         select v);
+            IEnumerable<Pair<Pawn, int>> orderedTally = from v in voteTally
+                                                        orderby PsycheHelper.Comp(v.First).Psyche.GetPersonalityRating(PersonalityNodeDefOf.Competitive) descending
+                                                        orderby v.Second descending
+                                                        select v;
             if (Prefs.DevMode && Prefs.LogVerbose)
             {
                 foreach (Pair<Pawn, int> t in orderedTally)

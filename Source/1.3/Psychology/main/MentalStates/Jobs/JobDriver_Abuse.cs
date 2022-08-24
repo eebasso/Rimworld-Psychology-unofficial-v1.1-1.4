@@ -51,7 +51,7 @@ namespace Psychology
             return toil;
         }
 
-        protected override IEnumerable<Toil> MakeNewToils()
+        public override IEnumerable<Toil> MakeNewToils()
         {
             ToilFailConditions.FailOnDespawnedOrNull(this, TargetIndex.A);
             ToilFailConditions.FailOnDowned(this, TargetIndex.A);

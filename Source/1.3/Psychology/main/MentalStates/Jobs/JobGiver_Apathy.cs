@@ -17,13 +17,13 @@ namespace Psychology
             this.locomotionUrgency = LocomotionUrgency.Amble;
         }
         
-        protected override IntVec3 GetWanderRoot(Pawn pawn)
+        public override IntVec3 GetWanderRoot(Pawn pawn)
         {
             return pawn.Position;
         }
 
         //[LogPerformance]
-        protected override Job TryGiveJob(Pawn pawn)
+        public override Job TryGiveJob(Pawn pawn)
         {
             Job job = base.TryGiveJob(pawn);
             if(Rand.Value > 0.05f)

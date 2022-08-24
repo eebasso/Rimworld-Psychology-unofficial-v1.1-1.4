@@ -19,7 +19,7 @@ namespace Psychology
             return pawn.Reserve(target, job, 1, -1, null, errorOnFailed);
         }
 
-        protected override IEnumerable<Toil> MakeNewToils()
+        public override IEnumerable<Toil> MakeNewToils()
         {
             ToilFailConditions.FailOnDespawnedOrNull(this, TargetIndex.A);
             Pawn prey = this.TargetA.Thing as Pawn;

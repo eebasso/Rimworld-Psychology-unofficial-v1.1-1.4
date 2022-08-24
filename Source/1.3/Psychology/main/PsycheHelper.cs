@@ -50,6 +50,16 @@ namespace Psychology
             }
         }
 
+        public static bool Ageless(Pawn pawn)
+        {
+            if (ModsConfig.IsActive("Atlas.AndroidTiers"))
+            {
+                List<string> agelessList = new List<string>(){ "Android1Tier", "Android2Tier", "Android3Tier", "Android4Tier", "Android5Tier" };
+                return pawn.def.defName.Contains("Android");
+            }
+            return false;
+        }
+
         public static int[] GetBitArray(this int X, int length)
         {
             int[] signs = new int[length];

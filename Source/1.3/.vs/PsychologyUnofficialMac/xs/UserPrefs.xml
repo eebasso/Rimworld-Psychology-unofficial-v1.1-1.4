@@ -1,31 +1,37 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="/Users/edwardbasso/Library/Application Support/Steam/steamapps/common/RimWorld/RimWorldMac.app/Mods/Rimworld-Psychology-unofficial-v1.1-1.3/Source/1.3/Psychology/Main/Personality/PersonalityNodeMatrix.cs" relfile="Psychology/Main/Personality/PersonalityNodeMatrix.cs" line="4" column="1" />
-    </BreakpointStore>
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.Workbench ActiveDocument="../../Common/Defs/PersonalityDefs/PersonalityNodes.xml">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Psychology/Main/PsycheHelper.cs">
     <Files>
-      <File FileName="../../Common/Defs/PersonalityDefs/PersonalityNodes.xml" Line="1479" Column="40" IsPinned="True" />
-      <File FileName="Psychology/Harmony/Interaction/InteractionWorker_ConvertIdeoAttempt.cs" Line="1" Column="1" />
-      <File FileName="Psychology/Harmony/OtherUtilities/ConversionUtility.cs" Line="30" Column="1" />
-      <File FileName="Psychology/Harmony/RomanceAndFamily/CompAbilityEffect_WordOfLove.cs" Line="53" Column="18" />
-      <File FileName="Psychology/Harmony/InitializeAndOtherMods/EdBPrepareCarefully_PanelBackstory.cs" Line="1" Column="1" />
+      <File FileName="Psychology/Main/PsycheHelper.cs" Line="57" Column="145" IsPinned="True" />
+      <File FileName="Psychology/PsychologyBase.cs" Line="394" Column="49" IsPinned="True" />
+      <File FileName="Psychology/Harmony/RomanceAndFamily/Pawn_RelationsTracker.cs" Line="103" Column="51" />
+      <File FileName="Psychology/Harmony/OtherUtilities/ConversionUtility.cs" Line="11" Column="106" />
+      <File FileName="Psychology/Harmony/Sleep/JobGiver_GetRest.cs" Line="1" Column="1" />
+      <File FileName="Psychology/Harmony/Pawn/Pawn_HealthTracker.cs" Line="1" Column="1" />
+      <File FileName="Psychology/Harmony/Pawn/PawnGenerator.cs" Line="1" Column="1" />
+      <File FileName="Psychology/Main/Elections/LordJob_VisitMayor.cs" Line="1" Column="1" />
+      <File FileName="Psychology/Main/Elections/LordToil_Meeting.cs" Line="50" Column="10" />
       <File FileName="Psychology/Harmony/InitializeAndOtherMods/CharacterEditor_DialogPsychology.cs" Line="1" Column="1" />
+      <File FileName="Psychology/Harmony/InitializeAndOtherMods/EdBPrepareCarefully_PanelBackstory.cs" Line="1" Column="1" />
+      <File FileName="Psychology/Harmony/InitializeAndOtherMods/HarmonyInitialize.cs" Line="17" Column="61" />
+      <File FileName="../../../../../../../workshop/content/294100/1386412863/About/About.xml" Line="30" Column="32" />
+      <File FileName="../../../../../../../workshop/content/294100/1386412863/1.3/Defs/AlienRace/AlienRace_AndroidT1.xml" Line="241" Column="11" />
+      <File FileName="../../../../../../../workshop/content/294100/1386412863/1.3/Defs/AlienRace/AlienRace_AndroidT3.xml" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="PsychologyUnofficialMac" expanded="True">
             <Node name="PsychologyMac" expanded="True">
-              <Node name="Common" expanded="True">
-                <Node name="Defs" expanded="True">
-                  <Node name="PersonalityDefs" expanded="True" />
-                </Node>
+              <Node name="Harmony" expanded="True">
+                <Node name="InitializeAndOtherMods" expanded="True" />
+                <Node name="Misc" expanded="True" />
+                <Node name="OtherUtilities" expanded="True" />
+                <Node name="Pawn" expanded="True" />
+                <Node name="RomanceAndFamily" expanded="True" />
               </Node>
-              <Node name="Properties" expanded="True" />
+              <Node name="Main" expanded="True">
+                <Node name="Elections" expanded="True" />
+              </Node>
             </Node>
           </Node>
         </State>
@@ -35,5 +41,12 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="/Users/edwardbasso/Library/Application Support/Steam/steamapps/common/RimWorld/RimWorldMac.app/Mods/Rimworld-Psychology-unofficial-v1.1-1.3/Source/1.3/Psychology/Main/Personality/PersonalityNodeMatrix.cs" relfile="Psychology/Main/Personality/PersonalityNodeMatrix.cs" line="4" column="1" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
 </Properties>

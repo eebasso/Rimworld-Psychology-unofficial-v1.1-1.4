@@ -2,7 +2,7 @@
   "version": 3,
   "targets": {
     ".NETFramework,Version=v4.7.2": {
-      "Krafs.Publicizer/1.0.2": {
+      "Krafs.Publicizer/1.0.3": {
         "type": "package",
         "build": {
           "build/Krafs.Publicizer.props": {},
@@ -11,7 +11,7 @@
       }
     },
     ".NETFramework,Version=v4.7.2/win": {
-      "Krafs.Publicizer/1.0.2": {
+      "Krafs.Publicizer/1.0.3": {
         "type": "package",
         "build": {
           "build/Krafs.Publicizer.props": {},
@@ -20,7 +20,7 @@
       }
     },
     ".NETFramework,Version=v4.7.2/win-x64": {
-      "Krafs.Publicizer/1.0.2": {
+      "Krafs.Publicizer/1.0.3": {
         "type": "package",
         "build": {
           "build/Krafs.Publicizer.props": {},
@@ -29,7 +29,7 @@
       }
     },
     ".NETFramework,Version=v4.7.2/win-x86": {
-      "Krafs.Publicizer/1.0.2": {
+      "Krafs.Publicizer/1.0.3": {
         "type": "package",
         "build": {
           "build/Krafs.Publicizer.props": {},
@@ -39,24 +39,24 @@
     }
   },
   "libraries": {
-    "Krafs.Publicizer/1.0.2": {
-      "sha512": "pR+YGF1FJ4fmz80OdmU7mK4BhDoDIBAzHutXH2SPt7Q9YG9aYPWnliUzfBxk4TnRD2jWdtQxjff8YmgChAMy2g==",
+    "Krafs.Publicizer/1.0.3": {
+      "sha512": "VdxH2jsKzGBa9/UzRN8ZK2+PHVj5q1F6hAYzxnetpA4xap815CtoXq+WazrpT2E5AejeR5tyYlhFSzvrObcOxw==",
       "type": "package",
-      "path": "krafs.publicizer/1.0.2",
+      "path": "krafs.publicizer/1.0.3",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "build/Krafs.Publicizer.props",
         "build/Krafs.Publicizer.targets",
         "build/net472/Publicizer.dll",
-        "krafs.publicizer.1.0.2.nupkg.sha512",
+        "krafs.publicizer.1.0.3.nupkg.sha512",
         "krafs.publicizer.nuspec"
       ]
     }
   },
   "projectFileDependencyGroups": {
     ".NETFramework,Version=v4.7.2": [
-      "Krafs.Publicizer >= 1.0.2"
+      "Krafs.Publicizer >= 1.0.3"
     ]
   },
   "packageFolders": {
@@ -91,8 +91,10 @@
       "net472": {
         "dependencies": {
           "Krafs.Publicizer": {
+            "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+            "suppressParent": "All",
             "target": "Package",
-            "version": "[1.0.2, )"
+            "version": "[1.0.3, )"
           }
         }
       }

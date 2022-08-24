@@ -1,59 +1,75 @@
 ﻿using RimWorld;
 using Verse;
 using HarmonyLib;
+using System.Runtime.CompilerServices;
 
 namespace Psychology.Harmony
 {
-    //[HarmonyPatch(typeof(CompAbilityEffect_WordOfLove), nameof(CompAbilityEffect_WordOfLove.ValidateTarget))]
-    //public static class CompAbilityEffect_WordOfLovePatch
-    //{
-    //    [HarmonyPostfix]
-    //    public static void ValidateTarget(CompAbilityEffect_WordOfLove __instance, ref bool __result, LocalTargetInfo target)
-    //    {
-    //        if (PsychologyBase.ActivateKinsey())
-    //        {
-    //            /* Until the problem with protected selectedTarget is resolved */
-    //            __result = true;
-    //        }
-    //    }
-    //}
     [HarmonyPatch(typeof(CompAbilityEffect_WordOfLove), nameof(CompAbilityEffect_WordOfLove.ValidateTarget))]
-    public static class CompAbilityEffect_WordOfLovePatch
+    public static class CompAbilityEffect_WordOfLove_ValidateTarget_Patch
     {
-        [HarmonyPostfix]
-        public static void ValidateTarget(CompAbilityEffect_WordOfLove __instance, ref bool __result, LocalTargetInfo target)
+        [HarmonyPrefix]
+        public static bool ValidateTarget(CompAbilityEffect_WordOfLove __instance, ref bool __result, LocalTargetInfo target)
         {
             if (!PsychologyBase.ActivateKinsey())
             {
-                return;
+                return true;
             }
-            Pawn pawnLoved = __instance.selectedTarget.Pawn;
-            Pawn pawnInLove = target.Pawn;
-            if (pawnLoved == pawnInLove)
+            Pawn inLovePawn = __instance.selectedTarget.Pawn;
+            Pawn lovedPawn = target.Pawn;
+            if (inLovePawn == lovedPawn)
             {
                 __result = false;
+                return false;
+            }
+            if (inLovePawn != null && lovedPawn != null)
+            {
+                Gender inLoveGender = inLovePawn.gender;
+                Gender lovedGender = lovedPawn.gender;
+                int pawnInLoveKinsey = PsycheHelper.Comp(inLovePawn).Sexuality.kinseyRating;
+                bool pawnInLoveCompat = inLoveGender == lovedGender ? pawnInLoveKinsey > 0 : pawnInLoveKinsey < 6;
+                if (!pawnInLoveCompat)
+                {
+                    Messages.Message("AbilityCantApplyWrongAttractionGender".Translate(inLovePawn, lovedPawn), inLovePawn, MessageTypeDefOf.RejectInput, historical: false);
+                    __result = false;
+                    return false;
+                }
+
+                int lovedKinsey = PsycheHelper.Comp(lovedPawn).Sexuality.kinseyRating;
+                bool pawnLovedCompat = inLoveGender == lovedGender ? lovedKinsey > 0 : lovedKinsey < 6;
+                if (!pawnLovedCompat)
+                {
+                    Messages.Message("AbilityCantApplyWrongAttractionGender".Translate(lovedPawn, inLovePawn), lovedPawn, MessageTypeDefOf.CautionInput, historical: false);
+                }
+            }
+            // NOTE: check that CompAbilityEffect_WithDest.ValidateTarget hasn't been changed from simply calling CompAbilityEffect_WithDest.CanHitTarget
+            __result = __instance.CanHitTarget(target);
+            return false;
+        }
+    }
+
+    [HarmonyPatch(typeof(CompAbilityEffect_WordOfLove), nameof(CompAbilityEffect_WordOfLove.Valid))]
+    public static class CompAbilityEffect_WordOfLove_Valid_Patch
+    {
+        [HarmonyPostfix]
+        public static void Valid(bool __result, LocalTargetInfo target, bool throwMessages)
+        {
+            Pawn pawn = target.Pawn;
+            if (pawn == null || !PsychologyBase.ActivateKinsey())
+            {
                 return;
             }
-            if (pawnLoved != null && pawnInLove != null)
+            if (PsycheHelper.Comp(pawn).Sexuality.AdjustedSexDrive < 0.1f)
             {
-                Gender genderLoved = pawnLoved.gender;
-                Gender genderInLove = pawnInLove.gender;
-                int kinseyLoved = PsycheHelper.Comp(pawnLoved).Sexuality.kinseyRating;
-                int kinseyInLove = PsycheHelper.Comp(pawnInLove).Sexuality.kinseyRating;
-                if (genderLoved == genderInLove)
+                if (throwMessages)
                 {
-                    // A potential homosexual relationship needs both parties to be at least a little gay
-                    __result = kinseyLoved > 0 && kinseyInLove > 0;
-                    return;
+                    Messages.Message("AbilityCantApplyOnAsexual".Translate(pawn.def.label), pawn, MessageTypeDefOf.RejectInput, historical: false);
                 }
-                else
-                {
-                    // A potential heurtosexual relationship needs both parties to be at least a little straight
-                    __result = kinseyLoved < 6 && kinseyInLove < 6;
-                }
+                __result = false;
             }
         }
     }
+
 }
 
 /*

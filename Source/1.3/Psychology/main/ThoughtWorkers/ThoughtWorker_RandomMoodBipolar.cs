@@ -7,7 +7,7 @@ namespace Psychology
     public class ThoughtWorker_RandomMoodBipolar : ThoughtWorker
     {
         //[LogPerformance]
-        protected override ThoughtState CurrentStateInternal(Pawn p)
+        public override ThoughtState CurrentStateInternal(Pawn p)
         {
 
             switch ((p.GetHashCode() ^ (GenLocalDate.DayOfYear(p) + GenLocalDate.Year(p) + (int)(GenLocalDate.DayPercent(p) * 10) * 60) * 391) % 12)

@@ -22,28 +22,16 @@ namespace Psychology.Harmony
             {
                 if (PsychologyBase.ActivateKinsey())
                 {
-                    //while (PsycheHelper.Comp(pawn).Sexuality.kinseyRating > 2 && !request.AllowGay)
-                    //{
-                    //    PsycheHelper.Comp(pawn).Sexuality.GenerateSexuality();
-                    //}
                     if (!request.AllowGay)
                     {
                         PsycheHelper.Comp(pawn).Sexuality.GenerateSexuality(1f, 1f, 0f, 0f, 0f, 0f, 0f);
                     }
                     if (LovePartnerRelationUtility.HasAnyLovePartnerOfTheSameGender(pawn) || LovePartnerRelationUtility.HasAnyExLovePartnerOfTheSameGender(pawn))
                     {
-                        //while (PsycheHelper.Comp(pawn).Sexuality.kinseyRating < 2)
-                        //{
-                        //    PsycheHelper.Comp(pawn).Sexuality.GenerateSexuality();
-                        //}
                         PsycheHelper.Comp(pawn).Sexuality.GenerateSexuality(0f, 0f, 1f, 1f, 1f, 1f, 1f);
                     }
                     else if (LovePartnerRelationUtility.HasAnyLovePartnerOfTheOppositeGender(pawn) || LovePartnerRelationUtility.HasAnyExLovePartnerOfTheOppositeGender(pawn))
                     {
-                        //while (PsycheHelper.Comp(pawn).Sexuality.kinseyRating > 4)
-                        //{
-                        //    PsycheHelper.Comp(pawn).Sexuality.GenerateSexuality();
-                        //}
                         PsycheHelper.Comp(pawn).Sexuality.GenerateSexuality(1f, 1f, 1f, 1f, 1f, 0f, 0f);
                     }
                 }

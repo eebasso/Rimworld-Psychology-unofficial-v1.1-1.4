@@ -13,6 +13,6 @@
     <SourceRoot Include="/Users/edwardbasso/.nuget/packages/" />
   </ItemGroup>
   <ImportGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
-    <Import Project="$(NuGetPackageRoot)krafs.publicizer/1.0.2/build/Krafs.Publicizer.props" Condition="Exists('$(NuGetPackageRoot)krafs.publicizer/1.0.2/build/Krafs.Publicizer.props')" />
+    <Import Project="$(NuGetPackageRoot)krafs.publicizer/1.0.3/build/Krafs.Publicizer.props" Condition="Exists('$(NuGetPackageRoot)krafs.publicizer/1.0.3/build/Krafs.Publicizer.props')" />
   </ImportGroup>
 </Project>

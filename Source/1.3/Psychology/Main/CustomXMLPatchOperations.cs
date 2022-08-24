@@ -5,12 +5,13 @@ using HarmonyLib;
 using Verse;
 using Unity;
 using UnityEngine;
+using HugsLib;
 
 namespace Psychology
 {
     public class PatchOperationCustom : PatchOperationPathed
     {
-        protected override bool ApplyWorker(XmlDocument xml)
+        public override bool ApplyWorker(XmlDocument xml)
         {
             //Log.Message("Psychology.PatchOperationCustom");
             bool result = false;
@@ -24,6 +25,12 @@ namespace Psychology
                     int oldModifier = ParseHelper.FromString<int>(xmlNode.Value);
                     //Log.Message("Old modifier was " + oldModifier);
                     int newModifier = Mathf.CeilToInt(PsychologyBase.TraitOpinionMultiplier() * oldModifier);
+                    //float multiplier = 0.25f;
+                    //if (PsychologyBase.Settings.ValueExists("TraitOpinionMultiplier"))
+                    //{
+                    //    multiplier = Convert.ToSingle(PsychologyBase.Settings.PeekValue("TraitOpinionMultiplier"));
+                    //}
+                    //int newModifier = Mathf.CeilToInt(multiplier * oldModifier);
                     //Log.Message("New modifier is " + newModifier);
                     xmlNode.Value = newModifier.ToString();
                     //Log.Message("xmlNode.Value set to new modifier");

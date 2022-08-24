@@ -10,8 +10,10 @@ namespace Psychology
 {
     public class JobGiver_MakeAdvance : ThinkNode_JobGiver
     {
+        int lastRomanceTick = -9999;
+
         //[LogPerformance]
-        protected override Job TryGiveJob(Pawn pawn)
+        public override Job TryGiveJob(Pawn pawn)
         {
             if(pawn.interactions.InteractedTooRecentlyToInteract() || lastRomanceTick > Find.TickManager.TicksGame - 1000)
             {
@@ -48,6 +50,6 @@ namespace Psychology
             return null;
         }
 
-        int lastRomanceTick = -9999;
+        
     }
 }

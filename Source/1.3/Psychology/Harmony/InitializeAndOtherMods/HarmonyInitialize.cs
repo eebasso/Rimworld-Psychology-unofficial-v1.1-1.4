@@ -10,19 +10,19 @@ namespace Psychology.Harmony
 
         static HarmonyInitialize()
         {
-            Log.Message("Initializing Psychology Patches");
+            //Log.Message("Initializing Psychology Patches");
             harmonyInstance = new HarmonyLib.Harmony("Community.Psychology.UnofficialUpdate");
             harmonyInstance.PatchAll();
-            Log.Message("Done with PatchAll");
+            Log.Message("Psychology: implemented all vanilla Harmony patches");
             if (ModsConfig.IsActive("void.charactereditor"))
             {
-                Log.Message("Running CEditor patch");
                 SpecialPatches.DoCharacterEditorPatch(harmonyInstance);
+                Log.Message("Psychology: patched CharacterEditor for compatibility");
             }
             if (ModsConfig.IsActive("EdB.PrepareCarefully"))
             {
-                Log.Message("Running PrepareCarefully patch");
                 SpecialPatches.DoPrepareCarefullyPatch(harmonyInstance);
+                Log.Message("Psychology: patched PrepareCarefully for compatibility");
             }
         }
     }

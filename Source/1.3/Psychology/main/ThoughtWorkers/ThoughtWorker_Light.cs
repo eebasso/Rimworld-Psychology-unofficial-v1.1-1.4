@@ -6,7 +6,7 @@ namespace Psychology
     public class ThoughtWorker_Light : ThoughtWorker
     {
         //[LogPerformance]
-        protected override ThoughtState CurrentStateInternal(Pawn p)
+        public override ThoughtState CurrentStateInternal(Pawn p)
         {
             if (!p.Spawned)
                 return ThoughtState.Inactive;
