@@ -11,7 +11,7 @@ namespace Psychology.Harmony
         [HarmonyPrefix]
         public static bool ValidateTarget(CompAbilityEffect_WordOfLove __instance, ref bool __result, LocalTargetInfo target)
         {
-            if (!PsychologyBase.ActivateKinsey())
+            if (!PsychologySettings.enableKinsey)
             {
                 return true;
             }
@@ -55,7 +55,7 @@ namespace Psychology.Harmony
         public static void Valid(bool __result, LocalTargetInfo target, bool throwMessages)
         {
             Pawn pawn = target.Pawn;
-            if (pawn == null || !PsychologyBase.ActivateKinsey())
+            if (pawn == null || !PsychologySettings.enableKinsey)
             {
                 return;
             }

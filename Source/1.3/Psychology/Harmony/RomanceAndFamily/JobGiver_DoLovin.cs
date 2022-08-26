@@ -18,7 +18,7 @@
 //        public static void CancelJob(ref Job __result, Pawn pawn)
 //        {
 //            Pawn partner = LovePartnerRelationUtility.GetPartnerInMyBed(pawn);
-//            if (PsycheHelper.PsychologyEnabled(pawn) && PsycheHelper.PsychologyEnabled(partner) && PsychologyBase.ActivateKinsey())
+//            if (PsycheHelper.PsychologyEnabled(pawn) && PsycheHelper.PsychologyEnabled(partner) && PsychologySettings.enableKinsey)
 //            {
 //                float random = Rand.ValueSeeded((pawn.GetHashCode() ^ (GenLocalDate.DayOfYear(pawn) + GenLocalDate.Year(pawn) + (int)(GenLocalDate.DayPercent(pawn) * 2) * 60) * 391));
 //                float random2 = Rand.ValueSeeded((pawn.GetHashCode() ^ (GenLocalDate.DayOfYear(partner) + GenLocalDate.Year(partner) + (int)(GenLocalDate.DayPercent(partner) * 2) * 60) * 391));

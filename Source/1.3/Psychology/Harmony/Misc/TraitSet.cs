@@ -23,22 +23,22 @@ namespace Psychology.Harmony
             {
                 ps = pawn.GetComp<CompPsychology>().Sexuality;
             }
-            if (ps != null && PsychologyBase.ActivateKinsey() && trait.def == TraitDefOf.Gay)
+            if (ps != null && PsychologySettings.enableKinsey && trait.def == TraitDefOf.Gay)
             {
                 return false;
             }
-            if (ps != null && PsychologyBase.ActivateKinsey() && trait.def == TraitDefOf.Bisexual)
+            if (ps != null && PsychologySettings.enableKinsey && trait.def == TraitDefOf.Bisexual)
             {
                 return false;
             }
-            if (ps != null && PsychologyBase.ActivateKinsey() && ps.romanticDrive < 0.5f)
+            if (ps != null && PsychologySettings.enableKinsey && ps.romanticDrive < 0.5f)
             {
                 if (trait.def == TraitDefOfPsychology.Codependent)
                 {
                     return false;
                 }
             }
-            if (ps != null && PsychologyBase.ActivateKinsey() && ps.sexDrive < 0.5f)
+            if (ps != null && PsychologySettings.enableKinsey && ps.sexDrive < 0.5f)
             {
                 if (trait.def == TraitDefOfPsychology.Lecher)
                 {
@@ -46,7 +46,7 @@ namespace Psychology.Harmony
                 }
             }
             /*UP: Remove Asexual Trait*/
-            if (ps != null && PsychologyBase.ActivateKinsey() && trait.def == TraitDefOf.Asexual)
+            if (ps != null && PsychologySettings.enableKinsey && trait.def == TraitDefOf.Asexual)
             {
                 return false;
             }

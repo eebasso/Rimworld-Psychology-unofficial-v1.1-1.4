@@ -22,7 +22,7 @@ namespace Psychology.Harmony
             {
                 float num = 1.2f;
                 num *= Mathf.InverseLerp(0f, 0.75f, recipient.GetComp<CompPsychology>().Psyche.GetPersonalityRating(PersonalityNodeDefOf.Romantic));
-                if (PsychologyBase.ActivateKinsey())
+                if (PsychologySettings.enableKinsey)
                 {
                     num *= recipient.GetComp<CompPsychology>().Sexuality.AdjustedRomanticDrive;
                 }
@@ -134,7 +134,7 @@ namespace Psychology.Harmony
                 rejectedProposalDef.thoughtClass = typeof(Thought_MemorySocialDynamic);
                 ThoughtStage rejectedProposalStage = new ThoughtStage();
                 rejectedProposalStage.label = "rejected my proposal";
-                rejectedProposalStage.baseOpinionOffset = Mathf.RoundToInt(-40f * PsycheHelper.Comp(initiator).Psyche.GetPersonalityRating(PersonalityNodeDefOf.Romantic) * (PsychologyBase.ActivateKinsey() ? PsycheHelper.Comp(initiator).Sexuality.AdjustedRomanticDrive : 1f));
+                rejectedProposalStage.baseOpinionOffset = Mathf.RoundToInt(-40f * PsycheHelper.Comp(initiator).Psyche.GetPersonalityRating(PersonalityNodeDefOf.Romantic) * (PsychologySettings.enableKinsey ? PsycheHelper.Comp(initiator).Sexuality.AdjustedRomanticDrive : 1f));
                 rejectedProposalDef.stages.Add(rejectedProposalStage);
                 ThoughtDef rejectedProposalMoodDef = new ThoughtDef();
                 rejectedProposalMoodDef.defName = "RejectedMyProposalMood" + initiator.LabelShort + Find.TickManager.TicksGame;
@@ -172,7 +172,7 @@ namespace Psychology.Harmony
                 rejectedTheirProposalDef.thoughtClass = typeof(Thought_MemorySocialDynamic);
                 ThoughtStage rejectedTheirProposalStage = new ThoughtStage();
                 rejectedTheirProposalStage.label = "I rejected their proposal";
-                rejectedTheirProposalStage.baseOpinionOffset = Mathf.RoundToInt(-30f * PsycheHelper.Comp(recipient).Psyche.GetPersonalityRating(PersonalityNodeDefOf.Romantic) * (PsychologyBase.ActivateKinsey() ? 1.75f - PsycheHelper.Comp(recipient).Sexuality.AdjustedRomanticDrive : 1f));
+                rejectedTheirProposalStage.baseOpinionOffset = Mathf.RoundToInt(-30f * PsycheHelper.Comp(recipient).Psyche.GetPersonalityRating(PersonalityNodeDefOf.Romantic) * (PsychologySettings.enableKinsey ? 1.75f - PsycheHelper.Comp(recipient).Sexuality.AdjustedRomanticDrive : 1f));
                 rejectedTheirProposalDef.stages.Add(rejectedTheirProposalStage);
                 ThoughtDef rejectedTheirProposalMoodDef = new ThoughtDef();
                 rejectedTheirProposalMoodDef.defName = "IRejectedTheirProposalMood" + recipient.LabelShort + Find.TickManager.TicksGame;
@@ -240,7 +240,7 @@ namespace Psychology.Harmony
 					__result /= 0.2f;
 				}
 				__result *= 0.1f + 0.9f * PsycheHelper.Comp(initiator).Psyche.GetPersonalityRating(PersonalityNodeDefOf.Adventurous) + PsycheHelper.Comp(initiator).Psyche.GetPersonalityRating(PersonalityNodeDefOf.Romantic);
-                if(PsychologyBase.ActivateKinsey())
+                if(PsychologySettings.enableKinsey)
                 {
                     __result *= 1.3f * PsycheHelper.Comp(initiator).Sexuality.AdjustedRomanticDrive;
                 }

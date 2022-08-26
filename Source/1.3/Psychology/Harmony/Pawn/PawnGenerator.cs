@@ -20,7 +20,7 @@ namespace Psychology.Harmony
         {
             if (PsycheHelper.PsychologyEnabled(pawn))
             {
-                if (PsychologyBase.ActivateKinsey())
+                if (PsychologySettings.enableKinsey)
                 {
                     if (!request.AllowGay)
                     {

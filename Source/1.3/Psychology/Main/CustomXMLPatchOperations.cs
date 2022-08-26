@@ -24,14 +24,7 @@ namespace Psychology
                     result = true;
                     int oldModifier = ParseHelper.FromString<int>(xmlNode.Value);
                     //Log.Message("Old modifier was " + oldModifier);
-                    int newModifier = Mathf.CeilToInt(PsychologyBase.TraitOpinionMultiplier() * oldModifier);
-                    //float multiplier = 0.25f;
-                    //if (PsychologyBase.Settings.ValueExists("TraitOpinionMultiplier"))
-                    //{
-                    //    multiplier = Convert.ToSingle(PsychologyBase.Settings.PeekValue("TraitOpinionMultiplier"));
-                    //}
-                    //int newModifier = Mathf.CeilToInt(multiplier * oldModifier);
-                    //Log.Message("New modifier is " + newModifier);
+                    int newModifier = Mathf.CeilToInt(PsychologySettings.traitOpinionMultiplier * oldModifier);
                     xmlNode.Value = newModifier.ToString();
                     //Log.Message("xmlNode.Value set to new modifier");
                 }
@@ -39,4 +32,32 @@ namespace Psychology
             return result;
         }
     }
+
+    public class EnableEmpathyPatchOperationAdd : PatchOperationAdd
+    {
+        public override bool ApplyWorker(XmlDocument xml)
+        {
+            if (!PsychologySettings.enableElections)
+            {
+                return false;
+            }
+            return base.ApplyWorker(xml);
+
+        }
+    }
+
+    public class EnableEmpathyPatchOperationAttirbuteAdd : PatchOperationAttributeAdd
+    {
+        public override bool ApplyWorker(XmlDocument xml)
+        {
+            if (!PsychologySettings.enableElections)
+            {
+                return false;
+            }
+            return base.ApplyWorker(xml);
+        }
+    }
+
+
 }
+

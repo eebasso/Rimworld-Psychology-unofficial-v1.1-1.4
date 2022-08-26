@@ -16,7 +16,7 @@ namespace Psychology.Harmony
         [HarmonyPostfix]
         public static void KinseyFactor(ref float __result, Pawn father, Pawn mother, Pawn child)
         {
-            if (PsychologyBase.ActivateKinsey())
+            if (PsychologySettings.enableKinsey)
             {
                 /* Kinsey-enabled pawns shouldn't have the Gay trait, so we can just apply the sexuality modifier here. */
                 if (father != null && child != null && child.GetFather() == null)

@@ -17,7 +17,7 @@ namespace Psychology.Harmony
         [HarmonyPrefix]
         public static bool KinseyException(ref Pawn __result, Pawn generatedChild, Pawn existingChild, Gender genderToGenerate, PawnGenerationRequest childRequest, bool newlyGeneratedParentsWillBeSpousesIfNotGay)
         {
-            //if (PsychologyBase.ActivateKinsey())
+            //if (PsychologySettings.enableKinsey)
             if (PsychologyBase.toggleKinsey.Value)
             {
                 //TODO: Turn this into a transpiler instead of a prefix.

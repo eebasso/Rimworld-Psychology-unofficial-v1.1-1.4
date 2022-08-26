@@ -36,7 +36,7 @@ namespace Psychology.Harmony
         [HarmonyPostfix]
         public static void AddAnxiety(MentalBreaker __instance, ref bool __result, Pawn ___pawn)
         {
-            if (__result && PsychologyBase.AnxietyEnabled())
+            if (__result && PsychologySettings.enableAnxiety)
             {
                 //Pawn pawn = Traverse.Create(__instance).Field("pawn").GetValue<Pawn>();
                 int intensity;

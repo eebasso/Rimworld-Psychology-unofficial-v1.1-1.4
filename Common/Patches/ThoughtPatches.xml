@@ -58,9 +58,4 @@
 		<xpath>Defs/ThoughtDef[defName="BodyPuristDisgust"]/stages/li[5]/baseOpinionOffset/text()</xpath>
 	</Operation>
 
-
-
-
-
-
 </Patch>

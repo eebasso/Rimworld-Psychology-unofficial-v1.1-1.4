@@ -3,18 +3,11 @@ using Verse;
 
 namespace Psychology
 {
-    public class MayorUtility : GameComponent
+    public static class MayorUtility
     {
-        //public static List<Pawn> Mayors;
         public static Dictionary<int, Pair<Pawn, Hediff>> Mayors;
-
-        public MayorUtility(Game game)
+        public static void BuildMayorDictionary()
         {
-        }
-
-        public override void LoadedGame()
-        {
-            Log.Message("Loading game");
             Mayors = new Dictionary<int, Pair<Pawn, Hediff>>();
             foreach (Pawn pawn in Find.WorldPawns.AllPawnsAlive)
             {
@@ -35,7 +28,12 @@ namespace Psychology
                     }
                 }
             }
+            if (!PsychologySettings.enableElections)
+            {
+                DeleteAllMayorHediffs();
+            }
         }
+
         public static void RemoveMayorOfThisColony(int mapTile)
         {
             foreach (KeyValuePair<int, Pair<Pawn, Hediff>> kvp in Mayors)

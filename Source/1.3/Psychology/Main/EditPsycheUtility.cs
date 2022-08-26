@@ -62,7 +62,7 @@ namespace Psychology
             }
             CachedTitleText = TitleText;
             
-            if (PsychologyBase.ActivateKinsey())
+            if (PsychologySettings.enableKinsey)
             {
                 pawnKinseyRating = PsycheHelper.Comp(pawn).Sexuality.kinseyRating;
                 pawnSexDrive = PsycheHelper.Comp(pawn).Sexuality.sexDrive;
@@ -140,7 +140,7 @@ namespace Psychology
             Widgets.Label(mainRect, WarningText);
             mainRect.yMin += WarningHeight;
 
-            if (PsychologyBase.ActivateKinsey())
+            if (PsychologySettings.enableKinsey)
             {
                 Rect sexualityLabelRect = new Rect(mainRect.x, mainRect.y, SexualityWidth, SexualityHeight);
                 Rect sexualitySliderRect = new Rect(sexualityLabelRect.xMax + BoundaryPadding, sexualityLabelRect.y + SliderShiftDown, SliderWidth, SexualityHeight);
@@ -255,7 +255,7 @@ namespace Psychology
             }
             PsycheCardUtility.Ticker = 0;
 
-            if (PsychologyBase.ActivateKinsey())
+            if (PsychologySettings.enableKinsey)
             {
                 bool bool1 = PsycheHelper.Comp(pawn).Sexuality.kinseyRating != pawnKinseyRating;
                 bool bool2 = PsycheHelper.Comp(pawn).Sexuality.sexDrive != pawnSexDrive;
@@ -278,7 +278,7 @@ namespace Psychology
                     PersonalityNode node = Nodes[nodeLabel];
                     CachedList[i] = new Pair<string, float>(nodeLabel, node.rawRating);
                 }
-                if (PsychologyBase.ActivateKinsey())
+                if (PsychologySettings.enableKinsey)
                 {
                     PsycheHelper.Comp(pawn).Sexuality.GenerateSexuality();
                     pawnKinseyRating = PsycheHelper.Comp(pawn).Sexuality.kinseyRating;
@@ -302,7 +302,7 @@ namespace Psychology
                     PersonalityNode node = Nodes[nodeLabel];
                     CachedList[i] = new Pair<string, float>(nodeLabel, node.rawRating);
                 }
-                if (PsychologyBase.ActivateKinsey())
+                if (PsychologySettings.enableKinsey)
                 {
                     PsycheHelper.Comp(pawn).Sexuality.GenerateSexuality(Mathf.CeilToInt(1e+7f * Rand.Value));
                     pawnKinseyRating = PsycheHelper.Comp(pawn).Sexuality.kinseyRating;

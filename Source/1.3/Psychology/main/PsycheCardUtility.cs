@@ -130,6 +130,16 @@ namespace Psychology
 
         static PsycheCardUtility()
         {
+            DistanceFromMiddle = PsychologySettings.displayOption;
+            DistanceFromMiddleCached = PsychologySettings.displayOption;
+            UseColorsBool = PsychologySettings.useColors;
+            UseColorsBoolCached = PsychologySettings.useColors;
+            AlphabeticalBool = PsychologySettings.listAlphabetical;
+            AlphabeticalBoolCached = PsychologySettings.listAlphabetical;
+            UseAntonymsBool = PsychologySettings.useAntonyms;
+            UseAntonymsBoolCached = PsychologySettings.useAntonyms;
+
+
             Text.Font = GameFont.Small;
             GUIStyle style = Text.fontStyles[1];
             Vector2 scalingVector = new Vector2(1.035f, 1.025f);
@@ -300,7 +310,7 @@ namespace Psychology
             personalityRect.xMax = totalRect.xMax - SexualityWidth - HighlightPadding - 2f * BoundaryPadding;
 
             // Draw the widgets for sexuality panel
-            if (PsychologyBase.ActivateKinsey())
+            if (PsychologySettings.enableKinsey)
             {
                 
 
@@ -523,6 +533,11 @@ namespace Psychology
 
             GUI.EndGroup();
             PsychologyBase.UpdatePersonalityDisplaySetting();
+
+            PsychologySettings.displayOption = DistanceFromMiddle;
+            PsychologySettings.useColors = UseColorsBool;
+            PsychologySettings.listAlphabetical = AlphabeticalBool;
+            PsychologySettings.useAntonyms = UseAntonymsBool;
         }
 
         public static string ColorizedNodeText(PersonalityNode node, float displacement)
@@ -968,3 +983,4 @@ namespace Psychology
         }
     }
 }
+

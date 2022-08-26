@@ -77,21 +77,22 @@ namespace Psychology
         {
             List<float> bList = new List<float> { b0, b1, b2, b3, b4, b5, b6 };
             List<float> kList = new List<float> { 1f, 1f, 1f, 1f, 1f, 1f, 1f };
-            if (PsychologyBase.KinseyFormula() == PsychologyBase.KinseyMode.Realistic)
+            if (PsychologySettings.kinseyFormula == PsychologySettings.KinseyMode.Realistic)
             {
                 kList = new List<float> { 62.4949f, 11.3289f, 9.2658f, 6.8466f, 4.5220f, 2.7806f, 2.7612f };
             }
-            else if (PsychologyBase.KinseyFormula() == PsychologyBase.KinseyMode.Invisible)
+            else if (PsychologySettings.kinseyFormula == PsychologySettings.KinseyMode.Invisible)
             {
                 kList = new List<float> { 7.07013f, 11.8092f, 19.5541f, 23.1332f, 19.5541f, 11.8092f, 7.07013f };
             }
-            else if (PsychologyBase.KinseyFormula() == PsychologyBase.KinseyMode.Gaypocalypse)
+            else if (PsychologySettings.kinseyFormula == PsychologySettings.KinseyMode.Gaypocalypse)
             {
                 kList = new List<float> { 2.7612f, 2.7806f, 4.5220f, 6.8466f, 9.2658f, 11.3289f, 62.4949f };
             }
-            else if (PsychologyBase.KinseyFormula() == PsychologyBase.KinseyMode.Custom)
+            else if (PsychologySettings.kinseyFormula == PsychologySettings.KinseyMode.Custom)
             {
-                kList = new List<float> { PsychologyBase.kinsey0Weight(), PsychologyBase.kinsey1Weight(), PsychologyBase.kinsey2Weight(), PsychologyBase.kinsey3Weight(), PsychologyBase.kinsey4Weight(), PsychologyBase.kinsey5Weight(), PsychologyBase.kinsey6Weight() };
+                //kList = new List<float> { PsychologyBase.kinsey0Weight(), PsychologyBase.kinsey1Weight(), PsychologyBase.kinsey2Weight(), PsychologyBase.kinsey3Weight(), PsychologyBase.kinsey4Weight(), PsychologyBase.kinsey5Weight(), PsychologyBase.kinsey6Weight() };
+                kList = PsychologySettings.kinseyWeightCustom;
                 if (kList.Sum() == 0f)
                 {
                     kList = new List<float> { 1f, 1f, 1f, 1f, 1f, 1f, 1f };
@@ -155,22 +156,32 @@ namespace Psychology
         {
             get
             {
-                if (!PsychologyBase.ActivateKinsey())
+                float age = pawn.ageTracker.AgeBiologicalYears;
+                SpeciesSettings settings = PsychologySettings.speciesDict[pawn.def.defName];
+                float minLovinAge = settings.minLovinAge;
+                if (!settings.enablePsyche || minLovinAge < 0f)
                 {
-                    return 1f;
+                    return 0f;
                 }
-                // if (ModIsActive("Androids") ... return 1f
-
-
+                if (!settings.enableAgeGap)
+                {
+                    return age > minLovinAge ? this.sexDrive : 0f;
+                }
+                if (minLovinAge == 0f)
+                {
+                    return this.sexDrive;
+                }
+                float scaledAge = PsycheHelper.RescaleLovinAge(age, minLovinAge);
                 float ageFactor = 1f;
                 if (pawn.gender == Gender.Female)
                 {
-                    ageFactor = FemaleSexDriveCurve.Evaluate(pawn.ageTracker.AgeBiologicalYears);
+                    ageFactor = FemaleSexDriveCurve.Evaluate(scaledAge);
                 }
                 else if (pawn.gender == Gender.Male)
                 {
-                    ageFactor = MaleSexDriveCurve.Evaluate(pawn.ageTracker.AgeBiologicalYears);
+                    ageFactor = MaleSexDriveCurve.Evaluate(scaledAge);
                 }
+                // Maybe one day other genders will come to the Rim...
                 return ageFactor * this.sexDrive;
             }
         }
@@ -179,22 +190,24 @@ namespace Psychology
         {
             get
             {
-                if (!PsychologyBase.ActivateKinsey())
+                float age = pawn.ageTracker.AgeBiologicalYears;
+                SpeciesSettings settings = PsychologySettings.speciesDict[pawn.def.defName];
+                float minDatingAge = settings.minDatingAge;
+                if (!settings.enablePsyche || minDatingAge < 0f)
                 {
-                    return 1f;
+                    return 0f;
                 }
-                // if (ModIsActive("Androids") ... return 1f
-
-                float ageFactor = 1f;
-                if (pawn.gender == Gender.Female)
+                if (!settings.enableAgeGap)
                 {
-                    ageFactor = FemaleSexDriveCurve.Evaluate(pawn.ageTracker.AgeBiologicalYears);
+                    return age > minDatingAge ? this.sexDrive : 0f;
                 }
-                else if (pawn.gender == Gender.Male)
+                if (minDatingAge == 0f)
                 {
-                    ageFactor = MaleSexDriveCurve.Evaluate(pawn.ageTracker.AgeBiologicalYears);
+                    return this.sexDrive;
                 }
-                return Mathf.Sqrt(ageFactor) * this.romanticDrive;
+                float scaledAge = PsycheHelper.RescaleDatingAge(age, minDatingAge);
+                float ageFactor = RomanticDriveCurve.Evaluate(scaledAge);
+                return ageFactor * this.romanticDrive;
             }
         }
 
@@ -249,23 +262,27 @@ namespace Psychology
         private static readonly SimpleCurve RomanticDriveCurve = new SimpleCurve
         {
             {
-                new CurvePoint(10, 0f),
+                new CurvePoint(10f, 0f),
                 true
             },
             {
-                new CurvePoint(15, 1f),
+                new CurvePoint(15f, 1.3f),
                 true
             },
             {
-                new CurvePoint(25, 1.6f),
+                new CurvePoint(25f, 1.6f),
                 true
             },
             {
-                new CurvePoint(50, 1f),
+                new CurvePoint(35f, 1.3f),
                 true
             },
             {
-                new CurvePoint(80, 1f),
+                new CurvePoint(50f, 1f),
+                true
+            },
+            {
+                new CurvePoint(80f, 0.8f),
                 true
             },
         };

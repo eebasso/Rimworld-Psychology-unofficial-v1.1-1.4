@@ -50,14 +50,14 @@ namespace Psychology
             }
         }
 
-        public static bool Ageless(Pawn pawn)
+        public static float RescaleDatingAge(float age, float minDatingAge)
         {
-            if (ModsConfig.IsActive("Atlas.AndroidTiers"))
-            {
-                List<string> agelessList = new List<string>(){ "Android1Tier", "Android2Tier", "Android3Tier", "Android4Tier", "Android5Tier" };
-                return pawn.def.defName.Contains("Android");
-            }
-            return false;
+            return age * 14f / minDatingAge;
+        }
+
+        public static float RescaleLovinAge(float age, float minLovinAge)
+        {
+            return age * 16f / minLovinAge;
         }
 
         public static int[] GetBitArray(this int X, int length)

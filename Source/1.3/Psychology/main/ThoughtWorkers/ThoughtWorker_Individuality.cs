@@ -8,6 +8,8 @@ namespace Psychology
 {
     public class ThoughtWorker_Individuality : ThoughtWorker
     {
+        Dictionary<Pawn, int[]> lastTick = new Dictionary<Pawn, int[]>();
+
         //[LogPerformance]
         public override ThoughtState CurrentStateInternal(Pawn p)
         {
@@ -72,6 +74,6 @@ namespace Psychology
             return ThoughtState.Inactive;
         }
 
-        Dictionary<Pawn, int[]> lastTick = new Dictionary<Pawn, int[]>();
+        
     }
 }

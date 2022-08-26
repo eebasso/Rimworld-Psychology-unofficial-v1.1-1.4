@@ -27,7 +27,7 @@ namespace Psychology.PrepareCarefully
             {
                 nodes = PsycheHelper.Comp(pawn).Psyche.PersonalityNodes;
                 upbringing = PsycheHelper.Comp(pawn).Psyche.upbringing;
-                if(PsychologyBase.ActivateKinsey())
+                if(PsychologySettings.enableKinsey)
                 {
                     sexDrive = PsycheHelper.Comp(pawn).Sexuality.sexDrive;
                     romanticDrive = PsycheHelper.Comp(pawn).Sexuality.romanticDrive;
@@ -43,7 +43,7 @@ namespace Psychology.PrepareCarefully
                 Scribe_Collections.Look(ref nodes, "personality", LookMode.Deep);
             }
             Scribe_Values.Look(ref upbringing, "upbringing");
-            if(PsychologyBase.ActivateKinsey())
+            if(PsychologySettings.enableKinsey)
             {
                 if (Scribe.mode == LoadSaveMode.Saving || Scribe.loader.curXmlParent["sexDrive"] != null)
                 {
