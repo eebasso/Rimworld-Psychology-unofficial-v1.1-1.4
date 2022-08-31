@@ -13,7 +13,7 @@ namespace Psychology.Harmony
 
 {
     [HarmonyPatch(typeof(InteractionWorker_RecruitAttempt), "DoRecruit")]
-     //Pawn recruiter, Pawn recruitee, out string letterLabel, out string letter, bool useAudiovisualEffects = true, bool sendLetter = true); // 1.3
+    //Pawn recruiter, Pawn recruitee, out string letterLabel, out string letter, bool useAudiovisualEffects = true, bool sendLetter = true); // 1.3
     [HarmonyPatch(new Type[] { typeof(Pawn), typeof(Pawn), typeof(string), typeof(string), typeof(bool), typeof(bool) }, new ArgumentType[] { ArgumentType.Normal, ArgumentType.Normal, ArgumentType.Ref, ArgumentType.Ref, ArgumentType.Normal, ArgumentType.Normal })]
     public static class InteractionWorker_RecruitAttempt_DoRecruitPatch
     {
@@ -21,13 +21,13 @@ namespace Psychology.Harmony
         [HarmonyPrefix]
         public static bool AddCapturedThoughts(Pawn recruiter, Pawn recruitee)
         {
-            if (recruitee.RaceProps.Humanlike && PsychologyBase.ImprisonedDebuff())
+            if (recruitee.RaceProps.Humanlike && PsychologySettings.enableImprisonedDebuff)
             {
                 recruitee.needs.mood.thoughts.memories.RemoveMemoriesOfDef(ThoughtDefOf.RapportBuilt);
                 IEnumerable<Pawn> allFactionPawns = Find.Maps.SelectMany(m => from p in m.mapPawns.FreeColonistsSpawned
-                                                                       where p != recruitee
-                                                                       select p);
-                if(recruitee.IsPrisonerOfColony)
+                                                                              where p != recruitee
+                                                                              select p);
+                if (recruitee.IsPrisonerOfColony)
                 {
                     foreach (Pawn pawn in allFactionPawns)
                     {

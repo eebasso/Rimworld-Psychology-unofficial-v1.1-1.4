@@ -43,7 +43,7 @@ namespace Psychology
             }
             float maxCandidatesThisColonySupports = Mathf.Clamp(0.3f * numColonists, 2f, 4f);
             IEnumerable<Pawn> eligibleColonists = from p in colonists
-                                                  where p.ageTracker.AgeBiologicalYearsFloat >= PsychologyBase.MayorAge() // 1.3
+                                                  where p.ageTracker.AgeBiologicalYearsFloat >= PsychologySettings.mayorAge // 1.3
                                                   select p;
             float rowdiness = 1f;
             Dictionary<Pawn, float> likelihoodToRun = new Dictionary<Pawn, float>();

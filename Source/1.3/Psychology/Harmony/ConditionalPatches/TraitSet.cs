@@ -1,0 +1,2 @@
+﻿using System;using Verse;using RimWorld;namespace Psychology.Harmony;
+public class TraitSet_ConditionalPatches{    public static void GainTrait(TraitSet __instance, Trait trait)    {        Pawn pawn = __instance.pawn;        PsychologyGameComponent.CorrectTraitsForPawnKinseyEnabled(pawn);    }}

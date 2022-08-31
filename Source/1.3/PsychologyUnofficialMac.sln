@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Psychology", "Psychology\PsychologyMac.csproj", "{83960198-EE67-473E-AE85-3138BE23A47E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PsychologyMac", "Psychology\PsychologyMac.csproj", "{83960198-EE67-473E-AE85-3138BE23A47E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,5 +18,16 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		Policies = $0
+		$0.TextStylePolicy = $1
+		$1.FileWidth = 80
+		$1.TabsToSpaces = True
+		$1.EolMarker = Mac
+		$1.scope = text/x-csharp
+		$0.CSharpFormattingPolicy = $2
+		$2.LabelPositioning = NoIndent
+		$2.scope = text/x-csharp
 	EndGlobalSection
 EndGlobal

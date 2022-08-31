@@ -75,7 +75,7 @@ namespace Psychology
             initiator.health.AddHediff(plannedDate);
             PsycheHelper.Comp(initiator).Psyche.lastDateTick = day;
             PsycheHelper.Comp(recipient).Psyche.lastDateTick = day;
-            if(PsychologyBase.SendDateLetters())
+            if(PsychologySettings.enableDateLetters)
             {
                 int hourDiscrepancy = GenDate.HourOfDay(day, Find.WorldGrid.LongLatOf(initiator.Map.Tile).x) - hour;
                 int accurateTime = day + (Math.Abs(hourDiscrepancy) * GenDate.TicksPerHour);

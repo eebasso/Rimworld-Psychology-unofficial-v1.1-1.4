@@ -285,6 +285,9 @@
     <None Include="..\..\..\Common\Patches\TraitPatches.xml">
       <Link>Common\Patches\TraitPatches.xml</Link>
     </None>
+    <None Include="..\..\..\Common\Patches\OpinionMultiplierPatches.xml">
+      <Link>Common\Patches\TraitPatches.xml</Link>
+    </None>
     <None Include="..\..\..\Common\Textures\Buttons\ButtonPsyche.png">
       <Link>Common\Textures\Buttons\ButtonPsyche.png</Link>
     </None>

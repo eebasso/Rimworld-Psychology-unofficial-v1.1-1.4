@@ -13,6 +13,10 @@
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <LangVersion>10</LangVersion>
+  </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
@@ -32,6 +36,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>2</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="0Harmony">
@@ -93,24 +98,24 @@
     <Reference Include="System.Numerics.Vectors" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Krafs.Publicizer" Version="1.0.3"><IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-<PrivateAssets>all</PrivateAssets>
-</PackageReference>
+    <PackageReference Include="Krafs.Publicizer" Version="2.0.0">
+    <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <Publicize Include="CharacterEditor" />
     <Publicize Include="Assembly-CSharp" />
+    <Publicize Include="CharacterEditor" />
     <Publicize Include="EdBPrepareCarefully" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Defs\DutyDefOfPsychology.cs" />
-    <Compile Include="Defs\IncidentDefOfPsychology.cs" />
-    <Compile Include="Defs\GameConditionDefOfPsychology.cs" />
-    <Compile Include="Defs\InteractionDefOfPsychology.cs" />
-    <Compile Include="Defs\RulePackDefOfPsychology.cs" />
-    <Compile Include="Defs\PersonalityNodeDefOf.cs" />
-    <Compile Include="Defs\PsychologyTexCommand.cs" />
-    <Compile Include="Main\CompProperties_Psychology.cs" />
+    <Compile Include="DefOf\DutyDefOfPsychology.cs" />
+    <Compile Include="DefOf\IncidentDefOfPsychology.cs" />
+    <Compile Include="DefOf\GameConditionDefOfPsychology.cs" />
+    <Compile Include="DefOf\InteractionDefOfPsychology.cs" />
+    <Compile Include="DefOf\RulePackDefOfPsychology.cs" />
+    <Compile Include="DefOf\PersonalityNodeDefOf.cs" />
+    <Compile Include="DefOf\PsychologyTexCommand.cs" />
     <Compile Include="Main\Conversations\Rendezvous\Hediff_PlannedDate.cs" />
     <Compile Include="Main\Conversations\Rendezvous\InteractionWorker_PlanDate.cs" />
     <Compile Include="Main\Conversations\Rendezvous\InteractionWorker_HangOut.cs" />
@@ -120,8 +125,6 @@
     <Compile Include="Main\Conversations\Rendezvous\LordToil_HangOut.cs" />
     <Compile Include="Main\Conversations\PlayLogEntry_InteractionConversation.cs" />
     <Compile Include="Main\Conversations\Rendezvous\RendezvousUtility.cs" />
-    <Compile Include="Main\Dialog_ViewPsyche.cs" />
-    <Compile Include="Main\Dialog_EditPsyche.cs" />
     <Compile Include="Main\Elections\Candidate.cs" />
     <Compile Include="Main\Elections\Office\CompPotentialOfficeTable.cs" />
     <Compile Include="Main\Elections\Hediff_Mayor.cs" />
@@ -154,8 +157,7 @@
     <Compile Include="Main\ThoughtWorkers\ThoughtWorker_LDR.cs" />
     <Compile Include="Main\ThoughtWorkers\ThoughtWorker_SurvivedTogether.cs" />
     <Compile Include="Main\ThoughtWorkers\ThoughtWorker_Sedentary.cs" />
-    <Compile Include="Main\Thought_MemoryDynamic.cs" />
-    <Compile Include="Main\ITab_Pawn_Psyche.cs" />
+    <Compile Include="Main\Thought\Thought_MemoryDynamic.cs" />
     <Compile Include="Main\Pawn_PsycheTracker.cs" />
     <Compile Include="Main\Personality\PersonalityNode.cs" />
     <Compile Include="Main\Personality\PersonalityNodeMaker.cs" />
@@ -164,11 +166,10 @@
     <Compile Include="Main\Personality\PersonalityNodeIncapableModifier.cs" />
     <Compile Include="Main\Personality\PersonalityNodeTraitModifier.cs" />
     <Compile Include="Main\Personality\PersonalityNodeDef.cs" />
-    <Compile Include="Main\PsycheCardUtility.cs" />
-    <Compile Include="Main\Thought_MemorySocialDynamic.cs" />
+    <Compile Include="Main\Thought\Thought_MemorySocialDynamic.cs" />
     <Compile Include="Main\Medical\Treatments\Recipe_TreatDepression.cs" />
-    <Compile Include="Main\Thought_WantToSleepWithSpouseOrLoverPsychology.cs" />
-    <Compile Include="Main\Thought_TreatmentFailed.cs" />
+    <Compile Include="Main\Thought\Thought_WantToSleepWithSpouseOrLoverPsychology.cs" />
+    <Compile Include="Main\Thought\Thought_TreatmentFailed.cs" />
     <Compile Include="Main\MentalStates\Jobs\JobGiver_ArmSelf.cs" />
     <Compile Include="Main\MentalStates\Jobs\JobGiver_EnactPlot.cs" />
     <Compile Include="Main\MentalStates\MentalState_FellPlotting.cs" />
@@ -192,37 +193,31 @@
     <Compile Include="Main\MentalStates\MentalState_Apathy.cs" />
     <Compile Include="Main\MentalStates\MentalState_Antisocial.cs" />
     <Compile Include="Main\MentalStates\MentalState_Abuse.cs" />
-    <Compile Include="Defs\TaleDefOfPsychology.cs" />
-    <Compile Include="Defs\RecipeDefOfPsychology.cs" />
+    <Compile Include="DefOf\TaleDefOfPsychology.cs" />
+    <Compile Include="DefOf\RecipeDefOfPsychology.cs" />
     <Compile Include="Main\Medical\Treatments\Recipe_TreatChemicalFascination.cs" />
     <Compile Include="Main\Medical\Treatments\Recipe_Treatment.cs" />
     <Compile Include="Main\Medical\Treatments\Recipe_TreatChemicalInterest.cs" />
     <Compile Include="Main\Medical\Treatments\Recipe_TreatPyromaniac.cs" />
-    <Compile Include="Defs\StatDefOfPsychology.cs" />
-    <Compile Include="Defs\JobDefOfPsychology.cs" />
+    <Compile Include="DefOf\StatDefOfPsychology.cs" />
+    <Compile Include="DefOf\JobDefOfPsychology.cs" />
     <Compile Include="Main\Pawn_SexualityTracker.cs" />
-    <Compile Include="Main\CompPsychology.cs" />
-    <Compile Include="Defs\HediffDefOfPsychology.cs" />
+    <Compile Include="DefOf\HediffDefOfPsychology.cs" />
     <Compile Include="Main\ThoughtWorkers\ThoughtWorker_Individuality.cs" />
     <Compile Include="Main\ThoughtWorkers\ThoughtWorker_PanicAttack.cs" />
     <Compile Include="Main\ThoughtWorkers\ThoughtWorker_Polygamous.cs" />
     <Compile Include="Main\InteractionWorkers\InteractionWorker_PrudeSeen.cs" />
     <Compile Include="Main\PsycheHelper.cs" />
-    <Compile Include="PsychologyBase.cs" />
     <Compile Include="Main\ThoughtWorkers\ThoughtWorker_Light.cs" />
     <Compile Include="Main\ThoughtWorkers\ThoughtWorker_Pluviophile.cs" />
     <Compile Include="Main\ThoughtWorkers\ThoughtWorker_Outdoorsy.cs" />
     <Compile Include="Main\ThoughtWorkers\ThoughtWorker_Codependency.cs" />
-    <Compile Include="Defs\ThoughtDefOfPsychology.cs" />
+    <Compile Include="DefOf\ThoughtDefOfPsychology.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Main\Medical\Hediff_Anxiety.cs" />
     <Compile Include="Main\ThoughtWorkers\ThoughtWorker_RandomMoodBipolar.cs" />
-    <Compile Include="Defs\TraitDefOfPsychology.cs" />
-    <Compile Include="Main\PolygonTooltipHandler.cs" />
-    <Compile Include="Main\PolygonUtility.cs" />
+    <Compile Include="DefOf\TraitDefOfPsychology.cs" />
     <Compile Include="Main\CustomXMLPatchOperations.cs" />
-    <Compile Include="Main\EditPsycheUtility.cs" />
-    <Compile Include="Main\PsychColor.cs" />
     <Compile Include="Main\Personality\PersonalityNodeParentMatrix.cs" />
     <Compile Include="Main\Personality\PersonalityNodeTenAspects.cs" />
     <Compile Include="Main\Elections\MayorUtility.cs" />
@@ -233,12 +228,11 @@
     <Compile Include="Harmony\Misc\Thing.cs" />
     <Compile Include="Harmony\Misc\TraitSet.cs" />
     <Compile Include="Harmony\Misc\VoluntarilyJoinableLordsStarter.cs" />
-    <Compile Include="Harmony\InitializeAndOtherMods\EdBPrepareCarefully_PanelBackstory.cs" />
-    <Compile Include="Harmony\InitializeAndOtherMods\HarmonyInitialize.cs" />
-    <Compile Include="Harmony\InitializeAndOtherMods\CharacterEditor_DialogPsychology.cs" />
+    <Compile Include="Harmony\ConditionalPatches\EdBPrepareCarefully_PanelBackstory.cs" />
+    <Compile Include="Harmony\ConditionalPatches\HarmonyInitialize.cs" />
+    <Compile Include="Harmony\ConditionalPatches\CharacterEditor_DialogPsychology.cs" />
     <Compile Include="Harmony\Sleep\Need_Rest.cs" />
     <Compile Include="Harmony\Sleep\JobGiver_GetRest.cs" />
-    <Compile Include="Harmony\Pawn\PawnGenerator.cs" />
     <Compile Include="Harmony\Pawn\Pawn_JobTracker.cs" />
     <Compile Include="Harmony\Pawn\Pawn.cs" />
     <Compile Include="Harmony\Pawn\Pawn_StoryTracker.cs" />
@@ -294,11 +288,26 @@
     <Compile Include="Harmony\Interaction\InteractionWorker_ConvertIdeoAttempt.cs" />
     <Compile Include="Harmony\RomanceAndFamily\PawnRelationWorker_Sibling.cs" />
     <Compile Include="Harmony\OtherUtilities\PawnBanishUtility.cs" />
-    <Compile Include="Main\SpeciesRomanceHandler.cs" />
+    <Compile Include="Main\Settings\SpeciesSettings.cs" />
     <Compile Include="PsychologyMod.cs" />
-    <Compile Include="PsychologySettings.cs" />
-    <Compile Include="Harmony\Misc\Game.cs" />
+    <Compile Include="Main\Settings\PsychologySettings.cs" />
     <Compile Include="PsychologyGameComponent.cs" />
+    <Compile Include="PsychologyDefInjector.cs" />
+    <Compile Include="Main\Comp\CompProperties_Psychology.cs" />
+    <Compile Include="Main\Comp\CompPsychology.cs" />
+    <Compile Include="Main\GUI\EditPsycheUtility.cs" />
+    <Compile Include="Main\GUI\Dialog_EditPsyche.cs" />
+    <Compile Include="Main\GUI\Dialog_ViewPsyche.cs" />
+    <Compile Include="Main\GUI\ITab_Pawn_Psyche.cs" />
+    <Compile Include="Main\GUI\PolygonTooltipHandler.cs" />
+    <Compile Include="Main\GUI\PolygonUtility.cs" />
+    <Compile Include="Main\GUI\PsycheCardUtility.cs" />
+    <Compile Include="Main\GUI\PsychColor.cs" />
+    <Compile Include="Harmony\ConditionalPatches\PawnGenerator.cs" />
+    <Compile Include="Harmony\ConditionalPatches\TraitSet.cs" />
+    <Compile Include="Main\GUI\Dialog_PsychologyUpdatePrompt.cs" />
+    <Compile Include="Main\GUI\SettingsWindowUtility.cs" />
+    <Compile Include="Main\Settings\SpeciesHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\About\preview.png">
@@ -328,6 +337,9 @@
     <None Include="..\..\..\Common\Patches\TraitPatches.xml">
       <Link>Common\Patches\TraitPatches.xml</Link>
     </None>
+    <None Include="..\..\..\Common\Patches\OpinionMultiplierPatches.xml">
+      <Link>Common\Patches\OpinionMultiplierPatches.xml</Link>
+    </None>    
     <None Include="..\..\..\Common\Textures\Buttons\ButtonPsyche.png">
       <Link>Common\Textures\Buttons\ButtonPsyche.png</Link>
     </None>
@@ -751,7 +763,7 @@
     <None Include="..\..\..\Common\Languages\ChineseTraditional\DefInjected\NeedDef\Methadone.xml">
       <Link>Common\Languages\ChineseTraditional\DefInjected\NeedDef\Methadone.xml</Link>
     </None>
-    <None Include="Common\Languages\English\Keyed\Ideology.xml" />
+    
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -761,4 +773,14 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <ProjectExtensions>
+    <MonoDevelop>
+      <Properties>
+        <Policies>
+          <TextStylePolicy TabWidth="4" IndentWidth="4" RemoveTrailingWhitespace="True" NoTabsAfterNonTabs="False" FileWidth="80" TabsToSpaces="True" EolMarker="Mac" scope="text/x-csharp" />
+          <CSharpFormattingPolicy IndentBlock="True" IndentBraces="False" IndentSwitchSection="True" IndentSwitchCaseSection="True" NewLinesForBracesInTypes="True" NewLinesForBracesInMethods="True" NewLinesForBracesInProperties="True" NewLinesForBracesInAccessors="True" NewLinesForBracesInAnonymousMethods="True" NewLinesForBracesInControlBlocks="True" NewLinesForBracesInAnonymousTypes="True" NewLinesForBracesInObjectCollectionArrayInitializers="True" NewLinesForBracesInLambdaExpressionBody="True" NewLineForElse="True" NewLineForCatch="True" NewLineForFinally="True" NewLineForMembersInObjectInit="True" NewLineForMembersInAnonymousTypes="True" NewLineForClausesInQuery="True" SpacingAfterMethodDeclarationName="False" SpaceWithinMethodDeclarationParenthesis="False" SpaceBetweenEmptyMethodDeclarationParentheses="False" SpaceAfterMethodCallName="False" SpaceWithinMethodCallParentheses="False" SpaceBetweenEmptyMethodCallParentheses="False" SpaceAfterControlFlowStatementKeyword="True" SpaceWithinExpressionParentheses="False" SpaceWithinCastParentheses="False" SpaceWithinOtherParentheses="False" SpaceAfterCast="False" SpacesIgnoreAroundVariableDeclaration="False" SpaceBeforeOpenSquareBracket="False" SpaceBetweenEmptySquareBrackets="False" SpaceWithinSquareBrackets="False" SpaceAfterColonInBaseTypeDeclaration="True" SpaceAfterComma="True" SpaceAfterDot="False" SpaceAfterSemicolonsInForStatement="True" SpaceBeforeColonInBaseTypeDeclaration="True" SpaceBeforeComma="False" SpaceBeforeDot="False" SpaceBeforeSemicolonsInForStatement="False" SpacingAroundBinaryOperator="Single" WrappingPreserveSingleLine="True" WrappingKeepStatementsOnSingleLine="True" LabelPositioning="NoIndent" scope="text/x-csharp" />
+        </Policies>
+      </Properties>
+    </MonoDevelop>
+  </ProjectExtensions>
 </Project>

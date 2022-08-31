@@ -6,17 +6,16 @@ using RimWorld;
 using Verse;
 using HarmonyLib;
 
-namespace Psychology.Harmony
+namespace Psychology.Harmony;
+
+[HarmonyPatch(typeof(InteractionWorker_DeepTalk), nameof(InteractionWorker_DeepTalk.RandomSelectionWeight))]
+public static class InteractionWorker_DeepTalk_SelectionWeightPatch
 {
-	[HarmonyPatch(typeof(InteractionWorker_DeepTalk), nameof(InteractionWorker_DeepTalk.RandomSelectionWeight))]
-	public static class InteractionWorker_DeepTalk_SelectionWeightPatch
+    //[LogPerformance]
+    [HarmonyPrefix]
+    public static bool PsychologyException(InteractionWorker_DeepTalk __instance, ref float __result, Pawn initiator, Pawn recipient)
     {
-        //[LogPerformance]
-        [HarmonyPrefix]
-		public static bool PsychologyException(InteractionWorker_DeepTalk __instance, ref float __result, Pawn initiator, Pawn recipient)
-		{
-            __result = 0f;
-			return !PsycheHelper.PsychologyEnabled(initiator) || !PsycheHelper.PsychologyEnabled(recipient);
-		}
-	}
+        __result = 0f;
+        return !PsycheHelper.PsychologyEnabled(initiator) || !PsycheHelper.PsychologyEnabled(recipient);
+    }
 }

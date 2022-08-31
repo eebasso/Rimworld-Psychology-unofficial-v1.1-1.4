@@ -17,7 +17,7 @@ namespace Psychology.Harmony
         {
             if (__result.StageIndex != ThoughtState.Inactive.StageIndex)
             {
-                if (pawn.health.capacities.GetLevel(PawnCapacityDefOf.Sight) == 0f || PsychologyBase.TraitOpinionMultiplier() == 0f)
+                if (pawn.health.capacities.GetLevel(PawnCapacityDefOf.Sight) == 0f || PsychologySettings.traitOpinionMultiplier <= 0f)
                 {
                     __result = false;
                 }

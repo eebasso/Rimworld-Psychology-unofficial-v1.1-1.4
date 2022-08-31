@@ -18,7 +18,7 @@ namespace Psychology.Harmony
         [HarmonyPrefix]
 		public static bool PsychologyException(InteractionWorker_MarriageProposal __instance, ref float __result, Pawn initiator, Pawn recipient)
 		{
-			if (recipient.GetComp<CompPsychology>() != null && recipient.GetComp<CompPsychology>().isPsychologyPawn)
+			if (recipient.GetComp<CompPsychology>() != null && recipient.GetComp<CompPsychology>().IsPsychologyPawn)
             {
                 float num = 1.2f;
                 num *= Mathf.InverseLerp(0f, 0.75f, recipient.GetComp<CompPsychology>().Psyche.GetPersonalityRating(PersonalityNodeDefOf.Romantic));

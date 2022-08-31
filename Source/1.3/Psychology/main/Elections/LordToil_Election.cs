@@ -74,9 +74,7 @@ namespace Psychology
             {
                 election.votes.Add(voter.LabelShort);
             }
-
         }
-
         private IntVec3 spot;
     }
 }

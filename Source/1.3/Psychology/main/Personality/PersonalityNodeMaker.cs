@@ -13,7 +13,7 @@ namespace Psychology
             PersonalityNode node = new PersonalityNode(pawn);
             node.def = def;
             //node.Initialize(inputSeed);
-            node.rawRating = -1f;
+            //node.rawRating = -1f;
             return node;
         }
     }

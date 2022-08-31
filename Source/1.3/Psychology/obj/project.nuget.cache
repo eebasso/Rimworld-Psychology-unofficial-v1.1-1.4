@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "mPUtWZ8gpHWCp4lhJ7HXYz9QQZIBl65iX4qE4nmD0UQxPjp0ZF6Mo8mwjHHgsOS0YThcA7mbvyvdnZEDNGF40w==",
+  "dgSpecHash": "ZHC/sMJyl1MlISqQBw61ECdXk+aMalJnb0ZmAD2etMYJy39vXB0cAH8y1A5qAmuUYuloab4nWV/NEf2ljdbYFA==",
   "success": true,
   "projectFilePath": "/Users/edwardbasso/Library/Application Support/Steam/steamapps/common/RimWorld/RimWorldMac.app/Mods/Rimworld-Psychology-unofficial-v1.1-1.3/Source/1.3/Psychology/PsychologyMac.csproj",
   "expectedPackageFiles": [
-    "/Users/edwardbasso/.nuget/packages/krafs.publicizer/1.0.3/krafs.publicizer.1.0.3.nupkg.sha512"
+    "/Users/edwardbasso/.nuget/packages/krafs.publicizer/2.0.0/krafs.publicizer.2.0.0.nupkg.sha512"
   ],
   "logs": []
 }

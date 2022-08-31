@@ -6,6 +6,7 @@ namespace Psychology
     public static class MayorUtility
     {
         public static Dictionary<int, Pair<Pawn, Hediff>> Mayors;
+
         public static void BuildMayorDictionary()
         {
             Mayors = new Dictionary<int, Pair<Pawn, Hediff>>();

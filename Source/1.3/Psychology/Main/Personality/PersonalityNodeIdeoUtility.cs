@@ -22,7 +22,7 @@ namespace Psychology
                 //Log.Message("Check memeCertaintyModifiers for " + def.defName);
                 if (def.memeCertaintyModifiers != null && def.memeCertaintyModifiers.Count > 0)
                 {
-                    Log.Message("memeCertaintyModifiers exists for " + def.defName);
+                    //Log.Message("memeCertaintyModifiers exists for " + def.defName);
                     foreach (PersonalityNodeMemeCertaintyModifier mcm in def.memeCertaintyModifiers)
                     {
                         MemeDef meme = mcm.meme;
@@ -47,7 +47,7 @@ namespace Psychology
                 //Log.Message("Check preceptCertaintyModifiers for " + def.defName);
                 if (def.preceptCertaintyModifiers != null && def.preceptCertaintyModifiers.Count > 0)
                 {
-                    Log.Message("preceptCertaintyModifiers exists for " + def.defName);
+                    //Log.Message("preceptCertaintyModifiers exist for " + def.defName);
                     foreach (PersonalityNodePreceptCertaintyModifier pcm in def.preceptCertaintyModifiers)
                     {   
                         PreceptDef precept = pcm.precept;

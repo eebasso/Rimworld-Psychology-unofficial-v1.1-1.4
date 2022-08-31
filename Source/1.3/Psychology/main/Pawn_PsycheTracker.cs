@@ -33,12 +33,13 @@ namespace Psychology
         public Pawn_PsycheTracker(Pawn pawn)
         {
             this.pawn = pawn;
+            Initialize();
         }
 
         //[LogPerformance]
         public void Initialize(int inputSeed = 0)
         {
-            Log.Message("Initialize() Pawn_PsycheTracker for " + pawn.LabelShortCap);
+            //Log.Message("Initialize() Pawn_PsycheTracker for " + pawn.LabelShortCap);
             this.nodes = new HashSet<PersonalityNode>();
             foreach (PersonalityNodeDef def in PersonalityNodeParentMatrix.defList)
             {
@@ -64,13 +65,11 @@ namespace Psychology
             }
             /* Pawns are separated into 2^5 = 32 categories based on the five factor model. */
             /* Two pawns with the same upbringing should always have similar personality ratings. */
-            //ratingList = PersonalityNodeParentMatrix.ApplyUpbringingProjection(ratingList, upbringing);
-
+            ratingList = PersonalityNodeParentMatrix.ApplyUpbringingProjection(ratingList, upbringing);
             foreach (PersonalityNode node in nodes)
             {
                 int index = PersonalityNodeParentMatrix.indexDict[node.def];
                 node.rawRating = ratingList[index];
-                node.cachedRating = -1f;
             }
         }
 

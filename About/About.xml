@@ -10,11 +10,11 @@
 	</supportedVersions>
 	<packageId>Community.Psychology.UnofficialUpdate</packageId>
 	<modDependencies>
-		<li>
+		<!--<li>
 			<packageId>UnlimitedHugs.HugsLib</packageId>
 			<displayName>HugsLib</displayName>
 			<steamWorkshopUrl>https://steamcommunity.com/sharedfiles/filedetails/?id=818773962</steamWorkshopUrl>
-		</li>
+		</li>-->
 		<li>
 			<packageId>brrainz.harmony</packageId>
 			<displayName>Harmony</displayName>
@@ -24,7 +24,7 @@
 	</modDependencies>
 	<loadAfter>
 		<li>brrainz.harmony</li>
-		<li>UnlimitedHugs.HugsLib</li>
+		<!--<li>UnlimitedHugs.HugsLib</li>-->
 		<li>void.charactereditor</li>
 		<li>EdB.PrepareCarefully</li>
 	</loadAfter>

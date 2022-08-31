@@ -19,7 +19,7 @@ namespace Psychology.Harmony
         {
             Pawn pawn = Traverse.Create(__instance).Field("pawn").GetValue<Pawn>();
             Pawn_SexualityTracker ps = null;
-            if (pawn.GetComp<CompPsychology>() != null && pawn.GetComp<CompPsychology>().isPsychologyPawn)
+            if (pawn.GetComp<CompPsychology>() != null && pawn.GetComp<CompPsychology>().IsPsychologyPawn)
             {
                 ps = pawn.GetComp<CompPsychology>().Sexuality;
             }

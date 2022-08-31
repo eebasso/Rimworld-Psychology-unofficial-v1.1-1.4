@@ -10,7 +10,7 @@ namespace Psychology.Harmony
         [HarmonyPostfix]
         public static void OpinionOffset(ref float __result)
         {
-            __result = Mathf.CeilToInt(PsychologyBase.TraitOpinionMultiplier() * __result);
+            __result = Mathf.CeilToInt(PsychologySettings.traitOpinionMultiplier * __result);
         }
     }
 }
