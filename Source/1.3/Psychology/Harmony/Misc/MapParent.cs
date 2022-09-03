@@ -6,15 +6,14 @@ using Verse.AI.Group;
 using HarmonyLib;
 using System.Linq;
 
-namespace Psychology.Harmony
+namespace Psychology.Harmony;
+
+[HarmonyPatch(typeof(MapParent),nameof(MapParent.Abandon))]
+public static class MapParent_Abandon_Patch
 {
-    [HarmonyPatch(typeof(MapParent),nameof(MapParent.Abandon))]
-    public static class MapParent_Abandon_Patch
+    public static void Abandon(MapParent __instance)
     {
-        public static void Abandon(MapParent __instance)
-        {
-            MayorUtility.RemoveMayorOfThisColony(__instance.Map.Tile);
-        }
+        PsycheHelper.GameComp.RemoveMayorOfThisColony(__instance.Map.Tile);
     }
 }
 

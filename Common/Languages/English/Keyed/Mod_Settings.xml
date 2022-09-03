@@ -64,15 +64,15 @@
 	<SpeciesSettingsTooltip>Adjust settings for each species.</SpeciesSettingsTooltip>
 
 	<EnablePsycheTitle>Psyche</EnablePsycheTitle>
-	<EnablePsycheTooltip>Turn this off to deactivate personality. This is recommended for non-sapient species such as simple robots that lack the capacity for complex thoughts and emotions. Warning: conversations and romance will be disabled for this species.</EnablePsycheTooltip>
+	<EnablePsycheTooltip>Turn this off to deactivate personality. This is recommended for species not capable of having a humanlike personality such as zombies or simple robots. Warning: conversations and romance will be disabled for this species.</EnablePsycheTooltip>
 
 	<EnableAgeGapTitle>Age gap</EnableAgeGapTitle>
-	<EnableAgeGapTooltip>Turn this off to deactivate the romantic age gap preference for pawns romancing this species. This is recommended for elf-like species that do not experience senescence and/or remain equally attractive regardless of age once they reach adulthood.</EnableAgeGapTooltip>
+	<EnableAgeGapTooltip>Turn this off to deactivate the romantic age gap preference for pawns romancing this species. This is recommended for android-like and elf-like species that do not experience aging and remain equally attractive once they reach adulthood.</EnableAgeGapTooltip>
 
 	<MinDatingAgeTitle>Dating</MinDatingAgeTitle>
-	<MinDatingAgeTooltip>Set the minimum dating age for this species. When positive, the effective age for dating-related formulas scales by this number relative to 14. Setting this to 0 allows dating at any age and effectively disables the age gap. This is recommended for sapient species such as androids with no childhood phase. Any negative number disables dating completely for this species.</MinDatingAgeTooltip>
+	<MinDatingAgeTooltip>Set the minimum dating age for this species. When positive, the effective age for dating-related formulas scales by this number relative to 14. Setting to 0 allows dating at any age and effectively disables the age gap. This is recommended for species such as sentient androids with no childhood phase. Any negative number disables dating completely for this species.</MinDatingAgeTooltip>
 
 	<MinLovinAgeTitle>Lovin</MinLovinAgeTitle>
-	<MinLovinAgeTooltip>Set the minimum lovin age for this species. When positive, the effective age for lovin-related formulas scales by this number relative to 16. Setting this to 0 allows lovin at any age and effectively disables the age gap. This is recommended for sapient species such as androids with no childhood phase. Any negative number disables lovin completely for this species.</MinLovinAgeTooltip>
+	<MinLovinAgeTooltip>Set the minimum lovin age for this species. When positive, the effective age for lovin-related formulas scales by this number relative to 16. Setting to 0 allows lovin at any age and effectively disables the age gap. This is recommended for species such as sentient androids with no childhood phase. Any negative number disables lovin completely for this species.</MinLovinAgeTooltip>
 
 </LanguageData>

@@ -1,49 +1,27 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workbench ActiveDocument="Psychology/Harmony/OtherUtilities/ConversionUtility.cs">
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Psychology/Main/Settings/SpeciesSettings.cs">
     <Files>
-      <File FileName="Psychology/Main/Pawn_SexualityTracker.cs" Line="19" Column="22" IsPinned="True" />
-      <File FileName="Psychology/Main/PsycheHelper.cs" Line="9" Column="22" IsPinned="True" />
-      <File FileName="Psychology/PsychologyGameComponent.cs" Line="15" Column="49" IsPinned="True" />
-      <File FileName="Psychology/PsychologyMod.cs" Line="1" Column="1" IsPinned="True" />
-      <File FileName="Psychology/Main/GUI/PsycheCardUtility.cs" Line="13" Column="2" IsPinned="True" />
-      <File FileName="Psychology/Main/Conversations/Rendezvous/InteractionWorker_PlanDate.cs" Line="78" Column="53" />
-      <File FileName="Psychology/Main/Conversations/Hediff_Conversation.cs" Line="186" Column="68" />
-      <File FileName="Psychology/Main/ThoughtWorkers/ThoughtWorker_Individuality.cs" Line="57" Column="46" />
-      <File FileName="Psychology/Main/CustomXMLPatchOperations.cs" Line="11" Column="2" />
-      <File FileName="../../Common/Defs/TraitDefs/Traits_Singular.xml" Line="1" Column="1" />
-      <File FileName="../../Common/Defs/ThoughtDefs/Thoughts_Situation_Traits.xml" Line="1" Column="1" />
-      <File FileName="Psychology/Main/GUI/PolygonUtility.cs" Line="1" Column="1" />
-      <File FileName="Psychology/DefOf/DutyDefOfPsychology.cs" Line="1" Column="1" />
-      <File FileName="Psychology/Main/Personality/PersonalityNodeDef.cs" Line="96" Column="24" />
-      <File FileName="Psychology/Main/Personality/PersonalityNode.cs" Line="17" Column="28" />
-      <File FileName="Psychology/Main/Personality/PersonalityNodeParentMatrix.cs" Line="68" Column="14" />
-      <File FileName="Psychology/Harmony/Pawn/Pawn.cs" Line="14" Column="30" />
-      <File FileName="Psychology/Harmony/OtherUtilities/ConversionUtility.cs" Line="9" Column="30" />
-      <File FileName="Psychology/Harmony/OtherUtilities/FoodUtility.cs" Line="23" Column="13" />
-      <File FileName="../../Common/Patches/ThoughtPatches.xml" Line="1" Column="1" />
-      <File FileName="../../../../../../../workshop/content/294100/2016263135/Patches/TraitPatches.xml" Line="14" Column="16" />
+      <File FileName="Psychology/Main/Settings/SpeciesHelper.cs" Line="132" Column="13" IsPinned="True" />
+      <File FileName="Psychology/Harmony/Thoughts/Need_Outdoors.cs" Line="34" Column="44" />
+      <File FileName="Psychology/Harmony/Pawn/PawnObserver.cs" Line="25" Column="49" />
+      <File FileName="Psychology/Harmony/MentalState/MentalState_SocialFighting.cs" Line="41" Column="76" />
+      <File FileName="Psychology/Harmony/Pawn/Pawn.cs" Line="54" Column="6" />
+      <File FileName="Psychology/Harmony/RomanceAndFamily/InteractionWorker_MarriageProposal.cs" Line="41" Column="17" />
+      <File FileName="Psychology/Main/PsycheHelper.cs" Line="59" Column="52" />
+      <File FileName="Psychology/PsychologyGameComponent.cs" Line="26" Column="1" />
+      <File FileName="Psychology/Main/Settings/PsychologySettings.cs" Line="230" Column="35" />
+      <File FileName="Psychology/Main/Settings/SpeciesSettings.cs" Line="15" Column="14" />
+      <File FileName="../../../../../../../workshop/content/294100/2854347901/1.3/Defs/RaceAndPawnkindDefs/MDrow_Race.xml" Line="3" Column="45" />
+      <File FileName="../../../../../../../workshop/content/294100/2854347901/1.3/Defs/RaceAndPawnkindDefs/PawnKinds_MDrow.xml" Line="1" Column="40" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="PsychologyUnofficialMac" expanded="True">
             <Node name="PsychologyMac" expanded="True">
-              <Node name="Common" expanded="True">
-                <Node name="Patches" expanded="True" />
-              </Node>
-              <Node name="Harmony" expanded="True">
-                <Node name="OtherUtilities" expanded="True">
-                  <Node name="ConversionUtility.cs" selected="True" />
-                </Node>
-                <Node name="Pawn" expanded="True" />
-                <Node name="RomanceAndFamily" expanded="True" />
-              </Node>
-              <Node name="Main" expanded="True">
-                <Node name="Conversations" expanded="True">
-                  <Node name="Rendezvous" expanded="True" />
-                </Node>
-                <Node name="Personality" expanded="True" />
-              </Node>
+              <Node name="References" expanded="True" />
             </Node>
           </Node>
         </State>
@@ -57,6 +35,4 @@
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

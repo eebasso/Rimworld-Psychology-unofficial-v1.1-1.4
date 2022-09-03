@@ -3,20 +3,20 @@ using Verse;
 using HarmonyLib;
 using RimWorld;
 
-namespace Psychology.Harmony
+namespace Psychology.Harmony;
+
+[HarmonyPatch(typeof(PawnBanishUtility), nameof(PawnBanishUtility.Banish))]
+public static class PawnBanishUtility_Banish_Patch
 {
-    [HarmonyPatch(typeof(PawnBanishUtility), nameof(PawnBanishUtility.Banish))]
-    public static class PawnBanishUtility_Banish_Patch
+    [HarmonyPostfix]
+    public static void Banish(Pawn pawn, int tile)
     {
-        [HarmonyPostfix]
-        public static void Banish(Pawn pawn, int tile)
+        if (pawn.Faction != Faction.OfPlayer && pawn.HostFaction != Faction.OfPlayer)
         {
-            //if (pawn.Faction != Faction.OfPlayer && pawn.HostFaction != Faction.OfPlayer)
-            //{
-            //    return;
-            //}
-            MayorUtility.RemoveAllMayorshipsFromPawn(pawn);
+            return;
         }
+        PsycheHelper.GameComp.RemoveAllMayorshipsFromPawn(pawn);
     }
 }
+
 

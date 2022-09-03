@@ -71,14 +71,6 @@ public class CompPsychology : ThingComp
                 if (p != null)
                 {
                     this.psyche = new Pawn_PsycheTracker(p);
-                    //this.psyche.Initialize();
-                    //foreach (PersonalityNode node in this.psyche.PersonalityNodes)
-                    //{
-                    //    if (node.rawRating < 0)
-                    //    {
-                    //        node.Initialize();
-                    //    }
-                    //}
                 }
                 else
                 {

@@ -5,10 +5,10 @@ using Verse;
 
 namespace Psychology;
 
-[StaticConstructorOnStartup]
+//[StaticConstructorOnStartup]
 public class PolygonUtility
 {
-    private static readonly Material PsycheHighlightMat = SolidColorMaterials.SimpleSolidColorMaterial(new Color(1f, 1f, 1f, 0.1f));
+    //public static readonly Material PsycheHighlightMat = SolidColorMaterials.SimpleSolidColorMaterial(new Color(1f, 1f, 1f, 0.1f));
 
     public static float TriangleSign(Vector2 p1, Vector2 p2, Vector2 p3)
     {
@@ -43,7 +43,7 @@ public class PolygonUtility
     {
         if (IsMouseoverPolygon(polyVertexList, errorMargin))
         {
-            DrawPolygon(polyVertexList, triangles, PsycheHighlightMat);
+            DrawPolygon(polyVertexList, triangles, UIAssets.PsycheHighlightMat);
         }
     }
 

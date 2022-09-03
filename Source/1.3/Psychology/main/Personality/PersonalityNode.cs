@@ -14,24 +14,17 @@ public class PersonalityNode : IExposable
 {
     public Pawn pawn;
     public PersonalityNodeDef def;
-    public float rawRating;
-    public float cachedRating = -1f;
+    public float rawRating = -1f;
+    public float AdjustedRating = -1f;
 
     public PersonalityNode()
     {
     }
 
-    public PersonalityNode(Pawn pawn)
+    public PersonalityNode(Pawn pawn, PersonalityNodeDef def)
     {
         this.pawn = pawn;
-    }
-
-    public void Initialize(int inputSeed = 0)
-    {
-        string defName = this.def.defName;
-        int defSeed = defName.GetHashCode();
-        int pawnSeed = this.pawn.HashOffset();
-        this.rawRating = Rand.ValueSeeded(2 * pawnSeed + defSeed + inputSeed);
+        this.def = def;
     }
 
     public void ExposeData()
@@ -40,31 +33,26 @@ public class PersonalityNode : IExposable
         Scribe_Values.Look(ref this.rawRating, "rawRating", -1f, false);
     }
 
-    public float AdjustedRating
-    {
-        //[LogPerformance]
-        get
-        {
-            PsycheHelper.Comp(pawn).Psyche.AdjustedRatingTicker--;
-            if (cachedRating < 0f || PsycheHelper.Comp(pawn).Psyche.AdjustedRatingTicker < 0)
-            {
-                PsycheHelper.Comp(pawn).Psyche.CalculateAdjustedRatings();
-            }
-            return cachedRating;
-        }
-    }
-
-    //[LogPerformance]
     public float AdjustForCircumstance(float rating, bool applyingTwice = false)
     {
-        float gM = (this.pawn.gender == Gender.Female) ? this.def.femaleModifier : -this.def.femaleModifier;
-        gM *= PsychologySettings.enableKinsey ? 1f - this.pawn.GetComp<CompPsychology>().Sexuality.kinseyRating / 6f : this.pawn.story.traits.HasTrait(TraitDefOf.Gay) ? 0f : 1f;
+        // gM = gender modifier
+        float gM = this.pawn.gender == Gender.Female ? this.def.femaleModifier : -this.def.femaleModifier;
+        // Homosexual pawns are more likely to ignore gender norms
+        gM *= PsychologySettings.enableKinsey ? 1f - PsycheHelper.Comp(this.pawn).Sexuality.kinseyRating / 6f : this.pawn.story.traits.HasTrait(TraitDefOf.Gay) ? 0f : 1f;
+        // This is a rough approximation but it works for the gM of interest
+        gM *= applyingTwice ? 0.5f : 1f;
         if (Mathf.Abs(gM) > 0.001f)
         {
             float gMm1 = gM - 1f;
             rating = (gMm1 + Mathf.Sqrt(gMm1 * gMm1 + 4f * gM * rating)) / (2f * gM);
         }
+        // When gM < 0.001, it is always 0 in practice, so this can be ignored
+        //else
+        //{
+        //    rating += rating * (1f - rating) * gM; // + O(gm^2) corrections that are negligible
+        //}
 
+        // tM = total modifier
         float tM = 0f;
         if (this.def.traitModifiers != null && this.def.traitModifiers.Any())
         {
@@ -131,15 +119,13 @@ public class PersonalityNode : IExposable
 
     public override int GetHashCode()
     {
-        return this.def.defName.GetHashCode();
+        return this.pawn.GetHashCode() + this.def.defName.GetHashCode();
     }
 
     public bool HasPlatformIssue
     {
         get
         {
-            //Log.Message("Defname = " + this.def.defName);
-            //Log.Message("this.def.platformIssueHigh != null: " + (this.def.platformIssueHigh != null).ToString());
             return this.def.platformIssueHigh != null;
         }
     }
@@ -148,11 +134,8 @@ public class PersonalityNode : IExposable
     {
         get
         {
-            //Log.Message("Defname = " + this.def.defName);
-            //Log.Message("this.def.conversationTopics != null: " + (this.def.conversationTopics != null).ToString());
             if (this.def.conversationTopics != null)
             {
-                //Log.Message("this.def.conversationTopics.Any(): " + this.def.conversationTopics.Any().ToString());
                 return this.def.conversationTopics.Any();
             }
             return false;
@@ -166,5 +149,4 @@ public class PersonalityNode : IExposable
             return this.AdjustedRating < 0.5f ? this.def.platformIssueLow : this.def.platformIssueHigh;
         }
     }
-
 }

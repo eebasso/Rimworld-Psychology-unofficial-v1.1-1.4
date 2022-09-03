@@ -61,7 +61,7 @@ public class EditPsycheUtility
             return EditWidth;
         }
         CachedTitleText = TitleText;
-        
+
         if (PsychologySettings.enableKinsey)
         {
             pawnKinseyRating = PsycheHelper.Comp(pawn).Sexuality.kinseyRating;
@@ -124,7 +124,7 @@ public class EditPsycheUtility
         float highlightShift = 0.063f;
 
         totalRect.width = CalculateEditWidth(pawn);
-        ScrollHeight = totalRect.height - (BoundaryPadding + TitleHeight + WarningHeight + 3f * yCompression * SexualityHeight + 2f * BoundaryPadding + 0f + 2f * BoundaryPadding  + ButtonHeight + BoundaryPadding);
+        ScrollHeight = totalRect.height - (BoundaryPadding + TitleHeight + WarningHeight + 3f * yCompression * SexualityHeight + 2f * BoundaryPadding + 0f + 2f * BoundaryPadding + ButtonHeight + BoundaryPadding);
 
         GUI.BeginGroup(totalRect);
         totalRect.position = Vector2.zero;
@@ -203,7 +203,7 @@ public class EditPsycheUtility
         }
         mainRect.yMin += 3f * yCompression * SexualityHeight + BoundaryPadding;
 
-        PsychColor.DrawLineHorizontal(mainRect.x - HighlightPadding, mainRect.y, mainRect.width + 2f * HighlightPadding, PsychColor.ModEntryLineColor);
+        UIAssets.DrawLineHorizontal(mainRect.x - HighlightPadding, mainRect.y, mainRect.width + 2f * HighlightPadding, UIAssets.ModEntryLineColor);
         mainRect.yMin += BoundaryPadding;
 
         Rect scrollRect = new Rect(mainRect.x - HighlightPadding, mainRect.y, totalRect.xMax - mainRect.x - BoundaryPadding, ScrollHeight);
@@ -236,7 +236,7 @@ public class EditPsycheUtility
         Widgets.EndScrollView();
         mainRect.yMin += ScrollHeight + BoundaryPadding;
 
-        PsychColor.DrawLineHorizontal(mainRect.x - HighlightPadding, mainRect.y, mainRect.width + 2f * HighlightPadding, PsychColor.ModEntryLineColor);
+        UIAssets.DrawLineHorizontal(mainRect.x - HighlightPadding, mainRect.y, mainRect.width + 2f * HighlightPadding, UIAssets.ModEntryLineColor);
         mainRect.yMin += BoundaryPadding;
 
         float blankWidth = 0.33f * Mathf.Max(EditMargin, totalRect.width - 2f * ButtonWidth);
@@ -246,11 +246,12 @@ public class EditPsycheUtility
         for (int i = 0; i < CachedList.Count; i++)
         {
             PersonalityNode node = Nodes[CachedList[i].First];
+            if (node.rawRating != CachedList[i].Second)
+            {
+                PsycheCardUtility.Ticker = 0;
+            }
             node.rawRating = CachedList[i].Second;
-            node.cachedRating = -1f;
         }
-        PsycheCardUtility.Ticker = 0;
-
         if (PsychologySettings.enableKinsey)
         {
             bool bool1 = PsycheHelper.Comp(pawn).Sexuality.kinseyRating != pawnKinseyRating;
@@ -264,7 +265,6 @@ public class EditPsycheUtility
                 PsycheCardUtility.Ticker = 0;
             }
         }
-
         if (Widgets.ButtonText(resetRect, ResetButtonText, true, false, true))
         {
             PsycheHelper.Comp(pawn).Psyche.RandomizeUpbringingAndRatings();

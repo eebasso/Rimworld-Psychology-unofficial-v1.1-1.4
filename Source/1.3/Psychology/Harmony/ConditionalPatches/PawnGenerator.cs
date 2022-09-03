@@ -7,24 +7,24 @@ using Verse;
 using HarmonyLib;
 using UnityEngine;
 using System.Reflection;
-
 namespace Psychology.Harmony;
 
-public static class PawnGenerator_ConditionalPatches
+public static class PawnGenerator_ManualPatches
 {
-    public static void GenerateTraitsKinseyEnabled(ref Pawn pawn, PawnGenerationRequest request)
+    // Postfix
+    public static void GenerateTraits_KinseyEnabled(Pawn pawn, PawnGenerationRequest request)
     {
-        PsychologyGameComponent.CorrectTraitsForPawnKinseyEnabled(pawn);
+        if (pawn.story == null || !PsycheHelper.PsychologyEnabledFast(pawn))
+        {
+            return;
+        }
+        PsycheHelper.CorrectTraitsForPawnKinseyEnabled(pawn);
     }
 
-    //public static void GenerateTraitsKinseyDisabled(ref Pawn pawn, PawnGenerationRequest request)
-    //{
-    //    PsychologyGameComponent.CorrectTraitsForPawnKinseyDisabled(pawn);
-    //}
-
-    public static void GenerateTraitsTaraiSiblings(Pawn pawn, PawnGenerationRequest request)
+    // Postfix
+    public static void GenerateTraits_TaraiSiblings(Pawn pawn, PawnGenerationRequest request)
     {
-        if (pawn.story == null || pawn.story.childhood != PsychologyDefInjector.child)
+        if (pawn.story == null || pawn.story.childhood != PsychologyDefInjector.child || PsychologySettings.taraiSiblingsGenerated)
         {
             return;
         }
@@ -45,10 +45,22 @@ public static class PawnGenerator_ConditionalPatches
         }
     }
 
-
-
-
+    public static void GeneratePawn_IdeoCache(ref Pawn __result, PawnGenerationRequest request)
+    {
+        if (!PsycheHelper.PsychologyEnabledFast(__result))
+        {
+            return;
+        }
+        PsycheHelper.GameComp.AddPawnToCachedIdeoCertaityChange(__result);
+    }
 }
+
+//[HarmonyPatch(typeof(PawnGenerator), nameof(PawnGenerator.GeneratePawn))]
+//public static class PawnGenerator_GeneratePawn_Patch
+//{
+//    [HarmonyPostfix]
+    
+//}
 
 //[HarmonyPatch(typeof(PawnGenerator), "GenerateTraits")]
 //public static class PawnGenerator_GenerateTraitsSiblingsPatch

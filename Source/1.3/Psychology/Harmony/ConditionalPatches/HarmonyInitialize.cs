@@ -2,63 +2,82 @@
 using Verse;
 using RimWorld;
 using System;
+using System.Runtime.Remoting.Contexts;
+using UnityEngine.UIElements.Experimental;
+using System.Reflection;
 
 namespace Psychology.Harmony;
 
-[StaticConstructorOnStartup]
+//[StaticConstructorOnStartup]
 public static class HarmonyInitialize
 {
     public static HarmonyLib.Harmony harmonyInstance;
 
-    static HarmonyInitialize()
+    //static HarmonyInitialize()
+    public static void Initialize()
     {
         //Log.Message("Initializing Psychology Patches");
         harmonyInstance = new HarmonyLib.Harmony("Community.Psychology.UnofficialUpdate");
         harmonyInstance.PatchAll();
+        if (!PsychologySettings.taraiSiblingsGenerated)
+        {
+            ManualPatches.TaraiSiblingsPatch(harmonyInstance);
+        }
+        if (PsychologySettings.enableKinsey)
+        {
+            ManualPatches.KinseyEnabledPatches(harmonyInstance);
+        }
+        ManualPatches.GeneratePawnPatch(harmonyInstance);
         Log.Message("Psychology: implemented all vanilla Harmony patches");
+
         if (ModsConfig.IsActive("void.charactereditor"))
         {
-            SpecialPatches.DoCharacterEditorPatch(harmonyInstance);
+            ManualPatches.DoCharacterEditorPatch(harmonyInstance);
             Log.Message("Psychology: patched CharacterEditor for compatibility");
         }
         if (ModsConfig.IsActive("EdB.PrepareCarefully"))
         {
-            SpecialPatches.DoPrepareCarefullyPatch(harmonyInstance);
+            ManualPatches.DoPrepareCarefullyPatch(harmonyInstance);
             Log.Message("Psychology: patched PrepareCarefully for compatibility");
-        }
-        if (!PsychologySettings.taraiSiblingsGenerated)
-        {
-            SpecialPatches.TaraiSiblingsPatch(harmonyInstance);
-        }
-        if (PsychologySettings.enableKinsey)
-        {
-            SpecialPatches.KinseyEnabledPatches(harmonyInstance);
         }
     }
 }
-public class SpecialPatches
+public class ManualPatches
 {
     public static void DoCharacterEditorPatch(HarmonyLib.Harmony harmonyInstance)
     {
+        //harmonyInstance.Patch(
+        //        AccessTools.Method(typeof(CharacterEditor.DialogPsychology), nameof(CharacterEditor.DialogPsychology.DoWindowContents)),
+        //        prefix: new HarmonyMethod(typeof(CharacterEditor_DialogPsychology_Patch), nameof(CharacterEditor_DialogPsychology_Patch.DoWindowContents))
+        //);
         harmonyInstance.Patch(
-                AccessTools.Method(typeof(CharacterEditor.DialogPsychology), nameof(CharacterEditor.DialogPsychology.DoWindowContents)),
-                prefix: new HarmonyMethod(typeof(CharacterEditor_DialogPsychology_Patch), nameof(CharacterEditor_DialogPsychology_Patch.DoWindowContents))
-        );
+               AccessTools.Method(Type.GetType("CharacterEditor.DialogPsychology"), "DoWindowContents"),
+               prefix: new HarmonyMethod(typeof(CharacterEditor_DialogPsychology_Patch), nameof(CharacterEditor_DialogPsychology_Patch.DoWindowContents))
+       );
     }
 
     public static void DoPrepareCarefullyPatch(HarmonyLib.Harmony harmonyInstance)
     {
-        harmonyInstance.Patch(
-                AccessTools.Method(typeof(EdB.PrepareCarefully.PanelBackstory), nameof(EdB.PrepareCarefully.PanelBackstory.Draw)),
-                postfix: new HarmonyMethod(typeof(EdBPrepareCarefully_PanelBackstory_Patch), nameof(EdBPrepareCarefully_PanelBackstory_Patch.Draw))
-        );
+        //harmonyInstance.Patch(
+        //        AccessTools.Method(Type.GetType("EdB.PrepareCarefully.PanelBackstory"), "Draw"),
+        //        transpiler: new HarmonyMethod(typeof(EdBPrepareCarefully_PanelBackstory_Patch), nameof(EdBPrepareCarefully_PanelBackstory_Patch.Transpiler))
+        //);
+        //MethodInfo originalInfo = AccessTools.Method(Type.GetType("EdB.PrepareCarefully.PanelBackstory"), "Draw");
+        Log.Message("Step 0");
+        //MethodInfo originalInfo = Type.GetType("EdB.PrepareCarefully.PanelBackstory").GetMethod("Draw", BindingFlags.vir );
+        MethodInfo originalInfo = AccessTools.Method(AccessTools.TypeByName("EdB.PrepareCarefully.PanelBackstory"), "Draw");
+        Log.Message("Step 1");
+        MethodInfo patchInfo = typeof(EdBPrepareCarefully_PanelBackstory_Patch).GetMethod(nameof(EdBPrepareCarefully_PanelBackstory_Patch.Transpiler));
+        Log.Message("Step 2");
+        harmonyInstance.Patch(originalInfo, transpiler: new HarmonyMethod(patchInfo));
+        Log.Message("Step 3");
     }
 
     public static void TaraiSiblingsPatch(HarmonyLib.Harmony harmonyInstance)
     {
         harmonyInstance.Patch(
                 AccessTools.Method(typeof(PawnGenerator), "GenerateTraits"),
-                postfix: new HarmonyMethod(typeof(PawnGenerator_ConditionalPatches), nameof(PawnGenerator_ConditionalPatches.GenerateTraitsTaraiSiblings))
+                postfix: new HarmonyMethod(typeof(PawnGenerator_ManualPatches), nameof(PawnGenerator_ManualPatches.GenerateTraits_TaraiSiblings))
         );
     }
 
@@ -66,7 +85,7 @@ public class SpecialPatches
     {
         harmonyInstance.Patch(
             AccessTools.Method(typeof(PawnGenerator), "GenerateTraits"),
-            postfix: new HarmonyMethod(typeof(PawnGenerator_ConditionalPatches), nameof(PawnGenerator_ConditionalPatches.GenerateTraitsKinseyEnabled))
+            postfix: new HarmonyMethod(typeof(PawnGenerator_ManualPatches), nameof(PawnGenerator_ManualPatches.GenerateTraits_KinseyEnabled))
             );
 
         //harmonyInstance.Patch(
@@ -75,5 +94,13 @@ public class SpecialPatches
         //    );
     }
 
+    public static void GeneratePawnPatch(HarmonyLib.Harmony harmonyInstance)
+    {
+        harmonyInstance.Patch(
+            AccessTools.Method(typeof(PawnGenerator), nameof(PawnGenerator.GeneratePawn), new Type[] { typeof(PawnGenerationRequest) }),
+            postfix: new HarmonyMethod(typeof(PawnGenerator_ManualPatches), nameof(PawnGenerator_ManualPatches.GeneratePawn_IdeoCache))
+        );
+    }
 }
+
 

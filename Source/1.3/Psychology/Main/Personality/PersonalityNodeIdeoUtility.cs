@@ -6,7 +6,7 @@ using Verse;
 
 namespace Psychology
 {
-    [StaticConstructorOnStartup]
+    //[StaticConstructorOnStartup]
     public class PersonalityNodeIdeoUtility
     {
         public static Dictionary<MemeDef, List<Pair<PersonalityNodeDef, float>>> memesAffectedByNodes = new Dictionary<MemeDef, List<Pair<PersonalityNodeDef, float>>>();
@@ -14,7 +14,8 @@ namespace Psychology
         //public static Dictionary<PersonalityNodeDef, List<PersonalityNodeMemeCertaintyModifier>> nodeDefsWithMemes;
         //public static Dictionary<PersonalityNodeDef, List<PersonalityNodePreceptCertaintyModifier>> nodeDefsWithPrecepts;
 
-        static PersonalityNodeIdeoUtility()
+        //static PersonalityNodeIdeoUtility()
+        public static void Initialize()
         {
             //List<Pair<PersonalityNodeDef, float>> list = new List<Pair<PersonalityNodeDef, float>>();
             foreach (PersonalityNodeDef def in DefDatabase<PersonalityNodeDef>.AllDefsListForReading)

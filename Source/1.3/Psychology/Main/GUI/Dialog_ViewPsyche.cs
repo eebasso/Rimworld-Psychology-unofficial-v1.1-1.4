@@ -39,51 +39,50 @@ public class Dialog_ViewPsyche : Window
     //[LogPerformance]
     public override void DoWindowContents(Rect inRect)
     {
-        //bool flag = false;
-        //if (Event.current.type == EventType.KeyDown && (Event.current.keyCode == KeyCode.Return || Event.current.keyCode == KeyCode.Escape))
-        //{
-        //    flag = true;
-        //    Event.current.Use();
-        //}
-        //GUI.EndGroup();
+        bool flag = false;
+        if (Event.current.type == EventType.KeyDown && (Event.current.keyCode == KeyCode.Return || Event.current.keyCode == KeyCode.Escape))
+        {
+            flag = true;
+            Event.current.Use();
+        }
+        GUI.EndGroup();
 
-        //Rect psycheRect = PsycheCardUtility.PsycheRect;
-        //inRect = psycheRect;
-        //if (EditAllowedBool)
-        //{
-        //    inRect.width += editWidth;
-        //}
-        //Find.WindowStack.currentlyDrawnWindow.windowRect = inRect;
-        //Find.WindowStack.currentlyDrawnWindow.windowRect.center = 0.5f * new Vector2(UI.screenWidth, UI.screenHeight);
-
-        //GUI.BeginGroup(inRect);
-        //PsycheCardUtility.DrawPsycheCard(psycheRect, pawn, true);
-        //if (EditAllowedBool)
-        //{
-        //    Rect editRect = new Rect(psycheRect.xMax, psycheRect.y, editWidth, psycheRect.height);
-        //    EditPsycheUtility.DrawEditPsyche(editRect, pawn);
-        //    PsychColor.DrawLineVertical(editRect.x, editRect.y, editRect.height, PsychColor.LineColor);
-        //    GUI.color = Color.white;
-        //}
-        //GUI.EndGroup();
-
-        //if (flag)
-        //{
-        //    this.Close(true);
-        //}
-
-        doCloseX = false;
-        doCloseButton = false;
         Rect psycheRect = PsycheCardUtility.PsycheRect;
-        psycheRect.position = inRect.position;
+        inRect = psycheRect;
+        if (EditAllowedBool)
+        {
+            editWidth = EditPsycheUtility.CalculateEditWidth(pawn);
+            inRect.width += editWidth;
+        }
+        Find.WindowStack.currentlyDrawnWindow.windowRect = inRect;
+        Find.WindowStack.currentlyDrawnWindow.windowRect.center = 0.5f * new Vector2(UI.screenWidth, UI.screenHeight);
+
+        GUI.BeginGroup(inRect);
         PsycheCardUtility.DrawPsycheCard(psycheRect, pawn, true);
         if (EditAllowedBool)
         {
             Rect editRect = new Rect(psycheRect.xMax, psycheRect.y, editWidth, psycheRect.height);
             EditPsycheUtility.DrawEditPsyche(editRect, pawn);
-            GUI.color = PsychColor.LineColor;
-            Widgets.DrawLineVertical(editRect.x, editRect.y, editRect.height);
+            UIAssets.DrawLineVertical(editRect.x, editRect.y, editRect.height, UIAssets.LineColor);
             GUI.color = Color.white;
         }
+        GUI.EndGroup();
+
+        if (flag)
+        {
+            this.Close(true);
+        }
+
+        //doCloseX = false;
+        //doCloseButton = false;
+        //Rect psycheRect = PsycheCardUtility.PsycheRect;
+        //psycheRect.position = inRect.position;
+        //PsycheCardUtility.DrawPsycheCard(psycheRect, pawn, true);
+        //if (EditAllowedBool)
+        //{
+        //    Rect editRect = new Rect(psycheRect.xMax, psycheRect.y, editWidth, psycheRect.height);
+        //    EditPsycheUtility.DrawEditPsyche(editRect, pawn);
+        //    UIAssets.DrawLineVertical(editRect.x, editRect.y, editRect.height, UIAssets.LineColor);
+        //}
     }
 }

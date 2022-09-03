@@ -8,70 +8,66 @@ using Verse;
 using UnityEngine;
 //using Verse.Sound;
 
-namespace Psychology
+namespace Psychology;
+
+public class ITab_Pawn_Psyche : ITab
 {
-    public class ITab_Pawn_Psyche : ITab
+    public ITab_Pawn_Psyche()
     {
-        public ITab_Pawn_Psyche()
-        {
-            size = new Vector2(200f, 200f);
-            //size = new Vector2(630f, 510f);
-            labelKey = "TabPsyche";
-            this.tutorTag = "Psyche";
+        //size = new Vector2(200f, 200f);
+        //size = new Vector2(630f, 510f);
+        labelKey = "TabPsyche";
+        this.tutorTag = "Psyche";
 
-        }
+    }
 
-        public override bool IsVisible
+    public override bool IsVisible
+    {
+        get
         {
-            get
-            {
-                //Log.Message("Inside IsVisible");
-                return PsycheHelper.PsychologyEnabled(PawnToShowInfoAbout);
-            }
+            return PsycheHelper.PsychologyEnabledFast(PawnToShowInfoAbout);
         }
+    }
 
-        public Pawn PawnToShowInfoAbout
+    public Pawn PawnToShowInfoAbout
+    {
+        get
         {
-            get
+            if (base.SelPawn != null)
             {
-                //Log.Message("Inside PawnToShowInfoAbout");
-                if (base.SelPawn != null)
-                {
-                    //Log.Message("Selected pawn birthLastName = " + base.SelPawn?.story?.birthLastName);
-                    return base.SelPawn;
-                }
-                if (base.SelThing is Corpse corpse)
-                {
-                    //Log.Message("Selected corpse birthLastName = " + corpse?.InnerPawn?.story?.birthLastName);
-                    return corpse.InnerPawn;
-                }
-                throw new InvalidOperationException("Psyche tab found no selected pawn to display.");
+                return base.SelPawn;
             }
+            if (base.SelThing is Corpse corpse)
+            {
+                return corpse.InnerPawn;
+            }
+            throw new InvalidOperationException("Psyche tab found no selected pawn to display.");
         }
+    }
 
-        public override void FillTab()
+    public override void FillTab()
+    {
+        // Initialize pawn
+        Pawn pawn = PawnToShowInfoAbout;
+        // Get total rectangle
+        Rect psycheRect = PsycheCardUtility.PsycheRect;
+        Rect totalRect = psycheRect;
+        float width = 0f;
+        //Rect editRect = new Rect(0f, 0f, 1f, 1f);
+        if (Prefs.DevMode)
         {
-            // Initialize pawn
-            Pawn pawn = PawnToShowInfoAbout;
-            // Get total rectangle
-            //Rect psycheRect = PsycheCardUtility.CalculatePsycheRect(pawn);
-            Rect psycheRect = PsycheCardUtility.PsycheRect;
-            Rect totalRect = psycheRect;
-            Rect editRect = new Rect(0f, 0f, 1f, 1f);
-            if (Prefs.DevMode)
-            {
-                editRect = new Rect(psycheRect.xMax, psycheRect.y, EditPsycheUtility.CalculateEditWidth(pawn), psycheRect.height);
-                totalRect.width += editRect.width;
-            }
-            //size = totalRect.size;
-            GUI.BeginGroup(totalRect);
-            PsycheCardUtility.DrawPsycheCard(psycheRect, pawn, false);
-            if (Prefs.DevMode)
-            {
-                EditPsycheUtility.DrawEditPsyche(editRect, pawn);
-                PsychColor.DrawLineVertical(editRect.x, editRect.y, editRect.height, PsychColor.LineColor);
-            }
-            GUI.EndGroup();
+            width = EditPsycheUtility.CalculateEditWidth(pawn);
+            totalRect.width += width;
         }
+        size = totalRect.size;
+        GUI.BeginGroup(totalRect);
+        PsycheCardUtility.DrawPsycheCard(psycheRect, pawn, false);
+        if (Prefs.DevMode)
+        {
+            Rect editRect = new Rect(psycheRect.xMax, psycheRect.y, width, psycheRect.height);
+            EditPsycheUtility.DrawEditPsyche(editRect, pawn);
+            UIAssets.DrawLineVertical(editRect.x, editRect.y, editRect.height, UIAssets.LineColor);
+        }
+        GUI.EndGroup();
     }
 }

@@ -14,9 +14,11 @@ namespace Psychology;
 
 public class PsychologyGameComponent : GameComponent
 {
+    public bool firstTimeWithUpdate = true;
+    public Dictionary<int, float> CachedCertaintyChangePerDayDict = new Dictionary<int, float>();
+    public Dictionary<int, Pair<Pawn, Hediff>> Mayors;
     public static int constituentTick = 156;
     public static int electionTick = 823;
-    public bool firstTimeWithUpdate = true;
 
     public PsychologyGameComponent(Game game)
     {
@@ -30,7 +32,8 @@ public class PsychologyGameComponent : GameComponent
     public override void LoadedGame()
     {
         Log.Message("Psychology: loading game");
-        MayorUtility.BuildMayorDictionary();
+        InitializeCachedIdeoCertaintyChange();
+        BuildMayorDictionary();
         ImplementSexualOrientation();
         FirstTimeLoadingNewPsychology();
     }
@@ -39,6 +42,7 @@ public class PsychologyGameComponent : GameComponent
     {
         Log.Message("Psychology: started new game");
         this.firstTimeWithUpdate = false;
+        InitializeCachedIdeoCertaintyChange();
     }
 
     public override void GameComponentTick()
@@ -50,105 +54,7 @@ public class PsychologyGameComponent : GameComponent
         }
     }
 
-    public void ImplementSexualOrientation()
-    {
-        if (!PsychologySettings.kinseySettingChanged)
-        {
-            return;
-        }
-        if (PsychologySettings.enableKinsey)
-        {
-            foreach (Pawn pawn in PawnsFinder.AllMapsWorldAndTemporary_AliveOrDead)
-            {
-                CorrectTraitsForPawnKinseyEnabled(pawn);
-            }
-        }
-        else
-        {
-            foreach (Pawn pawn in PawnsFinder.AllMapsWorldAndTemporary_AliveOrDead)
-            {
-                CorrectTraitsForPawnKinseyDisabled(pawn);
-            }
-        }
-        PsychologySettings.kinseySettingChanged = false;
-    }
-
-    public static void CorrectTraitsForPawnKinseyEnabled(Pawn pawn)
-    {
-        if (pawn.story == null || !PsycheHelper.PsychologyEnabled(pawn))
-        {
-            return;
-        }
-        if (pawn.story.traits.HasTrait(TraitDefOf.Asexual))
-        {
-            RemoveTrait(pawn, TraitDefOf.Asexual);
-            PsycheHelper.Comp(pawn).Sexuality.sexDrive = 0.10f * Rand.ValueSeeded(11 * pawn.HashOffset() + 8);
-        }
-        if (pawn.story.traits.HasTrait(TraitDefOf.Bisexual))
-        {
-            RemoveTrait(pawn, TraitDefOf.Bisexual);
-            PsycheHelper.Comp(pawn).Sexuality.GenerateKinsey(0f, 0f, 1f, 2f, 1f, 0f, 0f);
-        }
-        if (pawn.story.traits.HasTrait(TraitDefOf.Gay))
-        {
-            RemoveTrait(pawn, TraitDefOf.Gay);
-            PsycheHelper.Comp(pawn).Sexuality.GenerateKinsey(0f, 0f, 0f, 0f, 0f, 1f, 2f);
-        }
-    }
-
-    public static void CorrectTraitsForPawnKinseyDisabled(Pawn pawn)
-    {
-        if (pawn.story == null || !PsycheHelper.PsychologyEnabled(pawn))
-        {
-            return;
-        }
-        int kinseyRating = PsycheHelper.Comp(pawn).Sexuality.kinseyRating;
-        if (PsycheHelper.Comp(pawn).Sexuality.sexDrive < 0.1f)
-        {
-            TryGainTrait(pawn, TraitDefOf.Asexual);
-        }
-        if (kinseyRating < 2)
-        {
-            // If pawn is mostly heterosexual
-            TryRemoveTrait(pawn, TraitDefOf.Bisexual);
-            TryRemoveTrait(pawn, TraitDefOf.Gay);
-        }
-        else if (kinseyRating < 5)
-        {
-            // If pawn is mostly bisexual
-            TryGainTrait(pawn, TraitDefOf.Bisexual);
-            TryRemoveTrait(pawn, TraitDefOf.Gay);
-        }
-        else
-        {
-            // If pawn is mostly homosexual
-            TryGainTrait(pawn, TraitDefOf.Gay);
-            TryRemoveTrait(pawn, TraitDefOf.Bisexual);
-        }
-    }
-
-    public static void TryGainTrait(Pawn pawn, TraitDef traitDef)
-    {
-        if (!pawn.story.traits.HasTrait(traitDef))
-        {
-            pawn.story.traits.GainTrait(new Trait(traitDef));
-        }
-    }
-
-    public static void TryRemoveTrait(Pawn pawn, TraitDef traitDef)
-    {
-        if (pawn.story.traits.HasTrait(traitDef))
-        {
-            RemoveTrait(pawn, traitDef);
-        }
-    }
-
-    public static void RemoveTrait(Pawn pawn, TraitDef traitDef)
-    {
-        pawn.story.traits.allTraits.RemoveAll(t => t.def == traitDef);
-    }
-
-    public void FirstTimeLoadingNewPsychology()
+    public virtual void FirstTimeLoadingNewPsychology()
     {
         if (!this.firstTimeWithUpdate)
         {
@@ -159,7 +65,122 @@ public class PsychologyGameComponent : GameComponent
         this.firstTimeWithUpdate = false;
     }
 
-    public static void RandomizeUpbringingAndRatingsForAllPawns()
+    public virtual void InitializeCachedIdeoCertaintyChange()
+    {
+        foreach (Pawn pawn in Find.WorldPawns.AllPawnsAlive)
+        {
+            AddPawnToCachedIdeoCertaityChange(pawn);
+        }
+    }
+
+    public virtual void AddPawnToCachedIdeoCertaityChange(Pawn pawn)
+    {
+        if (PsycheHelper.PsychologyEnabledFast(pawn))
+        {
+            float ideoCertaintyChange = PsycheHelper.Comp(pawn).Psyche.CalculateCertaintyChangePerDay();
+            CachedCertaintyChangePerDayDict.AddDistinct(pawn.thingIDNumber, ideoCertaintyChange);
+        }
+    }
+
+    public virtual void BuildMayorDictionary()
+    {
+        Mayors = new Dictionary<int, Pair<Pawn, Hediff>>();
+        foreach (Pawn pawn in Find.WorldPawns.AllPawnsAlive)
+        {
+            foreach (Hediff hediff in pawn.health.hediffSet.hediffs)
+            {
+                if (hediff.def == HediffDefOfPsychology.Mayor)
+                {
+                    int mapTile = (hediff as Hediff_Mayor).worldTileElectedOn;
+                    if (!Mayors.ContainsKey(mapTile))
+                    {
+                        Mayors.Add(mapTile, new Pair<Pawn, Hediff>(pawn, hediff));
+                    }
+                    else
+                    {
+                        // There can only be one mayor per map tile
+                        pawn.health.RemoveHediff(hediff);
+                    }
+                }
+            }
+        }
+        if (!PsychologySettings.enableElections)
+        {
+            DeleteAllMayorHediffs();
+        }
+    }
+
+    public virtual void RemoveMayorOfThisColony(int mapTile)
+    {
+        foreach (KeyValuePair<int, Pair<Pawn, Hediff>> kvp in Mayors)
+        {
+            if (mapTile == kvp.Key)
+            {
+                RemoveMayor(kvp);
+            }
+        }
+    }
+
+    public virtual void RemoveAllMayorshipsFromPawn(Pawn pawn)
+    {
+        foreach (KeyValuePair<int, Pair<Pawn, Hediff>> kvp in Mayors)
+        {
+            if (pawn == kvp.Value.First)
+            {
+                RemoveMayor(kvp);
+            }
+        }
+    }
+
+    public virtual void DeleteAllMayorHediffs()
+    {
+        foreach (KeyValuePair<int, Pair<Pawn, Hediff>> kvp in Mayors)
+        {
+            RemoveMayor(kvp);
+        }
+    }
+
+    public virtual void RemoveMayor(KeyValuePair<int, Pair<Pawn, Hediff>> kvp)
+    {
+        kvp.Value.First.health.RemoveHediff(kvp.Value.Second);
+        Mayors.Remove(kvp.Key);
+    }
+
+    public virtual void InitializeIdeoCertaintyChange()
+    {
+        foreach (Pawn pawn in Find.WorldPawns.AllPawnsAlive)
+        {
+            if (!CachedCertaintyChangePerDayDict.ContainsKey(pawn.thingIDNumber))
+            {
+                CachedCertaintyChangePerDayDict.Add(pawn.thingIDNumber, PsycheHelper.Comp(pawn).Psyche.CalculateCertaintyChangePerDay());
+            }   
+        }
+    }
+
+    public virtual void ImplementSexualOrientation()
+    {
+        if (!PsychologySettings.kinseySettingChanged)
+        {
+            return;
+        }
+        if (PsychologySettings.enableKinsey)
+        {
+            foreach (Pawn pawn in PawnsFinder.AllMapsWorldAndTemporary_AliveOrDead)
+            {
+                PsycheHelper.CorrectTraitsForPawnKinseyEnabled(pawn);
+            }
+        }
+        else
+        {
+            foreach (Pawn pawn in PawnsFinder.AllMapsWorldAndTemporary_AliveOrDead)
+            {
+                PsycheHelper.CorrectTraitsForPawnKinseyDisabled(pawn);
+            }
+        }
+        PsychologySettings.kinseySettingChanged = false;
+    }
+
+    public virtual void RandomizeUpbringingAndRatingsForAllPawns()
     {
         foreach (Pawn pawn in Find.WorldPawns.AllPawnsAliveOrDead)
         {
@@ -167,7 +188,7 @@ public class PsychologyGameComponent : GameComponent
         }
     }
 
-    public static void ConstituentTick()
+    public virtual void ConstituentTick()
     {
         if (constituentTick < 2 * GenDate.TicksPerHour)
         {
@@ -180,7 +201,7 @@ public class PsychologyGameComponent : GameComponent
         List<Settlement> playerSettlements = Find.WorldObjects.SettlementBases.FindAll(b => b.Faction.IsPlayer);
         foreach (Settlement settlement in playerSettlements)
         {
-            if (!MayorUtility.Mayors.ContainsKey(settlement.Map.Tile))
+            if (!Mayors.ContainsKey(settlement.Map.Tile))
             {
                 continue;
             }
@@ -199,7 +220,7 @@ public class PsychologyGameComponent : GameComponent
             {
                 continue;
             }
-            Pawn mayor = MayorUtility.Mayors[settlement.Map.Tile].First;
+            Pawn mayor = Mayors[settlement.Map.Tile].First;
             TimeAssignmentDef timeAssDef = mayor.GetTimeAssignment();
             bool mayorAvailable = timeAssDef != TimeAssignmentDefOf.Sleep && mayor.GetLord() == null && mayor.Tile == settlement.Map.Tile
                                   && mayor.Awake() && !mayor.Drafted && !mayor.Downed && mayor.health.summaryHealth.SummaryHealthPercent >= 1f
@@ -244,7 +265,7 @@ public class PsychologyGameComponent : GameComponent
         }
     }
 
-    public static void ElectionTick()
+    public virtual void ElectionTick()
     {
         if (electionTick < 7 * GenDate.TicksPerHour)
         {
@@ -278,10 +299,10 @@ public class PsychologyGameComponent : GameComponent
             }
 
             int settlementTile = settlement.Tile;
-            if (MayorUtility.Mayors.ContainsKey(settlementTile))
+            if (Mayors.ContainsKey(settlementTile))
             {
                 // Don't start another election if the mayor was elected this year
-                int yearDiff = GenLocalDate.Year(settlementTile) - (MayorUtility.Mayors[settlementTile].Second as Hediff_Mayor).yearElected;
+                int yearDiff = GenLocalDate.Year(settlementTile) - (Mayors[settlementTile].Second as Hediff_Mayor).yearElected;
                 if (yearDiff <= 0)
                 {
                     continue;
@@ -315,7 +336,4 @@ public class PsychologyGameComponent : GameComponent
         }
     }
 
-
-
 }
-
