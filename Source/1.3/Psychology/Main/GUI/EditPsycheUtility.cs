@@ -248,7 +248,7 @@ public class EditPsycheUtility
             PersonalityNode node = Nodes[CachedList[i].First];
             if (node.rawRating != CachedList[i].Second)
             {
-                PsycheCardUtility.Ticker = 0;
+                PsycheCardUtility.Ticker = -1;
             }
             node.rawRating = CachedList[i].Second;
         }
@@ -262,7 +262,7 @@ public class EditPsycheUtility
                 PsycheHelper.Comp(pawn).Sexuality.kinseyRating = pawnKinseyRating;
                 PsycheHelper.Comp(pawn).Sexuality.sexDrive = pawnSexDrive;
                 PsycheHelper.Comp(pawn).Sexuality.romanticDrive = pawnRomanticDrive;
-                PsycheCardUtility.Ticker = 0;
+                PsycheCardUtility.Ticker = -1;
             }
         }
         if (Widgets.ButtonText(resetRect, ResetButtonText, true, false, true))
@@ -281,7 +281,7 @@ public class EditPsycheUtility
                 pawnSexDrive = PsycheHelper.Comp(pawn).Sexuality.sexDrive;
                 pawnRomanticDrive = PsycheHelper.Comp(pawn).Sexuality.romanticDrive;
             }
-            PsycheCardUtility.Ticker = 0;
+            PsycheCardUtility.Ticker = -1;
         }
         TooltipHandler.TipRegion(resetRect, delegate
         {
@@ -305,7 +305,7 @@ public class EditPsycheUtility
                 pawnSexDrive = PsycheHelper.Comp(pawn).Sexuality.sexDrive;
                 pawnRomanticDrive = PsycheHelper.Comp(pawn).Sexuality.romanticDrive;
             }
-            PsycheCardUtility.Ticker = 0;
+            PsycheCardUtility.Ticker = -1;
         }
         GUI.EndGroup();
     }

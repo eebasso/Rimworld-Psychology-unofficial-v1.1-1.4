@@ -12,6 +12,7 @@ using UnityEngine;
 using System.Xml.Linq;
 using System.Runtime;
 using System.Security.Cryptography;
+using Verse.Sound;
 
 namespace Psychology;
 //[StaticConstructorOnStartup]
@@ -220,4 +221,4 @@ public class SpeciesHelper
             settings.enableAgeGap = bool1 && bool2;
         }
     }
-}
+}

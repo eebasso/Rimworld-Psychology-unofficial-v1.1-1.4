@@ -18,7 +18,6 @@ public class ITab_Pawn_Psyche : ITab
         //size = new Vector2(630f, 510f);
         labelKey = "TabPsyche";
         this.tutorTag = "Psyche";
-
     }
 
     public override bool IsVisible

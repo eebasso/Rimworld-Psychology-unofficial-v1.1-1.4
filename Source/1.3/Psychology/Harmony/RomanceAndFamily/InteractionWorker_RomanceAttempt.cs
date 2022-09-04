@@ -19,6 +19,7 @@ public static class InteractionWorker_RomanceAttempt_SelectionWeightPatch
     [HarmonyPrefix]
     public static bool RandomSelectionWeight(ref float __result, Pawn initiator, Pawn recipient)
     {
+        Log.Message("InteractionWorker_RomanceAttempt.RandomSelectionWeight, initiator = " + initiator.LabelShort + ", recipient = " + recipient.LabelShort + ", start");
         // From vanilla, no romance in these cases
         if (TutorSystem.TutorialMode || LovePartnerRelationUtility.LovePartnerRelationExists(initiator, recipient) || !PsycheHelper.PsychologyEnabled(initiator))
         {
@@ -142,7 +143,7 @@ public static class InteractionWorker_RomanceAttempt_SelectionWeightPatch
         float chanceCutOff = 0.75f;
         float confidenceFactor = initiatorConfident + initiatorAggressive;
         __result = __result < chanceCutOff ? __result : chanceCutOff + confidenceFactor * (__result - chanceCutOff);
-
+        Log.Message("InteractionWorker_RomanceAttempt.RandomSelectionWeight, initiator = " + initiator.LabelShort + ", recipient = " + recipient.LabelShort + ", result = " + __result);
         return false;
     }
 }

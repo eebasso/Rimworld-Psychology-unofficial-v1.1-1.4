@@ -39,12 +39,13 @@ public class PsycheCardUtility
     public static bool UseAntonymsBool;
     public static bool UseAntonymsBoolCached;
     public static bool ShowNumbersBool = false;
+    public static bool UseCachedBool = false;
     //public static bool DoThisOnceOnStartUpBool = true;
 
     public static Pawn PawnCached;
     //public static Rect TotalRectCached = new Rect(0f, 0f, 1f, 1f);
     public const int MaxTicks = 1000;
-    public static int Ticker = 0;
+    public static int Ticker = -1;
 
     public static Vector2 KinseyTextSize;
     public static List<string> SexDriveText = new List<string>();
@@ -78,7 +79,7 @@ public class PsycheCardUtility
 
     public static string FiveFactorText = "FiveFactorModelTitle".Translate();
     public static Vector2 FiveFactorSize;
-    public static float[] bigFiveRatings = { 0f, 0f, 0f, 0f, 0f };
+    public static float[] bigFiveRatings = new float[5];
 
     //public static string EditText = "EditPsyche".Translate();
     //public static Vector2 EditSize;
@@ -139,7 +140,6 @@ public class PsycheCardUtility
         AlphabeticalBoolCached = PsychologySettings.listAlphabetical;
         UseAntonymsBool = PsychologySettings.useAntonyms;
         UseAntonymsBoolCached = PsychologySettings.useAntonyms;
-
 
         Text.Font = GameFont.Small;
         GUIStyle style = Text.fontStyles[1];
@@ -263,18 +263,7 @@ public class PsycheCardUtility
         {
             return;
         }
-        //if (DoThisTheFirstTimeBool)
-        //{
-        //    DistanceFromMiddle = PsychologyBase.DistanceFromMiddleSettingsHandle.Value;
-        //    UseColorsBool = PsychologyBase.UseColorsSettingsHandle.Value;
-        //    AlphabeticalBool = PsychologyBase.ListAlphabeticalSettingsHandle.Value;
-        //    UseAntonymsBool = PsychologyBase.UseAntonymsSettingsHandle.Value;
-        //    DistanceFromMiddleCached = DistanceFromMiddle;
-        //    UseColorsBoolCached = UseColorsBool;
-        //    AlphabeticalBoolCached = AlphabeticalBool;
-        //    UseAntonymsBoolCached = UseAntonymsBool;
-        //    DoThisTheFirstTimeBool = false;
-        //}
+        HasCachedChanged(pawn);
 
         GUI.BeginGroup(totalRect);
         totalRect.position = Vector2.zero;
@@ -474,13 +463,13 @@ public class PsycheCardUtility
             }
 
             //float[] bigFiveList = { 0.8f, 0.3f, 0.5f, 0.1f, 0.6f };
-            float[] bigFiveList = BigFiveRatings(pawn);
+            CalculateBigFiveRatings(pawn);
 
             List<Vector2> yellowVerticies = new List<Vector2> { };
             List<int[]> yellowTriangles = new List<int[]> { };
             for (int p = 0; p < 5; p++)
             {
-                yellowVerticies.Add(RadialProjectionFromCenter(pentaCenter, Mathf.Max(0.01f, bigFiveList[p]) * pentaRadius, 72f * p));
+                yellowVerticies.Add(RadialProjectionFromCenter(pentaCenter, Mathf.Max(0.01f, bigFiveRatings[p]) * pentaRadius, 72f * p));
                 yellowTriangles.Add(new int[] { p, (p + 1) % 5, 5 });
             }
             yellowVerticies.Add(pentaCenter);
@@ -511,7 +500,7 @@ public class PsycheCardUtility
                 PolygonUtility.DrawPolygonHighlightIfMouseover(verticies, triangles);
 
                 Color bigFiveTitleColor = UseColorsBool ? BigFiveColors[p] : ColoredText.TipSectionTitleColor;
-                float bigFiveRating = bigFiveList[p];
+                float bigFiveRating = bigFiveRatings[p];
                 PolygonTooltipHandler.TipRegion(verticies, delegate
                 {
                     string bigFiveDescription = ("BigFive" + letter + "Description").Translate();
@@ -529,12 +518,13 @@ public class PsycheCardUtility
         }
 
         GUI.EndGroup();
-        //PsychologyBase.UpdatePersonalityDisplaySetting();
 
         PsychologySettings.displayOption = DistanceFromMiddle;
         PsychologySettings.useColors = UseColorsBool;
         PsychologySettings.listAlphabetical = AlphabeticalBool;
         PsychologySettings.useAntonyms = UseAntonymsBool;
+
+
     }
 
     public static string ColorizedNodeText(PersonalityNode node, float displacement)
@@ -553,30 +543,28 @@ public class PsycheCardUtility
         //    Log.Message("ListTicker = " + ListTicker);
         //}
         //Log.Message("Start PersonalityTraitList");
-        if (Ticker > 0 && pawn == PawnCached && DistanceFromMiddle == DistanceFromMiddleCached && UseColorsBool == UseColorsBoolCached && UseAntonymsBool == UseAntonymsBoolCached && AlphabeticalBool == AlphabeticalBoolCached && LabelNodeList.Any())
+        //Log.Message("PersonalityTraitList: Step 1");
+        //PsycheHelper.Comp(pawn).Psyche.CalculateAdjustedRatings();
+        //Ticker = MaxTicks;
+        //PawnCached = pawn;
+        //DistanceFromMiddleCached = DistanceFromMiddle;
+        //UseColorsBoolCached = UseColorsBool;
+        //UseAntonymsBoolCached = UseAntonymsBool;
+        //AlphabeticalBoolCached = AlphabeticalBool;
+        if (UseCachedBool)
         {
-            Ticker--;
             DrawTraitList(personalityRect);
             return;
         }
-        //Log.Message("PersonalityTraitList: Step 1");
-        PsycheHelper.Comp(pawn).Psyche.CalculateAdjustedRatings();
-        Ticker = MaxTicks;
-        PawnCached = pawn;
-        DistanceFromMiddleCached = DistanceFromMiddle;
-        UseColorsBoolCached = UseColorsBool;
-        UseAntonymsBoolCached = UseAntonymsBool;
-        AlphabeticalBoolCached = AlphabeticalBool;
         LabelNodeList.Clear();
-        //ViewRectHeight = 0f;
-        //Log.Message("PersonalityTraitList: Step 2");
+
         List<string> nodeTextList = new List<string>();
-        var arlist = from PersonalityNodeDef def in PersonalityNodeParentMatrix.defList
-                     select PsycheHelper.Comp(pawn).Psyche.GetPersonalityRating(def);
-        Log.Message("PersonalityTraitList: Adjusted ratings for " + pawn.LabelShort + ": " + string.Join(", ", arlist));
-        var arlist2 = from PersonalityNode node in PsycheHelper.Comp(pawn).Psyche.PersonalityNodes
-                      select node.AdjustedRating;
-        Log.Message("PersonalityTraitList: Adjusted ratings for " + pawn.LabelShort + ": " + string.Join(", ", arlist2));
+        //var arlist = from PersonalityNodeDef def in PersonalityNodeParentMatrix.defList
+        //             select PsycheHelper.Comp(pawn).Psyche.GetPersonalityRating(def);
+        //Log.Message("PersonalityTraitList: Adjusted ratings for " + pawn.LabelShort + ": " + string.Join(", ", arlist));
+        //var arlist2 = from PersonalityNode node in PsycheHelper.Comp(pawn).Psyche.PersonalityNodes
+        //              select node.AdjustedRating;
+        //Log.Message("PersonalityTraitList: Adjusted ratings for " + pawn.LabelShort + ": " + string.Join(", ", arlist2));
         foreach (PersonalityNode node in PsycheHelper.Comp(pawn).Psyche.PersonalityNodes)
         {
             //Log.Message("PersonalityTraitList: Step 2a");
@@ -590,13 +578,13 @@ public class PsycheCardUtility
             {
                 //Log.Message("PersonalityTraitList: Step 2c");
                 string categoryText = ("Psyche" + NodeDescriptions[category]).Translate();
-                Log.Message("PersonalityTraitList: Step 2d");
+                //Log.Message("PersonalityTraitList: Step 2d");
                 LabelNodeList.Add(new Tuple<string, PersonalityNode, string>(nodeText, node, categoryText.Colorize(CategoryColors[category])));
-                Log.Message("PersonalityTraitList: Step 2e");
+                //Log.Message("PersonalityTraitList: Step 2e");
                 nodeTextList.Add(UseAntonymsBool && displacement < 0f ? node.def.antonymLabel : node.def.label);
             }
         }
-        Log.Message("PersonalityTraitList: Step 3");
+        //Log.Message("PersonalityTraitList: Step 3");
         if (AlphabeticalBool)
         {
             LabelNodeList = LabelNodeList.OrderBy(tup => nodeTextList[LabelNodeList.IndexOf(tup)]).ToList();
@@ -609,9 +597,9 @@ public class PsycheCardUtility
         {
             LabelNodeList = LabelNodeList.OrderBy(tup => -tup.Item2.AdjustedRating).ToList();
         }
-        Log.Message("PersonalityTraitList: Step 4");
+        //Log.Message("PersonalityTraitList: Step 4");
         DrawTraitList(personalityRect);
-        Log.Message("PersonalityTraitList: Step 5");
+        //Log.Message("PersonalityTraitList: Step 5");
     }
 
     //public static void CalculateNodeWidth(Pawn pawn)
@@ -637,7 +625,7 @@ public class PsycheCardUtility
 
     public static void DrawTraitList(Rect personalityRect)
     {
-        Log.Message("Start DrawTraitList");
+        //Log.Message("Start DrawTraitList");
         Text.Font = GameFont.Small;
         GUIStyle style = Text.fontStyles[1];
         TextAnchor oldAnchor = Text.Anchor;
@@ -678,7 +666,7 @@ public class PsycheCardUtility
 
         Widgets.EndScrollView();
 
-        Log.Message("End DrawTraitList");
+        //Log.Message("End DrawTraitList");
     }
 
     public static void PersonalityWordCloud(Rect totalRect, Vector2 cloudCenter, Rect forbiddenRect, Pawn pawn)//, Rect editPsycheRect)
@@ -687,15 +675,15 @@ public class PsycheCardUtility
         //{
         //    Log.Message("Ticker = " + Ticker);
         //}
-        if (Ticker > 0 && pawn == PawnCached && DistanceFromMiddle == DistanceFromMiddleCached && UseColorsBool == UseColorsBoolCached && CloudTextRects.Any())
+        //if (Ticker > 0 && pawn == PawnCached && DistanceFromMiddle == DistanceFromMiddleCached && UseColorsBool == UseColorsBoolCached && CloudTextRects.Any())
+        if (UseCachedBool)
         {
-            Ticker--;
             DrawWordCloud();
             return;
         }
-        PsycheHelper.Comp(pawn).Psyche.CalculateAdjustedRatings();
-        Ticker = MaxTicks;
-        PawnCached = pawn;
+        //PsycheHelper.Comp(pawn).Psyche.CalculateAdjustedRatings();
+        //Ticker = MaxTicks;
+        //PawnCached = pawn;
         //DistanceFromMiddleCached = DistanceFromMiddle;
         //UseColorsBoolCached = UseColorsBool;
         CloudTextRects.Clear();
@@ -914,11 +902,11 @@ public class PsycheCardUtility
         return verticies;
     }
 
-    public static float[] BigFiveRatings(Pawn pawn)
+    public static void CalculateBigFiveRatings(Pawn pawn)
     {
-        if (Ticker > 0)
+        if (UseCachedBool)
         {
-            return bigFiveRatings;
+            return;
         }
         float[] gaussianList = new float[PersonalityNodeParentMatrix.order];
         foreach (PersonalityNode node in PsycheHelper.Comp(pawn).Psyche.PersonalityNodes)
@@ -932,7 +920,6 @@ public class PsycheCardUtility
             // Added 0.5f here to make the big five ratings have a bell shaped curve along the range of 0 to 1;
             bigFiveRatings[p] = PsycheHelper.NormalCDF(0.5f * PersonalityNodeParentMatrix.bigFiveStandardDevInvs[p] * dotProduct);
         }
-        return bigFiveRatings;
     }
 
     // Legacy method
@@ -945,6 +932,32 @@ public class PsycheCardUtility
     public static void DrawDebugOptions(Rect totalRect, Pawn pawn)
     {
         Find.WindowStack.Add(new Dialog_EditPsyche(pawn));
+    }
+
+    public static void HasCachedChanged(Pawn pawn)
+    {
+        bool bool0 = Ticker > 0;
+        bool bool1 = PawnCached == pawn;
+        bool bool2 = DistanceFromMiddleCached == DistanceFromMiddle;
+        bool bool3 = UseColorsBoolCached == UseColorsBool;
+        bool bool4 = UseAntonymsBoolCached == UseAntonymsBool;
+        bool bool5 = AlphabeticalBoolCached == AlphabeticalBool;
+        //bool bool6 = CloudTextRects.Any();
+        //bool bool7 = LabelNodeList.Any();
+        //bool bool8 = bigFiveRatings != new float[5];
+        UseCachedBool = bool0 && bool1 && bool2 && bool3 && bool4 && bool5;
+        if (UseCachedBool)
+        {
+            Ticker--;
+            return;
+        }
+        PsycheHelper.Comp(pawn).Psyche.CalculateAdjustedRatings();
+        Ticker = MaxTicks;
+        PawnCached = pawn;
+        DistanceFromMiddleCached = DistanceFromMiddle;
+        UseColorsBoolCached = UseColorsBool;
+        UseAntonymsBoolCached = UseAntonymsBool;
+        AlphabeticalBoolCached = AlphabeticalBool;
     }
 }
 

@@ -16,20 +16,13 @@ public static class EdBPrepareCarefully_PanelBackstory_Patch
 {
     public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> codes)
     {
-        //Log.Message("Transpiler: Step 0");
         Type CustomPawnType = AccessTools.TypeByName("EdB.PrepareCarefully.CustomPawn");
-        //Log.Message("Transpiler: Step 1");
         List<CodeInstruction> codeList = codes.ToList();
-        //Log.Message("Transpiler: Step 2");
         bool bool0 = false;
         bool bool1 = false;
-        //Log.Message("Transpiler: Step 3");
         for (int i = 0; i < codeList.Count(); i++)
         {
-            //Log.Message("Transpiler: Step 4");
-            //Log.Message("Transpiler: Step 3a");
             yield return codeList[i];
-            //Log.Message("Transpiler: Step 3b");
             if (i < 1)
             {
                 continue;
@@ -39,20 +32,13 @@ public static class EdBPrepareCarefully_PanelBackstory_Patch
             bool1 = codeList[i].opcode == OpCodes.Stloc_1;
             if (bool0 && bool1)
             {
-                //Log.Message("Transpiler: Step 5");
                 FieldInfo fieldInfo = AccessTools.Field(CustomPawnType, "pawn");
-                //Log.Message("Transpiler: Step 6");
                 yield return new CodeInstruction(OpCodes.Ldloc_1);
-                //Log.Message("Transpiler: Step 7");
                 yield return new CodeInstruction(OpCodes.Ldfld, fieldInfo);
-                //Log.Message("Transpiler: Step 8");
                 yield return new CodeInstruction(OpCodes.Ldarg_2);
-                //Log.Message("Transpiler: Step 9");
                 yield return CodeInstruction.Call(typeof(EdBPrepareCarefully_PanelBackstory_Patch), nameof(EdBPsycheButton), new Type[] { typeof(Pawn), typeof(float) });
-                //Log.Message("Transpiler: Step 10");
             }
         }
-        //Log.Message("Transpiler: Step 11");
     }
 
     public static void EdBPsycheButton(Pawn pawn, float y)

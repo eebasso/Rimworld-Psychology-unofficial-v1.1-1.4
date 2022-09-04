@@ -32,14 +32,13 @@ public class Pawn_PsycheTracker : IExposable
     public Pawn_PsycheTracker(Pawn pawn)
     {
         this.pawn = pawn;
-        Initialize();
     }
 
     public void Initialize(int inputSeed = 0)
     {
         Log.Message("Pawn_PsycheTracker.Initialize for " + pawn.LabelShort + ": step 0");
         this.nodes = new HashSet<PersonalityNode>();
-        Log.Message("Pawn_PsycheTracker.Initialize for " + pawn.LabelShort + ": step 1");
+        //Log.Message("Pawn_PsycheTracker.Initialize for " + pawn.LabelShort + ": step 1");
         PersonalityNode node;
         foreach (PersonalityNodeDef def in PersonalityNodeParentMatrix.defList)
         {
@@ -52,21 +51,22 @@ public class Pawn_PsycheTracker : IExposable
         {
             nodeDict[n.def.defName] = n;
         }
-        Log.Message("Pawn_PsycheTracker.Initialize for " + pawn.LabelShort + ": step 2");
+        //Log.Message("Pawn_PsycheTracker.Initialize for " + pawn.LabelShort + ": step 2");
         RandomizeUpbringingAndRatings(inputSeed);
-        Log.Message("Pawn_PsycheTracker.Initialize for " + pawn.LabelShort + ": step 3");
-        
-        Log.Message("Pawn_PsycheTracker.Initialize for " + pawn.LabelShort + ": step 4");
-        IEnumerable<float> rlist = from n in nodes
-                                   select n.rawRating;
-        Log.Message("Pawn_PsycheTracker.Initialize for " + pawn.LabelShort + ": raw ratings = " + String.Join(", ", rlist));
-        CalculateAdjustedRatings();
-        Log.Message("Pawn_PsycheTracker.Initialize for " + pawn.LabelShort + ": step 5");
+        //Log.Message("Pawn_PsycheTracker.Initialize for " + pawn.LabelShort + ": step 3");
+
+        //Log.Message("Pawn_PsycheTracker.Initialize for " + pawn.LabelShort + ": step 4");
+        //IEnumerable<float> rlist = from n in nodes
+        //                           select n.rawRating;
+        //Log.Message("Pawn_PsycheTracker.Initialize for " + pawn.LabelShort + ": raw ratings = " + String.Join(", ", rlist));
+        //CalculateAdjustedRatings();
+        //Log.Message("Pawn_PsycheTracker.Initialize for " + pawn.LabelShort + ": step 5");
         //Log.Message("raw displacement = " + string.Join(", ", rawNormalDisplacementList));
     }
 
     public void RandomizeUpbringingAndRatings(int inputSeed = 0)
     {
+        Log.Message("RandomizeUpbringingAndRatings for " + pawn.LabelShort);
         int pawnSeed = this.pawn.HashOffset();
         this.upbringing = Mathf.CeilToInt(Rand.ValueSeeded(pawnSeed + inputSeed) * PersonalityCategories);
         float[] ratingList = new float[PersonalityNodeParentMatrix.order];
@@ -84,24 +84,33 @@ public class Pawn_PsycheTracker : IExposable
             int index = PersonalityNodeParentMatrix.indexDict[node.def];
             node.rawRating = ratingList[index];
         }
+        CalculateAdjustedRatings();
     }
 
     public void ExposeData()
     {
+        Log.Message("Pawn_PsycheTracker.ExposeData for " + pawn.LabelShort + " Step 0");
         Scribe_Values.Look(ref this.upbringing, "upbringing", 0, false);
+        Log.Message("Pawn_PsycheTracker.ExposeData for " + pawn.LabelShort + " Step 1");
         Scribe_Values.Look(ref this.lastDateTick, "lastDateTick", 0, false);
+        Log.Message("Pawn_PsycheTracker.ExposeData for " + pawn.LabelShort + " Step 2");
         PsycheHelper.Look(ref this.nodes, "nodes", LookMode.Deep, new object[] { this.pawn });
+        Log.Message("Pawn_PsycheTracker.ExposeData for " + pawn.LabelShort + " Step 3");
+        this.nodeDict = new Dictionary<string, PersonalityNode>();
+        Log.Message("Pawn_PsycheTracker.ExposeData for " + pawn.LabelShort + " Step 4");
         foreach (PersonalityNode n in this.nodes)
         {
-            nodeDict[n.def.defName] = n;
+            this.nodeDict.Add(n.def.defName, n);
         }
+        Log.Message("Pawn_PsycheTracker.ExposeData for " + pawn.LabelShort + " Step 5");
         CalculateAdjustedRatings();
+        Log.Message("Pawn_PsycheTracker.ExposeData for " + pawn.LabelShort + " Step 6");
     }
 
     public float GetPersonalityRating(PersonalityNodeDef def)
     {
-        Log.Message("Pawn_PsycheTracker.GetPersonalityRating");
-        if (adjustedRatingTicker < 0)
+        //Log.Message("Pawn_PsycheTracker.GetPersonalityRating");
+        if (adjustedRatingTicker < 1)
         {
             CalculateAdjustedRatings();
         }
@@ -205,28 +214,28 @@ public class Pawn_PsycheTracker : IExposable
             rawNormalDisplacementList[PersonalityNodeParentMatrix.indexDict[node.def]] = PsycheHelper.NormalCDFInv(rawRating);
         }
 
-        Log.Message("Pawn_PsycheTracker.CalculateAdjustedRatings for " + pawn.LabelShort + ": step 1");
+        //Log.Message("Pawn_PsycheTracker.CalculateAdjustedRatings for " + pawn.LabelShort + ": step 1");
         adjNormalDisplacementList = PersonalityNodeParentMatrix.MatrixVectorProduct(PersonalityNodeParentMatrix.parentTransformMatrix, rawNormalDisplacementList);
         //parentAdjRatingDict.Clear();
-        Log.Message("Pawn_PsycheTracker.CalculateAdjustedRatings for " + pawn.LabelShort + ": step 2");
+        //Log.Message("Pawn_PsycheTracker.CalculateAdjustedRatings for " + pawn.LabelShort + ": step 2");
         foreach (PersonalityNode node in nodes)
         {
-            Log.Message("Pawn_PsycheTracker.CalculateAdjustedRatings for " + pawn.LabelShort + ": step 2a");
+            //Log.Message("Pawn_PsycheTracker.CalculateAdjustedRatings for " + pawn.LabelShort + ": step 2a");
             int index = PersonalityNodeParentMatrix.indexDict[node.def];
-            Log.Message("Pawn_PsycheTracker.CalculateAdjustedRatings for " + pawn.LabelShort + ": step 2b");
+            //Log.Message("Pawn_PsycheTracker.CalculateAdjustedRatings for " + pawn.LabelShort + ": step 2b");
             float adjustedRating = PsycheHelper.NormalCDF(adjNormalDisplacementList[index]);
-            Log.Message("Pawn_PsycheTracker.CalculateAdjustedRatings for " + pawn.LabelShort + ": step 2c");
+            //Log.Message("Pawn_PsycheTracker.CalculateAdjustedRatings for " + pawn.LabelShort + ": step 2c");
             adjustedRating = node.AdjustForCircumstance(adjustedRating, true);
-            Log.Message("Pawn_PsycheTracker.CalculateAdjustedRatings for " + pawn.LabelShort + ": step 2d");
+            //Log.Message("Pawn_PsycheTracker.CalculateAdjustedRatings for " + pawn.LabelShort + ": step 2d");
             adjustedRating = node.AdjustHook(adjustedRating);
-            Log.Message("Pawn_PsycheTracker.CalculateAdjustedRatings for " + pawn.LabelShort + ": step 2e");
+            //Log.Message("Pawn_PsycheTracker.CalculateAdjustedRatings for " + pawn.LabelShort + ": step 2e");
             node.AdjustedRating = adjustedRating;
-            Log.Message("Pawn_PsycheTracker.CalculateAdjustedRatings for " + pawn.LabelShort + ": step 2f");
+            //Log.Message("Pawn_PsycheTracker.CalculateAdjustedRatings for " + pawn.LabelShort + ": step 2f");
         }
-        this.adjustedRatingTicker = 100;
-        Log.Message("Pawn_PsycheTracker.CalculateAdjustedRatings for " + pawn.LabelShort + ": step 3");
+        this.adjustedRatingTicker = 50;
+        //Log.Message("Pawn_PsycheTracker.CalculateAdjustedRatings for " + pawn.LabelShort + ": step 3");
         var arlist = from PersonalityNodeDef def in PersonalityNodeParentMatrix.defList select GetPersonalityRating(def);
-        Log.Message("CalculateAdjustedRatings(): Adjusted ratings for " + pawn.LabelShort + ": " + string.Join(", ", arlist));
+        //Log.Message("CalculateAdjustedRatings(): Adjusted ratings for " + pawn.LabelShort + ": " + string.Join(", ", arlist));
         //stopwatch.Stop();
         //TimeSpan ts = stopwatch.Elapsed;
         //Log.Message("CalculateAdjustedRatings took " + ts.TotalMilliseconds + " ms.");

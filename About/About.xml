@@ -26,7 +26,7 @@
 		<li>brrainz.harmony</li>
 		<!--<li>UnlimitedHugs.HugsLib</li>-->
 		<li>void.charactereditor</li>
-		<!--<li>EdB.PrepareCarefully</li>-->
+		<li>EdB.PrepareCarefully</li>
 	</loadAfter>
 	<description>&lt;b&gt;Doesn't break saves!&lt;/b&gt;  &lt;b&gt;Mod options available!&lt;/b&gt;
 

@@ -46,14 +46,21 @@ public class ManualPatches
 {
     public static void DoCharacterEditorPatch(HarmonyLib.Harmony harmonyInstance)
     {
-        //harmonyInstance.Patch(
-        //        AccessTools.Method(typeof(CharacterEditor.DialogPsychology), nameof(CharacterEditor.DialogPsychology.DoWindowContents)),
-        //        prefix: new HarmonyMethod(typeof(CharacterEditor_DialogPsychology_Patch), nameof(CharacterEditor_DialogPsychology_Patch.DoWindowContents))
-        //);
-        harmonyInstance.Patch(
-               AccessTools.Method(Type.GetType("CharacterEditor.DialogPsychology"), "DoWindowContents"),
-               prefix: new HarmonyMethod(typeof(CharacterEditor_DialogPsychology_Patch), nameof(CharacterEditor_DialogPsychology_Patch.DoWindowContents))
-       );
+        Log.Message("DoCharacterEditorPatch: Step 0");
+        //MethodInfo methodInfo = AccessTools.Method(AccessTools.TypeByName("CharacterEditor.DialogPsychology"), "DoWindowContents");
+        //MethodInfo methodInfo = AccessTools.Method(Type.GetType("CharacterEditor.DialogPsychology"), "DoWindowContents");
+        //MethodInfo methodInfo = AccessTools.Method("CharacterEditor.DialogPsychology:DoWindowContents");
+        MethodInfo methodInfo = AccessTools.Method(typeof(CharacterEditor.DialogPsychology), nameof(CharacterEditor.DialogPsychology.DoWindowContents));
+        //Log.Message("DoCharacterEditorPatch: Step 1");
+        //HarmonyMethod transpilerMethod = new HarmonyMethod(typeof(CharacterEditor_DialogPsychology_Patch), nameof(CharacterEditor_DialogPsychology_Patch.DoWindowContentsTranspiler));
+        //Log.Message("DoCharacterEditorPatch: Step 2");
+        //harmonyInstance.Patch(methodInfo, transpiler: transpilerMethod);
+        //Log.Message("DoCharacterEditorPatch: Step 3");
+        Log.Message("DoCharacterEditorPatch: Step 1");
+        HarmonyMethod harmonyMethod = new HarmonyMethod(typeof(CharacterEditor_DialogPsychology_Patch), nameof(CharacterEditor_DialogPsychology_Patch.DoWindowContentsPrefix));
+        Log.Message("DoCharacterEditorPatch: Step 2");
+        harmonyInstance.Patch(methodInfo, prefix: harmonyMethod);
+        Log.Message("DoCharacterEditorPatch: Step 3");
     }
 
     public static void DoPrepareCarefullyPatch(HarmonyLib.Harmony harmonyInstance)
@@ -63,14 +70,10 @@ public class ManualPatches
         //        transpiler: new HarmonyMethod(typeof(EdBPrepareCarefully_PanelBackstory_Patch), nameof(EdBPrepareCarefully_PanelBackstory_Patch.Transpiler))
         //);
         //MethodInfo originalInfo = AccessTools.Method(Type.GetType("EdB.PrepareCarefully.PanelBackstory"), "Draw");
-        Log.Message("Step 0");
         //MethodInfo originalInfo = Type.GetType("EdB.PrepareCarefully.PanelBackstory").GetMethod("Draw", BindingFlags.vir );
         MethodInfo originalInfo = AccessTools.Method(AccessTools.TypeByName("EdB.PrepareCarefully.PanelBackstory"), "Draw");
-        Log.Message("Step 1");
         MethodInfo patchInfo = typeof(EdBPrepareCarefully_PanelBackstory_Patch).GetMethod(nameof(EdBPrepareCarefully_PanelBackstory_Patch.Transpiler));
-        Log.Message("Step 2");
         harmonyInstance.Patch(originalInfo, transpiler: new HarmonyMethod(patchInfo));
-        Log.Message("Step 3");
     }
 
     public static void TaraiSiblingsPatch(HarmonyLib.Harmony harmonyInstance)
