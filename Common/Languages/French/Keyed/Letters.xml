@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+
+    <!--<LetterLabelNewElection>L'élection se prépare à {0}</LetterLabelNewElection>
+	
+	<LetterNewElection>Une éléction se prépare à {0}. Certains colons ont présenté leur candidatures.</LetterNewElection>
+	<LetterLabelElectionHeld>L'éléction est en cours à {0}</LetterLabelElectionHeld>
+	<LetterElectionHeld>L'éléction à {0} est maintenant en cours. La colonie à décidé d'un lieu de vote à partir des lieux disponibles, et les colons vont s'y rendre afin de voter.</LetterElectionHeld>
+	<LetterLabelElectionCandidate>Candidat : {0_labelShort}</LetterLabelElectionCandidate>
+	
+	<LetterElectionCandidate>{0_labelShort} se présente pour diriger {1}. Voici se tribune :\n{2}</LetterElectionCandidate>
+	<LetterLabelTieSettled>Suite à une égalité, {0_labelShort} à été déclaré vainqueur.</LetterLabelTieSettled>
+	
+	<LetterTieSettled>L'élection à résulté en une égalité,et les autres candidats ayant abandonné le débat, {0_objective} est déclaré vainqueur.</LetterTieSettled>
+	<LetterLabelElectionWon>{0_labelShort} à gagné l'élection !</LetterLabelElectionWon>
+	
+	<LetterElectionWon>{0_labelShort} won the election for {1}. {0_pronoun} à reçu {2} votes.\n\nA titre de rappel, voici la tribune de {0} :\n{3}\n\n{0_pronoun} recevera maintenant les visites de ses compatriotes dans sa chambre si {0_pronoun} en à. Si iels ont des plaintes, iels se sentiront mieux après avoir {0_objective} avoir parlé si {0_pronoun} est doué'e pour parler aux gens et comprendre leurs sentiments. Avoir un beau bureau ne ferait pas de mal.\n\nGardez un oeil sur {0_objective}; {0_pronoun} n'a personne à qui se plaindre, et porter les fardeaux d'une colonie peut être dur, surtout si les choses se passent mal.</LetterElectionWon>
+	<LetterLabelFuneralPlanned>Funeral planned for {0}</LetterLabelFuneralPlanned>
+	<LetterFuneralPlanned>{0_labelShort} à plannifié des funérailles pour {1_labelShort}. La cérémonie se tiendra à {2}, à {3}h.</LetterFuneralPlanned>
+	<LetterLabelFuneralStarted>La cérémonie de funéraille de {0} est prévue.</LetterLabelFuneralStarted>
+	<LetterFuneralStarted>Les funérailles de {0_labelShort} sont en cours. Vos colons y participeront, ou non, en fonction de leur relation avec {0}.</LetterFuneralStarted>
+	<LetterLabelFuneralEnded>Les funérailles sont finies</LetterLabelFuneralEnded>
+	<LetterFuneralEnded>Les funérailles de {0_labelShort} sont finies.\n\nLes participants ont été :\n{1}</LetterFuneralEnded>
+	<LetterLabelPTSD>Stress traumatique</LetterLabelPTSD>
+	<LetterPTSD>{0_labelShort} a développé une anxiété post-traumatique suite à sa crise de démence. L'anxiété est un trouble permanent, mais peut être traité pour lentement réduire son impact, afin de le rendre plus supportable et permettre à {0} d'être plus fonctionnel'le. Les crises de démence suivantes aggraveront son anxiété.\n\nUne rumeur cirvule sur des médecins des glitterworlds capable de guérir complètement l'anxiété. Si vous mettez la main sur de la médecine ultratech, un médecin extremement compétent pourrait les utiliser pour soigner l'anxiété de {0_labelShort}.</LetterPTSD>
+	<LetterLabelDatePlanned>Rendez-vous amoureux</LetterLabelDatePlanned>
+	<LetterDatePlanned>{0_labelShort} a prévu un rendez-vous amoureux avec {1_labelShort} pour le {2} à {3}h.\n\nCes rendez-vous peuvent être annulés, principalement si eun des deux colons à reçu une tâche prioritaire, est mobilisé, invalide ou si la colonie à des problèmes plus urgents.\n\nSi le rendez-vous est annulé, les amoureux seront déçus. Les colons peuvent aussi rater un rendez-vous parce qu'ils sont en train de dormir, ce qui vexera leur partenaire, mais ne génèrera aucun malus au moral.</LetterDatePlanned>
+	
+	<LetterRejectedProposalPsychology>En fonction de leur humeur et de leur personnalité, leur moral et relations seront affectés.</LetterRejectedProposalPsychology>-->
+
+</LanguageData>
+
+<!--<LettreNouvelleÉlection>L'élection du maire de {0} à été annoncée. certains colons ont présenté leur candidature.</LettreNouvelleÉlection>-->
+<!--<LettreCandidatÉlection>{0_labelShort} est candidat'e à l'éléction du maire de {1}. Voici sa tribune :\n{2}</LettreÉlectionCandidat> -->
+<!--<LettreÉgalitéDéclarée>L'élection du maire ayant résulté sur une égalité, et les autres candidats ayant abandonné le débat, {0_objective} est déclaré vainqueur.</LetterTieSettled>-->
+<!--<LettreÉlectionGagnée>{0_labelShort} à été élu'e maire de {1}. {0_pronoun} à reçu {2} votes.\n\nA titre de rappel, voici la tribune de {0} :\n{3}\n\n{0_pronoun} recevera maintenant les visites de ses compatriotes dans sa chambre si {0_pronoun} en à. Si iels ont des plaintes, iels se sentiront mieux après avoir {0_objective} avoir parlé si {0_pronoun} est doué'e pour parler aux gens et comprendre leurs sentiments. Avoir un beau bureau ne ferait pas de mal.\n\nGardez un oeil sur {0_objective}; {0_pronoun} n'a personne à qui se plaindre, et porter les fardeaux d'une colonie peut être dur, surtout si les choses se passent mal.</LettreÉlection gagnée>-->
+<!-- Replaced vanilla letters -->
