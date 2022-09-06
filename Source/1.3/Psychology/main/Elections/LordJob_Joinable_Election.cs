@@ -105,7 +105,7 @@ namespace Psychology
             StringBuilder issuesString = new StringBuilder();
             for (int i = 0; i < candidates.Find(c => c.pawn == winningCandidate.First).nodes.Count; i++)
             {
-                issuesString.AppendFormat("{0}) {1}{2}", i + 1, PsycheHelper.Comp(winningCandidate.First).Psyche.nodeDict[candidates.Find(c => c.pawn == winningCandidate.First).nodes[i].defName].PlatformIssue, (i != candidates.Find(c => c.pawn == winningCandidate.First).nodes.Count - 1 ? "\n" : ""));
+                issuesString.AppendFormat("{0}) {1}{2}", i + 1, PsycheHelper.Comp(winningCandidate.First).Psyche.GetPersonalityNodeOfDef(candidates.Find(c => c.pawn == winningCandidate.First).nodes[i]).PlatformIssue, (i != candidates.Find(c => c.pawn == winningCandidate.First).nodes.Count - 1 ? "\n" : ""));
             }
 
             if (this.map == null)

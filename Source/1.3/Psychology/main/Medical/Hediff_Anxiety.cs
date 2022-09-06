@@ -10,8 +10,8 @@ public class Hediff_Anxiety : HediffWithComps
 {
     public bool panic = false;
     public bool needToFire = true;
-    public const int intervalsPerDay = 500;
-    public const int ticksPerInterval = GenDate.TicksPerDay / 500;
+    public const int intervalsPerDay = 25;
+    public const int ticksPerInterval = GenDate.TicksPerDay / intervalsPerDay;
     public int ticksPerIntervalTracker = 0;
     public int cooldownIntervals = 0;
 
@@ -26,9 +26,9 @@ public class Hediff_Anxiety : HediffWithComps
         }
         ticksPerIntervalTracker = ticksPerInterval;
 
-        if (cooldownTicks > 0)
+        if (cooldownIntervals > 0)
         {
-            cooldownTicks--;
+            cooldownIntervals--;
             panic = false;
             return;
         }
@@ -39,17 +39,15 @@ public class Hediff_Anxiety : HediffWithComps
             return;
         }
 
-        
-
         //float chance = 0.02f / Math.Max(1, 11 - 2 * this.CurStageIndex);
         float chance = 0.02f / Math.Max(1, 12 - 10 * this.Severity);
-        int seed = pawn.GetHashCode() + 391 * GenDate.DaysPassed + 31 * Mathf.FloorToInt(5 * GenLocalDate.DayPercent(pawn));
+        int seed = pawn.GetHashCode() ^ (GenLocalDate.DayOfYear(pawn) + GenLocalDate.Year(pawn) + (int)(GenLocalDate.DayPercent(pawn) * 5) * 60) * 391;
 
         if (Rand.ChanceSeeded(chance, seed))
         {
             this.Severity += 0.00000002f * ticksPerInterval;
             // Give at least one day between anxiety attacks
-            cooldownIntervals = GenDate.TicksPerDay / ticksPerInterval;
+            cooldownIntervals = intervalsPerDay;
 
             panic = true;
             if (pawn.jobs.curDriver.asleep)
@@ -58,14 +56,11 @@ public class Hediff_Anxiety : HediffWithComps
             }
             else if (pawn.jobs.curJob.def != JobDefOf.FleeAndCower && !pawn.Downed)
             {
-                //this.Severity += 0.01f;
                 pawn.jobs.StartJob(new Job(JobDefOf.FleeAndCower, pawn.Position), JobCondition.InterruptForced, null, false, true, null);
             }
+            return;
         }
-        else
-        {
-            panic = false;
-        }
+        panic = false;
     }
 }
 

@@ -12,17 +12,17 @@ namespace Psychology.Harmony;
 public static class PawnGenerator_ManualPatches
 {
     // Postfix
-    public static void GenerateTraits_KinseyEnabled(Pawn pawn, PawnGenerationRequest request)
-    {
-        if (pawn.story == null || !PsycheHelper.PsychologyEnabledFast(pawn))
-        {
-            return;
-        }
-        PsycheHelper.CorrectTraitsForPawnKinseyEnabled(pawn);
-    }
+    //public static void GenerateTraits_KinseyEnabled(Pawn pawn, PawnGenerationRequest request)
+    //{
+    //    if (pawn.story == null || !PsycheHelper.PsychologyEnabledFast(pawn))
+    //    {
+    //        return;
+    //    }
+    //    PsycheHelper.CorrectTraitsForPawnKinseyEnabled(pawn);
+    //}
 
     // Postfix
-    public static void GenerateTraits_TaraiSiblings(Pawn pawn, PawnGenerationRequest request)
+    public static void GenerateTraits_TaraiSiblings_Postfix(Pawn pawn, PawnGenerationRequest request)
     {
         if (pawn.story == null || pawn.story.childhood != PsychologyDefInjector.child || PsychologySettings.taraiSiblingsGenerated)
         {
@@ -45,9 +45,9 @@ public static class PawnGenerator_ManualPatches
         }
     }
 
-    public static void GeneratePawn_IdeoCache(ref Pawn __result, PawnGenerationRequest request)
+    public static void GeneratePawn_IdeoCache_Postfix(ref Pawn __result, PawnGenerationRequest request)
     {
-        if (!PsycheHelper.PsychologyEnabledFast(__result))
+        if (!PsycheHelper.PsychologyEnabled(__result))
         {
             return;
         }

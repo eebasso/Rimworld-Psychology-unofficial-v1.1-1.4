@@ -98,7 +98,7 @@ public class GameCondition_Election : GameCondition
             StringBuilder issuesString = new StringBuilder();
             for (int i = 0; i < candidate.nodes.Count; i++)
             {
-                issuesString.AppendFormat("{0}) {1}{2}", i + 1, PsycheHelper.Comp(candidate.pawn).Psyche.nodeDict[candidate.nodes[i].defName].PlatformIssue, (i != candidate.nodes.Count - 1 ? "\n" : ""));
+                issuesString.AppendFormat("{0}) {1}{2}", i + 1, PsycheHelper.Comp(candidate.pawn).Psyche.GetPersonalityNodeOfDef(candidate.nodes[i]).PlatformIssue, (i != candidate.nodes.Count - 1 ? "\n" : ""));
             }
             Find.LetterStack.ReceiveLetter("LetterLabelElectionCandidate".Translate(candidate.pawn), "LetterElectionCandidate".Translate(candidate.pawn, Find.WorldObjects.ObjectsAt(candidate.pawn.Tile).OfType<Settlement>().First().Label, issuesString.ToString()), LetterDefOf.NeutralEvent, candidate.pawn, null);
         }

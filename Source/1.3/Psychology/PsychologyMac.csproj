@@ -43,8 +43,16 @@
       <HintPath>..\..\..\..\..\..\..\..\workshop\content\294100\2009463077\Current\Assemblies\0Harmony.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="AlienRace">
+      <HintPath>..\..\..\..\..\..\..\..\workshop\content\294100\839005762\1.3\Assemblies\AlienRace.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Assembly-CSharp">
       <HintPath>..\..\..\..\..\Contents\Resources\Data\Managed\Assembly-CSharp.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="CharacterEditor">
+      <HintPath>..\..\..\..\..\..\..\..\workshop\content\294100\1874644848\v1.3\Assemblies\CharacterEditor.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="EdBPrepareCarefully">
@@ -90,10 +98,6 @@
       <HintPath>..\..\..\..\..\Contents\Resources\Data\Managed\UnityEngine.TextRenderingModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="CharacterEditor">
-      <HintPath>..\..\..\..\..\..\..\..\workshop\content\294100\1874644848\v1.3\Assemblies\CharacterEditor.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="System.Numerics" />
     <Reference Include="System.Numerics.Vectors" />
   </ItemGroup>
@@ -115,7 +119,6 @@
     <Compile Include="DefOf\InteractionDefOfPsychology.cs" />
     <Compile Include="DefOf\RulePackDefOfPsychology.cs" />
     <Compile Include="DefOf\PersonalityNodeDefOf.cs" />
-    <Compile Include="DefOf\PsychologyTexCommand.cs" />
     <Compile Include="Main\Conversations\Rendezvous\Hediff_PlannedDate.cs" />
     <Compile Include="Main\Conversations\Rendezvous\InteractionWorker_PlanDate.cs" />
     <Compile Include="Main\Conversations\Rendezvous\InteractionWorker_HangOut.cs" />
@@ -228,9 +231,6 @@
     <Compile Include="Harmony\Misc\Thing.cs" />
     <Compile Include="Harmony\Misc\TraitSet.cs" />
     <Compile Include="Harmony\Misc\VoluntarilyJoinableLordsStarter.cs" />
-    <Compile Include="Harmony\ConditionalPatches\EdBPrepareCarefully_PanelBackstory.cs" />
-    <Compile Include="Harmony\ConditionalPatches\HarmonyInitialize.cs" />
-    <Compile Include="Harmony\ConditionalPatches\CharacterEditor_DialogPsychology.cs" />
     <Compile Include="Harmony\Sleep\Need_Rest.cs" />
     <Compile Include="Harmony\Sleep\JobGiver_GetRest.cs" />
     <Compile Include="Harmony\Pawn\Pawn_JobTracker.cs" />
@@ -303,12 +303,14 @@
     <Compile Include="Main\GUI\PolygonUtility.cs" />
     <Compile Include="Main\GUI\PsycheCardUtility.cs" />
     <Compile Include="Main\GUI\UIAssets.cs" />
-    <Compile Include="Harmony\ConditionalPatches\PawnGenerator.cs" />
-    <Compile Include="Harmony\ConditionalPatches\TraitSet.cs" />
     <Compile Include="Main\GUI\SettingsWindowUtility.cs" />
     <Compile Include="Main\Settings\SpeciesHelper.cs" />
     <Compile Include="Main\GUI\Dialog_UpdateIntro.cs" />
     <Compile Include="Main\GUI\Dialog_UpdateYesNo.cs" />
+    <Compile Include="Harmony\HarmonyInitialize.cs" />
+    <Compile Include="Harmony\OtherMods\CharacterEditor_DialogPsychology.cs" />
+    <Compile Include="Harmony\OtherMods\EdBPrepareCarefully_PanelBackstory.cs" />
+    <Compile Include="Harmony\Pawn\PawnGenerator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\About\preview.png">
@@ -801,6 +803,9 @@
     <None Include="..\..\..\Common\Languages\ChineseTraditional\LanguageInfo.xml">
       <Link>Common\Languages\ChineseTraditional\LanguageInfo.xml</Link>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Harmony\OtherMods\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

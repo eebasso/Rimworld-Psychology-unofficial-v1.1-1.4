@@ -75,7 +75,7 @@ public class PsychologyGameComponent : GameComponent
 
     public virtual void AddPawnToCachedIdeoCertaityChange(Pawn pawn)
     {
-        if (PsycheHelper.PsychologyEnabledFast(pawn))
+        if (PsycheHelper.PsychologyEnabled(pawn))
         {
             float ideoCertaintyChange = PsycheHelper.Comp(pawn).Psyche.CalculateCertaintyChangePerDay();
             CachedCertaintyChangePerDayDict.AddDistinct(pawn.thingIDNumber, ideoCertaintyChange);

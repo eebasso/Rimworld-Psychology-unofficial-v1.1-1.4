@@ -14,8 +14,7 @@ using System.Runtime;
 using System.Security.Cryptography;
 using Verse.Sound;
 
-namespace Psychology;
-//[StaticConstructorOnStartup]
+namespace Psychology;
 public class SpeciesHelper
 {
     public static IEnumerable<ThingDef> humanlikeDefs;
@@ -30,7 +29,7 @@ public class SpeciesHelper
     public static SpeciesSettings androidLikeSettings = new SpeciesSettings(true, false, 0f, 0f);
     public static SpeciesSettings elfLikeSettings = new SpeciesSettings(EnablePsyche: true, EnableAgeGap: false);
 
-    //static SpeciesHelper()
+    // Species Settings fires first then calls this
     public static void Initialize()
     {
         humanlikeDefs = from def in DefDatabase<ThingDef>.AllDefs
@@ -81,7 +80,7 @@ public class SpeciesHelper
         }
         Log.Message("Psychology: Registered humanlike species: " + string.Join(", ", registered.ToArray()));
         //Log.Message("SettingsWindowUtility.Initialize()");
-        //SettingsWindowUtility.Initialize();
+        SettingsWindowUtility.Initialize();
     }
 
     public static void ResetSpeciesDict(Dictionary<string, SpeciesSettings> speciesDict)

@@ -134,7 +134,7 @@ public class PsychologySettings : ModSettings
         ResetRomanceOpinionThreshold(); // v1.1
         ResetMayorAge(); // v1.1
         ResetTraitOpinionMultiplier(); // v1.2
-        ResetUpbringingEffect()
+        ResetUpbringingEffect();
         ResetDisplayOption(); // v1.3
         ResetUseColors(); // v1.3
         ResetListAlphabetical(); // v1.3
