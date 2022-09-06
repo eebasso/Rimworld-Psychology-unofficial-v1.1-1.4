@@ -2147,7 +2147,8 @@
 			</li>
 		</parents>
 		<traitModifiers>
-			<li>
+			<!-- Beauty is now accounted for in general in PersonalityNode.AdjustForCircumstances -->
+			<!--<li>
 				<trait>Beauty</trait>
 				<degree>2</degree>
 				<modifier>0.7</modifier>
@@ -2166,7 +2167,7 @@
 				<trait>Beauty</trait>
 				<degree>-2</degree>
 				<modifier>-0.7</modifier>
-			</li>
+			</li>-->
 			<li>
 				<trait>Socialite</trait>
 				<modifier>0.4</modifier>

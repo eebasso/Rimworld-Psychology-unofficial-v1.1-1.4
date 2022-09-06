@@ -22,7 +22,7 @@ public static class CharacterCardUtility_ButtonPatch
         foreach (CodeInstruction itr in instr)
         {
             yield return itr;
-            if (itr.opcode == OpCodes.Call && itr.operand == typeof(CharacterCardUtility).GetMethod(nameof(CharacterCardUtility.DoNameInputRect)))
+            if (itr.opcode == OpCodes.Call && itr.operand as MethodInfo == typeof(CharacterCardUtility).GetMethod(nameof(CharacterCardUtility.DoNameInputRect)))
             {
                 doNames++;
                 if (doNames == 3)
@@ -35,15 +35,14 @@ public static class CharacterCardUtility_ButtonPatch
         }
     }
 
-    //[LogPerformance]
     public static void PsycheCardButton(Rect panelRect, Pawn pawn)
     {
         if (PsycheHelper.PsychologyEnabled(pawn))
         {
             Rect rect = new Rect(panelRect.xMax + 300f, 0f, 30f, 30f);
             Color oldColor = GUI.color;
-            GUI.color = rect.Contains(Event.current.mousePosition) ? PsychColor.ButtonLightColor : PsychColor.ButtonDarkColor;
-            GUI.DrawTexture(rect, PsychologyTexCommand.PsycheButton);
+            GUI.color = rect.Contains(Event.current.mousePosition) ? UIAssets.ButtonLightColor : UIAssets.ButtonDarkColor;
+            GUI.DrawTexture(rect, UIAssets.PsycheButton);
             if (Widgets.ButtonInvisible(rect, false))
             {
                 SoundDefOf.Tick_Low.PlayOneShotOnCamera(null);

@@ -1,7 +1,11 @@
-﻿using System;using System.Collections.Generic;using System.Linq;using System.Text;using System.Text.RegularExpressions;using System.Reflection;using RimWorld;using RimWorld.Planet;using Verse;using Verse.AI.Group;using Verse.Grammar;using UnityEngine;using Verse.Noise;using Unity;namespace Psychology;public static class SettingsWindowUtility{
+﻿using System;using System.Collections.Generic;using System.Linq;using System.Text;using System.Text.RegularExpressions;using System.Reflection;using RimWorld;using RimWorld.Planet;using Verse;using Verse.AI.Group;using Verse.Grammar;using UnityEngine;using Verse.Noise;using Unity;
+namespace Psychology;public static class SettingsWindowUtility{
     //public static Rect WindowRect = new Rect(0f, 0f, 1f, 1f);
-    public static float WindowWidth = 900f - 2f * Window.StandardMargin;
-    public static float WindowHeight = 700f - 2f * Window.StandardMargin;
+    public const float WindowWidth = 900f;
+    public const float WindowHeight = 700f;
+    //public static float InWidth = WindowWidth - 2f * Window.StandardMargin;
+    //public static float InHeight = WindowHeight - 2f * Window.StandardMargin;
+
 
     public const float RowTopPadding = 3f;    public const float CheckboxSize = 24f;    public const float BoundaryPadding = 7f;    public const float HighlightPadding = 3.5f;
     public const float ScrollBarWidth = 18f;
@@ -10,7 +14,7 @@
 
     public static float SpeciesX;
     public static float SpeciesY;
-    public static float SpeciesWidth;    public static float SpeciesHeight;    public static List<string> SettingNameList = new List<string> { "SexualityChanges", "KinseyMode", "EmpathyChanges", "Individuality", "Elections", "SendDateLetters", "Imprisoned", "AllowAnxiety", "Duration", "RomanceMultiplier", "RomanceChanceThreshold", "MayorAge", "TraitOpinionMutliplier" };    public static List<KinseyMode> KinseyModeList = new List<KinseyMode>() { KinseyMode.Realistic, KinseyMode.Uniform, KinseyMode.Invisible, KinseyMode.Gaypocalypse, KinseyMode.Custom };    public static Dictionary<KinseyMode, string> KinseyModeTitleDict = new Dictionary<KinseyMode, string>();
+    public static float SpeciesWidth;    public static float SpeciesHeight;    public static List<string> SettingNameList = new List<string> { "SexualityChanges", "KinseyMode", "EmpathyChanges", "Individuality", "Elections", "SendDateLetters", "Imprisoned", "AllowAnxiety", "Duration", "RomanceMultiplier", "RomanceChanceThreshold", "MayorAge", "TraitOpinionMultiplier" };    public static List<KinseyMode> KinseyModeList = new List<KinseyMode>() { KinseyMode.Realistic, KinseyMode.Uniform, KinseyMode.Invisible, KinseyMode.Gaypocalypse, KinseyMode.Custom };    public static Dictionary<KinseyMode, string> KinseyModeTitleDict = new Dictionary<KinseyMode, string>();
     public static List<string> SpeciesTitleList = new List<string>();
     public static List<float> SpeciesWidthList = new List<float>();
     public static List<string> SpeciesNameList = new List<string>();
@@ -34,16 +38,25 @@
     public static float VerticalSliderWidth;
     public static float VerticalSliderHeight = 3f * RowHeight;
 
-    public static Rect SpeciesRect;    public static Rect ViewRect;    public static Rect SaveButtonRect;    public static Rect ResetButtonRect;
-    public static Rect RecalcButtonRect;    public static string SaveButtonText = "Save".Translate();    public static string ResetButtonText = "Default".Translate();    public static string RecalcButtonText = "Apply update";    public static Vector2 NodeScrollPosition = Vector2.zero;
+    public static Rect SpeciesRect;    public static Rect ViewRect;
+
+    //public static string SaveButtonText = "Save".Translate();
+    //public static Rect SaveButtonRect;
+
+    public static string ResetButtonText = "Default".Translate();
+    public static Rect ResetButtonRect;
+
+    public static string UpdateButtonText = "ApplyUpdateButton".Translate();
+    public static Rect UpdateButtonRect;    public static Vector2 NodeScrollPosition = Vector2.zero;
 
     //public static string romanceBySpeciesTitle = "RomanceBySpeciesTitle".Translate();
 
-    public static KinseyMode kinseyFormulaCached;    public static List<float> kinseyWeightCustomCached = new List<float>();    public static List<string> kinseyWeightCustomBuffer = new List<string>();    public static bool enableKinseyCached;    public static bool enableEmpathyCached;    public static bool enableIndividualityCached;    public static bool enableElectionsCached;    public static bool enableDateLettersCached;    public static bool enableImprisonedDebuffCached;    public static bool enableAnxietyCached;    public static float conversationDurationCached;    public static string conversationDurationBuffer;    public static float romanceChanceMultiplierCached;    public static string romanceChanceMultiplierBuffer;    public static float romanceOpinionThresholdCached;    public static string romanceOpinionThresholdBuffer;    public static float mayorAgeCached;    public static string mayorAgeBuffer;    public static float traitOpinionMultiplierCached;    public static string traitOpinionMultiplierBuffer;    public static Dictionary<string, SpeciesSettings> speciesDictCached = new Dictionary<string, SpeciesSettings>();    public static Dictionary<string, List<string>> speciesBuffer = new Dictionary<string, List<string>>();    public static void Initialize()    {
-        //Log.Message("SetAllCachedToSettings");
-        SetAllCachedToSettings();
-        //Log.Message("test0");
+    public static KinseyMode kinseyFormulaCached;    public static List<float> kinseyWeightCustomCached = new List<float>();    public static List<string> kinseyWeightCustomBuffer = new List<string>();    public static bool enableKinseyCached;    public static bool enableEmpathyCached;    public static bool enableIndividualityCached;    public static bool enableElectionsCached;    public static bool enableDateLettersCached;    public static bool enableImprisonedDebuffCached;    public static bool enableAnxietyCached;    public static float conversationDurationCached;    public static string conversationDurationBuffer;    public static float romanceChanceMultiplierCached;    public static string romanceChanceMultiplierBuffer;    public static float romanceOpinionThresholdCached;    public static string romanceOpinionThresholdBuffer;    public static float mayorAgeCached;    public static string mayorAgeBuffer;    public static float traitOpinionMultiplierCached;    public static string traitOpinionMultiplierBuffer;    public static Dictionary<string, SpeciesSettings> speciesDictCached = new Dictionary<string, SpeciesSettings>();    public static Dictionary<string, List<string>> speciesBuffer = new Dictionary<string, List<string>>();
 
+    // Initialize after SpeciesHelper
+    public static void Initialize()    {
+        SetAllCachedToSettings();
+        Text.Font = GameFont.Small;
         foreach (string name in SettingNameList)        {            string title = (name + "Title").Translate();            string tooltip = (name + "Tooltip").Translate();            Vector2 size = Text.CalcSize(title);            settingTitleList.Add(title);            settingTooltipList.Add(tooltip);
             //settingSizeList.Add(size);
             //Log.Message("size.x = " + size.x);
@@ -100,34 +113,47 @@
         SpeciesWidthList[0] = Mathf.Max(EntryWidth, SpeciesWidthList[0]);
         SpeciesWidthList[0] += 2f * HighlightPadding;
 
-        float shiftFactor = (WindowWidth - TitleWidth - EntryWidth - BoundaryPadding - SpeciesWidthList.Sum() - ScrollBarWidth) / 2f;        TitleWidth += shiftFactor;
+        float shiftFactor = (WindowWidth - 2f * Window.StandardMargin - TitleWidth - EntryWidth - BoundaryPadding - SpeciesWidthList.Sum() - ScrollBarWidth) / 2f;        TitleWidth += shiftFactor;
         SpeciesWidthList[0] += shiftFactor;
 
-        LeftColumnWidth = TitleWidth + EntryWidth;        VerticalSliderWidth = LeftColumnWidth / 7f;        SpeciesX = LeftColumnWidth + BoundaryPadding;        SpeciesY = UpperAreaHeight + RowHeight + HighlightPadding;        SpeciesWidth = WindowWidth - SpeciesX;        SpeciesHeight = WindowHeight - SpeciesY - LowerAreaHeight;
+        LeftColumnWidth = TitleWidth + EntryWidth;        VerticalSliderWidth = LeftColumnWidth / 7f;        SpeciesX = Window.StandardMargin +  LeftColumnWidth + BoundaryPadding;        SpeciesY = Window.StandardMargin + UpperAreaHeight + RowHeight + HighlightPadding;        SpeciesWidth = WindowWidth - Window.StandardMargin - SpeciesX;        SpeciesHeight = WindowHeight - Window.StandardMargin - LowerAreaHeight  - SpeciesY;
         SpeciesHeight = Mathf.Min(viewHeight, SpeciesHeight);
 
         SpeciesRect = new Rect(SpeciesX, SpeciesY, SpeciesWidth, SpeciesHeight);
         ViewRect = new Rect(0f, 0f, SpeciesWidth - ScrollBarWidth, SpeciesHeight);
 
-        float buttonY = WindowHeight + 2f * Window.StandardMargin - Window.FooterRowHeight;
-        float closeXmax = 0.5f * (WindowWidth + Window.CloseButSize.x);
-        float numButtons = 2f;
-        float spaceWidth = (WindowWidth - closeXmax - numButtons * Window.CloseButSize.x) / numButtons;
-        float saveX = closeXmax + spaceWidth;
-        SaveButtonRect = new Rect(saveX, buttonY, Window.CloseButSize.x, Window.CloseButSize.y);
-        ResetButtonRect = new Rect(SaveButtonRect.xMax + spaceWidth, buttonY, Window.CloseButSize.x, Window.CloseButSize.y);
 
+        //float recalcWidth = Mathf.Max(Window.CloseButSize.x, Text.CalcSize(UpdateButtonText).x + 20f);
+
+        float numButtons = 3f;
+        float spaceBetweenButtons = (WindowWidth - numButtons * Window.CloseButSize.x) / (1f + numButtons);
+        float buttonY = WindowHeight - Window.FooterRowHeight;
+
+        ResetButtonRect = new Rect(spaceBetweenButtons, buttonY, Window.CloseButSize.x, Window.CloseButSize.y);
+        UpdateButtonRect = new Rect(WindowWidth - spaceBetweenButtons - Window.CloseButSize.x, buttonY, Window.CloseButSize.x, Window.CloseButSize.y);
     }    public static void DrawSettingsWindow(Rect totalRect)    {
-        GenUI.SetLabelAlign(TextAnchor.MiddleLeft);        Rect titleRect = new Rect(HighlightPadding, UpperAreaHeight, TitleWidth - HighlightPadding, RowHeight);        Rect entryRect = new Rect(titleRect.xMax, titleRect.y, EntryWidth, titleRect.height);
+        //Widgets.DrawLineHorizontal(totalRect.center.x - 1000f, totalRect.center.y, 2000f);
+        //Widgets.DrawLineVertical(totalRect.center.x, totalRect.center.y - 1000f, 2000f);
+        Widgets.EndGroup();
+
+        GUI.color = Color.blue;
+        Widgets.DrawLineHorizontal(totalRect.center.x + Window.StandardMargin - 1000f, totalRect.center.y, 2000f);
+        Widgets.DrawLineVertical(totalRect.center.x + Window.StandardMargin, totalRect.center.y - 1000f, 2000f);
+        GUI.color = Color.white;
+
+        GenUI.SetLabelAlign(TextAnchor.MiddleLeft);        Text.Font = GameFont.Small;        float xMin = Window.StandardMargin;        float yMin = Window.StandardMargin + UpperAreaHeight;
+        //float xMin = Window.StandardMargin;
+
+        //float yMin = Window.StandardMargin;
+        Rect titleRect = new Rect(xMin + HighlightPadding, yMin, TitleWidth - HighlightPadding, RowHeight);        Rect entryRect = new Rect(titleRect.xMax, titleRect.y, EntryWidth, titleRect.height);
         entryRect.yMin += HighlightPadding;
         entryRect.yMax -= HighlightPadding;
 
         CheckboxEntry(ref titleRect, settingTitleList[0], ref entryRect, ref enableKinseyCached, settingTooltipList[0]);        if (enableKinseyCached)        {
             //Widgets.Label(titleRect, settingTitleList[1]);
             //Rect buttonRect = new Rect(entryRect.x, entryRect.y, KinseyModeButtonWidth, entryRect.height);
-            Rect buttonRect = new Rect(0f, titleRect.y, LeftColumnWidth, titleRect.height);            if (Widgets.ButtonText(buttonRect, settingTitleList[1] + ": " + KinseyModeTitleDict[kinseyFormulaCached], drawBackground: true, doMouseoverSound: true, true))            {                List<FloatMenuOption> list = new List<FloatMenuOption>();                list.Add(new FloatMenuOption(KinseyModeTitleDict[KinseyMode.Realistic], delegate                {                    kinseyFormulaCached = KinseyMode.Realistic;                }));                list.Add(new FloatMenuOption(KinseyModeTitleDict[KinseyMode.Uniform], delegate                {                    kinseyFormulaCached = KinseyMode.Uniform;                }));                list.Add(new FloatMenuOption(KinseyModeTitleDict[KinseyMode.Invisible], delegate                {                    kinseyFormulaCached = KinseyMode.Invisible;                }));                list.Add(new FloatMenuOption(KinseyModeTitleDict[KinseyMode.Gaypocalypse], delegate                {                    kinseyFormulaCached = KinseyMode.Gaypocalypse;                }));                list.Add(new FloatMenuOption(KinseyModeTitleDict[KinseyMode.Custom], delegate                {                    kinseyFormulaCached = KinseyMode.Custom;                }));                Find.WindowStack.Add(new FloatMenu(list));            }
+            Rect buttonRect = new Rect(xMin, titleRect.y, LeftColumnWidth, titleRect.height);            if (Widgets.ButtonText(buttonRect, settingTitleList[1] + ": " + KinseyModeTitleDict[kinseyFormulaCached], drawBackground: true, doMouseoverSound: true, true))            {                List<FloatMenuOption> list = new List<FloatMenuOption>();                list.Add(new FloatMenuOption(KinseyModeTitleDict[KinseyMode.Realistic], delegate                {                    kinseyFormulaCached = KinseyMode.Realistic;                }));                list.Add(new FloatMenuOption(KinseyModeTitleDict[KinseyMode.Uniform], delegate                {                    kinseyFormulaCached = KinseyMode.Uniform;                }));                list.Add(new FloatMenuOption(KinseyModeTitleDict[KinseyMode.Invisible], delegate                {                    kinseyFormulaCached = KinseyMode.Invisible;                }));                list.Add(new FloatMenuOption(KinseyModeTitleDict[KinseyMode.Gaypocalypse], delegate                {                    kinseyFormulaCached = KinseyMode.Gaypocalypse;                }));                list.Add(new FloatMenuOption(KinseyModeTitleDict[KinseyMode.Custom], delegate                {                    kinseyFormulaCached = KinseyMode.Custom;                }));                Find.WindowStack.Add(new FloatMenu(list));            }
 
-            Widgets.RadioButton()
             //Rect highlightRect = titleRect;
             //highlightRect.xMin -= HighlightPadding;
             //highlightRect.xMax = entryRect.xMax + HighlightPadding;
@@ -148,7 +174,7 @@
             //    entryRect.y += customWeightEntryRect.height;
             //}
 
-            Rect customWeightEntryRect = new Rect(0f, titleRect.y, VerticalSliderWidth, VerticalSliderHeight);
+            Rect customWeightEntryRect = new Rect(xMin, titleRect.y, VerticalSliderWidth, VerticalSliderHeight);
             for (int i = 0; i <= 6; i++)
             {
                 KinseyCustomVerticalSlider(i, ref customWeightEntryRect);
@@ -162,7 +188,7 @@
 
         //string buffer;
 
-        Rect labelRect = new Rect(SpeciesX + HighlightPadding, UpperAreaHeight, SpeciesWidthList[0], RowHeight);        Rect psycheRect = new Rect(labelRect.xMax, labelRect.y, SpeciesWidthList[1], RowHeight);        Rect ageGapRect = new Rect(psycheRect.xMax, labelRect.y, SpeciesWidthList[2], RowHeight);        Rect minDatingAgeRect = new Rect(ageGapRect.xMax, labelRect.y, SpeciesWidthList[3], RowHeight);        Rect minLovinAgeRect = new Rect(minDatingAgeRect.xMax, labelRect.y, SpeciesWidthList[4], RowHeight);
+        Rect labelRect = new Rect(SpeciesX + HighlightPadding, Window.StandardMargin + UpperAreaHeight, SpeciesWidthList[0], RowHeight);        Rect psycheRect = new Rect(labelRect.xMax, labelRect.y, SpeciesWidthList[1], RowHeight);        Rect ageGapRect = new Rect(psycheRect.xMax, labelRect.y, SpeciesWidthList[2], RowHeight);        Rect minDatingAgeRect = new Rect(ageGapRect.xMax, labelRect.y, SpeciesWidthList[3], RowHeight);        Rect minLovinAgeRect = new Rect(minDatingAgeRect.xMax, labelRect.y, SpeciesWidthList[4], RowHeight);
 
         //GenUI.SetLabelAlign(TextAnchor.MiddleCenter);
         Widgets.Label(labelRect, SpeciesTitleList[0]);        Widgets.Label(psycheRect, SpeciesTitleList[1]);        Widgets.Label(ageGapRect, SpeciesTitleList[2]);        Widgets.Label(minDatingAgeRect, SpeciesTitleList[3]);        Widgets.Label(minLovinAgeRect, SpeciesTitleList[4]);
@@ -170,14 +196,14 @@
 
 
         //labelRect.x -= HighlightPadding;        //psycheRect.x -= HighlightPadding;        //ageGapRect.x -= HighlightPadding;        //minDatingAgeRect.x -= HighlightPadding;        //minLovinAgeRect.x -= HighlightPadding;
-        ColumnHighlightAndTooltip(labelRect, RowHeight + HighlightPadding + SpeciesHeight, "SpeciesRomanceSettingsTooltip".Translate());        ColumnHighlightAndTooltip(psycheRect, RowHeight + HighlightPadding + SpeciesHeight, "EnablePsycheTooltip".Translate());        ColumnHighlightAndTooltip(ageGapRect, RowHeight + HighlightPadding + SpeciesHeight, "EnableAgeGapTooltip".Translate());        ColumnHighlightAndTooltip(minDatingAgeRect, RowHeight + HighlightPadding + SpeciesHeight, "MinDatingAgeTooltip".Translate());        ColumnHighlightAndTooltip(minLovinAgeRect, RowHeight + HighlightPadding + SpeciesHeight, "MinLovinAgeTooltip".Translate());
+        ColumnHighlightAndTooltip(labelRect, RowHeight + HighlightPadding + SpeciesHeight, "SpeciesSettingsTooltip".Translate());        ColumnHighlightAndTooltip(psycheRect, RowHeight + HighlightPadding + SpeciesHeight, "EnablePsycheTooltip".Translate());        ColumnHighlightAndTooltip(ageGapRect, RowHeight + HighlightPadding + SpeciesHeight, "EnableAgeGapTooltip".Translate());        ColumnHighlightAndTooltip(minDatingAgeRect, RowHeight + HighlightPadding + SpeciesHeight, "MinDatingAgeTooltip".Translate());        ColumnHighlightAndTooltip(minLovinAgeRect, RowHeight + HighlightPadding + SpeciesHeight, "MinLovinAgeTooltip".Translate());
         //labelRect.x += HighlightPadding;
         //psycheRect.x += HighlightPadding;
         //ageGapRect.x += HighlightPadding;
         //minDatingAgeRect.x += HighlightPadding;
         //minLovinAgeRect.x += HighlightPadding;
 
-        PsychColor.DrawLineHorizontal(SpeciesRect.x, SpeciesRect.y - HighlightPadding, SpeciesRect.width, PsychColor.ModEntryLineColor);
+        UIAssets.DrawLineHorizontal(SpeciesRect.x, SpeciesRect.y - HighlightPadding, SpeciesRect.width, UIAssets.ModEntryLineColor);
 
         labelRect.y += HighlightPadding;        psycheRect.y += HighlightPadding;        ageGapRect.y += HighlightPadding;        minDatingAgeRect.y += HighlightPadding;        minLovinAgeRect.y += HighlightPadding;
         Rect testHighlightRect = new Rect(0f, 0f, minLovinAgeRect.xMax - labelRect.x, labelRect.height);        Widgets.BeginScrollView(SpeciesRect, ref NodeScrollPosition, ViewRect);        labelRect.position = new Vector2(HighlightPadding, 0f);        psycheRect.position = new Vector2(labelRect.xMax, labelRect.y);        ageGapRect.position = new Vector2(psycheRect.xMax, labelRect.y);        minDatingAgeRect.position = new Vector2(ageGapRect.xMax, labelRect.y);
@@ -210,73 +236,27 @@
             //rowHighlightRect.xMax = minLovinAgeRect.xMax;
             //Widgets.DrawHighlightIfMouseover(rowHighlightRect);
 
-            Widgets.DrawHighlightIfMouseover(testHighlightRect);            labelRect.y += RowHeight;            psycheVec.y += RowHeight;            ageGapVec.y += RowHeight;            minDatingAgeRect.y += RowHeight;            minLovinAgeRect.y += RowHeight;            testHighlightRect.y += RowHeight;        }        Widgets.EndScrollView();        PsychColor.DrawLineHorizontal(SpeciesRect.x, SpeciesRect.yMax + HighlightPadding, SpeciesRect.width, PsychColor.ModEntryLineColor);
+            Widgets.DrawHighlightIfMouseover(testHighlightRect);            labelRect.y += RowHeight;            psycheVec.y += RowHeight;            ageGapVec.y += RowHeight;            minDatingAgeRect.y += RowHeight;            minLovinAgeRect.y += RowHeight;            testHighlightRect.y += RowHeight;        }        Widgets.EndScrollView();        UIAssets.DrawLineHorizontal(SpeciesRect.x, SpeciesRect.yMax + HighlightPadding, SpeciesRect.width, UIAssets.ModEntryLineColor);
 
-        GenUI.ResetLabelAlign();    }    public static void CheckboxEntry(ref Rect titleRect, string title, ref Rect entryRect, ref bool enableCached, string tooltip)    {        Widgets.Label(titleRect, title);        Widgets.Checkbox(entryRect.x, entryRect.center.y - 0.5f * CheckboxSize, ref enableCached);        Rect highlightRect = titleRect;        highlightRect.xMin -= HighlightPadding;        highlightRect.xMax = entryRect.xMax + HighlightPadding;        Widgets.DrawHighlightIfMouseover(highlightRect);        TooltipHandler.TipRegion(highlightRect, delegate        {            return tooltip;        }, tooltip.GetHashCode());        titleRect.y += RowHeight;        entryRect.y += RowHeight;    }    public static void NumericEntry(ref Rect titleRect, string title, ref Rect entryRect, ref float numericCached, ref string numericBuffer, string tooltip, float min = 0f, float max = 1E+09f)    {        Widgets.Label(titleRect, title);
+        if (Widgets.ButtonText(ResetButtonRect, ResetButtonText))
+        {
+            PsychologySettings.ResetAllSettings();
+            SetAllCachedToSettings();
+        }
+
+        if (Widgets.ButtonText(UpdateButtonRect, UpdateButtonText))
+        {
+            Find.WindowStack.Add(new Dialog_UpdateYesNo());
+        }
+
+        UIAssets.DrawLineHorizontal(ResetButtonRect.x, ResetButtonRect.y, UpdateButtonRect.xMax - ResetButtonRect.x, UIAssets.ModEntryLineColor);
+        UIAssets.DrawLineHorizontal(ResetButtonRect.x, ResetButtonRect.yMax, UpdateButtonRect.xMax - ResetButtonRect.x, UIAssets.ModEntryLineColor);
+
+        GenUI.ResetLabelAlign();        SaveAllSettings();        Widgets.BeginGroup(totalRect);    }    public static void CheckboxEntry(ref Rect titleRect, string title, ref Rect entryRect, ref bool enableCached, string tooltip)    {        Widgets.Label(titleRect, title);        Widgets.Checkbox(entryRect.x, entryRect.center.y - 0.5f * CheckboxSize, ref enableCached);        Rect highlightRect = titleRect;        highlightRect.xMin -= HighlightPadding;        highlightRect.xMax = entryRect.xMax + HighlightPadding;        Widgets.DrawHighlightIfMouseover(highlightRect);        TooltipHandler.TipRegion(highlightRect, delegate        {            return tooltip;        }, tooltip.GetHashCode());        titleRect.y += RowHeight;        entryRect.y += RowHeight;    }    public static void NumericEntry(ref Rect titleRect, string title, ref Rect entryRect, ref float numericCached, ref string numericBuffer, string tooltip, float min = 0f, float max = 1E+09f)    {        Widgets.Label(titleRect, title);
         //numericBuffer = Widgets.TextField(entryRect, numericBuffer);
         //GUI.TextArea
         Widgets.TextFieldNumeric<float>(entryRect, ref numericCached, ref numericBuffer, min, max);
         Rect highlightRect = titleRect;        highlightRect.xMin -= HighlightPadding;        highlightRect.xMax = entryRect.xMax + HighlightPadding;        Widgets.DrawHighlightIfMouseover(highlightRect);        TooltipHandler.TipRegion(highlightRect, delegate        {            return tooltip;        }, tooltip.GetHashCode());        titleRect.y += RowHeight;        entryRect.y += RowHeight;    }
-
-    //public static void KinseyCustomNumericEntry(ref Rect customWeightTitleRect, int i, ref Rect customWeightEntryRect, ref float kinseyWeightCached, ref string kinseyWeightBuffer)
-    //{
-    //    string label = i.ToString();
-    //    GenUI.SetLabelAlign(TextAnchor.MiddleCenter);
-    //    Widgets.Label(customWeightTitleRect, label);
-    //    GenUI.SetLabelAlign(TextAnchor.MiddleLeft);
-
-    //    Widgets.TextFieldNumeric<float>(customWeightEntryRect, ref kinseyWeightCached, ref kinseyWeightBuffer);
-    //    Rect highlightRect = customWeightTitleRect;
-    //    highlightRect.yMax = customWeightEntryRect.yMax;
-    //    Widgets.DrawHighlightIfMouseover(highlightRect);
-    //    TooltipHandler.TipRegion(highlightRect, delegate
-    //    {
-    //        return "KWTooltip".Translate(i);
-    //    }, ("KWTooltip".Translate(i)).GetHashCode() + 10 * i);
-    //    customWeightTitleRect.x += customWeightTotalWidth;
-    //    customWeightEntryRect.x += customWeightTotalWidth;
-    //}
-
-    //public static void KinseyCustomVerticalSlider(int i, ref Rect customWeightEntryRect)
-    //{
-
-    //    Rect numberRect = customWeightEntryRect;
-    //    numberRect.height = RowHeight;
-    //    Vector2 center = numberRect.center;
-    //    numberRect.width -= HighlightPadding;
-    //    numberRect.height -= 2f * HighlightPadding;
-    //    numberRect.center = center;
-
-    //    Rect SliderRect = customWeightEntryRect;
-    //    SliderRect.x = customWeightEntryRect.center.x - 5f;
-    //    SliderRect.yMin = numberRect.yMax + HighlightPadding;
-    //    SliderRect.yMax -= HighlightPadding;
-
-    //    float val = kinseyWeightCustomCached[i];
-    //    string buffer = kinseyWeightCustomBuffer[i];
-    //    Widgets.TextFieldNumeric(numberRect, ref val, ref buffer, 0f, 100f);
-    //    float valSlider = GUI.VerticalSlider(SliderRect, kinseyWeightCustomCached[i], 100f, 0f);
-    //    valSlider = (float)Math.Round(valSlider, 1);
-
-    //    kinseyWeightCustomBuffer[i] = buffer;
-
-    //    if (val != kinseyWeightCustomCached[i])
-    //    {
-    //        kinseyWeightCustomCached[i] = val;
-    //    }
-    //    else if (valSlider != kinseyWeightCustomCached[i])
-    //    {
-    //        kinseyWeightCustomCached[i] = valSlider;
-    //        kinseyWeightCustomBuffer[i] = Convert.ToString(valSlider);
-    //    }
-
-    //    Widgets.DrawHighlightIfMouseover(customWeightEntryRect);
-    //    TooltipHandler.TipRegion(customWeightEntryRect, delegate
-    //    {
-    //        return "KWTooltip".Translate(i);
-    //    }, ("KWTooltip".Translate(i)).GetHashCode() + 10 * i);
-    //    customWeightEntryRect.x += customWeightEntryRect.width;
-    //}
 
     public static void KinseyCustomVerticalSlider(int i, ref Rect customWeightEntryRect)
     {
@@ -332,7 +312,7 @@
         Widgets.DrawHighlightIfMouseover(customWeightEntryRect);
         TooltipHandler.TipRegion(customWeightEntryRect, delegate
         {
-            return "KWTooltip".Translate(i);
+            return ((string)"KWTooltip".Translate()).ReplaceFirst("{0}", i.ToString().Colorize(UIAssets.TitleColor));
         }, ("KWTooltip".Translate(i)).GetHashCode() + 10 * i);
         customWeightEntryRect.x += customWeightEntryRect.width;
     }
@@ -349,7 +329,8 @@
         }, tooltip.GetHashCode());
     }
 
-    public static void SetAllCachedToSettings()    {        enableKinseyCached = PsychologySettings.enableKinsey;        kinseyFormulaCached = PsychologySettings.kinseyFormula;        kinseyWeightCustomCached.Clear();        kinseyWeightCustomBuffer.Clear();        foreach (float w in PsychologySettings.kinseyWeightCustom)        {            kinseyWeightCustomCached.Add(w);            kinseyWeightCustomBuffer.Add(w.ToString());        }        enableEmpathyCached = PsychologySettings.enableEmpathy;        enableIndividualityCached = PsychologySettings.enableIndividuality;        enableElectionsCached = PsychologySettings.enableElections;        enableDateLettersCached = PsychologySettings.enableDateLetters;        enableImprisonedDebuffCached = PsychologySettings.enableImprisonedDebuff;        enableAnxietyCached = PsychologySettings.enableAnxiety;        conversationDurationCached = PsychologySettings.conversationDuration;        conversationDurationBuffer = conversationDurationCached.ToString();        romanceChanceMultiplierCached = PsychologySettings.romanceChanceMultiplier;        romanceChanceMultiplierBuffer = romanceChanceMultiplierCached.ToString();        romanceOpinionThresholdCached = PsychologySettings.romanceOpinionThreshold;        romanceOpinionThresholdBuffer = romanceOpinionThresholdCached.ToString();        mayorAgeCached = PsychologySettings.mayorAge;        mayorAgeBuffer = mayorAgeCached.ToString();        traitOpinionMultiplierCached = PsychologySettings.traitOpinionMultiplier;        traitOpinionMultiplierBuffer = traitOpinionMultiplierCached.ToString();        speciesDictCached.Clear();        speciesBuffer.Clear();        foreach (ThingDef def in SpeciesHelper.humanlikeDefs)        {            string defName = def.defName;            SpeciesSettings settings = PsychologySettings.speciesDict[defName];            speciesDictCached.Add(defName, settings);            speciesBuffer.Add(defName, new List<string> { settings.minDatingAge.ToString(), settings.minLovinAge.ToString() });        }    }}
+    public static void SetAllCachedToSettings()    {        enableKinseyCached = PsychologySettings.enableKinsey;        kinseyFormulaCached = PsychologySettings.kinseyFormula;        kinseyWeightCustomCached.Clear();        kinseyWeightCustomBuffer.Clear();        foreach (float w in PsychologySettings.kinseyWeightCustom)        {            kinseyWeightCustomCached.Add(w);            kinseyWeightCustomBuffer.Add(w.ToString());        }        enableEmpathyCached = PsychologySettings.enableEmpathy;        enableIndividualityCached = PsychologySettings.enableIndividuality;        enableElectionsCached = PsychologySettings.enableElections;        enableDateLettersCached = PsychologySettings.enableDateLetters;        enableImprisonedDebuffCached = PsychologySettings.enableImprisonedDebuff;        enableAnxietyCached = PsychologySettings.enableAnxiety;        conversationDurationCached = PsychologySettings.conversationDuration;        conversationDurationBuffer = conversationDurationCached.ToString();        romanceChanceMultiplierCached = PsychologySettings.romanceChanceMultiplier;        romanceChanceMultiplierBuffer = romanceChanceMultiplierCached.ToString();        romanceOpinionThresholdCached = PsychologySettings.romanceOpinionThreshold;        romanceOpinionThresholdBuffer = romanceOpinionThresholdCached.ToString();        mayorAgeCached = PsychologySettings.mayorAge;        mayorAgeBuffer = mayorAgeCached.ToString();        traitOpinionMultiplierCached = PsychologySettings.traitOpinionMultiplier;        traitOpinionMultiplierBuffer = traitOpinionMultiplierCached.ToString();        speciesDictCached.Clear();        speciesBuffer.Clear();        foreach (ThingDef def in SpeciesHelper.humanlikeDefs)        {            string defName = def.defName;            SpeciesSettings settings = PsychologySettings.speciesDict[defName];            speciesDictCached.Add(defName, settings);            speciesBuffer.Add(defName, new List<string> { settings.minDatingAge.ToString(), settings.minLovinAge.ToString() });        }    }    public static void SaveAllSettings()    {        PsychologySettings.enableKinsey = enableKinseyCached;        PsychologySettings.kinseyFormula = kinseyFormulaCached;
+        PsychologySettings.kinseyWeightCustom.Clear();        foreach (float w in kinseyWeightCustomCached)        {            PsychologySettings.kinseyWeightCustom.Add(w);        }        PsychologySettings.enableEmpathy = enableEmpathyCached;        PsychologySettings.enableIndividuality = enableIndividualityCached;        PsychologySettings.enableElections = enableElectionsCached;        PsychologySettings.enableDateLetters = enableDateLettersCached;        PsychologySettings.enableImprisonedDebuff = enableImprisonedDebuffCached;        PsychologySettings.enableAnxiety = enableAnxietyCached;        PsychologySettings.conversationDuration = conversationDurationCached;        PsychologySettings.romanceChanceMultiplier = romanceChanceMultiplierCached;        PsychologySettings.romanceOpinionThreshold = romanceOpinionThresholdCached;        PsychologySettings.mayorAge = mayorAgeCached;        PsychologySettings.traitOpinionMultiplier = traitOpinionMultiplierCached;        PsychologySettings.speciesDict.Clear();        foreach (ThingDef def in SpeciesHelper.humanlikeDefs)        {            PsychologySettings.speciesDict.Add(def.defName, speciesDictCached[def.defName]);        }    }}
 
 //public static string enableKinseyTitle = "SexualityChangesTitle".Translate();
 //public static string enableKinseyTooltip = "SexualityChangesTooltip".Translate();

@@ -12,15 +12,6 @@ using UnityEngine;
 
 namespace Psychology;
 
-public class SpeciesSettingsDef : Def
-{
-    public ThingDef pawnDef;
-    public bool enablePsyche = true;
-    public bool enableAgeGap = true;
-    public float minDatingAge = 14f;
-    public float minLovinAge = 16f;
-}
-
 public class SpeciesSettings : IExposable
 {
     public bool enablePsyche = true;
@@ -49,4 +40,11 @@ public class SpeciesSettings : IExposable
     }
 }
 
-
+public class SpeciesSettingsDef : Def
+{
+    public ThingDef pawnDef;
+    public bool enablePsyche = true;
+    public bool enableAgeGap = true;
+    public float minDatingAge = 14f;
+    public float minLovinAge = 16f;
+}

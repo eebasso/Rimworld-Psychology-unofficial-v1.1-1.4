@@ -6,8 +6,10 @@
   <ThoughtDef>
     <defName>PrudeSeen</defName>
     <thoughtClass>Thought_MemorySocial</thoughtClass>
-    <stackLimit>300</stackLimit>
+    <durationDays>5</durationDays> <!-- Added this -->
+    <stackLimit>300</stackLimit> 
     <stackedEffectMultiplier>0.88</stackedEffectMultiplier>
+    <stackLimitForSameOtherPawn>30</stackLimitForSameOtherPawn> <!-- Added this -->
     <requiredTraits>
       <li>Prude</li>
     </requiredTraits>
@@ -53,6 +55,7 @@
     </stages>
     <thoughtToMake>BrokeUpWithMeCodependentMood</thoughtToMake>
   </ThoughtDef>
+
   <ThoughtDef>
     <defName>BrokeUpWithMeCodependentMood</defName>
     <durationDays>50.0</durationDays>
@@ -86,6 +89,7 @@
     </stages>
     <thoughtToMake>CheatedOnMeCodependentMood</thoughtToMake>
   </ThoughtDef>
+
   <ThoughtDef>
     <defName>CheatedOnMeCodependentMood</defName>
     <durationDays>25.0</durationDays>

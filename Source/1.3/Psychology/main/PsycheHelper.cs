@@ -5,11 +5,13 @@ using System.Linq;
 using System.Text;
 using Verse;
 using UnityEngine;
+using RimWorld;
 
 namespace Psychology;
 
 public static class PsycheHelper
 {
+    public static PsychologyGameComponent GameComp => Current.Game.GetComponent<PsychologyGameComponent>();
     public static Dictionary<KinseyMode, List<float>> KinseyModeWeightDict = new Dictionary<KinseyMode, List<float>>()
     {
         { KinseyMode.Realistic    , new List<float> { 62.4949f, 11.3289f,  9.2658f,  6.8466f,  4.5220f,  2.7806f,  2.7612f } } ,
@@ -17,6 +19,9 @@ public static class PsycheHelper
         { KinseyMode.Uniform      , new List<float> { 14.2857f, 14.2857f, 14.2857f, 14.2857f, 14.2857f, 14.2857f, 14.2857f } },
         { KinseyMode.Gaypocalypse , new List<float> {  2.7612f,  2.7806f,  4.5220f,  6.8466f,  9.2658f, 11.3289f, 62.4949f } }
     };
+    public static HashSet<string> TraitDefNamesThatAffectPsyche = new HashSet<string>();
+    public static HashSet<string> SkillDefNamesThatAffectPsyche = new HashSet<string>();
+    public static HashSet<string> PsycheEnabledSpeciesList = new HashSet<string>();
 
     public static bool PsychologyEnabled(Pawn pawn)
     {
@@ -24,7 +29,11 @@ public static class PsycheHelper
         //return pawn.GetComp<CompPsychology>() != null;
     }
 
-    //[LogPerformance]
+    public static bool PsychologyEnabledFast(Pawn pawn)
+    {
+        return pawn != null && PsycheEnabledSpeciesList.Contains(pawn.def.defName);
+    }
+
     public static CompPsychology Comp(Pawn pawn)
     {
         return pawn.GetComp<CompPsychology>();
@@ -55,6 +64,38 @@ public static class PsycheHelper
                 {
                     valueHashSet.Add(list[i]);
                 }
+            }
+        }
+    }
+
+    public static void InitializeDefNamesThatAffectPsyche()
+    {
+        foreach (PersonalityNodeDef pDef in PersonalityNodeParentMatrix.defList)
+        {
+            if (pDef.traitModifiers != null && pDef.traitModifiers.Any())
+            {
+                foreach (PersonalityNodeTraitModifier traitMod in pDef.traitModifiers)
+                {
+                    TraitDefNamesThatAffectPsyche.Add(traitMod.trait.defName);
+                }
+            }
+            if (pDef.skillModifiers != null && pDef.skillModifiers.Any())
+            {
+                foreach (PersonalityNodeSkillModifier skillMod in pDef.skillModifiers)
+                {
+                    SkillDefNamesThatAffectPsyche.Add(skillMod.skill.defName);
+                }
+            }
+        }
+    }
+
+    public static void InitializePsycheEnabledSpeciesList()
+    {
+        foreach (KeyValuePair<string, SpeciesSettings> kvp in PsychologySettings.speciesDict)
+        {
+            if (kvp.Value.enablePsyche)
+            {
+                PsycheEnabledSpeciesList.Add(kvp.Key);
             }
         }
     }
@@ -151,4 +192,82 @@ public static class PsycheHelper
         float[] d = { 1.432788f, 0.189269f, 0.001308f };
         return t - ((c[2] * t + c[1]) * t + c[0]) / (((d[2] * t + d[1]) * t + d[0]) * t + 1f);
     }
+
+    public static void CorrectTraitsForPawnKinseyEnabled(Pawn pawn)
+    {
+        //if (!PsycheHelper.PsychologyEnabledFast(pawn))
+        //{
+        //    return;
+        //}
+        if (pawn.story.traits.HasTrait(TraitDefOf.Asexual))
+        {
+            PsycheHelper.RemoveTrait(pawn, TraitDefOf.Asexual);
+            PsycheHelper.Comp(pawn).Sexuality.sexDrive = 0.10f * Rand.ValueSeeded(11 * pawn.HashOffset() + 8);
+        }
+        if (pawn.story.traits.HasTrait(TraitDefOf.Bisexual))
+        {
+            PsycheHelper.RemoveTrait(pawn, TraitDefOf.Bisexual);
+            PsycheHelper.Comp(pawn).Sexuality.GenerateKinsey(0f, 0f, 1f, 2f, 1f, 0f, 0f);
+        }
+        if (pawn.story.traits.HasTrait(TraitDefOf.Gay))
+        {
+            PsycheHelper.RemoveTrait(pawn, TraitDefOf.Gay);
+            PsycheHelper.Comp(pawn).Sexuality.GenerateKinsey(0f, 0f, 0f, 0f, 0f, 1f, 2f);
+        }
+    }
+
+    public static void CorrectTraitsForPawnKinseyDisabled(Pawn pawn)
+    {
+        if (pawn.story == null || !PsycheHelper.PsychologyEnabledFast(pawn))
+        {
+            return;
+        }
+        int kinseyRating = PsycheHelper.Comp(pawn).Sexuality.kinseyRating;
+        if (PsycheHelper.Comp(pawn).Sexuality.sexDrive < 0.1f)
+        {
+            TryGainTrait(pawn, TraitDefOf.Asexual);
+        }
+        if (kinseyRating < 2)
+        {
+            // If pawn is mostly heterosexual
+            TryRemoveTrait(pawn, TraitDefOf.Bisexual);
+            TryRemoveTrait(pawn, TraitDefOf.Gay);
+        }
+        else if (kinseyRating < 5)
+        {
+            // If pawn is mostly bisexual
+            TryGainTrait(pawn, TraitDefOf.Bisexual);
+            TryRemoveTrait(pawn, TraitDefOf.Gay);
+        }
+        else
+        {
+            // If pawn is mostly homosexual
+            TryGainTrait(pawn, TraitDefOf.Gay);
+            TryRemoveTrait(pawn, TraitDefOf.Bisexual);
+        }
+    }
+
+    public static void TryGainTrait(Pawn pawn, TraitDef traitDef)
+    {
+        if (!pawn.story.traits.HasTrait(traitDef))
+        {
+            pawn.story.traits.GainTrait(new Trait(traitDef));
+        }
+    }
+
+    public static void TryRemoveTrait(Pawn pawn, TraitDef traitDef)
+    {
+        if (pawn.story.traits.HasTrait(traitDef))
+        {
+            RemoveTrait(pawn, traitDef);
+        }
+    }
+
+    public static void RemoveTrait(Pawn pawn, TraitDef traitDef)
+    {
+        pawn.story.traits.allTraits.RemoveAll(t => t.def == traitDef);
+    }
+
+
+
 }

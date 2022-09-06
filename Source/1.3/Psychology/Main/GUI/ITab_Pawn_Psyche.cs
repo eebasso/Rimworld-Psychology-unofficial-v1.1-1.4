@@ -15,10 +15,8 @@ namespace Psychology
         public ITab_Pawn_Psyche()
         {
             size = new Vector2(200f, 200f);
-            //size = new Vector2(630f, 510f);
             labelKey = "TabPsyche";
             this.tutorTag = "Psyche";
-
         }
 
         public override bool IsVisible
@@ -54,7 +52,6 @@ namespace Psychology
             // Initialize pawn
             Pawn pawn = PawnToShowInfoAbout;
             // Get total rectangle
-            //Rect psycheRect = PsycheCardUtility.CalculatePsycheRect(pawn);
             Rect psycheRect = PsycheCardUtility.PsycheRect;
             Rect totalRect = psycheRect;
             Rect editRect = new Rect(0f, 0f, 1f, 1f);
@@ -63,13 +60,13 @@ namespace Psychology
                 editRect = new Rect(psycheRect.xMax, psycheRect.y, EditPsycheUtility.CalculateEditWidth(pawn), psycheRect.height);
                 totalRect.width += editRect.width;
             }
-            //size = totalRect.size;
+            size = totalRect.size;
             GUI.BeginGroup(totalRect);
             PsycheCardUtility.DrawPsycheCard(psycheRect, pawn, false);
             if (Prefs.DevMode)
             {
                 EditPsycheUtility.DrawEditPsyche(editRect, pawn);
-                PsychColor.DrawLineVertical(editRect.x, editRect.y, editRect.height, PsychColor.LineColor);
+                UIAssets.DrawLineVertical(editRect.x, editRect.y, editRect.height, UIAssets.LineColor);
             }
             GUI.EndGroup();
         }

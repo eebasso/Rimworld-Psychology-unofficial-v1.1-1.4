@@ -26,13 +26,13 @@ public class PersonalityNode : IExposable
         this.pawn = pawn;
     }
 
-    public void Initialize(int inputSeed = 0)
-    {
-        string defName = this.def.defName;
-        int defSeed = defName.GetHashCode();
-        int pawnSeed = this.pawn.HashOffset();
-        this.rawRating = Rand.ValueSeeded(2 * pawnSeed + defSeed + inputSeed);
-    }
+    //public void Initialize(int inputSeed = 0)
+    //{
+    //    string defName = this.def.defName;
+    //    int defSeed = defName.GetHashCode();
+    //    int pawnSeed = this.pawn.HashOffset();
+    //    this.rawRating = Rand.ValueSeeded(2 * pawnSeed + defSeed + inputSeed);
+    //}
 
     public void ExposeData()
     {
@@ -42,14 +42,13 @@ public class PersonalityNode : IExposable
 
     public float AdjustedRating
     {
-        //[LogPerformance]
         get
         {
-            PsycheHelper.Comp(pawn).Psyche.AdjustedRatingTicker--;
-            if (cachedRating < 0f || PsycheHelper.Comp(pawn).Psyche.AdjustedRatingTicker < 0)
-            {
-                PsycheHelper.Comp(pawn).Psyche.CalculateAdjustedRatings();
-            }
+            //PsycheHelper.Comp(pawn).Psyche.AdjustedRatingTicker--;
+            //if (cachedRating < 0f || PsycheHelper.Comp(pawn).Psyche.AdjustedRatingTicker < 0)
+            //{
+            //    PsycheHelper.Comp(pawn).Psyche.CalculateAdjustedRatings();
+            //}
             return cachedRating;
         }
     }
@@ -94,9 +93,10 @@ public class PersonalityNode : IExposable
                 }
             }
         }
-        if (this.def == PersonalityNodeDefOf.Cool && RelationsUtility.IsDisfigured(this.pawn))
+        if (this.def == PersonalityNodeDefOf.Cool)
         {
-            tM = RelativisticAddition(tM, -0.1f);
+            tM = RelationsUtility.IsDisfigured(this.pawn) ? RelativisticAddition(tM, -0.1f) : tM;
+            tM = RelativisticAddition(tM, 0.3f * this.pawn.GetStatValue(StatDefOf.PawnBeauty));
         }
         if (this.def == PersonalityNodeDefOf.LaidBack)
         {
@@ -138,8 +138,6 @@ public class PersonalityNode : IExposable
     {
         get
         {
-            //Log.Message("Defname = " + this.def.defName);
-            //Log.Message("this.def.platformIssueHigh != null: " + (this.def.platformIssueHigh != null).ToString());
             return this.def.platformIssueHigh != null;
         }
     }
@@ -148,11 +146,8 @@ public class PersonalityNode : IExposable
     {
         get
         {
-            //Log.Message("Defname = " + this.def.defName);
-            //Log.Message("this.def.conversationTopics != null: " + (this.def.conversationTopics != null).ToString());
             if (this.def.conversationTopics != null)
             {
-                //Log.Message("this.def.conversationTopics.Any(): " + this.def.conversationTopics.Any().ToString());
                 return this.def.conversationTopics.Any();
             }
             return false;

@@ -19,7 +19,7 @@ public class EditPsycheUtility
     static float pawnRomanticDrive = 0f;
 
     static float TitleHeight;
-    static float WarningHeight;
+    //static float WarningHeight;
     static Vector2 KinseySize;
     static Vector2 SexDriveSize;
     static Vector2 RomDriveSize;
@@ -46,7 +46,7 @@ public class EditPsycheUtility
     static Vector2 ScalingVector = new Vector2(1.035f, 1.025f);
     static float SliderWidth = 200f;
     //static float SliderHeight = 0f;
-    static float SliderBarWidth = PsycheCardUtility.SliderWidth;
+    //static float SliderBarWidth = PsycheCardUtility.SliderWidth;
     static float SliderShiftDown = 2.5f;
     static float HighlightPadding = PsycheCardUtility.HighlightPadding;
     static float BoundaryPadding = PsycheCardUtility.BoundaryPadding;
@@ -61,7 +61,7 @@ public class EditPsycheUtility
             return EditWidth;
         }
         CachedTitleText = TitleText;
-        
+
         if (PsychologySettings.enableKinsey)
         {
             pawnKinseyRating = PsycheHelper.Comp(pawn).Sexuality.kinseyRating;
@@ -86,8 +86,8 @@ public class EditPsycheUtility
             NodeHeight = Mathf.Max(NodeHeight, nodeSize.y);
             CachedList.Add(new Pair<string, float>(nodeLabel, node.rawRating));
             //string descriptionString = node.def.description.ReplaceFirst("{0}", node.def.descriptionLabel)
-            string descriptionString = node.def.description.ReplaceFirst("{0}", node.def.descriptionLabel.Colorize(PsycheCardUtility.TitleColor));
-            descriptionString += ((string)"AntonymColon".Translate()).ReplaceFirst("{0}", node.def.antonymLabel.Colorize(PsycheCardUtility.TitleColor));
+            string descriptionString = node.def.description.ReplaceFirst("{0}", node.def.descriptionLabel.Colorize(UIAssets.TitleColor));
+            descriptionString += ((string)"AntonymColon".Translate()).ReplaceFirst("{0}", node.def.antonymLabel.Colorize(UIAssets.TitleColor));
             Descriptions.Add(nodeLabel, descriptionString);
             Nodes.Add(nodeLabel, node);
         }
@@ -97,13 +97,14 @@ public class EditPsycheUtility
         float labelWidth = Mathf.Max(SexualityWidth, NodeWidth);
         SexualityWidth = labelWidth;
         NodeWidth = labelWidth;
-        EditWidth = EditMargin + labelWidth + BoundaryPadding + SliderWidth + HighlightPadding + SliderBarWidth + EditMargin;
+        EditWidth = EditMargin + labelWidth + BoundaryPadding + SliderWidth + HighlightPadding + GenUI.ScrollBarWidth + EditMargin;
 
         float width = EditWidth - 2f * EditMargin;
         Text.Font = GameFont.Medium;
         TitleHeight = Text.CalcHeight(TitleText, width);
         Text.Font = GameFont.Small;
-        WarningHeight = Text.CalcHeight(WarningText, width) + 5f;
+        //WarningHeight = Text.CalcHeight(WarningText + " buffer buffer buffer buffer  buffer buffer buffer buffer buffer buffer buffer buffer ", width) + 5f;
+        //WarningHeight = UIAssets.TextCalcHeight(WarningText, width) + 5f;
 
         Vector2 saveButtonSize = ScalingVector * Text.CalcSize(SaveButtonText);
         Vector2 resetButtonSize = ScalingVector * Text.CalcSize(ResetButtonText);
@@ -113,6 +114,9 @@ public class EditPsycheUtility
 
         return EditWidth;
     }
+
+    
+
 
     //[LogPerformance]
     public static void DrawEditPsyche(Rect totalRect, Pawn pawn)
@@ -124,7 +128,8 @@ public class EditPsycheUtility
         float highlightShift = 0.063f;
 
         totalRect.width = CalculateEditWidth(pawn);
-        ScrollHeight = totalRect.height - (BoundaryPadding + TitleHeight + WarningHeight + 3f * yCompression * SexualityHeight + 2f * BoundaryPadding + 0f + 2f * BoundaryPadding  + ButtonHeight + BoundaryPadding);
+        //ScrollHeight = totalRect.height - (BoundaryPadding + TitleHeight + WarningHeight + 3f * yCompression * SexualityHeight + 2f * BoundaryPadding + 0f + 2f * BoundaryPadding + ButtonHeight + BoundaryPadding);
+        ScrollHeight = totalRect.height - (BoundaryPadding + TitleHeight + BoundaryPadding + 3f * yCompression * SexualityHeight + 2f * BoundaryPadding + 0f + 2f * BoundaryPadding + ButtonHeight + BoundaryPadding);
 
         GUI.BeginGroup(totalRect);
         totalRect.position = Vector2.zero;
@@ -135,10 +140,17 @@ public class EditPsycheUtility
         Text.Font = GameFont.Medium;
         Widgets.Label(mainRect, TitleText);
         Text.Font = GameFont.Small;
+        Rect titleHighlightRect = new Rect(mainRect.x - HighlightPadding, mainRect.y, mainRect.width + 2f * HighlightPadding, TitleHeight);
+        Widgets.DrawHighlightIfMouseover(titleHighlightRect);
+        TooltipHandler.TipRegion(titleHighlightRect, delegate
+        {
+            return WarningText;
+        }, WarningText.GetHashCode());
         mainRect.yMin += TitleHeight;
 
-        Widgets.Label(mainRect, WarningText);
-        mainRect.yMin += WarningHeight;
+        //Widgets.Label(mainRect, WarningText);
+        //mainRect.yMin += WarningHeight;
+        mainRect.yMin += BoundaryPadding;
 
         if (PsychologySettings.enableKinsey)
         {
@@ -177,17 +189,17 @@ public class EditPsycheUtility
 
             TooltipHandler.TipRegion(sexualityTooltipRect, delegate
             {
-                return ((string)"KinseyDescription".Translate()).ReplaceFirst("{0}", "KinseyDescription0".Translate().Colorize(PsycheCardUtility.TitleColor));
+                return ((string)"KinseyDescription".Translate()).ReplaceFirst("{0}", "KinseyDescription0".Translate().Colorize(UIAssets.TitleColor));
             }, 14924);
             sexualityTooltipRect.y += sexualityHighlightRect.height;
             TooltipHandler.TipRegion(sexualityTooltipRect, delegate
             {
-                return ((string)"SexDriveDescription".Translate()).ReplaceFirst("{0}", "SexDriveDescription0".Translate().Colorize(PsycheCardUtility.TitleColor));
+                return ((string)"SexDriveDescription".Translate()).ReplaceFirst("{0}", "SexDriveDescription0".Translate().Colorize(UIAssets.TitleColor));
             }, 14925);
             sexualityTooltipRect.y += sexualityHighlightRect.height;
             TooltipHandler.TipRegion(sexualityTooltipRect, delegate
             {
-                return ((string)"RomanticDriveDescription".Translate()).ReplaceFirst("{0}", "RomanticDriveDescription0".Translate().Colorize(PsycheCardUtility.TitleColor));
+                return ((string)"RomanticDriveDescription".Translate()).ReplaceFirst("{0}", "RomanticDriveDescription0".Translate().Colorize(UIAssets.TitleColor));
             }, 14926);
 
             Widgets.DrawHighlightIfMouseover(sexualityHighlightRect);
@@ -203,11 +215,11 @@ public class EditPsycheUtility
         }
         mainRect.yMin += 3f * yCompression * SexualityHeight + BoundaryPadding;
 
-        PsychColor.DrawLineHorizontal(mainRect.x - HighlightPadding, mainRect.y, mainRect.width + 2f * HighlightPadding, PsychColor.ModEntryLineColor);
+        UIAssets.DrawLineHorizontal(mainRect.x - HighlightPadding, mainRect.y, mainRect.width + 2f * HighlightPadding, UIAssets.ModEntryLineColor);
         mainRect.yMin += BoundaryPadding;
 
         Rect scrollRect = new Rect(mainRect.x - HighlightPadding, mainRect.y, totalRect.xMax - mainRect.x - BoundaryPadding, ScrollHeight);
-        Rect viewRect = new Rect(0f, 0f, scrollRect.width - SliderBarWidth, CachedList.Count * yCompression * NodeHeight + 4f);
+        Rect viewRect = new Rect(0f, 0f, scrollRect.width - GenUI.ScrollBarWidth, CachedList.Count * yCompression * NodeHeight + 4f);
 
         Rect labelRect = new Rect(HighlightPadding, 0f, NodeWidth, NodeHeight);
         Rect sliderRect = new Rect(labelRect.xMax + BoundaryPadding, SliderShiftDown, SliderWidth, NodeHeight);
@@ -236,7 +248,7 @@ public class EditPsycheUtility
         Widgets.EndScrollView();
         mainRect.yMin += ScrollHeight + BoundaryPadding;
 
-        PsychColor.DrawLineHorizontal(mainRect.x - HighlightPadding, mainRect.y, mainRect.width + 2f * HighlightPadding, PsychColor.ModEntryLineColor);
+        UIAssets.DrawLineHorizontal(mainRect.x - HighlightPadding, mainRect.y, mainRect.width + 2f * HighlightPadding, UIAssets.ModEntryLineColor);
         mainRect.yMin += BoundaryPadding;
 
         float blankWidth = 0.33f * Mathf.Max(EditMargin, totalRect.width - 2f * ButtonWidth);
@@ -246,11 +258,12 @@ public class EditPsycheUtility
         for (int i = 0; i < CachedList.Count; i++)
         {
             PersonalityNode node = Nodes[CachedList[i].First];
+            if (node.rawRating != CachedList[i].Second)
+            {
+                PsycheCardUtility.Ticker = -1;
+            }
             node.rawRating = CachedList[i].Second;
-            node.cachedRating = -1f;
         }
-        PsycheCardUtility.Ticker = 0;
-
         if (PsychologySettings.enableKinsey)
         {
             bool bool1 = PsycheHelper.Comp(pawn).Sexuality.kinseyRating != pawnKinseyRating;
@@ -261,10 +274,9 @@ public class EditPsycheUtility
                 PsycheHelper.Comp(pawn).Sexuality.kinseyRating = pawnKinseyRating;
                 PsycheHelper.Comp(pawn).Sexuality.sexDrive = pawnSexDrive;
                 PsycheHelper.Comp(pawn).Sexuality.romanticDrive = pawnRomanticDrive;
-                PsycheCardUtility.Ticker = 0;
+                PsycheCardUtility.Ticker = -1;
             }
         }
-
         if (Widgets.ButtonText(resetRect, ResetButtonText, true, false, true))
         {
             PsycheHelper.Comp(pawn).Psyche.RandomizeUpbringingAndRatings();
@@ -281,7 +293,7 @@ public class EditPsycheUtility
                 pawnSexDrive = PsycheHelper.Comp(pawn).Sexuality.sexDrive;
                 pawnRomanticDrive = PsycheHelper.Comp(pawn).Sexuality.romanticDrive;
             }
-            PsycheCardUtility.Ticker = 0;
+            PsycheCardUtility.Ticker = -1;
         }
         TooltipHandler.TipRegion(resetRect, delegate
         {
@@ -305,7 +317,7 @@ public class EditPsycheUtility
                 pawnSexDrive = PsycheHelper.Comp(pawn).Sexuality.sexDrive;
                 pawnRomanticDrive = PsycheHelper.Comp(pawn).Sexuality.romanticDrive;
             }
-            PsycheCardUtility.Ticker = 0;
+            PsycheCardUtility.Ticker = -1;
         }
         GUI.EndGroup();
     }

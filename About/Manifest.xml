@@ -3,12 +3,12 @@
 	<identifier>Psychology (unofficial)</identifier>
 	<version>1.0.7</version>
 	<dependencies>
-		<!--<li>HugsLib</li>-->
 		<li>Harmony</li>
+		<li>HugsLib</li>
 	</dependencies>
 	<incompatibleWith />
 	<loadAfter>
 		<li>Harmony</li>
-		<!--<li>HugsLib</li>-->
+		<li>HugsLib</li>
 	</loadAfter>
 </Manifest>

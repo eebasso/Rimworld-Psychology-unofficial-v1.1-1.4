@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+
+    <MayorTitle>maire</MayorTitle>
+
+	<!-- Tâches du Chef -->
+	<LordReportAttendingElection>Visite des bureaux de vote</LordReportAttendingElection>
+	<LordReportVisitingMayor>Participe à une conférence</LordReportVisitingMayor>
+	<LordReportHangingOut>Prends l'air avec quelqu'un</LordReportHangingOut>
+	<LordReportDate>A un rendez-vous amoureux</LordReportDate>
+	<LordReportAttendingFuneral>Participe à des funérailles</LordReportAttendingFuneral>
+
+	<!-- Textes divers sur les pensées -->
+	<ConversationStage>conversation à propos de</ConversationStage>
+	<ConversationEnd>[INITIATOR_nameDef] à terminé une conversation avec [RECIPIENT_nameDef].</ConversationEnd>
+	<ConversationEnded>fin de la conversation</ConversationEnded>
+	<Complained>{0_labelShort} s'est plaint au maire, {1_labelShort}.</Complained>
+	<Supported>{0_labelShort} à exprimé son soutien au maire, {1_labelShort}.</Supported>
+	
+	<!-- Comp text -->
+	<CommandOfficeTableToggleLabel>Bureau du Maire</CommandOfficeTableToggleLabel>
+	<CommandOfficeTableToggleDescActive>Cette pièce est désignée comme étant le bureau du maire. Votre maire rencontrera des gens ici.</CommandOfficeTableToggleDescActive>
+	<CommandOfficeTableToggleDescInactive>Vous pouvez désigner cette pièce pour être le bureau du maire, si il existe. Vous ne pouvez avec qu'un seul bureau pour votre maire.</CommandOfficeTableToggleDescInactive>
+
+</LanguageData>

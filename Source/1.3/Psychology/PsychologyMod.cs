@@ -16,6 +16,11 @@ using static EdB.PrepareCarefully.ProviderTitles;
 
 namespace Psychology;
 
+// ToDo:
+// - Optimize individuality alerts
+// - Create Prude vs Nudist opinion modifier
+// - Optimize anxiety ticker
+
 public class PsychologyMod : Mod
 {
     public static PsychologySettings settings;

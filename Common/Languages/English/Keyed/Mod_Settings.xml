@@ -8,7 +8,7 @@
 	<SexualityChangesTooltip>Turn this off to disable Kinsey scaling of pawns and re-enable the Gay trait. Do NOT change this during play, and restart the game after toggling this.</SexualityChangesTooltip>
 	
 	<KinseyModeTitle>Kinsey scale formula</KinseyModeTitle>
-	<KinseyModeTooltip>This setting determines what formula is used to weight the Kinsey scale when pawns are generated.</KinseyModeTooltip>
+	<KinseyModeTooltip>This setting determines what formula is used to weight the Kinsey scale when pawns are generated. Weights do not have to sum to 100.</KinseyModeTooltip>
 	<KinseyMode_Realistic>Default</KinseyMode_Realistic>
 	<KinseyMode_Invisible>Center</KinseyMode_Invisible>
 	<KinseyMode_Gaypocalypse>Inverse</KinseyMode_Gaypocalypse>
@@ -16,7 +16,7 @@
 	<KinseyMode_Custom>Custom</KinseyMode_Custom>
 
 	<KWTitle>Kinsey {0}</KWTitle>
-	<KWTooltip>When custom mode is enabled, this sets the relative weight for {0} on the Kinsey scale for generated pawns.</KWTooltip>
+	<KWTooltip>When custom mode is enabled, this sets the relative weight for {0} on the Kinsey scale for generated pawns. Weights do not have to sum to 100.</KWTooltip>
 
 	<IndividualityTitle>Enable Individuality thoughts</IndividualityTitle>
 	<IndividualityTooltip>Turn this off to disable the negative thought your colonists will get if they are wearing perfectly matching outfits with other colonists. This thought adds extra difficulty, so it's optional, but recommended.</IndividualityTooltip>
@@ -52,7 +52,7 @@
 	<!--<BeatyOverrideEnabledTitle>Disable opinion changes from beauty traits</BeatyOverrideEnabledTitle>
 	<BeatyOverrideEnabledToolip>Disables opinion changes from traits such as: Pretty, Beautiful, Ugly, etc. Note that Psychology's changes to those traits would still work even if you disable this option. Its recommended to keep this option enabled.</BeatyOverrideEnabledToolip>-->
 	<TraitOpinionMultiplierTitle>Opinion from traits multiplier</TraitOpinionMultiplierTitle>
-	<TraitOpinionMultiplierTooltip>Scale the opinion changes from the following traits: \n\n Pretty, Ugly, Disfigured, Annoying voice, Creepy breathing, Body modder appreciation, and Body purist disgust.</TraitOpinionMultiplierTooltip>
+	<TraitOpinionMultiplierTooltip>Scale the opinion changes from the following traits:\n\nPretty, Ugly, Disfigured, Annoying voice, Creepy breathing, Body modder appreciation, and Body purist disgust.</TraitOpinionMultiplierTooltip>
 
 	<DisplayOptionsTitle>Psyche tab display options</DisplayOptionsTitle>
 	<DisplayOptionsTooltip>Change the default display option for the Psyche tab.</DisplayOptionsTooltip>
@@ -64,15 +64,21 @@
 	<SpeciesSettingsTooltip>Adjust settings for each species.</SpeciesSettingsTooltip>
 
 	<EnablePsycheTitle>Psyche</EnablePsycheTitle>
-	<EnablePsycheTooltip>Turn this off to deactivate personality. This is recommended for non-sapient species such as simple robots that lack the capacity for complex thoughts and emotions. Warning: conversations and romance will be disabled for this species.</EnablePsycheTooltip>
+	<EnablePsycheTooltip>Turn this off to deactivate personality. This is recommended for species not capable of having a humanlike personality such as zombies or simple robots. Warning: conversations and romance will be disabled for this species.</EnablePsycheTooltip>
 
 	<EnableAgeGapTitle>Age gap</EnableAgeGapTitle>
-	<EnableAgeGapTooltip>Turn this off to deactivate the romantic age gap preference for pawns romancing this species. This is recommended for elf-like species that do not experience senescence and/or remain equally attractive regardless of age once they reach adulthood.</EnableAgeGapTooltip>
+	<EnableAgeGapTooltip>Turn this off to deactivate the romantic age gap preference for pawns romancing this species. This is recommended for android-like and elf-like species that do not experience aging and remain equally attractive once they reach adulthood.</EnableAgeGapTooltip>
 
 	<MinDatingAgeTitle>Dating</MinDatingAgeTitle>
-	<MinDatingAgeTooltip>Set the minimum dating age for this species. When positive, the effective age for dating-related formulas scales by this number relative to 14. Setting this to 0 allows dating at any age and effectively disables the age gap. This is recommended for sapient species such as androids with no childhood phase. Any negative number disables dating completely for this species.</MinDatingAgeTooltip>
+	<MinDatingAgeTooltip>Set the minimum dating age for this species. When positive, the effective age for dating-related formulas scales by this number relative to 14. Setting to 0 allows dating at any age and effectively disables the age gap. This is recommended for species such as sentient androids with no childhood phase. Any negative number disables dating completely for this species.</MinDatingAgeTooltip>
 
 	<MinLovinAgeTitle>Lovin</MinLovinAgeTitle>
-	<MinLovinAgeTooltip>Set the minimum lovin age for this species. When positive, the effective age for lovin-related formulas scales by this number relative to 16. Setting this to 0 allows lovin at any age and effectively disables the age gap. This is recommended for sapient species such as androids with no childhood phase. Any negative number disables lovin completely for this species.</MinLovinAgeTooltip>
+	<MinLovinAgeTooltip>Set the minimum lovin age for this species. When positive, the effective age for lovin-related formulas scales by this number relative to 16. Setting to 0 allows lovin at any age and effectively disables the age gap. This is recommended for species such as sentient androids with no childhood phase. Any negative number disables lovin completely for this species.</MinLovinAgeTooltip>
 
+	<UpdateIntroMessageTitle>Update to Psychology</UpdateIntroMessageTitle>
+	<UpdateIntroMessage>The method to generate personalities has been updated to match 32 possible upbringings. The player is encouraged to select "update" to reset the personalities of old pawns. This option will always be available in the mod settings.</UpdateIntroMessage>
+	<ApplyUpdateButton>Update</ApplyUpdateButton>
+
+	<UpdateYesNoDescription>This will reset the personalities of all pawns using the updated Psychology formula to create 32 possible upbringings. The outcome is deterministic and pseudo-random based on an integer ID asscoiated with each pawn. This is recommended for the mod to act as intended. Do you wish to proceed?</UpdateYesNoDescription>
+	
 </LanguageData>

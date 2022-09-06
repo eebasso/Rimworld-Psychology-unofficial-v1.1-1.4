@@ -30,8 +30,8 @@ public class PsychologySettings : ModSettings
     public static KinseyMode kinseyFormulaDefault = KinseyMode.Realistic;
     public static KinseyMode kinseyFormula = KinseyMode.Realistic;
 
-    public static List<float> kinseyWeightCustomDefault = new List<float>() { 62.5f, 11.3f, 9.3f, 6.8f, 4.5f, 2.8f, 2.8f };
-    public static List<float> kinseyWeightCustom = new List<float>() { 62.5f, 11.3f, 9.3f, 6.8f, 4.5f, 2.8f, 2.8f };
+    public static List<float> kinseyWeightCustomDefault = new List<float>() { 100f, 0f, 50f, 100f, 50f, 0f, 100f };
+    public static List<float> kinseyWeightCustom = new List<float>() { 100f, 0f, 50f, 100f, 50f, 0f, 100f };
 
     public static bool enableEmpathyDefault = true;
     public static bool enableEmpathy = true;
@@ -109,9 +109,11 @@ public class PsychologySettings : ModSettings
         Scribe_Values.Look(ref taraiSiblingsGenerated, "Psychology_TaraiSiblingsGenerated", false);
         //Scribe_Values.Look(ref firstTimeLoadingNewPsychology, "FirstTimeLoadingNewPsychology", false);
         Scribe_Values.Look(ref kinseySettingChanged, "KinseySettingChanged", false);
+        //Scribe_Values.Look(ref )
+
     }
 
-    public void ResetAllSettings()
+    public static void ResetAllSettings()
     {
         ResetEnableKinsey();
         ResetKinseyFormula();
@@ -134,98 +136,98 @@ public class PsychologySettings : ModSettings
         ResetSpeciesSettings();
     }
 
-    public void ResetEnableKinsey()
+    public static void ResetEnableKinsey()
     {
         kinseySettingChanged = enableKinsey != enableKinseyDefault;
         enableKinsey = enableKinseyDefault;
     }
 
-    public void ResetKinseyFormula()
+    public static void ResetKinseyFormula()
     {
         kinseyFormula = kinseyFormulaDefault;
     }
 
-    public void ResetKinseyWeightCustom()
+    public static void ResetKinseyWeightCustom()
     {
         kinseyWeightCustom = kinseyWeightCustomDefault.ListFullCopy();
     }
 
-    public void ResetEnableEmpathy()
+    public static void ResetEnableEmpathy()
     {
         enableEmpathy = enableEmpathyDefault;
     }
 
-    public void ResetEnableIndividuality()
+    public static void ResetEnableIndividuality()
     {
         enableIndividuality = enableIndividualityDefault;
     }
 
-    public void ResetEnableElections()
+    public static void ResetEnableElections()
     {
         enableElections = enableElectionsDefault;
     }
 
-    public void ResetEnableDateLetters()
+    public static void ResetEnableDateLetters()
     {
         enableDateLetters = enableDateLettersDefault;
     }
 
-    public void ResetEnableImprisonedDebuff()
+    public static void ResetEnableImprisonedDebuff()
     {
         enableImprisonedDebuff = enableImprisonedDebuffDefault; // v1.1
     }
 
-    public void ResetEnableAnxiety()
+    public static void ResetEnableAnxiety()
     {
         enableAnxiety = enableAnxietyDefault; // v1.1
     }
 
-    public void ResetConversationDuration()
+    public static void ResetConversationDuration()
     {
         conversationDuration = conversationDurationDefault;
     }
 
-    public void ResetRomanceChanceMultiplier()
+    public static void ResetRomanceChanceMultiplier()
     {
         romanceChanceMultiplier = romanceChanceMultiplierDefault; // v1.1
     }
 
-    public void ResetRomanceOpinionThreshold()
+    public static void ResetRomanceOpinionThreshold()
     {
         romanceOpinionThreshold = romanceOpinionThresholdDefault; // v1.1
     }
 
-    public void ResetMayorAge()
+    public static void ResetMayorAge()
     {
         mayorAge = mayorAgeDefault; // v1.1
     }
 
-    public void ResetTraitOpinionMultiplier()
+    public static void ResetTraitOpinionMultiplier()
     {
         traitOpinionMultiplier = traitOpinionMultiplierDefault; // v1.2
     }
 
-    public void ResetDisplayOption()
+    public static void ResetDisplayOption()
     {
         displayOption = displayOptionDefault; // v1.3
     }
 
-    public void ResetUseColors()
+    public static void ResetUseColors()
     {
         useColors = useColorsDefault; // v1.3
     }
 
-    public void ResetListAlphabetical()
+    public static void ResetListAlphabetical()
     {
         listAlphabetical = listAlphabeticalDefault; // v1.3
     }
 
-    public void ResetUseAntonyms()
+    public static void ResetUseAntonyms()
     {
         useAntonyms = useAntonymsDefault; // v1.3
     }
 
-    public void ResetSpeciesSettings()
+    public static void ResetSpeciesSettings()
     {
         SpeciesHelper.ResetSpeciesDict(speciesDict);
     }

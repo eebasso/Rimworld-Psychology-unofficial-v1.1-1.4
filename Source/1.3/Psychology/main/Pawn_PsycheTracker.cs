@@ -17,7 +17,7 @@ namespace Psychology
         public int lastDateTick = 0;
         private Pawn pawn;
         private HashSet<PersonalityNode> nodes;
-        public int AdjustedRatingTicker = 0;
+        public int AdjustedRatingTicker = -1;
         private Dictionary<PersonalityNodeDef, PersonalityNode> nodeDict = new Dictionary<PersonalityNodeDef, PersonalityNode>();
         private Dictionary<string, float> cachedOpinions = new Dictionary<string, float>();
         private Dictionary<string, bool> recalcCachedOpinions = new Dictionary<string, bool>();
@@ -71,6 +71,7 @@ namespace Psychology
                 int index = PersonalityNodeParentMatrix.indexDict[node.def];
                 node.rawRating = ratingList[index];
             }
+            AdjustedRatingTicker = -1;
         }
 
         public void ExposeData()
@@ -87,6 +88,11 @@ namespace Psychology
         //[LogPerformance]
         public float GetPersonalityRating(PersonalityNodeDef def)
         {
+            if (AdjustedRatingTicker < 0)
+            {
+                CalculateAdjustedRatings();
+            }
+            AdjustedRatingTicker--;
             return nodeDict[def].AdjustedRating;
         }
 
@@ -211,18 +217,13 @@ namespace Psychology
             //stopwatch.Stop();
             //TimeSpan ts = stopwatch.Elapsed;
             //Log.Message("CalculateAdjustedRatings took " + ts.TotalMilliseconds + " ms.");
-            AdjustedRatingTicker = 3700;
+            AdjustedRatingTicker = 100;
         }
 
-        public float CertaintyChangePerDay()
+        public float CalculateCertaintyChangePerDay()
         {
-            if (!pawn.IsHashIntervalTick(GenDate.TicksPerDay) && cachedCertaintyChangePerDay > -1f)
-            {
-                return cachedCertaintyChangePerDay;
-            }
             CalculateAdjustedRatings();
-            cachedCertaintyChangePerDay = 0.001f * CompatibilityWithIdeo(pawn.Ideo);
-            return cachedCertaintyChangePerDay;
+            return 0.0015f * CompatibilityWithIdeo(pawn.Ideo);
         }
 
         public float CompatibilityWithIdeo(Ideo ideo)
@@ -232,24 +233,13 @@ namespace Psychology
                 return 0f;
             }
             float compatibility = 0f;
-            //foreach (MemeDef meme in ideo.memes)
-            //{
-            //    if (PersonalityNodeIdeoUtility.memesAffectedByNodes.ContainsKey(meme))
-            //    {
-            //        foreach (Pair<PersonalityNodeDef, float> pair in PersonalityNodeIdeoUtility.memesAffectedByNodes[meme])
-            //        {
-            //            float rating = PsycheHelper.Comp(pawn).Psyche.GetPersonalityRating(pair.First);
-            //            compatibility += (2f * rating - 1f) * pair.Second;
-            //        }
-            //    }
-            //}
             foreach (KeyValuePair<MemeDef, List<Pair<PersonalityNodeDef, float>>> kvp in PersonalityNodeIdeoUtility.memesAffectedByNodes)
             {
                 if (ideo.HasMeme(kvp.Key))
                 {
                     foreach (Pair<PersonalityNodeDef, float> pair in kvp.Value)
                     {
-                        float rating = PsycheHelper.Comp(pawn).Psyche.GetPersonalityRating(pair.First);
+                        float rating = GetPersonalityRating(pair.First);
                         compatibility += (2f * rating - 1f) * pair.Second;
                     }
                 }
@@ -260,7 +250,7 @@ namespace Psychology
                 {
                     foreach (Pair<PersonalityNodeDef, float> pair in kvp.Value)
                     {
-                        float rating = PsycheHelper.Comp(pawn).Psyche.GetPersonalityRating(pair.First);
+                        float rating = GetPersonalityRating(pair.First);
                         compatibility += (2f * rating - 1f) * pair.Second;
                     }
                 }

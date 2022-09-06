@@ -11,7 +11,7 @@ namespace Psychology;
 public class Dialog_EditPsyche : Window
 {
     public Pawn pawn;
-    public override float Margin => 0f;
+    //public override float Margin => 0f;
     public override Vector2 InitialSize
     {
         get
@@ -37,13 +37,13 @@ public class Dialog_EditPsyche : Window
             Event.current.Use();
         }
 
-        //GUI.EndGroup();
-        //float editHeight = PsycheCardUtility.PsycheRect.height;
-        //float editWidth = EditPsycheUtility.CalculateEditWidth(pawn);
-        //inRect = new Rect(0f, 0f, editWidth, editHeight);
-        //Find.WindowStack.currentlyDrawnWindow.windowRect = inRect;
-        //Find.WindowStack.currentlyDrawnWindow.windowRect.x = 0.5f * UI.screenWidth;
-        //Find.WindowStack.currentlyDrawnWindow.windowRect.y = 0.5f * (UI.screenHeight - inRect.height);
+        GUI.EndGroup();
+        float editHeight = PsycheCardUtility.PsycheRect.height;
+        float editWidth = EditPsycheUtility.CalculateEditWidth(pawn);
+        inRect = new Rect(0f, 0f, editWidth, editHeight);
+        Find.WindowStack.currentlyDrawnWindow.windowRect = inRect;
+        Find.WindowStack.currentlyDrawnWindow.windowRect.x = 0.5f * UI.screenWidth;
+        Find.WindowStack.currentlyDrawnWindow.windowRect.y = 0.5f * (UI.screenHeight - inRect.height);
 
         EditPsycheUtility.DrawEditPsyche(inRect, pawn);
 

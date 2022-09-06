@@ -20,29 +20,36 @@ public static class InteractionWorker_RomanceAttempt_SelectionWeightPatch
     public static bool RandomSelectionWeight(ref float __result, Pawn initiator, Pawn recipient)
     {
         // From vanilla, no romance in these cases
-        if (TutorSystem.TutorialMode || LovePartnerRelationUtility.LovePartnerRelationExists(initiator, recipient) || !PsycheHelper.PsychologyEnabled(initiator))
+        if (TutorSystem.TutorialMode || LovePartnerRelationUtility.LovePartnerRelationExists(initiator, recipient))
         {
+            Log.Message("InteractionWorker_RomanceAttempt.RandomSelectionWeight, initiator = " + initiator.LabelShort + ", recipient = " + recipient.LabelShort + ", already lovers");
             __result = 0f;
             return false;
         }
+        
         bool initiatorPsycheEnabled = PsycheHelper.PsychologyEnabled(initiator);
         bool recipientPsycheEnabled = PsycheHelper.PsychologyEnabled(recipient);
         if (!initiatorPsycheEnabled || !recipientPsycheEnabled)
         {
+            Log.Message("InteractionWorker_RomanceAttempt.RandomSelectionWeight, initiator = " + initiator.LabelShort + ", recipient = " + recipient.LabelShort + ", Psyche not enabled");
             __result = 0f;
             return false;
         }
+        
         // Codependents won't romance anyone if they are in a relationship
         if (LovePartnerRelationUtility.HasAnyLovePartner(initiator) && initiator.story.traits.HasTrait(TraitDefOfPsychology.Codependent))
         {
+            Log.Message("InteractionWorker_RomanceAttempt.RandomSelectionWeight, initiator = " + initiator.LabelShort + ", recipient = " + recipient.LabelShort + ", codependent");
             __result = 0f;
             return false;
         }
+        
         //Don't hit on people in mental breaks... unless you're really freaky.
         float initiatorExperimental = PsycheHelper.Comp(initiator).Psyche.GetPersonalityRating(PersonalityNodeDefOf.Experimental);
         bool initiatorLecher = initiator.story.traits.HasTrait(TraitDefOfPsychology.Lecher);
         if (recipient.InMentalState && initiatorExperimental < 0.8f && !initiatorLecher)
         {
+            Log.Message("InteractionWorker_RomanceAttempt.RandomSelectionWeight, initiator = " + initiator.LabelShort + ", recipient = " + recipient.LabelShort + ", mental state");
             __result = 0f;
             return false;
         }
@@ -54,23 +61,28 @@ public static class InteractionWorker_RomanceAttempt_SelectionWeightPatch
         /* - INCEST FACTOR */
         /* - PSYCHIC LOVE SPELL FACTOR */
         float romChance = initiator.relations.SecondaryRomanceChanceFactor(recipient);
+        
         if (romChance < 0.15f)
         {
+            Log.Message("InteractionWorker_RomanceAttempt.RandomSelectionWeight, initiator = " + initiator.LabelShort + ", recipient = " + recipient.LabelShort + ", romChance < 0.15") ;
             __result = 0f;
             return false;
         }
         float romChanceMult = Mathf.InverseLerp(0.15f, 1f, romChance);
-
+        
         /* INITIATOR OPINION FACTOR */
         float initiatorRomantic = PsycheHelper.Comp(initiator).Psyche.GetPersonalityRating(PersonalityNodeDefOf.Romantic);
         float initiatorOpinion = (float)initiator.relations.OpinionOf(recipient);
-        float recipientOpinion = (float)recipient.relations.OpinionOf(initiator);
+        //float recipientOpinion = (float)recipient.relations.OpinionOf(initiator);
         float initiatorOpinMult;
+        
         //Only lechers will romance someone that has less than base opinion of them
         if (!initiatorLecher)
         {
-            if (Mathf.Max(initiatorOpinion, recipientOpinion) < PsychologySettings.romanceOpinionThreshold)
+            //if (Mathf.Max(initiatorOpinion, recipientOpinion) < PsychologySettings.romanceOpinionThreshold)
+            if (initiatorOpinion < PsychologySettings.romanceOpinionThreshold)
             {
+                Log.Message("InteractionWorker_RomanceAttempt.RandomSelectionWeight, initiator = " + initiator.LabelShort + ", recipient = " + recipient.LabelShort + ", initiator opinion too low");
                 __result = 0f;
                 return false;
             }
@@ -81,9 +93,9 @@ public static class InteractionWorker_RomanceAttempt_SelectionWeightPatch
         else
         {
             // Lechers are more frisky
-            initiatorOpinMult = 1.5f;
+            initiatorOpinMult = 1f;
         }
-
+        
         /* GET INITIATOR PERSONALITY VALUES */
         float initiatorAggressive = PsycheHelper.Comp(initiator).Psyche.GetPersonalityRating(PersonalityNodeDefOf.Aggressive);
         float initiatorConfident = PsycheHelper.Comp(initiator).Psyche.GetPersonalityRating(PersonalityNodeDefOf.Confident);
@@ -107,6 +119,7 @@ public static class InteractionWorker_RomanceAttempt_SelectionWeightPatch
                 existingPartnerMult = Mathf.InverseLerp(maxOpinionOfLover, minOpinionOfLover, opinionOfLover);
             }
         }
+        
 
         /* INITIATOR KNOWN SEXUALITY FACTOR */
         float knownSexFactor;
@@ -118,7 +131,6 @@ public static class InteractionWorker_RomanceAttempt_SelectionWeightPatch
             // Not sure whether to keep this mechanic...
             float kinseyFactor = PsycheHelper.Comp(initiator).Sexuality.kinseyRating / 6f;
             straightWomanFactor = initiator.gender == Gender.Female ? Mathf.Lerp(0.15f, 1f, kinseyFactor) : 1f;
-
         }
         else
         {
@@ -136,13 +148,15 @@ public static class InteractionWorker_RomanceAttempt_SelectionWeightPatch
         }
 
         // Include chance multiplier from settings
-        __result = 1.15f * PsychologySettings.romanceChanceMultiplier * straightWomanFactor * romChanceMult * initiatorOpinMult * existingPartnerMult * knownSexFactor;
+        __result = 1.15f * PsychologySettings.romanceChanceMultiplier * romChanceMult * initiatorOpinMult * existingPartnerMult * knownSexFactor * straightWomanFactor;
 
         // Confident pawns are more likely to make a move on attractive mates
-        float chanceCutOff = 0.75f;
+        float chanceCutOff = 0.5f;
         float confidenceFactor = initiatorConfident + initiatorAggressive;
-        __result = __result < chanceCutOff ? __result : chanceCutOff + confidenceFactor * (__result - chanceCutOff);
+        float adjResult = __result < chanceCutOff ? __result : chanceCutOff + confidenceFactor * (__result - chanceCutOff);
+        __result = adjResult;
 
+         Log.Message("InteractionWorker_RomanceAttempt.RandomSelectionWeight, initiator = " + initiator.LabelShort + ", recipient = " + recipient.LabelShort + ", romChanceMult = " + romChanceMult + ", initiatorOpinMult = " + initiatorOpinMult + ", existingPartnerMult = " + existingPartnerMult + ", knownSexFactor = " + knownSexFactor + ", straightWomanFactor = " + straightWomanFactor + ", result = " + __result + ", resultAdj = " + adjResult);
         return false;
     }
 }
@@ -155,6 +169,7 @@ public static class InteractionWorker_RomanceAttempt_SuccessChancePatch
     [HarmonyPrefix]
     public static bool SuccessChance(ref float __result, Pawn initiator, Pawn recipient)
     {
+        Log.Warning("InteractionWorker_RomanceAttempt.SuccessChance fired!");
         /* Throw out the result and replace it with our own formula. */
         bool initiatorPsycheEnabled = PsycheHelper.PsychologyEnabled(initiator);
         bool recipientPsycheEnabled = PsycheHelper.PsychologyEnabled(recipient);
@@ -170,8 +185,7 @@ public static class InteractionWorker_RomanceAttempt_SuccessChancePatch
             __result = 0f;
             return false;
         }
-        float successChance = 0.6f;
-        
+
         /* ROMANCE CHANCE FACTOR INCLUDES THE FOLLOWING: */
         /* SEXUAL PREFERENCE FACTOR */
         /* AGE FACTOR */
@@ -179,7 +193,7 @@ public static class InteractionWorker_RomanceAttempt_SuccessChancePatch
         /* PAWN SEX AND ROMANCE DRIVE FACTORS */
         /* DISABILITY FACTOR */
         /* PSYCHIC LOVE SPELL FACTOR */
-        successChance *= recipient.relations.SecondaryRomanceChanceFactor(initiator);
+        float romChanceFactor = recipient.relations.SecondaryRomanceChanceFactor(initiator);
 
         /* RECIPIENT OPINION FACTOR */
         float recipientRomantic = PsycheHelper.Comp(recipient).Psyche.GetPersonalityRating(PersonalityNodeDefOf.Romantic);
@@ -192,12 +206,12 @@ public static class InteractionWorker_RomanceAttempt_SuccessChancePatch
             opinionFactor = 0.5f + Mathf.Sqrt(opinionFactor);
         }
         // More romantic recipients have higher standards but respond more strongly to overtures from high opinion initiators
-        successChance *= 0.5f * Mathf.Pow(2f * opinionFactor, 2f * recipientRomantic + 1e-5f);
+        float recipientOpinionFactor = 0.5f * Mathf.Pow(2f * opinionFactor, 2f * recipientRomantic + 1e-5f);
 
+        float existingLovePartnerMult = 1f;
         /* EXISTING LOVE PARTNER FACTOR */
         if (!new HistoryEvent(recipient.GetHistoryEventForLoveRelationCountPlusOne(), recipient.Named(HistoryEventArgsNames.Doer)).DoerWillingToDo() && !recipient.story.traits.HasTrait(TraitDefOfPsychology.Polygamous))
-        {
-            float existingLovePartnerMult = 1f;
+        {   
             Pawn pawn = null;
             if (recipient.relations.GetFirstDirectRelationPawn(PawnRelationDefOf.Lover, (Pawn x) => !x.Dead) != null)
             {
@@ -233,11 +247,13 @@ public static class InteractionWorker_RomanceAttempt_SuccessChancePatch
             {
                 existingLovePartnerMult = 0.5f + Mathf.Sqrt(existingLovePartnerMult);
             }
-            successChance *= existingLovePartnerMult;
         }
+        
         // Account for user setting of romance chance
-        successChance *= PsychologySettings.romanceChanceMultiplier;
-        // Clamp to keep the chance between 0 and 1 ?
+        float successChance = 0.6f * PsychologySettings.romanceChanceMultiplier * existingLovePartnerMult * recipientOpinionFactor * romChanceFactor;
+
+        Log.Message("InteractionWorker_RomanceAttempt.SuccessChance initiator = " + initiator.LabelShort + ", recipient = " + recipient.LabelShort + ", romChanceFactor = " + romChanceFactor + ", recipientOpinionFactor = " + recipientOpinionFactor + ", existingLovePartnerMult = " + existingLovePartnerMult + ", successChance = " + successChance);
+        // Clamp to keep the chance between 0 and 1
         __result = Mathf.Clamp01(successChance);
         return false;
     }

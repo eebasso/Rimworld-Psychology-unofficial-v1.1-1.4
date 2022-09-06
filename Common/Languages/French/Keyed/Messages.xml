@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+
+    <TreatedTrait>Le trait ({1}) de {0_labelShort} a été traîté avec succès.</TreatedTrait>
+	<!-- <MessageÉlectionReportée>L'élection à {0} a été reportée cause de problèmes au bureau de vote.</MessageÉlectionAnnullée> -->
+	<MessageElectionCalledOff>L'élection à {0} a été reportée cause de problèmes au bureau de vote.</MessageElectionCalledOff>
+	<!-- <MessageÉlectionAnnulée>L'élection à {0} a été annulée parce qu'il n'y avait pas de bureau de vote correct.</MessageÉlectionAnnulée> -->
+	<MessageElectionCancelled>L'élection à {0} a été annulée parce qu'il n'y avait pas de bureau de vote correct.</MessageElectionCancelled>
+	<MessageFuneralCalledOff>Les funérailles ont été annulées à cause de problèmes dans votre colonie.</MessageFuneralCalledOff>
+
+</LanguageData>

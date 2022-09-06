@@ -24,7 +24,7 @@ public static class Pawn_ArrestPatch
         bool removeIfStatement = false;
         foreach(CodeInstruction itr in instr)
         {
-            if((itr.opcode == OpCodes.Call && itr.operand == AccessTools.Property(typeof(Rand), nameof(Rand.Value)).GetGetMethod()) || removeIfStatement)
+            if((itr.opcode == OpCodes.Call && (MethodInfo)itr.operand == AccessTools.Property(typeof(Rand), nameof(Rand.Value)).GetGetMethod()) || removeIfStatement)
             {
                 if(!removeIfStatement)
                 {
@@ -50,7 +50,7 @@ public static class Pawn_ArrestPatch
 
     public static bool NewArrestCheck(Pawn pawn, Pawn arrester)
     {
-        return (Rand.Chance(arrester.GetStatValue(StatDefOfPsychology.ArrestPeacefullyChance) * (Mathf.InverseLerp(-100f, 100f, pawn.relations.OpinionOf(arrester))) * (arrester.Faction == pawn.Faction ? 1.5f : 1f) * (pawn.InMentalState ? 0.2f : 1f)));
+        return Rand.Chance(arrester.GetStatValue(StatDefOfPsychology.ArrestPeacefullyChance) * (Mathf.InverseLerp(-100f, 100f, pawn.relations.OpinionOf(arrester))) * (arrester.Faction == pawn.Faction ? 1.5f : 1f) * (pawn.InMentalState ? 0.2f : 1f));
     }
 }
 

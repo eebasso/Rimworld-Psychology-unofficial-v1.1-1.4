@@ -1,27 +1,26 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workbench ActiveDocument="Psychology/Harmony/OtherUtilities/ConversionUtility.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="../../Common/Languages/German/LanguageInfo.xml">
     <Files>
-      <File FileName="Psychology/Main/Pawn_SexualityTracker.cs" Line="19" Column="22" IsPinned="True" />
-      <File FileName="Psychology/Main/PsycheHelper.cs" Line="9" Column="22" IsPinned="True" />
-      <File FileName="Psychology/PsychologyGameComponent.cs" Line="15" Column="49" IsPinned="True" />
-      <File FileName="Psychology/PsychologyMod.cs" Line="1" Column="1" IsPinned="True" />
-      <File FileName="Psychology/Main/GUI/PsycheCardUtility.cs" Line="13" Column="2" IsPinned="True" />
-      <File FileName="Psychology/Main/Conversations/Rendezvous/InteractionWorker_PlanDate.cs" Line="78" Column="53" />
-      <File FileName="Psychology/Main/Conversations/Hediff_Conversation.cs" Line="186" Column="68" />
-      <File FileName="Psychology/Main/ThoughtWorkers/ThoughtWorker_Individuality.cs" Line="57" Column="46" />
-      <File FileName="Psychology/Main/CustomXMLPatchOperations.cs" Line="11" Column="2" />
-      <File FileName="../../Common/Defs/TraitDefs/Traits_Singular.xml" Line="1" Column="1" />
-      <File FileName="../../Common/Defs/ThoughtDefs/Thoughts_Situation_Traits.xml" Line="1" Column="1" />
-      <File FileName="Psychology/Main/GUI/PolygonUtility.cs" Line="1" Column="1" />
-      <File FileName="Psychology/DefOf/DutyDefOfPsychology.cs" Line="1" Column="1" />
-      <File FileName="Psychology/Main/Personality/PersonalityNodeDef.cs" Line="96" Column="24" />
-      <File FileName="Psychology/Main/Personality/PersonalityNode.cs" Line="17" Column="28" />
-      <File FileName="Psychology/Main/Personality/PersonalityNodeParentMatrix.cs" Line="68" Column="14" />
-      <File FileName="Psychology/Harmony/Pawn/Pawn.cs" Line="14" Column="30" />
-      <File FileName="Psychology/Harmony/OtherUtilities/ConversionUtility.cs" Line="9" Column="30" />
-      <File FileName="Psychology/Harmony/OtherUtilities/FoodUtility.cs" Line="23" Column="13" />
-      <File FileName="../../Common/Patches/ThoughtPatches.xml" Line="1" Column="1" />
-      <File FileName="../../../../../../../workshop/content/294100/2016263135/Patches/TraitPatches.xml" Line="14" Column="16" />
+      <File FileName="Psychology/Main/GUI/Dialog_UpdateIntro.cs" Line="16" Column="10" IsPinned="True" />
+      <File FileName="Psychology/Main/GUI/Dialog_UpdateYesNo.cs" Line="28" Column="12" IsPinned="True" />
+      <File FileName="Psychology/Main/GUI/SettingsWindowUtility.cs" Line="216" Column="52" IsPinned="True" />
+      <File FileName="Psychology/Main/GUI/UIAssets.cs" Line="23" Column="92" />
+      <File FileName="Psychology/Main/GUI/PsycheCardUtility.cs" Line="321" Column="66" />
+      <File FileName="Psychology/PsychologyGameComponent.cs" Line="59" Column="32" />
+      <File FileName="Psychology/Main/GUI/Dialog_ViewPsyche.cs" Line="77" Column="33" />
+      <File FileName="Psychology/Main/GUI/ITab_Pawn_Psyche.cs" Line="19" Column="38" />
+      <File FileName="Psychology/Main/CustomXMLPatchOperations.cs" Line="27" Column="56" />
+      <File FileName="../../Common/Patches/TraitPatches.xml" Line="1" Column="1" />
+      <File FileName="../../Common/Patches/OpinionMultiplierPatches.xml" Line="1" Column="1" />
+      <File FileName="Psychology/Main/Pawn_SexualityTracker.cs" Line="1" Column="1" />
+      <File FileName="Psychology/Main/PsycheHelper.cs" Line="1" Column="1" />
+      <File FileName="Psychology/Main/Pawn_PsycheTracker.cs" Line="46" Column="45" />
+      <File FileName="Psychology/Main/Personality/PersonalityNodeParentMatrix.cs" Line="52" Column="10" />
+      <File FileName="Psychology/Main/Settings/SpeciesHelper.cs" Line="1" Column="1" />
+      <File FileName="Psychology/Main/GUI/EditPsycheUtility.cs" Line="1" Column="1" />
+      <File FileName="Psychology/Main/Settings/PsychologySettings.cs" Line="1" Column="1" />
+      <File FileName="Psychology/PsychologyDefInjector.cs" Line="163" Column="22" />
+      <File FileName="../../Common/Languages/German/LanguageInfo.xml" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -29,21 +28,16 @@
           <Node name="PsychologyUnofficialMac" expanded="True">
             <Node name="PsychologyMac" expanded="True">
               <Node name="Common" expanded="True">
-                <Node name="Patches" expanded="True" />
-              </Node>
-              <Node name="Harmony" expanded="True">
-                <Node name="OtherUtilities" expanded="True">
-                  <Node name="ConversionUtility.cs" selected="True" />
+                <Node name="Languages" expanded="True">
+                  <Node name="ChineseTraditional" expanded="True">
+                    <Node name="LanguageInfo.xml" selected="True" />
+                  </Node>
+                  <Node name="German" expanded="True" />
+                  <Node name="Russian" expanded="True" />
                 </Node>
-                <Node name="Pawn" expanded="True" />
-                <Node name="RomanceAndFamily" expanded="True" />
               </Node>
-              <Node name="Main" expanded="True">
-                <Node name="Conversations" expanded="True">
-                  <Node name="Rendezvous" expanded="True" />
-                </Node>
-                <Node name="Personality" expanded="True" />
-              </Node>
+              <Node name="Harmony" expanded="True" />
+              <Node name="Main" expanded="True" />
             </Node>
           </Node>
         </State>
@@ -56,7 +50,7 @@
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

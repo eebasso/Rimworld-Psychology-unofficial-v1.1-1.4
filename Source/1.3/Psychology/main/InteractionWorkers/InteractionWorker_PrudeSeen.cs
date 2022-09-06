@@ -11,26 +11,25 @@ using UnityEngine;
 using RimWorld;
 using Verse;
 
-namespace Psychology
-{
-    public class InteractionWorker_PrudeSeen : InteractionWorker
-    {
-        public override float RandomSelectionWeight(Pawn initiator, Pawn recipient)
-        {
-            if (initiator.story.traits.HasTrait(TraitDefOfPsychology.Prude) && recipient.apparel.PsychologicallyNude)
-            {
-                return 1f;
-            }
-            else
-            {
-                return 0f;
-            }
-        }
+namespace Psychology;
 
-        public override void Interacted(Pawn initiator, Pawn recipient, List<RulePackDef> extraSentencePacks, out string letterText, out string letterLabel, out LetterDef letterDef, out LookTargets lookTargets)
+public class InteractionWorker_PrudeSeen : InteractionWorker
+{
+    public override float RandomSelectionWeight(Pawn initiator, Pawn recipient)
+    {
+        if (initiator.story.traits.HasTrait(TraitDefOfPsychology.Prude) && recipient.apparel.PsychologicallyNude)
         {
-            base.Interacted(initiator, recipient, extraSentencePacks, out letterText, out letterLabel, out letterDef, out lookTargets);
-            initiator.needs.mood.thoughts.memories.TryGainMemory(ThoughtDefOfPsychology.PrudeSeen, recipient);
+            return 1f;
         }
+        else
+        {
+            return 0f;
+        }
+    }
+
+    public override void Interacted(Pawn initiator, Pawn recipient, List<RulePackDef> extraSentencePacks, out string letterText, out string letterLabel, out LetterDef letterDef, out LookTargets lookTargets)
+    {
+        base.Interacted(initiator, recipient, extraSentencePacks, out letterText, out letterLabel, out letterDef, out lookTargets);
+        initiator.needs.mood.thoughts.memories.TryGainMemory(ThoughtDefOfPsychology.PrudeSeen, recipient);
     }
 }

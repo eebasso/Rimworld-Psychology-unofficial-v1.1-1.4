@@ -302,12 +302,13 @@
     <Compile Include="Main\GUI\PolygonTooltipHandler.cs" />
     <Compile Include="Main\GUI\PolygonUtility.cs" />
     <Compile Include="Main\GUI\PsycheCardUtility.cs" />
-    <Compile Include="Main\GUI\PsychColor.cs" />
+    <Compile Include="Main\GUI\UIAssets.cs" />
     <Compile Include="Harmony\ConditionalPatches\PawnGenerator.cs" />
     <Compile Include="Harmony\ConditionalPatches\TraitSet.cs" />
-    <Compile Include="Main\GUI\Dialog_PsychologyUpdatePrompt.cs" />
     <Compile Include="Main\GUI\SettingsWindowUtility.cs" />
     <Compile Include="Main\Settings\SpeciesHelper.cs" />
+    <Compile Include="Main\GUI\Dialog_UpdateIntro.cs" />
+    <Compile Include="Main\GUI\Dialog_UpdateYesNo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\About\preview.png">
@@ -764,6 +765,42 @@
       <Link>Common\Languages\ChineseTraditional\DefInjected\NeedDef\Methadone.xml</Link>
     </None>
     
+    <None Include="..\..\..\Common\Languages\French\LanguageInfo.xml">
+      <Link>Common\Languages\French\LanguageInfo.xml</Link>
+    </None>
+    <None Include="..\..\..\Common\Languages\French\Keyed\Mod_Settings.xml">
+      <Link>Common\Languages\French\Keyed\Mod_Settings.xml</Link>
+    </None>
+    <None Include="..\..\..\Common\Languages\French\Keyed\Conversations.xml">
+      <Link>Common\Languages\French\Keyed\Conversations.xml</Link>
+    </None>
+    <None Include="..\..\..\Common\Languages\French\Keyed\Mod_Errors.xml">
+      <Link>Common\Languages\French\Keyed\Mod_Errors.xml</Link>
+    </None>
+    <None Include="..\..\..\Common\Languages\French\Keyed\Ramblings.xml">
+      <Link>Common\Languages\French\Keyed\Ramblings.xml</Link>
+    </None>
+    <None Include="..\..\..\Common\Languages\French\Keyed\Alerts.xml">
+      <Link>Common\Languages\French\Keyed\Alerts.xml</Link>
+    </None>
+    <None Include="..\..\..\Common\Languages\French\Keyed\Misc_Gameplay.xml">
+      <Link>Common\Languages\French\Keyed\Misc_Gameplay.xml</Link>
+    </None>
+    <None Include="..\..\..\Common\Languages\French\Keyed\Letters.xml">
+      <Link>Common\Languages\French\Keyed\Letters.xml</Link>
+    </None>
+    <None Include="..\..\..\Common\Languages\French\Keyed\Thoughts.xml">
+      <Link>Common\Languages\French\Keyed\Thoughts.xml</Link>
+    </None>
+    <None Include="..\..\..\Common\Languages\French\Keyed\WITabs.xml">
+      <Link>Common\Languages\French\Keyed\WITabs.xml</Link>
+    </None>
+    <None Include="..\..\..\Common\Languages\French\Keyed\Messages.xml">
+      <Link>Common\Languages\French\Keyed\Messages.xml</Link>
+    </None>
+    <None Include="..\..\..\Common\Languages\ChineseTraditional\LanguageInfo.xml">
+      <Link>Common\Languages\ChineseTraditional\LanguageInfo.xml</Link>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
