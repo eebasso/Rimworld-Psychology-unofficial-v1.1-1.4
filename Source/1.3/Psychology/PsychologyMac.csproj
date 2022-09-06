@@ -310,6 +310,7 @@
     <Compile Include="Harmony\OtherMods\CharacterEditor_DialogPsychology.cs" />
     <Compile Include="Harmony\OtherMods\EdBPrepareCarefully_PanelBackstory.cs" />
     <Compile Include="Harmony\Pawn\PawnGenerator.cs" />
+    <Compile Include="Main\Thought\Thought_PrudeVsNudist.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\About\preview.png">

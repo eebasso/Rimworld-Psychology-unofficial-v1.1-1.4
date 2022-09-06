@@ -32,8 +32,8 @@ public class CompPsychology : ThingComp
             this.parent as Pawn
         });*/
         Scribe_Values.Look(ref this.beenBuried, "beenBuried");
-        //Scribe_Values.Look(ref this.tickSinceLastSeenLover, "tickSinceLastSeenLover", Find.TickManager.TicksAbs);
-        Scribe_Values.Look(ref this.tickSinceLastSeenLover, "tickSinceLastSeenLover", GenTicks.TicksAbs);
+        Scribe_Values.Look(ref this.tickSinceLastSeenLover, "tickSinceLastSeenLover", Find.TickManager.TicksAbs);
+        //Scribe_Values.Look(ref this.tickSinceLastSeenLover, "tickSinceLastSeenLover", GenTicks.TicksAbs);
     }
 
     public Pawn_SexualityTracker Sexuality
@@ -46,7 +46,6 @@ public class CompPsychology : ThingComp
                 if (p != null)
                 {
                     this.sexuality = new Pawn_SexualityTracker(p);
-                    //this.sexuality.GenerateSexuality();
                 }
                 else
                 {
@@ -71,14 +70,6 @@ public class CompPsychology : ThingComp
                 if (p != null)
                 {
                     this.psyche = new Pawn_PsycheTracker(p);
-                    //this.psyche.Initialize();
-                    //foreach (PersonalityNode node in this.psyche.PersonalityNodes)
-                    //{
-                    //    if (node.rawRating < 0)
-                    //    {
-                    //        node.Initialize();
-                    //    }
-                    //}
                 }
                 else
                 {

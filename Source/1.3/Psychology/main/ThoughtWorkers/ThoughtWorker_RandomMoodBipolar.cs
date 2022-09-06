@@ -9,7 +9,6 @@ public class ThoughtWorker_RandomMoodBipolar : ThoughtWorker
     //[LogPerformance]
     public override ThoughtState CurrentStateInternal(Pawn p)
     {
-
         switch ((p.GetHashCode() ^ (GenLocalDate.DayOfYear(p) + GenLocalDate.Year(p) + (int)(GenLocalDate.DayPercent(p) * 10) * 60) * 391) % 12)
         {
             case 0:

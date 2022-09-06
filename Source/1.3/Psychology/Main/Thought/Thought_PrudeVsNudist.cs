@@ -1,0 +1,1 @@
+﻿using System;namespace Psychology.Main.Thought{    public class Thought_PrudeVsNudist    {        public Thought_PrudeVsNudist()        {        }    }}

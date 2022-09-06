@@ -234,6 +234,7 @@ public class PersonalityNodeParentMatrix
         TimeSpan ts = stopwatch.Elapsed;
         //Log.Message("Calculation time in seconds = " + String.Format("{0:00}.{1:000}", ts.Seconds, ts.Milliseconds));
         Log.Message("Psychology: calculated personality correlation matrix");
+
     }
 
     public static (int, int) Get2Dindicies(int s)

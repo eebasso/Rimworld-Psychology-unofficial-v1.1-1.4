@@ -8,7 +8,6 @@ namespace Psychology;
 
 public class ThoughtWorker_LDR : ThoughtWorker
 {
-    //[LogPerformance]
     public override ThoughtState CurrentSocialStateInternal(Pawn p, Pawn otherPawn)
     {
         if (!RelationsUtility.PawnsKnowEachOther(p, otherPawn))

@@ -8,7 +8,7 @@ namespace Psychology;public static class SettingsWindowUtility{
     //public static float InHeight = WindowHeight - 2f * Window.StandardMargin;
 
 
-    public const float RowTopPadding = 3f;    public const float CheckboxSize = 24f;    public const float BoundaryPadding = 7f;    public const float HighlightPadding = 3.5f;
+    public const float RowTopPadding = 3f;    public const float CheckboxSize = 24f;    public const float BoundaryPadding = PsycheCardUtility.BoundaryPadding;    public const float HighlightPadding = PsycheCardUtility.HighlightPadding;
     public static float UpperAreaHeight = 35f;    public static float LowerAreaHeight = 44f;
     public static float RowHeight = 34f;
 
@@ -110,7 +110,7 @@ namespace Psychology;public static class SettingsWindowUtility{
         SpeciesNameList.Sort();
         float viewHeight = 0f;
         foreach (string name in SpeciesNameList)        {            SpeciesWidthList[0] = Mathf.Max(Text.CalcSize(name).x, SpeciesWidthList[0]);            viewHeight += RowHeight;        }
-        SpeciesY = Window.StandardMargin + UpperAreaHeight + RowHeight + HighlightPadding;        SpeciesWidth = WindowWidth - Window.StandardMargin - SpeciesX;        SpeciesHeight = WindowHeight - Window.StandardMargin - LowerAreaHeight - SpeciesY;
+        SpeciesY = Window.StandardMargin + UpperAreaHeight + RowHeight + HighlightPadding;        SpeciesHeight = WindowHeight - Window.StandardMargin - LowerAreaHeight - SpeciesY;
 
         float scrollBarWidth = GenUI.ScrollBarWidth;
         if (SpeciesHeight > viewHeight)
@@ -125,7 +125,7 @@ namespace Psychology;public static class SettingsWindowUtility{
         float shiftFactor = (WindowWidth - 2f * Window.StandardMargin - TitleWidth - EntryWidth - BoundaryPadding - SpeciesWidthList.Sum() - scrollBarWidth) / 2f;        TitleWidth += shiftFactor;
         SpeciesWidthList[0] += shiftFactor;
 
-        LeftColumnWidth = TitleWidth + EntryWidth;        VerticalSliderWidth = LeftColumnWidth / 7f;        SpeciesX = Window.StandardMargin +  LeftColumnWidth + BoundaryPadding;        
+        LeftColumnWidth = TitleWidth + EntryWidth;        VerticalSliderWidth = LeftColumnWidth / 7f;        SpeciesX = Window.StandardMargin +  LeftColumnWidth + BoundaryPadding;        SpeciesWidth = WindowWidth - Window.StandardMargin - SpeciesX;
 
         SpeciesRect = new Rect(SpeciesX, SpeciesY, SpeciesWidth, SpeciesHeight);
         ViewRect = new Rect(0f, 0f, SpeciesWidth - scrollBarWidth, SpeciesHeight);
@@ -188,7 +188,7 @@ namespace Psychology;public static class SettingsWindowUtility{
                 KinseyCustomVerticalSlider(i, ref customWeightEntryRect);
             }
             titleRect.y += customWeightEntryRect.height;
-            entryRect.y += customWeightEntryRect.height;        }        CheckboxEntry(ref titleRect, settingTitleList[2], ref entryRect, ref enableEmpathyCached, settingTooltipList[2]);        CheckboxEntry(ref titleRect, settingTitleList[3], ref entryRect, ref enableIndividualityCached, settingTooltipList[3]);        CheckboxEntry(ref titleRect, settingTitleList[4], ref entryRect, ref enableElectionsCached, settingTooltipList[4]);        CheckboxEntry(ref titleRect, settingTitleList[5], ref entryRect, ref enableDateLettersCached, settingTooltipList[5]);        CheckboxEntry(ref titleRect, settingTitleList[6], ref entryRect, ref enableImprisonedDebuffCached, settingTooltipList[6]);        CheckboxEntry(ref titleRect, settingTitleList[7], ref entryRect, ref enableAnxietyCached, settingTooltipList[7]);        NumericEntry(ref titleRect, settingTitleList[8], ref entryRect, ref conversationDurationCached, ref conversationDurationBuffer, settingTooltipList[8], 15f, 180f);        NumericEntry(ref titleRect, settingTitleList[9], ref entryRect, ref romanceChanceMultiplierCached, ref romanceChanceMultiplierBuffer, settingTooltipList[9], 0f);        NumericEntry(ref titleRect, settingTitleList[10], ref entryRect, ref romanceOpinionThresholdCached, ref romanceOpinionThresholdBuffer, settingTooltipList[10], -99f, 99f);        NumericEntry(ref titleRect, settingTitleList[11], ref entryRect, ref mayorAgeCached, ref mayorAgeBuffer, settingTooltipList[11], 0f);        NumericEntry(ref titleRect, settingTitleList[12], ref entryRect, ref traitOpinionMultiplierCached, ref traitOpinionMultiplierBuffer, settingTooltipList[12], 0f, 2f);
+            entryRect.y += customWeightEntryRect.height;        }        CheckboxEntry(ref titleRect, settingTitleList[2], ref entryRect, ref enableEmpathyCached, settingTooltipList[2]);        CheckboxEntry(ref titleRect, settingTitleList[3], ref entryRect, ref enableIndividualityCached, settingTooltipList[3]);        CheckboxEntry(ref titleRect, settingTitleList[4], ref entryRect, ref enableElectionsCached, settingTooltipList[4]);        CheckboxEntry(ref titleRect, settingTitleList[5], ref entryRect, ref enableDateLettersCached, settingTooltipList[5]);        CheckboxEntry(ref titleRect, settingTitleList[6], ref entryRect, ref enableImprisonedDebuffCached, settingTooltipList[6]);        CheckboxEntry(ref titleRect, settingTitleList[7], ref entryRect, ref enableAnxietyCached, settingTooltipList[7]);        NumericEntry(ref titleRect, settingTitleList[8], ref entryRect, ref conversationDurationCached, ref conversationDurationBuffer, settingTooltipList[8], 0f, 180f);        NumericEntry(ref titleRect, settingTitleList[9], ref entryRect, ref romanceChanceMultiplierCached, ref romanceChanceMultiplierBuffer, settingTooltipList[9], 0f);        NumericEntry(ref titleRect, settingTitleList[10], ref entryRect, ref romanceOpinionThresholdCached, ref romanceOpinionThresholdBuffer, settingTooltipList[10], -99f, 99f);        NumericEntry(ref titleRect, settingTitleList[11], ref entryRect, ref mayorAgeCached, ref mayorAgeBuffer, settingTooltipList[11], 0f);        NumericEntry(ref titleRect, settingTitleList[12], ref entryRect, ref traitOpinionMultiplierCached, ref traitOpinionMultiplierBuffer, settingTooltipList[12], 0f, 2f);
         //float checkboxSize = 24f;
         //float HandleEntryPadding = 3f;
         //Dictionary<string, SpeciesSettings> selection = new Dictionary<string, SpeciesSettings>();
@@ -196,22 +196,14 @@ namespace Psychology;public static class SettingsWindowUtility{
 
         //string buffer;
 
-        Rect labelRect = new Rect(SpeciesX + HighlightPadding, Window.StandardMargin + UpperAreaHeight, SpeciesWidthList[0], RowHeight);        Rect psycheRect = new Rect(labelRect.xMax, labelRect.y, SpeciesWidthList[1], RowHeight);        Rect ageGapRect = new Rect(psycheRect.xMax, labelRect.y, SpeciesWidthList[2], RowHeight);        Rect minDatingAgeRect = new Rect(ageGapRect.xMax, labelRect.y, SpeciesWidthList[3], RowHeight);        Rect minLovinAgeRect = new Rect(minDatingAgeRect.xMax, labelRect.y, SpeciesWidthList[4], RowHeight);
+        Rect labelRect = new Rect(SpeciesX + HighlightPadding, yMin, SpeciesWidthList[0], RowHeight);        Rect psycheRect = new Rect(labelRect.xMax, labelRect.y, SpeciesWidthList[1], RowHeight);        Rect ageGapRect = new Rect(psycheRect.xMax, labelRect.y, SpeciesWidthList[2], RowHeight);        Rect minDatingAgeRect = new Rect(ageGapRect.xMax, labelRect.y, SpeciesWidthList[3], RowHeight);        Rect minLovinAgeRect = new Rect(minDatingAgeRect.xMax, labelRect.y, SpeciesWidthList[4], RowHeight);
 
-        //GenUI.SetLabelAlign(TextAnchor.MiddleCenter);
         Widgets.Label(labelRect, SpeciesTitleList[0]);        Widgets.Label(psycheRect, SpeciesTitleList[1]);        Widgets.Label(ageGapRect, SpeciesTitleList[2]);        Widgets.Label(minDatingAgeRect, SpeciesTitleList[3]);        Widgets.Label(minLovinAgeRect, SpeciesTitleList[4]);
-        //GenUI.SetLabelAlign(TextAnchor.MiddleLeft);
 
+        float columnHeight = RowHeight + HighlightPadding + SpeciesHeight;
+        ColumnHighlightAndTooltip(labelRect, columnHeight, "SpeciesSettingsTooltip".Translate());        ColumnHighlightAndTooltip(psycheRect, columnHeight, "EnablePsycheTooltip".Translate());        ColumnHighlightAndTooltip(ageGapRect, columnHeight, "EnableAgeGapTooltip".Translate());        ColumnHighlightAndTooltip(minDatingAgeRect, columnHeight, "MinDatingAgeTooltip".Translate());        ColumnHighlightAndTooltip(minLovinAgeRect, columnHeight, "MinLovinAgeTooltip".Translate());
 
-        //labelRect.x -= HighlightPadding;        //psycheRect.x -= HighlightPadding;        //ageGapRect.x -= HighlightPadding;        //minDatingAgeRect.x -= HighlightPadding;        //minLovinAgeRect.x -= HighlightPadding;
-        ColumnHighlightAndTooltip(labelRect, RowHeight + HighlightPadding + SpeciesHeight, "SpeciesSettingsTooltip".Translate());        ColumnHighlightAndTooltip(psycheRect, RowHeight + HighlightPadding + SpeciesHeight, "EnablePsycheTooltip".Translate());        ColumnHighlightAndTooltip(ageGapRect, RowHeight + HighlightPadding + SpeciesHeight, "EnableAgeGapTooltip".Translate());        ColumnHighlightAndTooltip(minDatingAgeRect, RowHeight + HighlightPadding + SpeciesHeight, "MinDatingAgeTooltip".Translate());        ColumnHighlightAndTooltip(minLovinAgeRect, RowHeight + HighlightPadding + SpeciesHeight, "MinLovinAgeTooltip".Translate());
-        //labelRect.x += HighlightPadding;
-        //psycheRect.x += HighlightPadding;
-        //ageGapRect.x += HighlightPadding;
-        //minDatingAgeRect.x += HighlightPadding;
-        //minLovinAgeRect.x += HighlightPadding;
-
-        UIAssets.DrawLineHorizontal(SpeciesRect.x, SpeciesRect.y - HighlightPadding, SpeciesRect.width, UIAssets.ModEntryLineColor);
+        UIAssets.DrawLineHorizontal(SpeciesRect.x, labelRect.yMax, SpeciesRect.width, UIAssets.ModEntryLineColor);
 
         labelRect.y += HighlightPadding;        psycheRect.y += HighlightPadding;        ageGapRect.y += HighlightPadding;        minDatingAgeRect.y += HighlightPadding;        minLovinAgeRect.y += HighlightPadding;
         Rect testHighlightRect = new Rect(0f, 0f, minLovinAgeRect.xMax - labelRect.x, labelRect.height);        Widgets.BeginScrollView(SpeciesRect, ref NodeScrollPosition, ViewRect);        labelRect.position = new Vector2(HighlightPadding, 0f);        psycheRect.position = new Vector2(labelRect.xMax, labelRect.y);        ageGapRect.position = new Vector2(psycheRect.xMax, labelRect.y);        minDatingAgeRect.position = new Vector2(ageGapRect.xMax, labelRect.y);
@@ -244,7 +236,7 @@ namespace Psychology;public static class SettingsWindowUtility{
             //rowHighlightRect.xMax = minLovinAgeRect.xMax;
             //Widgets.DrawHighlightIfMouseover(rowHighlightRect);
 
-            Widgets.DrawHighlightIfMouseover(testHighlightRect);            labelRect.y += RowHeight;            psycheVec.y += RowHeight;            ageGapVec.y += RowHeight;            minDatingAgeRect.y += RowHeight;            minLovinAgeRect.y += RowHeight;            testHighlightRect.y += RowHeight;        }        Widgets.EndScrollView();        UIAssets.DrawLineHorizontal(SpeciesRect.x, SpeciesRect.yMax + HighlightPadding, SpeciesRect.width, UIAssets.ModEntryLineColor);
+            Widgets.DrawHighlightIfMouseover(testHighlightRect);            labelRect.y += RowHeight;            psycheVec.y += RowHeight;            ageGapVec.y += RowHeight;            minDatingAgeRect.y += RowHeight;            minLovinAgeRect.y += RowHeight;            testHighlightRect.y += RowHeight;        }        Widgets.EndScrollView();        UIAssets.DrawLineHorizontal(SpeciesRect.x, labelRect.y + HighlightPadding, SpeciesRect.width, UIAssets.ModEntryLineColor);
 
         if (Widgets.ButtonText(ResetButtonRect, ResetButtonText, true, true))
         {
@@ -289,8 +281,8 @@ namespace Psychology;public static class SettingsWindowUtility{
 
         Rect SliderRect = customWeightEntryRect;
         SliderRect.x = customWeightEntryRect.center.x - 5f;
-        //SliderRect.yMin += HighlightPadding;
-        SliderRect.yMax -= RowHeight + HighlightPadding;
+        SliderRect.yMin += 1.5f * HighlightPadding;
+        SliderRect.yMax -= RowHeight + 0.5f * HighlightPadding;
 
         float val = kinseyWeightCustomCached[i];
         string buffer = kinseyWeightCustomBuffer[i];
@@ -338,7 +330,7 @@ namespace Psychology;public static class SettingsWindowUtility{
     }
 
     public static void SetAllCachedToSettings()    {        enableKinseyCached = PsychologySettings.enableKinsey;        kinseyFormulaCached = PsychologySettings.kinseyFormula;        kinseyWeightCustomCached.Clear();        kinseyWeightCustomBuffer.Clear();        foreach (float w in PsychologySettings.kinseyWeightCustom)        {            kinseyWeightCustomCached.Add(w);            kinseyWeightCustomBuffer.Add(w.ToString());        }        enableEmpathyCached = PsychologySettings.enableEmpathy;        enableIndividualityCached = PsychologySettings.enableIndividuality;        enableElectionsCached = PsychologySettings.enableElections;        enableDateLettersCached = PsychologySettings.enableDateLetters;        enableImprisonedDebuffCached = PsychologySettings.enableImprisonedDebuff;        enableAnxietyCached = PsychologySettings.enableAnxiety;        conversationDurationCached = PsychologySettings.conversationDuration;        conversationDurationBuffer = conversationDurationCached.ToString();        romanceChanceMultiplierCached = PsychologySettings.romanceChanceMultiplier;        romanceChanceMultiplierBuffer = romanceChanceMultiplierCached.ToString();        romanceOpinionThresholdCached = PsychologySettings.romanceOpinionThreshold;        romanceOpinionThresholdBuffer = romanceOpinionThresholdCached.ToString();        mayorAgeCached = PsychologySettings.mayorAge;        mayorAgeBuffer = mayorAgeCached.ToString();        traitOpinionMultiplierCached = PsychologySettings.traitOpinionMultiplier;        traitOpinionMultiplierBuffer = traitOpinionMultiplierCached.ToString();        speciesDictCached.Clear();        speciesBuffer.Clear();        foreach (ThingDef def in SpeciesHelper.humanlikeDefs)        {            string defName = def.defName;            SpeciesSettings settings = PsychologySettings.speciesDict[defName];            speciesDictCached.Add(defName, settings);            speciesBuffer.Add(defName, new List<string> { settings.minDatingAge.ToString(), settings.minLovinAge.ToString() });        }    }    public static void SaveAllSettings()    {        PsychologySettings.enableKinsey = enableKinseyCached;        PsychologySettings.kinseyFormula = kinseyFormulaCached;
-        PsychologySettings.kinseyWeightCustom.Clear();        foreach (float w in kinseyWeightCustomCached)        {            PsychologySettings.kinseyWeightCustom.Add(w);        }        PsychologySettings.enableEmpathy = enableEmpathyCached;        PsychologySettings.enableIndividuality = enableIndividualityCached;        PsychologySettings.enableElections = enableElectionsCached;        PsychologySettings.enableDateLetters = enableDateLettersCached;        PsychologySettings.enableImprisonedDebuff = enableImprisonedDebuffCached;        PsychologySettings.enableAnxiety = enableAnxietyCached;        PsychologySettings.conversationDuration = conversationDurationCached;        PsychologySettings.romanceChanceMultiplier = romanceChanceMultiplierCached;        PsychologySettings.romanceOpinionThreshold = romanceOpinionThresholdCached;        PsychologySettings.mayorAge = mayorAgeCached;        PsychologySettings.traitOpinionMultiplier = traitOpinionMultiplierCached;        PsychologySettings.speciesDict.Clear();        foreach (ThingDef def in SpeciesHelper.humanlikeDefs)        {            PsychologySettings.speciesDict.Add(def.defName, speciesDictCached[def.defName]);        }    }}
+        PsychologySettings.kinseyWeightCustom.Clear();        foreach (float w in kinseyWeightCustomCached)        {            PsychologySettings.kinseyWeightCustom.Add(w);        }        PsychologySettings.enableEmpathy = enableEmpathyCached;        PsychologySettings.enableIndividuality = enableIndividualityCached;        PsychologySettings.enableElections = enableElectionsCached;        PsychologySettings.enableDateLetters = enableDateLettersCached;        PsychologySettings.enableImprisonedDebuff = enableImprisonedDebuffCached;        PsychologySettings.enableAnxiety = enableAnxietyCached;        PsychologySettings.conversationDuration = Mathf.Max(conversationDurationCached, 15f);        PsychologySettings.romanceChanceMultiplier = romanceChanceMultiplierCached;        PsychologySettings.romanceOpinionThreshold = romanceOpinionThresholdCached;        PsychologySettings.mayorAge = mayorAgeCached;        PsychologySettings.traitOpinionMultiplier = traitOpinionMultiplierCached;        PsychologySettings.speciesDict.Clear();        foreach (ThingDef def in SpeciesHelper.humanlikeDefs)        {            PsychologySettings.speciesDict.Add(def.defName, speciesDictCached[def.defName]);        }    }}
 
 //public static string enableKinseyTitle = "SexualityChangesTitle".Translate();
 //public static string enableKinseyTooltip = "SexualityChangesTooltip".Translate();
