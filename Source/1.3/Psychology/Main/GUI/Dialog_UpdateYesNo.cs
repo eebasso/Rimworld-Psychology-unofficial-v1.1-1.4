@@ -51,7 +51,10 @@ public class Dialog_UpdateYesNo : Window{    public float windowRectWidth = 50
 
         if (Widgets.ButtonText(YesButtonRect, YesButtonText))
         {
-            PsycheHelper.GameComp.RandomizeUpbringingAndRatingsForAllPawns();
+            if (PsycheHelper.GameComp != null)
+            {
+                PsycheHelper.GameComp.RandomizeUpbringingAndRatingsForAllPawns();
+            }
             this.Close();
         }        if (Widgets.ButtonText(NoButtonRect, NoButtonText))
         {

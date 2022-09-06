@@ -103,6 +103,7 @@ public class CharacterEditor_DialogPsychology_Patch
 
     public static bool DoWindowContentsPrefix(Rect inRect)
     {
+        Rect oldRect = inRect;
         GUI.EndGroup();
         Pawn pawn = CharacterEditor.CEditor.API.Pawn;
 
@@ -111,7 +112,6 @@ public class CharacterEditor_DialogPsychology_Patch
             return false;
         }
 
-        //Rect psycheRect = PsycheCardUtility.CalculatePsycheRect(pawn);
         Rect psycheRect = PsycheCardUtility.PsycheRect;
         Rect editRect = new Rect(psycheRect.xMax, psycheRect.y, EditPsycheUtility.CalculateEditWidth(pawn), psycheRect.height);
 
@@ -127,6 +127,8 @@ public class CharacterEditor_DialogPsychology_Patch
         GUI.color = Color.white;
         GUI.EndGroup();
 
+        // Added this, might cause errors?
+        GUI.BeginGroup(oldRect);
         return false;
     }
 

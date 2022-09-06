@@ -8,7 +8,6 @@ namespace Psychology;public static class SettingsWindowUtility{
 
 
     public const float RowTopPadding = 3f;    public const float CheckboxSize = 24f;    public const float BoundaryPadding = 7f;    public const float HighlightPadding = 3.5f;
-    public const float ScrollBarWidth = 18f;
     public static float UpperAreaHeight = 35f;    public static float LowerAreaHeight = 44f;
     public static float RowHeight = 34f;
 
@@ -110,17 +109,25 @@ namespace Psychology;public static class SettingsWindowUtility{
         SpeciesNameList.Sort();
         float viewHeight = 0f;
         foreach (string name in SpeciesNameList)        {            SpeciesWidthList[0] = Mathf.Max(Text.CalcSize(name).x, SpeciesWidthList[0]);            viewHeight += RowHeight;        }
+        SpeciesY = Window.StandardMargin + UpperAreaHeight + RowHeight + HighlightPadding;        SpeciesWidth = WindowWidth - Window.StandardMargin - SpeciesX;        SpeciesHeight = WindowHeight - Window.StandardMargin - LowerAreaHeight - SpeciesY;
+
+        float scrollBarWidth = GenUI.ScrollBarWidth;
+        if (SpeciesHeight > viewHeight)
+        {
+            scrollBarWidth = 0f;
+            SpeciesHeight = viewHeight;
+        }
+
         SpeciesWidthList[0] = Mathf.Max(EntryWidth, SpeciesWidthList[0]);
         SpeciesWidthList[0] += 2f * HighlightPadding;
 
-        float shiftFactor = (WindowWidth - 2f * Window.StandardMargin - TitleWidth - EntryWidth - BoundaryPadding - SpeciesWidthList.Sum() - ScrollBarWidth) / 2f;        TitleWidth += shiftFactor;
+        float shiftFactor = (WindowWidth - 2f * Window.StandardMargin - TitleWidth - EntryWidth - BoundaryPadding - SpeciesWidthList.Sum() - scrollBarWidth) / 2f;        TitleWidth += shiftFactor;
         SpeciesWidthList[0] += shiftFactor;
 
-        LeftColumnWidth = TitleWidth + EntryWidth;        VerticalSliderWidth = LeftColumnWidth / 7f;        SpeciesX = Window.StandardMargin +  LeftColumnWidth + BoundaryPadding;        SpeciesY = Window.StandardMargin + UpperAreaHeight + RowHeight + HighlightPadding;        SpeciesWidth = WindowWidth - Window.StandardMargin - SpeciesX;        SpeciesHeight = WindowHeight - Window.StandardMargin - LowerAreaHeight  - SpeciesY;
-        SpeciesHeight = Mathf.Min(viewHeight, SpeciesHeight);
+        LeftColumnWidth = TitleWidth + EntryWidth;        VerticalSliderWidth = LeftColumnWidth / 7f;        SpeciesX = Window.StandardMargin +  LeftColumnWidth + BoundaryPadding;        
 
         SpeciesRect = new Rect(SpeciesX, SpeciesY, SpeciesWidth, SpeciesHeight);
-        ViewRect = new Rect(0f, 0f, SpeciesWidth - ScrollBarWidth, SpeciesHeight);
+        ViewRect = new Rect(0f, 0f, SpeciesWidth - scrollBarWidth, SpeciesHeight);
 
 
         //float recalcWidth = Mathf.Max(Window.CloseButSize.x, Text.CalcSize(UpdateButtonText).x + 20f);
@@ -136,10 +143,10 @@ namespace Psychology;public static class SettingsWindowUtility{
         //Widgets.DrawLineVertical(totalRect.center.x, totalRect.center.y - 1000f, 2000f);
         Widgets.EndGroup();
 
-        GUI.color = Color.blue;
-        Widgets.DrawLineHorizontal(totalRect.center.x + Window.StandardMargin - 1000f, totalRect.center.y, 2000f);
-        Widgets.DrawLineVertical(totalRect.center.x + Window.StandardMargin, totalRect.center.y - 1000f, 2000f);
-        GUI.color = Color.white;
+        //GUI.color = Color.blue;
+        //Widgets.DrawLineHorizontal(totalRect.center.x + Window.StandardMargin - 1000f, totalRect.center.y, 2000f);
+        //Widgets.DrawLineVertical(totalRect.center.x + Window.StandardMargin, totalRect.center.y - 1000f, 2000f);
+        //GUI.color = Color.white;
 
         GenUI.SetLabelAlign(TextAnchor.MiddleLeft);        Text.Font = GameFont.Small;        float xMin = Window.StandardMargin;        float yMin = Window.StandardMargin + UpperAreaHeight;
         //float xMin = Window.StandardMargin;
@@ -238,19 +245,19 @@ namespace Psychology;public static class SettingsWindowUtility{
 
             Widgets.DrawHighlightIfMouseover(testHighlightRect);            labelRect.y += RowHeight;            psycheVec.y += RowHeight;            ageGapVec.y += RowHeight;            minDatingAgeRect.y += RowHeight;            minLovinAgeRect.y += RowHeight;            testHighlightRect.y += RowHeight;        }        Widgets.EndScrollView();        UIAssets.DrawLineHorizontal(SpeciesRect.x, SpeciesRect.yMax + HighlightPadding, SpeciesRect.width, UIAssets.ModEntryLineColor);
 
-        if (Widgets.ButtonText(ResetButtonRect, ResetButtonText))
+        if (Widgets.ButtonText(ResetButtonRect, ResetButtonText, true, true))
         {
             PsychologySettings.ResetAllSettings();
             SetAllCachedToSettings();
         }
 
-        if (Widgets.ButtonText(UpdateButtonRect, UpdateButtonText))
+        if (Widgets.ButtonText(UpdateButtonRect, UpdateButtonText, true, true))
         {
             Find.WindowStack.Add(new Dialog_UpdateYesNo());
         }
 
-        UIAssets.DrawLineHorizontal(ResetButtonRect.x, ResetButtonRect.y, UpdateButtonRect.xMax - ResetButtonRect.x, UIAssets.ModEntryLineColor);
-        UIAssets.DrawLineHorizontal(ResetButtonRect.x, ResetButtonRect.yMax, UpdateButtonRect.xMax - ResetButtonRect.x, UIAssets.ModEntryLineColor);
+        //UIAssets.DrawLineHorizontal(ResetButtonRect.x, ResetButtonRect.y, UpdateButtonRect.xMax - ResetButtonRect.x, UIAssets.ModEntryLineColor);
+        //UIAssets.DrawLineHorizontal(ResetButtonRect.x, ResetButtonRect.yMax, UpdateButtonRect.xMax - ResetButtonRect.x, UIAssets.ModEntryLineColor);
 
         GenUI.ResetLabelAlign();        SaveAllSettings();        Widgets.BeginGroup(totalRect);    }    public static void CheckboxEntry(ref Rect titleRect, string title, ref Rect entryRect, ref bool enableCached, string tooltip)    {        Widgets.Label(titleRect, title);        Widgets.Checkbox(entryRect.x, entryRect.center.y - 0.5f * CheckboxSize, ref enableCached);        Rect highlightRect = titleRect;        highlightRect.xMin -= HighlightPadding;        highlightRect.xMax = entryRect.xMax + HighlightPadding;        Widgets.DrawHighlightIfMouseover(highlightRect);        TooltipHandler.TipRegion(highlightRect, delegate        {            return tooltip;        }, tooltip.GetHashCode());        titleRect.y += RowHeight;        entryRect.y += RowHeight;    }    public static void NumericEntry(ref Rect titleRect, string title, ref Rect entryRect, ref float numericCached, ref string numericBuffer, string tooltip, float min = 0f, float max = 1E+09f)    {        Widgets.Label(titleRect, title);
         //numericBuffer = Widgets.TextField(entryRect, numericBuffer);
@@ -281,7 +288,7 @@ namespace Psychology;public static class SettingsWindowUtility{
 
         Rect SliderRect = customWeightEntryRect;
         SliderRect.x = customWeightEntryRect.center.x - 5f;
-        SliderRect.yMin += HighlightPadding;
+        //SliderRect.yMin += HighlightPadding;
         SliderRect.yMax -= RowHeight + HighlightPadding;
 
         float val = kinseyWeightCustomCached[i];

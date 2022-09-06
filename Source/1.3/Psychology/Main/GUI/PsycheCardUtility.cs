@@ -8,7 +8,7 @@ using UnityEditor;
 
 namespace Psychology;
 
-//[StaticConstructorOnStartup]
+[StaticConstructorOnStartup]
 public class PsycheCardUtility
 {
     public static Rect PsycheRect = new Rect(0f, 0f, 1f, 1f);
@@ -128,8 +128,7 @@ public class PsycheCardUtility
     public static readonly Vector3[] CreativeHSVs = { new Vector3(0f, 0.9f, 1f), new Vector3(30f, 1f, 1f), new Vector3(55f, 0.9f, 0.85f), new Vector3(120f, 0.8f, 0.8f), new Vector3(195f, 1f, 1f), new Vector3(210f, 1f, 1f), new Vector3(280f, 0.8f, 1f), new Vector3(305f, 1f, 0.85f) };
     public static string CreativeRainbow = "";
 
-    //static PsycheCardUtility()
-    public static void Initialize()
+    static PsycheCardUtility()
     {
         DistanceFromMiddle = PsychologySettings.displayOption;
         DistanceFromMiddleCached = PsychologySettings.displayOption;

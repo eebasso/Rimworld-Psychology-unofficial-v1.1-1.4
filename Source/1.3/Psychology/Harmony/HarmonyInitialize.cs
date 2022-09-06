@@ -8,13 +8,12 @@ using System.Reflection;
 
 namespace Psychology.Harmony;
 
-//[StaticConstructorOnStartup]
+[StaticConstructorOnStartup]
 public static class HarmonyInitialize
 {
     public static HarmonyLib.Harmony harmonyInstance;
 
-    //static HarmonyInitialize()
-    public static void Initialize()
+    static HarmonyInitialize()
     {
         //Log.Message("Initializing Psychology Patches");
         harmonyInstance = new HarmonyLib.Harmony("Community.Psychology.UnofficialUpdate");

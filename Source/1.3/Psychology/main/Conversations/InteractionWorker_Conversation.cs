@@ -15,16 +15,18 @@ public class InteractionWorker_Conversation : InteractionWorker
     //[LogPerformance]
     public override float RandomSelectionWeight(Pawn initiator, Pawn recipient)
     {
-        Log.Message("RandomSelectionWeight");
+        Log.Message("InteractionWorker_Conversation.RandomSelectionWeight, initiator " + initiator.LabelShort + ", recipient " + recipient.LabelShort + ", start");
         if (!PsycheHelper.PsychologyEnabled(initiator) || !PsycheHelper.PsychologyEnabled(recipient))
         {
+            Log.Message("InteractionWorker_Conversation.RandomSelectionWeight, initiator " + initiator.LabelShort + ", recipient " + recipient.LabelShort + ", enabled");
             return 0f;
         }
+        
         if (!initiator.health.capacities.CapableOf(PawnCapacityDefOf.Talking) || !recipient.health.capacities.CapableOf(PawnCapacityDefOf.Talking))
         {
             return 0f;
         }
-        Log.Message("Start");
+        Log.Message("InteractionWorker_Conversation.RandomSelectionWeight, initiator " + initiator.LabelShort + ", recipient " + recipient.LabelShort + ", talking");
         //float baseChance = 0.45f;
         //Lord lord = LordUtility.GetLord(initiator);
         //if (lord != null && (lord.LordJob is LordJob_HangOut || lord.LordJob is LordJob_Date) && LordUtility.GetLord(recipient) == lord)
@@ -50,7 +52,7 @@ public class InteractionWorker_Conversation : InteractionWorker
         chanceFactor += PsycheHelper.Comp(initiator).Psyche.GetPersonalityRating(PersonalityNodeDefOf.Extroverted) - 0.5f;
         chanceFactor += PsycheHelper.Comp(initiator).Psyche.GetPersonalityRating(PersonalityNodeDefOf.Outspoken) - 0.5f;
         float successChance = 1f / (1f + Mathf.Pow(16f, -chanceFactor));
-        Log.Message("InteractionWorker_Conversation.RandomSelectionWeight = " + successChance);
+        Log.Message("InteractionWorker_Conversation.RandomSelectionWeight, initiator " + initiator.LabelShort + ", recipient " + recipient.LabelShort + ", successChance " + successChance);
         return successChance;
     }
 

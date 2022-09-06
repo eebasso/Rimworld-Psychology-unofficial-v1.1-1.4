@@ -21,7 +21,7 @@ public static class PsycheHelper
     };
     public static HashSet<string> TraitDefNamesThatAffectPsyche = new HashSet<string>();
     public static HashSet<string> SkillDefNamesThatAffectPsyche = new HashSet<string>();
-    //public static HashSet<string> PsycheEnabledSpeciesList = new HashSet<string>();
+    public static HashSet<string> PsycheEnabledSpeciesList = new HashSet<string>();
 
     public static bool PsychologyEnabled(Pawn pawn)
     {
@@ -29,10 +29,10 @@ public static class PsycheHelper
         //return pawn.GetComp<CompPsychology>() != null;
     }
 
-    //public static bool PsychologyEnabledFast(Pawn pawn)
-    //{
-    //    return pawn != null && PsycheEnabledSpeciesList.Contains(pawn.def.defName);
-    //}
+    public static bool PsychologyEnabledFast(Pawn pawn)
+    {
+        return pawn != null && PsycheEnabledSpeciesList.Contains(pawn.def.defName);
+    }
 
     public static CompPsychology Comp(Pawn pawn)
     {
@@ -89,17 +89,16 @@ public static class PsycheHelper
         }
     }
 
-    //public static void InitializePsycheEnabledSpeciesList()
-    //{
-    //    PsycheEnabledSpeciesList.Clear();
-    //    foreach (KeyValuePair<string, SpeciesSettings> kvp in PsychologySettings.speciesDict)
-    //    {
-    //        if (kvp.Value.enablePsyche)
-    //        {
-    //            PsycheEnabledSpeciesList.Add(kvp.Key);
-    //        }
-    //    }
-    //}
+    public static void InitializePsycheEnabledSpeciesList()
+    {
+        foreach (KeyValuePair<string, SpeciesSettings> kvp in PsychologySettings.speciesDict)
+        {
+            if (kvp.Value.enablePsyche)
+            {
+                PsycheEnabledSpeciesList.Add(kvp.Key);
+            }
+        }
+    }
 
     public static float DatingAgeToVanilla(float customAge, float minDatingAge)
     {
@@ -219,7 +218,7 @@ public static class PsycheHelper
 
     public static void CorrectTraitsForPawnKinseyDisabled(Pawn pawn)
     {
-        if (pawn.story == null || !PsycheHelper.PsychologyEnabled(pawn))
+        if (pawn.story == null || !PsycheHelper.PsychologyEnabledFast(pawn))
         {
             return;
         }
@@ -268,5 +267,7 @@ public static class PsycheHelper
     {
         pawn.story.traits.allTraits.RemoveAll(t => t.def == traitDef);
     }
+
+
 
 }

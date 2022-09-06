@@ -23,20 +23,34 @@ public class ThoughtWorker_Individuality : ThoughtWorker
         if (p.apparel.PsychologicallyNude)
             return ThoughtState.Inactive;
 
+        bool flag = false;
+        if (!lastTick.ContainsKey(p))
+        {
+            lastTick.Add(p, new[] { p.GetHashCode() % 250, -1 });
+            flag = true;
+        }
         lastTick[p][0]--;
-        if (!lastTick.ContainsKey(p) || lastTick[p][0] < 0)
+        if (lastTick[p][0] < 0)
         {
             lastTick[p][0] = 250;
+            flag = true;
+        }
+        
+        if (flag)
+        {
             List<Thought> tmpThoughts = new List<Thought>();
             p.needs.mood.thoughts.GetAllMoodThoughts(tmpThoughts);
 
             // Added fix to disable for low expectations
+            
             IEnumerable<int> stagesList = from t in tmpThoughts
                                           where t.def.defName == "Expectations"
                                           select t.CurStageIndex;
-            if (!stagesList.EnumerableNullOrEmpty())
+            Log.Message(p.LabelShort + ": stagesList.Count() = " + stagesList.Count());
+            if (stagesList.Count() > 0)
             {
-                if (stagesList.First() < 3)
+                Log.Message(p.LabelShort + ": stagesList.First() = " + stagesList.First());
+                if (stagesList.First() < 4)
                 {
                     return ThoughtState.Inactive;
                 }
@@ -46,6 +60,7 @@ public class ThoughtWorker_Individuality : ThoughtWorker
             //    return ThoughtState.Inactive;
             //}
 
+            // Might be faster to find the opposite
             Func<Apparel, bool> identical = delegate (Apparel x)
             {
                 foreach (Apparel a in p.apparel.WornApparel)
@@ -59,29 +74,31 @@ public class ThoughtWorker_Individuality : ThoughtWorker
                                           where c != p
                                           select c;
             IEnumerable<Pawn> sameClothes = from c in colonists
-                                            where (from a in c.apparel.WornApparel
-                                                   where identical(a)
-                                                   select a).Count() == p.apparel.WornApparelCount && p.apparel.WornApparelCount == c.apparel.WornApparelCount
+                                            where (from x in c.apparel.WornApparel
+                                                   where identical(x)
+                                                   select x).Count() == p.apparel.WornApparelCount && p.apparel.WornApparelCount == c.apparel.WornApparelCount
                                             select c;
-            if (sameClothes.Count() == colonists.Count() && colonists.Count() > 5)
+            int sameClothesCount = sameClothes.Count();
+            int colonistsCount = colonists.Count();
+            if (sameClothesCount == colonistsCount && colonistsCount > 5)
             {
-                lastTick[p] = new int[] { Find.TickManager.TicksGame, 3 };
+                lastTick[p][1] = 3;
             }
-            else if (sameClothes.Count() >= (colonists.Count() / 2) && colonists.Count() > 5)
+            else if (sameClothesCount >= (colonistsCount / 2) && colonistsCount > 5)
             {
-                lastTick[p] = new int[] { Find.TickManager.TicksGame, 2 };
+                lastTick[p][1] = 2;
             }
-            else if (sameClothes.Count() > 1)
+            else if (sameClothesCount > 1)
             {
-                lastTick[p] = new int[] { Find.TickManager.TicksGame, 1 };
+                lastTick[p][1] = 1;
             }
-            else if (sameClothes.Count() > 0)
+            else if (sameClothesCount > 0)
             {
-                lastTick[p] = new int[] { Find.TickManager.TicksGame, 0 };
+                lastTick[p][1] = 0;
             }
             else
             {
-                lastTick[p] = new int[] { Find.TickManager.TicksGame, -1 };
+                lastTick[p][1] = -1;
             }
         }
         if (lastTick[p][1] >= 0)

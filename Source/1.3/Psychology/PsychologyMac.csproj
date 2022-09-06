@@ -223,7 +223,6 @@
     <Compile Include="Main\CustomXMLPatchOperations.cs" />
     <Compile Include="Main\Personality\PersonalityNodeParentMatrix.cs" />
     <Compile Include="Main\Personality\PersonalityNodeTenAspects.cs" />
-    <Compile Include="Main\Elections\MayorUtility.cs" />
     <Compile Include="Harmony\Misc\Dialog_FormCaravan.cs" />
     <Compile Include="Harmony\Misc\Building_Grave.cs" />
     <Compile Include="Harmony\Misc\MapParent.cs" />
@@ -804,9 +803,9 @@
       <Link>Common\Languages\ChineseTraditional\LanguageInfo.xml</Link>
     </None>
   </ItemGroup>
-  <ItemGroup>
+  <!-- <ItemGroup>
     <Folder Include="Harmony\OtherMods\" />
-  </ItemGroup>
+  </ItemGroup> -->
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

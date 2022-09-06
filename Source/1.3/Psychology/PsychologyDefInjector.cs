@@ -13,13 +13,12 @@ using HarmonyLib;
 
 namespace Psychology;
 
-//[StaticConstructorOnStartup]
+[StaticConstructorOnStartup]
 public static class PsychologyDefInjector
 {
     public static Backstory child = new Backstory();
 
-    //static PsychologyDefInjector()
-    public static void Initialize()
+    static PsychologyDefInjector()
     {
         /* Conditional vanilla Def edits */
         ThoughtDef knowGuestExecuted = AddNullifyingTraits("KnowGuestExecuted", new TraitDef[] { TraitDefOfPsychology.BleedingHeart });
