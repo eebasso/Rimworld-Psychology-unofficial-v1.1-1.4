@@ -5,18 +5,15 @@ using System.Linq;
 using Verse;
 using UnityEngine;
 using System.Diagnostics;
-using System.Security.Cryptography;
 
 namespace Psychology;
 
-//[StaticConstructorOnStartup]
+[StaticConstructorOnStartup]
 public class PersonalityNodeParentMatrix
 {
     public static List<PersonalityNodeDef> defList;
     public static Dictionary<PersonalityNodeDef, int> indexDict;
-    // This label of "parent" is misleading, as every personality node is now on an equal footing.
-    // The "parent-child" relationship between nodes now creates symmetric correlations between them
-    // It should probably just be called "siblings" instead of "parents."
+    public static Dictionary<int, float[]> PartiaProjectionMatrixDict;
     public static float[] parentModifierMatrix;
     public static float[] parentTransformMatrix;
     public static int order;
@@ -24,8 +21,7 @@ public class PersonalityNodeParentMatrix
     public static List<float[]> bigFiveVectors = new List<float[]>();
     public static float[] bigFiveStandardDevInvs = new float[5];
 
-    //static PersonalityNodeParentMatrix()
-    public static void Initialize()
+    static PersonalityNodeParentMatrix()
     {
         Stopwatch stopwatch = new Stopwatch();
         stopwatch.Start();
@@ -50,12 +46,13 @@ public class PersonalityNodeParentMatrix
         //Log.Message("y = " + String.Join(", ", y));
 
         //Log.Message("Initialize parentModifierMatrix");
-
-        
         parentModifierMatrix = IdentityMatrix(order);
+        int index = 0;
         foreach (PersonalityNodeDef def in defList)
         {
-            indexDict.Add(def, defList.FindIndex(x => x == def));
+            //Log.Message("indexDict gained element: (" + index + ", " + def.defName + ")");
+            indexDict.Add(def, index);
+            index++;
         }
         //Log.Message("Adding elements to parentModifierMatrix");
         foreach (PersonalityNodeDef def in defList)
@@ -76,9 +73,10 @@ public class PersonalityNodeParentMatrix
         {
             float norm = 0f;
             float[] vector = new float[order];
-            for (int n = 0; n < order; n++)
+            foreach (PersonalityNodeDef def in defList)
             {
-                float modifier = defList[n].bigFiveModifiers[bf];
+                int n = indexDict[def];
+                float modifier = def.bigFiveModifiers[bf];
                 vector[n] = modifier;
                 norm += modifier * modifier;
             }
@@ -98,16 +96,10 @@ public class PersonalityNodeParentMatrix
         {
             float norm = 0f;
             float[] vector = new float[order];
-            //foreach (PersonalityNodeDef def in defList)
-            //{
-            //    float weight = def.TenAspects[t];
-            //    vector[indexDict[def]] = weight;
-            //    norm += weight * weight;
-            //}
-            for (int i = 0; i < order; i++)
+            foreach (PersonalityNodeDef def in defList)
             {
-                float weight = defList[i].TenAspects[t];
-                vector[i] = weight;
+                float weight = def.TenAspects[t];
+                vector[indexDict[def]] = weight;
                 norm += weight * weight;
             }
             tenAspectsWeights.Add(vector);
@@ -810,9 +802,9 @@ public class PersonalityNodeParentMatrix
             // Map from uniformly random from 0 to 1 to normally distributed random
             x[i] = PsycheHelper.NormalCDFInv(ratingList[i]);
         }
-        // We need 5 bits for the five factors, which is gives 2^5 = 32 Categories
         int[] upbringingBit = PsycheHelper.GetBitArray(upbringing, 5);
-        float upbringingDisplacement = 0.1f; // This number could be a setting
+        float upbringingDisplacement = 0.1f; // This number should be a setting
+
 
         float[] FinvGFVxMinusVx = new float[5];
         for (int bf = 0; bf < 5; bf++)

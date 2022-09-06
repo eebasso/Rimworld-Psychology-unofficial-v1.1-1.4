@@ -39,17 +39,22 @@ namespace Psychology
         //[LogPerformance]
         public void Initialize(int inputSeed = 0)
         {
-            //Log.Message("Initialize() Pawn_PsycheTracker for " + pawn.LabelShortCap);
+            Log.Message("Initialize() Pawn_PsycheTracker");
+            Log.Message("Initialize() Pawn_PsycheTracker for " + pawn.LabelShortCap);
             this.nodes = new HashSet<PersonalityNode>();
+            Log.Message("Initialize() Pawn_PsycheTracker for " + pawn.LabelShortCap + ", step 1");
             foreach (PersonalityNodeDef def in PersonalityNodeParentMatrix.defList)
             {
                 nodes.Add(PersonalityNodeMaker.MakeNode(def, this.pawn));
             }
+            Log.Message("Initialize() Pawn_PsycheTracker for " + pawn.LabelShortCap + ", step 2");
             RandomizeUpbringingAndRatings(inputSeed);
+            Log.Message("Initialize() Pawn_PsycheTracker for " + pawn.LabelShortCap + ", step 3");
             foreach (PersonalityNode n in this.nodes)
             {
                 nodeDict[n.def] = n;
             }
+            Log.Message("Initialize() Pawn_PsycheTracker for " + pawn.LabelShortCap + ", step 4");
         }
 
         public void RandomizeUpbringingAndRatings(int inputSeed = 0)
