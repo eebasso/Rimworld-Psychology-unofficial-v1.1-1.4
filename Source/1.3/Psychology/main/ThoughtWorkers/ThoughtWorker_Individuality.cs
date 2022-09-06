@@ -23,13 +23,29 @@ public class ThoughtWorker_Individuality : ThoughtWorker
         if (p.apparel.PsychologicallyNude)
             return ThoughtState.Inactive;
 
-        List<Thought> tmpThoughts = new List<Thought>();
-        p.needs.mood.thoughts.GetAllMoodThoughts(tmpThoughts);
-        if (tmpThoughts.Find(t => t.def.defName == "LowExpectations") != null)
-            return ThoughtState.Inactive;
-
-        if (!lastTick.ContainsKey(p) || Find.TickManager.TicksGame - 250 > lastTick[p][0])
+        lastTick[p][0]--;
+        if (!lastTick.ContainsKey(p) || lastTick[p][0] < 0)
         {
+            lastTick[p][0] = 250;
+            List<Thought> tmpThoughts = new List<Thought>();
+            p.needs.mood.thoughts.GetAllMoodThoughts(tmpThoughts);
+
+            // Added fix to disable for low expectations
+            IEnumerable<int> stagesList = from t in tmpThoughts
+                                          where t.def.defName == "Expectations"
+                                          select t.CurStageIndex;
+            if (!stagesList.EnumerableNullOrEmpty())
+            {
+                if (stagesList.First() < 3)
+                {
+                    return ThoughtState.Inactive;
+                }
+            }
+            //if (tmpThoughts.Find(t => t.def.defName == "LowExpectations") != null)
+            //{
+            //    return ThoughtState.Inactive;
+            //}
+
             Func<Apparel, bool> identical = delegate (Apparel x)
             {
                 foreach (Apparel a in p.apparel.WornApparel)
