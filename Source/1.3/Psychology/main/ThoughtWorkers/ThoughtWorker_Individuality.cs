@@ -10,9 +10,10 @@ public class ThoughtWorker_Individuality : ThoughtWorker
 {
     Dictionary<Pawn, int[]> lastTick = new Dictionary<Pawn, int[]>();
 
-    //[LogPerformance]
     public override ThoughtState CurrentStateInternal(Pawn p)
     {
+        if (!PsychologySettings.enableIndividuality)
+            return ThoughtState.Inactive;
         if (!p.Spawned)
             return ThoughtState.Inactive;
         if (p.Map == null)
@@ -21,12 +22,12 @@ public class ThoughtWorker_Individuality : ThoughtWorker
             return ThoughtState.Inactive;
         if (p.apparel.PsychologicallyNude)
             return ThoughtState.Inactive;
+
         List<Thought> tmpThoughts = new List<Thought>();
         p.needs.mood.thoughts.GetAllMoodThoughts(tmpThoughts);
         if (tmpThoughts.Find(t => t.def.defName == "LowExpectations") != null)
             return ThoughtState.Inactive;
-        if (!PsychologySettings.enableIndividuality)
-            return ThoughtState.Inactive;
+
         if (!lastTick.ContainsKey(p) || Find.TickManager.TicksGame - 250 > lastTick[p][0])
         {
             Func<Apparel, bool> identical = delegate (Apparel x)
@@ -38,14 +39,14 @@ public class ThoughtWorker_Individuality : ThoughtWorker
                 }
                 return false;
             };
-            IEnumerable<Pawn> colonists = (from c in p.Map.mapPawns.FreeColonistsSpawned
-                                           where c != p
-                                           select c);
-            IEnumerable<Pawn> sameClothes = (from c in colonists
-                                             where (from a in c.apparel.WornApparel
-                                                    where identical(a)
-                                                    select a).Count() == p.apparel.WornApparelCount && p.apparel.WornApparelCount == c.apparel.WornApparelCount
-                                             select c);
+            IEnumerable<Pawn> colonists = from c in p.Map.mapPawns.FreeColonistsSpawned
+                                          where c != p
+                                          select c;
+            IEnumerable<Pawn> sameClothes = from c in colonists
+                                            where (from a in c.apparel.WornApparel
+                                                   where identical(a)
+                                                   select a).Count() == p.apparel.WornApparelCount && p.apparel.WornApparelCount == c.apparel.WornApparelCount
+                                            select c;
             if (sameClothes.Count() == colonists.Count() && colonists.Count() > 5)
             {
                 lastTick[p] = new int[] { Find.TickManager.TicksGame, 3 };
@@ -74,5 +75,5 @@ public class ThoughtWorker_Individuality : ThoughtWorker
         return ThoughtState.Inactive;
     }
 
-    
+
 }

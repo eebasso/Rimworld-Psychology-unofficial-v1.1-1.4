@@ -15,6 +15,7 @@ public class InteractionWorker_Conversation : InteractionWorker
     //[LogPerformance]
     public override float RandomSelectionWeight(Pawn initiator, Pawn recipient)
     {
+        Log.Message("RandomSelectionWeight");
         if (!PsycheHelper.PsychologyEnabled(initiator) || !PsycheHelper.PsychologyEnabled(recipient))
         {
             return 0f;
@@ -23,6 +24,7 @@ public class InteractionWorker_Conversation : InteractionWorker
         {
             return 0f;
         }
+        Log.Message("Start");
         //float baseChance = 0.45f;
         //Lord lord = LordUtility.GetLord(initiator);
         //if (lord != null && (lord.LordJob is LordJob_HangOut || lord.LordJob is LordJob_Date) && LordUtility.GetLord(recipient) == lord)
@@ -47,8 +49,9 @@ public class InteractionWorker_Conversation : InteractionWorker
         //chanceFactor += PsycheHelper.Comp(recipient).Psyche.GetPersonalityRating(PersonalityNodeDefOf.Friendly) - 0.5f;
         chanceFactor += PsycheHelper.Comp(initiator).Psyche.GetPersonalityRating(PersonalityNodeDefOf.Extroverted) - 0.5f;
         chanceFactor += PsycheHelper.Comp(initiator).Psyche.GetPersonalityRating(PersonalityNodeDefOf.Outspoken) - 0.5f;
-
-        return 1f / (1f + Mathf.Pow(16f, -chanceFactor));
+        float successChance = 1f / (1f + Mathf.Pow(16f, -chanceFactor));
+        Log.Message("InteractionWorker_Conversation.RandomSelectionWeight = " + successChance);
+        return successChance;
     }
 
     //[LogPerformance]

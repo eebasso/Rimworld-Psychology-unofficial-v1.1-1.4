@@ -70,29 +70,17 @@ public class PersonalityNodeDef : Def
     {
         get
         {
-            //Log.Message("Inside PersonalityNodeDef.ParentNodes for " + this.label);
             if (this.parentDict == null)
             {
-                //Log.Message("this.parendDict was null");
                 this.parentDict = new Dictionary<PersonalityNodeDef, PersonalityNodeParent>();
-                //Log.Message("Initialized this.parentDict");
                 if (this.parents != null && this.parents.Count > 0)
                 {
-                    //Log.Message("Inside if (this.parents != null && this.parents.Count > 0)");
                     foreach (PersonalityNodeParent parent in this.parents)
                     {
-                        //Log.Message("Adding " + parent.node.label + " to " + this.label);
                         this.parentDict.Add(parent.node, parent);
-                        //Log.Message("Added " + parent.node.label + " to " + this.label);
                     }
                 }
             }
-            //Log.Message("Finished PersonalityNodeDef.ParentNodes for " + this.label);
-            //Log.Message("this.parentDict contains:");
-            //foreach (KeyValuePair<PersonalityNodeDef, PersonalityNodeParent> thing in this.parentDict)
-            //{
-            //    Log.Message("{" + thing.Key.label + ", " + thing.Value.node.label + "}");
-            //}
             return parentDict;
         }
     }

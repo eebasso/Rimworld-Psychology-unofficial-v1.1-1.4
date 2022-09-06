@@ -8,6 +8,7 @@
 	<AbilityIdeoConvertBreakdownPsychologyEffects>Personality</AbilityIdeoConvertBreakdownPsychologyEffects>
 
 	<AbilityIdeoConvertBreakdownPawnCompatWithIdeo>{PAWN_labelShort}'s compatiblity with {IDEO}</AbilityIdeoConvertBreakdownPawnCompatWithIdeo>
+
 	<AbilityIdeoConvertBreakdownPawnIncompatWithIdeo>{PAWN_labelShort}'s incompatiblity with {IDEO}</AbilityIdeoConvertBreakdownPawnIncompatWithIdeo>
 
 	<!-- WITab title -->

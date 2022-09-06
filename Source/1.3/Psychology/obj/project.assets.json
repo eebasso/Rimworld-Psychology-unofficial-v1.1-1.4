@@ -2,7 +2,7 @@
   "version": 3,
   "targets": {
     ".NETFramework,Version=v4.7.2": {
-      "Krafs.Publicizer/2.0.0": {
+      "Krafs.Publicizer/2.0.1": {
         "type": "package",
         "contentFiles": {
           "contentfiles/cs/any/Publicizer/IgnoresAccessChecksToAttribute.cs": {
@@ -18,7 +18,7 @@
       }
     },
     ".NETFramework,Version=v4.7.2/win": {
-      "Krafs.Publicizer/2.0.0": {
+      "Krafs.Publicizer/2.0.1": {
         "type": "package",
         "contentFiles": {
           "contentfiles/cs/any/Publicizer/IgnoresAccessChecksToAttribute.cs": {
@@ -34,7 +34,7 @@
       }
     },
     ".NETFramework,Version=v4.7.2/win-x64": {
-      "Krafs.Publicizer/2.0.0": {
+      "Krafs.Publicizer/2.0.1": {
         "type": "package",
         "contentFiles": {
           "contentfiles/cs/any/Publicizer/IgnoresAccessChecksToAttribute.cs": {
@@ -50,7 +50,7 @@
       }
     },
     ".NETFramework,Version=v4.7.2/win-x86": {
-      "Krafs.Publicizer/2.0.0": {
+      "Krafs.Publicizer/2.0.1": {
         "type": "package",
         "contentFiles": {
           "contentfiles/cs/any/Publicizer/IgnoresAccessChecksToAttribute.cs": {
@@ -67,10 +67,10 @@
     }
   },
   "libraries": {
-    "Krafs.Publicizer/2.0.0": {
-      "sha512": "lWdII1XO446mzfavplSLY6HAM0pkZgptyzYnpxEjNBfOlO1qpNP/XjrGGYpJfAJcChAVD0UOjGDNWhjpnmCL+A==",
+    "Krafs.Publicizer/2.0.1": {
+      "sha512": "X8swN3Wq42/g6HBrdx6B0BNBJzxVyLmrKdZNp6YYafTm5GTSh9WSVDm1Z3qtR4Qmjoe9NF1wN0QNFuoBLpmoaQ==",
       "type": "package",
-      "path": "krafs.publicizer/2.0.0",
+      "path": "krafs.publicizer/2.0.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -81,14 +81,14 @@
         "build/net472/dnlib.dll",
         "contentfiles/cs/any/Publicizer/IgnoresAccessChecksToAttribute.cs",
         "icon.png",
-        "krafs.publicizer.2.0.0.nupkg.sha512",
+        "krafs.publicizer.2.0.1.nupkg.sha512",
         "krafs.publicizer.nuspec"
       ]
     }
   },
   "projectFileDependencyGroups": {
     ".NETFramework,Version=v4.7.2": [
-      "Krafs.Publicizer >= 2.0.0"
+      "Krafs.Publicizer >= 2.0.1"
     ]
   },
   "packageFolders": {
@@ -127,7 +127,7 @@
             "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
             "suppressParent": "All",
             "target": "Package",
-            "version": "[2.0.0, )"
+            "version": "[2.0.1, )"
           }
         }
       }

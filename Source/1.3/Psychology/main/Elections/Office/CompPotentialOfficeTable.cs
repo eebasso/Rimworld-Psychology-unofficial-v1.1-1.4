@@ -75,7 +75,7 @@ namespace Psychology
         {
             Command_Toggle com = new Command_Toggle();
             com.defaultLabel = "CommandOfficeTableToggleLabel".Translate();
-            com.icon = PsychologyTexCommand.OfficeTable;
+            com.icon = UIAssets.OfficeTable;
             com.isActive = () => Active;
             com.toggleAction = () => Active = !Active;
 

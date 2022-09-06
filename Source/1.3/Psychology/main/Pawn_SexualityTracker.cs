@@ -21,7 +21,6 @@ public class Pawn_SexualityTracker : IExposable
     public Pawn_SexualityTracker(Pawn pawn)
     {
         this.pawn = pawn;
-        GenerateSexuality();
     }
 
     //[LogPerformance]
@@ -45,10 +44,15 @@ public class Pawn_SexualityTracker : IExposable
 
     public virtual void ExposeData()
     {
+        Log.Message("Pawn_SexualityTracker.ExposeData() for " + pawn.LabelShort + " Step 0");
         Scribe_Values.Look(ref this.kinseyRating, "kinseyRating", 0, false);
+        Log.Message("Pawn_SexualityTracker.ExposeData() for " + pawn.LabelShort + " Step 1");
         Scribe_Values.Look(ref this.sexDrive, "sexDrive", 1, false);
+        Log.Message("Pawn_SexualityTracker.ExposeData() for " + pawn.LabelShort + " Step 2");
         Scribe_Values.Look(ref this.romanticDrive, "romanticDrive", 1, false);
+        Log.Message("Pawn_SexualityTracker.ExposeData() for " + pawn.LabelShort + " Step 3");
         Scribe_Collections.Look(ref this.knownSexualities, "knownSexualities", LookMode.Reference, LookMode.Value, ref this.knownSexualitiesWorkingKeys, ref this.knownSexualitiesWorkingValues);
+        Log.Message("Pawn_SexualityTracker.ExposeData() for " + pawn.LabelShort + " Step 4");
     }
 
     //public virtual void GenerateSexuality(int inputSeed = 0)

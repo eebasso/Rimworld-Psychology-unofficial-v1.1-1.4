@@ -105,7 +105,7 @@ namespace Psychology
             StringBuilder issuesString = new StringBuilder();
             for (int i = 0; i < candidates.Find(c => c.pawn == winningCandidate.First).nodes.Count; i++)
             {
-                issuesString.AppendFormat("{0}) {1}{2}", i + 1, PsycheHelper.Comp(winningCandidate.First).Psyche.GetPersonalityNodeOfDef(candidates.Find(c => c.pawn == winningCandidate.First).nodes[i]).PlatformIssue, (i != candidates.Find(c => c.pawn == winningCandidate.First).nodes.Count - 1 ? "\n" : ""));
+                issuesString.AppendFormat("{0}) {1}{2}", i + 1, PsycheHelper.Comp(winningCandidate.First).Psyche.nodeDict[candidates.Find(c => c.pawn == winningCandidate.First).nodes[i].defName].PlatformIssue, (i != candidates.Find(c => c.pawn == winningCandidate.First).nodes.Count - 1 ? "\n" : ""));
             }
 
             if (this.map == null)
@@ -115,7 +115,7 @@ namespace Psychology
             int mapTile = this.map.Tile;
 
 
-            MayorUtility.RemoveMayorOfThisColony(mapTile);
+            PsycheHelper.GameComp.RemoveMayorOfThisColony(mapTile);
 
 
             Hediff hediffMayor = HediffMaker.MakeHediff(HediffDefOfPsychology.Mayor, newMayor);
@@ -123,7 +123,7 @@ namespace Psychology
             (hediffMayor as Hediff_Mayor).yearElected = GenLocalDate.Year(map);
 
             newMayor.health.AddHediff(hediffMayor);
-            MayorUtility.Mayors.Add(mapTile, new Pair<Pawn, Hediff>(newMayor, hediffMayor));
+            PsycheHelper.GameComp.Mayors.Add(mapTile, new Pair<Pawn, Hediff>(newMayor, hediffMayor));
 
             newMayor.needs.mood.thoughts.memories.TryGainMemory(ThoughtDefOfPsychology.WonElection);
             Find.LetterStack.ReceiveLetter("LetterLabelElectionWon".Translate(newMayor), "LetterElectionWon".Translate(newMayor, this.baseName, winningCandidate.Second, issuesString.ToString()), LetterDefOf.NeutralEvent, newMayor);
