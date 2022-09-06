@@ -63,8 +63,11 @@ public class PsychologySettings : ModSettings
     public static float mayorAgeDefault = 20f; // v1.1
     public static float mayorAge = 20f; // v1.1
 
-    public static float traitOpinionMultiplierDefault = 0.25f; // v1.2
-    public static float traitOpinionMultiplier = 0.25f; // v1.2
+    public static float traitOpinionMultiplierDefault = 0.25f; // v1.3
+    public static float traitOpinionMultiplier = 0.25f; // v1.3
+
+    public static float upbringingEffectDefault = 0.25f; // v1.3
+    public static float upbringingEffect = 0.25f; // v1.3
 
     public static int displayOptionDefault = 4; // v1.3
     public static int displayOption = 4; // v1.3
@@ -101,6 +104,8 @@ public class PsychologySettings : ModSettings
         Scribe_Values.Look(ref romanceOpinionThreshold, "Psychology_RomanceOpinionThreshold", romanceOpinionThresholdDefault);
         Scribe_Values.Look(ref mayorAge, "Psychology_MayorAge", mayorAgeDefault);
         Scribe_Values.Look(ref traitOpinionMultiplier, "Psychology_TraitOpinionMultiplier", traitOpinionMultiplierDefault);
+        Scribe_Values.Look(ref upbringingEffect, "Psychology_TraitOpinionMultiplier", upbringingEffectDefault);
+
         Scribe_Values.Look(ref displayOption, "Psychology_DisplayOption", displayOptionDefault);
         Scribe_Values.Look(ref useColors, "Psychology_UseColors", useColorsDefault);
         Scribe_Values.Look(ref listAlphabetical, "Psychology_ListAlphabetical", listAlphabeticalDefault);
@@ -129,6 +134,7 @@ public class PsychologySettings : ModSettings
         ResetRomanceOpinionThreshold(); // v1.1
         ResetMayorAge(); // v1.1
         ResetTraitOpinionMultiplier(); // v1.2
+        ResetUpbringingEffect()
         ResetDisplayOption(); // v1.3
         ResetUseColors(); // v1.3
         ResetListAlphabetical(); // v1.3
@@ -205,6 +211,11 @@ public class PsychologySettings : ModSettings
     public static void ResetTraitOpinionMultiplier()
     {
         traitOpinionMultiplier = traitOpinionMultiplierDefault; // v1.2
+    }
+
+    public static void ResetUpbringingEffect()
+    {
+        upbringingEffect = upbringingEffectDefault;
     }
 
     public static void ResetDisplayOption()

@@ -19,6 +19,8 @@ namespace Psychology;
 // - Optimize individuality alerts
 // - Create Prude vs Nudist opinion modifier
 // - Optimize anxiety ticker
+// - Add compatibility with Pawnmorpher
+// - Add setting to adjust upbringing extremeness
 
 public class PsychologyMod : Mod
 {
