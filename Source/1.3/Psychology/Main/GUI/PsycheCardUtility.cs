@@ -511,6 +511,8 @@ public class PsycheCardUtility
                 }, 38975 + p * 237);
             }
 
+            // ToDo: add display of upbringing
+
             /* Draw personality node list */
             PersonalityTraitList(personalityRect, pawn);
         }

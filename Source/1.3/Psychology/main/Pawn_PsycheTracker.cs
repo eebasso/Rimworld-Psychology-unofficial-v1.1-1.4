@@ -17,14 +17,16 @@ namespace Psychology
         public int lastDateTick = 0;
         private Pawn pawn;
         private HashSet<PersonalityNode> nodes;
-        public int AdjustedRatingTicker = -1;
+        
         private Dictionary<PersonalityNodeDef, PersonalityNode> nodeDict = new Dictionary<PersonalityNodeDef, PersonalityNode>();
         private Dictionary<string, float> cachedOpinions = new Dictionary<string, float>();
         private Dictionary<string, bool> recalcCachedOpinions = new Dictionary<string, bool>();
         private Dictionary<Pair<string, string>, float> cachedDisagreementWeights = new Dictionary<Pair<string, string>, float>();
         private Dictionary<Pair<string, string>, bool> recalcNodeDisagreement = new Dictionary<Pair<string, string>, bool>();
         public const int PersonalityCategories = 32;
-        public float[] rawNormalDisplacementList = new float[37];
+        public int AdjustedRatingTicker = -1;
+        public float[] ProjectedRawRatings;
+        public bool needToCalcProjectedRaw = true;
 
         public Pawn_PsycheTracker(Pawn pawn)
         {
@@ -47,9 +49,30 @@ namespace Psychology
             }
         }
 
+        //public void RandomizeUpbringingAndRatings(int inputSeed = 0)
+        //{
+        //    int pawnSeed = this.pawn.story.childhood.GetHashCode() + this.pawn.story.birthLastName.GetHashCode();
+        //    this.upbringing = Mathf.CeilToInt(Rand.ValueSeeded(pawnSeed + inputSeed) * PersonalityCategories);
+        //    float[] ratingList = new float[PersonalityNodeParentMatrix.defList.Count()];
+        //    foreach (PersonalityNodeDef def in PersonalityNodeParentMatrix.defList)
+        //    {
+        //        int defSeed = def.GetHashCode();
+        //        int index = PersonalityNodeParentMatrix.indexDict[def];
+        //        ratingList[index] = Rand.ValueSeeded((2 + index) * pawnSeed + defSeed + (3 + index) * inputSeed);
+        //    }
+
+        //    // ratingList = PersonalityNodeParentMatrix.ApplyUpbringingProjection(ratingList, upbringing);
+        //    foreach (PersonalityNode node in nodes)
+        //    {
+        //        int index = PersonalityNodeParentMatrix.indexDict[node.def];
+        //        node.rawRating = ratingList[index];
+        //    }
+        //    AdjustedRatingTicker = -1;
+        //}
+
         public void RandomizeUpbringingAndRatings(int inputSeed = 0)
         {
-            int pawnSeed = this.pawn.HashOffset();
+            int pawnSeed = PsycheHelper.PawnSeed(this.pawn);
             this.upbringing = Mathf.CeilToInt(Rand.ValueSeeded(pawnSeed + inputSeed) * PersonalityCategories);
             float[] ratingList = new float[PersonalityNodeParentMatrix.defList.Count()];
             foreach (PersonalityNodeDef def in PersonalityNodeParentMatrix.defList)
@@ -58,14 +81,12 @@ namespace Psychology
                 int index = PersonalityNodeParentMatrix.indexDict[def];
                 ratingList[index] = Rand.ValueSeeded((2 + index) * pawnSeed + defSeed + (3 + index) * inputSeed);
             }
-            /* Pawns are separated into 2^5 = 32 categories based on the five factor model. */
-            /* Two pawns with the same upbringing should always have similar personality ratings. */
-            ratingList = PersonalityNodeParentMatrix.ApplyUpbringingProjection(ratingList, upbringing);
             foreach (PersonalityNode node in nodes)
             {
                 int index = PersonalityNodeParentMatrix.indexDict[node.def];
                 node.rawRating = ratingList[index];
             }
+            needToCalcProjectedRaw = true;
             AdjustedRatingTicker = -1;
         }
 
@@ -96,7 +117,6 @@ namespace Psychology
             return nodeDict[def];
         }
 
-        //[LogPerformance]
         public float GetConversationTopicWeight(PersonalityNodeDef def, Pawn otherPawn)
         {
             /* Pawns will avoid controversial topics until they know someone better.
@@ -128,7 +148,6 @@ namespace Psychology
             return weight;
         }
 
-        //[LogPerformance]
         public float TotalThoughtOpinion(Pawn other, out IEnumerable<Thought_MemorySocialDynamic> convoMemories)
         {
             convoMemories = (from m in this.pawn.needs.mood.thoughts.memories.Memories.OfType<Thought_MemorySocialDynamic>()
@@ -181,33 +200,52 @@ namespace Psychology
             }
         }
 
-        public void ConstructRawDisplacementList()
-        {
-            //rawNormalDisplacementList = new float[PersonalityNodeParentMatrix.defList.Count()];
-            foreach (PersonalityNodeDef def in PersonalityNodeParentMatrix.defList)
-            {
-                int index = PersonalityNodeParentMatrix.indexDict[def];
-                float rawRating = nodeDict[def].rawRating;
-                rawRating = nodeDict[def].AdjustForCircumstance(rawRating, true);
-                rawNormalDisplacementList[index] = PsycheHelper.NormalCDFInv(rawRating);
-            }
-        }
+        //public void ConstructRawDisplacementList()
+        //{
+        //    //rawNormalDisplacementList = new float[PersonalityNodeParentMatrix.defList.Count()];
+        //    foreach (PersonalityNodeDef def in PersonalityNodeParentMatrix.defList)
+        //    {
+        //        int index = PersonalityNodeParentMatrix.indexDict[def];
+        //        float rawRating = nodeDict[def].rawRating;
+        //        rawRating = nodeDict[def].AdjustForCircumstance(rawRating, true);
+        //        rawNormalDisplacementList[index] = PsycheHelper.NormalCDFInv(rawRating);
+        //    }
+        //}
 
         //[LogPerformance]
         public void CalculateAdjustedRatings()
         {
             //Stopwatch stopwatch = new Stopwatch();
             //stopwatch.Start();
-            ConstructRawDisplacementList();
-            float[] adjNormalDisplacementList = PersonalityNodeParentMatrix.MatrixVectorProduct(PersonalityNodeParentMatrix.parentTransformMatrix, rawNormalDisplacementList);
-            //parentAdjRatingDict.Clear();
-            foreach (PersonalityNodeDef def in PersonalityNodeParentMatrix.defList)
+            if (needToCalcProjectedRaw)
             {
-                int index = PersonalityNodeParentMatrix.indexDict[def];
-                float adjustedRating = PsycheHelper.NormalCDF(adjNormalDisplacementList[index]);
-                adjustedRating = nodeDict[def].AdjustForCircumstance(adjustedRating, true);
-                adjustedRating = nodeDict[def].AdjustHook(adjustedRating);
-                nodeDict[def].cachedRating = adjustedRating;
+                float[] rawRatingList = new float[PersonalityNodeParentMatrix.order];
+                foreach (PersonalityNode node in this.nodes)
+                {
+                    rawRatingList[PersonalityNodeParentMatrix.indexDict[node.def]] = node.rawRating;
+                }
+                /* Pawns are separated into 2^5 = 32 categories based on the five factor model. */
+                /* Two pawns with the same upbringing should always have similar personality ratings. */
+                ProjectedRawRatings = PersonalityNodeParentMatrix.ApplyUpbringingProjection(rawRatingList, upbringing);
+                needToCalcProjectedRaw = false;
+            }
+            int index;
+            float adjustedRating;
+            float[] adjustedRatingList = new float[PersonalityNodeParentMatrix.order];
+            foreach (PersonalityNode node in this.nodes)
+            {
+                index = PersonalityNodeParentMatrix.indexDict[node.def];
+                adjustedRating = node.AdjustForCircumstance(ProjectedRawRatings[index], true);
+                adjustedRatingList[index] = PsycheHelper.NormalCDFInv(adjustedRating);
+            }
+            adjustedRatingList = PersonalityNodeParentMatrix.MatrixVectorProduct(PersonalityNodeParentMatrix.parentTransformMatrix, adjustedRatingList);
+            foreach (PersonalityNode node in this.nodes)
+            {
+                index = PersonalityNodeParentMatrix.indexDict[node.def];
+                adjustedRating = PsycheHelper.NormalCDF(adjustedRatingList[index]);
+                adjustedRating = node.AdjustForCircumstance(adjustedRating, true);
+                adjustedRating = node.AdjustHook(adjustedRating);
+                nodeDict[node.def].cachedRating = adjustedRating;
             }
             //stopwatch.Stop();
             //TimeSpan ts = stopwatch.Elapsed;

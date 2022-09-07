@@ -29,10 +29,10 @@ public static class PsycheHelper
         //return pawn.GetComp<CompPsychology>() != null;
     }
 
-    public static bool PsychologyEnabledFast(Pawn pawn)
-    {
-        return pawn != null && PsycheEnabledSpeciesList.Contains(pawn.def.defName);
-    }
+    //public static bool PsychologyEnabledFast(Pawn pawn)
+    //{
+    //    return pawn != null && PsycheEnabledSpeciesList.Contains(pawn.def.defName);
+    //}
 
     public static CompPsychology Comp(Pawn pawn)
     {
@@ -120,26 +120,12 @@ public static class PsycheHelper
         return vanillaAge * minDatingAge / 16f;
     }
 
-    public static int[] GetBitArray(this int X, int length)
-    {
-        int[] bits = new int[length];
-        bits[0] = X % 2;
-        for (int b = 1; b < length; b++)
-        {
-            X /= 2;
-            bits[b] = X % 2;
-        }
-        return bits;
-    }
-
     public static float RandGaussianSeeded(int specialSeed1, int specialSeed2, float centerX = 0f, float widthFactor = 1f)
     {
         float value = Rand.ValueSeeded(specialSeed1);
         float value2 = Rand.ValueSeeded(specialSeed2);
         return Mathf.Sqrt(-2f * Mathf.Log(value)) * Mathf.Sin((float)Math.PI * 2f * value2) * widthFactor + centerX;
     }
-
-
 
     // This saddle shaped function is used to calculate the opinion modifier due to differences in personality rating on a given convo topic
     // The inputs x, y are the ratings and should range between 0 and 1.
@@ -195,10 +181,10 @@ public static class PsycheHelper
 
     public static void CorrectTraitsForPawnKinseyEnabled(Pawn pawn)
     {
-        //if (!PsycheHelper.PsychologyEnabledFast(pawn))
-        //{
-        //    return;
-        //}
+        if (!PsycheHelper.PsychologyEnabled(pawn))
+        {
+            return;
+        }
         if (pawn.story.traits.HasTrait(TraitDefOf.Asexual))
         {
             PsycheHelper.RemoveTrait(pawn, TraitDefOf.Asexual);
@@ -218,7 +204,7 @@ public static class PsycheHelper
 
     public static void CorrectTraitsForPawnKinseyDisabled(Pawn pawn)
     {
-        if (pawn.story == null || !PsycheHelper.PsychologyEnabledFast(pawn))
+        if (!PsycheHelper.PsychologyEnabled(pawn))
         {
             return;
         }
@@ -268,6 +254,31 @@ public static class PsycheHelper
         pawn.story.traits.allTraits.RemoveAll(t => t.def == traitDef);
     }
 
+    public static int PawnSeed(Pawn pawn)
+    {
+        int firstNameSeed = pawn?.Name != null ? pawn.Name is NameTriple name ? name.First.GetHashCode() : 2 : 3;
+        int childhoodSeed = pawn?.story?.childhood.baseDesc != null ? pawn.story.childhood.GetHashCode() : 5;
+        int adulthoodSeed = pawn?.story?.adulthood != null ? pawn.story.adulthood.GetHashCode() : 7;
+        int birthLastNameSeed = pawn?.story?.birthLastName != null ? pawn.story.birthLastName.GetHashCode() : 11;
+        return Gen.HashCombineInt(firstNameSeed, childhoodSeed, adulthoodSeed, birthLastNameSeed);
+    }
 
+    public static int[] GetBitArray(int X, int length)
+    {
+        int[] bits = new int[length];
+        bits[0] = X % 2;
+        for (int b = 1; b < length; b++)
+        {
+            X /= 2;
+            bits[b] = X % 2;
+        }
+        return bits;
+    }
+
+    public static int UpbringingMap(int u)
+    {
+        return (3 * u + 4 - 1) % 32 + 1;
+    }
 
 }
+

@@ -19,7 +19,7 @@ namespace Psychology;
 [StaticConstructorOnStartup]
 public class SpeciesHelper
 {
-    public static IEnumerable<ThingDef> humanlikeDefs;
+    public static List<ThingDef> humanlikeDefs = new List<ThingDef>();
     //public static Dictionary<string, SpeciesSettings> speciesDictDefault = new Dictionary<string, SpeciesSettings>();
     public static List<string> mindlessList = new List<string>() { "ChjDroid", "ChjBattleDroid", "Android1Tier", "M7Mech", "M8Mech" };
     public static List<string> androidLikeList = new List<string>() { "ChjAndroid", "Android2Tier", "Android3Tier", "Android4Tier", "Android5Tier" };
@@ -34,10 +34,21 @@ public class SpeciesHelper
 
     static SpeciesHelper()
     {
-        humanlikeDefs = from def in DefDatabase<ThingDef>.AllDefs
-                        where def.race?.intelligence == Intelligence.Humanlike
-                        orderby def.label ascending
-                        select def;
+        Initialize();
+    }
+
+    public static void Initialize()
+    {
+        Log.Message("SpeciesHelper()");
+        IEnumerable<ThingDef> humanlikeDefsEnumerable = from def in DefDatabase<ThingDef>.AllDefs
+                                                         where def.race?.intelligence == Intelligence.Humanlike
+                                                         orderby def.label ascending
+                                                         select def;
+        foreach (ThingDef t in humanlikeDefsEnumerable)
+        {
+            humanlikeDefs.AddDistinct(t);
+        }
+        Log.Message("humanlikeDefs.Count() = " + humanlikeDefs.Count());
         ResetSpeciesDict(speciesDictDefault);
         List<string> registered = new List<string>();
         foreach (ThingDef t in humanlikeDefs)
@@ -52,14 +63,14 @@ public class SpeciesHelper
             {
                 continue;
             }
-            RegisterPsycheEnabledDef(t);
+            AddCompsToPsycheEnabledDef(t);
         }
         Log.Message("Psychology: Registered humanlike species: " + string.Join(", ", registered.ToArray()));
         //Log.Message("SettingsWindowUtility.Initialize()");
         SettingsWindowUtility.Initialize();
     }
 
-    public static void RegisterPsycheEnabledDef(ThingDef t)
+    public static void AddCompsToPsycheEnabledDef(ThingDef t)
     {
         if (t.inspectorTabsResolved == null)
         {
@@ -69,8 +80,8 @@ public class SpeciesHelper
         {
             t.race.corpseDef.inspectorTabsResolved = new List<InspectTabBase>(1);
         }
-        t.inspectorTabsResolved.Add(InspectTabManager.GetSharedInstance(typeof(ITab_Pawn_Psyche)));
-        t.race.corpseDef.inspectorTabsResolved.Add(InspectTabManager.GetSharedInstance(typeof(ITab_Pawn_Psyche)));
+        t.inspectorTabsResolved.AddDistinct(InspectTabManager.GetSharedInstance(typeof(ITab_Pawn_Psyche)));
+        t.race.corpseDef.inspectorTabsResolved.AddDistinct(InspectTabManager.GetSharedInstance(typeof(ITab_Pawn_Psyche)));
         if (t.recipes == null)
         {
             t.recipes = new List<RecipeDef>(6);
@@ -79,12 +90,12 @@ public class SpeciesHelper
         {
             t.comps = new List<CompProperties>(1);
         }
-        t.comps.Add(new CompProperties_Psychology());
+        t.comps.AddDistinct(new CompProperties_Psychology());
         if (!t.race.hediffGiverSets.NullOrEmpty())
         {
             if (t.race.hediffGiverSets.Contains(DefDatabase<HediffGiverSetDef>.GetNamed("OrganicStandard")))
             {
-                t.race.hediffGiverSets.Add(DefDatabase<HediffGiverSetDef>.GetNamed("OrganicPsychology"));
+                t.race.hediffGiverSets.AddDistinct(DefDatabase<HediffGiverSetDef>.GetNamed("OrganicPsychology"));
             }
         }
     }
@@ -94,7 +105,8 @@ public class SpeciesHelper
         speciesDict.Clear();
         ThinkTreeDef zombieThinkTree = DefDatabase<ThinkTreeDef>.GetNamedSilentFail("Zombie");
         bool zombieNotNull = zombieThinkTree != null;
-        
+
+        Log.Message("ResetSpeciesDict humanlikeDefs.Count() = " + humanlikeDefs.Count());
         foreach (ThingDef def in humanlikeDefs)
         {
             // Allow hook for other mods
@@ -182,6 +194,7 @@ public class SpeciesHelper
             // Go to default
             speciesDict.Add(name, settings);
         }
+        Log.Message("ResetSpeciesDict humanlikeDefs.Count() = " + humanlikeDefs.Count());
     }
 
     public static void AddSpeciesHook(Dictionary<string, SpeciesSettings> speciesDict, ThingDef t)

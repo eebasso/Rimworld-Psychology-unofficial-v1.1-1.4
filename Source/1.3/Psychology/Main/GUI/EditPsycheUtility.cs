@@ -115,10 +115,6 @@ public class EditPsycheUtility
         return EditWidth;
     }
 
-    
-
-
-    //[LogPerformance]
     public static void DrawEditPsyche(Rect totalRect, Pawn pawn)
     {
         Text.Font = GameFont.Small;
@@ -254,6 +250,8 @@ public class EditPsycheUtility
         float blankWidth = 0.33f * Mathf.Max(EditMargin, totalRect.width - 2f * ButtonWidth);
         Rect resetRect = new Rect(blankWidth, mainRect.yMax - ButtonHeight, ButtonWidth, ButtonHeight);
         Rect randomRect = new Rect(resetRect.xMax + blankWidth, resetRect.y, ButtonWidth, ButtonHeight);
+
+        // ToDo: add ability to edit upbringing
 
         for (int i = 0; i < CachedList.Count; i++)
         {

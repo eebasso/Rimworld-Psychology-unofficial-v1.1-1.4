@@ -69,6 +69,10 @@ public class PsychologySettings : ModSettings
     public static float upbringingEffectDefault = 0.25f; // v1.3
     public static float upbringingEffect = 0.25f; // v1.3
 
+    public static Dictionary<string, SpeciesSettings> speciesDict = new Dictionary<string, SpeciesSettings>();
+
+    // Hidden settings
+
     public static int displayOptionDefault = 4; // v1.3
     public static int displayOption = 4; // v1.3
 
@@ -80,13 +84,6 @@ public class PsychologySettings : ModSettings
 
     public static bool useAntonymsDefault = true; // v1.3
     public static bool useAntonyms = true; // v1.3
-
-    public static Dictionary<string, SpeciesSettings> speciesDict = new Dictionary<string, SpeciesSettings>();
-
-    // Hidden settings
-    
-    //public static bool firstTimeLoadingNewPsychology = true;
-    //public static bool kinseySettingChanged = true;
 
     public override void ExposeData()
     {
@@ -105,12 +102,13 @@ public class PsychologySettings : ModSettings
         Scribe_Values.Look(ref mayorAge, "Psychology_MayorAge", mayorAgeDefault);
         Scribe_Values.Look(ref traitOpinionMultiplier, "Psychology_TraitOpinionMultiplier", traitOpinionMultiplierDefault);
         Scribe_Values.Look(ref upbringingEffect, "Psychology_TraitOpinionMultiplier", upbringingEffectDefault);
+        Scribe_Collections.Look(ref speciesDict, "Psychology_SpeciesSettings", LookMode.Value, LookMode.Deep);
 
         Scribe_Values.Look(ref displayOption, "Psychology_DisplayOption", displayOptionDefault);
         Scribe_Values.Look(ref useColors, "Psychology_UseColors", useColorsDefault);
         Scribe_Values.Look(ref listAlphabetical, "Psychology_ListAlphabetical", listAlphabeticalDefault);
         Scribe_Values.Look(ref useAntonyms, "Psychology_UseAntonyms", useAntonymsDefault);
-        Scribe_Collections.Look(ref speciesDict, "Psychology_SpeciesSettings", LookMode.Value, LookMode.Deep);
+        
         
         //Scribe_Values.Look(ref firstTimeLoadingNewPsychology, "FirstTimeLoadingNewPsychology", false);
         //Scribe_Values.Look(ref kinseySettingChanged, "KinseySettingChanged", false);
@@ -135,11 +133,14 @@ public class PsychologySettings : ModSettings
         ResetMayorAge(); // v1.1
         ResetTraitOpinionMultiplier(); // v1.2
         ResetUpbringingEffect();
+        ResetSpeciesSettings();
+
+
         ResetDisplayOption(); // v1.3
         ResetUseColors(); // v1.3
         ResetListAlphabetical(); // v1.3
         ResetUseAntonyms(); // v1.3
-        ResetSpeciesSettings();
+        
     }
 
     public static void ResetEnableKinsey()

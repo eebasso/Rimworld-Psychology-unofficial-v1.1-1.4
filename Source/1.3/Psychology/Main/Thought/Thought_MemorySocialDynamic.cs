@@ -16,7 +16,7 @@ namespace Psychology
 
         public override void ExposeData()
         {
-            if(this.def != null)
+            if (this.def != null)
             {
                 this.def.defName = "DynamicSocial";
             }
@@ -41,7 +41,7 @@ namespace Psychology
             this.topic = def.defName;
             this.label = def.stages[0].label;
             this.baseOpinionOffset = def.stages[0].baseOpinionOffset;
-            if(PsycheHelper.PsychologyEnabled(pawn))
+            if (PsycheHelper.PsychologyEnabled(pawn))
             {
                 PsycheHelper.Comp(pawn).Psyche.OpinionCacheDirty[otherPawn.ThingID] = true;
                 Pair<string, string> disagreeKey = new Pair<string, string>(otherPawn.ThingID, label);

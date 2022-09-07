@@ -60,6 +60,7 @@ public static class InteractionWorker_RomanceAttempt_SelectionWeightPatch
         /* - PAWN SEX AND ROMANCE DRIVE FACTORS */
         /* - INCEST FACTOR */
         /* - PSYCHIC LOVE SPELL FACTOR */
+        Log.Message("InteractionWorker_RomanceAttempt.RandomSelectionWeight, initiator = " + initiator.LabelShort + ", recipient = " + recipient.LabelShort + ", calculate SecondaryRomanceChanceFactor");
         float romChance = initiator.relations.SecondaryRomanceChanceFactor(recipient);
         
         if (romChance < 0.15f)

@@ -38,7 +38,6 @@ public class Hediff_Conversation : HediffWithComps
         Scribe_Values.Look(ref this.convoTopic, "convoTopic", "something");
     }
 
-    //[LogPerformance]
     public override void Tick()
     {
         base.Tick();
@@ -109,19 +108,21 @@ public class Hediff_Conversation : HediffWithComps
         }
     }
 
-    //[LogPerformance]
     public override void PostRemoved()
     {
+        
         base.PostRemoved();
         if (this.pawn == null && this.otherPawn == null)
         {
+            Log.Message("Hediff_Conversation.PostRemoved(), pawns were null");
             return;
         }
         if (this.pawn.Dead || this.otherPawn.Dead || !PsycheHelper.PsychologyEnabled(pawn) || !PsycheHelper.PsychologyEnabled(otherPawn))
         {
+            Log.Message("Hediff_Conversation.PostRemoved(), psychology not enabled");
             return;
         }
-
+        Log.Message("Hediff_Conversation.PostRemoved(), pawn = " + pawn.LabelShort + " otherPawn = " + otherPawn.LabelShort + ", step 0");
         Hediff_Conversation otherConvo = otherPawn.health.hediffSet.hediffs.Find(h => h is Hediff_Conversation && ((Hediff_Conversation)h).otherPawn == this.pawn) as Hediff_Conversation;
         if (otherConvo != null)
         {
@@ -149,6 +150,7 @@ public class Hediff_Conversation : HediffWithComps
             int numEpicTalks = int.Parse("NumberOfEpicTalks".Translate());
             talkDesc = "EpicTalk" + Rand.RangeInclusive(1, numEpicTalks);
         }
+        Log.Message("Hediff_Conversation.PostRemoved(), pawn = " + pawn.LabelShort + " otherPawn = " + otherPawn.LabelShort + ", step 1");
         float opinionMod;
         ThoughtDef def = CreateSocialThought(out opinionMod);
         bool mattered = TryGainThought(def, Mathf.RoundToInt(opinionMod));
@@ -176,6 +178,7 @@ public class Hediff_Conversation : HediffWithComps
         }
         if (this.waveGoodbye && this.pawn.Map != null)
         {
+            Log.Message("Hediff_Conversation.PostRemoved(), pawn = " + pawn.LabelShort + " otherPawn = " + otherPawn.LabelShort + ", step 2");
             RulePack goodbyeText = new RulePack();
             FieldInfo RuleStrings = typeof(RulePack).GetField("rulesStrings", BindingFlags.Instance | BindingFlags.NonPublic);
             List<string> text = new List<string>(1);
@@ -188,10 +191,10 @@ public class Hediff_Conversation : HediffWithComps
             Find.PlayLog.Add(log);
             convoLog = log;
             MoteMaker.MakeInteractionBubble(this.pawn, this.otherPawn, InteractionDefOf.Chitchat.interactionMote, InteractionDefOf.Chitchat.GetSymbol()); // 1.3
+            Log.Message("Hediff_Conversation.PostRemoved(), pawn = " + pawn.LabelShort + " otherPawn = " + otherPawn.LabelShort + ", step 3");
         }
     }
 
-    //[LogPerformance]
     private ThoughtDef CreateSocialThought(out float opinionMod)
     {
         //We create a dynamic def to hold this thought so that the game won't worry about it being used anywhere else.
@@ -276,11 +279,11 @@ public class Hediff_Conversation : HediffWithComps
         float opinionModMax = 30f;
         // Weaker baseline agreement/disagreement leads to lower max absolute change in opinion
         float opinionModMaxAdjusted = Mathf.Lerp(Mathf.Max(0.5f * opinionModMax, opinionModMin), opinionModMax, 2f * Mathf.Abs(opinionModRaw));
-        Log.Message(pawn.story.birthLastName + " and " + otherPawn.LabelShort + " opinionModMaxAdjusted = " + opinionModMaxAdjusted.ToString());
+        Log.Message(pawn.LabelShort + " and " + otherPawn.LabelShort + " opinionModMaxAdjusted = " + opinionModMaxAdjusted.ToString());
 
         // Opinion must change by at least +-opinionModMin and are capped at +-opinionModMaxAdjusted
         opinionMod = Mathf.Sign(opinionMod) * Mathf.Clamp(Mathf.Abs(opinionMod), opinionModMin, opinionModMaxAdjusted);
-        Log.Message(pawn.story.birthLastName + " and " + otherPawn.LabelShort + " opinionMod final value = " + opinionMod.ToString());
+        Log.Message(pawn.LabelShort + " and " + otherPawn.LabelShort + " opinionMod final value = " + opinionMod.ToString());
 
         stage.label = "ConversationStage".Translate() + " " + convoTopic;
         stage.baseOpinionOffset = Mathf.RoundToInt(opinionMod);
@@ -288,7 +291,6 @@ public class Hediff_Conversation : HediffWithComps
         return def;
     }
 
-    //[LogPerformance]
     private bool TryGainThought(ThoughtDef def, int opinionOffset)
     {
         ThoughtStage stage = def.stages.First();

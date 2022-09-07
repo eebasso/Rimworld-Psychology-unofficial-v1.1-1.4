@@ -26,14 +26,6 @@ public class PersonalityNode : IExposable
         this.pawn = pawn;
     }
 
-    //public void Initialize(int inputSeed = 0)
-    //{
-    //    string defName = this.def.defName;
-    //    int defSeed = defName.GetHashCode();
-    //    int pawnSeed = this.pawn.HashOffset();
-    //    this.rawRating = Rand.ValueSeeded(2 * pawnSeed + defSeed + inputSeed);
-    //}
-
     public void ExposeData()
     {
         Scribe_Defs.Look(ref this.def, "def");

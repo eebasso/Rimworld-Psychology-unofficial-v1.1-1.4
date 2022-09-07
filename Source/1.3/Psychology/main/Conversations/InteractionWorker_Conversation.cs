@@ -15,18 +15,18 @@ public class InteractionWorker_Conversation : InteractionWorker
     //[LogPerformance]
     public override float RandomSelectionWeight(Pawn initiator, Pawn recipient)
     {
-        Log.Message("InteractionWorker_Conversation.RandomSelectionWeight, initiator " + initiator.LabelShort + ", recipient " + recipient.LabelShort + ", start");
         if (!PsycheHelper.PsychologyEnabled(initiator) || !PsycheHelper.PsychologyEnabled(recipient))
         {
-            Log.Message("InteractionWorker_Conversation.RandomSelectionWeight, initiator " + initiator.LabelShort + ", recipient " + recipient.LabelShort + ", enabled");
+            Log.Message("InteractionWorker_Conversation.RandomSelectionWeight, psychology not enabled");
+            Log.Message("InteractionWorker_Conversation.RandomSelectionWeight, not enabled for initiator " + initiator.LabelShort + ", recipient " + recipient.LabelShort);
             return 0f;
         }
         
         if (!initiator.health.capacities.CapableOf(PawnCapacityDefOf.Talking) || !recipient.health.capacities.CapableOf(PawnCapacityDefOf.Talking))
         {
+            Log.Message("InteractionWorker_Conversation.RandomSelectionWeight, initiator " + initiator.LabelShort + ", recipient " + recipient.LabelShort + ", not talking");
             return 0f;
         }
-        Log.Message("InteractionWorker_Conversation.RandomSelectionWeight, initiator " + initiator.LabelShort + ", recipient " + recipient.LabelShort + ", talking");
         //float baseChance = 0.45f;
         //Lord lord = LordUtility.GetLord(initiator);
         //if (lord != null && (lord.LordJob is LordJob_HangOut || lord.LordJob is LordJob_Date) && LordUtility.GetLord(recipient) == lord)

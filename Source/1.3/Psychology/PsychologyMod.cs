@@ -16,11 +16,9 @@ using Unity;
 namespace Psychology;
 
 // ToDo:
-// - Optimize individuality alerts
 // - Create Prude vs Nudist opinion modifier
-// - Optimize anxiety ticker
-// - Add compatibility with Pawnmorpher
-// - Add setting to adjust upbringing extremeness
+// - Add compatibility with Pawnmorpher (working on it)
+// - Add a "Electoral debate" ritual, to accelerate the vote
 
 public class PsychologyMod : Mod
 {
@@ -35,6 +33,7 @@ public class PsychologyMod : Mod
 
     public override void DoSettingsWindowContents(Rect inRect)
     {
+        //SpeciesHelper.Initialize();
         SettingsWindowUtility.DrawSettingsWindow(inRect);
     }
 }

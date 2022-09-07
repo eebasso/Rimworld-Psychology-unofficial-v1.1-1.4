@@ -136,7 +136,7 @@ public class Pawn_SexualityTracker : IExposable
 
     public virtual int RandKinseyByWeight(List<float> kCumSumList, int inputSeed = 0)
     {
-        float randValue = Rand.ValueSeeded(17 * this.pawn.GetHashCode() + 31 + 11 * inputSeed) * kCumSumList[6];
+        float randValue = Rand.ValueSeeded(17 * PsycheHelper.PawnSeed(this.pawn) + 11 * inputSeed + 31) * kCumSumList[6];
         for (int s = 0; s < 6; s++)
         {
             if (randValue <= kCumSumList[s])
@@ -151,9 +151,9 @@ public class Pawn_SexualityTracker : IExposable
     {
         float drive = -1f;
         int kill = 0;
-        int pawnSeed = this.pawn.GetHashCode();
-        int seed1 = 11 * pawnSeed + 131 + 2 * inputSeed;
-        int seed2 = 13 * pawnSeed + 89 + 7 * inputSeed;
+        int pawnSeed = PsycheHelper.PawnSeed(this.pawn);
+        int seed1 = 11 * pawnSeed + 2 * inputSeed + 131;
+        int seed2 = 13 * pawnSeed + 7 * inputSeed + 89;
         while ((drive < 0f || 1f < drive) && kill < 500)
         {
             //drive = Rand.Gaussian(1.1f, 0.26f);

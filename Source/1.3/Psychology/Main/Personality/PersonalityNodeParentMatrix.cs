@@ -20,11 +20,20 @@ public class PersonalityNodeParentMatrix
     public static int size;
     public static List<float[]> bigFiveVectors = new List<float[]>();
     public static float[] bigFiveStandardDevInvs = new float[5];
+    public static Dictionary<int, int> inverseUpbringingMap = new Dictionary<int, int>();
 
     static PersonalityNodeParentMatrix()
     {
         Stopwatch stopwatch = new Stopwatch();
         stopwatch.Start();
+
+        // There are 32 = 2^5 upbringings, where 5 comes from the Big Five
+        // Upbringing map will take user defined settings and 
+        for (int u = 1; u <= 32; u++)
+        {
+            inverseUpbringingMap.Add(PsycheHelper.UpbringingMap(u), u);
+        }
+
         //Log.Message("Initializing PersonalityNodeParentMatrix");
         defList = DefDatabase<PersonalityNodeDef>.AllDefsListForReading;
 
@@ -803,9 +812,9 @@ public class PersonalityNodeParentMatrix
             // Map from uniformly random from 0 to 1 to normally distributed random
             x[i] = PsycheHelper.NormalCDFInv(ratingList[i]);
         }
-        int[] upbringingBit = PsycheHelper.GetBitArray(upbringing, 5);
-        float upbringingDisplacement = 0.1f; // This number should be a setting
-
+        // Do 3 * upbringing + 4 to create better distribution for legacy 1 thru 16
+        // ToDo: make upbringing editable and make sure to reverse the 3u + 4
+        int[] upbringingBit = PsycheHelper.GetBitArray(3 * upbringing + 4, 5);
 
         float[] FinvGFVxMinusVx = new float[5];
         for (int bf = 0; bf < 5; bf++)
@@ -815,7 +824,7 @@ public class PersonalityNodeParentMatrix
             // Map back to uniformly random in the range [0,1]
             float FVx = PsycheHelper.NormalCDF(Vx);
             // Restrict to either lower or upper interval based on upbringingBit = 0,1
-            float GFVx = 0.5f * ((1f + upbringingDisplacement) * upbringingBit[bf] + (1f - upbringingDisplacement) * FVx);
+            float GFVx = 0.5f * ((1f + PsychologySettings.upbringingEffect) * upbringingBit[bf] + (1f - PsychologySettings.upbringingEffect) * FVx);
             // Map back to normally distributed random
             float FinvGFVx = PsycheHelper.NormalCDFInv(GFVx);
             // Subtract original projection
