@@ -806,6 +806,12 @@ public class PersonalityNodeParentMatrix
 
     public static float[] ApplyUpbringingProjection(float[] ratingList, int upbringing)
     {
+        float[] newRatings = new float[order];
+        if (!PsychologySettings.enableUpbringing)
+        {
+            ratingList.CopyTo(newRatings, 0);
+            return newRatings;
+        }
         float[] x = new float[order];
         for (int i = 0; i < order; i++)
         {
@@ -814,7 +820,7 @@ public class PersonalityNodeParentMatrix
         }
         // Do 3 * upbringing + 4 to create better distribution for legacy 1 thru 16
         // ToDo: make upbringing editable and make sure to reverse the 3u + 4
-        int[] upbringingBit = PsycheHelper.GetBitArray(3 * upbringing + 4, 5);
+        int[] upbringingBit = PsycheHelper.GetBitArray(PsycheHelper.UpbringingMap(upbringing), 5);
 
         float[] FinvGFVxMinusVx = new float[5];
         for (int bf = 0; bf < 5; bf++)
@@ -830,7 +836,6 @@ public class PersonalityNodeParentMatrix
             // Subtract original projection
             FinvGFVxMinusVx[bf] = FinvGFVx - Vx;
         }
-        float[] newRatings = new float[order];
         for (int i = 0; i < order; i++)
         {
             // Start with y = x

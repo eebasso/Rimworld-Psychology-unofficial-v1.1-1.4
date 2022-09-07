@@ -75,10 +75,10 @@
 	<MinLovinAgeTitle>Lovin</MinLovinAgeTitle>
 	<MinLovinAgeTooltip>Set the minimum lovin age for this species. When positive, the effective age for lovin-related formulas scales by this number relative to 16. Setting to 0 allows lovin at any age and effectively disables the age gap. This is recommended for species such as sentient androids with no childhood phase. Any negative number disables lovin completely for this species.</MinLovinAgeTooltip>
 
-	<UpdateIntroMessageTitle>Update to Psychology</UpdateIntroMessageTitle>
+<!--	<UpdateIntroMessageTitle>Update to Psychology</UpdateIntroMessageTitle>
 	<UpdateIntroMessage>The method to generate personalities has been updated to match 32 possible upbringings. The player is encouraged to select "update" to reset the personalities of old pawns. This option will always be available in the mod settings.</UpdateIntroMessage>
-	<ApplyUpdateButton>Update</ApplyUpdateButton>
+	<ApplyUpdateButton>Update</ApplyUpdateButton>-->
 
-	<UpdateYesNoDescription>This will reset the personalities of all pawns using the updated Psychology formula to create 32 possible upbringings. The outcome is deterministic and pseudo-random based on an integer ID asscoiated with each pawn. This is recommended for the mod to act as intended. Do you wish to proceed?</UpdateYesNoDescription>
+<!--	<UpdateYesNoDescription>This will reset the personalities of all pawns using the updated Psychology formula to create 32 possible upbringings. The outcome is deterministic and pseudo-random based on an integer ID asscoiated with each pawn. This is recommended for the mod to act as intended. Do you wish to proceed?</UpdateYesNoDescription>-->
 	
 </LanguageData>

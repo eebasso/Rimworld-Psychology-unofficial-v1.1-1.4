@@ -66,8 +66,11 @@ public class PsychologySettings : ModSettings
     public static float traitOpinionMultiplierDefault = 0.25f; // v1.3
     public static float traitOpinionMultiplier = 0.25f; // v1.3
 
-    public static float upbringingEffectDefault = 0.25f; // v1.3
-    public static float upbringingEffect = 0.25f; // v1.3
+    //public static bool enableUpbringingDefault = true;
+    //public static bool enableUpbringing = true;
+
+    //public static float upbringingEffectDefault = 0.25f; // v1.3
+    //public static float upbringingEffect = 0.25f; // v1.3
 
     public static Dictionary<string, SpeciesSettings> speciesDict = new Dictionary<string, SpeciesSettings>();
 
@@ -101,7 +104,8 @@ public class PsychologySettings : ModSettings
         Scribe_Values.Look(ref romanceOpinionThreshold, "Psychology_RomanceOpinionThreshold", romanceOpinionThresholdDefault);
         Scribe_Values.Look(ref mayorAge, "Psychology_MayorAge", mayorAgeDefault);
         Scribe_Values.Look(ref traitOpinionMultiplier, "Psychology_TraitOpinionMultiplier", traitOpinionMultiplierDefault);
-        Scribe_Values.Look(ref upbringingEffect, "Psychology_TraitOpinionMultiplier", upbringingEffectDefault);
+        //Scribe_Values.Look(ref enableUpbringing, "Psychology_EnableUpbringing", enableUpbringingDefault);
+        //Scribe_Values.Look(ref upbringingEffect, "Psychology_UpbringingEffect", upbringingEffectDefault);
         Scribe_Collections.Look(ref speciesDict, "Psychology_SpeciesSettings", LookMode.Value, LookMode.Deep);
 
         Scribe_Values.Look(ref displayOption, "Psychology_DisplayOption", displayOptionDefault);
@@ -109,11 +113,9 @@ public class PsychologySettings : ModSettings
         Scribe_Values.Look(ref listAlphabetical, "Psychology_ListAlphabetical", listAlphabeticalDefault);
         Scribe_Values.Look(ref useAntonyms, "Psychology_UseAntonyms", useAntonymsDefault);
         
-        
         //Scribe_Values.Look(ref firstTimeLoadingNewPsychology, "FirstTimeLoadingNewPsychology", false);
         //Scribe_Values.Look(ref kinseySettingChanged, "KinseySettingChanged", false);
         //Scribe_Values.Look(ref )
-
     }
 
     public static void ResetAllSettings()
@@ -132,7 +134,7 @@ public class PsychologySettings : ModSettings
         ResetRomanceOpinionThreshold(); // v1.1
         ResetMayorAge(); // v1.1
         ResetTraitOpinionMultiplier(); // v1.2
-        ResetUpbringingEffect();
+        //ResetUpbringingEffect();
         ResetSpeciesSettings();
 
 
@@ -214,10 +216,10 @@ public class PsychologySettings : ModSettings
         traitOpinionMultiplier = traitOpinionMultiplierDefault; // v1.2
     }
 
-    public static void ResetUpbringingEffect()
-    {
-        upbringingEffect = upbringingEffectDefault;
-    }
+    //public static void ResetUpbringingEffect()
+    //{
+    //    upbringingEffect = upbringingEffectDefault;
+    //}
 
     public static void ResetDisplayOption()
     {

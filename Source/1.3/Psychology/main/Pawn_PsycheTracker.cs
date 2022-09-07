@@ -23,7 +23,7 @@ namespace Psychology
         private Dictionary<string, bool> recalcCachedOpinions = new Dictionary<string, bool>();
         private Dictionary<Pair<string, string>, float> cachedDisagreementWeights = new Dictionary<Pair<string, string>, float>();
         private Dictionary<Pair<string, string>, bool> recalcNodeDisagreement = new Dictionary<Pair<string, string>, bool>();
-        public const int PersonalityCategories = 32;
+        //public const int PersonalityCategories = 32;
         public int AdjustedRatingTicker = -1;
         public float[] ProjectedRawRatings;
         public bool needToCalcProjectedRaw = true;
@@ -73,7 +73,7 @@ namespace Psychology
         public void RandomizeUpbringingAndRatings(int inputSeed = 0)
         {
             int pawnSeed = PsycheHelper.PawnSeed(this.pawn);
-            this.upbringing = Mathf.CeilToInt(Rand.ValueSeeded(pawnSeed + inputSeed) * PersonalityCategories);
+            //this.upbringing = Mathf.CeilToInt(Rand.ValueSeeded(pawnSeed + inputSeed) * PersonalityCategories);
             float[] ratingList = new float[PersonalityNodeParentMatrix.defList.Count()];
             foreach (PersonalityNodeDef def in PersonalityNodeParentMatrix.defList)
             {

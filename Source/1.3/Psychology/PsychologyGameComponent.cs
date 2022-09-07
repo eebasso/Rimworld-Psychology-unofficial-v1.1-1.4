@@ -177,13 +177,13 @@ public class PsychologyGameComponent : GameComponent
         }
     }
 
-    public virtual void RandomizeUpbringingAndRatingsForAllPawns()
-    {
-        foreach (Pawn pawn in Find.WorldPawns.AllPawnsAliveOrDead)
-        {
-            pawn.GetComp<CompPsychology>().Psyche.RandomizeUpbringingAndRatings();
-        }
-    }
+    //public virtual void RandomizeUpbringingAndRatingsForAllPawns()
+    //{
+    //    foreach (Pawn pawn in Find.WorldPawns.AllPawnsAliveOrDead)
+    //    {
+    //        pawn.GetComp<CompPsychology>().Psyche.RandomizeUpbringingAndRatings();
+    //    }
+    //}
 
     public virtual void ConstituentTick()
     {

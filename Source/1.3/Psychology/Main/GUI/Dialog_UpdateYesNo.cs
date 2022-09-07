@@ -1,9 +1,4 @@
-﻿//using System;
-//using System.Collections.Generic;
-//using System.Linq;
-//using System.Text;
-using UnityEngine;
-//using RimWorld;
+﻿using UnityEngine;
 using Verse;namespace Psychology;
 public class Dialog_UpdateYesNo : Window{    public float windowRectWidth = 500f;
     public static float windowRectHeight;    public float inRectWidth = 500f - 2f * StandardMargin;    public static float inRectHeight;    public string PromptDescription = "UpdateYesNoDescription".Translate();
@@ -53,7 +48,7 @@ public class Dialog_UpdateYesNo : Window{    public float windowRectWidth = 50
         {
             if (PsycheHelper.GameComp != null)
             {
-                PsycheHelper.GameComp.RandomizeUpbringingAndRatingsForAllPawns();
+                PsycheHelper.GameComp.RandomizeRatingsForAllPawns();
             }
             this.Close();
         }        if (Widgets.ButtonText(NoButtonRect, NoButtonText))
