@@ -1,4 +1,5 @@
 ﻿<Properties>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workbench ActiveDocument="Psychology/PsychologyMod.cs">
     <Files>
       <File FileName="../../Common/Defs/ThoughtDefs/Thoughts_Situation_General.xml" Line="86" Column="41" IsPinned="True" />
@@ -24,8 +25,8 @@
       <File FileName="../../About/About.xml" Line="30" Column="35" />
       <File FileName="Psychology/Main/PsycheHelper.cs" Line="217" Column="6" />
       <File FileName="Psychology/Main/Thought/Thought_MemorySocialDynamic.cs" Line="40" Column="10" />
-      <File FileName="Psychology/Main/Conversations/Hediff_Conversation.cs" Line="300" Column="92" />
-      <File FileName="Psychology/Main/Pawn_PsycheTracker.cs" Line="134" Column="73" />
+      <File FileName="Psychology/Main/Conversations/Hediff_Conversation.cs" Line="300" Column="77" />
+      <File FileName="Psychology/Main/Pawn_PsycheTracker.cs" Line="134" Column="14" />
       <File FileName="../../Common/Defs/DutyDefs/Duties_Psychology.xml" Line="50" Column="25" />
     </Files>
     <Pads>
@@ -39,7 +40,6 @@
                 <Node name="Conversations" expanded="True" />
                 <Node name="Thought" expanded="True" />
               </Node>
-              <Node name="PsychologyMod.cs" selected="True" />
             </Node>
           </Node>
         </State>
@@ -49,10 +49,9 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
 </Properties>

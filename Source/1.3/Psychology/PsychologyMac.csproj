@@ -771,7 +771,9 @@
     <None Include="..\..\..\Common\Languages\ChineseTraditional\DefInjected\NeedDef\Methadone.xml">
       <Link>Common\Languages\ChineseTraditional\DefInjected\NeedDef\Methadone.xml</Link>
     </None>
-    
+    <None Include="..\..\..\Common\Languages\ChineseTraditional\LanguageInfo.xml">
+      <Link>Common\Languages\ChineseTraditional\LanguageInfo.xml</Link>
+    </None>
     <None Include="..\..\..\Common\Languages\French\LanguageInfo.xml">
       <Link>Common\Languages\French\LanguageInfo.xml</Link>
     </None>
@@ -804,9 +806,6 @@
     </None>
     <None Include="..\..\..\Common\Languages\French\Keyed\Messages.xml">
       <Link>Common\Languages\French\Keyed\Messages.xml</Link>
-    </None>
-    <None Include="..\..\..\Common\Languages\ChineseTraditional\LanguageInfo.xml">
-      <Link>Common\Languages\ChineseTraditional\LanguageInfo.xml</Link>
     </None>
   </ItemGroup>
   <!-- <ItemGroup>
