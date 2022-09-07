@@ -9,22 +9,13 @@ using UnityEngine;
 using System.Reflection;
 namespace Psychology.Harmony;
 
-public static class PawnGenerator_ManualPatches
+[HarmonyPatch(typeof(PawnGenerator), "GenerateTraits")]
+public static class PawnGenerator_GenerateTraits_Patch
 {
-    // Postfix
-    //public static void GenerateTraits_KinseyEnabled(Pawn pawn, PawnGenerationRequest request)
-    //{
-    //    if (pawn.story == null || !PsycheHelper.PsychologyEnabledFast(pawn))
-    //    {
-    //        return;
-    //    }
-    //    PsycheHelper.CorrectTraitsForPawnKinseyEnabled(pawn);
-    //}
-
-    // Postfix
-    public static void GenerateTraits_TaraiSiblings_Postfix(Pawn pawn, PawnGenerationRequest request)
+    [HarmonyPostfix]
+    public static void TaraiSiblings_Postfix(Pawn pawn, PawnGenerationRequest request)
     {
-        if (pawn.story == null || pawn.story.childhood != PsychologyDefInjector.child || PsychologySettings.taraiSiblingsGenerated)
+        if (pawn.story == null || pawn.story.childhood != PsychologyDefInjector.child || PsycheHelper.GameComp.taraiSiblingsGenerated)
         {
             return;
         }
@@ -39,11 +30,27 @@ public static class PawnGenerator_ManualPatches
                 continue;
             }
             PawnRelationDefOf.Sibling.Worker.CreateRelation(pawn, otherPawn, ref request);
-            PsychologySettings.taraiSiblingsGenerated = true;
+            PsycheHelper.GameComp.taraiSiblingsGenerated = true;
             // we really only want to affect the first found pawn, so just return after we added a relation
             return;
         }
     }
+}
+
+public static class PawnGenerator_ManualPatches
+{
+    // Postfix
+    //public static void GenerateTraits_KinseyEnabled(Pawn pawn, PawnGenerationRequest request)
+    //{
+    //    if (pawn.story == null || !PsycheHelper.PsychologyEnabledFast(pawn))
+    //    {
+    //        return;
+    //    }
+    //    PsycheHelper.CorrectTraitsForPawnKinseyEnabled(pawn);
+    //}
+
+    // Postfix
+
 
     public static void GeneratePawn_IdeoCache_Postfix(ref Pawn __result, PawnGenerationRequest request)
     {
@@ -59,7 +66,7 @@ public static class PawnGenerator_ManualPatches
 //public static class PawnGenerator_GeneratePawn_Patch
 //{
 //    [HarmonyPostfix]
-    
+
 //}
 
 //[HarmonyPatch(typeof(PawnGenerator), "GenerateTraits")]

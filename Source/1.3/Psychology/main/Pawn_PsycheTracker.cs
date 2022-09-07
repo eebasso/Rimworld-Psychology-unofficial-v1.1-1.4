@@ -24,11 +24,7 @@ namespace Psychology
         private Dictionary<Pair<string, string>, float> cachedDisagreementWeights = new Dictionary<Pair<string, string>, float>();
         private Dictionary<Pair<string, string>, bool> recalcNodeDisagreement = new Dictionary<Pair<string, string>, bool>();
         public const int PersonalityCategories = 32;
-        //public float[] rawNormalDisplacementList;
-        //public Vector<float> rawNormalDisplacementList;
-        //public Dictionary<PersonalityNodeDef, float> parentAdjRatingDict = new Dictionary<PersonalityNodeDef, float>();
         public float[] rawNormalDisplacementList = new float[37];
-        public float cachedCertaintyChangePerDay = -2f;
 
         public Pawn_PsycheTracker(Pawn pawn)
         {
@@ -39,22 +35,16 @@ namespace Psychology
         //[LogPerformance]
         public void Initialize(int inputSeed = 0)
         {
-            Log.Message("Initialize() Pawn_PsycheTracker");
-            Log.Message("Initialize() Pawn_PsycheTracker for " + pawn.LabelShortCap);
             this.nodes = new HashSet<PersonalityNode>();
-            Log.Message("Initialize() Pawn_PsycheTracker for " + pawn.LabelShortCap + ", step 1");
             foreach (PersonalityNodeDef def in PersonalityNodeParentMatrix.defList)
             {
                 nodes.Add(PersonalityNodeMaker.MakeNode(def, this.pawn));
             }
-            Log.Message("Initialize() Pawn_PsycheTracker for " + pawn.LabelShortCap + ", step 2");
             RandomizeUpbringingAndRatings(inputSeed);
-            Log.Message("Initialize() Pawn_PsycheTracker for " + pawn.LabelShortCap + ", step 3");
             foreach (PersonalityNode n in this.nodes)
             {
                 nodeDict[n.def] = n;
             }
-            Log.Message("Initialize() Pawn_PsycheTracker for " + pawn.LabelShortCap + ", step 4");
         }
 
         public void RandomizeUpbringingAndRatings(int inputSeed = 0)

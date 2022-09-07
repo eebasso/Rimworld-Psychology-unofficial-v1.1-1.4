@@ -84,9 +84,9 @@ public class PsychologySettings : ModSettings
     public static Dictionary<string, SpeciesSettings> speciesDict = new Dictionary<string, SpeciesSettings>();
 
     // Hidden settings
-    public static bool taraiSiblingsGenerated = false;
+    
     //public static bool firstTimeLoadingNewPsychology = true;
-    public static bool kinseySettingChanged = true;
+    //public static bool kinseySettingChanged = true;
 
     public override void ExposeData()
     {
@@ -111,9 +111,9 @@ public class PsychologySettings : ModSettings
         Scribe_Values.Look(ref listAlphabetical, "Psychology_ListAlphabetical", listAlphabeticalDefault);
         Scribe_Values.Look(ref useAntonyms, "Psychology_UseAntonyms", useAntonymsDefault);
         Scribe_Collections.Look(ref speciesDict, "Psychology_SpeciesSettings", LookMode.Value, LookMode.Deep);
-        Scribe_Values.Look(ref taraiSiblingsGenerated, "Psychology_TaraiSiblingsGenerated", false);
+        
         //Scribe_Values.Look(ref firstTimeLoadingNewPsychology, "FirstTimeLoadingNewPsychology", false);
-        Scribe_Values.Look(ref kinseySettingChanged, "KinseySettingChanged", false);
+        //Scribe_Values.Look(ref kinseySettingChanged, "KinseySettingChanged", false);
         //Scribe_Values.Look(ref )
 
     }
@@ -144,7 +144,7 @@ public class PsychologySettings : ModSettings
 
     public static void ResetEnableKinsey()
     {
-        kinseySettingChanged = enableKinsey != enableKinseyDefault;
+        //kinseySettingChanged = enableKinsey != enableKinseyDefault;
         enableKinsey = enableKinseyDefault;
     }
 

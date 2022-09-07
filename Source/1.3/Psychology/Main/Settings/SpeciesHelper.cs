@@ -30,6 +30,7 @@ public class SpeciesHelper
     public static SpeciesSettings mindlessSettings = new SpeciesSettings(false, false, -1f, -1f);
     public static SpeciesSettings androidLikeSettings = new SpeciesSettings(true, false, 0f, 0f);
     public static SpeciesSettings elfLikeSettings = new SpeciesSettings(EnablePsyche: true, EnableAgeGap: false);
+    public static Dictionary<string, SpeciesSettings> speciesDictDefault = new Dictionary<string, SpeciesSettings>();
 
     static SpeciesHelper()
     {
@@ -37,7 +38,6 @@ public class SpeciesHelper
                         where def.race?.intelligence == Intelligence.Humanlike
                         orderby def.label ascending
                         select def;
-        Dictionary<string, SpeciesSettings> speciesDictDefault = new Dictionary<string, SpeciesSettings>();
         ResetSpeciesDict(speciesDictDefault);
         List<string> registered = new List<string>();
         foreach (ThingDef t in humanlikeDefs)
@@ -52,36 +52,41 @@ public class SpeciesHelper
             {
                 continue;
             }
-            if (t.inspectorTabsResolved == null)
-            {
-                t.inspectorTabsResolved = new List<InspectTabBase>(1);
-            }
-            if (t.race.corpseDef.inspectorTabsResolved == null)
-            {
-                t.race.corpseDef.inspectorTabsResolved = new List<InspectTabBase>(1);
-            }
-            t.inspectorTabsResolved.Add(InspectTabManager.GetSharedInstance(typeof(ITab_Pawn_Psyche)));
-            t.race.corpseDef.inspectorTabsResolved.Add(InspectTabManager.GetSharedInstance(typeof(ITab_Pawn_Psyche)));
-            if (t.recipes == null)
-            {
-                t.recipes = new List<RecipeDef>(6);
-            }
-            if (t.comps == null)
-            {
-                t.comps = new List<CompProperties>(1);
-            }
-            t.comps.Add(new CompProperties_Psychology());
-            if (!t.race.hediffGiverSets.NullOrEmpty())
-            {
-                if (t.race.hediffGiverSets.Contains(DefDatabase<HediffGiverSetDef>.GetNamed("OrganicStandard")))
-                {
-                    t.race.hediffGiverSets.Add(DefDatabase<HediffGiverSetDef>.GetNamed("OrganicPsychology"));
-                }
-            }
+            RegisterPsycheEnabledDef(t);
         }
         Log.Message("Psychology: Registered humanlike species: " + string.Join(", ", registered.ToArray()));
         //Log.Message("SettingsWindowUtility.Initialize()");
         SettingsWindowUtility.Initialize();
+    }
+
+    public static void RegisterPsycheEnabledDef(ThingDef t)
+    {
+        if (t.inspectorTabsResolved == null)
+        {
+            t.inspectorTabsResolved = new List<InspectTabBase>(1);
+        }
+        if (t.race.corpseDef.inspectorTabsResolved == null)
+        {
+            t.race.corpseDef.inspectorTabsResolved = new List<InspectTabBase>(1);
+        }
+        t.inspectorTabsResolved.Add(InspectTabManager.GetSharedInstance(typeof(ITab_Pawn_Psyche)));
+        t.race.corpseDef.inspectorTabsResolved.Add(InspectTabManager.GetSharedInstance(typeof(ITab_Pawn_Psyche)));
+        if (t.recipes == null)
+        {
+            t.recipes = new List<RecipeDef>(6);
+        }
+        if (t.comps == null)
+        {
+            t.comps = new List<CompProperties>(1);
+        }
+        t.comps.Add(new CompProperties_Psychology());
+        if (!t.race.hediffGiverSets.NullOrEmpty())
+        {
+            if (t.race.hediffGiverSets.Contains(DefDatabase<HediffGiverSetDef>.GetNamed("OrganicStandard")))
+            {
+                t.race.hediffGiverSets.Add(DefDatabase<HediffGiverSetDef>.GetNamed("OrganicPsychology"));
+            }
+        }
     }
 
     public static void ResetSpeciesDict(Dictionary<string, SpeciesSettings> speciesDict)

@@ -12,10 +12,12 @@ public static class Pawn_IdeoTracker_CertaintyChangePerDay_Patch
     [HarmonyPostfix]
     public static void CertaintyChangePerDay(ref float __result, Pawn ___pawn)
     {
-        if (PsycheHelper.PsychologyEnabled(___pawn))
+        Log.Message("CertaintyChangePerDay");
+        if (!PsycheHelper.PsychologyEnabled(___pawn))
         {
             return;
         }
+        Log.Message("CertaintyChangePerDay step 2");
         int idnumber;
         float certaintyChange;
         idnumber = ___pawn.thingIDNumber;

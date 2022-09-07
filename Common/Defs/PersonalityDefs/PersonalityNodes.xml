@@ -3417,6 +3417,16 @@
 				<trait>Unstable</trait>
 				<modifier>0.925</modifier>
 			</li>
+			<li>
+				<trait>Neurotic</trait>
+				<degree>1</degree>
+				<modifier>0.7</modifier>
+			</li>
+			<li>
+				<trait>Neurotic</trait>
+				<degree>2</degree>
+				<modifier>0.85</modifier>
+			</li>
 		</traitModifiers>
 		<bigFiveModifiers>
 			<li>0</li>
@@ -3686,6 +3696,16 @@
 				<trait>Kind</trait>
 				<modifier>-0.4</modifier>
 			</li>
+			<li>
+				<trait>Neurotic</trait>
+				<degree>1</degree>
+				<modifier>0.5</modifier>
+			</li>
+			<li>
+				<trait>Neurotic</trait>
+				<degree>2</degree>
+				<modifier>0.75</modifier>
+			</li>
 		</traitModifiers>
 		<bigFiveModifiers>
 			<li>0</li>
@@ -3777,7 +3797,7 @@
 			<li>
 				<trait>NaturalMood</trait>
 				<degree>2</degree>
-				<modifier>0.9</modifier>
+				<modifier>0.95</modifier>
 			</li>
 			<li>
 				<trait>NaturalMood</trait>
@@ -3792,10 +3812,20 @@
 			<li>
 				<trait>NaturalMood</trait>
 				<degree>-2</degree>
-				<modifier>-0.9</modifier>
+				<modifier>-0.95</modifier>
 			</li>
 			<li>
 				<trait>TorturedArtist</trait>
+				<modifier>-0.85</modifier>
+			</li>
+			<li>
+				<trait>Neurotic</trait>
+				<degree>1</degree>
+				<modifier>-0.7</modifier>
+			</li>
+			<li>
+				<trait>Neurotic</trait>
+				<degree>2</degree>
 				<modifier>-0.85</modifier>
 			</li>
 		</traitModifiers>

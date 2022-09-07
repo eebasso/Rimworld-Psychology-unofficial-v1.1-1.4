@@ -15,6 +15,7 @@ namespace Psychology;
 public class PsychologyGameComponent : GameComponent
 {
     public bool firstTimeWithUpdate = true;
+    public bool taraiSiblingsGenerated = false;
     public Dictionary<int, float> CachedCertaintyChangePerDayDict = new Dictionary<int, float>();
     public Dictionary<int, Pair<Pawn, Hediff>> Mayors;
     public static int constituentTick = 156;
@@ -27,6 +28,7 @@ public class PsychologyGameComponent : GameComponent
     public override void ExposeData()
     {
         Scribe_Values.Look(ref this.firstTimeWithUpdate, "Psychology_FirstTimeWithUpdate", true);
+        Scribe_Values.Look(ref taraiSiblingsGenerated, "Psychology_TaraiSiblingsGenerated", false);
     }
 
     public override void LoadedGame()
@@ -159,10 +161,6 @@ public class PsychologyGameComponent : GameComponent
 
     public virtual void ImplementSexualOrientation()
     {
-        if (!PsychologySettings.kinseySettingChanged)
-        {
-            return;
-        }
         if (PsychologySettings.enableKinsey)
         {
             foreach (Pawn pawn in PawnsFinder.AllMapsWorldAndTemporary_AliveOrDead)
@@ -177,7 +175,6 @@ public class PsychologyGameComponent : GameComponent
                 PsycheHelper.CorrectTraitsForPawnKinseyDisabled(pawn);
             }
         }
-        PsychologySettings.kinseySettingChanged = false;
     }
 
     public virtual void RandomizeUpbringingAndRatingsForAllPawns()
