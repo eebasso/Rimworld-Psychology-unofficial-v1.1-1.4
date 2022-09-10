@@ -311,11 +311,14 @@
     <Compile Include="Main\GUI\Dialog_UpdateIntro.cs" />
     <Compile Include="Main\GUI\Dialog_UpdateYesNo.cs" />
     <Compile Include="Harmony\HarmonyInitialize.cs" />
-    <Compile Include="Harmony\OtherMods\CharacterEditor_DialogPsychology.cs" />
-    <Compile Include="Harmony\OtherMods\EdBPrepareCarefully_PanelBackstory.cs" />
     <Compile Include="Harmony\Pawn\PawnGenerator.cs" />
     <Compile Include="Main\Thought\Thought_PrudeVsNudist.cs" />
-    <Compile Include="Harmony\OtherMods\Psychology_PsycheHelper.cs" />
+    <Compile Include="Harmony\OtherMods\CharacterEditor_Patches.cs" />
+    <Compile Include="Harmony\OtherMods\EdBPrepareCarefully_Patches.cs" />
+    <Compile Include="Harmony\OtherMods\Pawnmorpher_Patches.cs" />
+    <Compile Include="Harmony\Misc\SkillRecord.cs" />
+    <Compile Include="Main\Elections\MayorUtility.cs" />
+    <Compile Include="PsychologySCOS.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\About\preview.png">

@@ -30,7 +30,7 @@ public static class MentalBreaker_AnxietyPatch
             if (PsycheHelper.PsychologyEnabled(___pawn))
             {
                 //Laid-back pawns are less likely to get anxiety from mental breaks.
-                PTSDChance -= ___pawn.GetComp<CompPsychology>().Psyche.GetPersonalityRating(PersonalityNodeDefOf.LaidBack) / 10f;
+                PTSDChance -= PsycheHelper.Comp(___pawn).Psyche.GetPersonalityRating(PersonalityNodeDefOf.LaidBack) / 10f;
             }
             if (hediff != null)
             {

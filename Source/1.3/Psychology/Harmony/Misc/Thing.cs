@@ -27,7 +27,7 @@ namespace Psychology.Harmony
         [HarmonyPostfix]
         public static void AddIngestingThoughtsToRecruitingMemories(this Thing __instance, Pawn ingester, float nutritionWanted)
         {
-            if (preIngestingMemories != null && ingester.GetComp<CompPsychology>() != null && (ingester as PsychologyPawn).recruiting != null)
+            if (preIngestingMemories != null && PsycheHelper.Comp(ingester) != null && (ingester as PsychologyPawn).recruiting != null)
             {
                 IEnumerable<Thought_Memory> changedThoughts = (from Thought_Memory m in ingester.needs.mood.thoughts.memories.Memories
                                                                where !preIngestingMemories.Contains(m)

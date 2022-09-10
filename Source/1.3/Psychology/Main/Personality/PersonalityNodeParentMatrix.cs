@@ -20,22 +20,16 @@ public class PersonalityNodeParentMatrix
     public static int size;
     public static List<float[]> bigFiveVectors = new List<float[]>();
     public static float[] bigFiveStandardDevInvs = new float[5];
-    public static Dictionary<int, int> inverseUpbringingMap = new Dictionary<int, int>();
 
     static PersonalityNodeParentMatrix()
     {
         Stopwatch stopwatch = new Stopwatch();
         stopwatch.Start();
 
-        // There are 32 = 2^5 upbringings, where 5 comes from the Big Five
-        // Upbringing map will take user defined settings and 
-        for (int u = 1; u <= 32; u++)
-        {
-            inverseUpbringingMap.Add(PsycheHelper.UpbringingMap(u), u);
-        }
-
         //Log.Message("Initializing PersonalityNodeParentMatrix");
         defList = DefDatabase<PersonalityNodeDef>.AllDefsListForReading;
+
+        PsycheHelper.InitializeDefNamesThatAffectPsyche();
 
         //Log.Message("Initializing indexDict");
         indexDict = new Dictionary<PersonalityNodeDef, int>();
@@ -43,16 +37,6 @@ public class PersonalityNodeParentMatrix
         //Log.Message("Define order and size");
         order = defList.Count();
         size = order * order;
-
-        //float[] a = { 0f, 1f, 2f, 0f };
-        //float[] x = { 0f, 1f, 2f, 0f };
-        //float[] y = { 0f, 1f, 2f, 0f };
-        //x = a;
-        //y = a;
-        //y = ProjUnitDiag(x, 2);
-        //Log.Message("a = " + String.Join(", ", a));
-        //Log.Message("x = " + String.Join(", ", x));
-        //Log.Message("y = " + String.Join(", ", y));
 
         //Log.Message("Initialize parentModifierMatrix");
         parentModifierMatrix = IdentityMatrix(order);
@@ -804,10 +788,11 @@ public class PersonalityNodeParentMatrix
         return norm;
     }
 
-    public static float[] ApplyUpbringingProjection(float[] ratingList, int upbringing)
+
+    public static float[] ApplyBigFiveProjections(float[] ratingList)
     {
         float[] newRatings = new float[order];
-        if (!PsychologySettings.enableUpbringing)
+        if (PsychologySettings.personalityExtremeness == 0f)
         {
             ratingList.CopyTo(newRatings, 0);
             return newRatings;
@@ -818,10 +803,6 @@ public class PersonalityNodeParentMatrix
             // Map from uniformly random from 0 to 1 to normally distributed random
             x[i] = PsycheHelper.NormalCDFInv(ratingList[i]);
         }
-        // Do 3 * upbringing + 4 to create better distribution for legacy 1 thru 16
-        // ToDo: make upbringing editable and make sure to reverse the 3u + 4
-        int[] upbringingBit = PsycheHelper.GetBitArray(PsycheHelper.UpbringingMap(upbringing), 5);
-
         float[] FinvGFVxMinusVx = new float[5];
         for (int bf = 0; bf < 5; bf++)
         {
@@ -829,8 +810,8 @@ public class PersonalityNodeParentMatrix
             float Vx = DotProduct(bigFiveVectors[bf], x);
             // Map back to uniformly random in the range [0,1]
             float FVx = PsycheHelper.NormalCDF(Vx);
-            // Restrict to either lower or upper interval based on upbringingBit = 0,1
-            float GFVx = 0.5f * ((1f + PsychologySettings.upbringingEffect) * upbringingBit[bf] + (1f - PsychologySettings.upbringingEffect) * FVx);
+            // Restrict to either lower or upper interval based sign of FVx - 0.5, thus making personalities more extreme
+            float GFVx = (1f - PsychologySettings.personalityExtremeness) * FVx + (FVx < 0.5f ? 0f : PsychologySettings.personalityExtremeness); 
             // Map back to normally distributed random
             float FinvGFVx = PsycheHelper.NormalCDFInv(GFVx);
             // Subtract original projection
@@ -851,5 +832,4 @@ public class PersonalityNodeParentMatrix
         // y = x + V Vx
         return newRatings;
     }
-
 }

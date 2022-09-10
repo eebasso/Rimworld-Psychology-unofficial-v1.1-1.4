@@ -46,10 +46,10 @@ public class ThoughtWorker_Individuality : ThoughtWorker
             IEnumerable<int> stagesList = from t in tmpThoughts
                                           where t.def.defName == "Expectations"
                                           select t.CurStageIndex;
-            Log.Message(p.LabelShort + ": stagesList.Count() = " + stagesList.Count());
+            //Log.Message(p.LabelShort + ": stagesList.Count() = " + stagesList.Count());
             if (stagesList.Count() > 0)
             {
-                Log.Message(p.LabelShort + ": stagesList.First() = " + stagesList.First());
+                //Log.Message(p.LabelShort + ": stagesList.First() = " + stagesList.First());
                 if (stagesList.First() < 4)
                 {
                     return ThoughtState.Inactive;

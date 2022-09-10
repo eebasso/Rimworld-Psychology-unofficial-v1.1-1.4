@@ -11,8 +11,8 @@ using Verse.Grammar;
 using UnityEngine;
 using System.Xml.Linq;
 using System.Runtime;
-using System.Security.Cryptography;
-using Verse.Sound;
+//using System.Security.Cryptography;
+//using Verse.Sound;
 
 namespace Psychology;
 
@@ -27,10 +27,16 @@ public class SpeciesHelper
     public static List<string> mindlessSubstringList = new List<string> { "Robot", "AIPawn" };
     public static List<string> androidLikeSubstringList = new List<string> { "Android" };
     public static List<string> elfLikeSubstringList = new List<string>() { "Elf" };
+    public static List<string> animalLikeSubstringList = new List<string>() { "morph", "Morph" };
+
     public static SpeciesSettings mindlessSettings = new SpeciesSettings(false, false, -1f, -1f);
     public static SpeciesSettings androidLikeSettings = new SpeciesSettings(true, false, 0f, 0f);
     public static SpeciesSettings elfLikeSettings = new SpeciesSettings(EnablePsyche: true, EnableAgeGap: false);
+    public static SpeciesSettings animalLikeSettings = new SpeciesSettings(true, true, -1f, -1f);
+
     public static Dictionary<string, SpeciesSettings> speciesDictDefault = new Dictionary<string, SpeciesSettings>();
+    public static ThinkTreeDef zombieThinkTree;
+    public static bool zombieNotNull;
 
     static SpeciesHelper()
     {
@@ -39,182 +45,188 @@ public class SpeciesHelper
 
     public static void Initialize()
     {
-        Log.Message("SpeciesHelper()");
+        //Log.Message("SpeciesHelper()");
         IEnumerable<ThingDef> humanlikeDefsEnumerable = from def in DefDatabase<ThingDef>.AllDefs
-                                                         where def.race?.intelligence == Intelligence.Humanlike
-                                                         orderby def.label ascending
-                                                         select def;
-        foreach (ThingDef t in humanlikeDefsEnumerable)
-        {
-            humanlikeDefs.AddDistinct(t);
-        }
-        Log.Message("humanlikeDefs.Count() = " + humanlikeDefs.Count());
+                                                        where def.race?.intelligence == Intelligence.Humanlike
+                                                        orderby def.label ascending
+                                                        select def;
+        //Log.Message("humanlikeDefs.Count() = " + humanlikeDefs.Count());
         ResetSpeciesDict(speciesDictDefault);
         List<string> registered = new List<string>();
-        foreach (ThingDef t in humanlikeDefs)
+        string defName;
+        foreach (ThingDef t in humanlikeDefsEnumerable)
         {
-            string defName = t.defName;
+            defName = t.defName;
+            AddCompsToHumanlikeDef(t, false);
             registered.Add(defName);
             if (!PsychologySettings.speciesDict.ContainsKey(defName))
             {
                 PsychologySettings.speciesDict.Add(defName, speciesDictDefault[defName]);
             }
-            if (!PsychologySettings.speciesDict[defName].enablePsyche)
-            {
-                continue;
-            }
-            AddCompsToPsycheEnabledDef(t);
         }
-        Log.Message("Psychology: Registered humanlike species: " + string.Join(", ", registered.ToArray()));
-        //Log.Message("SettingsWindowUtility.Initialize()");
         SettingsWindowUtility.Initialize();
     }
 
-    public static void AddCompsToPsycheEnabledDef(ThingDef t)
+    public static SpeciesSettings GetOrMakeSettingsFromHumanlikeDef(ThingDef humanlikeDef)
     {
+        if (PsychologySettings.speciesDict.TryGetValue(humanlikeDef.defName, out SpeciesSettings settings) == false)
+        {
+            settings = DefaultSettingsForSpeciesDef(humanlikeDef);
+            AddCompsToHumanlikeDef(humanlikeDef);
+            PsychologySettings.speciesDict.AddDistinct(humanlikeDef.defName, settings);
+        }
+        return settings;
+    }
+
+    public static void AddCompsToHumanlikeDef(ThingDef humanlikeDef, bool initializeSettingsWindow = true)
+    {
+        humanlikeDefs.AddDistinct(humanlikeDef);
+        AddInspectorTabToDefAndCorpseDef(humanlikeDef);
+        if (humanlikeDef.recipes == null)
+        {
+            humanlikeDef.recipes = new List<RecipeDef>(6);
+        }
+        if (humanlikeDef.comps == null)
+        {
+            humanlikeDef.comps = new List<CompProperties>(1);
+        }
+        humanlikeDef.comps.AddDistinct(new CompProperties_Psychology());
+        if (!humanlikeDef.race.hediffGiverSets.NullOrEmpty())
+        {
+            if (humanlikeDef.race.hediffGiverSets.Contains(DefDatabase<HediffGiverSetDef>.GetNamed("OrganicStandard")))
+            {
+                humanlikeDef.race.hediffGiverSets.AddDistinct(DefDatabase<HediffGiverSetDef>.GetNamed("OrganicPsychology"));
+            }
+        }
+        if (initializeSettingsWindow)
+        {
+            SettingsWindowUtility.Initialize();
+        }
+    }
+
+    public static void AddInspectorTabToDefAndCorpseDef(ThingDef t)
+    {
+        Log.Message("AddInspectorTabToDefAndCorpseDef to thingdef = " + t.defName);
         if (t.inspectorTabsResolved == null)
         {
             t.inspectorTabsResolved = new List<InspectTabBase>(1);
+        }
+        t.inspectorTabsResolved.AddDistinct(InspectTabManager.GetSharedInstance(typeof(ITab_Pawn_Psyche)));
+        if (t.race?.corpseDef == null)
+        {
+            Log.Warning("thingDef.race?.corpseDef == null for thingDef = " + t.defName);
+            return;
         }
         if (t.race.corpseDef.inspectorTabsResolved == null)
         {
             t.race.corpseDef.inspectorTabsResolved = new List<InspectTabBase>(1);
         }
-        t.inspectorTabsResolved.AddDistinct(InspectTabManager.GetSharedInstance(typeof(ITab_Pawn_Psyche)));
         t.race.corpseDef.inspectorTabsResolved.AddDistinct(InspectTabManager.GetSharedInstance(typeof(ITab_Pawn_Psyche)));
-        if (t.recipes == null)
-        {
-            t.recipes = new List<RecipeDef>(6);
-        }
-        if (t.comps == null)
-        {
-            t.comps = new List<CompProperties>(1);
-        }
-        t.comps.AddDistinct(new CompProperties_Psychology());
-        if (!t.race.hediffGiverSets.NullOrEmpty())
-        {
-            if (t.race.hediffGiverSets.Contains(DefDatabase<HediffGiverSetDef>.GetNamed("OrganicStandard")))
-            {
-                t.race.hediffGiverSets.AddDistinct(DefDatabase<HediffGiverSetDef>.GetNamed("OrganicPsychology"));
-            }
-        }
     }
 
     public static void ResetSpeciesDict(Dictionary<string, SpeciesSettings> speciesDict)
     {
         speciesDict.Clear();
-        ThinkTreeDef zombieThinkTree = DefDatabase<ThinkTreeDef>.GetNamedSilentFail("Zombie");
-        bool zombieNotNull = zombieThinkTree != null;
+        zombieThinkTree = DefDatabase<ThinkTreeDef>.GetNamedSilentFail("Zombie");
+        zombieNotNull = zombieThinkTree != null;
 
-        Log.Message("ResetSpeciesDict humanlikeDefs.Count() = " + humanlikeDefs.Count());
+        //Log.Message("ResetSpeciesDict humanlikeDefs.Count() = " + humanlikeDefs.Count());
         foreach (ThingDef def in humanlikeDefs)
         {
-            // Allow hook for other mods
-            AddSpeciesHook(speciesDict, def);
-            // Allow XML override
-            string name = def.defName;
-            SpeciesSettingsDef speciesDef = DefDatabase<SpeciesSettingsDef>.GetNamedSilentFail(name);
-            if (speciesDef != null)
+            SpeciesSettings settings = DefaultSettingsForSpeciesDef(def);
+            speciesDict.Add(def.defName, settings);
+        }
+        //Log.Message("ResetSpeciesDict humanlikeDefs.Count() = " + humanlikeDefs.Count());
+    }
+
+    public static SpeciesSettings DefaultSettingsForSpeciesDef(ThingDef def)
+    {
+        // Allow XML override
+        string name = def.defName;
+        SpeciesSettingsDef speciesDef = DefDatabase<SpeciesSettingsDef>.GetNamedSilentFail(name);
+        if (speciesDef != null)
+        {
+            return new SpeciesSettings(speciesDef.enablePsyche, speciesDef.enableAgeGap, speciesDef.minDatingAge, speciesDef.minLovinAge);
+        }
+        // Start with default
+        SpeciesSettings settings = new SpeciesSettings();
+        // Set human to default
+        if (name == "Human")
+        {
+            return settings;
+        }
+        // Use explicit defNames from well-known mods
+        if (mindlessList.Contains(name))
+        {
+            return CopySpeciesSettingsFrom(mindlessSettings);
+        }
+        if (androidLikeList.Contains(name))
+        {
+            return CopySpeciesSettingsFrom(androidLikeSettings);
+        }
+        if (elfLikeList.Contains(name))
+        {
+            return CopySpeciesSettingsFrom(elfLikeSettings);
+        }
+        // Use heuristics based on defNames
+        if (animalLikeSubstringList.Exists(entry => name.Contains(entry)))
+        {
+            // No beastiality from Pawnmorphs please
+            return CopySpeciesSettingsFrom(animalLikeSettings);
+        }
+        if (mindlessSubstringList.Exists(entry => name.Contains(entry)) || (zombieNotNull && def.race.thinkTreeMain == zombieThinkTree))
+        {
+            settings.enablePsyche = false;
+        }
+        if (androidLikeSubstringList.Exists(entry => name.Contains(entry)))
+        {
+            settings.enableAgeGap = false;
+            settings.minDatingAge = 0f;
+            settings.minLovinAge = 0f;
+        }
+        if (elfLikeSubstringList.Exists(entry => name.Contains(entry)))
+        {
+            settings.enableAgeGap = false;
+        }
+        if (ModsConfig.IsActive("erdelf.HumanoidAlienRaces"))
+        {
+            SpeciesHelperAlienRace.HeuristicSettings(ref settings, def);
+        }
+        if (def.race?.lifeStageAges != null)
+        {
+            if (def.race.lifeStageAges.Exists(x => x.def.defName.Contains("Adult") && x?.minAge != null))
             {
-                speciesDict.Add(name, new SpeciesSettings(speciesDef.enablePsyche, speciesDef.enableAgeGap, speciesDef.minDatingAge, speciesDef.minLovinAge));
-                continue;
-            }
-            // Start with default
-            SpeciesSettings settings = new SpeciesSettings();
-            // Set human to default
-            if (name == "Human")
-            {
-                speciesDict.Add(name, settings);
-                continue;
-            }
-            // Use explicit defNames from well-known mods
-            if (mindlessList.Contains(name))
-            {
-                speciesDict.Add(name, mindlessSettings);
-                continue;
-            }
-            if (androidLikeList.Contains(name))
-            {
-                speciesDict.Add(name, androidLikeSettings);
-                continue;
-            }
-            if (elfLikeList.Contains(name))
-            {
-                speciesDict.Add(name, elfLikeSettings);
-                continue;
-            }
-            // Use heuristics based on defNames
-            if (mindlessSubstringList.Exists(entry => name.Contains(entry)) || (zombieNotNull && def.race.thinkTreeMain == zombieThinkTree))
-            {
-                settings.enablePsyche = false;
-                //speciesDict.Add(name, mindlessSettings);
-                //continue;
-            }
-            if (androidLikeSubstringList.Exists(entry => name.Contains(entry)))
-            {
-                settings.enableAgeGap = false;
-                settings.minDatingAge = 0f;
-                settings.minLovinAge = 0f;
-                //speciesDict.Add(name, androidLikeSettings);
-                //continue;
-            }
-            if (elfLikeSubstringList.Exists(entry => name.Contains(entry)))
-            {
-                settings.enableAgeGap = false;
-                //speciesDict.Add(name, elfLikeSettings);
-                //continue;
-            }
-            if (ModsConfig.IsActive("erdelf.HumanoidAlienRaces"))
-            {
-                SpeciesHelperAlienRace.HeuristicSettings(ref settings, def);
-            }
-            if (def.race?.lifeStageAges != null)
-            {
-                if (def.race.lifeStageAges.Exists(x => x.def.defName.Contains("Adult") && x?.minAge != null))
+                float adultAge = (def.race.lifeStageAges.First(x => x.def.defName.Contains("Adult"))).minAge;
+                if (def.race.lifeStageAges.Exists(x => x.def.defName.Contains("Teenager") && x?.minAge != null))
                 {
-                    float adultAge = (def.race.lifeStageAges.First(x => x.def.defName.Contains("Adult"))).minAge;
-                    if (def.race.lifeStageAges.Exists(x => x.def.defName.Contains("Teenager") && x?.minAge != null))
-                    {
-                        float teenAge = (def.race.lifeStageAges.First(x => x.def.defName.Contains("Teenager"))).minAge;
-                        settings.minDatingAge = teenAge + (adultAge - teenAge) * (14f - 13f) / (18f - 13f);
-                        settings.minLovinAge = teenAge + (adultAge - teenAge) * (16f - 13f) / (18f - 13f);
-                    }
-                    else
-                    {
-                        settings.minDatingAge = adultAge * 14f / 18f;
-                        settings.minLovinAge = adultAge * 16f / 18f;
-                    }
+                    float teenAge = (def.race.lifeStageAges.First(x => x.def.defName.Contains("Teenager"))).minAge;
+                    settings.minDatingAge = teenAge + (adultAge - teenAge) * (14f - 13f) / (18f - 13f);
+                    settings.minLovinAge = teenAge + (adultAge - teenAge) * (16f - 13f) / (18f - 13f);
                 }
                 else
                 {
-                    settings.minDatingAge = -1f;
-                    settings.minLovinAge = -1f;
+                    settings.minDatingAge = adultAge * 14f / 18f;
+                    settings.minLovinAge = adultAge * 16f / 18f;
                 }
             }
-            // Go to default
-            speciesDict.Add(name, settings);
+            else
+            {
+                settings.minDatingAge = -1f;
+                settings.minLovinAge = -1f;
+            }
         }
-        Log.Message("ResetSpeciesDict humanlikeDefs.Count() = " + humanlikeDefs.Count());
+        return settings;
     }
 
-    public static void AddSpeciesHook(Dictionary<string, SpeciesSettings> speciesDict, ThingDef t)
+    public static SpeciesSettings CopySpeciesSettingsFrom(SpeciesSettings settingsToCopy)
     {
-        // For other modders
+        SpeciesSettings newSettings = new SpeciesSettings();
+        newSettings.enablePsyche = settingsToCopy.enablePsyche;
+        newSettings.enableAgeGap = settingsToCopy.enableAgeGap;
+        newSettings.minDatingAge = settingsToCopy.minDatingAge;
+        newSettings.minLovinAge = settingsToCopy.minLovinAge;
+        return newSettings;
     }
-
-    //public static void AddMindlessSpecies(Dictionary<string, SpeciesSettings> speciesDict, string defName)
-    //{
-    //    speciesDict.Add(defName, new SpeciesSettings(false, false, -1f, -1f));
-    //}
-
-    //public static void AddNoChildhoodSpecies(Dictionary<string, SpeciesSettings> speciesDict, string defName)
-    //{
-    //    speciesDict.Add(defName, new SpeciesSettings(true, false, 0f, 0f));
-    //}
-    //public static void AddElflikeSpecies(Dictionary<string, SpeciesSettings> speciesDict, string defName)
-    //{
-
-    //}
 }public static class SpeciesHelperAlienRace
 {
     public static void HeuristicSettings(ref SpeciesSettings settings, ThingDef def)

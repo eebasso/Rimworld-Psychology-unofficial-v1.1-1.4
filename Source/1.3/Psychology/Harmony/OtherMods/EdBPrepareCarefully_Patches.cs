@@ -11,10 +11,19 @@ using System.Collections.Generic;using System.Reflection.Emit;using System.Lin
 
 namespace Psychology.Harmony;
 
-//[HarmonyPatch(typeof(EdB.PrepareCarefully.PanelBackstory), nameof(EdB.PrepareCarefully.PanelBackstory.Draw))]
-public static class EdBPrepareCarefully_PanelBackstory_Patch
+public static class EdBPrepareCarefully_Patches
 {
-    public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> codes)
+    public static MethodInfo originalInfo;
+    public static HarmonyMethod harmonyMethod;
+
+    public static void ManualPatches(HarmonyLib.Harmony harmonyInstance)
+    {
+        originalInfo = AccessTools.Method(AccessTools.TypeByName("EdB.PrepareCarefully.PanelBackstory"), "Draw");
+        harmonyMethod = new HarmonyMethod(typeof(EdBPrepareCarefully_Patches).GetMethod(nameof(EdBPrepareCarefully_Patches.PanelBackstory_DrawTranspiler)));
+        harmonyInstance.Patch(originalInfo, transpiler: harmonyMethod);
+    }
+
+    public static IEnumerable<CodeInstruction> PanelBackstory_DrawTranspiler(IEnumerable<CodeInstruction> codes)
     {
         Type CustomPawnType = AccessTools.TypeByName("EdB.PrepareCarefully.CustomPawn");
         List<CodeInstruction> codeList = codes.ToList();
@@ -36,20 +45,27 @@ public static class EdBPrepareCarefully_PanelBackstory_Patch
                 yield return new CodeInstruction(OpCodes.Ldloc_1);
                 yield return new CodeInstruction(OpCodes.Ldfld, fieldInfo);
                 yield return new CodeInstruction(OpCodes.Ldarg_2);
-                yield return CodeInstruction.Call(typeof(EdBPrepareCarefully_PanelBackstory_Patch), nameof(EdBPsycheButton), new Type[] { typeof(Pawn), typeof(float) });
+                yield return CodeInstruction.Call(typeof(EdBPrepareCarefully_Patches), nameof(EdBPsycheButton), new Type[] { typeof(Pawn), typeof(float) });
             }
         }
     }
 
     public static void EdBPsycheButton(Pawn pawn, float y)
     {
-        string warningText = "WARNING";
-        string warningTooltip = "Psychology: "
-            + "<b>Prepare Carefully leads to countless glitches,</b> ".Colorize(Color.red)
-            + "corrupts the default data structures, and interacts poorly with Psychology. The player is strongly encouraged to "
-            + "<b>use Character Editor instead,</b> ".Colorize(new Color(0.1f, 0.6f, 1f))
-            + "as it achieves the same capabilities, including modifying initial item loadouts, while avoiding game-breaking problems. "
-            + "<b>You've been warned.</b>".Colorize(Color.red);
+        
+        string warningText = "EdBPrepareCarefullyWarning".Translate();
+        string warningTooltip = (string)"EdBPrepareCarefullyWarningTooltip".Translate();
+        warningTooltip = warningTooltip.Replace("{0}", "<b>" + "EdBPrepareCarefullyWarningTooltip0".Translate().Colorize(Color.red) + "</b>");
+        warningTooltip = warningTooltip.Replace("{1}", "<b>" + "EdBPrepareCarefullyWarningTooltip1".Translate().Colorize(new Color(0.1f, 0.6f, 1f)) + "</b>");
+        warningTooltip = warningTooltip.Replace("{2}", "<b>" + "EdBPrepareCarefullyWarningTooltip2".Translate().Colorize(Color.red) + "</b>");
+
+        //string warningTooltip = "Psychology: "
+        //    + "<b>Prepare Carefully leads to countless glitches,</b> ".Colorize(Color.red)
+        //    + "corrupts the default data structures, and interacts poorly with Psychology. The player is strongly encouraged to "
+        //    + "<b>use Character Editor instead,</b> ".Colorize(new Color(0.1f, 0.6f, 1f))
+        //    + "as it achieves the same capabilities, including modifying initial item loadouts, while avoiding game-breaking problems. "
+        //    + "<b>You've been warned.</b>".Colorize(Color.red);
+
         GameFont oldFont = Text.Font;
         Text.Font = GameFont.Medium;
         Vector2 warningSize = Text.CalcSize(warningText);

@@ -49,7 +49,7 @@ public class PersonalityNode : IExposable
     public float AdjustForCircumstance(float rating, bool applyingTwice = false)
     {
         float gM = (this.pawn.gender == Gender.Female) ? this.def.femaleModifier : -this.def.femaleModifier;
-        gM *= PsychologySettings.enableKinsey ? 1f - this.pawn.GetComp<CompPsychology>().Sexuality.kinseyRating / 6f : this.pawn.story.traits.HasTrait(TraitDefOf.Gay) ? 0f : 1f;
+        gM *= PsychologySettings.enableKinsey ? 1f - PsycheHelper.Comp(this.pawn).Sexuality.kinseyRating / 6f : this.pawn.story.traits.HasTrait(TraitDefOf.Gay) ? 0f : 1f;
         if (Mathf.Abs(gM) > 0.001f)
         {
             float gMm1 = gM - 1f;

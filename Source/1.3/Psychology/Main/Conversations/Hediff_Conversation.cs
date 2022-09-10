@@ -122,7 +122,7 @@ public class Hediff_Conversation : HediffWithComps
             Log.Message("Hediff_Conversation.PostRemoved(), psychology not enabled");
             return;
         }
-        Log.Message("Hediff_Conversation.PostRemoved(), pawn = " + pawn.LabelShort + " otherPawn = " + otherPawn.LabelShort + ", step 0");
+        //Log.Message("Hediff_Conversation.PostRemoved(), pawn = " + pawn.LabelShort + " otherPawn = " + otherPawn.LabelShort + ", step 0");
         Hediff_Conversation otherConvo = otherPawn.health.hediffSet.hediffs.Find(h => h is Hediff_Conversation && ((Hediff_Conversation)h).otherPawn == this.pawn) as Hediff_Conversation;
         if (otherConvo != null)
         {
@@ -150,7 +150,7 @@ public class Hediff_Conversation : HediffWithComps
             int numEpicTalks = int.Parse("NumberOfEpicTalks".Translate());
             talkDesc = "EpicTalk" + Rand.RangeInclusive(1, numEpicTalks);
         }
-        Log.Message("Hediff_Conversation.PostRemoved(), pawn = " + pawn.LabelShort + " otherPawn = " + otherPawn.LabelShort + ", step 1");
+        //Log.Message("Hediff_Conversation.PostRemoved(), pawn = " + pawn.LabelShort + " otherPawn = " + otherPawn.LabelShort + ", step 1");
         float opinionMod;
         ThoughtDef def = CreateSocialThought(out opinionMod);
         bool mattered = TryGainThought(def, Mathf.RoundToInt(opinionMod));
@@ -178,7 +178,7 @@ public class Hediff_Conversation : HediffWithComps
         }
         if (this.waveGoodbye && this.pawn.Map != null)
         {
-            Log.Message("Hediff_Conversation.PostRemoved(), pawn = " + pawn.LabelShort + " otherPawn = " + otherPawn.LabelShort + ", step 2");
+            //Log.Message("Hediff_Conversation.PostRemoved(), pawn = " + pawn.LabelShort + " otherPawn = " + otherPawn.LabelShort + ", step 2");
             RulePack goodbyeText = new RulePack();
             FieldInfo RuleStrings = typeof(RulePack).GetField("rulesStrings", BindingFlags.Instance | BindingFlags.NonPublic);
             List<string> text = new List<string>(1);
@@ -191,7 +191,7 @@ public class Hediff_Conversation : HediffWithComps
             Find.PlayLog.Add(log);
             convoLog = log;
             MoteMaker.MakeInteractionBubble(this.pawn, this.otherPawn, InteractionDefOf.Chitchat.interactionMote, InteractionDefOf.Chitchat.GetSymbol()); // 1.3
-            Log.Message("Hediff_Conversation.PostRemoved(), pawn = " + pawn.LabelShort + " otherPawn = " + otherPawn.LabelShort + ", step 3");
+            //Log.Message("Hediff_Conversation.PostRemoved(), pawn = " + pawn.LabelShort + " otherPawn = " + otherPawn.LabelShort + ", step 3");
         }
     }
 
@@ -210,18 +210,19 @@ public class Hediff_Conversation : HediffWithComps
         // NEW PSYCHOLOGY FORMULA
         float opin1 = Mathf.Clamp01(PsycheHelper.Comp(pawn).Psyche.GetPersonalityRating(topic));
         float opin2 = Mathf.Clamp01(PsycheHelper.Comp(otherPawn).Psyche.GetPersonalityRating(topic));
+
         // Baseline opinion modifier ranges from -1 to +1 and should have an expected value of +0.01.
-        //float opinionModRaw = (0.5f - 5.5f * Mathf.Pow(opin1 - opin2, 2) + 0.5f * Mathf.Pow(opin1 + opin2 - 1, 2)) / (1 + 4f * Mathf.Pow(opin1 - opin2, 2));
-        float opinionModRaw = PsycheHelper.SaddleShapeFunction(opin1, opin2);
-        Log.Message(pawn.LabelShort + " and " + otherPawn.LabelShort + " opinionModRaw = " + opinionModRaw.ToString());
+        float controversiality = topic.controversiality;
+        float opinionModRaw = PsycheHelper.SaddleShapeFunction(opin1, opin2, 1f - 0.5f * controversiality, 4f * controversiality * controversiality);
+        //Log.Message(pawn.LabelShort + " and " + otherPawn.LabelShort + " opinionModRaw = " + opinionModRaw.ToString());
 
         float opinionModRawMin = 0.1f;
-        opinionMod = 20f * topic.controversiality * (opinionModRawMin * Mathf.Sign(opinionModRaw) + (1f - opinionModRawMin) * opinionModRaw);
-        Log.Message(pawn.LabelShort + " and " + otherPawn.LabelShort + " opinionMod w/o time factor = " + opinionMod.ToString());
+        opinionMod = 20f * (opinionModRawMin * Mathf.Sign(opinionModRaw) + (1f - opinionModRawMin) * opinionModRaw);
+        //Log.Message(pawn.LabelShort + " and " + otherPawn.LabelShort + " opinionMod w/o time factor = " + opinionMod.ToString());
 
         // Added time minimum to baseline to opinionMod because conversations often end very quickly
         opinionMod *= 1.0f + 6f * ((float)this.ageTicks / (float)(GenDate.TicksPerHour * 2.25f));
-        Log.Message(pawn.LabelShort + " and " + otherPawn.LabelShort + " opinionMod w time factor = " + opinionMod.ToString());
+        //Log.Message(pawn.LabelShort + " and " + otherPawn.LabelShort + " opinionMod w time factor = " + opinionMod.ToString());
 
         // Personality multiplier controls how much personality affects the opinion multiplier. Should be a positive number.
         float personalityMultiplier = 0.50f;
@@ -258,8 +259,8 @@ public class Hediff_Conversation : HediffWithComps
             // In low-population colonies, pawns will put aside their differences.
             opinionMod *= PopulationModifier;
         }
-        Log.Message(pawn.LabelShort + " and " + otherPawn.LabelShort + " opinionMod before multiplier = " + opinionMod.ToString());
-        Log.Message(pawn.LabelShort + " and " + otherPawn.LabelShort + " opinionMultiplier = " + opinionMultiplier.ToString());
+        //Log.Message(pawn.LabelShort + " and " + otherPawn.LabelShort + " opinionMod before multiplier = " + opinionMod.ToString());
+        //Log.Message(pawn.LabelShort + " and " + otherPawn.LabelShort + " opinionMultiplier = " + opinionMultiplier.ToString());
 
         // Multiply by 1 + opinionMultiplier for positive multiplier
         if (opinionMultiplier > 0f)
@@ -272,18 +273,18 @@ public class Hediff_Conversation : HediffWithComps
         {
             opinionMod /= 1f - opinionMultiplier;
         }
-        Log.Message(pawn.LabelShort + " and " + otherPawn.LabelShort + " opinionMod after multiplier = " + opinionMod.ToString());
+        //Log.Message(pawn.LabelShort + " and " + otherPawn.LabelShort + " opinionMod after multiplier = " + opinionMod.ToString());
 
         // Set minimum and maximum absolute changes in opinion.
-        float opinionModMin = 7.5f;
-        float opinionModMax = 30f;
+        float opinionModMin = 5f * (1f + Rand.Value);
+        float opinionModMax = 25f * (1f + Rand.Value);
         // Weaker baseline agreement/disagreement leads to lower max absolute change in opinion
         float opinionModMaxAdjusted = Mathf.Lerp(Mathf.Max(0.5f * opinionModMax, opinionModMin), opinionModMax, 2f * Mathf.Abs(opinionModRaw));
-        Log.Message(pawn.LabelShort + " and " + otherPawn.LabelShort + " opinionModMaxAdjusted = " + opinionModMaxAdjusted.ToString());
+        //Log.Message(pawn.LabelShort + " and " + otherPawn.LabelShort + " opinionModMaxAdjusted = " + opinionModMaxAdjusted.ToString());
 
         // Opinion must change by at least +-opinionModMin and are capped at +-opinionModMaxAdjusted
         opinionMod = Mathf.Sign(opinionMod) * Mathf.Clamp(Mathf.Abs(opinionMod), opinionModMin, opinionModMaxAdjusted);
-        Log.Message(pawn.LabelShort + " and " + otherPawn.LabelShort + " opinionMod final value = " + opinionMod.ToString());
+        //Log.Message(pawn.LabelShort + " and " + otherPawn.LabelShort + " opinionMod final value = " + opinionMod.ToString());
 
         stage.label = "ConversationStage".Translate() + " " + convoTopic;
         stage.baseOpinionOffset = Mathf.RoundToInt(opinionMod);

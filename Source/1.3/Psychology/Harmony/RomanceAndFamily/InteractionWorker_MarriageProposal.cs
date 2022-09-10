@@ -18,13 +18,13 @@ namespace Psychology.Harmony
         [HarmonyPrefix]
 		public static bool PsychologyException(InteractionWorker_MarriageProposal __instance, ref float __result, Pawn initiator, Pawn recipient)
 		{
-			if (recipient.GetComp<CompPsychology>() != null && recipient.GetComp<CompPsychology>().IsPsychologyPawn)
+			if (PsycheHelper.PsychologyEnabled(recipient))
             {
                 float num = 1.2f;
-                num *= Mathf.InverseLerp(0f, 0.75f, recipient.GetComp<CompPsychology>().Psyche.GetPersonalityRating(PersonalityNodeDefOf.Romantic));
+                num *= Mathf.InverseLerp(0f, 0.75f, PsycheHelper.Comp(recipient).Psyche.GetPersonalityRating(PersonalityNodeDefOf.Romantic));
                 if (PsychologySettings.enableKinsey)
                 {
-                    num *= recipient.GetComp<CompPsychology>().Sexuality.AdjustedRomanticDrive;
+                    num *= PsycheHelper.Comp(recipient).Sexuality.AdjustedRomanticDrive;
                 }
                 num *= Mathf.Clamp01(GenMath.LerpDouble(-20f, 60f, 0f, 1f, (float)recipient.relations.OpinionOf(initiator)));
                 __result = Mathf.Clamp01(num);
@@ -217,7 +217,7 @@ namespace Psychology.Harmony
                 /* The less Romantic a pawn is, the more likely they are to break up with someone who asks them to marry them.
                  * If a Pawn's Romantic value is 0.75 or higher, they won't ever do this.
                  */ /*
-                return Math.Max(0f, 1f - (1.34f * recipient.GetComp<CompPsychology>().Psyche.GetPersonalityRating(PersonalityNodeDefOf.Romantic)));
+                return Math.Max(0f, 1f - (1.34f * PsycheHelper.Comp(recipient).Psyche.GetPersonalityRating(PersonalityNodeDefOf.Romantic)));
             }
             else
             {

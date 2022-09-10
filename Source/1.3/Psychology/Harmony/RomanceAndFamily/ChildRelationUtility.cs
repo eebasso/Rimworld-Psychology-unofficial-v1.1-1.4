@@ -24,14 +24,14 @@ public static class ChildRelationUtility_ChanceOfBecomingChildOf_Patch
         {
             if (PsycheHelper.PsychologyEnabled(father))
             {
-                __result *= Mathf.InverseLerp(6f, 0f, father.GetComp<CompPsychology>().Sexuality.kinseyRating);
+                __result *= Mathf.InverseLerp(6f, 0f, PsycheHelper.Comp(father).Sexuality.kinseyRating);
             }
         }
         if (mother != null && child != null && child.GetMother() == null)
         {
             if (PsycheHelper.PsychologyEnabled(mother))
             {
-                __result *= Mathf.InverseLerp(6f, 0f, mother.GetComp<CompPsychology>().Sexuality.kinseyRating);
+                __result *= Mathf.InverseLerp(6f, 0f, PsycheHelper.Comp(mother).Sexuality.kinseyRating);
             }
         }
     }

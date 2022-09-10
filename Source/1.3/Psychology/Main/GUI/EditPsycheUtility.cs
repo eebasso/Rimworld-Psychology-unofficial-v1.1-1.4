@@ -251,8 +251,6 @@ public class EditPsycheUtility
         Rect resetRect = new Rect(blankWidth, mainRect.yMax - ButtonHeight, ButtonWidth, ButtonHeight);
         Rect randomRect = new Rect(resetRect.xMax + blankWidth, resetRect.y, ButtonWidth, ButtonHeight);
 
-        // ToDo: add ability to edit upbringing
-
         for (int i = 0; i < CachedList.Count; i++)
         {
             PersonalityNode node = Nodes[CachedList[i].First];
@@ -277,7 +275,7 @@ public class EditPsycheUtility
         }
         if (Widgets.ButtonText(resetRect, ResetButtonText, true, false, true))
         {
-            PsycheHelper.Comp(pawn).Psyche.RandomizeUpbringingAndRatings();
+            PsycheHelper.Comp(pawn).Psyche.RandomizeRatings();
             for (int i = 0; i < CachedList.Count; i++)
             {
                 string nodeLabel = CachedList[i].First;
@@ -301,7 +299,7 @@ public class EditPsycheUtility
         if (Widgets.ButtonText(randomRect, RandomButtonText, true, false, true))
         {
             int randomSeed = Mathf.CeilToInt(1e+7f * Rand.Value);
-            PsycheHelper.Comp(pawn).Psyche.RandomizeUpbringingAndRatings(randomSeed);
+            PsycheHelper.Comp(pawn).Psyche.RandomizeRatings(randomSeed);
             for (int i = 0; i < CachedList.Count; i++)
             {
                 string nodeLabel = CachedList[i].First;

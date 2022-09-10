@@ -9,6 +9,7 @@ using Verse;
 using Verse.AI.Group;
 using Verse.Grammar;
 using UnityEngine;
+using System.Diagnostics;
 
 namespace Psychology;
 
@@ -37,7 +38,7 @@ public class PsychologyGameComponent : GameComponent
         InitializeCachedIdeoCertaintyChange();
         BuildMayorDictionary();
         ImplementSexualOrientation();
-        FirstTimeLoadingNewPsychology();
+        //FirstTimeLoadingNewPsychology();
     }
 
     public override void StartedNewGame()
@@ -56,16 +57,15 @@ public class PsychologyGameComponent : GameComponent
         }
     }
 
-    public virtual void FirstTimeLoadingNewPsychology()
-    {
-        if (!this.firstTimeWithUpdate)
-        {
-            return;
-        }
-        Find.WindowStack.Add(new Dialog_UpdateIntro());
-        //RandomizeUpbringingAndRatingsForAllPawns();
-        this.firstTimeWithUpdate = false;
-    }
+    //public virtual void FirstTimeLoadingNewPsychology()
+    //{
+    //    if (!this.firstTimeWithUpdate)
+    //    {
+    //        return;
+    //    }
+    //    Find.WindowStack.Add(new Dialog_UpdateIntro());
+    //    this.firstTimeWithUpdate = false;
+    //}
 
     public virtual void InitializeCachedIdeoCertaintyChange()
     {
@@ -163,27 +163,31 @@ public class PsychologyGameComponent : GameComponent
     {
         if (PsychologySettings.enableKinsey)
         {
-            foreach (Pawn pawn in PawnsFinder.AllMapsWorldAndTemporary_AliveOrDead)
+            foreach (Pawn pawn in PawnsFinder.All_AliveOrDead)
             {
                 PsycheHelper.CorrectTraitsForPawnKinseyEnabled(pawn);
             }
         }
         else
         {
-            foreach (Pawn pawn in PawnsFinder.AllMapsWorldAndTemporary_AliveOrDead)
+            foreach (Pawn pawn in PawnsFinder.All_AliveOrDead)
             {
                 PsycheHelper.CorrectTraitsForPawnKinseyDisabled(pawn);
             }
         }
     }
 
-    //public virtual void RandomizeUpbringingAndRatingsForAllPawns()
-    //{
-    //    foreach (Pawn pawn in Find.WorldPawns.AllPawnsAliveOrDead)
-    //    {
-    //        pawn.GetComp<CompPsychology>().Psyche.RandomizeUpbringingAndRatings();
-    //    }
-    //}
+    public virtual void RandomizeRatingsForAllPawns()
+    {
+        foreach (Pawn pawn in PawnsFinder.All_AliveOrDead)
+        {
+            if (!PsycheHelper.PsychologyEnabled(pawn))
+            {
+                continue;
+            }
+            PsycheHelper.Comp(pawn).Psyche.RandomizeRatings();
+        }
+    }
 
     public virtual void ConstituentTick()
     {

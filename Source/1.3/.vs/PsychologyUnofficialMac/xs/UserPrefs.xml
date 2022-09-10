@@ -1,43 +1,36 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Psychology/PsychologyMod.cs">
-    <Files>
-      <File FileName="../../Common/Defs/ThoughtDefs/Thoughts_Situation_General.xml" Line="86" Column="41" IsPinned="True" />
-      <File FileName="../../Common/Defs/ThoughtDefs/Thoughts_Memory_Social.xml" Line="14" Column="21" IsPinned="True" />
-      <File FileName="Psychology/Harmony/OtherMods/Psychology_PsycheHelper.cs" Line="24" Column="10" IsPinned="True" />
-      <File FileName="Psychology/Main/Settings/SpeciesHelper.cs" Line="50" Column="10" IsPinned="True" />
-      <File FileName="Psychology/PsychologyGameComponent.cs" Line="168" Column="50" IsPinned="True" />
-      <File FileName="Psychology/Main/GUI/SettingsWindowUtility.cs" Line="234" Column="1" IsPinned="True" />
-      <File FileName="Psychology/PsychologyDefInjector.cs" Line="1" Column="1" />
-      <File FileName="Psychology/Harmony/Thoughts/ThoughtWorker_Disfigured.cs" Line="1" Column="1" />
-      <File FileName="Psychology/Harmony/Thoughts/Need_Outdoors.cs" Line="1" Column="1" />
-      <File FileName="Psychology/Harmony/Misc/VoluntarilyJoinableLordsStarter.cs" Line="19" Column="17" />
-      <File FileName="Psychology/Harmony/Pawn/Pawn_JobTracker.cs" Line="27" Column="15" />
-      <File FileName="Psychology/Harmony/RomanceAndFamily/ChildRelationUtility.cs" Line="44" Column="61" />
-      <File FileName="Psychology/Harmony/HarmonyInitialize.cs" Line="74" Column="79" />
-      <File FileName="../../../../../../../workshop/content/294100/1786466855/About/About.xml" Line="29" Column="41" />
-      <File FileName="../../Common/Defs/PersonalityDefs/PersonalityNodes.xml" Line="3702" Column="15" />
-      <File FileName="Psychology/Harmony/Pawn/Pawn_IdeoTracker.cs" Line="12" Column="21" />
-      <File FileName="Psychology/Main/Pawn_SexualityTracker.cs" Line="14" Column="27" />
-      <File FileName="Psychology/Main/Settings/PsychologySettings.cs" Line="244" Column="23" />
-      <File FileName="Psychology/Harmony/Pawn/PawnGenerator.cs" Line="15" Column="21" />
-      <File FileName="Psychology/PsychologyMod.cs" Line="21" Column="7" />
-      <File FileName="../../About/About.xml" Line="30" Column="35" />
-      <File FileName="Psychology/Main/PsycheHelper.cs" Line="217" Column="6" />
-      <File FileName="Psychology/Main/Thought/Thought_MemorySocialDynamic.cs" Line="40" Column="10" />
-      <File FileName="Psychology/Main/Conversations/Hediff_Conversation.cs" Line="300" Column="77" />
-      <File FileName="Psychology/Main/Pawn_PsycheTracker.cs" Line="134" Column="14" />
-      <File FileName="../../Common/Defs/DutyDefs/Duties_Psychology.xml" Line="50" Column="25" />
-    </Files>
+  <MonoDevelop.Ide.Workbench>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="PsychologyUnofficialMac" expanded="True">
             <Node name="PsychologyMac" expanded="True">
               <Node name="About" expanded="True" />
-              <Node name="Common" expanded="True" />
+              <Node name="Common" expanded="True">
+                <Node name="Defs" expanded="True">
+                  <Node name="PersonalityDefs" expanded="True" />
+                  <Node name="ThoughtDefs" expanded="True" />
+                </Node>
+                <Node name="Languages" expanded="True">
+                  <Node name="English" expanded="True">
+                    <Node name="Keyed" expanded="True" />
+                  </Node>
+                </Node>
+              </Node>
+              <Node name="Harmony" expanded="True">
+                <Node name="OtherMods" expanded="True" />
+                <Node name="Pawn" expanded="True" />
+                <Node name="RomanceAndFamily" expanded="True" />
+                <Node name="Thoughts" expanded="True" />
+              </Node>
               <Node name="Main" expanded="True">
                 <Node name="Conversations" expanded="True" />
+                <Node name="GUI" expanded="True" />
+                <Node name="Personality" expanded="True">
+                  <Node name="PersonalityNode.cs" selected="True" />
+                </Node>
+                <Node name="PrepareCarefully" expanded="True" />
+                <Node name="Settings" expanded="True" />
                 <Node name="Thought" expanded="True" />
               </Node>
             </Node>
@@ -49,9 +42,10 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MultiItemStartupConfigurations />
 </Properties>

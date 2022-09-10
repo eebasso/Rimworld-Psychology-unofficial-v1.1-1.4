@@ -52,7 +52,7 @@ public class InteractionWorker_Conversation : InteractionWorker
         chanceFactor += PsycheHelper.Comp(initiator).Psyche.GetPersonalityRating(PersonalityNodeDefOf.Extroverted) - 0.5f;
         chanceFactor += PsycheHelper.Comp(initiator).Psyche.GetPersonalityRating(PersonalityNodeDefOf.Outspoken) - 0.5f;
         float successChance = 1f / (1f + Mathf.Pow(16f, -chanceFactor));
-        Log.Message("InteractionWorker_Conversation.RandomSelectionWeight, initiator " + initiator.LabelShort + ", recipient " + recipient.LabelShort + ", successChance " + successChance);
+        //Log.Message("InteractionWorker_Conversation.RandomSelectionWeight, initiator " + initiator.LabelShort + ", recipient " + recipient.LabelShort + ", successChance " + successChance);
         return successChance;
     }
 

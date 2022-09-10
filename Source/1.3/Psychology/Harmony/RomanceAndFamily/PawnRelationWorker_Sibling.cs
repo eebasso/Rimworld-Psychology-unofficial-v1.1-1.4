@@ -39,9 +39,9 @@ public static class PawnRelationWorker_Sibling_GenerateParentParams_Patch
     }
 }
 
-[HarmonyPatch(typeof(PawnRelationWorker_Sibling), "GenerateParent")]
-public static class PawnRelationWorker_Sibling_GenerateParent_Patch
-{
+//[HarmonyPatch(typeof(PawnRelationWorker_Sibling), "GenerateParent")]
+//public static class PawnRelationWorker_Sibling_GenerateParent_Patch
+//{
     
     //[HarmonyPrefix]
     //public static bool KinseyException(ref Pawn __result, Pawn generatedChild, Pawn existingChild, Gender genderToGenerate, PawnGenerationRequest childRequest, bool newlyGeneratedParentsWillBeSpousesIfNotGay)
@@ -147,5 +147,5 @@ public static class PawnRelationWorker_Sibling_GenerateParent_Patch
     //    }
     //    return true;
     //}
-}
+//}
 

@@ -21,18 +21,58 @@ public static class PsycheHelper
     };
     public static HashSet<string> TraitDefNamesThatAffectPsyche = new HashSet<string>();
     public static HashSet<string> SkillDefNamesThatAffectPsyche = new HashSet<string>();
-    public static HashSet<string> PsycheEnabledSpeciesList = new HashSet<string>();
+    //public static HashSet<string> PsycheEnabledSpeciesList = new HashSet<string>();
+    public static SpeciesSettings settings = new SpeciesSettings();
 
     public static bool PsychologyEnabled(Pawn pawn)
     {
-        return pawn != null && pawn.GetComp<CompPsychology>() != null && pawn.GetComp<CompPsychology>().IsPsychologyPawn;
-        //return pawn.GetComp<CompPsychology>() != null;
+        if (pawn == null)
+        {
+            Log.Message("PsychologyEnabled, pawn == null");
+            return false;
+        }
+        if (!IsHumanlike(pawn))
+        {
+            Log.Message("PsychologyEnabled, IsHumanlike(pawn) == false");
+            return false;
+        }
+        Log.Message("PsychologyEnabled, pawn.def.defName = " + pawn.def.defName + ", pawn = " + pawn.Label);
+        settings = SpeciesHelper.GetOrMakeSettingsFromHumanlikeDef(pawn.def);
+        if (settings.enablePsyche == false)
+        {
+            Log.Message("PsychologyEnabled, settings.enablePsyche = false");
+            return false;
+        }
+        Log.Message("PsychologyEnabled, settings.enablePsyche = true");
+        return DoesCompExist(pawn);
     }
 
-    //public static bool PsychologyEnabledFast(Pawn pawn)
-    //{
-    //    return pawn != null && PsycheEnabledSpeciesList.Contains(pawn.def.defName);
-    //}
+    public static bool IsHumanlike(Pawn pawn)
+    {
+        return pawn.def?.race?.intelligence == Intelligence.Humanlike;
+    }
+
+    public static bool IsSapient(Pawn pawn)
+    {
+        return true;
+    }
+
+    public static bool DoesCompExist(Pawn pawn)
+    {
+        if (Comp(pawn) == null)
+        {
+            Log.Message("PsychologyEnabled, Comp(pawn) == null, pawn = " + pawn.Label + ", species label = " + pawn.def.label);
+            return false;
+        }
+        Log.Message("Comp(pawn) != null");
+        if (!Comp(pawn).IsPsychologyPawn)
+        {
+            Log.Message("PsychologyEnabled, IsPsychologyPawn = false, pawn = " + pawn.Label);
+            return false;
+        }
+        Log.Message("PsychologyEnabled, IsPsychologyPawn = true, pawn = " + pawn.Label);
+        return true;
+    }
 
     public static CompPsychology Comp(Pawn pawn)
     {
@@ -89,16 +129,16 @@ public static class PsycheHelper
         }
     }
 
-    public static void InitializePsycheEnabledSpeciesList()
-    {
-        foreach (KeyValuePair<string, SpeciesSettings> kvp in PsychologySettings.speciesDict)
-        {
-            if (kvp.Value.enablePsyche)
-            {
-                PsycheEnabledSpeciesList.Add(kvp.Key);
-            }
-        }
-    }
+    //public static void InitializePsycheEnabledSpeciesList()
+    //{
+    //    foreach (KeyValuePair<string, SpeciesSettings> kvp in PsychologySettings.speciesDict)
+    //    {
+    //        if (kvp.Value.enablePsyche)
+    //        {
+    //            PsycheEnabledSpeciesList.Add(kvp.Key);
+    //        }
+    //    }
+    //}
 
     public static float DatingAgeToVanilla(float customAge, float minDatingAge)
     {
@@ -181,14 +221,14 @@ public static class PsycheHelper
 
     public static void CorrectTraitsForPawnKinseyEnabled(Pawn pawn)
     {
-        if (!PsycheHelper.PsychologyEnabled(pawn))
+        if (!PsycheHelper.PsychologyEnabled(pawn) || pawn?.story?.traits == null)
         {
             return;
         }
         if (pawn.story.traits.HasTrait(TraitDefOf.Asexual))
         {
             PsycheHelper.RemoveTrait(pawn, TraitDefOf.Asexual);
-            PsycheHelper.Comp(pawn).Sexuality.sexDrive = 0.10f * Rand.ValueSeeded(11 * pawn.HashOffset() + 8);
+            PsycheHelper.Comp(pawn).Sexuality.sexDrive = 0.10f * Rand.ValueSeeded(11 * PsycheHelper.PawnSeed(pawn) + 8);
         }
         if (pawn.story.traits.HasTrait(TraitDefOf.Bisexual))
         {
@@ -204,7 +244,7 @@ public static class PsycheHelper
 
     public static void CorrectTraitsForPawnKinseyDisabled(Pawn pawn)
     {
-        if (!PsycheHelper.PsychologyEnabled(pawn))
+        if (!PsycheHelper.PsychologyEnabled(pawn) || pawn?.story?.traits == null)
         {
             return;
         }
@@ -262,23 +302,5 @@ public static class PsycheHelper
         int birthLastNameSeed = pawn?.story?.birthLastName != null ? pawn.story.birthLastName.GetHashCode() : 11;
         return Gen.HashCombineInt(firstNameSeed, childhoodSeed, adulthoodSeed, birthLastNameSeed);
     }
-
-    public static int[] GetBitArray(int X, int length)
-    {
-        int[] bits = new int[length];
-        bits[0] = X % 2;
-        for (int b = 1; b < length; b++)
-        {
-            X /= 2;
-            bits[b] = X % 2;
-        }
-        return bits;
-    }
-
-    public static int UpbringingMap(int u)
-    {
-        return (3 * u + 4 - 1) % 32 + 1;
-    }
-
 }
 

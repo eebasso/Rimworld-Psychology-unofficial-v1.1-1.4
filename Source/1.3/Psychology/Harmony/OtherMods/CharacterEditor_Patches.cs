@@ -1,9 +1,6 @@
 ﻿using UnityEngine;
 using RimWorld;
 using Verse;
-//using Verse.Sound;
-//using HarmonyLib;
-//using CharacterEditor;
 using System;
 using Verse.Sound;
 using System.Runtime.Remoting.Contexts;
@@ -14,8 +11,49 @@ using System.Collections.Generic;using System.Reflection.Emit;using System.Lin
 
 namespace Psychology.Harmony;
 
-public class CharacterEditor_DialogPsychology_Patch
+public class CharacterEditor_Patches
 {
+    public static MethodInfo originalInfo;
+    public static HarmonyMethod harmonyMethod;
+
+    public static void ManualPatches(HarmonyLib.Harmony harmonyInstance)
+    {
+        originalInfo = AccessTools.Method(typeof(CharacterEditor.DialogPsychology), nameof(CharacterEditor.DialogPsychology.DoWindowContents));
+        harmonyMethod = new HarmonyMethod(typeof(CharacterEditor_Patches), nameof(CharacterEditor_Patches.DialogPsychology_DoWindowContentsPrefix));
+        harmonyInstance.Patch(originalInfo, prefix: harmonyMethod);
+    }
+
+    public static bool DialogPsychology_DoWindowContentsPrefix(Rect inRect)
+    {
+        Rect oldRect = inRect;
+        GUI.EndGroup();
+        Pawn pawn = CharacterEditor.CEditor.API.Pawn;
+
+        if (!PsycheHelper.PsychologyEnabled(pawn))
+        {
+            return false;
+        }
+
+        Rect psycheRect = PsycheCardUtility.PsycheRect;
+        Rect editRect = new Rect(psycheRect.xMax, psycheRect.y, EditPsycheUtility.CalculateEditWidth(pawn), psycheRect.height);
+
+        inRect = new Rect(psycheRect.x, psycheRect.y, psycheRect.width + editRect.width, psycheRect.height);
+        Find.WindowStack.currentlyDrawnWindow.windowRect = inRect;
+        Find.WindowStack.currentlyDrawnWindow.windowRect.center = 0.5f * new Vector2(UI.screenWidth, UI.screenHeight);
+
+        GUI.BeginGroup(inRect);
+        PsycheCardUtility.DrawPsycheCard(psycheRect, pawn, true, true);
+        EditPsycheUtility.DrawEditPsyche(editRect, pawn);
+        GUI.color = new Color(1f, 1f, 1f, 0.5f);
+        Widgets.DrawLineVertical(editRect.x, editRect.y, editRect.height);
+        GUI.color = Color.white;
+        GUI.EndGroup();
+
+        // Added this, might cause errors?
+        GUI.BeginGroup(oldRect);
+        return false;
+    }
+
     //// Transpiler method
     //public static IEnumerable<CodeInstruction> DoWindowContentsTranspiler(IEnumerable<CodeInstruction> codes)
     //{
@@ -100,38 +138,5 @@ public class CharacterEditor_DialogPsychology_Patch
     //    Log.Message("DoWindowContentsPrefix: Step 13");
     //    return false;
     //}
-
-    public static bool DoWindowContentsPrefix(Rect inRect)
-    {
-        Rect oldRect = inRect;
-        GUI.EndGroup();
-        Pawn pawn = CharacterEditor.CEditor.API.Pawn;
-
-        if (!PsycheHelper.PsychologyEnabled(pawn))
-        {
-            return false;
-        }
-
-        Rect psycheRect = PsycheCardUtility.PsycheRect;
-        Rect editRect = new Rect(psycheRect.xMax, psycheRect.y, EditPsycheUtility.CalculateEditWidth(pawn), psycheRect.height);
-
-        inRect = new Rect(psycheRect.x, psycheRect.y, psycheRect.width + editRect.width, psycheRect.height);
-        Find.WindowStack.currentlyDrawnWindow.windowRect = inRect;
-        Find.WindowStack.currentlyDrawnWindow.windowRect.center = 0.5f * new Vector2(UI.screenWidth, UI.screenHeight);
-
-        GUI.BeginGroup(inRect);
-        PsycheCardUtility.DrawPsycheCard(psycheRect, pawn, true, true);
-        EditPsycheUtility.DrawEditPsyche(editRect, pawn);
-        GUI.color = new Color(1f, 1f, 1f, 0.5f);
-        Widgets.DrawLineVertical(editRect.x, editRect.y, editRect.height);
-        GUI.color = Color.white;
-        GUI.EndGroup();
-
-        // Added this, might cause errors?
-        GUI.BeginGroup(oldRect);
-        return false;
-    }
-
-
 }
 

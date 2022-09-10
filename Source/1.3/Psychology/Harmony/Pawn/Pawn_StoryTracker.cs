@@ -19,7 +19,7 @@ namespace Psychology.Harmony
         //[LogPerformance]
         [HarmonyPostfix]
         //public static void SetMayorLabel(Pawn_StoryTracker __instance, ref String __result)
-        public static void SetMayorLabel(Pawn ___pawn, ref String __result)
+        public static void SetMayorLabel(ref String __result, Pawn ___pawn)
         {
             //Pawn p = Traverse.Create(__instance).Field("pawn").GetValue<Pawn>();
             if (___pawn != null && ___pawn.health.hediffSet.HasHediff(HediffDefOfPsychology.Mayor))

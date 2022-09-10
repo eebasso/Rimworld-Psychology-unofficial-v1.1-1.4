@@ -23,7 +23,15 @@ namespace Psychology.Harmony;
 
     public static void AdjustRatings(Pawn pawn)
     {
-        if (!PsychologySettings.speciesDict.ContainsKey(pawn.def.defName) || !PsychologySettings.speciesDict[pawn.def.defName].enablePsyche)
+        if (!PsychologySettings.speciesDict.TryGetValue(pawn.def.defName, out SpeciesSettings settings))
+        {
+            return;
+        }
+        if (settings?.enablePsyche == false)
+        {
+            return;
+        }
+        if (PsycheHelper.Comp(pawn)?.Psyche == null)
         {
             return;
         }
