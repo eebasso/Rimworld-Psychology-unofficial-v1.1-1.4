@@ -327,7 +327,8 @@
     <Compile Include="Harmony\Misc\SkillRecord.cs" />
     <Compile Include="Main\Elections\MayorUtility.cs" />
     <Compile Include="PsychologySCOS.cs" />
-    <Compile Include="Harmony\OtherMods\VanillaPsycastersExpanded_Patches.cs" />
+    <Compile Include="Main\ThoughtWorkers\ThoughtWorker_PrudeVsNudist.cs" />
+    <Compile Include="Main\ThoughtWorkers\ThoughtWorker_NudistVsPrude.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\About\preview.png">

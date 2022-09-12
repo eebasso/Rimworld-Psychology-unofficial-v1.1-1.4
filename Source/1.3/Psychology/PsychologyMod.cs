@@ -16,7 +16,6 @@ using Unity;
 namespace Psychology;
 
 // ToDo:
-// - Create Prude vs Nudist opinion modifier
 // - Add a "Electoral debate" ritual, to accelerate the vote
 
 public class PsychologyMod : Mod

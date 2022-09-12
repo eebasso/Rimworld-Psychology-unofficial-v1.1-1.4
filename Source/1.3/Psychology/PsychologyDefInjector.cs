@@ -13,7 +13,6 @@ using HarmonyLib;
 
 namespace Psychology;
 
-
 [StaticConstructorOnStartup]
 public static class PsychologyDefInjector
 {
@@ -21,6 +20,7 @@ public static class PsychologyDefInjector
 
     static PsychologyDefInjector()
     {
+        // ToDo: turn this into XML
         /* Conditional vanilla Def edits */
         ThoughtDef knowGuestExecuted = AddNullifyingTraits("KnowGuestExecuted", new TraitDef[] { TraitDefOfPsychology.BleedingHeart });
         if (knowGuestExecuted != null && PsychologySettings.enableEmpathy)

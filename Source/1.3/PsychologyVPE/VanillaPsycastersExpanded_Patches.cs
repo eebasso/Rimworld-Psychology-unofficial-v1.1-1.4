@@ -2,6 +2,16 @@
 using RimWorld.Planet;
 
 namespace Psychology.Harmony;
+[StaticConstructorOnStartup]
+public class VanillaPsycastersExpanded_Patches
+{
+    static VanillaPsycastersExpanded_Patches()
+    {
+        HarmonyLib.Harmony harmonyInstance = new HarmonyLib.Harmony("Community.Psychology.UnofficialUpdate.VanillaPsycastsExpanded");
+        harmonyInstance.PatchAll();
+        Log.Message("Psychology: completed compability patches for Vanilla Psycasters Expanded");
+    }
+}
 
 [HarmonyPatch(typeof(VanillaPsycastsExpanded.AbilityExtension_WordOfLove), nameof(VanillaPsycastsExpanded.AbilityExtension_WordOfLove.ValidateTarget))]
 public class AbilityExtension_WordOfLove_ValidateTarget_Patch{

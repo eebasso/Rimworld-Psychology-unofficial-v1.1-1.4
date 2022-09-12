@@ -15,7 +15,7 @@ public static class PawnRelationWorker_Sibling_GenerateParentParams_Patch
     [HarmonyPrefix]
     public static bool GenerateParentParams(ref float minChronologicalAge, ref float maxChronologicalAge, ref float midChronologicalAge, ref float minBioAgeToHaveChildren, Pawn generatedChild, Pawn existingChild)
     {
-        SpeciesSettings settings = PsychologySettings.speciesDict[existingChild.def.defName];
+        SpeciesSettings settings = SpeciesHelper.GetOrMakeSettingsFromHumanlikeDef(existingChild.def);
         float minLovingAge = settings.minLovinAge;
         float childChrAge = Mathf.Max(generatedChild.ageTracker.AgeChronologicalYearsFloat, existingChild.ageTracker.AgeChronologicalYearsFloat);
         if (minLovingAge <= 0f || !settings.enableAgeGap)

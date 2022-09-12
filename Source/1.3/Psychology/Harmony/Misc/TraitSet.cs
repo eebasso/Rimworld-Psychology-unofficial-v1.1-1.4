@@ -43,13 +43,11 @@ public class TraitSet_ManualPatches
         {
             return true;
         }
-
-        //ToDo: replace this with an XML patch that sets commonality of these traits to zero
+        //ToDo: replace this with a conditional XML patch that sets commonality of these traits to zero
         if (trait.def == TraitDefOf.Gay || trait.def == TraitDefOf.Bisexual || trait.def == TraitDefOf.Asexual)
         {
             return false;
         }
-
         if (ps.romanticDrive < 0.5f && trait.def == TraitDefOfPsychology.Codependent)
         {
             return false;

@@ -303,5 +303,13 @@ public static class PsycheHelper
         int birthLastNameSeed = pawn?.story?.birthLastName != null ? pawn.story.birthLastName.GetHashCode() : 11;
         return Gen.HashCombineInt(firstNameSeed, childhoodSeed, adulthoodSeed, birthLastNameSeed);
     }
+
+    public static void TryGainMemoryReplacedPartBleedingHeart(Pawn pawn, Pawn billDoer)
+    {
+        if (billDoer != null && billDoer.needs.mood != null)
+        {
+            billDoer.needs.mood.thoughts.memories.TryGainMemory(ThoughtDefOfPsychology.ReplacedPartBleedingHeart, pawn);
+        }
+    }
 }
 

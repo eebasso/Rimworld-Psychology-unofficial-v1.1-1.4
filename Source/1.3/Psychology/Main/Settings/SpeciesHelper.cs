@@ -80,7 +80,7 @@ public class SpeciesHelper
 
     public static SpeciesSettings GetOrMakeSettingsFromHumanlikeDef(ThingDef humanlikeDef, bool formerHuman = false)
     {
-        if (PsychologySettings.speciesDict.TryGetValue(humanlikeDef.defName, out SpeciesSettings settings) == false)
+        if (PsychologySettings.speciesDict.TryGetValue(humanlikeDef.defName, out SpeciesSettings settings) != true)
         {
             settings = DefaultSettingsForSpeciesDef(humanlikeDef);
             AddCompsToHumanlikeDef(humanlikeDef);

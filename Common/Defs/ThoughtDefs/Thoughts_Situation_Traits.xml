@@ -126,7 +126,7 @@
     </stages>
   </ThoughtDef>
 
-  <!-- Make this interact with Darkness memes and precepts -->
+  <!-- ToDo: Make this interact with Darkness memes and precepts -->
   <ThoughtDef>
     <defName>EnvironmentDarkLightSensitive</defName>
     <workerClass>Psychology.ThoughtWorker_Light</workerClass>

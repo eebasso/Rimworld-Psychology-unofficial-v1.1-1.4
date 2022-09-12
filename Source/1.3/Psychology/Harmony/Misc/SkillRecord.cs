@@ -15,8 +15,8 @@ namespace Psychology.Harmony;
             if (bool0 && bool1 && bool2 && bool3)
             {
                 yield return new CodeInstruction(OpCodes.Ldarg_0);
-                CodeInstruction.LoadField(typeof(SkillRecord), "pawn");
-                CodeInstruction.Call(typeof(SkillRecord_Learn_Patch), nameof(SkillRecord_Learn_Patch.AdjustRatings), new Type[] { typeof(Pawn) });
+                yield return CodeInstruction.LoadField(typeof(SkillRecord), "pawn");
+                yield return CodeInstruction.Call(typeof(SkillRecord_Learn_Patch), nameof(SkillRecord_Learn_Patch.AdjustRatings), new Type[] { typeof(Pawn) });
             }
         }
     }

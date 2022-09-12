@@ -23,8 +23,8 @@ public class PersonalityNodeParentMatrix
 
     static PersonalityNodeParentMatrix()
     {
-        Stopwatch stopwatch = new Stopwatch();
-        stopwatch.Start();
+        //Stopwatch stopwatch = new Stopwatch();
+        //stopwatch.Start();
 
         //Log.Message("Initializing PersonalityNodeParentMatrix");
         defList = DefDatabase<PersonalityNodeDef>.AllDefsListForReading;
@@ -151,10 +151,10 @@ public class PersonalityNodeParentMatrix
 
         Stopwatch stopwatch2 = new Stopwatch();
         //Log.Message("Calculate personality correlation matrix");
-        stopwatch2.Start();
+        //stopwatch2.Start();
         float[] C = NearCorr(cMix);
-        stopwatch2.Stop();
-        TimeSpan ts2 = stopwatch.Elapsed;
+        //stopwatch2.Stop();
+        //TimeSpan ts2 = stopwatch.Elapsed;
         //Log.Message("NearCorr time in seconds = " + String.Format("{0:00}.{1:000}", ts2.Seconds, ts2.Milliseconds));
 
         for (int s = 0; s < size; s++)
@@ -223,8 +223,8 @@ public class PersonalityNodeParentMatrix
         //    Log.Message("Eigenvector " + j + ": " + string.Join(", ", vecList));
         //}
 
-        stopwatch.Stop();
-        TimeSpan ts = stopwatch.Elapsed;
+        //stopwatch.Stop();
+        //TimeSpan ts = stopwatch.Elapsed;
         //Log.Message("Calculation time in seconds = " + String.Format("{0:00}.{1:000}", ts.Seconds, ts.Milliseconds));
         Log.Message("Psychology: calculated personality correlation matrix");
 

@@ -34,6 +34,28 @@ public static class InteractionWorker_MarriageProposal_AcceptanceChancePatch
     }
 }
 
+[HarmonyPatch(typeof(InteractionWorker_MarriageProposal), nameof(InteractionWorker_MarriageProposal.RandomSelectionWeight), new[] { typeof(Pawn), typeof(Pawn) })]
+public static class InteractionWorker_MarriageProposal_SelectionWeightPatch
+{
+    [HarmonyPostfix]
+    internal static void _RandomSelectionWeight(InteractionWorker_MarriageProposal __instance, ref float __result, Pawn initiator, Pawn recipient)
+    {
+        if (PsycheHelper.PsychologyEnabled(initiator))
+        {
+            if (initiator.gender == Gender.Female)
+            {
+                /* Undo the effect of this in the postfixed method. */
+                __result /= 0.2f;
+            }
+            __result *= 0.1f + 0.9f * PsycheHelper.Comp(initiator).Psyche.GetPersonalityRating(PersonalityNodeDefOf.Adventurous) + PsycheHelper.Comp(initiator).Psyche.GetPersonalityRating(PersonalityNodeDefOf.Romantic);
+            if (PsychologySettings.enableKinsey)
+            {
+                __result *= 1.3f * PsycheHelper.Comp(initiator).Sexuality.AdjustedRomanticDrive;
+            }
+        }
+    }
+}
+
 //[HarmonyPatch(typeof(InteractionWorker_MarriageProposal), nameof(InteractionWorker_MarriageProposal.Interacted))]
 /*public static class InteractionWorker_MarriageProposal_InteractedPatch
 {
@@ -225,24 +247,3 @@ public static float PsychBreakupChance(Pawn recipient)
 }
 }*/
 
-[HarmonyPatch(typeof(InteractionWorker_MarriageProposal), nameof(InteractionWorker_MarriageProposal.RandomSelectionWeight), new[] { typeof(Pawn), typeof(Pawn) })]
-public static class InteractionWorker_MarriageProposal_SelectionWeightPatch
-{
-    [HarmonyPostfix]
-    internal static void _RandomSelectionWeight(InteractionWorker_MarriageProposal __instance, ref float __result, Pawn initiator, Pawn recipient)
-    {
-        if (PsycheHelper.PsychologyEnabled(initiator))
-        {
-            if (initiator.gender == Gender.Female)
-            {
-                /* Undo the effect of this in the postfixed method. */
-                __result /= 0.2f;
-            }
-            __result *= 0.1f + 0.9f * PsycheHelper.Comp(initiator).Psyche.GetPersonalityRating(PersonalityNodeDefOf.Adventurous) + PsycheHelper.Comp(initiator).Psyche.GetPersonalityRating(PersonalityNodeDefOf.Romantic);
-            if (PsychologySettings.enableKinsey)
-            {
-                __result *= 1.3f * PsycheHelper.Comp(initiator).Sexuality.AdjustedRomanticDrive;
-            }
-        }
-    }
-}
