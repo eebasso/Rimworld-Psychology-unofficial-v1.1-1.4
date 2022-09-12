@@ -37,7 +37,7 @@ public static class PsycheHelper
             return false;
         }
         Log.Message("PsychologyEnabled, pawn.def.defName = " + pawn.def.defName + ", pawn = " + pawn.Label);
-        settings = SpeciesHelper.GetOrMakeSettingsFromHumanlikeDef(pawn.def);
+        settings = SpeciesHelper.GetOrMakeSettingsFromHumanlikeDef(pawn.def, true);
         if (settings.enablePsyche == false)
         {
             Log.Message("PsychologyEnabled, settings.enablePsyche = false");
@@ -52,20 +52,21 @@ public static class PsycheHelper
         return pawn.def?.race?.intelligence == Intelligence.Humanlike;
     }
 
-    public static bool IsSapient(Pawn pawn)
-    {
-        return true;
-    }
+    //public static bool IsSapient(Pawn pawn)
+    //{
+    //    return true;
+    //}
 
     public static bool DoesCompExist(Pawn pawn)
     {
-        if (Comp(pawn) == null)
+        CompPsychology comp = Comp(pawn);
+        if (comp == null)
         {
             Log.Message("PsychologyEnabled, Comp(pawn) == null, pawn = " + pawn.Label + ", species label = " + pawn.def.label);
             return false;
         }
         Log.Message("Comp(pawn) != null");
-        if (!Comp(pawn).IsPsychologyPawn)
+        if (!comp.IsPsychologyPawn)
         {
             Log.Message("PsychologyEnabled, IsPsychologyPawn = false, pawn = " + pawn.Label);
             return false;

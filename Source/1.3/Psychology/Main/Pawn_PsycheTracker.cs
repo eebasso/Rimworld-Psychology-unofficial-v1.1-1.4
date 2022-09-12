@@ -32,7 +32,6 @@ public class Pawn_PsycheTracker : IExposable
         Initialize();
     }
 
-    //[LogPerformance]
     public void Initialize(int inputSeed = 0)
     {
         this.nodes = new HashSet<PersonalityNode>();

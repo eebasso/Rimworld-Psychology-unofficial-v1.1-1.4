@@ -5,6 +5,8 @@ VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PsychologyMac", "Psychology\PsychologyMac.csproj", "{83960198-EE67-473E-AE85-3138BE23A47E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PsychologyVPE", "PsychologyVPE\PsychologyVPE.csproj", "{01EE3D85-AC3D-4CB4-9D7F-25430936FDB2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{83960198-EE67-473E-AE85-3138BE23A47E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{83960198-EE67-473E-AE85-3138BE23A47E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{83960198-EE67-473E-AE85-3138BE23A47E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{01EE3D85-AC3D-4CB4-9D7F-25430936FDB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01EE3D85-AC3D-4CB4-9D7F-25430936FDB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01EE3D85-AC3D-4CB4-9D7F-25430936FDB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01EE3D85-AC3D-4CB4-9D7F-25430936FDB2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -104,7 +104,7 @@ public class Pawnmorpher_Patches{
             return true;
         }
         Log.Message("ITabPawnPsyche_IsVisible_Prefix, originalPawn != null");
-        SpeciesSettings settings = SpeciesHelper.GetOrMakeSettingsFromHumanlikeDef(originalPawn.def);
+        SpeciesSettings settings = SpeciesHelper.GetOrMakeSettingsFromHumanlikeDef(originalPawn.def, true);
         Log.Message("ITabPawnPsyche_IsVisible_Prefix, get/set SpeciesSettings for originalPawn.def = " + originalPawn.def.defName);
         if (settings.enablePsyche == false)
         {

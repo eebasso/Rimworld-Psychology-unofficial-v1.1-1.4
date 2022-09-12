@@ -13,6 +13,7 @@ using HarmonyLib;
 
 namespace Psychology;
 
+
 [StaticConstructorOnStartup]
 public static class PsychologyDefInjector
 {

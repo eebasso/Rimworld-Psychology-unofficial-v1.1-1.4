@@ -7,6 +7,7 @@ using Verse;
 using HarmonyLib;
 using UnityEngine;
 using System.Reflection;
+
 namespace Psychology.Harmony;
 
 [HarmonyPatch(typeof(PawnGenerator), "GenerateTraits")]
@@ -58,7 +59,12 @@ public static class PawnGenerator_ManualPatches
         {
             return;
         }
-        PsycheHelper.GameComp.AddPawnToCachedIdeoCertaityChange(__result);
+        int idNumber = __result.thingIDNumber;
+        if (!PsycheHelper.GameComp.CachedCertaintyChangePerDayDict.ContainsKey(idNumber))
+        {
+            float ideoCertaintyChange = PsycheHelper.Comp(__result).Psyche.CalculateCertaintyChangePerDay();
+            PsycheHelper.GameComp.CachedCertaintyChangePerDayDict.Add(idNumber, ideoCertaintyChange);
+        }
     }
 }
 

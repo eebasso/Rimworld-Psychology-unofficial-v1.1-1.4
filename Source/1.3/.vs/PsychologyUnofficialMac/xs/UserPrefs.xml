@@ -1,39 +1,16 @@
-﻿<Properties>
+﻿<Properties BuildWithMSBuildOnMono="True">
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.Workbench>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="PsychologyUnofficialMac" expanded="True">
-            <Node name="PsychologyMac" expanded="True">
-              <Node name="About" expanded="True" />
-              <Node name="Common" expanded="True">
-                <Node name="Defs" expanded="True">
-                  <Node name="PersonalityDefs" expanded="True" />
-                  <Node name="ThoughtDefs" expanded="True" />
-                </Node>
-                <Node name="Languages" expanded="True">
-                  <Node name="English" expanded="True">
-                    <Node name="Keyed" expanded="True" />
-                  </Node>
-                </Node>
-              </Node>
-              <Node name="Harmony" expanded="True">
-                <Node name="OtherMods" expanded="True" />
-                <Node name="Pawn" expanded="True" />
-                <Node name="RomanceAndFamily" expanded="True" />
-                <Node name="Thoughts" expanded="True" />
-              </Node>
-              <Node name="Main" expanded="True">
-                <Node name="Conversations" expanded="True" />
-                <Node name="GUI" expanded="True" />
-                <Node name="Personality" expanded="True">
-                  <Node name="PersonalityNode.cs" selected="True" />
-                </Node>
-                <Node name="PrepareCarefully" expanded="True" />
-                <Node name="Settings" expanded="True" />
-                <Node name="Thought" expanded="True" />
-              </Node>
-            </Node>
+            <Node name="PsychologyMac" expanded="True" />
+            <Node name="PsychologyVPE" expanded="True" />
           </Node>
         </State>
       </Pad>
@@ -42,10 +19,6 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.PsychologyVPE PreferredExecutionTarget="MonoDevelop.Default" />
 </Properties>

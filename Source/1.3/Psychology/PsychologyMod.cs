@@ -17,7 +17,6 @@ namespace Psychology;
 
 // ToDo:
 // - Create Prude vs Nudist opinion modifier
-// - Add compatibility with Pawnmorpher (working on it)
 // - Add a "Electoral debate" ritual, to accelerate the vote
 
 public class PsychologyMod : Mod

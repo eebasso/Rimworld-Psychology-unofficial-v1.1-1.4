@@ -13,10 +13,8 @@ namespace Psychology
 {
     public class GameCondition_Election : GameCondition
     {
-
         public List<Candidate> candidates = new List<Candidate>();
 
-        //[LogPerformance]
         public override void Init()
         {
             base.Init();
@@ -36,12 +34,13 @@ namespace Psychology
             IEnumerable<Pawn> colonists = from p in this.SingleMap.mapPawns.FreeColonistsSpawned
                                           where PsycheHelper.PsychologyEnabled(p) && p.HomeFaction == Faction.OfPlayer // 1.3
                                           select p;
+
             int numColonists = colonists.Count();
             if (numColonists < 5)
             {
                 return;
             }
-            float maxCandidatesThisColonySupports = Mathf.Clamp(0.3f * numColonists, 2f, 4f);
+            //float maxCandidatesThisColonySupports = Mathf.Clamp(0.3f * numColonists, 2f, 4f);
             IEnumerable<Pawn> eligibleColonists = from p in colonists
                                                   where p.ageTracker.AgeBiologicalYearsFloat >= PsychologySettings.mayorAge // 1.3
                                                   select p;
@@ -70,8 +69,7 @@ namespace Psychology
             }
             float cutoff2 = 12f;
             float cutoff3 = 24f;
-            float scaling = 1f / (cutoff3 - cutoff2);
-            float x = scaling * (0.5f * numColonists + rowdiness - cutoff2);
+            float x = (0.5f * numColonists + rowdiness - cutoff2) / (cutoff3 - cutoff2);
             float p2 = x < 0 ? 1f : x < 2 ? 1f / (1f + x) : 1f / 3f;
             float p3 = Mathf.Clamp01(x) * p2;
             float rand = Rand.Value;

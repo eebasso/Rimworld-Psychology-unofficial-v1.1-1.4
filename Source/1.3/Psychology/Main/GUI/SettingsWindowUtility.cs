@@ -260,7 +260,7 @@ namespace Psychology;public static class SettingsWindowUtility{
             //rowHighlightRect.xMax = minLovinAgeRect.xMax;
             //Widgets.DrawHighlightIfMouseover(rowHighlightRect);
 
-            Widgets.DrawHighlightIfMouseover(testHighlightRect);            labelRect.y += RowHeight;            psycheVec.y += RowHeight;            ageGapVec.y += RowHeight;            minDatingAgeRect.y += RowHeight;            minLovinAgeRect.y += RowHeight;            testHighlightRect.y += RowHeight;        }        Widgets.EndScrollView();        UIAssets.DrawLineHorizontal(SpeciesRect.x, labelRect.y + HighlightPadding, SpeciesRect.width, UIAssets.ModEntryLineColor);
+            Widgets.DrawHighlightIfMouseover(testHighlightRect);            labelRect.y += RowHeight;            psycheVec.y += RowHeight;            ageGapVec.y += RowHeight;            minDatingAgeRect.y += RowHeight;            minLovinAgeRect.y += RowHeight;            testHighlightRect.y += RowHeight;        }        Widgets.EndScrollView();        UIAssets.DrawLineHorizontal(SpeciesRect.x, SpeciesRect.yMax + HighlightPadding, SpeciesRect.width, UIAssets.ModEntryLineColor);
 
         if (Widgets.ButtonText(ResetButtonRect, ResetButtonText, true, true))
         {

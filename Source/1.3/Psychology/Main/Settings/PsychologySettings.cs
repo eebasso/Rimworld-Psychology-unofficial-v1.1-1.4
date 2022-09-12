@@ -66,8 +66,8 @@ public class PsychologySettings : ModSettings
     public static float traitOpinionMultiplierDefault = 0.25f; // v1.3
     public static float traitOpinionMultiplier = 0.25f; // v1.3
 
-    public static float personalityExtremenessDefault = 0.2f; // v1.3
-    public static float personalityExtremeness = 0.2f; // v1.3
+    public static float personalityExtremenessDefault = 0.33f; // v1.3
+    public static float personalityExtremeness = 0.33f; // v1.3
 
     public static Dictionary<string, SpeciesSettings> speciesDict = new Dictionary<string, SpeciesSettings>();
 
@@ -101,7 +101,7 @@ public class PsychologySettings : ModSettings
         Scribe_Values.Look(ref romanceOpinionThreshold, "Psychology_RomanceOpinionThreshold", romanceOpinionThresholdDefault);
         Scribe_Values.Look(ref mayorAge, "Psychology_MayorAge", mayorAgeDefault);
         Scribe_Values.Look(ref traitOpinionMultiplier, "Psychology_TraitOpinionMultiplier", traitOpinionMultiplierDefault);
-        Scribe_Values.Look(ref personalityExtremeness, "Psychology_PersonalityExtremeness", personalityExtremeness);
+        Scribe_Values.Look(ref personalityExtremeness, "Psychology_PersonalityExtremeness", personalityExtremenessDefault);
         Scribe_Collections.Look(ref speciesDict, "Psychology_SpeciesSettings", LookMode.Value, LookMode.Deep);
 
         Scribe_Values.Look(ref displayOption, "Psychology_DisplayOption", displayOptionDefault);
@@ -132,13 +132,10 @@ public class PsychologySettings : ModSettings
         ResetTraitOpinionMultiplier(); // v1.2
         ResetPersonalityExtremeness();
         ResetSpeciesSettings();
-
-
         ResetDisplayOption(); // v1.3
         ResetUseColors(); // v1.3
         ResetListAlphabetical(); // v1.3
         ResetUseAntonyms(); // v1.3
-        
     }
 
     public static void ResetEnableKinsey()

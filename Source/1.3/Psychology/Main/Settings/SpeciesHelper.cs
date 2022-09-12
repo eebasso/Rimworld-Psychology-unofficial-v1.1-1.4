@@ -34,7 +34,7 @@ public class SpeciesHelper
     public static SpeciesSettings elfLikeSettings = new SpeciesSettings(EnablePsyche: true, EnableAgeGap: false);
     public static SpeciesSettings animalLikeSettings = new SpeciesSettings(true, true, -1f, -1f);
 
-    public static Dictionary<string, SpeciesSettings> speciesDictDefault = new Dictionary<string, SpeciesSettings>();
+    //public static Dictionary<string, SpeciesSettings> speciesDictDefault = new Dictionary<string, SpeciesSettings>();
     public static ThinkTreeDef zombieThinkTree;
     public static bool zombieNotNull;
 
@@ -50,30 +50,46 @@ public class SpeciesHelper
                                                         where def.race?.intelligence == Intelligence.Humanlike
                                                         orderby def.label ascending
                                                         select def;
+
+
         //Log.Message("humanlikeDefs.Count() = " + humanlikeDefs.Count());
-        ResetSpeciesDict(speciesDictDefault);
-        List<string> registered = new List<string>();
+        //ResetSpeciesDict(speciesDictDefault);
+        //List<string> registered = new List<string>();
         string defName;
         foreach (ThingDef t in humanlikeDefsEnumerable)
         {
             defName = t.defName;
+            Log.Message("SpeciesHelper.Initialize, add Comps for defName = " + defName);
             AddCompsToHumanlikeDef(t, false);
-            registered.Add(defName);
+            //registered.Add(defName);
+            Log.Message("SpeciesHelper.Initialize, check speciesDict for defName = " + defName);
             if (!PsychologySettings.speciesDict.ContainsKey(defName))
             {
-                PsychologySettings.speciesDict.Add(defName, speciesDictDefault[defName]);
+                Log.Message("PsychologySettings.speciesDict.ContainsKey(defName) == false");
+                //PsychologySettings.speciesDict.Add(defName, speciesDictDefault[defName]);
+                PsychologySettings.speciesDict.Add(defName, DefaultSettingsForSpeciesDef(t));
+                //Log.Message("PsychologySettings.speciesDict, added defName = " + defName);
+            }
+            else
+            {
+                Log.Message("PsychologySettings.speciesDict.ContainsKey(defName) == true");
             }
         }
         SettingsWindowUtility.Initialize();
     }
 
-    public static SpeciesSettings GetOrMakeSettingsFromHumanlikeDef(ThingDef humanlikeDef)
+    public static SpeciesSettings GetOrMakeSettingsFromHumanlikeDef(ThingDef humanlikeDef, bool formerHuman = false)
     {
         if (PsychologySettings.speciesDict.TryGetValue(humanlikeDef.defName, out SpeciesSettings settings) == false)
         {
             settings = DefaultSettingsForSpeciesDef(humanlikeDef);
             AddCompsToHumanlikeDef(humanlikeDef);
-            PsychologySettings.speciesDict.AddDistinct(humanlikeDef.defName, settings);
+            if (formerHuman)
+            {
+                settings.minDatingAge = -1f;
+                settings.minLovinAge = -1f;
+            }
+            PsychologySettings.speciesDict.Add(humanlikeDef.defName, settings);
         }
         return settings;
     }
@@ -91,6 +107,7 @@ public class SpeciesHelper
             humanlikeDef.comps = new List<CompProperties>(1);
         }
         humanlikeDef.comps.AddDistinct(new CompProperties_Psychology());
+        Log.Message("Added CompProperties_Psychology to humanlikeDef = " + humanlikeDef.defName);
         if (!humanlikeDef.race.hediffGiverSets.NullOrEmpty())
         {
             if (humanlikeDef.race.hediffGiverSets.Contains(DefDatabase<HediffGiverSetDef>.GetNamed("OrganicStandard")))

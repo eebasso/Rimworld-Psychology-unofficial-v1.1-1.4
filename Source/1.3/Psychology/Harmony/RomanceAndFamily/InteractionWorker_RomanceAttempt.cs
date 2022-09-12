@@ -69,8 +69,17 @@ public static class InteractionWorker_RomanceAttempt_SelectionWeightPatch
             __result = 0f;
             return false;
         }
-        float romChanceMult = Mathf.InverseLerp(0.15f, 1f, romChance);
-        
+        //float romChanceMult = Mathf.InverseLerp(0.15f, 1f, romChance);
+        float romChanceMult = (romChance - 0.15f) / 0.85f;
+
+        // Assertive pawns are more likely to make a move on attractive mates
+        float initiatorAggressive = PsycheHelper.Comp(initiator).Psyche.GetPersonalityRating(PersonalityNodeDefOf.Aggressive);
+        float initiatorConfident = PsycheHelper.Comp(initiator).Psyche.GetPersonalityRating(PersonalityNodeDefOf.Confident);
+        float chanceCutOff = 0.5f;
+        float confidenceFactor = initiatorConfident + initiatorAggressive;
+        float adjResult = romChanceMult < chanceCutOff ? romChanceMult : chanceCutOff + confidenceFactor * (romChanceMult - chanceCutOff);
+        romChanceMult = adjResult;
+
         /* INITIATOR OPINION FACTOR */
         float initiatorRomantic = PsycheHelper.Comp(initiator).Psyche.GetPersonalityRating(PersonalityNodeDefOf.Romantic);
         float initiatorOpinion = (float)initiator.relations.OpinionOf(recipient);
@@ -98,8 +107,7 @@ public static class InteractionWorker_RomanceAttempt_SelectionWeightPatch
         }
         
         /* GET INITIATOR PERSONALITY VALUES */
-        float initiatorAggressive = PsycheHelper.Comp(initiator).Psyche.GetPersonalityRating(PersonalityNodeDefOf.Aggressive);
-        float initiatorConfident = PsycheHelper.Comp(initiator).Psyche.GetPersonalityRating(PersonalityNodeDefOf.Confident);
+        
 
         //float initiatorOpenMinded = initiator.story.traits.HasTrait(TraitDefOfPsychology.OpenMinded) ? 1f : 0f;
 
@@ -151,13 +159,15 @@ public static class InteractionWorker_RomanceAttempt_SelectionWeightPatch
         // Include chance multiplier from settings
         __result = 1.15f * PsychologySettings.romanceChanceMultiplier * romChanceMult * initiatorOpinMult * existingPartnerMult * knownSexFactor * straightWomanFactor;
 
-        // Confident pawns are more likely to make a move on attractive mates
-        float chanceCutOff = 0.5f;
-        float confidenceFactor = initiatorConfident + initiatorAggressive;
-        float adjResult = __result < chanceCutOff ? __result : chanceCutOff + confidenceFactor * (__result - chanceCutOff);
-        __result = adjResult;
+        //float initiatorAggressive = PsycheHelper.Comp(initiator).Psyche.GetPersonalityRating(PersonalityNodeDefOf.Aggressive);
+        //float initiatorConfident = PsycheHelper.Comp(initiator).Psyche.GetPersonalityRating(PersonalityNodeDefOf.Confident);
+        //float chanceCutOff = 0.5f;
+        //float confidenceFactor = initiatorConfident + initiatorAggressive;
+        //float adjResult = __result < chanceCutOff ? __result : chanceCutOff + confidenceFactor * (__result - chanceCutOff);
+        //__result = adjResult;
 
-         Log.Message("InteractionWorker_RomanceAttempt.RandomSelectionWeight, initiator = " + initiator.LabelShort + ", recipient = " + recipient.LabelShort + ", romChanceMult = " + romChanceMult + ", initiatorOpinMult = " + initiatorOpinMult + ", existingPartnerMult = " + existingPartnerMult + ", knownSexFactor = " + knownSexFactor + ", straightWomanFactor = " + straightWomanFactor + ", result = " + __result + ", resultAdj = " + adjResult);
+        Log.Message("InteractionWorker_RomanceAttempt.RandomSelectionWeight, initiator = " + initiator.LabelShort + ", recipient = " + recipient.LabelShort + ", romChanceMult = " + romChanceMult + ", initiatorOpinMult = " + initiatorOpinMult + ", existingPartnerMult = " + existingPartnerMult + ", knownSexFactor = " + knownSexFactor + ", straightWomanFactor = " + straightWomanFactor + ", result = " + __result);
+
         return false;
     }
 }

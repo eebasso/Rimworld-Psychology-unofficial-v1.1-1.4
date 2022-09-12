@@ -25,7 +25,7 @@ public static class HarmonyInitialize
         {
             ManualPatches.IdeoPatches(harmonyInstance);
         }
-        Log.Message("Psychology: implemented all vanilla Harmony patches");
+        Log.Message("Psychology: implemented all Harmony patches of Vanilla");
 
         if (ModsConfig.IsActive("void.charactereditor"))
         {
@@ -42,6 +42,12 @@ public static class HarmonyInitialize
             Pawnmorpher_Patches.ManualPatches(harmonyInstance);
             Log.Message("Psychology: completed compability patches for Pawnmorpher");
         }
+        //if (ModsConfig.IsActive("VanillaExpanded.VPsycastsE"))
+        //{
+        //    VanillaPsycastersExpanded_Patches.ManualPatches(harmonyInstance);
+        //    Log.Message("Psychology: completed compability patches for Vanilla Psycasters Expanded");
+        //}
+
     }
 }
 

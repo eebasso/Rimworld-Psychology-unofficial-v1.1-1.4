@@ -23,7 +23,7 @@ public class ITab_Pawn_Psyche : ITab
     {
         get
         {
-            Log.Message("IsVisible");
+            //Log.Message("IsVisible");
             return PsycheHelper.PsychologyEnabled(PawnToShowInfoAbout);
         }
     }
@@ -35,12 +35,12 @@ public class ITab_Pawn_Psyche : ITab
             //Log.Message("Inside PawnToShowInfoAbout");
             if (base.SelPawn != null)
             {
-                Log.Message("Selected pawn label = " + base.SelPawn?.Label);
+                //Log.Message("Selected pawn label = " + base.SelPawn?.Label);
                 return base.SelPawn;
             }
             if (base.SelThing is Corpse corpse)
             {
-                Log.Message("Selected corpse label = " + corpse?.InnerPawn?.Label);
+                //Log.Message("Selected corpse label = " + corpse?.InnerPawn?.Label);
                 return corpse.InnerPawn;
             }
             throw new InvalidOperationException("Psyche tab found no selected pawn to display.");
