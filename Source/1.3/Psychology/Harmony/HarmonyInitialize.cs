@@ -26,22 +26,6 @@ public static class HarmonyInitialize
             ManualPatches.IdeoPatches(harmonyInstance);
         }
         Log.Message("Psychology: implemented all Harmony patches of Vanilla");
-
-        if (ModsConfig.IsActive("void.charactereditor"))
-        {
-            CharacterEditor_Patches.ManualPatches(harmonyInstance);
-            Log.Message("Psychology: patched CharacterEditor for compatibility");
-        }
-        if (ModsConfig.IsActive("EdB.PrepareCarefully"))
-        {
-            EdBPrepareCarefully_Patches.ManualPatches(harmonyInstance);
-            Log.Message("Psychology: patched PrepareCarefully for compatibility");
-        }
-        if (ModsConfig.IsActive("tachyonite.pawnmorpherpublic"))
-        {
-            Pawnmorpher_Patches.ManualPatches(harmonyInstance);
-            Log.Message("Psychology: completed compability patches for Pawnmorpher");
-        }
     }
 }
 
@@ -55,6 +39,14 @@ public class ManualPatches
         originalInfo = AccessTools.Method(typeof(TraitSet), nameof(TraitSet.GainTrait));
         harmonyMethod = new HarmonyMethod(typeof(TraitSet_ManualPatches), nameof(TraitSet_ManualPatches.GainTrait_KinseyEnabledPrefix));
         harmonyInstance.Patch(originalInfo, prefix: harmonyMethod);
+
+        originalInfo = AccessTools.Method(typeof(TraitSet), nameof(TraitSet.HasTrait), new Type[] { typeof(TraitDef) });
+        harmonyMethod = new HarmonyMethod(typeof(TraitSet_ManualPatches), nameof(TraitSet_ManualPatches.HasTrait_KinseyEnabledPostfix));
+        harmonyInstance.Patch(originalInfo, postfix: harmonyMethod);
+
+        originalInfo = AccessTools.Method(typeof(TraitSet), nameof(TraitSet.HasTrait), new Type[] { typeof(TraitDef), typeof(int) });
+        harmonyMethod = new HarmonyMethod(typeof(TraitSet_ManualPatches), nameof(TraitSet_ManualPatches.HasTrait_KinseyEnabledPostfix2));
+        harmonyInstance.Patch(originalInfo, postfix: harmonyMethod);
     }
 
     public static void IdeoPatches(HarmonyLib.Harmony harmonyInstance)

@@ -100,32 +100,34 @@ public class Pawn_SexualityTracker : IExposable
 
     public virtual int RandKinsey(float b0 = 1f, float b1 = 1f, float b2 = 1f, float b3 = 1f, float b4 = 1f, float b5 = 1f, float b6 = 1f, int inputSeed = 0)
     {
-        List<float> bList = new List<float> { b0, b1, b2, b3, b4, b5, b6 };
-        List<float> kList = new List<float> { 1f, 1f, 1f, 1f, 1f, 1f, 1f };
+        float[] bList = new float[] { b0, b1, b2, b3, b4, b5, b6 };
+        float[] kList = new float[7];
         float kSum = 0f;
         if (PsychologySettings.kinseyFormula != KinseyMode.Custom)
         {
-            kList = PsycheHelper.KinseyModeWeightDict[PsychologySettings.kinseyFormula];
+            PsycheHelper.KinseyModeWeightDict[PsychologySettings.kinseyFormula].CopyTo(kList, 0);
             kSum = kList.Sum();
         }
         else
         {
-            kList = PsychologySettings.kinseyWeightCustom;
+            PsychologySettings.kinseyWeightCustom.ToArray().CopyTo(kList, 0);
             kSum = kList.Sum();
             if (kSum == 0f)
             {
-                kList = new List<float> { 1f, 1f, 1f, 1f, 1f, 1f, 1f };
+                kList = new float[] { 1f, 1f, 1f, 1f, 1f, 1f, 1f };
                 kSum = 7f;
             }
         }
-        float kbSum = 0f;
-        List<float> kCumSumList = new List<float>();
-        List<float> kbCumSumList = new List<float>();
-        for (int i = 0; i < bList.Count(); i++)
+        float kCumSum = 0f;
+        float kbCumSum = 0f;
+        float[] kCumSumList = new float[7];
+        float[] kbCumSumList = new float[7];
+        for (int i = 0; i < 7; i++)
         {
-            kbSum += kList[i] * bList[i];
-            kCumSumList.Add(kSum);
-            kbCumSumList.Add(kbSum);
+            kCumSum += kList[i];
+            kbCumSum += kList[i] * bList[i];
+            kCumSumList[i] = kSum;
+            kbCumSumList[i] = kbCumSum;
         }
         if (kbCumSumList[6] > 0f)
         {
@@ -134,7 +136,7 @@ public class Pawn_SexualityTracker : IExposable
         return RandKinseyByWeight(kCumSumList, inputSeed);
     }
 
-    public virtual int RandKinseyByWeight(List<float> kCumSumList, int inputSeed = 0)
+    public virtual int RandKinseyByWeight(float[] kCumSumList, int inputSeed = 0)
     {
         float randValue = Rand.ValueSeeded(17 * PsycheHelper.PawnSeed(this.pawn) + 11 * inputSeed + 31) * kCumSumList[6];
         for (int s = 0; s < 6; s++)

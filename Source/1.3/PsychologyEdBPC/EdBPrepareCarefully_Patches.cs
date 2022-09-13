@@ -11,16 +11,21 @@ using System.Collections.Generic;using System.Reflection.Emit;using System.Lin
 
 namespace Psychology.Harmony;
 
+[StaticConstructorOnStartup]
 public static class EdBPrepareCarefully_Patches
 {
     public static MethodInfo originalInfo;
     public static HarmonyMethod harmonyMethod;
 
-    public static void ManualPatches(HarmonyLib.Harmony harmonyInstance)
+    static EdBPrepareCarefully_Patches()
     {
+        HarmonyLib.Harmony harmonyInstance = new HarmonyLib.Harmony("Community.Psychology.UnofficialUpdate.EdBPC");
+
         originalInfo = AccessTools.Method(AccessTools.TypeByName("EdB.PrepareCarefully.PanelBackstory"), "Draw");
         harmonyMethod = new HarmonyMethod(typeof(EdBPrepareCarefully_Patches).GetMethod(nameof(EdBPrepareCarefully_Patches.PanelBackstory_DrawTranspiler)));
         harmonyInstance.Patch(originalInfo, transpiler: harmonyMethod);
+
+        Log.Message("Psychology: completed patches for compatibility with Prepare Carefully.");
     }
 
     public static IEnumerable<CodeInstruction> PanelBackstory_DrawTranspiler(IEnumerable<CodeInstruction> codes)
@@ -52,7 +57,7 @@ public static class EdBPrepareCarefully_Patches
 
     public static void EdBPsycheButton(Pawn pawn, float y)
     {
-        
+
         string warningText = "EdBPrepareCarefullyWarning".Translate();
         string warningTooltip = (string)"EdBPrepareCarefullyWarningTooltip".Translate();
         warningTooltip = warningTooltip.Replace("{0}", "<b>" + "EdBPrepareCarefullyWarningTooltip0".Translate().Colorize(Color.red) + "</b>");

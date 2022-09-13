@@ -16,18 +16,15 @@ public static class LovePartnerRelationUtility_GenerationChancePatch
     [HarmonyPrefix]
     public static bool LovePartnerRelationGenerationChance(ref float __result, Pawn generated, Pawn other, PawnGenerationRequest request, bool ex)
     {
-        if (!PsycheHelper.PsychologyEnabled(generated) || !PsycheHelper.PsychologyEnabled(other))
-        {
-            __result = 0f;
-            return false;
-        }
-        SpeciesSettings generatedSettings = PsychologySettings.speciesDict[generated.def.defName];
-        SpeciesSettings otherSettings = PsychologySettings.speciesDict[other.def.defName];
+        //Log.Message("LovePartnerRelationGenerationChance, step 0");
+        SpeciesSettings generatedSettings = SpeciesHelper.GetOrMakeSettingsFromHumanlikeDef(generated.def);
+        SpeciesSettings otherSettings = SpeciesHelper.GetOrMakeSettingsFromHumanlikeDef(other.def);
 
         float bioAge1 = generated.ageTracker.AgeBiologicalYearsFloat;
         float bioAge2 = other.ageTracker.AgeBiologicalYearsFloat;
         float minDatingAge1 = generatedSettings.minDatingAge;
         float minDatingAge2 = otherSettings.minDatingAge;
+
         if (bioAge1 < minDatingAge1 || bioAge2 < minDatingAge2 || minDatingAge1 < 0f || minDatingAge2 < 0f)
         {
             // No underage lover relations
@@ -39,19 +36,65 @@ public static class LovePartnerRelationUtility_GenerationChancePatch
         //if (PsychologySettings.enableKinsey)
         if (PsychologySettings.enableKinsey)
         {
-            float kinsey = PsycheHelper.Comp(generated).Sexuality.kinseyRating / 3f;
-            float kinsey2 = PsycheHelper.Comp(other).Sexuality.kinseyRating / 3f;
-            if (generated.gender != other.gender)
+            float[] homoWeights = new float[] { 0f, 0.2f, 0.5f, 1f, 1f, 1f, 1f };
+            float[] heteroWeights = new float[] { 1f, 1f, 1f, 1f, 0.5f, 0.2f, 0f };
+            if (PsycheHelper.TryGetPawnSeed(other))
             {
-                kinsey = 2f - kinsey;
-                kinsey2 = 2f - kinsey2;
+                if (PsycheHelper.PsychologyEnabled(other))
+                {
+                    int kinsey = PsycheHelper.Comp(other).Sexuality.kinseyRating;
+                    if (generated.gender == other.gender)
+                    {
+                        sexualityFactor = homoWeights[kinsey];
+                    }
+                    if (generated.gender == other.gender.Opposite())
+                    {
+                        sexualityFactor = heteroWeights[kinsey];
+                    }
+                }
+                else
+                {
+                    __result = 0f;
+                    return false;
+                }
             }
-            sexualityFactor *= Mathf.Clamp01(kinsey);
-            sexualityFactor *= Mathf.Clamp01(kinsey2);
-            if (sexualityFactor == 0f)
+            else
             {
-                __result = 0f;
-                return false;
+                //Log.Message("LovePartnerRelationGenerationChance, step 1");
+                float[] pList = PsycheHelper.KinseyProbabilities();
+                //Log.Message("LovePartnerRelationGenerationChance, step 2");
+                float[] homoList = new float[7];
+                float[] heteroList = new float[7];
+                //Log.Message("LovePartnerRelationGenerationChance, step 3");
+                for (int i = 0; i < 7; i++)
+                {
+                    homoList[i] = homoWeights[i] * pList[i];
+                    heteroList[i] = heteroWeights[i] * pList[i];
+                }
+                //Log.Message("LovePartnerRelationGenerationChance, step 4");
+                float homoChance = 0f;
+                float heteroChance = 0f;
+                for (int i = 0; i < 7; i++)
+                {
+                    for (int k = 0; k < 7; k++)
+                    {
+                        homoChance += homoList[i] * homoList[k];
+                        heteroChance += heteroList[i] * heteroList[k];
+                    }
+                }
+                //Log.Message("LovePartnerRelationGenerationChance, step 5");
+                if (homoChance < heteroChance)
+                {
+                    homoChance /= heteroChance;
+                    heteroChance = 1f;
+                }
+                if (homoChance > heteroChance)
+                {
+                    homoChance = 1f;
+                    heteroChance /= homoChance;
+                }
+                //Log.Message("LovePartnerRelationGenerationChance, step 6");
+                sexualityFactor = (generated.gender == other.gender) ? homoChance : heteroChance;
             }
         }
         else
@@ -115,7 +158,6 @@ public static class LovePartnerRelationUtility_GenerationChancePatch
             generationChanceAgeFactor2 = GetGenerationChanceAgeFactor(PsycheHelper.DatingAgeToVanilla(bioAge2, minDatingAge2));
         }
 
-        
         float incestFactor = 1f;
         if (generated.GetRelations(other).Any((PawnRelationDef x) => x.familyByBloodRelation))
         {

@@ -20,13 +20,13 @@ public class PsycheCardUtility
 
     public static int OldSmallFontSize = Text.fontStyles[1].fontSize;
     public static int OldMediumFontSize = Text.fontStyles[2].fontSize;
-    public static int SexualityFontSize = 16;
-    public static int OptionsFontSize = 16;
-    public static int FiveFactorTitleFontSize = 18;
-    public static int CategoryNodeFontSize = 16;
+    public const int SexualityFontSize = 16;
+    public const int OptionsFontSize = 16;
+    public const int FiveFactorTitleFontSize = 18;
+    public const int CategoryNodeFontSize = 16;
 
-    public static Color TitleColor = ColoredText.TipSectionTitleColor;
-    public static Color RatingColor = Color.yellow;
+    //public static Color TitleColor = ColoredText.TipSectionTitleColor;
+    //public static Color RatingColor = Color.yellow;
     public static string RatingFormat = "##0.000%";
 
     public static int DistanceFromMiddle;
@@ -119,10 +119,14 @@ public class PsycheCardUtility
     public static List<int> CloudFontSizes = new List<int>();
     public const float PointsOnSpiral = 2000f;
     public const float kSpiral = 60f * Mathf.PI;
-    public static float xMinTightScaling = 0.0125f;
-    public static float xMaxTightScaling = 0.0125f;
-    public static float yMinTightScaling = -0.135f;
-    public static float yMaxTightScaling = -0.000f;
+
+    
+
+    public const float xMinTightScaling = 0.005f;
+    public const float xMaxTightScaling = 0.005f;
+    public const float yMinTightScaling = 0.135f;
+    public const float yMaxTightScaling = 0.000f;
+    public static Vector2 calcSizeScalingVector = new Vector2(1.035f, 1.025f);
 
     public static readonly string[] CreativeLetters = { "C", "r", "e", "a", "t", "i", "v", "e" };
     public static readonly Vector3[] CreativeHSVs = { new Vector3(0f, 0.9f, 1f), new Vector3(30f, 1f, 1f), new Vector3(55f, 0.9f, 0.85f), new Vector3(120f, 0.8f, 0.8f), new Vector3(195f, 1f, 1f), new Vector3(210f, 1f, 1f), new Vector3(280f, 0.8f, 1f), new Vector3(305f, 1f, 0.85f) };
@@ -141,7 +145,7 @@ public class PsycheCardUtility
 
         Text.Font = GameFont.Small;
         GUIStyle style = Text.fontStyles[1];
-        Vector2 scalingVector = new Vector2(1.035f, 1.025f);
+        
         for (int i = 0; i < 5; i++)
         {
             BigFiveColors[i] = HSVtoColor(BigFiveHSVs[i]);
@@ -149,14 +153,14 @@ public class PsycheCardUtility
 
         style.fontSize = SexualityFontSize;
         // Kinsey rating text
-        KinseyTextSize = Text.CalcSize("KinseyRating".Translate() + " 0") * scalingVector;
+        KinseyTextSize = Text.CalcSize("KinseyRating".Translate() + " 0") * calcSizeScalingVector;
         // Sex and romantic drive text
         for (int i = 0; i < 5; i++)
         {
             SexDriveText.Add(("SexDrive" + i.ToString()).Translate());
             RomDriveText.Add(("RomanticDrive" + i.ToString()).Translate());
-            SexDriveSize.Add(Text.CalcSize(SexDriveText[i]) * scalingVector);
-            RomDriveSize.Add(Text.CalcSize(RomDriveText[i]) * scalingVector);
+            SexDriveSize.Add(Text.CalcSize(SexDriveText[i]) * calcSizeScalingVector);
+            RomDriveSize.Add(Text.CalcSize(RomDriveText[i]) * calcSizeScalingVector);
         }
         SexDriveWidth = SexDriveSize.Max(s => s.x);
         SexDriveHeight = SexDriveSize.Max(s => s.y);
@@ -168,26 +172,26 @@ public class PsycheCardUtility
         for (int i = 0; i < 5; i++)
         {
             OptionsText.Add(("OptionsText" + i.ToString()).Translate());
-            OptionsSize.Add(Text.CalcSize(OptionsText[i]) * scalingVector);
+            OptionsSize.Add(Text.CalcSize(OptionsText[i]) * calcSizeScalingVector);
         }
         OptionsWidth = 20f + OptionsSize.Max(s => s.x);
         OptionsHeight = 5f + OptionsSize.Max(s => s.y);
 
-        UseColorsSize = Text.CalcSize(UseColorsText) * scalingVector;
+        UseColorsSize = Text.CalcSize(UseColorsText) * calcSizeScalingVector;
         UseColorsWidth = UseColorsSize.x + 29f;
         UseColorsHeight = Mathf.Max(UseColorsSize.y, 24f);
 
-        AlphabeticalSize = Text.CalcSize(AlphabeticalText) * scalingVector;
+        AlphabeticalSize = Text.CalcSize(AlphabeticalText) * calcSizeScalingVector;
         AlphabeticalWidth = AlphabeticalSize.x + 29f;
         AlphabeticalHeight = Mathf.Max(AlphabeticalSize.y, 24f);
 
-        UseAntonymsSize = Text.CalcSize(UseAntonymsText) * scalingVector;
+        UseAntonymsSize = Text.CalcSize(UseAntonymsText) * calcSizeScalingVector;
         UseAntonymsWidth = UseAntonymsSize.x + 29f;
         UseAntonymsHeight = Mathf.Max(UseAntonymsSize.y, 24f);
 
         style.fontSize = FiveFactorTitleFontSize;
         //FiveFactorText = "<b>" + FiveFactorText + "</b>";
-        FiveFactorSize = Text.CalcSize(FiveFactorText) * scalingVector;
+        FiveFactorSize = Text.CalcSize(FiveFactorText) * calcSizeScalingVector;
 
         //style.fontSize = OldSmallFontSize;
         //EditSize = Text.CalcSize(EditText) * scalingVector;
@@ -318,7 +322,7 @@ public class PsycheCardUtility
             Widgets.DrawHighlightIfMouseover(kinseyRect);
             TooltipHandler.TipRegion(kinseyRect, delegate
             {
-                return ((string)"KinseyDescription".Translate()).ReplaceFirst("{0}", "KinseyDescription0".Translate().Colorize(TitleColor));
+                return ((string)"KinseyDescription".Translate()).ReplaceFirst("{0}", "KinseyDescription0".Translate().Colorize(UIAssets.TitleColor));
             }, 89140);
 
             //Sex drive
@@ -326,15 +330,15 @@ public class PsycheCardUtility
             Widgets.DrawHighlightIfMouseover(sexDriveRect);
             TooltipHandler.TipRegion(sexDriveRect, delegate
             {
-                string sexString = ((string)"SexDriveDescription".Translate()).ReplaceFirst("{0}", "SexDriveDescription0".Translate().Colorize(TitleColor));
+                string sexString = ((string)"SexDriveDescription".Translate()).ReplaceFirst("{0}", "SexDriveDescription0".Translate().Colorize(UIAssets.TitleColor));
                 if (sexDriveInt == 0)
                 {
                     sexString += "\n\n" + (string)"AsexualDescription".Translate();
                 }
                 if (ShowNumbersBool)
                 {
-                    string rawRating = PsycheHelper.Comp(pawn).Sexuality.sexDrive.ToString(RatingFormat, CultureInfo.InvariantCulture).Colorize(RatingColor);
-                    string adjRating = PsycheHelper.Comp(pawn).Sexuality.AdjustedSexDrive.ToString(RatingFormat, CultureInfo.InvariantCulture).Colorize(RatingColor);
+                    string rawRating = PsycheHelper.Comp(pawn).Sexuality.sexDrive.ToString(RatingFormat, CultureInfo.InvariantCulture).Colorize(UIAssets.RatingColor);
+                    string adjRating = PsycheHelper.Comp(pawn).Sexuality.AdjustedSexDrive.ToString(RatingFormat, CultureInfo.InvariantCulture).Colorize(UIAssets.RatingColor);
                     sexString += "\n\nRaw: " + rawRating + "  Adjusted: " + adjRating;
                 }
                 return sexString;
@@ -345,15 +349,15 @@ public class PsycheCardUtility
             Widgets.DrawHighlightIfMouseover(romDriveRect);
             TooltipHandler.TipRegion(romDriveRect, delegate
             {
-                string romString = ((string)"RomanticDriveDescription".Translate()).ReplaceFirst("{0}", "RomanticDriveDescription0".Translate().Colorize(TitleColor));
+                string romString = ((string)"RomanticDriveDescription".Translate()).ReplaceFirst("{0}", "RomanticDriveDescription0".Translate().Colorize(UIAssets.TitleColor));
                 if (romDriveInt == 0)
                 {
                     romString += "\n\n" + (string)"AromanticDescription".Translate();
                 }
                 if (ShowNumbersBool)
                 {
-                    string rawRating = PsycheHelper.Comp(pawn).Sexuality.romanticDrive.ToString(RatingFormat, CultureInfo.InvariantCulture).Colorize(RatingColor);
-                    string adjRating = PsycheHelper.Comp(pawn).Sexuality.AdjustedRomanticDrive.ToString(RatingFormat, CultureInfo.InvariantCulture).Colorize(RatingColor);
+                    string rawRating = PsycheHelper.Comp(pawn).Sexuality.romanticDrive.ToString(RatingFormat, CultureInfo.InvariantCulture).Colorize(UIAssets.RatingColor);
+                    string adjRating = PsycheHelper.Comp(pawn).Sexuality.AdjustedRomanticDrive.ToString(RatingFormat, CultureInfo.InvariantCulture).Colorize(UIAssets.RatingColor);
                     romString += "\n\nRaw: " + rawRating + "  Adjusted: " + adjRating;
                 }
                 return romString;
@@ -429,12 +433,13 @@ public class PsycheCardUtility
             Widgets.Label(fiveFactorRect, FiveFactorText);
             style.fontSize = OldSmallFontSize;
             Text.Anchor = OldAnchor;
+
             fiveFactorRect.xMin -= HighlightPadding;
             fiveFactorRect.xMax += HighlightPadding;
             Widgets.DrawHighlightIfMouseover(fiveFactorRect);
             TooltipHandler.TipRegion(fiveFactorRect, delegate
             {
-                return ((string)"FiveFactorDescription".Translate()).ReplaceFirst("{0}", "FiveFactorDescription0".Translate().Colorize(TitleColor));
+                return ((string)"FiveFactorDescription".Translate()).ReplaceFirst("{0}", "FiveFactorDescription0".Translate().Colorize(UIAssets.TitleColor));
             }, 521312);
 
             float pentaRadius = 0.38f * forbiddenRect.width;
@@ -476,16 +481,24 @@ public class PsycheCardUtility
             for (int p = 0; p < 5; p++)
             {
                 string letter = BigFiveLetters[p];
-                //string letterBold = ("<b>" + letter + "</b>").Colorize(BigFiveColors[p]);
-                string letterBold = ("<b>" + (string)("BigFive" + letter).Translate() + "</b>").Colorize(UseColorsBool ? BigFiveColors[p] : Color.white);
+                string letterTranslated = ("BigFive" + letter).Translate();
+                string letterBold = "<b>" + letterTranslated + "</b>";
 
+                //string letterBold = ("<b>" + letter + "</b>").Colorize(BigFiveColors[p]);
                 style.fontSize = SexualityFontSize;
                 Vector2 letterSize = Text.CalcSize(letterBold);
-                Vector2 tightSize = letterSize * new Vector2(1.1f, 0.65f);
+                letterSize.x *= 1.1f;
+                Vector2 tightSize = new Vector2(letterSize.x, 0.65f * letterSize.y);
                 float displacement = 0.61f * (tightSize * BigFiveSpacings[p]).magnitude;
                 Vector2 position = RadialProjectionFromCenter(pentaCenter, pentaRadius + displacement, 72 * p);
+
                 Rect letterRect = new Rect(position.x - 0.5f * letterSize.x, position.y - 0.46f * letterSize.y, letterSize.x, letterSize.y);
-                Widgets.Label(letterRect, letterBold);
+
+                
+                Text.Anchor = TextAnchor.MiddleCenter;
+                Widgets.Label(letterRect, letterBold.Colorize(UseColorsBool ? BigFiveColors[p] : Color.white));
+                Text.Anchor = OldAnchor;
+
                 style.fontSize = OldSmallFontSize;
 
                 List<Vector2> verticies = new List<Vector2> { };
@@ -505,7 +518,7 @@ public class PsycheCardUtility
                     bigFiveDescription = bigFiveDescription.ReplaceFirst("{0}", ("BigFive" + letter + "Description0").Translate().Colorize(bigFiveTitleColor));
                     if (ShowNumbersBool)
                     {
-                        bigFiveDescription += "\n\nRating: " + bigFiveRating.ToString(RatingFormat, CultureInfo.InvariantCulture).Colorize(RatingColor);
+                        bigFiveDescription += "\n\nRating: " + bigFiveRating.ToString(RatingFormat, CultureInfo.InvariantCulture).Colorize(UIAssets.RatingColor);
                     }
                     return bigFiveDescription;
                 }, 38975 + p * 237);
@@ -514,8 +527,9 @@ public class PsycheCardUtility
             /* Draw personality node list */
             PersonalityTraitList(personalityRect, pawn);
         }
-
         GUI.EndGroup();
+
+
 
         PsychologySettings.displayOption = DistanceFromMiddle;
         PsychologySettings.useColors = UseColorsBool;
@@ -716,13 +730,13 @@ public class PsycheCardUtility
             UseAntonymsBool = UseAntonymsBoolCached;
             style.fontSize = Mathf.RoundToInt(Mathf.Lerp(40f, 10f, Mathf.Pow(i / 36f, 0.75f)));
             Vector2 textSize = Text.CalcSize(personalityText.Colorize(Color.white));
-            //textSize.x *= 1.0125f;
+            textSize.x *= calcSizeScalingVector.x;
             Rect textRect = new Rect(cloudCenter - 0.5f * textSize, textSize);
             Rect tightRect = textRect;
-            tightRect.xMin = textRect.xMin - xMinTightScaling * textRect.width;
-            tightRect.xMax = textRect.xMax + xMaxTightScaling * textRect.width;
-            tightRect.yMin = textRect.yMin - yMinTightScaling * textRect.height;
-            tightRect.yMax = textRect.yMax + yMaxTightScaling * textRect.height;
+            tightRect.xMin = textRect.xMin + xMinTightScaling * textRect.width;
+            tightRect.xMax = textRect.xMax - xMaxTightScaling * textRect.width;
+            tightRect.yMin = textRect.yMin + yMinTightScaling * textRect.height;
+            tightRect.yMax = textRect.yMax - yMaxTightScaling * textRect.height;
             float x0 = tightRect.x;
             float y0 = tightRect.y;
             int sign = Rand.ValueSeeded(3 * pawn.GetHashCode() + 11 * i) < 0.5f ? 1 : -1;
@@ -752,8 +766,8 @@ public class PsycheCardUtility
             {
                 if (RectDoesNotOverlapWordCloud(tightRect, cloudRect, forbiddenRect1))//, forbiddenRect2))
                 {
-                    textRect.x = tightRect.x + xMinTightScaling * textRect.width;
-                    textRect.y = tightRect.y + yMinTightScaling * textRect.height;
+                    textRect.x = tightRect.x - xMinTightScaling * textRect.width;
+                    textRect.y = tightRect.y - yMinTightScaling * textRect.height;
                     CloudTextRects.Add(textRect);
                     CloudTightRects.Add(tightRect);
                     CloudTexts.Add(personalityText);
@@ -842,8 +856,8 @@ public class PsycheCardUtility
             }
             if (ShowNumbersBool)
             {
-                string rawRating = node.rawRating.ToString(RatingFormat, CultureInfo.InvariantCulture).Colorize(RatingColor);
-                string adjRating = node.AdjustedRating.ToString(RatingFormat, CultureInfo.InvariantCulture).Colorize(RatingColor);
+                string rawRating = node.rawRating.ToString(RatingFormat, CultureInfo.InvariantCulture).Colorize(UIAssets.RatingColor);
+                string adjRating = node.AdjustedRating.ToString(RatingFormat, CultureInfo.InvariantCulture).Colorize(UIAssets.RatingColor);
                 tooltipString += "\n\nRaw: " + rawRating + "  Adjusted: " + adjRating;
             }
             return tooltipString;

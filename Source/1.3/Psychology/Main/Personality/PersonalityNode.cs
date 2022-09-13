@@ -57,8 +57,7 @@ public class PersonalityNode : IExposable
         }
 
         float tM = 0f;
-        //if (this.def.traitModifiers != null && this.def.traitModifiers.Any())
-        if (PsycheHelper.TraitDefNamesThatAffectPsyche.Contains(this.def.defName))
+        if (this.def.traitModifiers != null && this.def.traitModifiers.Any())
         {
             foreach (PersonalityNodeTraitModifier traitMod in this.def.traitModifiers)
             {
@@ -68,8 +67,7 @@ public class PersonalityNode : IExposable
                 }
             }
         }
-        //if (this.def.skillModifiers != null && this.def.skillModifiers.Any())
-        if (PsycheHelper.SkillDefNamesThatAffectPsyche.Contains(this.def.defName))
+        if (this.def.skillModifiers != null && this.def.skillModifiers.Any())
         {
             foreach (PersonalityNodeSkillModifier skillMod in this.def.skillModifiers)
             {

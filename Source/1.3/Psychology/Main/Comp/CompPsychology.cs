@@ -40,7 +40,7 @@ public class CompPsychology : ThingComp
     {
         get
         {
-            if(this.sexuality == null)
+            if (this.sexuality == null)
             {
                 Pawn p = this.parent as Pawn;
                 if (p != null)
@@ -115,6 +115,6 @@ public class CompPsychology : ThingComp
             return this.Psyche != null && this.Sexuality != null;
         }
     }
-    
-    
+
+
 }

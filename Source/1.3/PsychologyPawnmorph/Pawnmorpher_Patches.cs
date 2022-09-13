@@ -1,12 +1,15 @@
 ﻿using UnityEngine;using RimWorld;using Verse;using Verse.Sound;using System;using System.Runtime.Remoting.Contexts;using HarmonyLib;using UnityEngine.UIElements.Experimental;using System.Reflection;using System.Collections.Generic;using System.Reflection.Emit;using System.Linq;
 
 namespace Psychology.Harmony;
+[StaticConstructorOnStartup]
 public class Pawnmorpher_Patches{
     public static MethodInfo originalInfo;
     public static HarmonyMethod harmonyMethod;
 
-    public static void ManualPatches(HarmonyLib.Harmony harmonyInstance)
+    static Pawnmorpher_Patches()
     {
+        HarmonyLib.Harmony harmonyInstance = new HarmonyLib.Harmony("Community.Psychology.UnofficialUpdate.Pawnmorph");
+
         originalInfo = AccessTools.Method(typeof(PsycheHelper), nameof(PsycheHelper.IsHumanlike));
         harmonyMethod = new HarmonyMethod(typeof(Pawnmorpher_Patches), nameof(PsycheHelper_IsHumanlike_Prefix));
         harmonyInstance.Patch(originalInfo, prefix: harmonyMethod);
@@ -38,6 +41,9 @@ public class Pawnmorpher_Patches{
                 SpeciesHelper.AddInspectorTabToDefAndCorpseDef(pawnDef);
             }
         }
+
+        Log.Message("Psychology: completed patches for compatibility with Pawnmorpher.");
+
     }
 
     public static bool PsycheHelper_IsHumanlike_Prefix(ref bool __result, Pawn pawn)

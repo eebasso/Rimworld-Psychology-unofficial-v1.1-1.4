@@ -20,14 +20,14 @@ public static class ChildRelationUtility_ChanceOfBecomingChildOf_Patch
             return;
         }
         /* Kinsey-enabled pawns shouldn't have the Gay trait, so we can just apply the sexuality modifier here. */
-        if (father != null && child != null && child.GetFather() == null)
+        if (father != null && child != null && child.GetFather() == null && PsycheHelper.TryGetPawnSeed(father))
         {
             if (PsycheHelper.PsychologyEnabled(father))
             {
                 __result *= Mathf.InverseLerp(6f, 0f, PsycheHelper.Comp(father).Sexuality.kinseyRating);
             }
         }
-        if (mother != null && child != null && child.GetMother() == null)
+        if (mother != null && child != null && child.GetMother() == null && PsycheHelper.TryGetPawnSeed(mother))
         {
             if (PsycheHelper.PsychologyEnabled(mother))
             {
@@ -43,7 +43,7 @@ public static class ChildRelationUtility_GetParentAgeFactor_Patch
     [HarmonyPrefix]
     public static bool GetParentAgeFactor(ref float __result, Pawn parent, Pawn child, ref float minAgeToHaveChildren, ref float usualAgeToHaveChildren, ref float maxAgeToHaveChildren)
     {
-        SpeciesSettings settings = PsychologySettings.speciesDict[parent.def.defName];
+        SpeciesSettings settings = SpeciesHelper.GetOrMakeSettingsFromHumanlikeDef(parent.def);
         float minLovinAge = settings.minLovinAge;
         if (!settings.enablePsyche || !parent.ageTracker.CurLifeStage.reproductive || minLovinAge < 0f)
         {

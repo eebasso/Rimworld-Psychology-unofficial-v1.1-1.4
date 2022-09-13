@@ -51,7 +51,6 @@ public class SpeciesHelper
                                                         orderby def.label ascending
                                                         select def;
 
-
         //Log.Message("humanlikeDefs.Count() = " + humanlikeDefs.Count());
         //ResetSpeciesDict(speciesDictDefault);
         //List<string> registered = new List<string>();

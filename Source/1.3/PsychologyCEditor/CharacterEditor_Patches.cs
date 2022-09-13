@@ -11,16 +11,23 @@ using System.Collections.Generic;using System.Reflection.Emit;using System.Lin
 
 namespace Psychology.Harmony;
 
+[StaticConstructorOnStartup]
 public class CharacterEditor_Patches
 {
     public static MethodInfo originalInfo;
     public static HarmonyMethod harmonyMethod;
 
-    public static void ManualPatches(HarmonyLib.Harmony harmonyInstance)
+    static CharacterEditor_Patches()
     {
+        HarmonyLib.Harmony harmonyInstance = new HarmonyLib.Harmony("Community.Psychology.UnofficialUpdate.CEditor");
+
         originalInfo = AccessTools.Method(typeof(CharacterEditor.DialogPsychology), nameof(CharacterEditor.DialogPsychology.DoWindowContents));
         harmonyMethod = new HarmonyMethod(typeof(CharacterEditor_Patches), nameof(CharacterEditor_Patches.DialogPsychology_DoWindowContentsPrefix));
         harmonyInstance.Patch(originalInfo, prefix: harmonyMethod);
+
+        //harmonyInstance.PatchAll();
+        Log.Message("Psychology: completed patches for compatibility with Character Editor.");
+        //Log.Message("Psychology: completed compability patches for Character Editor");
     }
 
     public static bool DialogPsychology_DoWindowContentsPrefix(Rect inRect)

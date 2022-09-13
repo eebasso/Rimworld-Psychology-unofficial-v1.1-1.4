@@ -6,23 +6,25 @@ using System.Text;
 using Verse;
 using UnityEngine;
 using RimWorld;
+using RimWorld.Planet;
 
 namespace Psychology;
 
 public static class PsycheHelper
 {
     public static PsychologyGameComponent GameComp => Current.Game.GetComponent<PsychologyGameComponent>();
-    public static Dictionary<KinseyMode, List<float>> KinseyModeWeightDict = new Dictionary<KinseyMode, List<float>>()
+    public static Dictionary<KinseyMode, float[]> KinseyModeWeightDict = new Dictionary<KinseyMode, float[]>()
     {
-        { KinseyMode.Realistic    , new List<float> { 62.4949f, 11.3289f,  9.2658f,  6.8466f,  4.5220f,  2.7806f,  2.7612f } } ,
-        { KinseyMode.Invisible    , new List<float> {  7.0701f, 11.8092f, 19.5541f, 23.1332f, 19.5541f, 11.8092f,  7.0701f } },
-        { KinseyMode.Uniform      , new List<float> { 14.2857f, 14.2857f, 14.2857f, 14.2857f, 14.2857f, 14.2857f, 14.2857f } },
-        { KinseyMode.Gaypocalypse , new List<float> {  2.7612f,  2.7806f,  4.5220f,  6.8466f,  9.2658f, 11.3289f, 62.4949f } }
+        { KinseyMode.Realistic    , new float[] { 62.4949f, 11.3289f,  9.2658f,  6.8466f,  4.5220f,  2.7806f,  2.7612f } },
+        { KinseyMode.Invisible    , new float[] {  7.0701f, 11.8092f, 19.5541f, 23.1332f, 19.5541f, 11.8092f,  7.0701f } },
+        { KinseyMode.Uniform      , new float[] { 14.2857f, 14.2857f, 14.2857f, 14.2857f, 14.2857f, 14.2857f, 14.2857f } },
+        { KinseyMode.Gaypocalypse , new float[] {  2.7612f,  2.7806f,  4.5220f,  6.8466f,  9.2658f, 11.3289f, 62.4949f } },
     };
+
     public static HashSet<string> TraitDefNamesThatAffectPsyche = new HashSet<string>();
     public static HashSet<string> SkillDefNamesThatAffectPsyche = new HashSet<string>();
-    //public static HashSet<string> PsycheEnabledSpeciesList = new HashSet<string>();
     public static SpeciesSettings settings = new SpeciesSettings();
+    public static int seed;
 
     public static bool PsychologyEnabled(Pawn pawn)
     {
@@ -49,7 +51,7 @@ public static class PsycheHelper
 
     public static bool IsHumanlike(Pawn pawn)
     {
-        return pawn.def?.race?.intelligence == Intelligence.Humanlike;
+        return pawn.def?.race?.intelligence >= Intelligence.Humanlike;
     }
 
     //public static bool IsSapient(Pawn pawn)
@@ -222,25 +224,26 @@ public static class PsycheHelper
 
     public static void CorrectTraitsForPawnKinseyEnabled(Pawn pawn)
     {
-        if (!PsycheHelper.PsychologyEnabled(pawn) || pawn?.story?.traits == null)
+        if (!PsychologyEnabled(pawn) || pawn?.story?.traits == null)
         {
             return;
         }
         if (pawn.story.traits.HasTrait(TraitDefOf.Asexual))
         {
-            PsycheHelper.RemoveTrait(pawn, TraitDefOf.Asexual);
-            PsycheHelper.Comp(pawn).Sexuality.sexDrive = 0.10f * Rand.ValueSeeded(11 * PsycheHelper.PawnSeed(pawn) + 8);
+            RemoveTrait(pawn, TraitDefOf.Asexual);
+            Comp(pawn).Sexuality.sexDrive = 0.10f * Rand.ValueSeeded(11 * PawnSeed(pawn) + 8);
         }
         if (pawn.story.traits.HasTrait(TraitDefOf.Bisexual))
         {
-            PsycheHelper.RemoveTrait(pawn, TraitDefOf.Bisexual);
-            PsycheHelper.Comp(pawn).Sexuality.GenerateKinsey(0f, 0f, 1f, 2f, 1f, 0f, 0f);
+            RemoveTrait(pawn, TraitDefOf.Bisexual);
+            Comp(pawn).Sexuality.GenerateKinsey(0f, 0.1f, 1f, 2f, 1f, 0.1f, 0f);
         }
         if (pawn.story.traits.HasTrait(TraitDefOf.Gay))
         {
-            PsycheHelper.RemoveTrait(pawn, TraitDefOf.Gay);
-            PsycheHelper.Comp(pawn).Sexuality.GenerateKinsey(0f, 0f, 0f, 0f, 0f, 1f, 2f);
+            RemoveTrait(pawn, TraitDefOf.Gay);
+            Comp(pawn).Sexuality.GenerateKinsey(0f, 0.02f, 0.04f, 0.06f, 0.08f, 1f, 2f);
         }
+        Comp(pawn).Psyche.CalculateAdjustedRatings();
     }
 
     public static void CorrectTraitsForPawnKinseyDisabled(Pawn pawn)
@@ -297,19 +300,110 @@ public static class PsycheHelper
 
     public static int PawnSeed(Pawn pawn)
     {
-        int firstNameSeed = pawn?.Name != null ? pawn.Name is NameTriple name ? name.First.GetHashCode() : 2 : 3;
-        int childhoodSeed = pawn?.story?.childhood.baseDesc != null ? pawn.story.childhood.GetHashCode() : 5;
-        int adulthoodSeed = pawn?.story?.adulthood != null ? pawn.story.adulthood.GetHashCode() : 7;
-        int birthLastNameSeed = pawn?.story?.birthLastName != null ? pawn.story.birthLastName.GetHashCode() : 11;
-        return Gen.HashCombineInt(firstNameSeed, childhoodSeed, adulthoodSeed, birthLastNameSeed);
+        bool success = TryGetPawnSeed(pawn);
+        if (success == false)
+        {
+            Log.Error("Used random pawn seed, would prefer this is not happen.");
+        }
+        return seed;
+    }
+
+    public static bool TryGetPawnSeed(Pawn pawn)
+    {
+        bool success = true;
+        int firstNameSeed;
+        int childhoodSeed;
+        int adulthoodSeed;
+        int birthLastNameSeed;
+        try
+        {
+            firstNameSeed = (pawn.Name as NameTriple).First.GetHashCode();
+        }
+        catch (Exception ex)
+        {
+            Log.Warning("Error with (pawn.Name as NameTriple).First.GetHashCode(), Exception: " + ex);
+            firstNameSeed = Mathf.CeilToInt(1e7f * Rand.Value);
+            success = false;
+        }
+        try
+        {
+            childhoodSeed = pawn.story.childhood.identifier.GetHashCode();
+        }
+        catch (Exception ex)
+        {
+            Log.Warning("Error with pawn.story.childhood.identifier.GetHashCode(), Exception: " + ex);
+            childhoodSeed = Mathf.CeilToInt(1e7f * Rand.Value);
+            success = false;
+        }
+        try
+        {
+            adulthoodSeed = pawn.story.adulthood.identifier.GetHashCode();
+        }
+        catch
+        {
+            try
+            {
+                adulthoodSeed = pawn.gender.GetHashCode();
+            }
+            catch (Exception ex2)
+            {
+                Log.Warning("Error with pawn.gender.GetHashCode(), Exception: " + ex2);
+                adulthoodSeed = Mathf.CeilToInt(1e7f * Rand.Value);
+                success = false;
+            }
+        }
+        try
+        {
+            birthLastNameSeed = pawn.story.birthLastName.GetHashCode();
+        }
+        catch (Exception ex)
+        {
+            Log.Warning("Error with pawn.story.birthLastName, Exception: " + ex);
+            birthLastNameSeed = Mathf.CeilToInt(1e7f * Rand.Value);
+            success = false;
+        }
+        seed = Gen.HashCombineInt(firstNameSeed, childhoodSeed, adulthoodSeed, birthLastNameSeed);
+        return success;
     }
 
     public static void TryGainMemoryReplacedPartBleedingHeart(Pawn pawn, Pawn billDoer)
     {
-        if (billDoer != null && billDoer.needs.mood != null)
+        if (billDoer?.needs?.mood != null)
         {
             billDoer.needs.mood.thoughts.memories.TryGainMemory(ThoughtDefOfPsychology.ReplacedPartBleedingHeart, pawn);
         }
+    }
+
+    public static float[] KinseyProbabilities()
+    {
+        //Log.Message("KinseyProbabilities(), step 0");
+        float[] pList = new float[7];
+        KinseyMode kinseyMode = PsychologySettings.kinseyFormula;
+        //Log.Message("KinseyProbabilities(), step 1");
+        if (kinseyMode != KinseyMode.Custom)
+        {
+            //Log.Message("KinseyProbabilities(), step 2a");
+            PsycheHelper.KinseyModeWeightDict[kinseyMode].CopyTo(pList, 0);
+        }
+        else
+        {
+            //Log.Message("KinseyProbabilities(), step 2b");
+            PsychologySettings.kinseyWeightCustom.ToArray().CopyTo(pList, 0);
+        }
+        //Log.Message("KinseyProbabilities(), step 3");
+        float sum = pList.Sum();
+        if (sum == 0f)
+        {
+            pList = new float[] { 1f, 1f, 1f, 1f, 1f, 1f, 1f };
+            sum = 7f;
+        }
+        //Log.Message("KinseyProbabilities(), step 4");
+        for (int i = 0; i < 7; i++)
+        {
+            pList[i] = pList[i] / sum;
+        }
+        //Log.Message("pList = " + String.Join(", ", pList));
+        return pList;
     }
 }
 

@@ -20,7 +20,7 @@ public static class PawnGenerator_GenerateTraits_Patch
         {
             return;
         }
-        foreach (Pawn otherPawn in PawnsFinder.AllMapsWorldAndTemporary_AliveOrDead)
+        foreach (Pawn otherPawn in PawnsFinder.All_AliveOrDead)
         {
             bool arePawnsCompatible = pawn.def == otherPawn.def
                 && pawn.story != null && otherPawn.story != null
@@ -75,25 +75,7 @@ public static class PawnGenerator_ManualPatches
 
 //}
 
-//[HarmonyPatch(typeof(PawnGenerator), "GenerateTraits")]
-//public static class PawnGenerator_GenerateTraitsSiblingsPatch
-//{
-//    [HarmonyPostfix]
-//    public static void TaraiSiblings(ref Pawn pawn, ref PawnGenerationRequest request)
-//    {
-//        Pawn p = pawn;
-//        if (pawn.story != null && pawn.story.childhood == PsychologyDefInjector.child)
-//        {
-//            IEnumerable<Pawn> other = (from x in PawnsFinder.AllMapsWorldAndTemporary_AliveOrDead
-//                                       where x.def == p.def && x.story != null && x.story.childhood == p.story.childhood
-//                                       select x);
-//            if (other.Count() > 0)
-//            {
-//                Traverse.Create(typeof(PawnGenerator)).Field("relationsGeneratableBlood").GetValue<PawnRelationDef[]>().Where(r => r.defName == "Sibling").First().Worker.CreateRelation(pawn, other.First(), ref request);
-//            }
-//        }
-//    }
-//}
+
 
 
 
