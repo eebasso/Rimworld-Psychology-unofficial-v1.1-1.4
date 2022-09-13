@@ -11,8 +11,7 @@ namespace Psychology
     {
         public const float ReachDestDist = 50f;
 
-        //[LogPerformance]
-        public override Job TryGiveJob(Pawn pawn)
+        protected override Job TryGiveJob(Pawn pawn)
         {
             IntVec3 result;
 

@@ -10,7 +10,7 @@ namespace Psychology;
 
 public class TraitMultiplierPatchOperation : PatchOperationPathed
 {
-    public override bool ApplyWorker(XmlDocument xml)
+    protected override bool ApplyWorker(XmlDocument xml)
     {
         //Log.Message("Psychology.PatchOperationCustom");
         bool result = false;
@@ -34,7 +34,7 @@ public class TraitMultiplierPatchOperation : PatchOperationPathed
 
 public class EnableEmpathyPatchOperationAdd : PatchOperationAdd
 {
-    public override bool ApplyWorker(XmlDocument xml)
+    protected override bool ApplyWorker(XmlDocument xml)
     {
         if (!PsychologySettings.enableElections)
         {
@@ -47,7 +47,7 @@ public class EnableEmpathyPatchOperationAdd : PatchOperationAdd
 
 public class EnableEmpathyPatchOperationAttirbuteAdd : PatchOperationAttributeAdd
 {
-    public override bool ApplyWorker(XmlDocument xml)
+    protected override bool ApplyWorker(XmlDocument xml)
     {
         if (!PsychologySettings.enableElections)
         {

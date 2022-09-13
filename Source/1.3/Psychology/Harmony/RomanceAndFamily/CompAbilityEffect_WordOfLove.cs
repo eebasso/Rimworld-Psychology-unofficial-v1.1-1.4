@@ -10,13 +10,15 @@ public static class CompAbilityEffect_WordOfLove_ValidateTarget_Patch
 {
     // Used a prefix to prevent incorrect messages being sent to the player
     [HarmonyPrefix]
-    public static bool ValidateTarget(CompAbilityEffect_WordOfLove __instance, ref bool __result, LocalTargetInfo target)
+    public static bool ValidateTarget(ref bool __result, LocalTargetInfo target, CompAbilityEffect_WordOfLove __instance, LocalTargetInfo ___selectedTarget)
     {
         if (!PsychologySettings.enableKinsey)
         {
             return true;
         }
-        Pawn inLovePawn = __instance.selectedTarget.Pawn;
+        //Traverse.Create(__instance).Field("selectedTarget").GetValue<Pawn>()
+        //Pawn inLovePawn = __instance.selectedTarget.Pawn;
+        Pawn inLovePawn = ___selectedTarget.Pawn;
         Pawn lovedPawn = target.Pawn;
         if (inLovePawn == lovedPawn)
         {

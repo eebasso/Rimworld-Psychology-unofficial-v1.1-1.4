@@ -13,7 +13,7 @@ namespace Psychology
         int lastRomanceTick = -9999;
 
         //[LogPerformance]
-        public override Job TryGiveJob(Pawn pawn)
+        protected override Job TryGiveJob(Pawn pawn)
         {
             if(pawn.interactions.InteractedTooRecentlyToInteract() || lastRomanceTick > Find.TickManager.TicksGame - 1000)
             {

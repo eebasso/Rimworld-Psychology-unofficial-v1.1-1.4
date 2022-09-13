@@ -47,7 +47,7 @@ public class ITab_Pawn_Psyche : ITab
         }
     }
 
-    public override void FillTab()
+    protected override void FillTab()
     {
         // Get pawn
         Pawn pawn = FillTabPawnHook(PawnToShowInfoAbout);

@@ -12,7 +12,7 @@ namespace Psychology
     public class JobGiver_SpendTimeTogether : JobGiver_GetJoy
     {
         //[LogPerformance]
-        public override Job TryGiveJob(Pawn pawn)
+        protected override Job TryGiveJob(Pawn pawn)
         {
             LordToil_HangOut toil = pawn.GetLord().CurLordToil as LordToil_HangOut;
             Pawn friend = (pawn == toil.friends[0] ? toil.friends[1] : toil.friends[0]);

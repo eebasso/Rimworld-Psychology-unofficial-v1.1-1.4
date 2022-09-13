@@ -15,7 +15,7 @@ public class Alert_Individuality : Alert_Thought
         this.explanationKey = "IndividualityDesc";
     }
 
-    public override ThoughtDef Thought
+    protected override ThoughtDef Thought
     {
         get
         {

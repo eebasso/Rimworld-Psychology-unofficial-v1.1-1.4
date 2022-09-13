@@ -11,8 +11,7 @@ namespace Psychology
 {
     public class IncidentWorker_Election : IncidentWorker_MakeGameCondition
     {
-        //[LogPerformance]
-        public override bool TryExecuteWorker(IncidentParms parms)
+        protected override bool TryExecuteWorker(IncidentParms parms)
         {
             Map map = (Map)parms.target;
             Settlement settlementBase = Find.WorldObjects.ObjectsAt(map.Tile).OfType<Settlement>().First();

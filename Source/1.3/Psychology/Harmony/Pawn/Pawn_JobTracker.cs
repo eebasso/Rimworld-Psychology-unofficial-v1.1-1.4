@@ -14,13 +14,14 @@ public static class Pawn_JobTracker_EndCurrentJobPatch
 {
 
     [HarmonyPrefix]
-    public static bool HeavySleeperTrait(Pawn_JobTracker __instance)
+    public static bool HeavySleeperTrait(Pawn_JobTracker __instance, Pawn ___pawn)
     {
-        Pawn pawn = __instance.pawn;
+        //Pawn pawn = __instance.pawn;
+        Pawn pawn = ___pawn;
         return __instance.curDriver == null
             || !pawn.RaceProps.Humanlike
             || !__instance.curDriver.asleep
-            || pawn.needs.rest.lastRestTick < Find.TickManager.TicksGame - 200
+            || Traverse.Create(pawn.needs.rest).Field("lastRestTick").GetValue<int>() < Find.TickManager.TicksGame - 200
             || !pawn.story.traits.HasTrait(TraitDefOfPsychology.HeavySleeper);
     }
 

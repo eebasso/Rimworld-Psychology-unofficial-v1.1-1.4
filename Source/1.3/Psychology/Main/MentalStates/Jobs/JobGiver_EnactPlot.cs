@@ -10,8 +10,7 @@ namespace Psychology
 {
     public class JobGiver_EnactPlot : ThinkNode_JobGiver
     {
-        //[LogPerformance]
-        public override Job TryGiveJob(Pawn pawn)
+        protected override Job TryGiveJob(Pawn pawn)
         {
             if(!pawn.InMentalState)
             {

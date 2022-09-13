@@ -6,8 +6,7 @@ namespace Psychology
 {
     public class ThoughtWorker_SurvivedTogether : ThoughtWorker
     {
-        //[LogPerformance]
-        public override ThoughtState CurrentSocialStateInternal(Pawn p, Pawn otherPawn)
+        protected override ThoughtState CurrentSocialStateInternal(Pawn p, Pawn otherPawn)
         {
             if (!RelationsUtility.PawnsKnowEachOther(p, otherPawn))
             {

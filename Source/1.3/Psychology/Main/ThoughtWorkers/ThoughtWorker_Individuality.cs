@@ -10,7 +10,7 @@ public class ThoughtWorker_Individuality : ThoughtWorker
 {
     Dictionary<Pawn, int[]> lastTick = new Dictionary<Pawn, int[]>();
 
-    public override ThoughtState CurrentStateInternal(Pawn p)
+    protected override ThoughtState CurrentStateInternal(Pawn p)
     {
         if (!PsychologySettings.enableIndividuality)
             return ThoughtState.Inactive;
