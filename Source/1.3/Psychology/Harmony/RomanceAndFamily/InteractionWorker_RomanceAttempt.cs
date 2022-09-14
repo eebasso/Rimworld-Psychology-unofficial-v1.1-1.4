@@ -47,6 +47,8 @@ public static class InteractionWorker_RomanceAttempt_SelectionWeightPatch
         //Don't hit on people in mental breaks... unless you're really freaky.
         float initiatorExperimental = PsycheHelper.Comp(initiator).Psyche.GetPersonalityRating(PersonalityNodeDefOf.Experimental);
         bool initiatorLecher = initiator.story.traits.HasTrait(TraitDefOfPsychology.Lecher);
+        bool initiatorPsychopath = initiator.story.traits.HasTrait(TraitDefOf.Psychopath);
+
         if (recipient.InMentalState && initiatorExperimental < 0.8f && !initiatorLecher)
         {
             Log.Message("InteractionWorker_RomanceAttempt.RandomSelectionWeight, initiator = " + initiator.LabelShort + ", recipient = " + recipient.LabelShort + ", mental state");
@@ -99,6 +101,11 @@ public static class InteractionWorker_RomanceAttempt_SelectionWeightPatch
             // Romantic pawns are more responsive to their opinion of the recipient
             float x = Mathf.InverseLerp(PsychologySettings.romanceOpinionThreshold, 100f, initiatorOpinion);
             initiatorOpinMult = 0.5f * Mathf.Pow(2f * x, 2f * initiatorRomantic + 1e-5f);
+            if (initiatorPsychopath)
+            {
+                // Psychopaths have lower opinion standards
+                initiatorOpinMult = 0.3f + 0.7f * initiatorOpinMult;
+            }
         }
         else
         {
@@ -175,20 +182,18 @@ public static class InteractionWorker_RomanceAttempt_SelectionWeightPatch
 [HarmonyPatch(typeof(InteractionWorker_RomanceAttempt), nameof(InteractionWorker_RomanceAttempt.SuccessChance))]
 public static class InteractionWorker_RomanceAttempt_SuccessChancePatch
 {
-    //[LogPerformance]
     //[HarmonyPriority(Priority.Last)]
     [HarmonyPrefix]
     public static bool SuccessChance(ref float __result, Pawn initiator, Pawn recipient)
     {
         Log.Warning("InteractionWorker_RomanceAttempt.SuccessChance fired!");
         /* Throw out the result and replace it with our own formula. */
-        bool initiatorPsycheEnabled = PsycheHelper.PsychologyEnabled(initiator);
-        bool recipientPsycheEnabled = PsycheHelper.PsychologyEnabled(recipient);
-        if (!initiatorPsycheEnabled || !recipientPsycheEnabled)
+        if (!PsycheHelper.PsychologyEnabled(initiator) || !PsycheHelper.PsychologyEnabled(recipient))
         {
             __result = 0f;
             return false;
         }
+
         // Codependents won't romance anyone if they are in a relationship
         bool recipientCodependent = recipient.story.traits.HasTrait(TraitDefOfPsychology.Codependent);
         if (LovePartnerRelationUtility.HasAnyLovePartner(recipient) && recipientCodependent)
@@ -204,18 +209,38 @@ public static class InteractionWorker_RomanceAttempt_SuccessChancePatch
         /* PAWN SEX AND ROMANCE DRIVE FACTORS */
         /* DISABILITY FACTOR */
         /* PSYCHIC LOVE SPELL FACTOR */
+        bool recipientLecher = recipient.story.traits.HasTrait(TraitDefOfPsychology.Lecher);
         float romChanceFactor = recipient.relations.SecondaryRomanceChanceFactor(initiator);
+        if (romChanceFactor < 0.15f && !recipientLecher)
+        {
+            __result = 0f;
+            return false;
+        }
 
         /* RECIPIENT OPINION FACTOR */
         float recipientRomantic = PsycheHelper.Comp(recipient).Psyche.GetPersonalityRating(PersonalityNodeDefOf.Romantic);
-        bool recipientLecher = recipient.story.traits.HasTrait(TraitDefOfPsychology.Lecher);
+        
+        bool recipientPsychopath = recipient.story.traits.HasTrait(TraitDefOf.Psychopath);
+
         float recipientOpinion = (float)recipient.relations.OpinionOf(initiator);
+        if (recipientOpinion < PsychologySettings.romanceOpinionThreshold && !recipientLecher)
+        {
+            __result = 0f;
+            return false;
+        }
         float opinionFactor = Mathf.InverseLerp(PsychologySettings.romanceOpinionThreshold, 100f, recipientOpinion);
+
         if (recipientLecher)
         {
-            // Only lechers will romance someone that they have a low opinion of
+            // Lechers will romance someone that they have a low opinion of
             opinionFactor = 0.5f + Mathf.Sqrt(opinionFactor);
         }
+        if (recipientPsychopath)
+        {
+            // Psychopaths have lower opinion standards
+            opinionFactor = 0.3f + 0.7f * opinionFactor;
+        }
+
         // More romantic recipients have higher standards but respond more strongly to overtures from high opinion initiators
         float recipientOpinionFactor = 0.5f * Mathf.Pow(2f * opinionFactor, 2f * recipientRomantic + 1e-5f);
 
@@ -260,23 +285,60 @@ public static class InteractionWorker_RomanceAttempt_SuccessChancePatch
             }
         }
         
-        // Account for user setting of romance chance
+        // Account for user setting of romance chance multiplier
         float successChance = 0.6f * PsychologySettings.romanceChanceMultiplier * existingLovePartnerMult * recipientOpinionFactor * romChanceFactor;
 
         Log.Message("InteractionWorker_RomanceAttempt.SuccessChance initiator = " + initiator.LabelShort + ", recipient = " + recipient.LabelShort + ", romChanceFactor = " + romChanceFactor + ", recipientOpinionFactor = " + recipientOpinionFactor + ", existingLovePartnerMult = " + existingLovePartnerMult + ", successChance = " + successChance);
-        // Clamp to keep the chance between 0 and 1
-        __result = Mathf.Clamp01(successChance);
+        __result = successChance;
         return false;
     }
 }
 
-[HarmonyPatch(typeof(InteractionWorker_RomanceAttempt), "TryAddCheaterThought")]
-public static class InteractionWorker_RomanceAttempt_CheaterThoughtPatch
+[HarmonyPatch(typeof(InteractionWorker_RomanceAttempt), nameof(InteractionWorker_RomanceAttempt.Interacted))]
+public static class InteractionWorker_RomanceAttempt_InteractedLearnSexualityPatch
+{
+    [HarmonyPriority(Priority.High)]
+    [HarmonyPrefix]
+    public static bool LearnSexuality(Pawn initiator, Pawn recipient)
+    {
+        if (PsycheHelper.PsychologyEnabled(initiator) && PsycheHelper.PsychologyEnabled(recipient) && PsychologySettings.enableKinsey)
+        {
+            PsycheHelper.Comp(initiator).Sexuality.LearnSexuality(recipient);
+        }
+        return true;
+    }
+}
+
+[HarmonyPatch(typeof(InteractionWorker_RomanceAttempt), nameof(InteractionWorker_RomanceAttempt.Interacted))]
+public static class InteractionWorker_RomanceAttempt_InteractedHandleThoughtsPatch
 {
     [HarmonyPostfix]
-    public static void AddCodependentThought(Pawn pawn, Pawn cheater)
+    public static void HandleNewThoughts(InteractionWorker_RomanceAttempt __instance, Pawn initiator, Pawn recipient, List<RulePackDef> extraSentencePacks, string letterText, string letterLabel, LetterDef letterDef)
     {
-        pawn.needs.mood.thoughts.memories.TryGainMemory(ThoughtDefOfPsychology.CheatedOnMeCodependent, cheater);
+        if (extraSentencePacks.Contains(RulePackDefOf.Sentence_RomanceAttemptAccepted))
+        {
+            foreach (ThoughtDef d in (from tgt in initiator.needs.mood.thoughts.memories.Memories
+                                      where tgt.def.defName.Contains("BrokeUpWithMe")
+                                      select tgt.def))
+            {
+                initiator.needs.mood.thoughts.memories.RemoveMemoriesOfDefWhereOtherPawnIs(d, recipient);
+            }
+            foreach (ThoughtDef d in (from tgt in recipient.needs.mood.thoughts.memories.Memories
+                                      where tgt.def.defName.Contains("BrokeUpWithMe")
+                                      select tgt.def))
+            {
+                recipient.needs.mood.thoughts.memories.RemoveMemoriesOfDefWhereOtherPawnIs(d, initiator);
+            }
+            initiator.needs.mood.thoughts.memories.RemoveMemoriesOfDefWhereOtherPawnIs(ThoughtDefOfPsychology.BrokeUpWithMeCodependent, recipient);
+            recipient.needs.mood.thoughts.memories.RemoveMemoriesOfDefWhereOtherPawnIs(ThoughtDefOfPsychology.BrokeUpWithMeCodependent, initiator);
+        }
+        else if (extraSentencePacks.Contains(RulePackDefOf.Sentence_RomanceAttemptRejected))
+        {
+            if (initiator.story.traits.HasTrait(TraitDefOfPsychology.Lecher))
+            {
+                initiator.needs.mood.thoughts.memories.TryGainMemory(ThoughtDefOfPsychology.RebuffedMyRomanceAttemptLecher, recipient);
+            }
+        }
     }
 }
 
@@ -339,51 +401,12 @@ public static class InteractionWorker_RomanceAttempt_BreakRelationsPatch
     }
 }
 
-[HarmonyPatch(typeof(InteractionWorker_RomanceAttempt), nameof(InteractionWorker_RomanceAttempt.Interacted))]
-public static class InteractionWorker_RomanceAttempt_InteractedLearnSexualityPatch
-{
-    [HarmonyPriority(Priority.High)]
-    [HarmonyPrefix]
-    public static bool LearnSexuality(Pawn initiator, Pawn recipient)
-    {
-        if (PsycheHelper.PsychologyEnabled(initiator) && PsycheHelper.PsychologyEnabled(recipient) && PsychologySettings.enableKinsey)
-        {
-            PsycheHelper.Comp(initiator).Sexuality.LearnSexuality(recipient);
-        }
-        return true;
-    }
-}
-
-[HarmonyPatch(typeof(InteractionWorker_RomanceAttempt), nameof(InteractionWorker_RomanceAttempt.Interacted))]
-public static class InteractionWorker_RomanceAttempt_InteractedHandleThoughtsPatch
+[HarmonyPatch(typeof(InteractionWorker_RomanceAttempt), "TryAddCheaterThought")]
+public static class InteractionWorker_RomanceAttempt_CheaterThoughtPatch
 {
     [HarmonyPostfix]
-    public static void HandleNewThoughts(InteractionWorker_RomanceAttempt __instance, Pawn initiator, Pawn recipient, List<RulePackDef> extraSentencePacks, string letterText, string letterLabel, LetterDef letterDef)
+    public static void AddCodependentThought(Pawn pawn, Pawn cheater)
     {
-        if (extraSentencePacks.Contains(RulePackDefOf.Sentence_RomanceAttemptAccepted))
-        {
-            foreach (ThoughtDef d in (from tgt in initiator.needs.mood.thoughts.memories.Memories
-                                      where tgt.def.defName.Contains("BrokeUpWithMe")
-                                      select tgt.def))
-            {
-                initiator.needs.mood.thoughts.memories.RemoveMemoriesOfDefWhereOtherPawnIs(d, recipient);
-            }
-            foreach (ThoughtDef d in (from tgt in recipient.needs.mood.thoughts.memories.Memories
-                                      where tgt.def.defName.Contains("BrokeUpWithMe")
-                                      select tgt.def))
-            {
-                recipient.needs.mood.thoughts.memories.RemoveMemoriesOfDefWhereOtherPawnIs(d, initiator);
-            }
-            initiator.needs.mood.thoughts.memories.RemoveMemoriesOfDefWhereOtherPawnIs(ThoughtDefOfPsychology.BrokeUpWithMeCodependent, recipient);
-            recipient.needs.mood.thoughts.memories.RemoveMemoriesOfDefWhereOtherPawnIs(ThoughtDefOfPsychology.BrokeUpWithMeCodependent, initiator);
-        }
-        else if (extraSentencePacks.Contains(RulePackDefOf.Sentence_RomanceAttemptRejected))
-        {
-            if (initiator.story.traits.HasTrait(TraitDefOfPsychology.Lecher))
-            {
-                initiator.needs.mood.thoughts.memories.TryGainMemory(ThoughtDefOfPsychology.RebuffedMyRomanceAttemptLecher, recipient);
-            }
-        }
+        pawn.needs.mood.thoughts.memories.TryGainMemory(ThoughtDefOfPsychology.CheatedOnMeCodependent, cheater);
     }
 }
-

@@ -88,7 +88,7 @@ public class Hediff_Conversation : HediffWithComps
             {
                 mtb = 2f;
             }
-            if (pawn.story.traits.HasTrait(TraitDefOfPsychology.Chatty))
+            if (this.pawn.story.traits.HasTrait(TraitDefOfPsychology.Chatty))
             {
                 mtb *= 2f;
             }
@@ -110,7 +110,7 @@ public class Hediff_Conversation : HediffWithComps
 
     public override void PostRemoved()
     {
-        
+
         base.PostRemoved();
         if (this.pawn == null && this.otherPawn == null)
         {
@@ -203,7 +203,7 @@ public class Hediff_Conversation : HediffWithComps
         def.label = topic.defName;
         def.durationDays = PsychologySettings.conversationDuration;
         def.nullifyingTraits = new List<TraitDef>();
-        //def.nullifyingTraits.Add(TraitDefOf.Psychopath);
+        def.nullifyingTraits.Add(TraitDefOf.Psychopath);
         def.thoughtClass = typeof(Thought_MemorySocialDynamic);
         ThoughtStage stage = new ThoughtStage();
 
@@ -211,85 +211,112 @@ public class Hediff_Conversation : HediffWithComps
         float opin1 = Mathf.Clamp01(PsycheHelper.Comp(pawn).Psyche.GetPersonalityRating(topic));
         float opin2 = Mathf.Clamp01(PsycheHelper.Comp(otherPawn).Psyche.GetPersonalityRating(topic));
 
-        // Baseline opinion modifier ranges from -1 to +1 and should have an expected value of +0.01.
         float controversiality = topic.controversiality;
+        // Baseline opinion modifier ranges from -1 to +1. It's expected value should be positive for low controversiality (less than 1), and negative otherwise
         float opinionModRaw = PsycheHelper.SaddleShapeFunction(opin1, opin2, 1f - 0.5f * controversiality, 4f * controversiality * controversiality);
         //Log.Message(pawn.LabelShort + " and " + otherPawn.LabelShort + " opinionModRaw = " + opinionModRaw.ToString());
 
-        float opinionModRawMin = 0.1f;
-        opinionMod = 20f * (opinionModRawMin * Mathf.Sign(opinionModRaw) + (1f - opinionModRawMin) * opinionModRaw);
-        //Log.Message(pawn.LabelShort + " and " + otherPawn.LabelShort + " opinionMod w/o time factor = " + opinionMod.ToString());
-
-        // Added time minimum to baseline to opinionMod because conversations often end very quickly
-        opinionMod *= 1.0f + 6f * ((float)this.ageTicks / (float)(GenDate.TicksPerHour * 2.25f));
-        //Log.Message(pawn.LabelShort + " and " + otherPawn.LabelShort + " opinionMod w time factor = " + opinionMod.ToString());
-
-        // Personality multiplier controls how much personality affects the opinion multiplier. Should be a positive number.
-        float personalityMultiplier = 0.50f;
+        
         // Initialize opinionMultiplier, which can be positive or negative. Represents % increase or decrease in opinionMod
         float opinionMultiplier = 0f;
-        // The more judgmental the pawn, the more this affects all conversations.
-        opinionMultiplier += personalityMultiplier * (-1f + 2f * PsycheHelper.Comp(pawn).Psyche.GetPersonalityRating(PersonalityNodeDefOf.Judgmental));
-        // All conversations are affected by how passionate and outspoken the other pawn is
-        opinionMultiplier += personalityMultiplier * (-1f + 2f * PsycheHelper.Comp(otherPawn).Psyche.GetPersonalityRating(PersonalityNodeDefOf.Passionate));
-        opinionMultiplier += personalityMultiplier * (-1f + 2f * PsycheHelper.Comp(otherPawn).Psyche.GetPersonalityRating(PersonalityNodeDefOf.Outspoken));
+        
+
+        Pawn_PsycheTracker pawnPT = PsycheHelper.Comp(pawn).Psyche;
+        Pawn_PsycheTracker otherPawnPT = PsycheHelper.Comp(otherPawn).Psyche;
+        float pawnJudgmental = -0.5f + pawnPT.GetPersonalityRating(PersonalityNodeDefOf.Judgmental);
+        float pawnFriendly = -0.5f + pawnPT.GetPersonalityRating(PersonalityNodeDefOf.Friendly);
+        float pawnTrusting = -0.5f + pawnPT.GetPersonalityRating(PersonalityNodeDefOf.Trusting);
+        float pawnAggressive = -0.5f + pawnPT.GetPersonalityRating(PersonalityNodeDefOf.Aggressive);
+
+        float otherPawnPassionate = -0.5f + otherPawnPT.GetPersonalityRating(PersonalityNodeDefOf.Passionate);
+        float otherPawnOutspoken = -0.5f + otherPawnPT.GetPersonalityRating(PersonalityNodeDefOf.Outspoken);
+        float otherPawnFriendly = -0.5f + otherPawnPT.GetPersonalityRating(PersonalityNodeDefOf.Friendly);
+        float otherPawnCool = -0.5f + otherPawnPT.GetPersonalityRating(PersonalityNodeDefOf.Cool);
+        float otherPawnPolite = -0.5f + otherPawnPT.GetPersonalityRating(PersonalityNodeDefOf.Polite);
+
+        // All opinions are enhanced by how judgmental the pawn is
+        opinionMultiplier += pawnJudgmental;
+        // All conversations are affected by how passionate the other pawn is
+        opinionMultiplier += 0.5f * otherPawnPassionate;
+        // All conversations are affected by how outspoken the other pawn is
+        opinionMultiplier += 0.5f * otherPawnOutspoken;
+
         // Positive opinions
-        if (opinionMod > 0f)
+        if (opinionModRaw > 0f)
         {
-            //opinionMultiplier += personalityMultiplier * (-1f + 2f * PsycheHelper.Comp(pawn).Psyche.GetPersonalityRating(PersonalityNodeDefOf.Extroverted));
-            opinionMultiplier += personalityMultiplier * (+1f - 2f * PsycheHelper.Comp(pawn).Psyche.GetPersonalityRating(PersonalityNodeDefOf.Friendly));
-            opinionMultiplier += personalityMultiplier * (-1f + 2f * PsycheHelper.Comp(pawn).Psyche.GetPersonalityRating(PersonalityNodeDefOf.Trusting));
-            opinionMultiplier += personalityMultiplier * (-1f + 2f * PsycheHelper.Comp(otherPawn).Psyche.GetPersonalityRating(PersonalityNodeDefOf.Cool));
-            //opinionMultiplier += personalityMultiplier * (-1f + 2f * PsycheHelper.Comp(otherPawn).Psyche.GetPersonalityRating(PersonalityNodeDefOf.Friendly));
-            //opinionMultiplier += personalityMultiplier * (-1f + 2f * PsycheHelper.Comp(otherPawn).Psyche.GetPersonalityRating(PersonalityNodeDefOf.Upbeat));
+            // Positive opinions are enhanced by how Friendly the pawn is
+            opinionMultiplier += 0.5f * pawnFriendly;
+            // Positive opinions are enhanced by how Trusting the pawn is
+            opinionMultiplier += pawnTrusting;
+            // Positive opinions are enhanced by how Freindly the other pawn is
+            opinionMultiplier += 0.5f * otherPawnFriendly;
+            // Positive opinions are enhanced by how Cool the other pawn is
+            opinionMultiplier += otherPawnCool;
             if (LovePartnerRelationUtility.LovePartnerRelationExists(this.pawn, this.otherPawn) && this.pawn.story.traits.HasTrait(TraitDefOfPsychology.Codependent))
             {
                 //If it's a positive thought about their lover, Codependent pawns are always more affected by it.
-                opinionMod *= 1f + personalityMultiplier;
+                opinionMultiplier += 0.5f;
             }
         }
         // Negative opinions
         else
         {
-            opinionMultiplier += personalityMultiplier * (-1f + 2f * PsycheHelper.Comp(pawn).Psyche.GetPersonalityRating(PersonalityNodeDefOf.Aggressive));
-            opinionMultiplier += personalityMultiplier * (+1f - 2f * PsycheHelper.Comp(pawn).Psyche.GetPersonalityRating(PersonalityNodeDefOf.Friendly));
-            //opinionMultiplier += personalityMultiplier * (-1f + 2f * PsycheHelper.Comp(otherPawn).Psyche.GetPersonalityRating(PersonalityNodeDefOf.Aggressive));
-            //opinionMultiplier += personalityMultiplier * (+1f - 2f * PsycheHelper.Comp(otherPawn).Psyche.GetPersonalityRating(PersonalityNodeDefOf.Friendly));
-            opinionMultiplier += personalityMultiplier * (+1f - 2f * PsycheHelper.Comp(otherPawn).Psyche.GetPersonalityRating(PersonalityNodeDefOf.Polite));
+            // Negative opinions are damped by how Friendly the pawn is
+            opinionMultiplier += -0.5f * pawnFriendly;
+            // Negative opinions are enhanced by how Aggressive the pawn is
+            opinionMultiplier += pawnAggressive;
+            // Negative opinions are damped by how Friendly the other pawn is
+            opinionMultiplier += -0.5f * otherPawnFriendly;
+            // Negative opinions are damped by how Polite the other pawn is
+            opinionMultiplier += -otherPawnPolite;
+        }
+
+        // Controls how much personality affects the opinion. Should be a positive number.
+        opinionMultiplier *= 1f;
+
+        // Multiply by 1 + opinionMultiplier for positive multiplier
+        // Divide by 1 - opinionMultiplier for negative multiplier. This ensures opinionMod will always remain positive.
+        // For example, if opinionMultiplier = -2, i.e. a 200% decrease, opinionMod will be 1/3 of its original value. Note that a 200% increase of 1/3 is 1.
+        float fm = opinionMultiplier > 0f ? 1f + opinionMultiplier : 1f / (1f - opinionMultiplier);
+
+        
+        float x = fm * Mathf.Abs(opinionModRaw);
+        float t = ((float)ageTicks) / ((float)GenDate.TicksPerHour);
+        float r = Rand.ValueSeeded(PsycheHelper.PawnSeed(pawn) + PsycheHelper.PawnSeed(otherPawn) + topic.GetHashCode());
+
+        x *= 1f;
+        t *= 2f;
+        float yr = 5f;
+        float y0x = 10f;
+        float y0t = 5f;
+        float y1 = 10f;
+        float y2 = 10f;
+
+        // Added time minimum to baseline to opinionMod because conversations often end very quickly
+        float y = yr * r + y0x * Func(x) + y0t * Func(t) + y1 * Func(x) * Func(t) + y2 * Func(x * (1f + t));
+
+        // Positive opinions
+        if (opinionModRaw > 0f)
+        {
+            opinionMod = y;
+        }
+        // Negative opinions
+        else
+        {
+            opinionMod = -y;
             // In low-population colonies, pawns will put aside their differences.
             opinionMod *= PopulationModifier;
         }
-        //Log.Message(pawn.LabelShort + " and " + otherPawn.LabelShort + " opinionMod before multiplier = " + opinionMod.ToString());
-        //Log.Message(pawn.LabelShort + " and " + otherPawn.LabelShort + " opinionMultiplier = " + opinionMultiplier.ToString());
-
-        // Multiply by 1 + opinionMultiplier for positive multiplier
-        if (opinionMultiplier > 0f)
-        {
-            opinionMod *= 1f + opinionMultiplier;
-        }
-        // Divide by 1 - opinionMultiplier for negative multiplier. This ensures opinionMod will always remain positive.
-        // For example, if opinionMultiplier = -2, i.e. a 200% decrease, opinionMod will be 1/3 of its original value. Note that a 200% increase of 1/3 is 1.
-        else
-        {
-            opinionMod /= 1f - opinionMultiplier;
-        }
-        //Log.Message(pawn.LabelShort + " and " + otherPawn.LabelShort + " opinionMod after multiplier = " + opinionMod.ToString());
-
-        // Set minimum and maximum absolute changes in opinion.
-        float opinionModMin = 5f * (1f + Rand.Value);
-        float opinionModMax = 25f * (1f + Rand.Value);
-        // Weaker baseline agreement/disagreement leads to lower max absolute change in opinion
-        float opinionModMaxAdjusted = Mathf.Lerp(Mathf.Max(0.5f * opinionModMax, opinionModMin), opinionModMax, 2f * Mathf.Abs(opinionModRaw));
-        //Log.Message(pawn.LabelShort + " and " + otherPawn.LabelShort + " opinionModMaxAdjusted = " + opinionModMaxAdjusted.ToString());
-
-        // Opinion must change by at least +-opinionModMin and are capped at +-opinionModMaxAdjusted
-        opinionMod = Mathf.Sign(opinionMod) * Mathf.Clamp(Mathf.Abs(opinionMod), opinionModMin, opinionModMaxAdjusted);
-        //Log.Message(pawn.LabelShort + " and " + otherPawn.LabelShort + " opinionMod final value = " + opinionMod.ToString());
 
         stage.label = "ConversationStage".Translate() + " " + convoTopic;
-        stage.baseOpinionOffset = Mathf.RoundToInt(opinionMod);
+        stage.baseOpinionOffset = Mathf.Ceil(opinionMod);
         def.stages.Add(stage);
         return def;
+    }
+
+    public static float Func(float x)
+    {
+        return 1f - Mathf.Exp(-x);
     }
 
     private bool TryGainThought(ThoughtDef def, int opinionOffset)
@@ -300,7 +327,11 @@ public class Hediff_Conversation : HediffWithComps
          * This helps declutter the Social card without preventing pawns from having conversations.
          * They just won't change their mind about the colonist as a result.
          */
-        if (Rand.Value < Mathf.InverseLerp(0f, PsycheHelper.Comp(pawn).Psyche.TotalThoughtOpinion(this.otherPawn, out convoMemories), 250f + Mathf.Abs(opinionOffset)) && opinionOffset != 0)
+        float totalThoughtOpinion = PsycheHelper.Comp(pawn).Psyche.TotalThoughtOpinion(this.otherPawn, out convoMemories);
+        int numOfConvosWithBiggerImpact = convoMemories.Count(m => Mathf.Abs(m.opinionOffset) > Mathf.Abs(opinionOffset));
+
+        //if (Rand.Value < Mathf.InverseLerp(0f, PsycheHelper.Comp(pawn).Psyche.TotalThoughtOpinion(this.otherPawn, out convoMemories), 250f + Mathf.Abs(opinionOffset)) && opinionOffset != 0)
+        if (numOfConvosWithBiggerImpact < 10)
         {
             this.pawn.needs.mood.thoughts.memories.TryGainMemory(def, this.otherPawn);
             return true;
@@ -323,5 +354,5 @@ public class Hediff_Conversation : HediffWithComps
         }
     }
 
-    
+
 }

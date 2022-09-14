@@ -17,11 +17,9 @@ public class InteractionWorker_Conversation : InteractionWorker
     {
         if (!PsycheHelper.PsychologyEnabled(initiator) || !PsycheHelper.PsychologyEnabled(recipient))
         {
-            Log.Message("InteractionWorker_Conversation.RandomSelectionWeight, psychology not enabled");
             Log.Message("InteractionWorker_Conversation.RandomSelectionWeight, not enabled for initiator " + initiator.LabelShort + ", recipient " + recipient.LabelShort);
             return 0f;
         }
-        
         if (!initiator.health.capacities.CapableOf(PawnCapacityDefOf.Talking) || !recipient.health.capacities.CapableOf(PawnCapacityDefOf.Talking))
         {
             Log.Message("InteractionWorker_Conversation.RandomSelectionWeight, initiator " + initiator.LabelShort + ", recipient " + recipient.LabelShort + ", not talking");
@@ -48,12 +46,17 @@ public class InteractionWorker_Conversation : InteractionWorker
         {
             chanceFactor += 0.5f;
         }
-        //chanceFactor += PsycheHelper.Comp(recipient).Psyche.GetPersonalityRating(PersonalityNodeDefOf.Friendly) - 0.5f;
-        chanceFactor += PsycheHelper.Comp(initiator).Psyche.GetPersonalityRating(PersonalityNodeDefOf.Extroverted) - 0.5f;
-        chanceFactor += PsycheHelper.Comp(initiator).Psyche.GetPersonalityRating(PersonalityNodeDefOf.Outspoken) - 0.5f;
-        float successChance = 1f / (1f + Mathf.Pow(16f, -chanceFactor));
+        chanceFactor += -0.5f + PsycheHelper.Comp(initiator).Psyche.GetPersonalityRating(PersonalityNodeDefOf.Extroverted);
+        chanceFactor += -0.5f + PsycheHelper.Comp(initiator).Psyche.GetPersonalityRating(PersonalityNodeDefOf.Outspoken);
+        chanceFactor += -0.5f + PsycheHelper.Comp(recipient).Psyche.GetPersonalityRating(PersonalityNodeDefOf.Friendly);
+
+        chanceFactor *= 4f;
+        float multiplicativeFactor = chanceFactor > 0 ? 1f + chanceFactor : 1f / (1f - chanceFactor);
+        //float multiplicativeFactor = chanceFactor > 0 ? Mathf.Sqrt(1f + 2f * chanceFactor) : 1f / (1f - chanceFactor);
+        return 0.35f * multiplicativeFactor;
+        //float successChance = 1f / (1f + Mathf.Pow(16f, -chanceFactor));
         //Log.Message("InteractionWorker_Conversation.RandomSelectionWeight, initiator " + initiator.LabelShort + ", recipient " + recipient.LabelShort + ", successChance " + successChance);
-        return successChance;
+        //return successChance;
     }
 
     //[LogPerformance]
@@ -80,5 +83,5 @@ public class InteractionWorker_Conversation : InteractionWorker
         recipientHediff.convoTopic = convoTopic;
         recipient.health.AddHediff(recipientHediff);
     }
-    
+
 }

@@ -131,7 +131,6 @@ public static class InteractionWorker_RandomSelectionWeight_Patch
 
 internal static class BreakupHelperMethods
 {
-    //[LogPerformance]
     public static void AddExLover(Pawn lover, Pawn ex)
     {
         /*
@@ -168,7 +167,6 @@ internal static class BreakupHelperMethods
         lover.needs.mood.thoughts.memories.TryGainMemory(brokeUpDef, ex);
     }
 
-    //[LogPerformance]
     public static void AddBrokeUpMood(Pawn lover, Pawn ex)
     {
         ThoughtDef brokeUpMoodDef = new ThoughtDef();
@@ -195,3 +193,4 @@ internal static class BreakupHelperMethods
         }
     }
 }
+

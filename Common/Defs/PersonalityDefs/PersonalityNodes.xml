@@ -285,13 +285,13 @@
 		<traitModifiers>
 			<li>
 				<trait>TorturedArtist</trait>
-				<modifier>0.95</modifier>
+				<modifier>0.99</modifier>
 			</li>
 		</traitModifiers>
 		<incapableModifiers>
 			<li>
 				<type>Art</type>
-				<modifier>-0.6</modifier>
+				<modifier>-0.8</modifier>
 			</li>
 		</incapableModifiers>
 		<preferredDateHours>
@@ -1471,6 +1471,18 @@
 				<weight>-0.5</weight>
             </li>
         </tenAspects>
+		<traitModifiers>
+			<li>
+				<trait>ShootingAccuracy</trait>
+				<degree>-1</degree>
+				<modifier>0.75</modifier>
+            </li>
+			<li>
+				<trait>ShootingAccuracy</trait>
+				<degree>1</degree>
+				<modifier>-0.75</modifier>
+            </li>
+        </traitModifiers>
 	</Psychology.PersonalityNodeDef>
 
 	<Psychology.PersonalityNodeDef>
@@ -1607,7 +1619,7 @@
 		<incapableModifiers>
 			<li>
 				<type>Warden</type>
-				<modifier>-0.65</modifier>
+				<modifier>-0.85</modifier>
 			</li>
 		</incapableModifiers>
 		<bigFiveModifiers>
@@ -1706,6 +1718,12 @@
 				<weight>0.6</weight>
             </li>
         </tenAspects>
+		<traitModifiers>
+			<li>
+				<trait>Unstable</trait>
+				<modifier>0.8</modifier>
+			</li>
+        </traitModifiers>
 	</Psychology.PersonalityNodeDef>
 
 	<Psychology.PersonalityNodeDef>
@@ -1977,12 +1995,6 @@
 			<li>arguing about things</li>
 			<li>their friends</li>
 		</conversationTopics>
-		<incapableModifiers>
-			<li>
-				<type>Warden</type>
-				<modifier>-0.9</modifier>
-			</li>
-		</incapableModifiers>
 		<platformIssueHigh>We need greater support for free speech.</platformIssueHigh>
 		<platformIssueLow>We need to be more mindful of each other.</platformIssueLow>
 		<parents>
@@ -2060,6 +2072,18 @@
 				<weight>1</weight>
             </li>
         </tenAspects>
+		<traitModifiers>
+			<li>
+				<trait>Abrasive</trait>
+				<modifier>0.8</modifier>
+			</li>
+        </traitModifiers>
+		<incapableModifiers>
+			<li>
+				<type>Warden</type>
+				<modifier>-0.9</modifier>
+			</li>
+		</incapableModifiers>
 		<preceptCertaintyModifiers>
 			<li>
 				<precept>Proselytizing_Occasionally</precept>
@@ -2180,6 +2204,10 @@
 				<trait>AnnoyingVoice</trait>
 				<modifier>-0.4</modifier>
 			</li>
+			<li>
+				<trait>Unstable</trait>
+				<modifier>-0.2</modifier>
+			</li>
 		</traitModifiers>
 		<preferredDateHours>
 			<li>18</li>
@@ -2273,7 +2301,7 @@
 			</li>
 			<li>
 				<trait>Kind</trait>
-				<modifier>0.6</modifier>
+				<modifier>0.85</modifier>
 			</li>
 			<li>
 				<trait>BleedingHeart</trait>
@@ -2391,7 +2419,7 @@
 			</li>
 			<li>
 				<trait>Kind</trait>
-				<modifier>0.6</modifier>
+				<modifier>0.8</modifier>
 			</li>
 			<li>
 				<trait>BleedingHeart</trait>
@@ -2592,7 +2620,7 @@
 			</li>
 			<li>
 				<trait>Kind</trait>
-				<modifier>0.8</modifier>
+				<modifier>0.85</modifier>
 			</li>
 		</traitModifiers>
 		<bigFiveModifiers>
@@ -2869,11 +2897,11 @@
 		<traitModifiers>
 			<li>
 				<trait>Codependent</trait>
-				<modifier>0.8</modifier>
+				<modifier>0.98</modifier>
 			</li>
 			<li>
 				<trait>Lecher</trait>
-				<modifier>-0.8</modifier>
+				<modifier>-0.98</modifier>
 			</li>
 		</traitModifiers>
 		<preferredDateHours>
@@ -3108,10 +3136,16 @@
 				<skill>Social</skill>
 			</li>
 		</skillModifiers>
+		<traitModifiers>
+			<li>
+				<trait>Abrasive</trait>
+				<modifier>-0.95</modifier>
+            </li>
+        </traitModifiers>
 		<incapableModifiers>
 			<li>
 				<type>Warden</type>
-				<modifier>-0.6</modifier>
+				<modifier>-0.8</modifier>
 			</li>
 		</incapableModifiers>
 		<preferredDateHours>
@@ -3188,19 +3222,19 @@
 			</li>
 			<li>
 				<trait>Abrasive</trait>
-				<modifier>0.5</modifier>
+				<modifier>0.8</modifier>
 			</li>
 			<li>
 				<trait>Bloodlust</trait>
-				<modifier>0.5</modifier>
+				<modifier>0.8</modifier>
 			</li>
 			<li>
 				<trait>Kind</trait>
-				<modifier>-0.5</modifier>
+				<modifier>-0.8</modifier>
 			</li>
 			<li>
 				<trait>BleedingHeart</trait>
-				<modifier>-0.5</modifier>
+				<modifier>-0.8</modifier>
 			</li>
 		</traitModifiers>
 		<incapableModifiers>
@@ -3415,7 +3449,7 @@
 			</li>
 			<li>
 				<trait>Unstable</trait>
-				<modifier>0.925</modifier>
+				<modifier>0.99</modifier>
 			</li>
 			<li>
 				<trait>Neurotic</trait>
@@ -3569,6 +3603,10 @@
 				<trait>TorturedArtist</trait>
 				<modifier>-0.8</modifier>
 			</li>
+			<li>
+				<trait>Unstable</trait>
+				<modifier>-0.9</modifier>
+			</li>
 		</traitModifiers>
 		<preferredDateHours>
 			<li>17</li>
@@ -3694,7 +3732,7 @@
 			</li>
 			<li>
 				<trait>Kind</trait>
-				<modifier>-0.4</modifier>
+				<modifier>-0.7</modifier>
 			</li>
 			<li>
 				<trait>Neurotic</trait>
@@ -3705,6 +3743,10 @@
 				<trait>Neurotic</trait>
 				<degree>2</degree>
 				<modifier>0.75</modifier>
+			</li>
+			<li>
+				<trait>Unstable</trait>
+				<modifier>0.9</modifier>
 			</li>
 		</traitModifiers>
 		<bigFiveModifiers>
@@ -3827,6 +3869,26 @@
 				<trait>Neurotic</trait>
 				<degree>2</degree>
 				<modifier>-0.85</modifier>
+			</li>
+			<li>
+				<trait>Nerves</trait>
+				<degree>2</degree>
+				<modifier>0.8</modifier>
+			</li>
+			<li>
+				<trait>Nerves</trait>
+				<degree>1</degree>
+				<modifier>0.6</modifier>
+			</li>
+			<li>
+				<trait>Nerves</trait>
+				<degree>-1</degree>
+				<modifier>-0.6</modifier>
+			</li>
+			<li>
+				<trait>Nerves</trait>
+				<degree>-2</degree>
+				<modifier>-0.8</modifier>
 			</li>
 		</traitModifiers>
 		<bigFiveModifiers>

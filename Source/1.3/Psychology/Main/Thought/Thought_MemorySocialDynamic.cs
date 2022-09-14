@@ -10,6 +10,10 @@ namespace Psychology
 {
     public class Thought_MemorySocialDynamic : Thought_MemorySocial
     {
+        public string topic;
+        public string label;
+        public float baseOpinionOffset;
+
         public Thought_MemorySocialDynamic()
         {
         }
@@ -27,7 +31,8 @@ namespace Psychology
             ThoughtDef def = new ThoughtDef();
             def.defName = this.topic;
             def.label = "conversation";
-            def.durationDays = 60f;
+            //def.durationDays = 60f; 
+            def.durationDays = PsychologySettings.conversationDuration; // ToDo: check if this change does anything
             def.thoughtClass = typeof(Thought_MemorySocialDynamic);
             ThoughtStage stage = new ThoughtStage();
             stage.label = this.label;
@@ -49,9 +54,5 @@ namespace Psychology
             }
             base.Init();
         }
-
-        private string topic;
-        private string label;
-        private float baseOpinionOffset;
     }
 }
