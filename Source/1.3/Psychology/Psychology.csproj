@@ -319,15 +319,12 @@
     <Compile Include="Main\GUI\Dialog_UpdateYesNo.cs" />
     <Compile Include="Harmony\HarmonyInitialize.cs" />
     <Compile Include="Harmony\Pawn\PawnGenerator.cs" />
-    <Compile Include="Main\Thought\Thought_PrudeVsNudist.cs" />
-    <!-- <Compile Include="Harmony\OtherMods\CharacterEditor_Patches.cs" /> -->
-    <!-- <Compile Include="Harmony\OtherMods\EdBPrepareCarefully_Patches.cs" /> -->
-    <!-- <Compile Include="Harmony\OtherMods\Pawnmorpher_Patches.cs" /> -->
     <Compile Include="Harmony\Misc\SkillRecord.cs" />
     <Compile Include="Main\Elections\MayorUtility.cs" />
     <Compile Include="PsychologySCOS.cs" />
     <Compile Include="Main\ThoughtWorkers\ThoughtWorker_PrudeVsNudist.cs" />
     <Compile Include="Main\ThoughtWorkers\ThoughtWorker_NudistVsPrude.cs" />
+    <Compile Include="Harmony\OtherUtilities\SocialCardUtility.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\About\preview.png">
@@ -832,7 +829,7 @@
     <MonoDevelop>
       <Properties>
         <Policies>
-          <TextStylePolicy TabWidth="4" IndentWidth="4" RemoveTrailingWhitespace="True" NoTabsAfterNonTabs="False" FileWidth="80" TabsToSpaces="True" scope="text/x-csharp" />
+          <TextStylePolicy TabWidth="4" IndentWidth="4" RemoveTrailingWhitespace="True" NoTabsAfterNonTabs="False" EolMarker="Native" FileWidth="80" TabsToSpaces="True" scope="text/x-csharp" />
           <CSharpFormattingPolicy IndentBlock="True" IndentBraces="False" IndentSwitchSection="True" IndentSwitchCaseSection="True" NewLinesForBracesInTypes="True" NewLinesForBracesInMethods="True" NewLinesForBracesInProperties="True" NewLinesForBracesInAccessors="True" NewLinesForBracesInAnonymousMethods="True" NewLinesForBracesInControlBlocks="True" NewLinesForBracesInAnonymousTypes="True" NewLinesForBracesInObjectCollectionArrayInitializers="True" NewLinesForBracesInLambdaExpressionBody="True" NewLineForElse="True" NewLineForCatch="True" NewLineForFinally="True" NewLineForMembersInObjectInit="True" NewLineForMembersInAnonymousTypes="True" NewLineForClausesInQuery="True" SpacingAfterMethodDeclarationName="False" SpaceWithinMethodDeclarationParenthesis="False" SpaceBetweenEmptyMethodDeclarationParentheses="False" SpaceAfterMethodCallName="False" SpaceWithinMethodCallParentheses="False" SpaceBetweenEmptyMethodCallParentheses="False" SpaceAfterControlFlowStatementKeyword="True" SpaceWithinExpressionParentheses="False" SpaceWithinCastParentheses="False" SpaceWithinOtherParentheses="False" SpaceAfterCast="False" SpacesIgnoreAroundVariableDeclaration="False" SpaceBeforeOpenSquareBracket="False" SpaceBetweenEmptySquareBrackets="False" SpaceWithinSquareBrackets="False" SpaceAfterColonInBaseTypeDeclaration="True" SpaceAfterComma="True" SpaceAfterDot="False" SpaceAfterSemicolonsInForStatement="True" SpaceBeforeColonInBaseTypeDeclaration="True" SpaceBeforeComma="False" SpaceBeforeDot="False" SpaceBeforeSemicolonsInForStatement="False" SpacingAroundBinaryOperator="Single" WrappingPreserveSingleLine="True" WrappingKeepStatementsOnSingleLine="True" LabelPositioning="NoIndent" scope="text/x-csharp" />
         </Policies>
       </Properties>

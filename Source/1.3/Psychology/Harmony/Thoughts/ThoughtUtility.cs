@@ -25,7 +25,7 @@ public static class ThoughtUtility_ExecutedPatch
         }
         return false;
     } **/
-    //[LogPerformance]
+    
     [HarmonyPostfix]
     public static void BleedingHeartThoughts(Pawn victim, PawnExecutionKind kind)
     {

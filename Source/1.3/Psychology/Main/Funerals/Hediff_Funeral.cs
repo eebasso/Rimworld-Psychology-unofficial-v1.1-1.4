@@ -27,7 +27,7 @@ namespace Psychology
             base.PostMake();
         }
 
-        //[LogPerformance]
+        
         public override void Tick()
         {
             Pawn dead = null;

@@ -26,10 +26,13 @@ public class Pawn_PsycheTracker : IExposable
     private Dictionary<Pair<string, string>, bool> recalcNodeDisagreement = new Dictionary<Pair<string, string>, bool>();
     public int AdjustedRatingTicker = -1;
 
+    public Dictionary<MemeDef, Dictionary<PersonalityNodeDef, float>> certaintyFromMemesAndNodes = new Dictionary<MemeDef, Dictionary<PersonalityNodeDef, float>>();
+    public Dictionary<PreceptDef, Dictionary<PersonalityNodeDef, float>> certaintyFromPerceptsAndNodes = new Dictionary<PreceptDef, Dictionary<PersonalityNodeDef, float>>();
+
     public Pawn_PsycheTracker(Pawn pawn)
     {
         this.pawn = pawn;
-        Initialize();
+        //Initialize();
     }
 
     public void Initialize(int inputSeed = 0)
@@ -69,7 +72,6 @@ public class Pawn_PsycheTracker : IExposable
         }
     }
 
-    //[LogPerformance]
     public float GetPersonalityRating(PersonalityNodeDef def)
     {
         if (AdjustedRatingTicker < 0)
@@ -224,35 +226,64 @@ public class Pawn_PsycheTracker : IExposable
     public float CalculateCertaintyChangePerDay()
     {
         CalculateAdjustedRatings();
-        return 0.0015f * CompatibilityWithIdeo(pawn.Ideo);
+        return 0.0015f * CompatibilityWithIdeo(pawn.Ideo); // ToDo: make how much personality affects certainty into a setting
     }
 
-    public float CompatibilityWithIdeo(Ideo ideo)
+    public float CompatibilityWithIdeo(Ideo ideo, bool addToDicts = false)
     {
         if (ideo == null)
         {
             return 0f;
         }
         float compatibility = 0f;
-        foreach (KeyValuePair<MemeDef, List<Pair<PersonalityNodeDef, float>>> kvp in PersonalityNodeIdeoUtility.memesAffectedByNodes)
+        float rating;
+        float adjustment;
+        MemeDef memeDef;
+        PreceptDef preceptDef;
+        PersonalityNodeDef nodeDef;
+        foreach (KeyValuePair<MemeDef, Dictionary<PersonalityNodeDef, float>> kvp in PersonalityNodeIdeoUtility.memesAffectedByNodes)
         {
-            if (ideo.HasMeme(kvp.Key))
+            memeDef = kvp.Key;
+            if (ideo.HasMeme(memeDef))
             {
-                foreach (Pair<PersonalityNodeDef, float> pair in kvp.Value)
+                foreach (KeyValuePair<PersonalityNodeDef, float> pair in kvp.Value)
                 {
-                    float rating = GetPersonalityRating(pair.First);
-                    compatibility += (2f * rating - 1f) * pair.Second;
+                    nodeDef = pair.Key;
+                    rating = GetPersonalityRating(nodeDef);
+                    adjustment = (2f * rating - 1f) * pair.Value;
+                    compatibility += adjustment;
+                    if (addToDicts != true)
+                    {
+                        continue;
+                    }
+                    if (!certaintyFromMemesAndNodes.ContainsKey(memeDef))
+                    {
+                        certaintyFromMemesAndNodes.Add(memeDef, new Dictionary<PersonalityNodeDef, float>());
+                    }
+                    certaintyFromMemesAndNodes[memeDef][nodeDef] = 0.0015f * adjustment;
                 }
             }
         }
-        foreach (KeyValuePair<PreceptDef, List<Pair<PersonalityNodeDef, float>>> kvp in PersonalityNodeIdeoUtility.preceptsAffectedByNodes)
+        foreach (KeyValuePair<PreceptDef, Dictionary<PersonalityNodeDef, float>> kvp in PersonalityNodeIdeoUtility.preceptsAffectedByNodes)
         {
-            if (ideo.HasPrecept(kvp.Key))
+            preceptDef = kvp.Key;
+            if (ideo.HasPrecept(preceptDef))
             {
-                foreach (Pair<PersonalityNodeDef, float> pair in kvp.Value)
+                foreach (KeyValuePair<PersonalityNodeDef, float> pair in kvp.Value)
                 {
-                    float rating = GetPersonalityRating(pair.First);
-                    compatibility += (2f * rating - 1f) * pair.Second;
+                    nodeDef = pair.Key;
+                    rating = GetPersonalityRating(nodeDef);
+                    adjustment = (2f * rating - 1f) * pair.Value;
+                    compatibility += adjustment;
+                    if (addToDicts != true)
+                    {
+                        continue;
+                    }
+                    if (!certaintyFromPerceptsAndNodes.ContainsKey(preceptDef))
+                    {
+                        certaintyFromPerceptsAndNodes.Add(preceptDef, new Dictionary<PersonalityNodeDef, float>());
+                    }
+                    certaintyFromPerceptsAndNodes[preceptDef][nodeDef] = 0.0015f * adjustment;
                 }
             }
         }

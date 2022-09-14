@@ -36,7 +36,7 @@ public class Dialog_ViewPsyche : Window
         }
     }
 
-    //[LogPerformance]
+    
     public override void DoWindowContents(Rect inRect)
     {
         Rect oldInRect = inRect;

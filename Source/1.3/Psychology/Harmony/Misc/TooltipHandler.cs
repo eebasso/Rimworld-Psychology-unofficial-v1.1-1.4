@@ -9,7 +9,7 @@ namespace Psychology.Harmony
     [HarmonyPatch(typeof(TooltipHandler), nameof(TooltipHandler.DoTooltipGUI))]
     public class TooltipHandler_DoTooltipGUI_PsychologyPatch
     {
-        //[LogPerformance]
+        
         [HarmonyPostfix]
         public static void DoTooltipGUI()
         {

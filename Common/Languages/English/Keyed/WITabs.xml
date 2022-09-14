@@ -3,13 +3,11 @@
 
 	<!--<CertaintyChangePerDay>Daily change due to mood + personality</CertaintyChangePerDay>-->
 
-	<CertaintyChangePerDay>Mood + personality daily change</CertaintyChangePerDay>
-
+	<CertaintyChangePerDay>Change per day</CertaintyChangePerDay>
 	<AbilityIdeoConvertBreakdownPsychologyEffects>Personality</AbilityIdeoConvertBreakdownPsychologyEffects>
-
 	<AbilityIdeoConvertBreakdownPawnCompatWithIdeo>{PAWN_labelShort}'s compatiblity with {IDEO}</AbilityIdeoConvertBreakdownPawnCompatWithIdeo>
-
 	<AbilityIdeoConvertBreakdownPawnIncompatWithIdeo>{PAWN_labelShort}'s incompatiblity with {IDEO}</AbilityIdeoConvertBreakdownPawnIncompatWithIdeo>
+	<PsycheCurrentlyDisabled>Psyche currenlty disabled</PsycheCurrentlyDisabled>
 
 	<!-- WITab title -->
 	<TabPsyche>Psyche</TabPsyche>

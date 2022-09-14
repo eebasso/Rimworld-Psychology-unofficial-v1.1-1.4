@@ -258,17 +258,14 @@ public class PsycheCardUtility
     //    return PsycheRect;
     //}
 
-    //[LogPerformance]
+    
     public static void DrawPsycheCard(Rect totalRect, Pawn pawn, bool OnWindow = true, bool ShowNumbers = false)
     {
-        if (!PsycheHelper.PsychologyEnabled(pawn))
-        {
-            return;
-        }
         HasCachedChanged(pawn);
-
+        
         GUI.BeginGroup(totalRect);
         totalRect.position = Vector2.zero;
+        Rect originalTotalRect = totalRect;
         Text.Font = GameFont.Small;
         GUI.color = Color.white;
         GUIStyle style = Text.fontStyles[1];
@@ -527,6 +524,17 @@ public class PsycheCardUtility
             /* Draw personality node list */
             PersonalityTraitList(personalityRect, pawn);
         }
+
+        if (PsycheHelper.PsychologyEnabled(pawn) != true)
+        {
+            Widgets.DrawHighlight(totalRect);
+            Text.Anchor = TextAnchor.MiddleCenter;
+            Text.Font = GameFont.Medium;
+            Widgets.Label(totalRect, "PsycheCurrentlyDisabled".Translate());
+            Text.Font = GameFont.Small;
+            Text.Anchor = OldAnchor;
+        }
+
         GUI.EndGroup();
 
 

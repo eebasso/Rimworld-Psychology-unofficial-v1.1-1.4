@@ -148,7 +148,7 @@ namespace Psychology
             }
         }
 
-        //[LogPerformance]
+        
         public override void End()
         {
             base.End();

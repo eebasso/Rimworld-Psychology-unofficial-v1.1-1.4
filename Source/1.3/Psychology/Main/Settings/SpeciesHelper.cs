@@ -58,20 +58,20 @@ public class SpeciesHelper
         foreach (ThingDef t in humanlikeDefsEnumerable)
         {
             defName = t.defName;
-            Log.Message("SpeciesHelper.Initialize, add Comps for defName = " + defName);
+            //Log.Message("SpeciesHelper.Initialize, add Comps for defName = " + defName);
             AddCompsToHumanlikeDef(t, false);
             //registered.Add(defName);
-            Log.Message("SpeciesHelper.Initialize, check speciesDict for defName = " + defName);
+            //Log.Message("SpeciesHelper.Initialize, check speciesDict for defName = " + defName);
             if (!PsychologySettings.speciesDict.ContainsKey(defName))
             {
-                Log.Message("PsychologySettings.speciesDict.ContainsKey(defName) == false");
+                //Log.Message("PsychologySettings.speciesDict.ContainsKey(defName) == false");
                 //PsychologySettings.speciesDict.Add(defName, speciesDictDefault[defName]);
                 PsychologySettings.speciesDict.Add(defName, DefaultSettingsForSpeciesDef(t));
                 //Log.Message("PsychologySettings.speciesDict, added defName = " + defName);
             }
             else
             {
-                Log.Message("PsychologySettings.speciesDict.ContainsKey(defName) == true");
+                //Log.Message("PsychologySettings.speciesDict.ContainsKey(defName) == true");
             }
         }
         SettingsWindowUtility.Initialize();
@@ -106,7 +106,7 @@ public class SpeciesHelper
             humanlikeDef.comps = new List<CompProperties>(1);
         }
         humanlikeDef.comps.AddDistinct(new CompProperties_Psychology());
-        Log.Message("Added CompProperties_Psychology to humanlikeDef = " + humanlikeDef.defName);
+        //Log.Message("Added CompProperties_Psychology to humanlikeDef = " + humanlikeDef.defName);
         if (!humanlikeDef.race.hediffGiverSets.NullOrEmpty())
         {
             if (humanlikeDef.race.hediffGiverSets.Contains(DefDatabase<HediffGiverSetDef>.GetNamed("OrganicStandard")))
@@ -122,7 +122,7 @@ public class SpeciesHelper
 
     public static void AddInspectorTabToDefAndCorpseDef(ThingDef t)
     {
-        Log.Message("AddInspectorTabToDefAndCorpseDef to thingdef = " + t.defName);
+        //Log.Message("AddInspectorTabToDefAndCorpseDef to thingdef = " + t.defName);
         if (t.inspectorTabsResolved == null)
         {
             t.inspectorTabsResolved = new List<InspectTabBase>(1);

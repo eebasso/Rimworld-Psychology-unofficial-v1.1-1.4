@@ -46,6 +46,7 @@ public class CompPsychology : ThingComp
                 if (p != null)
                 {
                     this.sexuality = new Pawn_SexualityTracker(p);
+                    this.sexuality.GenerateSexuality();
                 }
                 else
                 {
@@ -70,6 +71,7 @@ public class CompPsychology : ThingComp
                 if (p != null)
                 {
                     this.psyche = new Pawn_PsycheTracker(p);
+                    this.psyche.Initialize();
                 }
                 else
                 {

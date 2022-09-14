@@ -16,7 +16,7 @@ namespace Psychology.Harmony
     [HarmonyPatch(nameof(Pawn_StoryTracker.TitleShort), MethodType.Getter)]
     public static class Pawn_StoryTracker_MayorLabel
     {
-        //[LogPerformance]
+        
         [HarmonyPostfix]
         //public static void SetMayorLabel(Pawn_StoryTracker __instance, ref String __result)
         public static void SetMayorLabel(ref String __result, Pawn ___pawn)

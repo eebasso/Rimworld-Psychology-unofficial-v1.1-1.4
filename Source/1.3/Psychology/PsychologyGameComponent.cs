@@ -21,6 +21,7 @@ public class PsychologyGameComponent : GameComponent
     public Dictionary<int, Pair<Pawn, Hediff>> Mayors;
     public static int constituentTick = 156;
     public static int electionTick = 823;
+    public static int certaintyTick = 37;
 
     public PsychologyGameComponent(Game game)
     {
@@ -55,6 +56,23 @@ public class PsychologyGameComponent : GameComponent
             ConstituentTick();
             ElectionTick();
         }
+        if (GenTicks.TicksGame % 250 == 97)
+        {
+            certaintyTick++;
+        }
+    }
+
+    public float CertaintyChange(Pawn pawn)
+    {
+        float certaintyChange;
+        int idnumber;
+        idnumber = pawn.thingIDNumber;
+        if (!CachedCertaintyChangePerDayDict.TryGetValue(idnumber, out certaintyChange) || (idnumber + certaintyTick) % 240 == 23)
+        {
+            certaintyChange = PsycheHelper.Comp(pawn).Psyche.CalculateCertaintyChangePerDay();
+            CachedCertaintyChangePerDayDict[idnumber] = certaintyChange;
+        }
+        return certaintyChange;
     }
 
     //public virtual void FirstTimeLoadingNewPsychology()
@@ -164,20 +182,24 @@ public class PsychologyGameComponent : GameComponent
                 PsycheHelper.CorrectTraitsForPawnKinseyEnabled(pawn);
             }
         }
-        else
-        {
-            foreach (Pawn pawn in PawnsFinder.All_AliveOrDead)
-            {
-                PsycheHelper.CorrectTraitsForPawnKinseyDisabled(pawn);
-            }
-        }
+        //else
+        //{
+        //    foreach (Pawn pawn in PawnsFinder.All_AliveOrDead)
+        //    {
+        //        PsycheHelper.CorrectTraitsForPawnKinseyDisabled(pawn);
+        //    }
+        //}
     }
 
     public virtual void RandomizeRatingsForAllPawns()
     {
         foreach (Pawn pawn in PawnsFinder.All_AliveOrDead)
         {
-            if (!PsycheHelper.PsychologyEnabled(pawn))
+            if (PsycheHelper.TryGetPawnSeed(pawn) != true)
+            {
+                continue;
+            }
+            if (PsycheHelper.PsychologyEnabled(pawn) != true)
             {
                 continue;
             }
@@ -187,12 +209,12 @@ public class PsychologyGameComponent : GameComponent
 
     public virtual void ConstituentTick()
     {
-        if (constituentTick < 2 * GenDate.TicksPerHour)
+        if (constituentTick > 0)
         {
-            constituentTick++;
+            constituentTick--;
             return;
         }
-        constituentTick = 0;
+        constituentTick = 2 * GenDate.TicksPerHour;
 
         //List<Settlement> playerSettlements = Find.WorldObjects.Settlements.FindAll(b => b.Faction.IsPlayer);
         List<Settlement> playerSettlements = Find.WorldObjects.SettlementBases.FindAll(b => b.Faction.IsPlayer);
@@ -264,12 +286,12 @@ public class PsychologyGameComponent : GameComponent
 
     public virtual void ElectionTick()
     {
-        if (electionTick < 7 * GenDate.TicksPerHour)
+        if (electionTick > 0)
         {
-            electionTick++;
+            electionTick--;
             return;
         }
-        electionTick = 0;
+        electionTick = 7 * GenDate.TicksPerHour;
 
         List<Settlement> eligibleSettlements = new List<Settlement>();
         foreach (Settlement settlement in Find.WorldObjects.Settlements)

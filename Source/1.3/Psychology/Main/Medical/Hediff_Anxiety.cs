@@ -15,7 +15,7 @@ public class Hediff_Anxiety : HediffWithComps
     public int ticksPerIntervalTracker = 0;
     public int cooldownIntervals = 0;
 
-    //[LogPerformance]
+    
     public override void Tick()
     {
         base.Tick();

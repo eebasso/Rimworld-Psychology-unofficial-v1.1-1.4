@@ -21,10 +21,9 @@ public class Pawn_SexualityTracker : IExposable
     public Pawn_SexualityTracker(Pawn pawn)
     {
         this.pawn = pawn;
-        GenerateSexuality();
+        //GenerateSexuality();
     }
 
-    //[LogPerformance]
     public virtual bool IncompatibleSexualityKnown(Pawn recipient)
     {
         if (this.knownSexualities.ContainsKey(recipient))
@@ -34,7 +33,6 @@ public class Pawn_SexualityTracker : IExposable
         return false;
     }
 
-    //[LogPerformance]
     public virtual void LearnSexuality(Pawn p)
     {
         if (p != null && PsycheHelper.PsychologyEnabled(pawn) && !knownSexualities.Keys.Contains(p))
@@ -223,13 +221,13 @@ public class Pawn_SexualityTracker : IExposable
             }
             if (!settings.enableAgeGap)
             {
-                return age > minDatingAge ? this.sexDrive : 0f;
+                return age > minDatingAge ? this.romanticDrive : 0f;
             }
             if (minDatingAge == 0f)
             {
-                return this.sexDrive;
+                return this.romanticDrive;
             }
-            float scaledAge = PsycheHelper.LovinAgeToVanilla(age, minDatingAge);
+            float scaledAge = PsycheHelper.DatingAgeToVanilla(age, minDatingAge);
             float ageFactor = RomanticDriveCurve.Evaluate(scaledAge);
             return ageFactor * this.romanticDrive;
         }
@@ -311,7 +309,22 @@ public class Pawn_SexualityTracker : IExposable
         },
     };
 
-    
+    public void AsexualReroll()
+    {
+        this.sexDrive = 0.10f * Rand.ValueSeeded(11 * PsycheHelper.PawnSeed(this.pawn) + 8);
+    }
+
+    public void BisexualReroll()
+    {
+        GenerateKinsey(0f, 0.01f, 1f, 2f, 1f, 0.01f, 0f);
+        PsycheHelper.Comp(this.pawn).Psyche.CalculateAdjustedRatings();
+    }
+
+    public void GayReroll()
+    {
+        GenerateKinsey(0f, 0.01f, 0.02f, 0.03f, 0.04f, 1f, 2f);
+        PsycheHelper.Comp(pawn).Psyche.CalculateAdjustedRatings();
+    }
 }
 
 

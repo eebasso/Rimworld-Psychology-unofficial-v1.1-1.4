@@ -27,7 +27,7 @@ public class Dialog_EditPsyche : Window
         pawn = editFor;
     }
 
-    //[LogPerformance]
+    
     public override void DoWindowContents(Rect inRect)
     {
         bool flag = false;

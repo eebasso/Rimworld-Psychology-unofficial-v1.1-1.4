@@ -51,21 +51,23 @@ public static class PawnGenerator_ManualPatches
     //}
 
     // Postfix
-
-
-    public static void GeneratePawn_IdeoCache_Postfix(ref Pawn __result, PawnGenerationRequest request)
-    {
-        if (!PsycheHelper.PsychologyEnabled(__result))
-        {
-            return;
-        }
-        int idNumber = __result.thingIDNumber;
-        if (!PsycheHelper.GameComp.CachedCertaintyChangePerDayDict.ContainsKey(idNumber))
-        {
-            float ideoCertaintyChange = PsycheHelper.Comp(__result).Psyche.CalculateCertaintyChangePerDay();
-            PsycheHelper.GameComp.CachedCertaintyChangePerDayDict.Add(idNumber, ideoCertaintyChange);
-        }
-    }
+    //public static void GeneratePawn_IdeoCache_Postfix(ref Pawn __result, PawnGenerationRequest request)
+    //{
+    //    if (!PsycheHelper.TryGetPawnSeed(__result))
+    //    {
+    //        return;
+    //    }
+    //    if (!PsycheHelper.PsychologyEnabled(__result))
+    //    {
+    //        return;
+    //    }
+    //    int idNumber = __result.thingIDNumber;
+    //    if (!PsycheHelper.GameComp.CachedCertaintyChangePerDayDict.ContainsKey(idNumber))
+    //    {
+    //        float ideoCertaintyChange = PsycheHelper.Comp(__result).Psyche.CalculateCertaintyChangePerDay();
+    //        PsycheHelper.GameComp.CachedCertaintyChangePerDayDict.Add(idNumber, ideoCertaintyChange);
+    //    }
+    //}
 }
 
 //[HarmonyPatch(typeof(PawnGenerator), nameof(PawnGenerator.GeneratePawn))]

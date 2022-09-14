@@ -36,7 +36,7 @@ public class EnableEmpathyPatchOperationAdd : PatchOperationAdd
 {
     protected override bool ApplyWorker(XmlDocument xml)
     {
-        if (!PsychologySettings.enableElections)
+        if (!PsychologySettings.enableEmpathy)
         {
             return false;
         }
@@ -49,7 +49,7 @@ public class EnableEmpathyPatchOperationAttirbuteAdd : PatchOperationAttributeAd
 {
     protected override bool ApplyWorker(XmlDocument xml)
     {
-        if (!PsychologySettings.enableElections)
+        if (!PsychologySettings.enableEmpathy)
         {
             return false;
         }

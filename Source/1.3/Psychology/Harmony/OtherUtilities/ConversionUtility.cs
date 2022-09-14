@@ -13,7 +13,7 @@ public static class ConversionUtility_ConversionPowerFactor_MemesVsTraits_Patch
 {
     public static bool needToAddToSB = true;
 
-    // The value of sb gets changed
+    // Note that sb is a reference class that gets changed by this
     [HarmonyPostfix]
     public static void ConversionPowerFactor_MemesVsTraits(ref float __result, Pawn initiator, Pawn recipient, StringBuilder sb)
     {

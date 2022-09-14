@@ -35,12 +35,14 @@ public class CharacterEditor_Patches
         Rect oldRect = inRect;
         GUI.EndGroup();
         Pawn pawn = CharacterEditor.CEditor.API.Pawn;
-
-        if (!PsycheHelper.PsychologyEnabled(pawn))
+        if (PsycheHelper.TryGetPawnSeed(pawn) != true)
         {
             return false;
         }
-
+        if (PsycheHelper.PsychologyEnabled(pawn) != true)
+        {
+            return false;
+        }
         Rect psycheRect = PsycheCardUtility.PsycheRect;
         Rect editRect = new Rect(psycheRect.xMax, psycheRect.y, EditPsycheUtility.CalculateEditWidth(pawn), psycheRect.height);
 

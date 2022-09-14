@@ -70,7 +70,7 @@ namespace Psychology
             Scribe_Values.Look(ref this.complaint, "complaining");
         }
 
-        //[LogPerformance]
+        
         private void Finished()
         {
             if (!PsycheHelper.PsychologyEnabled(mayor) || !PsycheHelper.PsychologyEnabled(constituent) || this.ticksInSameRoom == 0)

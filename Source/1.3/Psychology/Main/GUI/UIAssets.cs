@@ -23,6 +23,7 @@ public static class UIAssets
     public static readonly Texture2D PsycheLineTex = new Texture2D(1, 3, TextureFormat.ARGB32, mipChain: false);
     public static readonly Material PsycheYellowMat = SolidColorMaterials.SimpleSolidColorMaterial(new Color(1f, 1f, 0f, 0.5f));
     public static readonly Material PsycheHighlightMat = SolidColorMaterials.SimpleSolidColorMaterial(new Color(1f, 1f, 1f, 0.1f));
+    //public static readonly Material PsycheHighlightMat = TexUI.HighlightTex;
 
     public static void DrawLineHorizontal(float x, float y, float length, Color color)
     {

@@ -22,9 +22,15 @@ public static class PsycheHelper
     };
 
     public static HashSet<string> TraitDefNamesThatAffectPsyche = new HashSet<string>();
-    public static HashSet<string> SkillDefNamesThatAffectPsyche = new HashSet<string>();
+    //public static HashSet<string> SkillDefNamesThatAffectPsyche = new HashSet<string>();
     public static SpeciesSettings settings = new SpeciesSettings();
     public static int seed;
+
+    // Things in play for PsychologyEnabled:
+    // - settings.enablePsyche
+    // - DoesCompExist
+    // - pawn == null
+    // - pawn == humanlike
 
     public static bool PsychologyEnabled(Pawn pawn)
     {
@@ -33,19 +39,19 @@ public static class PsycheHelper
             Log.Message("PsychologyEnabled, pawn == null");
             return false;
         }
-        if (!IsHumanlike(pawn))
+        if (IsHumanlike(pawn) != true)
         {
-            Log.Message("PsychologyEnabled, IsHumanlike(pawn) == false");
+            Log.Message("PsychologyEnabled, IsHumanlike(pawn) != true");
             return false;
         }
-        Log.Message("PsychologyEnabled, pawn.def.defName = " + pawn.def.defName + ", pawn = " + pawn.Label);
+        //Log.Message("PsychologyEnabled, pawn.def.defName = " + pawn.def.defName + ", pawn = " + pawn.Label);
         settings = SpeciesHelper.GetOrMakeSettingsFromHumanlikeDef(pawn.def, true);
-        if (settings.enablePsyche == false)
+        if (settings.enablePsyche != true)
         {
-            Log.Message("PsychologyEnabled, settings.enablePsyche = false");
+            Log.Message("PsychologyEnabled, settings.enablePsyche != true");
             return false;
         }
-        Log.Message("PsychologyEnabled, settings.enablePsyche = true");
+        //Log.Message("PsychologyEnabled, settings.enablePsyche = true");
         return DoesCompExist(pawn);
     }
 
@@ -67,13 +73,13 @@ public static class PsycheHelper
             Log.Message("PsychologyEnabled, Comp(pawn) == null, pawn = " + pawn.Label + ", species label = " + pawn.def.label);
             return false;
         }
-        Log.Message("Comp(pawn) != null");
-        if (!comp.IsPsychologyPawn)
+        //Log.Message("Comp(pawn) != null");
+        if (comp.IsPsychologyPawn != true)
         {
             Log.Message("PsychologyEnabled, IsPsychologyPawn = false, pawn = " + pawn.Label);
             return false;
         }
-        Log.Message("PsychologyEnabled, IsPsychologyPawn = true, pawn = " + pawn.Label);
+        //Log.Message("PsychologyEnabled, IsPsychologyPawn = true, pawn = " + pawn.Label);
         return true;
     }
 
@@ -122,13 +128,13 @@ public static class PsycheHelper
                     TraitDefNamesThatAffectPsyche.Add(traitMod.trait.defName);
                 }
             }
-            if (pDef.skillModifiers != null && pDef.skillModifiers.Any())
-            {
-                foreach (PersonalityNodeSkillModifier skillMod in pDef.skillModifiers)
-                {
-                    SkillDefNamesThatAffectPsyche.Add(skillMod.skill.defName);
-                }
-            }
+            //if (pDef.skillModifiers != null && pDef.skillModifiers.Any())
+            //{
+            //    foreach (PersonalityNodeSkillModifier skillMod in pDef.skillModifiers)
+            //    {
+            //        SkillDefNamesThatAffectPsyche.Add(skillMod.skill.defName);
+            //    }
+            //}
         }
     }
 
@@ -224,78 +230,79 @@ public static class PsycheHelper
 
     public static void CorrectTraitsForPawnKinseyEnabled(Pawn pawn)
     {
+        if (!TryGetPawnSeed(pawn))
+        {
+            return;
+        }
         if (!PsychologyEnabled(pawn) || pawn?.story?.traits == null)
         {
             return;
         }
-        if (pawn.story.traits.HasTrait(TraitDefOf.Asexual))
+        if (TryRemoveTraitDef(pawn, TraitDefOf.Asexual))
         {
-            RemoveTrait(pawn, TraitDefOf.Asexual);
+            Log.Warning("Removing Asexual trait from pawn = " + pawn.Label);
             Comp(pawn).Sexuality.sexDrive = 0.10f * Rand.ValueSeeded(11 * PawnSeed(pawn) + 8);
         }
-        if (pawn.story.traits.HasTrait(TraitDefOf.Bisexual))
+        if (TryRemoveTraitDef(pawn, TraitDefOf.Bisexual))
         {
-            RemoveTrait(pawn, TraitDefOf.Bisexual);
-            Comp(pawn).Sexuality.GenerateKinsey(0f, 0.1f, 1f, 2f, 1f, 0.1f, 0f);
+            Log.Warning("Removing Bisexual trait from pawn = " + pawn.Label);
+            Comp(pawn).Sexuality.BisexualReroll();
         }
-        if (pawn.story.traits.HasTrait(TraitDefOf.Gay))
+        if (TryRemoveTraitDef(pawn, TraitDefOf.Gay))
         {
-            RemoveTrait(pawn, TraitDefOf.Gay);
-            Comp(pawn).Sexuality.GenerateKinsey(0f, 0.02f, 0.04f, 0.06f, 0.08f, 1f, 2f);
+            Log.Warning("Removing Gay trait from pawn = " + pawn.Label);
+            Comp(pawn).Sexuality.GayReroll();
         }
-        Comp(pawn).Psyche.CalculateAdjustedRatings();
+        
     }
 
-    public static void CorrectTraitsForPawnKinseyDisabled(Pawn pawn)
+    //public static void CorrectTraitsForPawnKinseyDisabled(Pawn pawn)
+    //{
+    //    if (!PsycheHelper.PsychologyEnabled(pawn) || pawn?.story?.traits == null)
+    //    {
+    //        return;
+    //    }
+    //    int kinseyRating = PsycheHelper.Comp(pawn).Sexuality.kinseyRating;
+    //    if (PsycheHelper.Comp(pawn).Sexuality.sexDrive < 0.1f)
+    //    {
+    //        TryGainTraitDef(pawn, TraitDefOf.Asexual);
+    //    }
+    //    if (kinseyRating < 2)
+    //    {
+    //        // If pawn is mostly heterosexual
+    //        TryRemoveTraitDef(pawn, TraitDefOf.Bisexual);
+    //        TryRemoveTraitDef(pawn, TraitDefOf.Gay);
+    //    }
+    //    else if (kinseyRating < 5)
+    //    {
+    //        // If pawn is mostly bisexual
+    //        TryGainTraitDef(pawn, TraitDefOf.Bisexual);
+    //        TryRemoveTraitDef(pawn, TraitDefOf.Gay);
+    //    }
+    //    else
+    //    {
+    //        // If pawn is mostly homosexual
+    //        TryRemoveTraitDef(pawn, TraitDefOf.Bisexual);
+    //        TryGainTraitDef(pawn, TraitDefOf.Gay);
+    //    }
+    //}
+
+    public static bool TryGainTraitDef(Pawn pawn, TraitDef traitDef)
     {
-        if (!PsycheHelper.PsychologyEnabled(pawn) || pawn?.story?.traits == null)
+        foreach (Trait trait in pawn.story.traits.allTraits)
         {
-            return;
+            if (trait.def == traitDef)
+            {
+                return false;
+            }
         }
-        int kinseyRating = PsycheHelper.Comp(pawn).Sexuality.kinseyRating;
-        if (PsycheHelper.Comp(pawn).Sexuality.sexDrive < 0.1f)
-        {
-            TryGainTrait(pawn, TraitDefOf.Asexual);
-        }
-        if (kinseyRating < 2)
-        {
-            // If pawn is mostly heterosexual
-            TryRemoveTrait(pawn, TraitDefOf.Bisexual);
-            TryRemoveTrait(pawn, TraitDefOf.Gay);
-        }
-        else if (kinseyRating < 5)
-        {
-            // If pawn is mostly bisexual
-            TryGainTrait(pawn, TraitDefOf.Bisexual);
-            TryRemoveTrait(pawn, TraitDefOf.Gay);
-        }
-        else
-        {
-            // If pawn is mostly homosexual
-            TryGainTrait(pawn, TraitDefOf.Gay);
-            TryRemoveTrait(pawn, TraitDefOf.Bisexual);
-        }
+        pawn.story.traits.GainTrait(new Trait(traitDef));
+        return true;
     }
 
-    public static void TryGainTrait(Pawn pawn, TraitDef traitDef)
+    public static bool TryRemoveTraitDef(Pawn pawn, TraitDef traitDef)
     {
-        if (!pawn.story.traits.HasTrait(traitDef))
-        {
-            pawn.story.traits.GainTrait(new Trait(traitDef));
-        }
-    }
-
-    public static void TryRemoveTrait(Pawn pawn, TraitDef traitDef)
-    {
-        if (pawn.story.traits.HasTrait(traitDef))
-        {
-            RemoveTrait(pawn, traitDef);
-        }
-    }
-
-    public static void RemoveTrait(Pawn pawn, TraitDef traitDef)
-    {
-        pawn.story.traits.allTraits.RemoveAll(t => t.def == traitDef);
+        return pawn.story.traits.allTraits.RemoveAll(t => t.def == traitDef) != 0;
     }
 
     public static int PawnSeed(Pawn pawn)
@@ -303,7 +310,10 @@ public static class PsycheHelper
         bool success = TryGetPawnSeed(pawn);
         if (success == false)
         {
-            Log.Error("Used random pawn seed, would prefer this is not happen.");
+            string thingID = pawn?.ThingID != null ? pawn?.ThingID : "null";
+            string label = pawn?.Label != null ? pawn?.Label : "null";
+            string defName = pawn?.def?.defName != null ? pawn?.def?.defName : "null";
+            Log.Error("Used random pawn seed, would prefer this is not happen, thingID = " + thingID + ", + pawn.Label = " + label + ", pawn.def.defName = " + defName);
         }
         return seed;
     }
@@ -319,9 +329,9 @@ public static class PsycheHelper
         {
             firstNameSeed = (pawn.Name as NameTriple).First.GetHashCode();
         }
-        catch (Exception ex)
+        catch //(Exception ex)
         {
-            Log.Warning("Error with (pawn.Name as NameTriple).First.GetHashCode(), Exception: " + ex);
+            //Log.Warning("Error with (pawn.Name as NameTriple).First.GetHashCode(), Exception: " + ex);
             firstNameSeed = Mathf.CeilToInt(1e7f * Rand.Value);
             success = false;
         }
@@ -329,9 +339,9 @@ public static class PsycheHelper
         {
             childhoodSeed = pawn.story.childhood.identifier.GetHashCode();
         }
-        catch (Exception ex)
+        catch //(Exception ex)
         {
-            Log.Warning("Error with pawn.story.childhood.identifier.GetHashCode(), Exception: " + ex);
+            //Log.Warning("Error with pawn.story.childhood.identifier.GetHashCode(), Exception: " + ex);
             childhoodSeed = Mathf.CeilToInt(1e7f * Rand.Value);
             success = false;
         }
@@ -345,9 +355,9 @@ public static class PsycheHelper
             {
                 adulthoodSeed = pawn.gender.GetHashCode();
             }
-            catch (Exception ex2)
+            catch //(Exception ex2)
             {
-                Log.Warning("Error with pawn.gender.GetHashCode(), Exception: " + ex2);
+                //Log.Warning("Error with pawn.gender.GetHashCode(), Exception: " + ex2);
                 adulthoodSeed = Mathf.CeilToInt(1e7f * Rand.Value);
                 success = false;
             }
@@ -356,9 +366,9 @@ public static class PsycheHelper
         {
             birthLastNameSeed = pawn.story.birthLastName.GetHashCode();
         }
-        catch (Exception ex)
+        catch //(Exception ex)
         {
-            Log.Warning("Error with pawn.story.birthLastName, Exception: " + ex);
+            //Log.Warning("Error with pawn.story.birthLastName, Exception: " + ex);
             birthLastNameSeed = Mathf.CeilToInt(1e7f * Rand.Value);
             success = false;
         }

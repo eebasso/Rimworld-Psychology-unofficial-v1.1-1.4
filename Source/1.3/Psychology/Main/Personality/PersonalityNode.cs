@@ -45,7 +45,7 @@ public class PersonalityNode : IExposable
         }
     }
 
-    //[LogPerformance]
+    
     public float AdjustForCircumstance(float rating, bool applyingTwice = false)
     {
         float gM = (this.pawn.gender == Gender.Female) ? this.def.femaleModifier : -this.def.femaleModifier;

@@ -15,7 +15,7 @@ namespace Psychology.Harmony
     [HarmonyPatch(typeof(VoluntarilyJoinableLordsStarter), "Tick_TryStartParty")]
     public static class VoluntarilyJoinableLordsStarter_StartPartyPatch
     {
-        //[LogPerformance]
+        
         [HarmonyPrefix]
         public static bool ExtraSocialiteParties(VoluntarilyJoinableLordsStarter __instance)
         {

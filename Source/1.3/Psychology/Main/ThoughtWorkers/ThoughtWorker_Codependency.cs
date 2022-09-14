@@ -8,36 +8,34 @@ namespace Psychology
     {
         protected override ThoughtState CurrentStateInternal(Pawn p)
         {
-            if (!p.Spawned)
-                return ThoughtState.Inactive;
-            if (!p.RaceProps.Humanlike)
-                return ThoughtState.Inactive;
-            if (!p.story.traits.HasTrait(TraitDefOfPsychology.Codependent))
-                return ThoughtState.Inactive;
-            if (!LovePartnerRelationUtility.HasAnyLovePartner(p))
+            if (p?.Spawned != true)
             {
-                return ThoughtState.ActiveAtStage(0);
+                return ThoughtState.Inactive;
             }
-            else
+            if (p.RaceProps?.Humanlike != true)
             {
-                Pawn lover = p.relations.GetFirstDirectRelationPawn(PawnRelationDefOf.Lover, null);
-                if (lover == null)
-                {
-                    lover = p.relations.GetFirstDirectRelationPawn(PawnRelationDefOf.Fiance, null);
-                    if (lover == null)
-                        lover = p.relations.GetFirstDirectRelationPawn(PawnRelationDefOf.Spouse, null);
-                    if (lover == null)
-                        throw new NotImplementedException();
-                    if(lover.Dead == false)
-                        return ThoughtState.ActiveAtStage(2);
-                    else
-                        return ThoughtState.ActiveAtStage(3);
-                }
-                else
-                {
-                    return ThoughtState.ActiveAtStage(1);
-                }
+                return ThoughtState.Inactive;
             }
+            if (p.story?.traits?.HasTrait(TraitDefOfPsychology.Codependent) != true)
+            {
+                return ThoughtState.Inactive;
+            }
+            Pawn lover = p.relations.GetFirstDirectRelationPawn(PawnRelationDefOf.Lover, null);
+            if (lover != null)
+            {
+                return lover.Dead ? ThoughtState.ActiveAtStage(3) : ThoughtState.ActiveAtStage(1);
+            }
+            lover = p.relations.GetFirstDirectRelationPawn(PawnRelationDefOf.Fiance, null);
+            if (lover != null)
+            {
+                return lover.Dead ? ThoughtState.ActiveAtStage(3) : ThoughtState.ActiveAtStage(1);
+            }
+            lover = p.relations.GetFirstDirectRelationPawn(PawnRelationDefOf.Spouse, null);
+            if (lover != null)
+            {
+                return lover.Dead ? ThoughtState.ActiveAtStage(3) : ThoughtState.ActiveAtStage(2);
+            }
+            return ThoughtState.ActiveAtStage(0);
         }
     }
 }

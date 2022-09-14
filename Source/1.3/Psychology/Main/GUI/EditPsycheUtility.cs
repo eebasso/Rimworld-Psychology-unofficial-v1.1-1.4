@@ -136,7 +136,7 @@ public class EditPsycheUtility
         Text.Font = GameFont.Medium;
         Widgets.Label(mainRect, TitleText);
         Text.Font = GameFont.Small;
-        Rect titleHighlightRect = new Rect(mainRect.x - HighlightPadding, mainRect.y, mainRect.width + 2f * HighlightPadding, TitleHeight);
+        Rect titleHighlightRect = new Rect(mainRect.x - HighlightPadding, mainRect.y, SexualityWidth + HighlightPadding, TitleHeight);
         Widgets.DrawHighlightIfMouseover(titleHighlightRect);
         TooltipHandler.TipRegion(titleHighlightRect, delegate
         {
@@ -273,7 +273,7 @@ public class EditPsycheUtility
                 PsycheCardUtility.Ticker = -1;
             }
         }
-        if (Widgets.ButtonText(resetRect, ResetButtonText, true, false, true))
+        if (Widgets.ButtonText(resetRect, ResetButtonText, true, true, true))
         {
             PsycheHelper.Comp(pawn).Psyche.RandomizeRatings();
             for (int i = 0; i < CachedList.Count; i++)
@@ -296,7 +296,7 @@ public class EditPsycheUtility
             return "PsycheResetTooltip".Translate();
         }, 412832);
 
-        if (Widgets.ButtonText(randomRect, RandomButtonText, true, false, true))
+        if (Widgets.ButtonText(randomRect, RandomButtonText, true, true, true))
         {
             int randomSeed = Mathf.CeilToInt(1e+7f * Rand.Value);
             PsycheHelper.Comp(pawn).Psyche.RandomizeRatings(randomSeed);

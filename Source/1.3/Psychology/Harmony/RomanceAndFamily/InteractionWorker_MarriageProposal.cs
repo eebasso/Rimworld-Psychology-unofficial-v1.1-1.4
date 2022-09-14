@@ -126,7 +126,7 @@ public static class InteractionWorker_MarriageProposal_SelectionWeightPatch
     }
     }
 
-//[LogPerformance]
+
 public static void RemovePsychologyThoughts(Pawn initiator, Pawn recipient)
 {
 
@@ -144,7 +144,7 @@ public static void RemovePsychologyThoughts(Pawn initiator, Pawn recipient)
     }
 }
 
-//[LogPerformance]
+
 public static void AddPsychRejectedThoughts(Pawn initiator, Pawn recipient)
 {
     if (PsycheHelper.PsychologyEnabled(initiator))
@@ -225,7 +225,7 @@ public static void AddPsychRejectedThoughts(Pawn initiator, Pawn recipient)
     }
 }
 
-//[LogPerformance]
+
 public static float PsychBreakupChance(Pawn recipient)
 {
     if(recipient.story.traits.HasTrait(TraitDefOfPsychology.Codependent))

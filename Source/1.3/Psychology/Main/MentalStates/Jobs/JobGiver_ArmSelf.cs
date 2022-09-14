@@ -10,7 +10,7 @@ namespace Psychology
 {
     public class JobGiver_ArmSelf : ThinkNode_JobGiver
     {
-        //[LogPerformance]
+        
         protected override Job TryGiveJob(Pawn pawn)
         {
             if(pawn.equipment == null)

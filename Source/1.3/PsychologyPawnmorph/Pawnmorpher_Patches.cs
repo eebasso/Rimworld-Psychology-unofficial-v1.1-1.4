@@ -56,9 +56,9 @@ public class Pawnmorpher_Patches{
     public static bool PsycheHelper_Comp_Prefix(ref CompPsychology __result, Pawn pawn)
     {
         Log.Message("PsycheHelper_Comp_Prefix, step 0");
-        if (Pawnmorph.FormerHumanUtilities.IsFormerHuman(pawn) == false)
+        if (Pawnmorph.FormerHumanUtilities.IsFormerHuman(pawn) != true)
         {
-            Log.Message("PsycheHelper_Comp_Prefix, IsFormerHuman(pawn) == false, pawn = " + pawn.Label);
+            Log.Message("PsycheHelper_Comp_Prefix, IsFormerHuman(pawn) != true, pawn = " + pawn.Label);
             return true;
         }
         Log.Message("PsycheHelper_Comp_Prefix, IsFormerHuman(pawn) == true, pawn = " + pawn.Label);
@@ -79,6 +79,7 @@ public class Pawnmorpher_Patches{
         return false;
     }
 
+    // This is different from PsychologyEnabled because some pawns can lose sentient while still having former personalities
     public static bool ITabPawnPsyche_IsVisible_Prefix(ref bool __result, ITab_Pawn_Psyche __instance)
     {
         Log.Message("ITabPawnPsyche_IsVisible_Prefix, start");
@@ -89,17 +90,17 @@ public class Pawnmorpher_Patches{
             __result = false;
             return false;
         }
-        Log.Message("ITabPawnPsyche_IsVisible_Prefix, settings.enablePsyche == true");
-        if (Pawnmorph.FormerHumanUtilities.IsHumanlike(pawn) == false)
+        Log.Message("ITabPawnPsyche_IsVisible_Prefix, pawn != null");
+        if (Pawnmorph.FormerHumanUtilities.IsHumanlike(pawn) != true)
         {
-            Log.Message("ITabPawnPsyche_IsVisible_Prefix, IsHumanlike(pawn) == false, pawn = " + pawn.Label);
+            Log.Message("ITabPawnPsyche_IsVisible_Prefix, IsHumanlike(pawn) != true, pawn = " + pawn.Label);
             __result = false;
             return false;
         }
-        Log.Message("ITabPawnPsyche_IsVisible_Prefix, pawn != null");
-        if (Pawnmorph.FormerHumanUtilities.IsFormerHuman(pawn) == false)
+        Log.Message("ITabPawnPsyche_IsVisible_Prefix, IsHumanlike(pawn) == true, pawn = " + pawn.Label);
+        if (Pawnmorph.FormerHumanUtilities.IsFormerHuman(pawn) != true)
         {
-            Log.Message("ITabPawnPsyche_IsVisible_Prefix, IsFormerHuman(pawn) == false");
+            Log.Message("ITabPawnPsyche_IsVisible_Prefix, IsFormerHuman(pawn) != true");
             return true;
         }
         Log.Message("ITabPawnPsyche_IsVisible_Prefix, IsFormerHuman(pawn) == true");
@@ -112,14 +113,15 @@ public class Pawnmorpher_Patches{
         Log.Message("ITabPawnPsyche_IsVisible_Prefix, originalPawn != null");
         SpeciesSettings settings = SpeciesHelper.GetOrMakeSettingsFromHumanlikeDef(originalPawn.def, true);
         Log.Message("ITabPawnPsyche_IsVisible_Prefix, get/set SpeciesSettings for originalPawn.def = " + originalPawn.def.defName);
-        if (settings.enablePsyche == false)
+        if (settings.enablePsyche != true)
         {
-            Log.Message("ITabPawnPsyche_IsVisible_Prefix, settings.enablePsyche == false");
+            Log.Message("ITabPawnPsyche_IsVisible_Prefix, settings.enablePsyche != true");
             __result = false;
             return false;
         }
+        Log.Message("ITabPawnPsyche_IsVisible_Prefix, settings.enablePsyche == true");
         __result = PsycheHelper.DoesCompExist(originalPawn);
-        Log.Message("ITabPawnPsyche_IsVisible_Prefix, finish");
+        Log.Message("ITabPawnPsyche_IsVisible_Prefix, DoesCompExist = " + __result);
         return false;
     }
 

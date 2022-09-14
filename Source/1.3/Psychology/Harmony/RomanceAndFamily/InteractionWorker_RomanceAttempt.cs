@@ -295,7 +295,7 @@ public static class InteractionWorker_RomanceAttempt_SuccessChancePatch
 }
 
 [HarmonyPatch(typeof(InteractionWorker_RomanceAttempt), nameof(InteractionWorker_RomanceAttempt.Interacted))]
-public static class InteractionWorker_RomanceAttempt_InteractedLearnSexualityPatch
+public static class InteractionWorker_RomanceAttempt_Interacted_Patches
 {
     [HarmonyPriority(Priority.High)]
     [HarmonyPrefix]
@@ -307,11 +307,7 @@ public static class InteractionWorker_RomanceAttempt_InteractedLearnSexualityPat
         }
         return true;
     }
-}
 
-[HarmonyPatch(typeof(InteractionWorker_RomanceAttempt), nameof(InteractionWorker_RomanceAttempt.Interacted))]
-public static class InteractionWorker_RomanceAttempt_InteractedHandleThoughtsPatch
-{
     [HarmonyPostfix]
     public static void HandleNewThoughts(InteractionWorker_RomanceAttempt __instance, Pawn initiator, Pawn recipient, List<RulePackDef> extraSentencePacks, string letterText, string letterLabel, LetterDef letterDef)
     {
@@ -340,6 +336,7 @@ public static class InteractionWorker_RomanceAttempt_InteractedHandleThoughtsPat
             }
         }
     }
+
 }
 
 [HarmonyPatch(typeof(InteractionWorker_RomanceAttempt), "BreakLoverAndFianceRelations")]

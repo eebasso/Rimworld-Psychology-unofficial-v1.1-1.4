@@ -12,7 +12,6 @@ namespace Psychology.Harmony;
 [HarmonyPatch(typeof(InteractionWorker_Breakup), nameof(InteractionWorker_Breakup.Interacted))]
 public static class InteractionWorker_Breakup_Interacted_Patch
 {
-    //[LogPerformance]
     [HarmonyPrefix]
     public static bool NewInteracted(InteractionWorker_Breakup __instance, Pawn initiator, Pawn recipient, List<RulePackDef> extraSentencePacks)
     {

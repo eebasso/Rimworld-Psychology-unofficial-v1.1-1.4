@@ -17,7 +17,7 @@ namespace Psychology.Harmony
     [HarmonyPatch(new Type[] { typeof(Pawn), typeof(Pawn), typeof(string), typeof(string), typeof(bool), typeof(bool) }, new ArgumentType[] { ArgumentType.Normal, ArgumentType.Normal, ArgumentType.Ref, ArgumentType.Ref, ArgumentType.Normal, ArgumentType.Normal })]
     public static class InteractionWorker_RecruitAttempt_DoRecruitPatch
     {
-        //[LogPerformance]
+        
         [HarmonyPrefix]
         public static bool AddCapturedThoughts(Pawn recruiter, Pawn recruitee)
         {

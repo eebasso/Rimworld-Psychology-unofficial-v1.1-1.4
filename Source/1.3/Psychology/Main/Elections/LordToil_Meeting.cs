@@ -25,7 +25,7 @@ namespace Psychology
             }
         }
 
-        //[LogPerformance]
+        
         public override void LordToilTick()
         {
             base.LordToilTick();

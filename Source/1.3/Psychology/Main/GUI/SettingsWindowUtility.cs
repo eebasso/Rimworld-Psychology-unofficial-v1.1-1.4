@@ -159,21 +159,8 @@ namespace Psychology;public static class SettingsWindowUtility{
     }    public static void DrawSettingsWindow(Rect totalRect)    {
         Widgets.EndGroup();
 
-        //Initialize();
-
-        //Log.Message("SettingsWindowUtility.DrawSettingsWindow step 0");
-        //Log.Message("SpeciesHelper.humanlikeDefs.Count() = " + SpeciesHelper.humanlikeDefs.Count());
-        //Widgets.DrawLineHorizontal(totalRect.center.x - 1000f, totalRect.center.y, 2000f);
-        //Widgets.DrawLineVertical(totalRect.center.x, totalRect.center.y - 1000f, 2000f);
-        //GUI.color = Color.blue;
-        //Widgets.DrawLineHorizontal(totalRect.center.x + Window.StandardMargin - 1000f, totalRect.center.y, 2000f);
-        //Widgets.DrawLineVertical(totalRect.center.x + Window.StandardMargin, totalRect.center.y - 1000f, 2000f);
-        //GUI.color = Color.white;
-
         GenUI.SetLabelAlign(TextAnchor.MiddleLeft);        Text.Font = GameFont.Small;        float xMin = Window.StandardMargin;        float yMin = Window.StandardMargin + UpperAreaHeight;
-        //float xMin = Window.StandardMargin;
 
-        //float yMin = Window.StandardMargin;
         Rect titleRect = new Rect(xMin + HighlightPadding, yMin, TitleWidth - HighlightPadding, RowHeight);        Rect entryRect = new Rect(titleRect.xMax, titleRect.y, EntryWidth, titleRect.height);
         entryRect.yMin += HighlightPadding;
         entryRect.yMax -= HighlightPadding;

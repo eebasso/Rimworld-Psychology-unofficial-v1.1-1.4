@@ -16,16 +16,7 @@ public static class Pawn_IdeoTracker_CertaintyChangePerDay_Patch
         {
             return;
         }
-        //Log.Message("CertaintyChangePerDay step 2");
-        int idnumber;
-        float certaintyChange;
-        idnumber = ___pawn.thingIDNumber;
-        if (!Current.Game.GetComponent<PsychologyGameComponent>().CachedCertaintyChangePerDayDict.TryGetValue(idnumber, out certaintyChange))
-        {
-            certaintyChange = PsycheHelper.Comp(___pawn).Psyche.CalculateCertaintyChangePerDay();
-            Current.Game.GetComponent<PsychologyGameComponent>().CachedCertaintyChangePerDayDict.Add(idnumber, certaintyChange);
-        }
-        __result += certaintyChange;
+        __result += Current.Game.GetComponent<PsychologyGameComponent>().CertaintyChange(___pawn);
     }
 }
 

@@ -15,20 +15,19 @@ public static class TraitSet_GainTrait_Patch
     [HarmonyPostfix]
     public static void GainTrait_AdjustedRatingsPostfix(Trait trait, Pawn ___pawn)
     {
-        Pawn pawn = ___pawn;
         if (!PsycheHelper.TraitDefNamesThatAffectPsyche.Contains(trait.def.defName))
         {
             return;
         }
-        if (PsycheHelper.TryGetPawnSeed(pawn) != true)
+        if (PsycheHelper.TryGetPawnSeed(___pawn) != true)
         {
             return;
         }
-        if (PsycheHelper.PsychologyEnabled(pawn) != true)
+        if (PsycheHelper.PsychologyEnabled(___pawn) != true)
         {
             return;
         }
-        PsycheHelper.Comp(pawn).Psyche.CalculateAdjustedRatings();
+        PsycheHelper.Comp(___pawn).Psyche.CalculateAdjustedRatings();
     }
 }
 
@@ -36,105 +35,166 @@ public class TraitSet_ManualPatches
 {
     public static bool GainTrait_KinseyEnabledPrefix(Trait trait, Pawn ___pawn)
     {
-        //Pawn pawn = Traverse.Create(__instance).Field("pawn").GetValue<Pawn>();
-        Pawn pawn = ___pawn;
-        if (PsycheHelper.TryGetPawnSeed(pawn) != true)
+        int num = 0;
+        if (trait.def == TraitDefOfPsychology.Codependent)
+        {
+            num = 1;
+        }
+        else if (trait.def == TraitDefOfPsychology.Lecher)
+        {
+            num = 2;
+        }
+        else if (trait.def == TraitDefOf.Asexual)
+        {
+            Log.Warning("GainTrait_KinseyEnabledPrefix was used for TraitDefOf.Asexual = " + ___pawn.Label);
+            num = 3;
+        }
+        else if (trait.def == TraitDefOf.Bisexual)
+        {
+            Log.Warning("GainTrait_KinseyEnabledPrefix was used for TraitDefOf.Bisexual for pawn = " + ___pawn.Label);
+            num = 4;
+        }
+        else if (trait.def == TraitDefOf.Gay)
+        {
+            Log.Warning("GainTrait_KinseyEnabledPrefix was used for TraitDefOf.Gay for pawn = " + ___pawn.Label);
+            num = 5;
+        }
+        else
         {
             return true;
         }
-        if (PsycheHelper.PsychologyEnabled(pawn) != true)
+        if (PsycheHelper.TryGetPawnSeed(___pawn) != true)
         {
+            return false;
+        }
+        if (PsycheHelper.PsychologyEnabled(___pawn) != true)
+        {
+            return false;
+        }
+        if (num == 1)
+        {
+            PsycheHelper.Comp(___pawn).Sexuality.romanticDrive = Mathf.Max(0.5f, PsycheHelper.Comp(___pawn).Sexuality.romanticDrive);
             return true;
         }
-        Pawn_SexualityTracker ps = PsycheHelper.Comp(pawn).Sexuality;
-        if (trait.def == TraitDefOf.Asexual)
+        if (num == 2)
         {
-            ps.sexDrive = 0.10f * Rand.ValueSeeded(11 * PsycheHelper.PawnSeed(pawn) + 8);
+            PsycheHelper.Comp(___pawn).Sexuality.sexDrive = Mathf.Max(0.5f, PsycheHelper.Comp(___pawn).Sexuality.sexDrive);
+            return true;
+        }
+        if (num == 3)
+        {
+            PsycheHelper.Comp(___pawn).Sexuality.AsexualReroll();
             return false;
         }
-        if (trait.def == TraitDefOf.Bisexual)
+        if (num == 4)
         {
-            ps.GenerateKinsey(0f, 0.1f, 1f, 2f, 1f, 0.1f, 0f);
-            PsycheHelper.Comp(pawn).Psyche.CalculateAdjustedRatings();
+            PsycheHelper.Comp(___pawn).Sexuality.BisexualReroll();
             return false;
         }
-        if (trait.def == TraitDefOf.Gay)
+        if (num == 5)
         {
-            ps.GenerateKinsey(0f, 0.02f, 0.04f, 0.06f, 0.08f, 1f, 2f);
-            PsycheHelper.Comp(pawn).Psyche.CalculateAdjustedRatings();
+            PsycheHelper.Comp(___pawn).Sexuality.GayReroll();
             return false;
         }
-        if (ps.romanticDrive < 0.5f && trait.def == TraitDefOfPsychology.Codependent)
-        {
-            return false;
-        }
-        if (ps.sexDrive < 0.5f && trait.def == TraitDefOfPsychology.Lecher)
-        {
-            return false;
-        }
+        Log.Error("GainTrait_KinseyEnabledPrefix, impossible condition reached for pawn = " + ___pawn.Label);
         return true;
     }
 
     public static void HasTrait_KinseyEnabledPostfix(TraitDef tDef, Pawn ___pawn, ref bool __result)
     {
-        Pawn pawn = ___pawn;
-        
-        if (PsycheHelper.TryGetPawnSeed(pawn) != true)
-        {
-            return;
-        }
-        if (PsycheHelper.PsychologyEnabled(pawn) != true)
-        {
-            return;
-        }
-        if (tDef == TraitDefOf.Gay)
-        {
-            Log.Warning("HasTrait_KinseyEnabledPostfix was used for TraitDefOf.Gay for pawn = " + pawn.Label);
-            __result = PsycheHelper.Comp(pawn).Sexuality.kinseyRating != 0;
-            return;
-        }
-        if (tDef == TraitDefOf.Bisexual)
-        {
-            Log.Warning("HasTrait_KinseyEnabledPostfix was used for TraitDefOf.Bisexual for pawn = " + pawn.Label);
-            __result = PsycheHelper.Comp(pawn).Sexuality.kinseyRating != 0 && PsycheHelper.Comp(pawn).Sexuality.kinseyRating != 6;
-            return;
-        }
+        int num = 0;
         if (tDef == TraitDefOf.Asexual)
         {
-            Log.Warning("HasTrait_KinseyEnabledPostfix was used for TraitDefOf.Asexual = " + pawn.Label);
-            __result = PsycheHelper.Comp(pawn).Sexuality.sexDrive < 0.1f;
+            Log.Warning("HasTrait_KinseyEnabledPostfix was used for TraitDefOf.Asexual for pawn = " + ___pawn.Label);
+            num = 1;
+        }
+        else if (tDef == TraitDefOf.Bisexual)
+        {
+            Log.Warning("HasTrait_KinseyEnabledPostfix was used for TraitDefOf.Bisexual for pawn = " + ___pawn.Label);
+            num = 2;
+        }
+        else if (tDef == TraitDefOf.Gay)
+        {
+            Log.Warning("HasTrait_KinseyEnabledPostfix was used for TraitDefOf.Gay for pawn = " + ___pawn.Label);
+            num = 3;
+        }
+        else
+        {
             return;
         }
+        if (PsycheHelper.TryGetPawnSeed(___pawn) != true)
+        {
+            return;
+        }
+        if (PsycheHelper.PsychologyEnabled(___pawn) != true)
+        {
+            return;
+        }
+        if (num == 1)
+        {
+            __result = PsycheHelper.Comp(___pawn).Sexuality.sexDrive < 0.1f;
+            return;
+        }
+        if (num == 2)
+        {
+            __result = PsycheHelper.Comp(___pawn).Sexuality.kinseyRating != 0 && PsycheHelper.Comp(___pawn).Sexuality.kinseyRating != 6;
+            return;
+        }
+        if (num == 3)
+        {
+            __result = PsycheHelper.Comp(___pawn).Sexuality.kinseyRating != 0;
+            return;
+        }
+        Log.Error("HasTrait_KinseyEnabledPostfix, impossible condition reached");
     }
 
     public static void HasTrait_KinseyEnabledPostfix2(TraitDef tDef, int degree, Pawn ___pawn, ref bool __result)
     {
-        Pawn pawn = ___pawn;
-        if (PsycheHelper.TryGetPawnSeed(pawn) != true)
-        {
-            return;
-        }
-        if (PsycheHelper.PsychologyEnabled(pawn) != true)
-        {
-            return;
-        }
-        if (tDef == TraitDefOf.Gay)
-        {
-            __result = PsycheHelper.Comp(pawn).Sexuality.kinseyRating != 0;
-            return;
-        }
-        if (tDef == TraitDefOf.Bisexual)
-        {
-            __result = PsycheHelper.Comp(pawn).Sexuality.kinseyRating != 0 && PsycheHelper.Comp(pawn).Sexuality.kinseyRating != 6;
-            return;
-        }
+        int num = 0;
         if (tDef == TraitDefOf.Asexual)
         {
-            __result = PsycheHelper.Comp(pawn).Sexuality.sexDrive < 0.1f;
+            Log.Warning("HasTrait_KinseyEnabledPostfix was used for TraitDefOf.Asexual for pawn = " + ___pawn.Label);
+            num = 1;
+        }
+        else if (tDef == TraitDefOf.Bisexual)
+        {
+            Log.Warning("HasTrait_KinseyEnabledPostfix was used for TraitDefOf.Bisexual for pawn = " + ___pawn.Label);
+            num = 2;
+        }
+        else if (tDef == TraitDefOf.Gay)
+        {
+            Log.Warning("HasTrait_KinseyEnabledPostfix was used for TraitDefOf.Gay for pawn = " + ___pawn.Label);
+            num = 3;
+        }
+        else
+        {
             return;
         }
+        if (PsycheHelper.TryGetPawnSeed(___pawn) != true)
+        {
+            return;
+        }
+        if (PsycheHelper.PsychologyEnabled(___pawn) != true)
+        {
+            return;
+        }
+        if (num == 1)
+        {
+            __result = PsycheHelper.Comp(___pawn).Sexuality.sexDrive < 0.1f;
+            return;
+        }
+        if (num == 2)
+        {
+            __result = PsycheHelper.Comp(___pawn).Sexuality.kinseyRating != 0 && PsycheHelper.Comp(___pawn).Sexuality.kinseyRating != 6;
+            return;
+        }
+        if (num == 3)
+        {
+            __result = PsycheHelper.Comp(___pawn).Sexuality.kinseyRating != 0;
+            return;
+        }
+        Log.Error("HasTrait_KinseyEnabledPostfix, impossible condition reached");
     }
-
 }
 
 
