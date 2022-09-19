@@ -17,8 +17,8 @@ public static class LovePartnerRelationUtility_GenerationChancePatch
     public static bool LovePartnerRelationGenerationChance(ref float __result, Pawn generated, Pawn other, PawnGenerationRequest request, bool ex)
     {
         //Log.Message("LovePartnerRelationGenerationChance, step 0");
-        SpeciesSettings generatedSettings = SpeciesHelper.GetOrMakeSettingsFromHumanlikeDef(generated.def);
-        SpeciesSettings otherSettings = SpeciesHelper.GetOrMakeSettingsFromHumanlikeDef(other.def);
+        SpeciesSettings generatedSettings = SpeciesHelper.GetOrMakeSpeciesSettingsFromThingDef(generated.def);
+        SpeciesSettings otherSettings = SpeciesHelper.GetOrMakeSpeciesSettingsFromThingDef(other.def);
 
         float bioAge1 = generated.ageTracker.AgeBiologicalYearsFloat;
         float bioAge2 = other.ageTracker.AgeBiologicalYearsFloat;

@@ -16,26 +16,6 @@ public class CompPsychology : ThingComp
     private bool beenBuried = false;
     private int tickSinceLastSeenLover;
 
-    public override void PostExposeData()
-    {
-        base.PostExposeData();
-        Scribe_Deep.Look(ref this.sexuality, "sexuality", new object[]
-        {
-            this.parent as Pawn
-        });
-        Scribe_Deep.Look(ref this.psyche, "psyche", new object[]
-        {
-            this.parent as Pawn
-        });
-        /*Scribe_Deep.Look(ref this.recruiting, "recruiting", new object[]
-        {
-            this.parent as Pawn
-        });*/
-        Scribe_Values.Look(ref this.beenBuried, "beenBuried");
-        Scribe_Values.Look(ref this.tickSinceLastSeenLover, "tickSinceLastSeenLover", Find.TickManager.TicksAbs);
-        //Scribe_Values.Look(ref this.tickSinceLastSeenLover, "tickSinceLastSeenLover", GenTicks.TicksAbs);
-    }
-
     public Pawn_SexualityTracker Sexuality
     {
         get
@@ -118,5 +98,23 @@ public class CompPsychology : ThingComp
         }
     }
 
+    public override void PostExposeData()
+    {
+        base.PostExposeData();
+        Scribe_Deep.Look(ref this.sexuality, "sexuality", new object[]
+        {
+            this.parent as Pawn
+        });
+        Scribe_Deep.Look(ref this.psyche, "psyche", new object[]
+        {
+            this.parent as Pawn
+        });
+        /*Scribe_Deep.Look(ref this.recruiting, "recruiting", new object[]
+        {
+            this.parent as Pawn
+        });*/
+        Scribe_Values.Look(ref this.beenBuried, "beenBuried");
+        Scribe_Values.Look(ref this.tickSinceLastSeenLover, "tickSinceLastSeenLover", Find.TickManager.TicksAbs);
+    }
 
 }

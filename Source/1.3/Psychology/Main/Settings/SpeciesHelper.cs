@@ -58,65 +58,81 @@ public class SpeciesHelper
         foreach (ThingDef t in humanlikeDefsEnumerable)
         {
             defName = t.defName;
-            //Log.Message("SpeciesHelper.Initialize, add Comps for defName = " + defName);
-            AddCompsToHumanlikeDef(t, false);
-            //registered.Add(defName);
-            //Log.Message("SpeciesHelper.Initialize, check speciesDict for defName = " + defName);
             if (!PsychologySettings.speciesDict.ContainsKey(defName))
             {
                 //Log.Message("PsychologySettings.speciesDict.ContainsKey(defName) == false");
                 //PsychologySettings.speciesDict.Add(defName, speciesDictDefault[defName]);
-                PsychologySettings.speciesDict.Add(defName, DefaultSettingsForSpeciesDef(t));
-                //Log.Message("PsychologySettings.speciesDict, added defName = " + defName);
+                PsychologySettings.speciesDict[defName] = DefaultSettingsForSpeciesDef(t);
+                Log.Message("PsychologySettings.speciesDict, added defName = " + defName);
             }
-            else
-            {
-                //Log.Message("PsychologySettings.speciesDict.ContainsKey(defName) == true");
-            }
+            //else
+            //{
+            //    Log.Message("PsychologySettings.speciesDict.ContainsKey(defName) == true");
+            //}
+            //Log.Message("SpeciesHelper.Initialize, add Comps for defName = " + defName);
+            AddCompsToHumanlikeDef(t);
+            //registered.Add(defName);
+            //Log.Message("SpeciesHelper.Initialize, check speciesDict for defName = " + defName);
         }
         SettingsWindowUtility.Initialize();
     }
 
-    public static SpeciesSettings GetOrMakeSettingsFromHumanlikeDef(ThingDef humanlikeDef, bool formerHuman = false)
+    public static SpeciesSettings GetOrMakeSpeciesSettingsFromThingDef(ThingDef pawnDef, bool noDating = false)
     {
-        if (PsychologySettings.speciesDict.TryGetValue(humanlikeDef.defName, out SpeciesSettings settings) != true)
+        //if (humanlikeDef?.race?.intelligence != Intelligence.Humanlike)
+        //{
+        //    return null;
+        //}
+        if (PsychologySettings.speciesDict.TryGetValue(pawnDef.defName, out SpeciesSettings settings) != true)
         {
-            settings = DefaultSettingsForSpeciesDef(humanlikeDef);
-            AddCompsToHumanlikeDef(humanlikeDef);
-            if (formerHuman)
+            settings = DefaultSettingsForSpeciesDef(pawnDef);
+            if (noDating)
             {
                 settings.minDatingAge = -1f;
                 settings.minLovinAge = -1f;
             }
-            PsychologySettings.speciesDict.Add(humanlikeDef.defName, settings);
+            PsychologySettings.speciesDict[pawnDef.defName] = settings;
+            Log.Message("PsychologySettings.speciesDict, added defName = " + pawnDef.defName);
+            AddEverythingExceptCompPsychology(pawnDef);
+            if (pawnDef.race?.intelligence == Intelligence.Humanlike)
+            {
+                AddCompsToHumanlikeDef(pawnDef);
+            }
+            SettingsWindowUtility.Initialize();
         }
         return settings;
     }
 
-    public static void AddCompsToHumanlikeDef(ThingDef humanlikeDef, bool initializeSettingsWindow = true)
+    public static void AddCompsToHumanlikeDef(ThingDef humanlikeDef)
     {
         humanlikeDefs.AddDistinct(humanlikeDef);
-        AddInspectorTabToDefAndCorpseDef(humanlikeDef);
-        if (humanlikeDef.recipes == null)
-        {
-            humanlikeDef.recipes = new List<RecipeDef>(6);
-        }
         if (humanlikeDef.comps == null)
         {
             humanlikeDef.comps = new List<CompProperties>(1);
         }
         humanlikeDef.comps.AddDistinct(new CompProperties_Psychology());
-        //Log.Message("Added CompProperties_Psychology to humanlikeDef = " + humanlikeDef.defName);
-        if (!humanlikeDef.race.hediffGiverSets.NullOrEmpty())
+    }
+
+    public static void AddEverythingExceptCompPsychology(ThingDef pawnDef)
+    {
+        AddInspectorTabToDefAndCorpseDef(pawnDef);
+        if (pawnDef.recipes == null)
         {
-            if (humanlikeDef.race.hediffGiverSets.Contains(DefDatabase<HediffGiverSetDef>.GetNamed("OrganicStandard")))
-            {
-                humanlikeDef.race.hediffGiverSets.AddDistinct(DefDatabase<HediffGiverSetDef>.GetNamed("OrganicPsychology"));
-            }
+            pawnDef.recipes = new List<RecipeDef>(6);
         }
-        if (initializeSettingsWindow)
+        pawnDef.recipes.AddDistinct(RecipeDefOfPsychology.TreatChemicalInterest);
+        pawnDef.recipes.AddDistinct(RecipeDefOfPsychology.TreatChemicalFascination);
+        pawnDef.recipes.AddDistinct(RecipeDefOfPsychology.TreatDepression);
+        pawnDef.recipes.AddDistinct(RecipeDefOfPsychology.TreatInsomnia);
+        pawnDef.recipes.AddDistinct(RecipeDefOfPsychology.CureAnxiety);
+        pawnDef.recipes.AddDistinct(RecipeDefOfPsychology.TreatPyromania);
+
+        if (!pawnDef.race.hediffGiverSets.NullOrEmpty())
         {
-            SettingsWindowUtility.Initialize();
+            if (pawnDef.race.hediffGiverSets.Contains(DefDatabase<HediffGiverSetDef>.GetNamed("OrganicStandard")))
+            {
+                pawnDef.race.hediffGiverSets.AddDistinct(DefDatabase<HediffGiverSetDef>.GetNamed("OrganicPsychology"));
+            }
         }
     }
 

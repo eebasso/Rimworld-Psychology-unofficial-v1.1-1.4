@@ -327,16 +327,36 @@ public class Hediff_Conversation : HediffWithComps
          * This helps declutter the Social card without preventing pawns from having conversations.
          * They just won't change their mind about the colonist as a result.
          */
-        float totalThoughtOpinion = PsycheHelper.Comp(pawn).Psyche.TotalThoughtOpinion(this.otherPawn, out convoMemories);
-        int numOfConvosWithBiggerImpact = convoMemories.Count(m => Mathf.Abs(m.opinionOffset) > Mathf.Abs(opinionOffset));
 
-        //if (Rand.Value < Mathf.InverseLerp(0f, PsycheHelper.Comp(pawn).Psyche.TotalThoughtOpinion(this.otherPawn, out convoMemories), 250f + Mathf.Abs(opinionOffset)) && opinionOffset != 0)
-        if (numOfConvosWithBiggerImpact < 10)
+        float totalThoughtOpinion = PsycheHelper.Comp(pawn).Psyche.TotalThoughtOpinion(this.otherPawn, out convoMemories);
+        int maxConvoOpinions = 10;
+        
+        if (convoMemories.EnumerableCount() < maxConvoOpinions)
         {
             this.pawn.needs.mood.thoughts.memories.TryGainMemory(def, this.otherPawn);
             return true;
         }
-        return false;
+        convoMemories.OrderByDescending(m => Mathf.Abs(m.OpinionOffset()));
+        IEnumerable<Thought_MemorySocialDynamic> keptMemories = convoMemories.Take(maxConvoOpinions);
+        IEnumerable<Thought_MemorySocialDynamic> removedMemories = convoMemories.Except(keptMemories);
+        Thought_MemorySocialDynamic lastMemory = keptMemories.Last();
+
+        bool flag = Mathf.Abs(opinionOffset) >= Mathf.Abs(lastMemory.OpinionOffset());
+        if (flag == true)
+        {
+            removedMemories.AddItem(lastMemory);
+        }
+        foreach (Thought_MemorySocialDynamic m in removedMemories)
+        {
+            // Remove these memories by making them old
+            m.age = m.DurationTicks + 300;
+        }
+        if (flag == false)
+        {
+            return false;
+        }
+        this.pawn.needs.mood.thoughts.memories.TryGainMemory(def, this.otherPawn);
+        return true;
     }
 
     public float PopulationModifier

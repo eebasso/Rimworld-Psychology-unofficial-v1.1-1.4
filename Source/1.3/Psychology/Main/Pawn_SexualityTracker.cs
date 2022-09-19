@@ -21,7 +21,6 @@ public class Pawn_SexualityTracker : IExposable
     public Pawn_SexualityTracker(Pawn pawn)
     {
         this.pawn = pawn;
-        //GenerateSexuality();
     }
 
     public virtual bool IncompatibleSexualityKnown(Pawn recipient)
@@ -324,6 +323,28 @@ public class Pawn_SexualityTracker : IExposable
     {
         GenerateKinsey(0f, 0.01f, 0.02f, 0.03f, 0.04f, 1f, 2f);
         PsycheHelper.Comp(pawn).Psyche.CalculateAdjustedRatings();
+    }
+
+    public void DeepCopyFromOtherTracker(Pawn_SexualityTracker otherTracker)
+    {
+        this.kinseyRating = otherTracker.kinseyRating;
+        this.sexDrive = otherTracker.sexDrive;
+        this.romanticDrive = otherTracker.romanticDrive;
+        this.knownSexualitiesWorkingKeys = new List<Pawn>();
+        foreach (Pawn p in otherTracker.knownSexualitiesWorkingKeys)
+        {
+            this.knownSexualitiesWorkingKeys.Add(p);
+        }
+        this.knownSexualitiesWorkingValues = new List<int>();
+        foreach (int i in otherTracker.knownSexualitiesWorkingValues)
+        {
+            this.knownSexualitiesWorkingValues.Add(i);
+        }
+        this.knownSexualities = new Dictionary<Pawn, int>();
+        foreach (KeyValuePair<Pawn, int> kvp in otherTracker.knownSexualities)
+        {
+            this.knownSexualities.Add(kvp.Key, kvp.Value);
+        }
     }
 }
 

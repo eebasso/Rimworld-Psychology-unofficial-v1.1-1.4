@@ -21,11 +21,11 @@ public static class HarmonyInitialize
         {
             ManualPatches.KinseyEnabledPatches(harmonyInstance);
         }
-        if (ModsConfig.IdeologyActive)
-        {
-            ManualPatches.IdeoPatches(harmonyInstance);
-            Log.Message("Psychology: implemented all ideology patches");
-        }
+        //if (ModsConfig.IdeologyActive)
+        //{
+        //    ManualPatches.IdeoPatches(harmonyInstance);
+        //    Log.Message("Psychology: implemented all ideology patches");
+        //}
         Log.Message("Psychology: implemented all vanilla patches");
     }
 }
@@ -50,12 +50,12 @@ public class ManualPatches
         harmonyInstance.Patch(originalInfo, postfix: harmonyMethod);
     }
 
-    public static void IdeoPatches(HarmonyLib.Harmony harmonyInstance)
-    {
-        //originalInfo = AccessTools.Method(typeof(PawnGenerator), nameof(PawnGenerator.GeneratePawn), new Type[] { typeof(PawnGenerationRequest) });
-        //harmonyMethod = new HarmonyMethod(typeof(PawnGenerator_ManualPatches), nameof(PawnGenerator_ManualPatches.GeneratePawn_IdeoCache_Postfix));
-        //harmonyInstance.Patch(originalInfo, postfix: harmonyMethod);
-    }
+    //public static void IdeoPatches(HarmonyLib.Harmony harmonyInstance)
+    //{
+    //    //originalInfo = AccessTools.Method(typeof(PawnGenerator), nameof(PawnGenerator.GeneratePawn), new Type[] { typeof(PawnGenerationRequest) });
+    //    //harmonyMethod = new HarmonyMethod(typeof(PawnGenerator_ManualPatches), nameof(PawnGenerator_ManualPatches.GeneratePawn_IdeoCache_Postfix));
+    //    //harmonyInstance.Patch(originalInfo, postfix: harmonyMethod);
+    //}
 }
 
 

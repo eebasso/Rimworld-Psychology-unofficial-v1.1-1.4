@@ -6,13 +6,12 @@ using RimWorld;
 using Verse;
 using Verse.AI;
 
-namespace Psychology
+namespace Psychology;
+
+public class CompProperties_Psychology : CompProperties
 {
-    public class CompProperties_Psychology : CompProperties
+    public CompProperties_Psychology()
     {
-        public CompProperties_Psychology()
-        {
-            this.compClass = typeof(CompPsychology);
-        }
+        this.compClass = typeof(CompPsychology);
     }
 }

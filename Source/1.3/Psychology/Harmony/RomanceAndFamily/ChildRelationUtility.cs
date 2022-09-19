@@ -43,7 +43,7 @@ public static class ChildRelationUtility_GetParentAgeFactor_Patch
     [HarmonyPrefix]
     public static bool GetParentAgeFactor(ref float __result, Pawn parent, Pawn child, ref float minAgeToHaveChildren, ref float usualAgeToHaveChildren, ref float maxAgeToHaveChildren)
     {
-        SpeciesSettings settings = SpeciesHelper.GetOrMakeSettingsFromHumanlikeDef(parent.def);
+        SpeciesSettings settings = SpeciesHelper.GetOrMakeSpeciesSettingsFromThingDef(parent.def);
         float minLovinAge = settings.minLovinAge;
         if (!settings.enablePsyche || !parent.ageTracker.CurLifeStage.reproductive || minLovinAge < 0f)
         {

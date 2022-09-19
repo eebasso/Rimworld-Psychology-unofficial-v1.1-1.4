@@ -18,11 +18,11 @@ public static class ConversionUtility_ConversionPowerFactor_MemesVsTraits_Patch
     public static void ConversionPowerFactor_MemesVsTraits(ref float __result, Pawn initiator, Pawn recipient, StringBuilder sb)
     {
         Log.Message("Begin ConversionPowerFactor_MemesVsTraits");
-        float reciWithInitIdeo = 0.05f * PsycheHelper.Comp(recipient).Psyche.CompatibilityWithIdeo(initiator.Ideo);
-        float reciWithReciIdeo = 0.05f * PsycheHelper.Comp(recipient).Psyche.CompatibilityWithIdeo(recipient.Ideo);
-        float initWithInitIdeo = 0.025f * PsycheHelper.Comp(initiator).Psyche.CompatibilityWithIdeo(initiator.Ideo);
-        float initWithReciIdeo = 0.025f * PsycheHelper.Comp(initiator).Psyche.CompatibilityWithIdeo(recipient.Ideo);
-        float additiveFactor = reciWithInitIdeo - reciWithReciIdeo + initWithInitIdeo - initWithReciIdeo;
+        float initWithInitIdeo = 15f * PsycheHelper.Comp(initiator).Psyche.CompatibilityWithIdeo(initiator.Ideo);
+        float initWithReciIdeo = 15f * PsycheHelper.Comp(initiator).Psyche.CompatibilityWithIdeo(recipient.Ideo);
+        float reciWithInitIdeo = 30f * PsycheHelper.Comp(recipient).Psyche.CompatibilityWithIdeo(initiator.Ideo);
+        float reciWithReciIdeo = 30f * PsycheHelper.Comp(recipient).Psyche.CompatibilityWithIdeo(recipient.Ideo);
+        float additiveFactor =  initWithInitIdeo - initWithReciIdeo + reciWithInitIdeo - reciWithReciIdeo;
         float multiplicativeFactor = additiveFactor > 0f ? 1f + additiveFactor : 1f / (1f - additiveFactor);
         __result *= multiplicativeFactor;
         if (sb == null)

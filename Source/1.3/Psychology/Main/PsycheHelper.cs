@@ -23,64 +23,72 @@ public static class PsycheHelper
 
     public static HashSet<string> TraitDefNamesThatAffectPsyche = new HashSet<string>();
     //public static HashSet<string> SkillDefNamesThatAffectPsyche = new HashSet<string>();
-    public static SpeciesSettings settings = new SpeciesSettings();
     public static int seed;
+    public const float baseIdeoCompatScale = 0.0015f;
 
     // Things in play for PsychologyEnabled:
-    // - settings.enablePsyche
-    // - DoesCompExist
     // - pawn == null
-    // - pawn == humanlike
+    // - comp == null
+    // - comp.IsPsychologyPawn
+    // - settings.enablePsyche
+    // - IsSapient(pawn)
+
+    // Things in play for IsVisible:
+    // - pawn == null
+    // - comp == null
+    // - comp.IsPsychologyPawn
+    // - settings.enablePsyche
 
     public static bool PsychologyEnabled(Pawn pawn)
+    {
+        if (HasLatentPsyche(pawn) != true)
+        {
+            return false;
+        }
+        if (IsSapient(pawn) != true)
+        {
+            Log.Message("PsychologyEnabled, IsSapient != true, pawn = " + pawn.Label + ", species label = " + pawn.def.label);
+            return false;
+        }
+        return true;
+    }
+
+    public static bool HasLatentPsyche(Pawn pawn)
     {
         if (pawn == null)
         {
             Log.Message("PsychologyEnabled, pawn == null");
             return false;
         }
-        if (IsHumanlike(pawn) != true)
-        {
-            Log.Message("PsychologyEnabled, IsHumanlike(pawn) != true");
-            return false;
-        }
-        //Log.Message("PsychologyEnabled, pawn.def.defName = " + pawn.def.defName + ", pawn = " + pawn.Label);
-        settings = SpeciesHelper.GetOrMakeSettingsFromHumanlikeDef(pawn.def, true);
-        if (settings.enablePsyche != true)
-        {
-            Log.Message("PsychologyEnabled, settings.enablePsyche != true");
-            return false;
-        }
-        //Log.Message("PsychologyEnabled, settings.enablePsyche = true");
-        return DoesCompExist(pawn);
-    }
+        //Log.Message("PsychologyEnabled, pawn != null");
 
-    public static bool IsHumanlike(Pawn pawn)
-    {
-        return pawn.def?.race?.intelligence >= Intelligence.Humanlike;
-    }
-
-    //public static bool IsSapient(Pawn pawn)
-    //{
-    //    return true;
-    //}
-
-    public static bool DoesCompExist(Pawn pawn)
-    {
         CompPsychology comp = Comp(pawn);
         if (comp == null)
         {
             Log.Message("PsychologyEnabled, Comp(pawn) == null, pawn = " + pawn.Label + ", species label = " + pawn.def.label);
             return false;
         }
-        //Log.Message("Comp(pawn) != null");
-        if (comp.IsPsychologyPawn != true)
+        //Log.Message("PsychologyEnabled, Comp(pawn) != null");
+
+        SpeciesSettings settings = SpeciesHelper.GetOrMakeSpeciesSettingsFromThingDef(pawn.def, true);
+        if (settings.enablePsyche != true)
         {
-            Log.Message("PsychologyEnabled, IsPsychologyPawn = false, pawn = " + pawn.Label);
+            Log.Message("PsychologyEnabled, settings.enablePsyche != true, " + pawn.Label + ", species label = " + pawn.def.label);
             return false;
         }
-        //Log.Message("PsychologyEnabled, IsPsychologyPawn = true, pawn = " + pawn.Label);
+        //Log.Message("PsychologyEnabled, settings.enablePsyche == true");
+
+        if (comp.IsPsychologyPawn != true)
+        {
+            Log.Message("PsychologyEnabled, IsPsychologyPawn != true, pawn = " + pawn.Label + ", species label = " + pawn.def.label);
+            return false;
+        }
         return true;
+    }
+
+    public static bool IsSapient(Pawn pawn)
+    {
+        return pawn.def?.race?.intelligence >= Intelligence.Humanlike;
     }
 
     public static CompPsychology Comp(Pawn pawn)
@@ -253,7 +261,7 @@ public static class PsycheHelper
             Log.Warning("Removing Gay trait from pawn = " + pawn.Label);
             Comp(pawn).Sexuality.GayReroll();
         }
-        
+
     }
 
     //public static void CorrectTraitsForPawnKinseyDisabled(Pawn pawn)
@@ -327,7 +335,7 @@ public static class PsycheHelper
         int birthLastNameSeed;
         try
         {
-            firstNameSeed = (pawn.Name as NameTriple).First.GetHashCode();
+            firstNameSeed = GenText.StableStringHash((pawn.Name as NameTriple).First);
         }
         catch //(Exception ex)
         {
@@ -337,7 +345,7 @@ public static class PsycheHelper
         }
         try
         {
-            childhoodSeed = pawn.story.childhood.identifier.GetHashCode();
+            childhoodSeed = GenText.StableStringHash(pawn.story.childhood.identifier);
         }
         catch //(Exception ex)
         {
@@ -347,13 +355,13 @@ public static class PsycheHelper
         }
         try
         {
-            adulthoodSeed = pawn.story.adulthood.identifier.GetHashCode();
+            adulthoodSeed = GenText.StableStringHash(pawn.story.adulthood.identifier);
         }
         catch
         {
             try
             {
-                adulthoodSeed = pawn.gender.GetHashCode();
+                adulthoodSeed = Mathf.CeilToInt(1e7f * pawn.story.melanin);
             }
             catch //(Exception ex2)
             {
@@ -364,7 +372,7 @@ public static class PsycheHelper
         }
         try
         {
-            birthLastNameSeed = pawn.story.birthLastName.GetHashCode();
+            birthLastNameSeed = GenText.StableStringHash(pawn.story.birthLastName);
         }
         catch //(Exception ex)
         {

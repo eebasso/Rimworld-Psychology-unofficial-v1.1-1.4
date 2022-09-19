@@ -125,7 +125,7 @@ public class PsycheCardUtility
     public const float xMinTightScaling = 0.005f;
     public const float xMaxTightScaling = 0.005f;
     public const float yMinTightScaling = 0.135f;
-    public const float yMaxTightScaling = 0.000f;
+    public const float yMaxTightScaling = 0.005f;
     public static Vector2 calcSizeScalingVector = new Vector2(1.035f, 1.025f);
 
     public static readonly string[] CreativeLetters = { "C", "r", "e", "a", "t", "i", "v", "e" };
@@ -258,7 +258,6 @@ public class PsycheCardUtility
     //    return PsycheRect;
     //}
 
-    
     public static void DrawPsycheCard(Rect totalRect, Pawn pawn, bool OnWindow = true, bool ShowNumbers = false)
     {
         HasCachedChanged(pawn);
@@ -525,33 +524,32 @@ public class PsycheCardUtility
             PersonalityTraitList(personalityRect, pawn);
         }
 
+        Log.Message("Checking PsychologyEnabled for pawn = " + pawn.Label);
         if (PsycheHelper.PsychologyEnabled(pawn) != true)
         {
             Widgets.DrawHighlight(totalRect);
             Text.Anchor = TextAnchor.MiddleCenter;
             Text.Font = GameFont.Medium;
+            GUI.color = new Color(1f, 0f, 0f, 0.5f);
             Widgets.Label(totalRect, "PsycheCurrentlyDisabled".Translate());
+            GUI.color = Color.white;
             Text.Font = GameFont.Small;
             Text.Anchor = OldAnchor;
         }
 
         GUI.EndGroup();
 
-
-
         PsychologySettings.displayOption = DistanceFromMiddle;
         PsychologySettings.useColors = UseColorsBool;
         PsychologySettings.listAlphabetical = AlphabeticalBool;
         PsychologySettings.useAntonyms = UseAntonymsBool;
-
-
     }
 
-    public static string ColorizedNodeText(PersonalityNode node, float displacement)
+    public static string ColorizedNodeText(PersonalityNodeDef nodeDef, float displacement)
     {
         bool antoBool = UseAntonymsBool && displacement < 0f;
-        string nodeText = (antoBool ? node.def.antonymLabel : node.def.label).CapitalizeFirst();
-        Color nodeColor = antoBool ? HSVtoColor(node.def.antonymHSV) : HSVtoColor(node.def.nodeHSV);
+        string nodeText = (antoBool ? nodeDef.antonymLabel : nodeDef.label).CapitalizeFirst();
+        Color nodeColor = antoBool ? HSVtoColor(nodeDef.antonymHSV) : HSVtoColor(nodeDef.nodeHSV);
         nodeText = UseColorsBool ? nodeText == "Creative" ? CreativeRainbow : nodeText.Colorize(nodeColor) : nodeText;
         return nodeText;
     }
@@ -590,7 +588,7 @@ public class PsycheCardUtility
             //Log.Message("PersonalityTraitList: Step 2a");
             float displacement = 2f * node.AdjustedRating - 1f;
             //Log.Message("Displacement = " + displacement);
-            string nodeText = ColorizedNodeText(node, displacement);
+            string nodeText = ColorizedNodeText(node.def, displacement);
             float yAxis = UseAntonymsBool ? Mathf.Abs(displacement) : displacement;
             int category = Mathf.RoundToInt(3f + 3f * yAxis * Mathf.Sqrt(Mathf.Abs(yAxis)));
             Log.Message("Category = " + category);
@@ -734,7 +732,7 @@ public class PsycheCardUtility
             //style.fontSize = Mathf.RoundToInt(Mathf.Lerp(35f, 8f, i / 36f));
 
             UseAntonymsBool = true;
-            string personalityText = ColorizedNodeText(node, displacement);
+            string personalityText = ColorizedNodeText(node.def, displacement);
             UseAntonymsBool = UseAntonymsBoolCached;
             style.fontSize = Mathf.RoundToInt(Mathf.Lerp(40f, 10f, Mathf.Pow(i / 36f, 0.75f)));
             Vector2 textSize = Text.CalcSize(personalityText.Colorize(Color.white));

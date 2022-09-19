@@ -3984,7 +3984,7 @@
             </li>
 			<li>
 				<meme>Transhumanist</meme>
-				<modifier>0.5</modifier>
+				<modifier>-0.5</modifier>
             </li>
         </memeCertaintyModifiers>
 		<preceptCertaintyModifiers>
