@@ -91,11 +91,11 @@ public class SocialCardUtility_DrawPawnCertainty
         //Log.Message("AddPersonalityEffectsToTip, pawn.Ideo != null");
         Pawn_PsycheTracker pt = PsycheHelper.Comp(pawn).Psyche;
         //Log.Message("AddPersonalityEffectsToTip, CompatibilityWithIdeo");
-        float totalChange = pt.CalculateCertaintyChangePerDay(true);
+        float changeFromPsyche = PsycheHelper.GameComp.CertaintyChange(pawn, true);
         //Log.Message("AddPersonalityEffectsToTip, add to text");
 
-        string text = "\n\nEffects from personality: " + (totalChange > 0f ? "+" : "") + totalChange.ToStringPercent();
-        foreach (KeyValuePair<MemeDef, Dictionary<PersonalityNodeDef, float>> memeDict in pt.certaintyFromMemesAndNodes)
+        string text = "\n\nEffects from personality: " + (changeFromPsyche > 0f ? "+" : "") + changeFromPsyche.ToStringPercent();
+        foreach (KeyValuePair<MemeDef, Dictionary<PersonalityNodeDef, float>> memeDict in pt.dailyCertaintyFromMemesAndNodes)
         {
             if (pawn.Ideo.HasMeme(memeDict.Key) != true)
             {
@@ -104,13 +104,13 @@ public class SocialCardUtility_DrawPawnCertainty
             text += "\n -  " + memeDict.Key.label.CapitalizeFirst() + ": ";
             TextFromDict(memeDict.Value, pt, ref text);
         }
-        foreach (KeyValuePair<PreceptDef, Dictionary<PersonalityNodeDef, float>> preceptDict in pt.certaintyFromPerceptsAndNodes)
+        foreach (KeyValuePair<PreceptDef, Dictionary<PersonalityNodeDef, float>> preceptDict in pt.dailyCertaintyFromPerceptsAndNodes)
         {
             if (pawn.Ideo.HasPrecept(preceptDict.Key) != true)
             {
                 continue;
             }
-            text += "\n -  " + preceptDict.Key.issue.label.CapitalizeFirst() + ", "+ preceptDict.Key.label + ": ";
+            text += "\n -  " + preceptDict.Key.issue.label.CapitalizeFirst() + ", " + preceptDict.Key.label + ": ";
             TextFromDict(preceptDict.Value, pt, ref text);
         }
         //Log.Message("Colorize text");

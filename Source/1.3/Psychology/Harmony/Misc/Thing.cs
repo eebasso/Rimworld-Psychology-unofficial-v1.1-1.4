@@ -42,3 +42,37 @@ namespace Psychology.Harmony
     }
 }
 */
+
+//using HarmonyLib;
+//using RimWorld;
+//using System.Collections.Generic;
+//using System.Reflection;
+//using System.Reflection.Emit;
+//using Verse;
+
+//[HarmonyPatch(typeof(ITab_Pawn_Log), "FillTab")]
+//public class ITab_Pawn_Log_Patches
+//{
+//    [HarmonyTranspiler]
+//    public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> codes)
+//    {
+//        Log.Message("step 0");
+//        MethodInfo methodSelPawn = AccessTools.PropertyGetter(typeof(ITab), "SelPawn");
+//        Log.Message("step 1");
+//        yield return new CodeInstruction(OpCodes.Ldarg_0);
+//        Log.Message("step 2");
+//        yield return new CodeInstruction(OpCodes.Call, methodSelPawn);
+//        Log.Message("step 3");
+//        yield return CodeInstruction.Call(typeof(ITab_Pawn_Log_Patches), nameof(SomeMethod));
+//        Log.Message("step 4");
+//        foreach (CodeInstruction c in codes)
+//        {
+//            yield return c;
+//        }
+//        Log.Message("step 5");
+//    }
+//    public static void SomeMethod(Pawn pawn)
+//    {
+//        Log.Message("LOL this worked for pawn = " + pawn);
+//    }
+//}

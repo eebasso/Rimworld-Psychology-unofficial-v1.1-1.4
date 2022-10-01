@@ -16,9 +16,21 @@ public class CharacterEditor_Patches
 {
     public static MethodInfo originalInfo;
     public static HarmonyMethod harmonyMethod;
+    //private delegate CharacterEditor.CEditor APIDelegate();
+    //private delegate Pawn PawnDelegate(CharacterEditor.CEditor api);
+    //private static APIDelegate property_API;
+    //private static PawnDelegate property_Pawn;
+
+    public static Type typeCEditor = AccessTools.TypeByName("CharacterEditor.CEditor");
+    public static MethodInfo methodAPI = AccessTools.PropertyGetter(typeCEditor, "API");
+    public static MethodInfo methodPawn = AccessTools.PropertyGetter(typeCEditor, "Pawn");
+    public delegate Pawn CEPawnGetter();
+    public static CEPawnGetter CEditor_API_Pawn;
 
     static CharacterEditor_Patches()
     {
+        CEditor_API_Pawn = CreateCEPawnGetter();
+
         HarmonyLib.Harmony harmonyInstance = new HarmonyLib.Harmony("Community.Psychology.UnofficialUpdate.CEditor");
 
         originalInfo = AccessTools.Method(typeof(CharacterEditor.DialogPsychology), nameof(CharacterEditor.DialogPsychology.DoWindowContents));
@@ -30,11 +42,27 @@ public class CharacterEditor_Patches
         //Log.Message("Psychology: completed compability patches for Character Editor");
     }
 
+    private static CEPawnGetter CreateCEPawnGetter()
+    {
+        //Log.Message("Making CEPawnGetter");
+        DynamicMethod dm = new DynamicMethod($"CEPawnGetter", typeof(Pawn), Array.Empty<Type>(), typeof(CharacterEditor_Patches).Module, true);
+        ILGenerator il = dm.GetILGenerator();
+        il.Emit(OpCodes.Call, methodAPI);
+        il.Emit(OpCodes.Call, methodPawn);
+        il.Emit(OpCodes.Ret);
+        return (CEPawnGetter)dm.CreateDelegate(typeof(CEPawnGetter));
+    }
+
     public static bool DialogPsychology_DoWindowContentsPrefix(Rect inRect)
     {
+        //Log.Message("DialogPsychology_DoWindowContentsPrefix, start");
+        Pawn pawn = CEditor_API_Pawn();
+        //Log.Message("Got past CEditor_get_Pawn()");
+        //Log.Message(pawn == null ? "Pawn is null" : "Pawn = " + pawn);
+
         Rect oldRect = inRect;
         GUI.EndGroup();
-        Pawn pawn = CharacterEditor.CEditor.API.Pawn;
+
         if (PsycheHelper.TryGetPawnSeed(pawn) != true)
         {
             return false;
@@ -149,3 +177,38 @@ public class CharacterEditor_Patches
     //}
 }
 
+//[StaticConstructorOnStartup]
+//public class ITab_Pawn_Visitor_Patches
+//{
+//    public static Type typeITab = AccessTools.TypeByName("ITab_Pawn_Visitor");
+//    public static MethodInfo methodSelPawn = AccessTools.PropertyGetter(typeITab, "SelPawn");
+//    public delegate Pawn SelPawnGetter();
+//    public static SelPawnGetter ITab_SelPawn;
+
+//    static ITab_Pawn_Visitor_Patches()
+//    {
+//        ITab_SelPawn = CreateCEPawnGetter();
+//        HarmonyLib.Harmony harmonyInstance = new HarmonyLib.Harmony("SomeModIDHere");
+//        MethodInfo originalInfo = AccessTools.Method(typeof(ITab_Pawn_Visitor), "FillTab");
+//        HarmonyMethod harmonyMethod = new HarmonyMethod(typeof(ITab_Pawn_Visitor_Patches), nameof(PatchMethod));
+//        harmonyInstance.Patch(originalInfo, prefix: harmonyMethod);
+//    }
+
+//    private static SelPawnGetter CreateCEPawnGetter()
+//    {
+//        DynamicMethod dm = new DynamicMethod($"CEPawnGetter", typeof(Pawn), new Type[] { typeof(ITab_Pawn_Visitor) }, typeof(ITab_Pawn_Visitor_Patches).Module, true);
+//        ILGenerator il = dm.GetILGenerator();
+//        il.Emit(OpCodes.Call, methodSelPawn);
+//        il.Emit(OpCodes.Ret);
+//        return (SelPawnGetter)dm.CreateDelegate(typeof(SelPawnGetter));
+//    }
+
+//    public static void PatchMethod()
+//    {
+//        Pawn pawn = ITab_SelPawn();
+
+//        MethodInfo methodSelPawn = AccessTools.PropertyGetter(typeof(ITab), "SelPawn");
+
+
+//    }
+//}

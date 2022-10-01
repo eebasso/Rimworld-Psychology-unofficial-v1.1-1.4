@@ -8,6 +8,7 @@ public class ThoughtWorker_RandomMoodBipolar : ThoughtWorker
 {
     protected override ThoughtState CurrentStateInternal(Pawn p)
     {
+        // ToDo: add treatment for bipolar / unstable
         switch ((p.GetHashCode() ^ (GenLocalDate.DayOfYear(p) + GenLocalDate.Year(p) + (int)(GenLocalDate.DayPercent(p) * 10) * 60) * 391) % 12)
         {
             case 0:

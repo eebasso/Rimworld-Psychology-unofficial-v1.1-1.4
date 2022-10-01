@@ -51,17 +51,6 @@ public class Hediff_Conversation : HediffWithComps
             this.pawn.health.RemoveHediff(this);
             return;
         }
-        if (this.pawn.Map != null && this.otherPawn.Map != null && ((this.pawn.Position - this.otherPawn.Position).LengthHorizontalSquared >= 54f || !GenSight.LineOfSight(this.pawn.Position, this.otherPawn.Position, this.pawn.Map, true)))
-        {
-            this.pawn.health.RemoveHediff(this);
-            return;
-        }
-        if ((this.pawn.Position - this.otherPawn.Position).LengthHorizontalSquared >= 54f || !GenSight.LineOfSight(this.pawn.Position, this.otherPawn.Position, this.pawn.Map, true))
-        {
-            this.pawn.health.RemoveHediff(this);
-            return;
-        }
-
         if (this.otherPawn.Dead || this.otherPawn.Downed || this.otherPawn.InAggroMentalState)
         {
             this.pawn.health.RemoveHediff(this);
@@ -69,6 +58,16 @@ public class Hediff_Conversation : HediffWithComps
         }
         if (this.pawn.IsHashIntervalTick(200))
         {
+            if (this.pawn.Map != null && this.otherPawn.Map != null && ((this.pawn.Position - this.otherPawn.Position).LengthHorizontalSquared >= 54f || !GenSight.LineOfSight(this.pawn.Position, this.otherPawn.Position, this.pawn.Map, true)))
+            {
+                this.pawn.health.RemoveHediff(this);
+                return;
+            }
+            if ((this.pawn.Position - this.otherPawn.Position).LengthHorizontalSquared >= 54f || !GenSight.LineOfSight(this.pawn.Position, this.otherPawn.Position, this.pawn.Map, true))
+            {
+                this.pawn.health.RemoveHediff(this);
+                return;
+            }
             /* When a conversation first starts, the mean time for it to last is 3 hours.
              * When it reaches half an hour, the mean time for it to continue is 2 hours.
              * When it reaches an hour, the mean time for it to continue is 1 hour.
@@ -216,33 +215,28 @@ public class Hediff_Conversation : HediffWithComps
         float opinionModRaw = PsycheHelper.SaddleShapeFunction(opin1, opin2, 1f - 0.5f * controversiality, 4f * controversiality * controversiality);
         //Log.Message(pawn.LabelShort + " and " + otherPawn.LabelShort + " opinionModRaw = " + opinionModRaw.ToString());
 
-        
-        // Initialize opinionMultiplier, which can be positive or negative. Represents % increase or decrease in opinionMod
-        float opinionMultiplier = 0f;
-        
-
         Pawn_PsycheTracker pawnPT = PsycheHelper.Comp(pawn).Psyche;
-        Pawn_PsycheTracker otherPawnPT = PsycheHelper.Comp(otherPawn).Psyche;
         float pawnJudgmental = -0.5f + pawnPT.GetPersonalityRating(PersonalityNodeDefOf.Judgmental);
         float pawnFriendly = -0.5f + pawnPT.GetPersonalityRating(PersonalityNodeDefOf.Friendly);
         float pawnTrusting = -0.5f + pawnPT.GetPersonalityRating(PersonalityNodeDefOf.Trusting);
         float pawnAggressive = -0.5f + pawnPT.GetPersonalityRating(PersonalityNodeDefOf.Aggressive);
 
+        Pawn_PsycheTracker otherPawnPT = PsycheHelper.Comp(otherPawn).Psyche;
         float otherPawnPassionate = -0.5f + otherPawnPT.GetPersonalityRating(PersonalityNodeDefOf.Passionate);
-        float otherPawnOutspoken = -0.5f + otherPawnPT.GetPersonalityRating(PersonalityNodeDefOf.Outspoken);
         float otherPawnFriendly = -0.5f + otherPawnPT.GetPersonalityRating(PersonalityNodeDefOf.Friendly);
         float otherPawnCool = -0.5f + otherPawnPT.GetPersonalityRating(PersonalityNodeDefOf.Cool);
         float otherPawnPolite = -0.5f + otherPawnPT.GetPersonalityRating(PersonalityNodeDefOf.Polite);
 
+        // Initialize opinionMultiplier, which can be positive or negative. Represents % increase or decrease in opinionMod
+        float opinionMultiplier = 0f;
         // All opinions are enhanced by how judgmental the pawn is
         opinionMultiplier += pawnJudgmental;
         // All conversations are affected by how passionate the other pawn is
         opinionMultiplier += 0.5f * otherPawnPassionate;
-        // All conversations are affected by how outspoken the other pawn is
-        opinionMultiplier += 0.5f * otherPawnOutspoken;
 
+        bool opinionModRawPositive = opinionModRaw > 0f;
         // Positive opinions
-        if (opinionModRaw > 0f)
+        if (opinionModRawPositive)
         {
             // Positive opinions are enhanced by how Friendly the pawn is
             opinionMultiplier += 0.5f * pawnFriendly;
@@ -279,8 +273,7 @@ public class Hediff_Conversation : HediffWithComps
         // For example, if opinionMultiplier = -2, i.e. a 200% decrease, opinionMod will be 1/3 of its original value. Note that a 200% increase of 1/3 is 1.
         float fm = opinionMultiplier > 0f ? 1f + opinionMultiplier : 1f / (1f - opinionMultiplier);
 
-        
-        float x = fm * Mathf.Abs(opinionModRaw);
+        float x = fm * (0.25f + controversiality * controversiality) * Mathf.Abs(opinionModRaw);
         float t = ((float)ageTicks) / ((float)GenDate.TicksPerHour);
         float r = Rand.ValueSeeded(PsycheHelper.PawnSeed(pawn) + PsycheHelper.PawnSeed(otherPawn) + topic.GetHashCode());
 
@@ -295,21 +288,11 @@ public class Hediff_Conversation : HediffWithComps
         // Added time minimum to baseline to opinionMod because conversations often end very quickly
         float y = yr * r + y0x * Func(x) + y0t * Func(t) + y1 * Func(x) * Func(t) + y2 * Func(x * (1f + t));
 
-        // Positive opinions
-        if (opinionModRaw > 0f)
-        {
-            opinionMod = y;
-        }
-        // Negative opinions
-        else
-        {
-            opinionMod = -y;
-            // In low-population colonies, pawns will put aside their differences.
-            opinionMod *= PopulationModifier;
-        }
+        // In low-population colonies, pawns will put aside their differences.
+        opinionMod = opinionModRawPositive ? Mathf.Ceil(y) : -Mathf.Ceil(y * PopulationModifier);
 
         stage.label = "ConversationStage".Translate() + " " + convoTopic;
-        stage.baseOpinionOffset = Mathf.Ceil(opinionMod);
+        stage.baseOpinionOffset = opinionMod;
         def.stages.Add(stage);
         return def;
     }
@@ -330,32 +313,27 @@ public class Hediff_Conversation : HediffWithComps
 
         float totalThoughtOpinion = PsycheHelper.Comp(pawn).Psyche.TotalThoughtOpinion(this.otherPawn, out convoMemories);
         int maxConvoOpinions = 10;
-        
+
         if (convoMemories.EnumerableCount() < maxConvoOpinions)
         {
             this.pawn.needs.mood.thoughts.memories.TryGainMemory(def, this.otherPawn);
             return true;
         }
         convoMemories.OrderByDescending(m => Mathf.Abs(m.OpinionOffset()));
-        IEnumerable<Thought_MemorySocialDynamic> keptMemories = convoMemories.Take(maxConvoOpinions);
+        IEnumerable<Thought_MemorySocialDynamic> keptMemories = convoMemories.Take(maxConvoOpinions - 1);
         IEnumerable<Thought_MemorySocialDynamic> removedMemories = convoMemories.Except(keptMemories);
-        Thought_MemorySocialDynamic lastMemory = keptMemories.Last();
 
-        bool flag = Mathf.Abs(opinionOffset) >= Mathf.Abs(lastMemory.OpinionOffset());
-        if (flag == true)
+        Thought_MemorySocialDynamic lastMemory = removedMemories.MaxBy(m => Mathf.Abs(m.OpinionOffset()));
+        if (Mathf.Abs(opinionOffset) < Mathf.Abs(lastMemory.OpinionOffset()))
         {
-            removedMemories.AddItem(lastMemory);
+            return false;
         }
+        this.pawn.needs.mood.thoughts.memories.TryGainMemory(def, this.otherPawn);
         foreach (Thought_MemorySocialDynamic m in removedMemories)
         {
             // Remove these memories by making them old
             m.age = m.DurationTicks + 300;
         }
-        if (flag == false)
-        {
-            return false;
-        }
-        this.pawn.needs.mood.thoughts.memories.TryGainMemory(def, this.otherPawn);
         return true;
     }
 
@@ -367,10 +345,7 @@ public class Hediff_Conversation : HediffWithComps
             {
                 return Mathf.Clamp01(this.pawn.Map.mapPawns.FreeColonistsCount / 8f);
             }
-            else
-            {
-                return 1f;
-            }
+            return 1f;
         }
     }
 

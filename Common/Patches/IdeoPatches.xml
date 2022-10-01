@@ -1,0 +1,1793 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Patch>
+	
+	<!--<Operation Class="PatchOperationConditional">
+		<xpath>Defs/MemeDef[defName="MaleSupremacy"]/agreeableTraits</xpath>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/MemeDef[defName="MaleSupremacy"]/agreeableTraits</xpath>
+			<value>
+				<li>Polygamous</li>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/MemeDef[defName="MaleSupremacy"]</xpath>
+			<value>
+				<agreeableTraits>
+					<li>Polygamous</li>
+				</agreeableTraits>
+			</value>
+		</nomatch>
+	</Operation>-->
+
+	<!-- MemeDef: MaleSupremacy agreeable traits -->
+	<Operation Class="Psychology.PatchOperationAddOrCreate">
+		<xpath>Defs/MemeDef[defName="MaleSupremacy"]/agreeableTraits</xpath>
+		<value>
+			<li>Polygamous</li>
+		</value>
+	</Operation>
+
+	<!-- MemeDef: MaleSupremacy disagreeable traits -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/MemeDef[defName="MaleSupremacy"]/disagreeableTraits</xpath>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/MemeDef[defName="MaleSupremacy"]/disagreeableTraits</xpath>
+			<value>
+				<li>OpenMinded</li>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/MemeDef[defName="MaleSupremacy"]</xpath>
+			<value>
+				<disagreeableTraits>
+					<li>OpenMinded</li>
+				</disagreeableTraits>
+			</value>
+		</nomatch>
+	</Operation>
+	<!-- MemeDef: FemaleSupremacy agreeable traits -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/MemeDef[defName="FemaleSupremacy"]/agreeableTraits</xpath>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/MemeDef[defName="FemaleSupremacy"]/agreeableTraits</xpath>
+			<value>
+				<li>Polygamous</li>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/MemeDef[defName="FemaleSupremacy"]</xpath>
+			<value>
+				<agreeableTraits>
+					<li>Polygamous</li>
+				</agreeableTraits>
+			</value>
+		</nomatch>
+	</Operation>
+	<!-- MemeDef: FemaleSupremacy disagreeable traits -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/MemeDef[defName="FemaleSupremacy"]/disagreeableTraits</xpath>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/MemeDef[defName="FemaleSupremacy"]/disagreeableTraits</xpath>
+			<value>
+				<li>OpenMinded</li>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/MemeDef[defName="FemaleSupremacy"]</xpath>
+			<value>
+				<disagreeableTraits>
+					<li>OpenMinded</li>
+				</disagreeableTraits>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<!-- MemeDef: Supremacist disagreeable traits -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/MemeDef[defName="Supremacist"]/disagreeableTraits</xpath>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/MemeDef[defName="Supremacist"]/disagreeableTraits</xpath>
+			<value>
+				<li>BleedingHeart</li>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/MemeDef[defName="Supremacist"]</xpath>
+			<value>
+				<disagreeableTraits>
+					<li>BleedingHeart</li>
+				</disagreeableTraits>
+			</value>
+		</nomatch>
+	</Operation>
+	<!-- MemeDef: Loyalist disagreeable traits -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/MemeDef[defName="Loyalist"]/disagreeableTraits</xpath>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/MemeDef[defName="Loyalist"]/disagreeableTraits</xpath>
+			<value>
+				<li>BleedingHeart</li>
+				<li>OpenMinded</li>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/MemeDef[defName="Loyalist"]</xpath>
+			<value>
+				<disagreeableTraits>
+					<li>BleedingHeart</li>
+					<li>OpenMinded</li>
+				</disagreeableTraits>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<!-- MemeDef: Individualist agreeable traits -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/MemeDef[defName="Individualist"]/agreeableTraits</xpath>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/MemeDef[defName="Individualist"]/agreeableTraits</xpath>
+			<value>
+				<li>OpenMinded</li>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/MemeDef[defName="Individualist"]</xpath>
+			<value>
+				<agreeableTraits>
+					<li>OpenMinded</li>
+				</agreeableTraits>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<!-- MemeDef: AnimalPersonhood agreeable traits -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/MemeDef[defName="AnimalPersonhood"]/agreeableTraits</xpath>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/MemeDef[defName="AnimalPersonhood"]/agreeableTraits</xpath>
+			<value>
+				<li>BleedingHeart</li>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/MemeDef[defName="AnimalPersonhood"]</xpath>
+			<value>
+				<agreeableTraits>
+					<li>BleedingHeart</li>
+				</agreeableTraits>
+			</value>
+		</nomatch>
+	</Operation>
+	<!-- MemeDef: FleshPurity disagreeable traits -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/MemeDef[defName="FleshPurity"]/disagreeableTraits</xpath>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/MemeDef[defName="FleshPurity"]/disagreeableTraits</xpath>
+			<value>
+				<li>Prude</li>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/MemeDef[defName="FleshPurity"]</xpath>
+			<value>
+				<disagreeableTraits>
+					<li>Prude</li>
+				</disagreeableTraits>
+			</value>
+		</nomatch>
+	</Operation>
+	<!-- MemeDef: Cannibal disagreeable traits -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/MemeDef[defName="Cannibal"]/disagreeableTraits</xpath>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/MemeDef[defName="Cannibal"]/disagreeableTraits</xpath>
+			<value>
+				<li>BleedingHeart</li>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/MemeDef[defName="Cannibal"]</xpath>
+			<value>
+				<disagreeableTraits>
+					<li>BleedingHeart</li>
+				</disagreeableTraits>
+			</value>
+		</nomatch>
+	</Operation>
+	<!-- MemeDef: Nudism disagreeable traits -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/MemeDef[defName="Nudism"]/disagreeableTraits</xpath>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/MemeDef[defName="Nudism"]/disagreeableTraits</xpath>
+			<value>
+				<li>Prude</li>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/MemeDef[defName="Nudism"]</xpath>
+			<value>
+				<disagreeableTraits>
+					<li>Prude</li>
+				</disagreeableTraits>
+			</value>
+		</nomatch>
+	</Operation>
+	<!-- MemeDef: Darkness agreeable traits -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/MemeDef[defName="Darkness"]/agreeableTraits</xpath>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/MemeDef[defName="Darkness"]/agreeableTraits</xpath>
+			<value>
+				<li>Photosensitive</li>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/MemeDef[defName="Darkness"]</xpath>
+			<value>
+				<agreeableTraits>
+					<li>Photosensitive</li>
+				</agreeableTraits>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<!-- PreceptDef: Execution_Abhorrent nullifying traits -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/PreceptDef[defName="Execution_Abhorrent"]/comps/li[@Class="PreceptComp_UnwillingToDo"]/nullifyingTraits</xpath>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/PreceptDef[defName="Execution_Abhorrent"]/comps/li[@Class="PreceptComp_UnwillingToDo"]/nullifyingTraits</xpath>
+			<value>
+				<li>Desensitized</li>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/PreceptDef[defName="Execution_Abhorrent"]/comps/li[@Class="PreceptComp_UnwillingToDo"]</xpath>
+			<value>
+				<nullifyingTraits>
+					<li>Desensitized</li>
+				</nullifyingTraits>
+			</value>
+		</nomatch>
+	</Operation>
+	<!-- PreceptDef: SpouseCount_Male_MaxOne nullifying traits -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/PreceptDef[defName="SpouseCount_Male_MaxOne"]/comps/li[eventDef="GotMarried_SpouseCount_Two"]/nullifyingTraits</xpath>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/PreceptDef[defName="SpouseCount_Male_MaxOne"]/comps/li[eventDef="GotMarried_SpouseCount_Two"]/nullifyingTraits</xpath>
+			<value>
+				<li>Polygamous</li>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/PreceptDef[defName="SpouseCount_Male_MaxOne"]/comps/li[eventDef="GotMarried_SpouseCount_Two"]</xpath>
+			<value>
+				<nullifyingTraits>
+					<li>Polygamous</li>
+				</nullifyingTraits>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="Psychology.PatchOperationAddOrCreate">
+		<xpath>Defs/PreceptDef[defName="SpouseCount_Male_MaxOne"]/comps/li[eventDef="GotMarried_SpouseCount_Three"]/nullifyingTraits</xpath>
+		<value>
+			<li>Polygamous</li>
+		</value>
+	</Operation>
+
+	<!-- PreceptDef: SpouseCount_Male nullifying traits -->
+
+	<!-- Precept ThoughtDef: ChangedIdeo_Know_Abhorrent nullifying traits -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThoughtDef[defName="ChangedIdeo_Know_Abhorrent"]/nullifyingTraits</xpath>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="ChangedIdeo_Know_Abhorrent"]/nullifyingTraits</xpath>
+			<value>
+				<li>OpenMinded</li>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="ChangedIdeo_Know_Abhorrent"]</xpath>
+			<value>
+				<nullifyingTraits>
+					<li>OpenMinded</li>
+				</nullifyingTraits>
+			</value>
+		</nomatch>
+	</Operation>
+	<!-- Precept ThoughtDef: ChangedIdeo_Know_Horrible nullifying traits -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThoughtDef[defName="ChangedIdeo_Know_Horrible"]/nullifyingTraits</xpath>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="ChangedIdeo_Know_Horrible"]/nullifyingTraits</xpath>
+			<value>
+				<li>OpenMinded</li>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="ChangedIdeo_Know_Horrible"]</xpath>
+			<value>
+				<nullifyingTraits>
+					<li>OpenMinded</li>
+				</nullifyingTraits>
+			</value>
+		</nomatch>
+	</Operation>
+	<!-- Precept ThoughtDef: ChangedIdeo_Know_Disapproved nullifying traits -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThoughtDef[defName="ChangedIdeo_Know_Disapproved"]/nullifyingTraits</xpath>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="ChangedIdeo_Know_Disapproved"]/nullifyingTraits</xpath>
+			<value>
+				<li>OpenMinded</li>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="ChangedIdeo_Know_Disapproved"]</xpath>
+			<value>
+				<nullifyingTraits>
+					<li>OpenMinded</li>
+				</nullifyingTraits>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<!-- Precept ThoughtDef: IsApostate_Abhorrent_Social nullifying traits -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThoughtDef[defName="IsApostate_Abhorrent_Social"]/nullifyingTraits</xpath>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="IsApostate_Abhorrent_Social"]/nullifyingTraits</xpath>
+			<value>
+				<li>OpenMinded</li>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="IsApostate_Abhorrent_Social"]</xpath>
+			<value>
+				<nullifyingTraits>
+					<li>OpenMinded</li>
+				</nullifyingTraits>
+			</value>
+		</nomatch>
+	</Operation>
+	<!-- Precept ThoughtDef: IsApostate_Horrible_Social nullifying traits -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThoughtDef[defName="IsApostate_Horrible_Social"]/nullifyingTraits</xpath>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="IsApostate_Horrible_Social"]/nullifyingTraits</xpath>
+			<value>
+				<li>OpenMinded</li>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="IsApostate_Horrible_Social"]</xpath>
+			<value>
+				<nullifyingTraits>
+					<li>OpenMinded</li>
+				</nullifyingTraits>
+			</value>
+		</nomatch>
+	</Operation>
+	<!-- Precept ThoughtDef: IsApostate_Disapproved_Social nullifying traits -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThoughtDef[defName="IsApostate_Disapproved_Social"]/nullifyingTraits</xpath>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="IsApostate_Disapproved_Social"]/nullifyingTraits</xpath>
+			<value>
+				<li>OpenMinded</li>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="IsApostate_Disapproved_Social"]</xpath>
+			<value>
+				<nullifyingTraits>
+					<li>OpenMinded</li>
+				</nullifyingTraits>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<!-- ToDo: somehow nullifying Dont mind nutrient paste for Gourmet -->
+
+	<!-- Precept ThoughtDef: ButcheredHuman_Abhorrent nullifying traits -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThoughtDef[defName="ButcheredHuman_Abhorrent"]/nullifyingTraits</xpath>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="ButcheredHuman_Abhorrent"]/nullifyingTraits</xpath>
+			<value>
+				<li>Desensitized</li>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="ButcheredHuman_Abhorrent"]</xpath>
+			<value>
+				<nullifyingTraits>
+					<li>Desensitized</li>
+				</nullifyingTraits>
+			</value>
+		</nomatch>
+	</Operation>
+	<!-- Precept ThoughtDef: ButcheredHuman_Know_Abhorrent nullifying traits -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThoughtDef[defName="ButcheredHuman_Know_Abhorrent"]/nullifyingTraits</xpath>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="ButcheredHuman_Know_Abhorrent"]/nullifyingTraits</xpath>
+			<value>
+				<li>Desensitized</li>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="ButcheredHuman_Know_Abhorrent"]</xpath>
+			<value>
+				<nullifyingTraits>
+					<li>Desensitized</li>
+				</nullifyingTraits>
+			</value>
+		</nomatch>
+	</Operation>
+	<!-- Precept ThoughtDef: ButcheredHuman_Know_Abhorrent_Opinion nullifying traits -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThoughtDef[defName="ButcheredHuman_Know_Abhorrent_Opinion"]/nullifyingTraits</xpath>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="ButcheredHuman_Know_Abhorrent_Opinion"]/nullifyingTraits</xpath>
+			<value>
+				<li>Desensitized</li>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="ButcheredHuman_Know_Abhorrent_Opinion"]</xpath>
+			<value>
+				<nullifyingTraits>
+					<li>Desensitized</li>
+				</nullifyingTraits>
+			</value>
+		</nomatch>
+	</Operation>
+	<!-- Precept ThoughtDef: HumanLeatherApparel_Abhorrent nullifying traits -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThoughtDef[defName="HumanLeatherApparel_Abhorrent"]/nullifyingTraits</xpath>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="HumanLeatherApparel_Abhorrent"]/nullifyingTraits</xpath>
+			<value>
+				<li>Desensitized</li>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="HumanLeatherApparel_Abhorrent"]</xpath>
+			<value>
+				<nullifyingTraits>
+					<li>Desensitized</li>
+				</nullifyingTraits>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<!-- Precept ThoughtDef: ButcheredHuman_Horrible nullifying traits -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThoughtDef[defName="ButcheredHuman_Horrible"]/nullifyingTraits</xpath>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="ButcheredHuman_Horrible"]/nullifyingTraits</xpath>
+			<value>
+				<li>Desensitized</li>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="ButcheredHuman_Horrible"]</xpath>
+			<value>
+				<nullifyingTraits>
+					<li>Desensitized</li>
+				</nullifyingTraits>
+			</value>
+		</nomatch>
+	</Operation>
+	<!-- Precept ThoughtDef: ButcheredHuman_Know_Horrible nullifying traits -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThoughtDef[defName="ButcheredHuman_Know_Horrible"]/nullifyingTraits</xpath>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="ButcheredHuman_Know_Horrible"]/nullifyingTraits</xpath>
+			<value>
+				<li>Desensitized</li>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="ButcheredHuman_Know_Horrible"]</xpath>
+			<value>
+				<nullifyingTraits>
+					<li>Desensitized</li>
+				</nullifyingTraits>
+			</value>
+		</nomatch>
+	</Operation>
+	<!-- Precept ThoughtDef: ButcheredHuman_Know_Horrible_Opinion nullifying traits -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThoughtDef[defName="ButcheredHuman_Know_Horrible_Opinion"]/nullifyingTraits</xpath>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="ButcheredHuman_Know_Horrible_Opinion"]/nullifyingTraits</xpath>
+			<value>
+				<li>Desensitized</li>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="ButcheredHuman_Know_Horrible_Opinion"]</xpath>
+			<value>
+				<nullifyingTraits>
+					<li>Desensitized</li>
+				</nullifyingTraits>
+			</value>
+		</nomatch>
+	</Operation>
+	<!-- Precept ThoughtDef: ButcheredHuman_Know_Horrible_Opinion nullifying traits -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThoughtDef[defName="HumanLeatherApparel_Horrible"]/nullifyingTraits</xpath>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="HumanLeatherApparel_Horrible"]/nullifyingTraits</xpath>
+			<value>
+				<li>Desensitized</li>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="HumanLeatherApparel_Horrible"]</xpath>
+			<value>
+				<nullifyingTraits>
+					<li>Desensitized</li>
+				</nullifyingTraits>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<!-- Precept ThoughtDef: ButcheredHuman_Disapproved nullifying traits -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThoughtDef[defName="ButcheredHuman_Disapproved"]/nullifyingTraits</xpath>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="ButcheredHuman_Disapproved"]/nullifyingTraits</xpath>
+			<value>
+				<li>Desensitized</li>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="ButcheredHuman_Disapproved"]</xpath>
+			<value>
+				<nullifyingTraits>
+					<li>Desensitized</li>
+				</nullifyingTraits>
+			</value>
+		</nomatch>
+	</Operation>
+	<!-- Precept ThoughtDef: ButcheredHuman_Know_Disapproved nullifying traits -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThoughtDef[defName="ButcheredHuman_Know_Disapproved"]/nullifyingTraits</xpath>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="ButcheredHuman_Know_Disapproved"]/nullifyingTraits</xpath>
+			<value>
+				<li>Desensitized</li>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="ButcheredHuman_Know_Disapproved"]</xpath>
+			<value>
+				<nullifyingTraits>
+					<li>Desensitized</li>
+				</nullifyingTraits>
+			</value>
+		</nomatch>
+	</Operation>
+	<!-- Precept ThoughtDef: ButcheredHuman_Know_Disapproved_Opinion nullifying traits -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThoughtDef[defName="ButcheredHuman_Know_Disapproved_Opinion"]/nullifyingTraits</xpath>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="ButcheredHuman_Know_Disapproved_Opinion"]/nullifyingTraits</xpath>
+			<value>
+				<li>Desensitized</li>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="ButcheredHuman_Know_Disapproved_Opinion"]</xpath>
+			<value>
+				<nullifyingTraits>
+					<li>Desensitized</li>
+				</nullifyingTraits>
+			</value>
+		</nomatch>
+	</Operation>
+	<!-- Precept ThoughtDef: HumanLeatherApparel_Disapproved nullifying traits -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThoughtDef[defName="HumanLeatherApparel_Disapproved"]/nullifyingTraits</xpath>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="HumanLeatherApparel_Disapproved"]/nullifyingTraits</xpath>
+			<value>
+				<li>Desensitized</li>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="HumanLeatherApparel_Disapproved"]</xpath>
+			<value>
+				<nullifyingTraits>
+					<li>Desensitized</li>
+				</nullifyingTraits>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<!-- Precept ThoughtDef: IdeoDiversity_Abhorrent nullifying traits -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThoughtDef[defName="IdeoDiversity_Abhorrent"]/nullifyingTraits</xpath>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="IdeoDiversity_Abhorrent"]/nullifyingTraits</xpath>
+			<value>
+				<li>OpenMinded</li>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="IdeoDiversity_Abhorrent"]</xpath>
+			<value>
+				<nullifyingTraits>
+					<li>OpenMinded</li>
+				</nullifyingTraits>
+			</value>
+		</nomatch>
+	</Operation>
+	<!-- Precept ThoughtDef: IdeoDiversity_Abhorrent_Uniform nullifying traits -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThoughtDef[defName="IdeoDiversity_Abhorrent_Uniform"]/nullifyingTraits</xpath>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="IdeoDiversity_Abhorrent_Uniform"]/nullifyingTraits</xpath>
+			<value>
+				<li>OpenMinded</li>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="IdeoDiversity_Abhorrent_Uniform"]</xpath>
+			<value>
+				<nullifyingTraits>
+					<li>OpenMinded</li>
+				</nullifyingTraits>
+			</value>
+		</nomatch>
+	</Operation>
+	<!-- Precept ThoughtDef: IdeoDiversity_Abhorrent_Social nullifying traits -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThoughtDef[defName="IdeoDiversity_Abhorrent_Social"]/nullifyingTraits</xpath>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="IdeoDiversity_Abhorrent_Social"]/nullifyingTraits</xpath>
+			<value>
+				<li>OpenMinded</li>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="IdeoDiversity_Abhorrent_Social"]</xpath>
+			<value>
+				<nullifyingTraits>
+					<li>OpenMinded</li>
+				</nullifyingTraits>
+			</value>
+		</nomatch>
+	</Operation>
+	<!-- Precept ThoughtDef: IdeoDiverity_Abhorrent_AltarSharing nullifying traits -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThoughtDef[defName="IdeoDiverity_Abhorrent_AltarSharing"]/nullifyingTraits</xpath>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="IdeoDiverity_Abhorrent_AltarSharing"]/nullifyingTraits</xpath>
+			<value>
+				<li>OpenMinded</li>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="IdeoDiverity_Abhorrent_AltarSharing"]</xpath>
+			<value>
+				<nullifyingTraits>
+					<li>OpenMinded</li>
+				</nullifyingTraits>
+			</value>
+		</nomatch>
+	</Operation>
+	<!-- Precept ThoughtDef: IdeoDiversity_Abhorrent_StyleDominance nullifying traits -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThoughtDef[defName="IdeoDiversity_Abhorrent_StyleDominance"]/nullifyingTraits</xpath>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="IdeoDiversity_Abhorrent_StyleDominance"]/nullifyingTraits</xpath>
+			<value>
+				<li>OpenMinded</li>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="IdeoDiversity_Abhorrent_StyleDominance"]</xpath>
+			<value>
+				<nullifyingTraits>
+					<li>OpenMinded</li>
+				</nullifyingTraits>
+			</value>
+		</nomatch>
+	</Operation>
+	<!-- Precept ThoughtDef: IdeoDiversity_Abhorrent_ParticipatedInOthersRitual nullifying traits -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThoughtDef[defName="IdeoDiversity_Abhorrent_ParticipatedInOthersRitual"]/nullifyingTraits</xpath>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="IdeoDiversity_Abhorrent_ParticipatedInOthersRitual"]/nullifyingTraits</xpath>
+			<value>
+				<li>OpenMinded</li>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="IdeoDiversity_Abhorrent_ParticipatedInOthersRitual"]</xpath>
+			<value>
+				<nullifyingTraits>
+					<li>OpenMinded</li>
+				</nullifyingTraits>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<!-- Precept ThoughtDef: IdeoDiversity_Horrible nullifying traits -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThoughtDef[defName="IdeoDiversity_Horrible"]/nullifyingTraits</xpath>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="IdeoDiversity_Horrible"]/nullifyingTraits</xpath>
+			<value>
+				<li>OpenMinded</li>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="IdeoDiversity_Horrible"]</xpath>
+			<value>
+				<nullifyingTraits>
+					<li>OpenMinded</li>
+				</nullifyingTraits>
+			</value>
+		</nomatch>
+	</Operation>
+	<!-- Precept ThoughtDef: IdeoDiversity_Horrible_Uniform nullifying traits -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThoughtDef[defName="IdeoDiversity_Horrible_Uniform"]/nullifyingTraits</xpath>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="IdeoDiversity_Horrible_Uniform"]/nullifyingTraits</xpath>
+			<value>
+				<li>OpenMinded</li>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="IdeoDiversity_Horrible_Uniform"]</xpath>
+			<value>
+				<nullifyingTraits>
+					<li>OpenMinded</li>
+				</nullifyingTraits>
+			</value>
+		</nomatch>
+	</Operation>
+	<!-- Precept ThoughtDef: IdeoDiversity_Horrible_Social nullifying traits -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThoughtDef[defName="IdeoDiversity_Horrible_Social"]/nullifyingTraits</xpath>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="IdeoDiversity_Horrible_Social"]/nullifyingTraits</xpath>
+			<value>
+				<li>OpenMinded</li>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="IdeoDiversity_Horrible_Social"]</xpath>
+			<value>
+				<nullifyingTraits>
+					<li>OpenMinded</li>
+				</nullifyingTraits>
+			</value>
+		</nomatch>
+	</Operation>
+	<!-- Precept ThoughtDef: IdeoDiverity_Horrible_AltarSharing nullifying traits -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThoughtDef[defName="IdeoDiverity_Horrible_AltarSharing"]/nullifyingTraits</xpath>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="IdeoDiverity_Horrible_AltarSharing"]/nullifyingTraits</xpath>
+			<value>
+				<li>OpenMinded</li>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="IdeoDiverity_Horrible_AltarSharing"]</xpath>
+			<value>
+				<nullifyingTraits>
+					<li>OpenMinded</li>
+				</nullifyingTraits>
+			</value>
+		</nomatch>
+	</Operation>
+	<!-- Precept ThoughtDef: IdeoDiversity_Horrible_StyleDominance nullifying traits -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThoughtDef[defName="IdeoDiversity_Horrible_StyleDominance"]/nullifyingTraits</xpath>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="IdeoDiversity_Horrible_StyleDominance"]/nullifyingTraits</xpath>
+			<value>
+				<li>OpenMinded</li>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="IdeoDiversity_Horrible_StyleDominance"]</xpath>
+			<value>
+				<nullifyingTraits>
+					<li>OpenMinded</li>
+				</nullifyingTraits>
+			</value>
+		</nomatch>
+	</Operation>
+	<!-- Precept ThoughtDef: IdeoDiversity_Horrible_ParticipatedInOthersRitual nullifying traits -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThoughtDef[defName="IdeoDiversity_Horrible_ParticipatedInOthersRitual"]/nullifyingTraits</xpath>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="IdeoDiversity_Horrible_ParticipatedInOthersRitual"]/nullifyingTraits</xpath>
+			<value>
+				<li>OpenMinded</li>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="IdeoDiversity_Horrible_ParticipatedInOthersRitual"]</xpath>
+			<value>
+				<nullifyingTraits>
+					<li>OpenMinded</li>
+				</nullifyingTraits>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<!-- Precept ThoughtDef: IdeoDiversity_Disapproved nullifying traits -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThoughtDef[defName="IdeoDiversity_Disapproved"]/nullifyingTraits</xpath>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="IdeoDiversity_Disapproved"]/nullifyingTraits</xpath>
+			<value>
+				<li>OpenMinded</li>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="IdeoDiversity_Disapproved"]</xpath>
+			<value>
+				<nullifyingTraits>
+					<li>OpenMinded</li>
+				</nullifyingTraits>
+			</value>
+		</nomatch>
+	</Operation>
+	<!-- Precept ThoughtDef: IdeoDiversity_Disapproved_Uniform nullifying traits -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThoughtDef[defName="IdeoDiversity_Disapproved_Uniform"]/nullifyingTraits</xpath>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="IdeoDiversity_Disapproved_Uniform"]/nullifyingTraits</xpath>
+			<value>
+				<li>OpenMinded</li>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="IdeoDiversity_Disapproved_Uniform"]</xpath>
+			<value>
+				<nullifyingTraits>
+					<li>OpenMinded</li>
+				</nullifyingTraits>
+			</value>
+		</nomatch>
+	</Operation>
+	<!-- Precept ThoughtDef: IdeoDiversity_Disapproved_Social nullifying traits -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThoughtDef[defName="IdeoDiversity_Disapproved_Social"]/nullifyingTraits</xpath>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="IdeoDiversity_Disapproved_Social"]/nullifyingTraits</xpath>
+			<value>
+				<li>OpenMinded</li>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="IdeoDiversity_Disapproved_Social"]</xpath>
+			<value>
+				<nullifyingTraits>
+					<li>OpenMinded</li>
+				</nullifyingTraits>
+			</value>
+		</nomatch>
+	</Operation>
+	<!-- Precept ThoughtDef: IdeoDiverity_Disapproved_AltarSharing nullifying traits -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThoughtDef[defName="IdeoDiverity_Disapproved_AltarSharing"]/nullifyingTraits</xpath>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="IdeoDiverity_Disapproved_AltarSharing"]/nullifyingTraits</xpath>
+			<value>
+				<li>OpenMinded</li>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="IdeoDiverity_Disapproved_AltarSharing"]</xpath>
+			<value>
+				<nullifyingTraits>
+					<li>OpenMinded</li>
+				</nullifyingTraits>
+			</value>
+		</nomatch>
+	</Operation>
+	<!-- Precept ThoughtDef: IdeoDiversity_Disapproved_StyleDominance nullifying traits -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThoughtDef[defName="IdeoDiversity_Disapproved_StyleDominance"]/nullifyingTraits</xpath>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="IdeoDiversity_Disapproved_StyleDominance"]/nullifyingTraits</xpath>
+			<value>
+				<li>OpenMinded</li>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="IdeoDiversity_Disapproved_StyleDominance"]</xpath>
+			<value>
+				<nullifyingTraits>
+					<li>OpenMinded</li>
+				</nullifyingTraits>
+			</value>
+		</nomatch>
+	</Operation>
+	<!-- Precept ThoughtDef: IdeoDiversity_Disapproved_ParticipatedInOthersRitual nullifying traits -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThoughtDef[defName="IdeoDiversity_Disapproved_ParticipatedInOthersRitual"]/nullifyingTraits</xpath>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="IdeoDiversity_Disapproved_ParticipatedInOthersRitual"]/nullifyingTraits</xpath>
+			<value>
+				<li>OpenMinded</li>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="IdeoDiversity_Disapproved_ParticipatedInOthersRitual"]</xpath>
+			<value>
+				<nullifyingTraits>
+					<li>OpenMinded</li>
+				</nullifyingTraits>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<!-- PreceptThought: AnyBodyPartCovered_Disapproved_Male nullifying traits -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThoughtDef[defName="AnyBodyPartCovered_Disapproved_Male"]/nullifyingTraits</xpath>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="AnyBodyPartCovered_Disapproved_Male"]/nullifyingTraits</xpath>
+			<value>
+				<li>Prude</li>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="AnyBodyPartCovered_Disapproved_Male"]</xpath>
+			<value>
+				<nullifyingTraits>
+					<li>Prude</li>
+				</nullifyingTraits>
+			</value>
+		</nomatch>
+	</Operation>
+	<!-- PreceptThought: AnyBodyPartCovered_Disapproved_Memory nullifying traits -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThoughtDef[defName="AnyBodyPartCovered_Disapproved_Memory"]/nullifyingTraits</xpath>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="AnyBodyPartCovered_Disapproved_Memory"]/nullifyingTraits</xpath>
+			<value>
+				<li>Prude</li>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="AnyBodyPartCovered_Disapproved_Memory"]</xpath>
+			<value>
+				<nullifyingTraits>
+					<li>Prude</li>
+				</nullifyingTraits>
+			</value>
+		</nomatch>
+	</Operation>
+	<!-- PreceptThought: AnyBodyPartCovered_Disapproved_Social_Male nullifying traits -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThoughtDef[defName="AnyBodyPartCovered_Disapproved_Social_Male"]/nullifyingTraits</xpath>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="AnyBodyPartCovered_Disapproved_Social_Male"]/nullifyingTraits</xpath>
+			<value>
+				<li>Prude</li>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="AnyBodyPartCovered_Disapproved_Social_Male"]</xpath>
+			<value>
+				<nullifyingTraits>
+					<li>Prude</li>
+				</nullifyingTraits>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<!-- PreceptThought: AnyBodyPartButGroinCovered_Disapproved_Male nullifying traits -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThoughtDef[defName="AnyBodyPartButGroinCovered_Disapproved_Male"]/nullifyingTraits</xpath>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="AnyBodyPartButGroinCovered_Disapproved_Male"]/nullifyingTraits</xpath>
+			<value>
+				<li>Prude</li>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="AnyBodyPartButGroinCovered_Disapproved_Male"]</xpath>
+			<value>
+				<nullifyingTraits>
+					<li>Prude</li>
+				</nullifyingTraits>
+			</value>
+		</nomatch>
+	</Operation>
+	<!-- PreceptThought: AnyBodyPartButGroinCovered_Disapproved_Memory nullifying traits -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThoughtDef[defName="AnyBodyPartButGroinCovered_Disapproved_Memory"]/nullifyingTraits</xpath>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="AnyBodyPartButGroinCovered_Disapproved_Memory"]/nullifyingTraits</xpath>
+			<value>
+				<li>Prude</li>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="AnyBodyPartButGroinCovered_Disapproved_Memory"]</xpath>
+			<value>
+				<nullifyingTraits>
+					<li>Prude</li>
+				</nullifyingTraits>
+			</value>
+		</nomatch>
+	</Operation>
+	<!-- PreceptThought: AnyBodyPartButGroinCovered_Disapproved_Social_Male nullifying traits -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThoughtDef[defName="AnyBodyPartButGroinCovered_Disapproved_Social_Male"]/nullifyingTraits</xpath>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="AnyBodyPartButGroinCovered_Disapproved_Social_Male"]/nullifyingTraits</xpath>
+			<value>
+				<li>Prude</li>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="AnyBodyPartButGroinCovered_Disapproved_Social_Male"]</xpath>
+			<value>
+				<nullifyingTraits>
+					<li>Prude</li>
+				</nullifyingTraits>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<!-- PreceptThought: HarvestedOrgan_Abhorrent nullifying traits -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThoughtDef[defName="HarvestedOrgan_Abhorrent"]/nullifyingTraits</xpath>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="HarvestedOrgan_Abhorrent"]/nullifyingTraits</xpath>
+			<value>
+				<li>Desensitized</li>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="HarvestedOrgan_Abhorrent"]</xpath>
+			<value>
+				<nullifyingTraits>
+					<li>Desensitized</li>
+				</nullifyingTraits>
+			</value>
+		</nomatch>
+	</Operation>
+	<!-- PreceptThought: HarvestedOrgan_Know_Abhorrent nullifying traits -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThoughtDef[defName="HarvestedOrgan_Know_Abhorrent"]/nullifyingTraits</xpath>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="HarvestedOrgan_Know_Abhorrent"]/nullifyingTraits</xpath>
+			<value>
+				<li>Desensitized</li>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="HarvestedOrgan_Know_Abhorrent"]</xpath>
+			<value>
+				<nullifyingTraits>
+					<li>Desensitized</li>
+				</nullifyingTraits>
+			</value>
+		</nomatch>
+	</Operation>
+	<!-- PreceptThought: HarvestedOrgan_Know_Abhorrent_Mood nullifying traits -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThoughtDef[defName="HarvestedOrgan_Know_Abhorrent_Mood"]/nullifyingTraits</xpath>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="HarvestedOrgan_Know_Abhorrent_Mood"]/nullifyingTraits</xpath>
+			<value>
+				<li>Desensitized</li>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="HarvestedOrgan_Know_Abhorrent_Mood"]</xpath>
+			<value>
+				<nullifyingTraits>
+					<li>Desensitized</li>
+				</nullifyingTraits>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<!-- PreceptThought: HarvestedOrgan_Horrible nullifying traits -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThoughtDef[defName="HarvestedOrgan_Horrible"]/nullifyingTraits</xpath>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="HarvestedOrgan_Horrible"]/nullifyingTraits</xpath>
+			<value>
+				<li>Desensitized</li>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="HarvestedOrgan_Horrible"]</xpath>
+			<value>
+				<nullifyingTraits>
+					<li>Desensitized</li>
+				</nullifyingTraits>
+			</value>
+		</nomatch>
+	</Operation>
+	<!-- PreceptThought: HarvestedOrgan_Know_Horrible nullifying traits -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThoughtDef[defName="HarvestedOrgan_Know_Horrible"]/nullifyingTraits</xpath>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="HarvestedOrgan_Know_Horrible"]/nullifyingTraits</xpath>
+			<value>
+				<li>Desensitized</li>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="HarvestedOrgan_Know_Horrible"]</xpath>
+			<value>
+				<nullifyingTraits>
+					<li>Desensitized</li>
+				</nullifyingTraits>
+			</value>
+		</nomatch>
+	</Operation>
+	<!-- PreceptThought: HarvestedOrgan_Know_Horrible_Mood nullifying traits -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThoughtDef[defName="HarvestedOrgan_Know_Horrible_Mood"]/nullifyingTraits</xpath>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="HarvestedOrgan_Know_Horrible_Mood"]/nullifyingTraits</xpath>
+			<value>
+				<li>Desensitized</li>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="HarvestedOrgan_Know_Horrible_Mood"]</xpath>
+			<value>
+				<nullifyingTraits>
+					<li>Desensitized</li>
+				</nullifyingTraits>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<!-- PreceptThought: ExecutedGuest_Know_Abhorrent_Mood nullifying traits -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThoughtDef[defName="ExecutedGuest_Know_Abhorrent_Mood"]/nullifyingTraits</xpath>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="ExecutedGuest_Know_Abhorrent_Mood"]/nullifyingTraits</xpath>
+			<value>
+				<li>Desensitized</li>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="ExecutedGuest_Know_Abhorrent_Mood"]</xpath>
+			<value>
+				<nullifyingTraits>
+					<li>Desensitized</li>
+				</nullifyingTraits>
+			</value>
+		</nomatch>
+	</Operation>
+	<!-- PreceptThought: ExecutedColonist_Know_Abhorrent_Mood nullifying traits -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThoughtDef[defName="ExecutedColonist_Know_Abhorrent_Mood"]/nullifyingTraits</xpath>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="ExecutedColonist_Know_Abhorrent_Mood"]/nullifyingTraits</xpath>
+			<value>
+				<li>Desensitized</li>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="ExecutedColonist_Know_Abhorrent_Mood"]</xpath>
+			<value>
+				<nullifyingTraits>
+					<li>Desensitized</li>
+				</nullifyingTraits>
+			</value>
+		</nomatch>
+	</Operation>
+	<!-- PreceptThought: ExecutedPrisoner_Know_Abhorrent nullifying traits -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThoughtDef[defName="ExecutedPrisoner_Know_Abhorrent"]/nullifyingTraits</xpath>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="ExecutedPrisoner_Know_Abhorrent"]/nullifyingTraits</xpath>
+			<value>
+				<li>Desensitized</li>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="ExecutedPrisoner_Know_Abhorrent"]</xpath>
+			<value>
+				<nullifyingTraits>
+					<li>Desensitized</li>
+				</nullifyingTraits>
+			</value>
+		</nomatch>
+	</Operation>
+	<!-- PreceptThought: InnocentPrisonerDied_Know_Abhorrent nullifying traits -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThoughtDef[defName="InnocentPrisonerDied_Know_Abhorrent"]/nullifyingTraits</xpath>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="InnocentPrisonerDied_Know_Abhorrent"]/nullifyingTraits</xpath>
+			<value>
+				<li>Desensitized</li>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="InnocentPrisonerDied_Know_Abhorrent"]</xpath>
+			<value>
+				<nullifyingTraits>
+					<li>Desensitized</li>
+				</nullifyingTraits>
+			</value>
+		</nomatch>
+	</Operation>
+	<!-- PreceptThought: InnocentPrisonerDied_Know_Abhorrent_Mood nullifying traits -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThoughtDef[defName="InnocentPrisonerDied_Know_Abhorrent_Mood"]/nullifyingTraits</xpath>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="InnocentPrisonerDied_Know_Abhorrent_Mood"]/nullifyingTraits</xpath>
+			<value>
+				<li>Desensitized</li>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="InnocentPrisonerDied_Know_Abhorrent"]</xpath>
+			<value>
+				<nullifyingTraits>
+					<li>Desensitized</li>
+				</nullifyingTraits>
+			</value>
+		</nomatch>
+	</Operation>
+	<!-- PreceptThought: InnocentPrisonerDied_Abhorrent nullifying traits -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThoughtDef[defName="InnocentPrisonerDied_Abhorrent"]/nullifyingTraits</xpath>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="InnocentPrisonerDied_Abhorrent"]/nullifyingTraits</xpath>
+			<value>
+				<li>Desensitized</li>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="InnocentPrisonerDied_Abhorrent"]</xpath>
+			<value>
+				<nullifyingTraits>
+					<li>Desensitized</li>
+				</nullifyingTraits>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<!-- PreceptThought: ExecutedPrisoner_Horrible nullifying traits -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThoughtDef[defName="ExecutedPrisoner_Horrible"]/nullifyingTraits</xpath>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="ExecutedPrisoner_Horrible"]/nullifyingTraits</xpath>
+			<value>
+				<li>Desensitized</li>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="ExecutedPrisoner_Horrible"]</xpath>
+			<value>
+				<nullifyingTraits>
+					<li>Desensitized</li>
+				</nullifyingTraits>
+			</value>
+		</nomatch>
+	</Operation>
+	<!-- PreceptThought: InnocentPrisonerDied_Horrible nullifying traits -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThoughtDef[defName="InnocentPrisonerDied_Horrible"]/nullifyingTraits</xpath>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="InnocentPrisonerDied_Horrible"]/nullifyingTraits</xpath>
+			<value>
+				<li>Desensitized</li>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="InnocentPrisonerDied_Horrible"]</xpath>
+			<value>
+				<nullifyingTraits>
+					<li>Desensitized</li>
+				</nullifyingTraits>
+			</value>
+		</nomatch>
+	</Operation>
+	<!-- PreceptThought: ExecutedPrisoner_Know_Horrible nullifying traits -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThoughtDef[defName="ExecutedPrisoner_Know_Horrible"]/nullifyingTraits</xpath>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="ExecutedPrisoner_Know_Horrible"]/nullifyingTraits</xpath>
+			<value>
+				<li>Desensitized</li>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="ExecutedPrisoner_Know_Horrible"]</xpath>
+			<value>
+				<nullifyingTraits>
+					<li>Desensitized</li>
+				</nullifyingTraits>
+			</value>
+		</nomatch>
+	</Operation>
+	<!-- PreceptThought: InnocentPrisonerDied_Know_Horrible nullifying traits -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThoughtDef[defName="InnocentPrisonerDied_Know_Horrible"]/nullifyingTraits</xpath>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="InnocentPrisonerDied_Know_Horrible"]/nullifyingTraits</xpath>
+			<value>
+				<li>Desensitized</li>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="InnocentPrisonerDied_Know_Horrible"]</xpath>
+			<value>
+				<nullifyingTraits>
+					<li>Desensitized</li>
+				</nullifyingTraits>
+			</value>
+		</nomatch>
+	</Operation>
+	<!-- PreceptThought: ExecutedPrisonerInnocent_Horrible nullifying traits -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThoughtDef[defName="ExecutedPrisonerInnocent_Horrible"]/nullifyingTraits</xpath>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="ExecutedPrisonerInnocent_Horrible"]/nullifyingTraits</xpath>
+			<value>
+				<li>Desensitized</li>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="ExecutedPrisonerInnocent_Horrible"]</xpath>
+			<value>
+				<nullifyingTraits>
+					<li>Desensitized</li>
+				</nullifyingTraits>
+			</value>
+		</nomatch>
+	</Operation>
+	<!-- PreceptThought: ExecutedPrisonerInnocent_Know_Horrible nullifying traits -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThoughtDef[defName="ExecutedPrisonerInnocent_Know_Horrible"]/nullifyingTraits</xpath>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="ExecutedPrisonerInnocent_Know_Horrible"]/nullifyingTraits</xpath>
+			<value>
+				<li>Desensitized</li>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="ExecutedPrisonerInnocent_Know_Horrible"]</xpath>
+			<value>
+				<nullifyingTraits>
+					<li>Desensitized</li>
+				</nullifyingTraits>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<!-- PreceptThought: ExecutedPrisonerGuilty_Respected nullifying traits -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThoughtDef[defName="ExecutedPrisonerGuilty_Respected"]/nullifyingTraits</xpath>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="ExecutedPrisonerGuilty_Respected"]/nullifyingTraits</xpath>
+			<value>
+				<li>BleedingHeart</li>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="ExecutedPrisonerGuilty_Respected"]</xpath>
+			<value>
+				<nullifyingTraits>
+					<li>BleedingHeart</li>
+				</nullifyingTraits>
+			</value>
+		</nomatch>
+	</Operation>
+	<!-- PreceptThought: GuiltyPrisonerDied_Respected nullifying traits -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThoughtDef[defName="GuiltyPrisonerDied_Respected"]/nullifyingTraits</xpath>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="GuiltyPrisonerDied_Respected"]/nullifyingTraits</xpath>
+			<value>
+				<li>BleedingHeart</li>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="GuiltyPrisonerDied_Respected"]</xpath>
+			<value>
+				<nullifyingTraits>
+					<li>BleedingHeart</li>
+				</nullifyingTraits>
+			</value>
+		</nomatch>
+	</Operation>
+	<!-- PreceptThought: ExecutedPrisonerGuilty_Know_Respected nullifying traits -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThoughtDef[defName="ExecutedPrisonerGuilty_Know_Respected"]/nullifyingTraits</xpath>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="ExecutedPrisonerGuilty_Know_Respected"]/nullifyingTraits</xpath>
+			<value>
+				<li>BleedingHeart</li>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="ExecutedPrisonerGuilty_Know_Respected"]</xpath>
+			<value>
+				<nullifyingTraits>
+					<li>BleedingHeart</li>
+				</nullifyingTraits>
+			</value>
+		</nomatch>
+	</Operation>
+	<!-- PreceptThought: ExecutedPrisonerGuilty_Know_Respected_Mood nullifying traits -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThoughtDef[defName="ExecutedPrisonerGuilty_Know_Respected_Mood"]/nullifyingTraits</xpath>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="ExecutedPrisonerGuilty_Know_Respected_Mood"]/nullifyingTraits</xpath>
+			<value>
+				<li>BleedingHeart</li>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="ExecutedPrisonerGuilty_Know_Respected_Mood"]</xpath>
+			<value>
+				<nullifyingTraits>
+					<li>BleedingHeart</li>
+				</nullifyingTraits>
+			</value>
+		</nomatch>
+	</Operation>
+	<!-- PreceptThought: GuiltyPrisonerDied_Know_Respected nullifying traits -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThoughtDef[defName="GuiltyPrisonerDied_Know_Respected"]/nullifyingTraits</xpath>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="GuiltyPrisonerDied_Know_Respected"]/nullifyingTraits</xpath>
+			<value>
+				<li>BleedingHeart</li>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="GuiltyPrisonerDied_Know_Respected"]</xpath>
+			<value>
+				<nullifyingTraits>
+					<li>BleedingHeart</li>
+				</nullifyingTraits>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<!-- PreceptThought: ExecutedPrisoner_Respected nullifying traits -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThoughtDef[defName="ExecutedPrisoner_Respected"]/nullifyingTraits</xpath>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="ExecutedPrisoner_Respected"]/nullifyingTraits</xpath>
+			<value>
+				<li>BleedingHeart</li>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="ExecutedPrisoner_Respected"]</xpath>
+			<value>
+				<nullifyingTraits>
+					<li>BleedingHeart</li>
+				</nullifyingTraits>
+			</value>
+		</nomatch>
+	</Operation>
+	<!-- PreceptThought: PrisonerDied_Respected nullifying traits -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThoughtDef[defName="PrisonerDied_Respected"]/nullifyingTraits</xpath>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="PrisonerDied_Respected"]/nullifyingTraits</xpath>
+			<value>
+				<li>BleedingHeart</li>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="PrisonerDied_Respected"]</xpath>
+			<value>
+				<nullifyingTraits>
+					<li>BleedingHeart</li>
+				</nullifyingTraits>
+			</value>
+		</nomatch>
+	</Operation>
+	<!-- PreceptThought: ExecutedPrisoner_Know_Respected nullifying traits -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThoughtDef[defName="ExecutedPrisoner_Know_Respected"]/nullifyingTraits</xpath>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="ExecutedPrisoner_Know_Respected"]/nullifyingTraits</xpath>
+			<value>
+				<li>BleedingHeart</li>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="ExecutedPrisoner_Know_Respected"]</xpath>
+			<value>
+				<nullifyingTraits>
+					<li>BleedingHeart</li>
+				</nullifyingTraits>
+			</value>
+		</nomatch>
+	</Operation>
+	<!-- PreceptThought: PrisonerDied_Know_Respected nullifying traits -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThoughtDef[defName="PrisonerDied_Know_Respected"]/nullifyingTraits</xpath>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="PrisonerDied_Know_Respected"]/nullifyingTraits</xpath>
+			<value>
+				<li>BleedingHeart</li>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="PrisonerDied_Know_Respected"]</xpath>
+			<value>
+				<nullifyingTraits>
+					<li>BleedingHeart</li>
+				</nullifyingTraits>
+			</value>
+		</nomatch>
+	</Operation>
+	<!-- PreceptThought: Execution_Know_Respected_Mood nullifying traits -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThoughtDef[defName="Execution_Know_Respected_Mood"]/nullifyingTraits</xpath>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="Execution_Know_Respected_Mood"]/nullifyingTraits</xpath>
+			<value>
+				<li>BleedingHeart</li>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="Execution_Know_Respected_Mood"]</xpath>
+			<value>
+				<nullifyingTraits>
+					<li>BleedingHeart</li>
+				</nullifyingTraits>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<!-- PreceptThought: NoRecentExecution nullifying traits -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThoughtDef[defName="NoRecentExecution"]/nullifyingTraits</xpath>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="NoRecentExecution"]/nullifyingTraits</xpath>
+			<value>
+				<li>BleedingHeart</li>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="NoRecentExecution"]</xpath>
+			<value>
+				<nullifyingTraits>
+					<li>BleedingHeart</li>
+				</nullifyingTraits>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<!-- ToDo: add nullifying trait of OpenMinded to PreceptComp_UnwillingToDo Researching -->
+
+	<!-- PreceptThought: ScarificationCeremony_Know_Horrible nullifying traits -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThoughtDef[defName="ScarificationCeremony_Know_Horrible"]/nullifyingTraits</xpath>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="ScarificationCeremony_Know_Horrible"]/nullifyingTraits</xpath>
+			<value>
+				<li>Desensitized</li>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="ScarificationCeremony_Know_Horrible"]</xpath>
+			<value>
+				<nullifyingTraits>
+					<li>Desensitized</li>
+				</nullifyingTraits>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<!-- PreceptThought: Skullspike_Desired nullifying traits -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThoughtDef[defName="Skullspike_Desired"]/nullifyingTraits</xpath>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="Skullspike_Desired"]/nullifyingTraits</xpath>
+			<value>
+				<li>BleedingHeart</li>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="Skullspike_Desired"]</xpath>
+			<value>
+				<nullifyingTraits>
+					<li>BleedingHeart</li>
+				</nullifyingTraits>
+			</value>
+		</nomatch>
+	</Operation>
+	<!-- PreceptThought: Skullspike_Disapproved nullifying traits -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThoughtDef[defName="Skullspike_Disapproved"]/nullifyingTraits</xpath>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="Skullspike_Disapproved"]/nullifyingTraits</xpath>
+			<value>
+				<li>Desensitized</li>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="Skullspike_Disapproved"]</xpath>
+			<value>
+				<nullifyingTraits>
+					<li>Desensitized</li>
+				</nullifyingTraits>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<!-- PreceptThought: Slavery_Honorable_SlavesInColony nullifying traits -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThoughtDef[defName="Slavery_Honorable_SlavesInColony"]/nullifyingTraits</xpath>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="Slavery_Honorable_SlavesInColony"]/nullifyingTraits</xpath>
+			<value>
+				<li>BleedingHeart</li>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="Slavery_Honorable_SlavesInColony"]</xpath>
+			<value>
+				<nullifyingTraits>
+					<li>BleedingHeart</li>
+				</nullifyingTraits>
+			</value>
+		</nomatch>
+	</Operation>
+	<!-- PreceptThought: Slavery_Honorable_NoSlavesInColony nullifying traits -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThoughtDef[defName="Slavery_Honorable_NoSlavesInColony"]/nullifyingTraits</xpath>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="Slavery_Honorable_NoSlavesInColony"]/nullifyingTraits</xpath>
+			<value>
+				<li>BleedingHeart</li>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="Slavery_Honorable_NoSlavesInColony"]</xpath>
+			<value>
+				<nullifyingTraits>
+					<li>BleedingHeart</li>
+				</nullifyingTraits>
+			</value>
+		</nomatch>
+	</Operation>
+	<!-- PreceptThought: SoldSlave_Honorable nullifying traits -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThoughtDef[defName="SoldSlave_Honorable"]/nullifyingTraits</xpath>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="SoldSlave_Honorable"]/nullifyingTraits</xpath>
+			<value>
+				<li>BleedingHeart</li>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="SoldSlave_Honorable"]</xpath>
+			<value>
+				<nullifyingTraits>
+					<li>BleedingHeart</li>
+				</nullifyingTraits>
+			</value>
+		</nomatch>
+	</Operation>
+	<!-- PreceptThought: EnslavedPrisoner_Honorable nullifying traits -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThoughtDef[defName="EnslavedPrisoner_Honorable"]/nullifyingTraits</xpath>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="EnslavedPrisoner_Honorable"]/nullifyingTraits</xpath>
+			<value>
+				<li>BleedingHeart</li>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="EnslavedPrisoner_Honorable"]</xpath>
+			<value>
+				<nullifyingTraits>
+					<li>BleedingHeart</li>
+				</nullifyingTraits>
+			</value>
+		</nomatch>
+	</Operation>
+	<!-- PreceptThought: SoldSlave_Know_Honorable nullifying traits -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThoughtDef[defName="SoldSlave_Know_Honorable"]/nullifyingTraits</xpath>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="SoldSlave_Know_Honorable"]/nullifyingTraits</xpath>
+			<value>
+				<li>BleedingHeart</li>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="SoldSlave_Know_Honorable"]</xpath>
+			<value>
+				<nullifyingTraits>
+					<li>BleedingHeart</li>
+				</nullifyingTraits>
+			</value>
+		</nomatch>
+	</Operation>
+	<!-- PreceptThought: SoldSlave_Know_Honorable_Mood nullifying traits -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThoughtDef[defName="SoldSlave_Know_Honorable_Mood"]/nullifyingTraits</xpath>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="SoldSlave_Know_Honorable_Mood"]/nullifyingTraits</xpath>
+			<value>
+				<li>BleedingHeart</li>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="SoldSlave_Know_Honorable_Mood"]</xpath>
+			<value>
+				<nullifyingTraits>
+					<li>BleedingHeart</li>
+				</nullifyingTraits>
+			</value>
+		</nomatch>
+	</Operation>
+	<!-- PreceptThought: EnslavedPrisoner_Know_Honorable nullifying traits -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThoughtDef[defName="EnslavedPrisoner_Know_Honorable"]/nullifyingTraits</xpath>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="EnslavedPrisoner_Know_Honorable"]/nullifyingTraits</xpath>
+			<value>
+				<li>BleedingHeart</li>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="EnslavedPrisoner_Know_Honorable"]</xpath>
+			<value>
+				<nullifyingTraits>
+					<li>BleedingHeart</li>
+				</nullifyingTraits>
+			</value>
+		</nomatch>
+	</Operation>
+	<!-- PreceptThought: EnslavedPrisoner_Know_Honorable_Mood nullifying traits -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThoughtDef[defName="EnslavedPrisoner_Know_Honorable_Mood"]/nullifyingTraits</xpath>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="EnslavedPrisoner_Know_Honorable_Mood"]/nullifyingTraits</xpath>
+			<value>
+				<li>BleedingHeart</li>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThoughtDef[defName="EnslavedPrisoner_Know_Honorable_Mood"]</xpath>
+			<value>
+				<nullifyingTraits>
+					<li>BleedingHeart</li>
+				</nullifyingTraits>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<!-- ToDo: do something with Polygamous and Precepts that allow multiple spouses -->
+
+	<!-- Add indoctrination to moralist abilities -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/PreceptDef[defName="IdeoRole_Moralist"]/grantedAbilities</xpath>
+		<value>
+			<li>Indoctrinate</li>
+		</value>
+	</Operation>
+
+	<!-- PainIsVirtue: make Gourmet a disagreeable trait? -->
+
+</Patch>
+

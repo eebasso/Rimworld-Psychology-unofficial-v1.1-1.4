@@ -34,7 +34,13 @@ public static class ThoughtDefOfPsychology
     public static ThoughtDef AteInsectMeatAsIngredientPickyEater;
     public static ThoughtDef AteInsectMeatDirectPickyEater;
     public static ThoughtDef BrokeUpWithMeCodependent;
+    public static ThoughtDef BrokeUpWithMeCodependentMood;
     public static ThoughtDef CheatedOnMeCodependent;
+    public static ThoughtDef CheatedOnMeCodependentMood;
+    public static ThoughtDef DivorcedMeCodependent;
+    public static ThoughtDef DivorcedMeCodependentMood;
+    public static ThoughtDef RejectedMyProposalCodependent;
+    public static ThoughtDef RejectedMyProposalCodependentMood;
     public static ThoughtDef RebuffedMyRomanceAttemptLecher;
     public static ThoughtDef PanicAttack;
 

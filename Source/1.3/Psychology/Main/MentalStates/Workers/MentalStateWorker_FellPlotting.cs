@@ -14,7 +14,9 @@ namespace Psychology
         public override bool StateCanOccur(Pawn pawn)
         {
             if (pawn.Map == null)
+            {
                 return false;
+            }
             IEnumerable<Pawn> rivals = (from x in pawn.Map.mapPawns.FreeColonistsSpawned
                                         where pawn.relations.OpinionOf(x) < -20
                                         select x);

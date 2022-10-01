@@ -4,17 +4,16 @@ using Verse;
 using HarmonyLib;
 
 
-namespace Psychology.Harmony
+namespace Psychology.Harmony;
+
+[HarmonyPatch(typeof(TooltipHandler), nameof(TooltipHandler.DoTooltipGUI))]
+public class TooltipHandler_DoTooltipGUI_PsychologyPatch
 {
-    [HarmonyPatch(typeof(TooltipHandler), nameof(TooltipHandler.DoTooltipGUI))]
-    public class TooltipHandler_DoTooltipGUI_PsychologyPatch
+    
+    [HarmonyPostfix]
+    public static void DoTooltipGUI()
     {
-        
-        [HarmonyPostfix]
-        public static void DoTooltipGUI()
-        {
-            PolygonTooltipHandler.DoTooltipGUI();
-        }
+        PolygonTooltipHandler.DoTooltipGUI();
     }
 }
 

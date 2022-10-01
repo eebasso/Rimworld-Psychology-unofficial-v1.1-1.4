@@ -5,13 +5,12 @@ using System.Text;
 using RimWorld;
 using Verse;
 
-namespace Psychology
+namespace Psychology;
+
+public class PersonalityNodeParent
 {
-    public class PersonalityNodeParent
-    {
-        //The parent node this node descends from.
-        public PersonalityNodeDef node;
-        // How the parent node modifies this node.
-        public float modifier;
-    }
+    //The parent node that correlates with this node.
+    public PersonalityNodeDef node;
+    // How the parent node correlates with this node.
+    public float modifier;
 }

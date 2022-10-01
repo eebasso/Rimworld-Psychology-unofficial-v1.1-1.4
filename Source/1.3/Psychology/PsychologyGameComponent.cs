@@ -18,7 +18,7 @@ public class PsychologyGameComponent : GameComponent
     public bool firstTimeWithUpdate = true;
     public bool taraiSiblingsGenerated = false;
     public Dictionary<int, float> CachedCertaintyChangePerDayDict = new Dictionary<int, float>();
-    public Dictionary<int, Pair<Pawn, Hediff>> Mayors;
+    public Dictionary<int, Pair<Pawn, Hediff>> Mayors = new Dictionary<int, Pair<Pawn, Hediff>>();
     public static int constituentTick = 156;
     public static int electionTick = 823;
     public static int certaintyTick = 37;
@@ -33,21 +33,24 @@ public class PsychologyGameComponent : GameComponent
         Scribe_Values.Look(ref taraiSiblingsGenerated, "Psychology_TaraiSiblingsGenerated", false);
     }
 
+    // ToDo: check which of these things causes crash
     public override void LoadedGame()
     {
-        Log.Message("Psychology: loading game");
-        //InitializeCachedIdeoCertaintyChange();
-        BuildMayorDictionary();
-        ImplementSexualOrientation();
+        //Log.Message("Psychology: loading game");
+        InitializeRegisteredSpecies(); //ToDo: figure out why this causes crash
+        //BuildMayorDictionary();
+        //ImplementSexualOrientation();
         //FirstTimeLoadingNewPsychology();
     }
 
-    public override void StartedNewGame()
-    {
-        Log.Message("Psychology: started new game");
-        this.firstTimeWithUpdate = false;
-        //InitializeCachedIdeoCertaintyChange();
-    }
+    //public override void StartedNewGame()
+    //{
+    //    Log.Message("Psychology: started new game");
+    //    this.firstTimeWithUpdate = false;
+    //    InitializeRegisteredSpecies();
+    //    BuildMayorDictionary();
+    //    ImplementSexualOrientation();
+    //}
 
     public override void GameComponentTick()
     {
@@ -62,14 +65,45 @@ public class PsychologyGameComponent : GameComponent
         }
     }
 
-    public float CertaintyChange(Pawn pawn)
+    public void InitializeRegisteredSpecies()
+    {
+        CompPsychology comp;
+        ThingDef speciesDef;
+        foreach (Pawn pawn in PawnsFinder.All_AliveOrDead)
+        {
+            try
+            {
+                comp = PsycheHelper.Comp(pawn);
+                speciesDef = pawn.def;
+                if (comp != null && comp.IsPsychologyPawn)
+                {
+                    SpeciesHelper.GetOrMakeSpeciesSettingsFromThingDef(speciesDef);
+                    SpeciesHelper.registeredSpecies.Add(speciesDef);
+                    continue;
+                }
+            }
+            catch (Exception ex)
+            {
+                try
+                {
+                    Log.Warning("InitializeRegisteredSpecies, exception = " + ex + ", pawn = " + pawn);
+                }
+                catch (Exception ex2)
+                {
+                    Log.Warning("InitializeRegisteredSpecies, exception = " + ex + ", exception2 = " + ex2);
+                }
+            }
+        }
+    }
+
+    public float CertaintyChange(Pawn pawn, bool addToDicts)
     {
         float certaintyChange;
         int idnumber;
         idnumber = pawn.thingIDNumber;
         if (!CachedCertaintyChangePerDayDict.TryGetValue(idnumber, out certaintyChange) || (idnumber + certaintyTick) % 240 == 23)
         {
-            certaintyChange = PsycheHelper.Comp(pawn).Psyche.CalculateCertaintyChangePerDay();
+            certaintyChange = PsycheHelper.Comp(pawn).Psyche.CalculateCertaintyChangePerDay(pawn.Ideo, addToDicts);
             CachedCertaintyChangePerDayDict[idnumber] = certaintyChange;
         }
         return certaintyChange;
@@ -209,21 +243,28 @@ public class PsychologyGameComponent : GameComponent
 
     public virtual void ConstituentTick()
     {
+        //Log.Message("ConstituentTick, Step 0");
         if (constituentTick > 0)
         {
             constituentTick--;
             return;
         }
+        Log.Message("ConstituentTick, Step 1");
         constituentTick = 2 * GenDate.TicksPerHour;
 
         //List<Settlement> playerSettlements = Find.WorldObjects.Settlements.FindAll(b => b.Faction.IsPlayer);
         List<Settlement> playerSettlements = Find.WorldObjects.SettlementBases.FindAll(b => b.Faction.IsPlayer);
+        Log.Message("ConstituentTick, Step 2");
         foreach (Settlement settlement in playerSettlements)
         {
-            if (!Mayors.ContainsKey(settlement.Map.Tile))
+            Log.Message("ConstituentTick, Step 3");
+            if (Mayors.TryGetValue(settlement.Map.Tile, out Pair<Pawn,Hediff> mayorPair) != true)
             {
+                Log.Message("ConstituentTick, end settlement");
                 continue;
             }
+            Log.Message("ConstituentTick, Step 4");
+            Pawn mayor = mayorPair.First;
             IEnumerable<Pawn> constituents = from p in settlement.Map.mapPawns.FreeColonistsSpawned
                                              where !p.health.hediffSet.HasHediff(HediffDefOfPsychology.Mayor)
                                              && p.GetLord() == null && p.GetTimeAssignment() != TimeAssignmentDefOf.Work
@@ -239,7 +280,7 @@ public class PsychologyGameComponent : GameComponent
             {
                 continue;
             }
-            Pawn mayor = Mayors[settlement.Map.Tile].First;
+            
             TimeAssignmentDef timeAssDef = mayor.GetTimeAssignment();
             bool mayorAvailable = timeAssDef != TimeAssignmentDefOf.Sleep && mayor.GetLord() == null && mayor.Tile == settlement.Map.Tile
                                   && mayor.Awake() && !mayor.Drafted && !mayor.Downed && mayor.health.summaryHealth.SummaryHealthPercent >= 1f

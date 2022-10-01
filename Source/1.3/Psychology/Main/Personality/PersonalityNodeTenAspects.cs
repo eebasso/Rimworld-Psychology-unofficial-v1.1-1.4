@@ -12,7 +12,7 @@ namespace Psychology
         // The label of the 10 Aspects: "Openness", "Intellect", "Industriousness", "Orderliness",
         // "Enthusiasm", "Assertiveness", "Compassion", "Politeness", "Volatility", "Withdrawal"
         public string aspect;
-        // The weight of the Def on the aspect
+        // The weight of the PersonalityNodeDef on the aspect
         public float weight;
     }
 }

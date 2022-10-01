@@ -33,10 +33,10 @@ public class SpeciesSettings : IExposable
 
     public void ExposeData()
     {
-        Scribe_Values.Look(ref enablePsyche, "enablePsyche", true);
-        Scribe_Values.Look(ref enableAgeGap, "enableAgeGap", true);
-        Scribe_Values.Look(ref minDatingAge, "minDatingAge", 14f);
-        Scribe_Values.Look(ref minLovinAge, "minLovinAge", 16f);
+        Scribe_Values.Look(ref enablePsyche, "enablePsyche", true, true);
+        Scribe_Values.Look(ref enableAgeGap, "enableAgeGap", true, true);
+        Scribe_Values.Look(ref minDatingAge, "minDatingAge", 14f, true);
+        Scribe_Values.Look(ref minLovinAge, "minLovinAge", 16f, true);
     }
 }
 

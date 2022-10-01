@@ -6,19 +6,20 @@ using RimWorld;
 using Verse;
 using Verse.AI;
 
-namespace Psychology
-{
-    public class MentalState_Histrionic : MentalState
-    {
-        public override RandomSocialMode SocialModeMax()
-        {
-            return RandomSocialMode.SuperActive;
-        }
+namespace Psychology;
 
-        
-        public override void MentalStateTick()
+public class MentalState_Histrionic : MentalState
+{
+    public override RandomSocialMode SocialModeMax()
+    {
+        return RandomSocialMode.SuperActive;
+    }
+
+    public override void MentalStateTick()
+    {
+        base.MentalStateTick();
+        if (this.pawn.IsHashIntervalTick(150))
         {
-            base.MentalStateTick();
             pawn.needs.mood.thoughts.memories.RemoveMemoriesOfDef(ThoughtDefOf.RebuffedMyRomanceAttempt);
         }
     }

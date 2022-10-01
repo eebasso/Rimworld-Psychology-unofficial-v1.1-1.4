@@ -1,7 +1,134 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Defs>
+	<Psychology.TreatmentRecipeDef Abstract="True" Name="Treatment">
+		<workerClass>Psychology.Recipe_Treatment</workerClass>
+		<workSpeedStat>MedicalOperationSpeed</workSpeedStat>
+		<workSkill>Medicine</workSkill>
+		<workSkillLearnFactor>16</workSkillLearnFactor>
+		<workAmount>4500</workAmount>
+		<targetsBodyPart>true</targetsBodyPart>
+		<hideBodyPartNames>true</hideBodyPartNames>
+		<anesthetize>false</anesthetize>
+		<skillRequirements>
+			<Medicine>3</Medicine>
+			<Social>6</Social>
+		</skillRequirements>
+	</Psychology.TreatmentRecipeDef>
 
-	<RecipeDef Abstract="True" Name="Treatment">
+	<Psychology.TreatmentRecipeDef ParentName="Treatment">
+		<defName>TreatPyromania</defName>
+		<label>treat pyromania</label>
+		<description>Helps a pyromaniac recover.</description>
+		<jobString>Treating pyromaniac.</jobString>
+		<illnessName>pyromania</illnessName>
+		<hediff>RecoveringPyromaniac</hediff>
+		<tale>TreatedPyromania</tale>
+		<treatments>
+			<li>
+				<trait>Pyromaniac</trait>
+				<easeOfTreatment>1</easeOfTreatment>
+			</li>
+		</treatments>
+	</Psychology.TreatmentRecipeDef>
+
+	<Psychology.TreatmentRecipeDef ParentName="Treatment">
+		<defName>TreatChemicalInterest</defName>
+		<label>treat chemical interest</label>
+		<description>Helps someone with a chemical interest stay drug-free.</description>
+		<jobString>Treating chemical interest.</jobString>
+		<illnessName>chemical interest</illnessName>
+		<hediff>DrugFree</hediff>
+		<tale>TreatedDrugDesire</tale>
+		<treatments>
+			<li>
+				<trait>DrugDesire</trait>
+				<degree>1</degree>
+				<easeOfTreatment>1.25</easeOfTreatment>
+			</li>
+		</treatments>
+	</Psychology.TreatmentRecipeDef>
+
+	<Psychology.TreatmentRecipeDef ParentName="Treatment">
+		<defName>TreatChemicalFascination</defName>
+		<label>treat chemical fascination</label>
+		<description>Helps someone with a chemical fascination stay drug-free.</description>
+		<jobString>Treating chemical fascination.</jobString>
+		<illnessName>chemical fascination</illnessName>
+		<hediff>DrugFree</hediff>
+		<tale>TreatedDrugDesire</tale>
+		<treatments>
+			<li>
+				<trait>DrugDesire</trait>
+				<degree>2</degree>
+				<easeOfTreatment>0.75</easeOfTreatment>
+			</li>
+		</treatments>
+	</Psychology.TreatmentRecipeDef>
+
+	<Psychology.TreatmentRecipeDef ParentName="Treatment">
+		<defName>TreatDepression</defName>
+		<label>treat depression</label>
+		<description>Helps someone with depression manage their mood.</description>
+		<jobString>Treating depression.</jobString>
+		<illnessName>depression</illnessName>
+		<hediff>Antidepressants</hediff>
+		<tale>TreatedDepression</tale>
+		<treatments>
+			<li>
+				<trait>NaturalMood</trait>
+				<degree>-2</degree>
+				<easeOfTreatment>0.75</easeOfTreatment>
+			</li>
+			<li>
+				<trait>NaturalMood</trait>
+				<degree>-1</degree>
+				<easeOfTreatment>1.25</easeOfTreatment>
+			</li>
+			<li>
+				<trait>TorturedArtist</trait>
+				<easeOfTreatment>1</easeOfTreatment>
+			</li>
+			<li>
+				<trait>Unstable</trait>
+				<easeOfTreatment>1</easeOfTreatment>
+      </li>
+		</treatments>
+	</Psychology.TreatmentRecipeDef>
+
+	<Psychology.TreatmentRecipeDef ParentName="Treatment">
+		<defName>TreatInsomnia</defName>
+		<label>treat insomnia</label>
+		<description>Helps someone with insomnia sleep more soundly.</description>
+		<jobString>Treating insomnia.</jobString>
+		<illnessName>insomnia</illnessName>
+		<hediff>SleepingPills</hediff>
+		<tale>TreatedInsomnia</tale>
+		<treatments>
+			<li>
+				<trait>Insomniac</trait>
+				<easeOfTreatment>1</easeOfTreatment>
+			</li>
+		</treatments>
+	</Psychology.TreatmentRecipeDef>
+
+	<!-- ToDo: create treament for bipolar -->
+	<!--<Psychology.TreatmentRecipeDef ParentName="Treatment">
+		<defName>TreatBipolar</defName>
+		<label>treat bipolar disorder</label>
+		<description>Helps someone with bipolar disorder stabilize their mood.</description>
+		<jobString>Treating bipolar disorder.</jobString>
+		<treatments>
+			<li>
+				<trait>Unstable</trait>
+				<easeOfTreatment>1</easeOfTreatment>
+			</li>
+		</treatments>
+		<hediff>BipolarTherapy</hediff>
+		<tale>TreatedBipolar</tale>
+		<illnessName>bipolar disorder</illnessName>
+	</Psychology.TreatmentRecipeDef>-->
+
+	<!--	<RecipeDef Abstract="True" Name="Treatment">
 		<workSpeedStat>MedicalOperationSpeed</workSpeedStat>
 		<workSkill>Medicine</workSkill>
 		<workSkillLearnFactor>16</workSkillLearnFactor>
@@ -22,6 +149,13 @@
 		<workerClass>Psychology.Recipe_TreatPyromaniac</workerClass>
 		<jobString>Treating pyromaniac.</jobString>
 	</RecipeDef>
+	<Psychology.TreatmentDef>
+		<defName>TreatPyromania</defName>
+		<recipeDef>TreatPyromania</recipeDef>
+		<treatedTreated>
+
+    </treatedTreated>
+  </Psychology.TreatmentDef>
 
 	<RecipeDef ParentName="Treatment">
 		<defName>TreatChemicalInterest</defName>
@@ -53,7 +187,7 @@
 		<description>Helps someone with insomnia sleep more soundly.</description>
 		<workerClass>Psychology.Recipe_TreatInsomnia</workerClass>
 		<jobString>Treating insomnia.</jobString>
-	</RecipeDef>
+	</RecipeDef>-->
 
 	<RecipeDef>
 		<defName>CureAnxiety</defName>
@@ -72,15 +206,15 @@
 			<Medicine>15</Medicine>
 		</skillRequirements>
 		<ingredients>
-		  <li>
-			<filter>
-			  <thingDefs>
-				<li>MedicineUltratech</li>
-			  </thingDefs>
-			</filter>
-			<count>3</count>
-		  </li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>MedicineUltratech</li>
+					</thingDefs>
+				</filter>
+				<count>3</count>
+			</li>
 		</ingredients>
 	</RecipeDef>
-  	
+
 </Defs>

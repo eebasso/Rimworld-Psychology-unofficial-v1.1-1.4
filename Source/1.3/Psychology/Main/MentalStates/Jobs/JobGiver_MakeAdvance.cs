@@ -12,9 +12,9 @@ public class JobGiver_MakeAdvance : ThinkNode_JobGiver
 {
     int lastRomanceTick = -9999;
 
-
     protected override Job TryGiveJob(Pawn pawn)
     {
+        Log.Warning("JobGiver_MakeAdvance, TryGiveJob fired!");
         if (pawn.interactions.InteractedTooRecentlyToInteract() || lastRomanceTick > Find.TickManager.TicksGame - 1000)
         {
             return null;
@@ -49,6 +49,4 @@ public class JobGiver_MakeAdvance : ThinkNode_JobGiver
         }
         return null;
     }
-
-
 }

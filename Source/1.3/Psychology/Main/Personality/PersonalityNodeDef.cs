@@ -56,10 +56,10 @@ public class PersonalityNodeDef : Def
     private Dictionary<PersonalityNodeDef, PersonalityNodeParent> parentDict;
     private Dictionary<int, float> tenAspectsDict;
 
-    public void ReloadParents()
-    {
-        parentDict.Clear();
-    }
+    //public void ReloadParents()
+    //{
+    //    parentDict.Clear();
+    //}
 
     public float GetModifier(PersonalityNodeDef parentDef)
     {

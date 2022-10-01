@@ -6,26 +6,18 @@ using Verse;
 using RimWorld;
 using HarmonyLib;
 
-namespace Psychology.Harmony
+namespace Psychology.Harmony;
+
+[HarmonyPatch(typeof(ThoughtWorker_Ugly), "CurrentSocialStateInternal")]
+public static class ThoughtWorker_UglyPatch
 {
-    [HarmonyPatch(typeof(ThoughtWorker_Ugly), "CurrentSocialStateInternal")]
-    public static class ThoughtWorker_UglyPatch
+    
+    [HarmonyPostfix]
+    public static void CurrentSocialStateInternal(ref ThoughtState __result, Pawn pawn, Pawn other)
     {
-        
-        [HarmonyPostfix]
-        public static void Disable(ref ThoughtState __result, Pawn pawn, Pawn other)
+        if (pawn.story.traits.HasTrait(TraitDefOfPsychology.OpenMinded))
         {
-            if (__result.StageIndex != ThoughtState.Inactive.StageIndex)
-            {
-                if (pawn.health.capacities.GetLevel(PawnCapacityDefOf.Sight) == 0f || PsychologySettings.traitOpinionMultiplier <= 0f)
-                {
-                    __result = false;
-                }
-                //if (PsycheHelper.PsychologyEnabled(pawn) && PsycheHelper.PsychologyEnabled(other))
-                //{
-                //    __result = false;
-                //}
-            }
+            __result = false;
         }
     }
 }

@@ -36,7 +36,8 @@ namespace Psychology
             def.thoughtClass = typeof(Thought_MemorySocialDynamic);
             ThoughtStage stage = new ThoughtStage();
             stage.label = this.label;
-            stage.baseOpinionOffset = this.baseOpinionOffset;
+            //stage.baseOpinionOffset = this.baseOpinionOffset; 
+            stage.baseOpinionOffset = opinionOffset; // ToDo: check if this change does anything
             def.stages.Add(stage);
             this.def = def;
         }
@@ -46,11 +47,11 @@ namespace Psychology
             this.topic = def.defName;
             this.label = def.stages[0].label;
             this.baseOpinionOffset = def.stages[0].baseOpinionOffset;
-            if (PsycheHelper.PsychologyEnabled(pawn))
+            if (PsycheHelper.PsychologyEnabled(this.pawn))
             {
-                PsycheHelper.Comp(pawn).Psyche.OpinionCacheDirty[otherPawn.ThingID] = true;
-                Pair<string, string> disagreeKey = new Pair<string, string>(otherPawn.ThingID, label);
-                PsycheHelper.Comp(pawn).Psyche.DisagreementCacheDirty[disagreeKey] = true;
+                PsycheHelper.Comp(this.pawn).Psyche.OpinionCacheDirty[this.otherPawn.ThingID] = true;
+                Pair<string, string> disagreeKey = new Pair<string, string>(this.otherPawn.ThingID, label);
+                PsycheHelper.Comp(this.pawn).Psyche.DisagreementCacheDirty[disagreeKey] = true;
             }
             base.Init();
         }

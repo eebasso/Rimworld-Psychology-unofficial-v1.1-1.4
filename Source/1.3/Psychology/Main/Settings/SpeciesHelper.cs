@@ -19,7 +19,7 @@ namespace Psychology;
 [StaticConstructorOnStartup]
 public class SpeciesHelper
 {
-    public static List<ThingDef> humanlikeDefs = new List<ThingDef>();
+    public static HashSet<ThingDef> registeredSpecies = new HashSet<ThingDef>();
     //public static Dictionary<string, SpeciesSettings> speciesDictDefault = new Dictionary<string, SpeciesSettings>();
     public static List<string> mindlessList = new List<string>() { "ChjDroid", "ChjBattleDroid", "Android1Tier", "M7Mech", "M8Mech" };
     public static List<string> androidLikeList = new List<string>() { "ChjAndroid", "Android2Tier", "Android3Tier", "Android4Tier", "Android5Tier" };
@@ -27,7 +27,7 @@ public class SpeciesHelper
     public static List<string> mindlessSubstringList = new List<string> { "Robot", "AIPawn" };
     public static List<string> androidLikeSubstringList = new List<string> { "Android" };
     public static List<string> elfLikeSubstringList = new List<string>() { "Elf" };
-    public static List<string> animalLikeSubstringList = new List<string>() { "morph", "Morph" };
+    //public static List<string> animalLikeSubstringList = new List<string>() { "morph", "Morph" };
 
     public static SpeciesSettings mindlessSettings = new SpeciesSettings(false, false, -1f, -1f);
     public static SpeciesSettings androidLikeSettings = new SpeciesSettings(true, false, 0f, 0f);
@@ -45,44 +45,34 @@ public class SpeciesHelper
 
     public static void Initialize()
     {
+        zombieThinkTree = DefDatabase<ThinkTreeDef>.GetNamedSilentFail("Zombie");
+        zombieNotNull = zombieThinkTree != null;
         //Log.Message("SpeciesHelper()");
         IEnumerable<ThingDef> humanlikeDefsEnumerable = from def in DefDatabase<ThingDef>.AllDefs
                                                         where def.race?.intelligence == Intelligence.Humanlike
                                                         orderby def.label ascending
                                                         select def;
-
-        //Log.Message("humanlikeDefs.Count() = " + humanlikeDefs.Count());
-        //ResetSpeciesDict(speciesDictDefault);
-        //List<string> registered = new List<string>();
         string defName;
         foreach (ThingDef t in humanlikeDefsEnumerable)
         {
             defName = t.defName;
             if (!PsychologySettings.speciesDict.ContainsKey(defName))
             {
-                //Log.Message("PsychologySettings.speciesDict.ContainsKey(defName) == false");
-                //PsychologySettings.speciesDict.Add(defName, speciesDictDefault[defName]);
                 PsychologySettings.speciesDict[defName] = DefaultSettingsForSpeciesDef(t);
                 Log.Message("PsychologySettings.speciesDict, added defName = " + defName);
             }
-            //else
-            //{
-            //    Log.Message("PsychologySettings.speciesDict.ContainsKey(defName) == true");
-            //}
-            //Log.Message("SpeciesHelper.Initialize, add Comps for defName = " + defName);
+            AddEverythingExceptCompPsychology(t);
             AddCompsToHumanlikeDef(t);
-            //registered.Add(defName);
-            //Log.Message("SpeciesHelper.Initialize, check speciesDict for defName = " + defName);
-        }
+            if (defName == "Human")
+            {
+                registeredSpecies.Add(t);
+            }
+        }    
         SettingsWindowUtility.Initialize();
     }
 
     public static SpeciesSettings GetOrMakeSpeciesSettingsFromThingDef(ThingDef pawnDef, bool noDating = false)
     {
-        //if (humanlikeDef?.race?.intelligence != Intelligence.Humanlike)
-        //{
-        //    return null;
-        //}
         if (PsychologySettings.speciesDict.TryGetValue(pawnDef.defName, out SpeciesSettings settings) != true)
         {
             settings = DefaultSettingsForSpeciesDef(pawnDef);
@@ -93,11 +83,19 @@ public class SpeciesHelper
             }
             PsychologySettings.speciesDict[pawnDef.defName] = settings;
             Log.Message("PsychologySettings.speciesDict, added defName = " + pawnDef.defName);
+
             AddEverythingExceptCompPsychology(pawnDef);
-            if (pawnDef.race?.intelligence == Intelligence.Humanlike)
+            if (pawnDef.race?.intelligence != null)
             {
-                AddCompsToHumanlikeDef(pawnDef);
+                if (pawnDef.race.intelligence >= Intelligence.Humanlike)
+                {
+                    AddCompsToHumanlikeDef(pawnDef);
+                }
             }
+        }
+        if (registeredSpecies.Add(pawnDef) == true)
+        {
+            Log.Message("SpeciesHelper.GetOrMakeSpeciesSettingsFromThingDef, registered = " + pawnDef);
             SettingsWindowUtility.Initialize();
         }
         return settings;
@@ -105,7 +103,6 @@ public class SpeciesHelper
 
     public static void AddCompsToHumanlikeDef(ThingDef humanlikeDef)
     {
-        humanlikeDefs.AddDistinct(humanlikeDef);
         if (humanlikeDef.comps == null)
         {
             humanlikeDef.comps = new List<CompProperties>(1);
@@ -158,17 +155,12 @@ public class SpeciesHelper
 
     public static void ResetSpeciesDict(Dictionary<string, SpeciesSettings> speciesDict)
     {
-        speciesDict.Clear();
-        zombieThinkTree = DefDatabase<ThinkTreeDef>.GetNamedSilentFail("Zombie");
-        zombieNotNull = zombieThinkTree != null;
-
-        //Log.Message("ResetSpeciesDict humanlikeDefs.Count() = " + humanlikeDefs.Count());
-        foreach (ThingDef def in humanlikeDefs)
+        foreach (ThingDef def in registeredSpecies)
         {
-            SpeciesSettings settings = DefaultSettingsForSpeciesDef(def);
-            speciesDict.Add(def.defName, settings);
+            speciesDict[def.defName] = DefaultSettingsForSpeciesDef(def);
         }
         //Log.Message("ResetSpeciesDict humanlikeDefs.Count() = " + humanlikeDefs.Count());
+        SettingsWindowUtility.Initialize();
     }
 
     public static SpeciesSettings DefaultSettingsForSpeciesDef(ThingDef def)
@@ -187,6 +179,11 @@ public class SpeciesHelper
         {
             return settings;
         }
+        // No beastiality please
+        if (def.race?.intelligence == Intelligence.Animal)
+        {
+            return CopySpeciesSettingsFrom(animalLikeSettings);
+        }
         // Use explicit defNames from well-known mods
         if (mindlessList.Contains(name))
         {
@@ -201,11 +198,6 @@ public class SpeciesHelper
             return CopySpeciesSettingsFrom(elfLikeSettings);
         }
         // Use heuristics based on defNames
-        if (animalLikeSubstringList.Exists(entry => name.Contains(entry)))
-        {
-            // No beastiality from Pawnmorphs please
-            return CopySpeciesSettingsFrom(animalLikeSettings);
-        }
         if (mindlessSubstringList.Exists(entry => name.Contains(entry)) || (zombieNotNull && def.race.thinkTreeMain == zombieThinkTree))
         {
             settings.enablePsyche = false;

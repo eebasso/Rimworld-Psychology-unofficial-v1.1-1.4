@@ -1,183 +1,246 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Defs>
+	<!-- PrudeSeen -->
+	<ThoughtDef>
+		<defName>PrudeSeen</defName>
+		<thoughtClass>Thought_MemorySocial</thoughtClass>
+		<durationDays>5</durationDays> <!-- Added this -->
+		<stackLimit>300</stackLimit>
+		<stackedEffectMultiplier>0.88</stackedEffectMultiplier>
+		<stackLimitForSameOtherPawn>30</stackLimitForSameOtherPawn> <!-- Added this -->
+		<requiredTraits>
+			<li>Prude</li>
+		</requiredTraits>
+		<stages>
+			<li>
+				<label>witnessed the human form</label>
+				<description>Was that person naked? Do they just let people run around without clothes on here? Disgusting.</description>
+				<baseOpinionOffset>-1</baseOpinionOffset>
+			</li>
+		</stages>
+	</ThoughtDef>
 
-  <!-- Random social interactions -->
+	<!-- Psychology.Thought_MemorySocialDynamic -->
+	<ThoughtDef>
+		<defName>DynamicSocial</defName>
+		<thoughtClass>Psychology.Thought_MemorySocialDynamic</thoughtClass>
+		<durationDays>60</durationDays>
+		<stackLimit>300</stackLimit>
+		<nullifyingTraits>
+			<li>Psychopath</li>
+		</nullifyingTraits>
+		<stages>
+			<li>
+				<label>conversation</label>
+				<baseOpinionOffset>5</baseOpinionOffset>
+			</li>
+		</stages>
+	</ThoughtDef>
 
-  <ThoughtDef>
-    <defName>PrudeSeen</defName>
-    <thoughtClass>Thought_MemorySocial</thoughtClass>
-    <durationDays>5</durationDays> <!-- Added this -->
-    <stackLimit>300</stackLimit> 
-    <stackedEffectMultiplier>0.88</stackedEffectMultiplier>
-    <stackLimitForSameOtherPawn>30</stackLimitForSameOtherPawn> <!-- Added this -->
-    <requiredTraits>
-      <li>Prude</li>
-    </requiredTraits>
-    <stages>
-      <li>
-        <label>witnessed the human form</label>
-        <description>Was that person naked? Do they just let people run around without clothes on here? Disgusting.</description>
-        <baseOpinionOffset>-1</baseOpinionOffset>
-      </li>
-    </stages>
-  </ThoughtDef>
+	<!-- BrokeUpWithMe+Mood Codependent-->
+	<ThoughtDef>
+		<defName>BrokeUpWithMeCodependent</defName>
+		<thoughtClass>Thought_MemorySocial</thoughtClass>
+		<durationDays>80</durationDays>
+		<stackLimit>300</stackLimit>
+		<stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+		<requiredTraits>
+			<li>Codependent</li>
+		</requiredTraits>
+		<stages>
+			<li>
+				<!--<label>codependent</label>-->
+				<label>broke up with me</label>
+				<baseOpinionOffset>15</baseOpinionOffset>
+			</li>
+		</stages>
+		<thoughtToMake>BrokeUpWithMeCodependentMood</thoughtToMake>
+	</ThoughtDef>
+	<ThoughtDef>
+		<defName>BrokeUpWithMeCodependentMood</defName>
+		<durationDays>50</durationDays>
+		<stackLimit>5</stackLimit>
+		<requiredTraits>
+			<li>Codependent</li>
+		</requiredTraits>
+		<stages>
+			<li>
+				<label>codependent on {0}</label>
+				<description>I miss you... please come back.</description>
+				<baseMoodEffect>-25</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
 
-  <ThoughtDef>
-    <defName>DynamicSocial</defName>
-    <thoughtClass>Psychology.Thought_MemorySocialDynamic</thoughtClass>
-    <durationDays>60</durationDays>
-    <stackLimit>300</stackLimit>
-    <nullifyingTraits>
-      <li>Psychopath</li>
-    </nullifyingTraits>
-    <stages>
-      <li>
-        <label>conversation</label>
-        <baseOpinionOffset>5</baseOpinionOffset>
-      </li>
-    </stages>
-  </ThoughtDef>
+	<!-- CheatedOnMe+Mood Codependent -->
+	<ThoughtDef>
+		<defName>CheatedOnMeCodependent</defName>
+		<thoughtClass>Thought_MemorySocial</thoughtClass>
+		<durationDays>40</durationDays>
+		<stackLimit>300</stackLimit>
+		<stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+		<requiredTraits>
+			<li>Codependent</li>
+		</requiredTraits>
+		<stages>
+			<li>
+				<label>cheated on me</label>
+				<baseOpinionOffset>-25</baseOpinionOffset>
+			</li>
+		</stages>
+		<thoughtToMake>CheatedOnMeCodependentMood</thoughtToMake>
+	</ThoughtDef>
+	<ThoughtDef>
+		<defName>CheatedOnMeCodependentMood</defName>
+		<durationDays>25</durationDays>
+		<stackLimit>2</stackLimit>
+		<requiredTraits>
+			<li>Codependent</li>
+		</requiredTraits>
+		<stages>
+			<li>
+				<label>cheated on by {0}</label>
+				<description>I don't understand... I must have done something wrong.</description>
+				<baseMoodEffect>-15</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
 
-  <ThoughtDef>
-    <defName>BrokeUpWithMeCodependent</defName>
-    <thoughtClass>Thought_MemorySocial</thoughtClass>
-    <durationDays>80.0</durationDays>
-    <stackLimit>300</stackLimit>
-    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <requiredTraits>
-      <li>Codependent</li>
-    </requiredTraits>
-    <stages>
-      <li>
-        <label>codependent</label>
-        <baseOpinionOffset>150</baseOpinionOffset>
-      </li>
-    </stages>
-    <thoughtToMake>BrokeUpWithMeCodependentMood</thoughtToMake>
-  </ThoughtDef>
+	<!-- DivorcedMe+Mood Codependent-->
+	<ThoughtDef>
+		<defName>DivorcedMeCodependent</defName>
+		<thoughtClass>Thought_MemorySocial</thoughtClass>
+		<durationDays>180</durationDays>
+		<stackLimit>300</stackLimit>
+		<stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+		<stages>
+			<li>
+				<label>divorced me</label>
+				<baseOpinionOffset>30</baseOpinionOffset>
+			</li>
+		</stages>
+		<thoughtToMake>DivorcedMeCodependentMood</thoughtToMake>
+	</ThoughtDef>
+	<ThoughtDef>
+		<defName>DivorcedMeCodependentMood</defName>
+		<durationDays>60</durationDays>
+		<stackLimit>2</stackLimit>
+		<stages>
+			<li>
+				<label>divorced by {0}</label>
+				<description>I miss you... please come back.</description>
+				<baseMoodEffect>-30</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
 
-  <ThoughtDef>
-    <defName>BrokeUpWithMeCodependentMood</defName>
-    <durationDays>50.0</durationDays>
-    <stackLimit>5</stackLimit>
-    <requiredTraits>
-      <li>Codependent</li>
-    </requiredTraits>
-    <stages>
-      <li>
-        <label>codependent on {0}</label>
-        <description>I miss you... please come back.</description>
-        <baseMoodEffect>-25</baseMoodEffect>
-      </li>
-    </stages>
-  </ThoughtDef>
-  
-  <ThoughtDef>
-    <defName>CheatedOnMeCodependent</defName>
-    <thoughtClass>Thought_MemorySocial</thoughtClass>
-    <durationDays>40.0</durationDays>
-    <stackLimit>300</stackLimit>
-    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <requiredTraits>
-      <li>Codependent</li>
-    </requiredTraits>
-    <stages>
-      <li>
-        <label>cheated on me</label>
-        <baseOpinionOffset>-25</baseOpinionOffset>
-      </li>
-    </stages>
-    <thoughtToMake>CheatedOnMeCodependentMood</thoughtToMake>
-  </ThoughtDef>
+	<!-- RejectedMyProposal+Mood Codependent-->
+	<ThoughtDef>
+		<defName>RejectedMyProposalCodependent</defName>
+		<thoughtClass>Thought_MemorySocial</thoughtClass>
+		<durationDays>60</durationDays>
+		<stackLimit>300</stackLimit>
+		<stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+		<stackedEffectMultiplier>0.5</stackedEffectMultiplier>
+		<stages>
+			<li>
+				<label>rejected my proposal</label>
+				<baseOpinionOffset>23</baseOpinionOffset>
+			</li>
+		</stages>
+		<thoughtToMake>RejectedMyProposalCodependentMood</thoughtToMake>
+	</ThoughtDef>
+	<ThoughtDef>
+		<defName>RejectedMyProposalCodependentMood</defName>
+		<durationDays>50</durationDays>
+		<stackLimit>5</stackLimit>
+		<stackedEffectMultiplier>0.5</stackedEffectMultiplier>
+		<stages>
+			<li>
+				<label>my proposal was rejected by {0}</label>
+				<description>I thought we were meant to marry. But I was just shot down.</description>
+				<baseMoodEffect>-25</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
 
-  <ThoughtDef>
-    <defName>CheatedOnMeCodependentMood</defName>
-    <durationDays>25.0</durationDays>
-    <stackLimit>2</stackLimit>
-    <requiredTraits>
-      <li>Codependent</li>
-    </requiredTraits>
-    <stages>
-      <li>
-        <label>cheated on by {0}</label>
-        <description>I don't understand... I must have done something wrong.</description>
-        <baseMoodEffect>-15</baseMoodEffect>
-      </li>
-    </stages>
-  </ThoughtDef>
-  
-  <ThoughtDef>
-    <defName>RebuffedMyRomanceAttemptLecher</defName>
-    <thoughtClass>Thought_MemorySocial</thoughtClass>
-    <durationDays>5.0</durationDays>
-    <stackLimit>300</stackLimit>
-    <stackLimitForSameOtherPawn>5</stackLimitForSameOtherPawn>
-    <stackedEffectMultiplier>0.9</stackedEffectMultiplier>
-    <requiredTraits>
-      <li>Lecher</li>
-    </requiredTraits>
-    <stages>
-      <li>
-        <label>rebuffed me</label>
-        <baseOpinionOffset>-20</baseOpinionOffset>
-      </li>
-    </stages>
-  </ThoughtDef>
-  
-  <ThoughtDef>
-    <defName>CapturedMe</defName>
-    <thoughtClass>Thought_MemorySocial</thoughtClass>
-    <durationDays>45.0</durationDays>
-    <stackLimit>300</stackLimit>
-    <stackLimitForSameOtherPawn>5</stackLimitForSameOtherPawn>
-    <stackedEffectMultiplier>0.9</stackedEffectMultiplier>
-    <stages>
-      <li>
-        <label>faction imprisoned me</label>
-        <baseOpinionOffset>-40</baseOpinionOffset>
-      </li>
-    </stages>
-  </ThoughtDef>
+	<!-- RebuffedMyRomanceAttemptLecher -->
+	<ThoughtDef>
+		<defName>RebuffedMyRomanceAttemptLecher</defName>
+		<thoughtClass>Thought_MemorySocial</thoughtClass>
+		<durationDays>5.0</durationDays>
+		<stackLimit>300</stackLimit>
+		<stackLimitForSameOtherPawn>5</stackLimitForSameOtherPawn>
+		<stackedEffectMultiplier>0.9</stackedEffectMultiplier>
+		<requiredTraits>
+			<li>Lecher</li>
+		</requiredTraits>
+		<stages>
+			<li>
+				<label>rebuffed me</label>
+				<baseOpinionOffset>-20</baseOpinionOffset>
+			</li>
+		</stages>
+	</ThoughtDef>
 
-  <ThoughtDef>
-    <defName>WentOnDate</defName>
-    <thoughtClass>Thought_MemorySocial</thoughtClass>
-    <durationDays>5.0</durationDays>
-    <stackLimit>300</stackLimit>
-    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages>
-      <li>
-        <label>went on a date</label>
-        <baseOpinionOffset>10</baseOpinionOffset>
-      </li>
-    </stages>
-  </ThoughtDef>
+	<!-- Captured Me -->
+	<ThoughtDef>
+		<defName>CapturedMe</defName>
+		<thoughtClass>Thought_MemorySocial</thoughtClass>
+		<durationDays>45.0</durationDays>
+		<stackLimit>300</stackLimit>
+		<stackLimitForSameOtherPawn>5</stackLimitForSameOtherPawn>
+		<stackedEffectMultiplier>0.9</stackedEffectMultiplier>
+		<stages>
+			<li>
+				<label>faction imprisoned me</label>
+				<baseOpinionOffset>-40</baseOpinionOffset> <!-- ToDo: Check that this is now a float setting -->
+			</li>
+		</stages>
+	</ThoughtDef>
 
-  <ThoughtDef>
-    <defName>HungOut</defName>
-    <thoughtClass>Thought_MemorySocial</thoughtClass>
-    <durationDays>4.0</durationDays>
-    <stackLimit>300</stackLimit>
-    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages>
-      <li>
-        <label>hung out together</label>
-        <baseOpinionOffset>5</baseOpinionOffset>
-      </li>
-    </stages>
-  </ThoughtDef>
+	<!-- WentOnDate -->
+	<ThoughtDef>
+		<defName>WentOnDate</defName>
+		<thoughtClass>Thought_MemorySocial</thoughtClass>
+		<durationDays>5.0</durationDays>
+		<stackLimit>300</stackLimit>
+		<stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+		<stages>
+			<li>
+				<label>went on a date</label>
+				<baseOpinionOffset>10</baseOpinionOffset>
+			</li>
+		</stages>
+	</ThoughtDef>
 
-  <ThoughtDef>
-    <defName>MissedDate</defName>
-    <thoughtClass>Thought_MemorySocial</thoughtClass>
-    <durationDays>30.0</durationDays>
-    <stackLimit>300</stackLimit>
-    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages>
-      <li>
-        <label>missed our date</label>
-        <baseOpinionOffset>-5</baseOpinionOffset>
-      </li>
-    </stages>
-  </ThoughtDef>
+	<!-- HungOut -->
+	<ThoughtDef>
+		<defName>HungOut</defName>
+		<thoughtClass>Thought_MemorySocial</thoughtClass>
+		<durationDays>4.0</durationDays>
+		<stackLimit>300</stackLimit>
+		<stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+		<stages>
+			<li>
+				<label>hung out together</label>
+				<baseOpinionOffset>5</baseOpinionOffset>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+	<!-- MissedDate -->
+	<ThoughtDef>
+		<defName>MissedDate</defName>
+		<thoughtClass>Thought_MemorySocial</thoughtClass>
+		<durationDays>30.0</durationDays>
+		<stackLimit>300</stackLimit>
+		<stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+		<stages>
+			<li>
+				<label>missed our date</label>
+				<baseOpinionOffset>-5</baseOpinionOffset>
+			</li>
+		</stages>
+	</ThoughtDef>
 </Defs>

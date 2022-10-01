@@ -7,13 +7,14 @@ using Verse;
 using UnityEngine;
 using RimWorld;
 using RimWorld.Planet;
+using System.Diagnostics;
 
 namespace Psychology;
 
 public static class PsycheHelper
 {
     public static PsychologyGameComponent GameComp => Current.Game.GetComponent<PsychologyGameComponent>();
-    public static Dictionary<KinseyMode, float[]> KinseyModeWeightDict = new Dictionary<KinseyMode, float[]>()
+    public static readonly Dictionary<KinseyMode, float[]> KinseyModeWeightDict = new Dictionary<KinseyMode, float[]>()
     {
         { KinseyMode.Realistic    , new float[] { 62.4949f, 11.3289f,  9.2658f,  6.8466f,  4.5220f,  2.7806f,  2.7612f } },
         { KinseyMode.Invisible    , new float[] {  7.0701f, 11.8092f, 19.5541f, 23.1332f, 19.5541f, 11.8092f,  7.0701f } },
@@ -22,34 +23,43 @@ public static class PsycheHelper
     };
 
     public static HashSet<string> TraitDefNamesThatAffectPsyche = new HashSet<string>();
+
+    public static Dictionary<Gender, Dictionary<int, float>> GenderModifierNodeDefDict = new Dictionary<Gender, Dictionary<int, float>>();
+    public static Dictionary<SkillDef, HashSet<int>> SkillModifierNodeDefDict = new Dictionary<SkillDef, HashSet<int>>();
+    public static Dictionary<Pair<TraitDef, int>, Dictionary<int, float>> TraitModifierNodeDefDict = new Dictionary<Pair<TraitDef, int>, Dictionary<int, float>>();
+    public static Dictionary<WorkTypeDef, Dictionary<int, float>> IncapableModifierNodeDefDict = new Dictionary<WorkTypeDef, Dictionary<int, float>>();
+
     //public static HashSet<string> SkillDefNamesThatAffectPsyche = new HashSet<string>();
     public static int seed;
-    public const float baseIdeoCompatScale = 0.0015f;
+    public static float DailyCertaintyChangeScale => 0.0015f * PsychologySettings.ideoPsycheMultiplier;
+    public static CompPsychology comp;
+    public static SpeciesSettings settings;
+    public static bool flag;
+    public static float[] CircumstanceTimings = new float[25];
+    public static int CircumstanceCount = 0;
 
-    // Things in play for PsychologyEnabled:
-    // - pawn == null
-    // - comp == null
-    // - comp.IsPsychologyPawn
-    // - settings.enablePsyche
-    // - IsSapient(pawn)
-
-    // Things in play for IsVisible:
-    // - pawn == null
-    // - comp == null
-    // - comp.IsPsychologyPawn
-    // - settings.enablePsyche
+    //public static int countPsychologyEnabled;
+    //public static float msPsychologyEnabled;
 
     public static bool PsychologyEnabled(Pawn pawn)
     {
+        //Stopwatch stopwatch = new Stopwatch();
+        //stopwatch.Start();
         if (HasLatentPsyche(pawn) != true)
         {
+            //Log.Message("PsychologyEnabled, HasLatentPsyche != true, pawn = " + pawn.Label + ", species label = " + pawn.def.label);
             return false;
         }
         if (IsSapient(pawn) != true)
         {
-            Log.Message("PsychologyEnabled, IsSapient != true, pawn = " + pawn.Label + ", species label = " + pawn.def.label);
+            //Log.Message("PsychologyEnabled, IsSapient != true, pawn = " + pawn.Label + ", species label = " + pawn.def.label);
             return false;
         }
+        //stopwatch.Stop();
+        //TimeSpan ts = stopwatch.Elapsed;
+        //countPsychologyEnabled++;
+        //msPsychologyEnabled += (float)ts.TotalMilliseconds;
+        //Log.Message("PsychologyEnabled, total time: " + msPsychologyEnabled + " ms, average time: " + msPsychologyEnabled / countPsychologyEnabled + " ms");
         return true;
     }
 
@@ -57,32 +67,29 @@ public static class PsycheHelper
     {
         if (pawn == null)
         {
-            Log.Message("PsychologyEnabled, pawn == null");
+            Log.Warning("PsychologyEnabled, pawn == null");
             return false;
         }
         //Log.Message("PsychologyEnabled, pawn != null");
-
-        CompPsychology comp = Comp(pawn);
+        comp = Comp(pawn);
         if (comp == null)
         {
             Log.Message("PsychologyEnabled, Comp(pawn) == null, pawn = " + pawn.Label + ", species label = " + pawn.def.label);
             return false;
         }
         //Log.Message("PsychologyEnabled, Comp(pawn) != null");
-
-        SpeciesSettings settings = SpeciesHelper.GetOrMakeSpeciesSettingsFromThingDef(pawn.def, true);
+        settings = SpeciesHelper.GetOrMakeSpeciesSettingsFromThingDef(pawn.def);
+        if (comp.IsPsychologyPawn != true)
+        {
+            Log.Message("PsychologyEnabled, IsPsychologyPawn != true, pawn = " + pawn.Label + ", species label = " + pawn.def.label);
+            return false;
+        }
         if (settings.enablePsyche != true)
         {
             Log.Message("PsychologyEnabled, settings.enablePsyche != true, " + pawn.Label + ", species label = " + pawn.def.label);
             return false;
         }
         //Log.Message("PsychologyEnabled, settings.enablePsyche == true");
-
-        if (comp.IsPsychologyPawn != true)
-        {
-            Log.Message("PsychologyEnabled, IsPsychologyPawn != true, pawn = " + pawn.Label + ", species label = " + pawn.def.label);
-            return false;
-        }
         return true;
     }
 
@@ -125,37 +132,66 @@ public static class PsycheHelper
         }
     }
 
-    public static void InitializeDefNamesThatAffectPsyche()
+    public static void InitializeDictionariesForPersonalityNodeDefs()
     {
-        foreach (PersonalityNodeDef pDef in PersonalityNodeParentMatrix.defList)
+        Dictionary<PersonalityNodeDef, int> indexDict = PersonalityNodeMatrix.indexDict;
+        int index;
+
+        foreach (Gender gender in Gender.GetValues(typeof(Gender)))
         {
-            if (pDef.traitModifiers != null && pDef.traitModifiers.Any())
+            GenderModifierNodeDefDict[gender] = new Dictionary<int, float>();
+        }
+
+        foreach (PersonalityNodeDef pDef in PersonalityNodeMatrix.defList)
+        {
+            if (pDef.femaleModifier != default && pDef.femaleModifier != 0f)
+            {
+                index = indexDict[pDef];
+                GenderModifierNodeDefDict[Gender.Male][index] = -pDef.femaleModifier;
+                GenderModifierNodeDefDict[Gender.Female][index] = pDef.femaleModifier;
+            }
+
+            if (pDef.skillModifiers.NullOrEmpty() != true)
+            {
+                foreach (PersonalityNodeSkillModifier skillMod in pDef.skillModifiers)
+                {
+                    if (SkillModifierNodeDefDict.ContainsKey(skillMod.skill) != true)
+                    {
+                        SkillModifierNodeDefDict[skillMod.skill] = new HashSet<int>();
+                    }
+                    SkillModifierNodeDefDict[skillMod.skill].Add(indexDict[pDef]);
+                }
+            }
+
+            if (pDef.traitModifiers.NullOrEmpty() != true)
             {
                 foreach (PersonalityNodeTraitModifier traitMod in pDef.traitModifiers)
                 {
                     TraitDefNamesThatAffectPsyche.Add(traitMod.trait.defName);
+                    Pair<TraitDef, int> pair = new Pair<TraitDef, int>(traitMod.trait, traitMod.degree);
+                    if (TraitModifierNodeDefDict.ContainsKey(pair) != true)
+                    {
+                        TraitModifierNodeDefDict[pair] = new Dictionary<int, float>();
+                    }
+                    TraitModifierNodeDefDict[pair][indexDict[pDef]] = traitMod.modifier;
                 }
             }
-            //if (pDef.skillModifiers != null && pDef.skillModifiers.Any())
-            //{
-            //    foreach (PersonalityNodeSkillModifier skillMod in pDef.skillModifiers)
-            //    {
-            //        SkillDefNamesThatAffectPsyche.Add(skillMod.skill.defName);
-            //    }
-            //}
+
+            if (pDef.incapableModifiers.NullOrEmpty() != true)
+            {
+                foreach (PersonalityNodeIncapableModifier incapableMod in pDef.incapableModifiers)
+                {
+                    if (IncapableModifierNodeDefDict.ContainsKey(incapableMod.type) != true)
+                    {
+                        IncapableModifierNodeDefDict[incapableMod.type] = new Dictionary<int, float>();
+                    }
+                    IncapableModifierNodeDefDict[incapableMod.type][indexDict[pDef]] = incapableMod.modifier;
+                }
+            }
         }
     }
 
-    //public static void InitializePsycheEnabledSpeciesList()
-    //{
-    //    foreach (KeyValuePair<string, SpeciesSettings> kvp in PsychologySettings.speciesDict)
-    //    {
-    //        if (kvp.Value.enablePsyche)
-    //        {
-    //            PsycheEnabledSpeciesList.Add(kvp.Key);
-    //        }
-    //    }
-    //}
+
 
     public static float DatingAgeToVanilla(float customAge, float minDatingAge)
     {
@@ -172,9 +208,9 @@ public static class PsycheHelper
         return vanillaAge * minDatingAge / 14f;
     }
 
-    public static float LovinAgeFromVanilla(float vanillaAge, float minDatingAge)
+    public static float LovinAgeFromVanilla(float vanillaAge, float minLovinAge)
     {
-        return vanillaAge * minDatingAge / 16f;
+        return vanillaAge * minLovinAge / 16f;
     }
 
     public static float RandGaussianSeeded(int specialSeed1, int specialSeed2, float centerX = 0f, float widthFactor = 1f)
@@ -207,7 +243,7 @@ public static class PsycheHelper
         float p = 0.231641888f;
         // Save the sign of x
         bool sign = x > 0;
-        x = Math.Abs(x);
+        x = Mathf.Abs(x);
         // A&S formula 7.1.26
         float t = 1f / (1f + p * x);
         float z = (((((a5 * t + a4) * t) + a3) * t + a2) * t + a1) * t * Mathf.Exp(-0.5f * x * x);
@@ -217,7 +253,7 @@ public static class PsycheHelper
     public static float NormalCDFInv(float p)
     {
         p = Mathf.Clamp(p, 0.0001f, 0.9999f);
-        if (p < 0.5)
+        if (p < 0.5f)
         {
             return -RationalApproximation(Mathf.Sqrt(-2f * Mathf.Log(p)));
         }
@@ -248,20 +284,19 @@ public static class PsycheHelper
         }
         if (TryRemoveTraitDef(pawn, TraitDefOf.Asexual))
         {
-            Log.Warning("Removing Asexual trait from pawn = " + pawn.Label);
-            Comp(pawn).Sexuality.sexDrive = 0.10f * Rand.ValueSeeded(11 * PawnSeed(pawn) + 8);
+            Log.Warning("CorrectTraitsForPawnKinseyEnabled, Removed Asexual trait from pawn = " + pawn.Label);
+            Comp(pawn).Sexuality.AsexualTraitReroll();
         }
         if (TryRemoveTraitDef(pawn, TraitDefOf.Bisexual))
         {
-            Log.Warning("Removing Bisexual trait from pawn = " + pawn.Label);
-            Comp(pawn).Sexuality.BisexualReroll();
+            Log.Warning("CorrectTraitsForPawnKinseyEnabled, Removed Bisexual trait from pawn = " + pawn.Label);
+            Comp(pawn).Sexuality.BisexualTraitReroll();
         }
         if (TryRemoveTraitDef(pawn, TraitDefOf.Gay))
         {
-            Log.Warning("Removing Gay trait from pawn = " + pawn.Label);
-            Comp(pawn).Sexuality.GayReroll();
+            Log.Warning("CorrectTraitsForPawnKinseyEnabled, Removed Gay trait from pawn = " + pawn.Label);
+            Comp(pawn).Sexuality.GayTraitReroll();
         }
-
     }
 
     //public static void CorrectTraitsForPawnKinseyDisabled(Pawn pawn)
@@ -295,14 +330,23 @@ public static class PsycheHelper
     //    }
     //}
 
-    public static bool TryGainTraitDef(Pawn pawn, TraitDef traitDef)
+    public static bool HasTraitDef(Pawn pawn, TraitDef traitDef)
     {
         foreach (Trait trait in pawn.story.traits.allTraits)
         {
             if (trait.def == traitDef)
             {
-                return false;
+                return true;
             }
+        }
+        return false;
+    }
+
+    public static bool TryGainTraitDef(Pawn pawn, TraitDef traitDef)
+    {
+        if (HasTraitDef(pawn, traitDef) != true)
+        {
+            return false;
         }
         pawn.story.traits.GainTrait(new Trait(traitDef));
         return true;
@@ -310,13 +354,20 @@ public static class PsycheHelper
 
     public static bool TryRemoveTraitDef(Pawn pawn, TraitDef traitDef)
     {
-        return pawn.story.traits.allTraits.RemoveAll(t => t.def == traitDef) != 0;
+        foreach (Trait trait in pawn.story.traits.allTraits)
+        {
+            if (trait.def == traitDef)
+            {
+                pawn.story.traits.RemoveTrait(trait);
+                return true;
+            }
+        }
+        return false;
     }
 
     public static int PawnSeed(Pawn pawn)
     {
-        bool success = TryGetPawnSeed(pawn);
-        if (success == false)
+        if (TryGetPawnSeed(pawn) != true)
         {
             string thingID = pawn?.ThingID != null ? pawn?.ThingID : "null";
             string label = pawn?.Label != null ? pawn?.Label : "null";
@@ -329,58 +380,55 @@ public static class PsycheHelper
     public static bool TryGetPawnSeed(Pawn pawn)
     {
         bool success = true;
-        int firstNameSeed;
+        int thingIDSeed;
+        int worldIDSeed;
         int childhoodSeed;
-        int adulthoodSeed;
-        int birthLastNameSeed;
+        List<string> exceptions = new List<string>();
         try
         {
-            firstNameSeed = GenText.StableStringHash((pawn.Name as NameTriple).First);
+            thingIDSeed = pawn.thingIDNumber;
         }
-        catch //(Exception ex)
+        catch (Exception ex)
         {
-            //Log.Warning("Error with (pawn.Name as NameTriple).First.GetHashCode(), Exception: " + ex);
-            firstNameSeed = Mathf.CeilToInt(1e7f * Rand.Value);
+            exceptions.Add("Error for thingIDSeed: " + ex);
+            thingIDSeed = Mathf.CeilToInt(1e7f * Rand.Value);
             success = false;
         }
         try
         {
-            childhoodSeed = GenText.StableStringHash(pawn.story.childhood.identifier);
+            worldIDSeed = Find.World.info.Seed;
         }
-        catch //(Exception ex)
+        catch (Exception ex)
         {
-            //Log.Warning("Error with pawn.story.childhood.identifier.GetHashCode(), Exception: " + ex);
-            childhoodSeed = Mathf.CeilToInt(1e7f * Rand.Value);
+            exceptions.Add("Error for worldIDSeed: " + ex);
+            worldIDSeed = Mathf.CeilToInt(1e7f * Rand.Value);
             success = false;
         }
         try
         {
-            adulthoodSeed = GenText.StableStringHash(pawn.story.adulthood.identifier);
+            childhoodSeed = GenText.StableStringHash(pawn.story.childhood.untranslatedTitle);
         }
-        catch
+        catch (Exception ex)
         {
-            try
-            {
-                adulthoodSeed = Mathf.CeilToInt(1e7f * pawn.story.melanin);
-            }
-            catch //(Exception ex2)
-            {
-                //Log.Warning("Error with pawn.gender.GetHashCode(), Exception: " + ex2);
-                adulthoodSeed = Mathf.CeilToInt(1e7f * Rand.Value);
-                success = false;
-            }
+            exceptions.Add("Error for childhoodSeed: " + ex);
+            childhoodSeed = 23;
+            //success = false;
         }
-        try
+        //try
+        //{
+        //    firstNameSeed = GenText.StableStringHash((pawn.Name as NameTriple).First);
+        //}
+        //catch (Exception ex)
+        //{
+        //    exceptions.Add("(pawn.Name as NameTriple).First: " + ex);
+        //    firstNameSeed = Mathf.CeilToInt(1e7f * Rand.Value);
+        //    success = false;
+        //}
+        seed = Gen.HashCombineInt(thingIDSeed, worldIDSeed);
+        if (success != true)
         {
-            birthLastNameSeed = GenText.StableStringHash(pawn.story.birthLastName);
+            Log.Warning("TryGetPawnSeed: " + string.Join(" | ", exceptions));
         }
-        catch //(Exception ex)
-        {
-            //Log.Warning("Error with pawn.story.birthLastName, Exception: " + ex);
-            birthLastNameSeed = Mathf.CeilToInt(1e7f * Rand.Value);
-            success = false;
-        }
-        seed = Gen.HashCombineInt(firstNameSeed, childhoodSeed, adulthoodSeed, birthLastNameSeed);
         return success;
     }
 
@@ -422,6 +470,56 @@ public static class PsycheHelper
         }
         //Log.Message("pList = " + String.Join(", ", pList));
         return pList;
+    }
+
+    public static float RelativisticAddition(float u, float v)
+    {
+        return (u + v) / (1f + u * v);
+    }
+
+    public static float[] FavoredDisplacmentForIdeo(Ideo ideo, bool randomize = false, bool normalize = true)
+    {
+        float[] favoredVector = new float[PersonalityNodeMatrix.order];
+        int i;
+        bool noContributions = true;
+        foreach (KeyValuePair<MemeDef, Dictionary<PersonalityNodeDef, float>> kvp0 in PersonalityNodeIdeoUtility.memesAffectedByNodes)
+        {
+            if (ideo.HasMeme(kvp0.Key) != true)
+            {
+                continue;
+            }
+            foreach (KeyValuePair<PersonalityNodeDef, float> kvp1 in kvp0.Value)
+            {
+                favoredVector[PersonalityNodeMatrix.indexDict[kvp1.Key]] += kvp1.Value;
+                noContributions = false;
+            }
+        }
+        if (noContributions == true)
+        {
+            return favoredVector;
+        }
+        if (randomize)
+        {
+            for (i = 0; i < PersonalityNodeMatrix.order; i++)
+            {
+                favoredVector[i] *= Rand.Value;
+            }
+        }
+        if (!normalize)
+        {
+            return favoredVector;
+        }
+        float norm = PersonalityNodeMatrix.DotProduct(favoredVector, favoredVector);
+        // Norm could still be zero by coincidental cancellations between modifiers
+        if (norm > 0f)
+        {
+            norm = Mathf.Sqrt(norm);
+            for (i = 0; i < PersonalityNodeMatrix.order; i++)
+            {
+                favoredVector[i] /= norm;
+            }
+        }
+        return favoredVector;
     }
 }
 

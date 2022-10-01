@@ -17,10 +17,15 @@ namespace Psychology;
 
 // ToDo:
 // - Add a "Electoral debate" ritual, to accelerate the vote
+// - Make indoctrination texture with hands hovering over a brain
+// - Make setting to control magnitude of the conversation opinion offsets
+// - Make panic attack a mental break
 
 public class PsychologyMod : Mod
 {
     public static PsychologySettings settings;
+
+    public static int lastDrawFrame = Time.frameCount;
 
     public override string SettingsCategory() => "Psychology";
 
@@ -31,14 +36,12 @@ public class PsychologyMod : Mod
 
     public override void DoSettingsWindowContents(Rect inRect)
     {
-        //SpeciesHelper.Initialize();
+        if (Time.frameCount - lastDrawFrame > 5)
+        {
+            Log.Message("DoSettingsWindowContents, SpeciesHelper.Initialize()");
+            SpeciesHelper.Initialize();
+        }
         SettingsWindowUtility.DrawSettingsWindow(inRect);
+        lastDrawFrame = Time.frameCount;
     }
 }
-
-//base.DoSettingsWindowContents(inRect);
-//GUI.EndGroup();
-//inRect = SettingsWindowUtility.WindowRect;
-//Find.WindowStack.currentlyDrawnWindow.windowRect = inRect;
-//Find.WindowStack.currentlyDrawnWindow.windowRect.center = 0.5f * new Vector2(UI.screenWidth, UI.screenHeight);
-//GUI.BeginGroup(inRect);

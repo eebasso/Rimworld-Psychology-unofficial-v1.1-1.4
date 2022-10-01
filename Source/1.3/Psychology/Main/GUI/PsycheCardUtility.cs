@@ -260,7 +260,7 @@ public class PsycheCardUtility
 
     public static void DrawPsycheCard(Rect totalRect, Pawn pawn, bool OnWindow = true, bool ShowNumbers = false)
     {
-        HasCachedChanged(pawn);
+        CheckIfCachedChanged(pawn);
         
         GUI.BeginGroup(totalRect);
         totalRect.position = Vector2.zero;
@@ -524,16 +524,17 @@ public class PsycheCardUtility
             PersonalityTraitList(personalityRect, pawn);
         }
 
-        Log.Message("Checking PsychologyEnabled for pawn = " + pawn.Label);
+        //Log.Message("Checking PsychologyEnabled for pawn = " + pawn.Label);
         if (PsycheHelper.PsychologyEnabled(pawn) != true)
         {
             Widgets.DrawHighlight(totalRect);
+            Widgets.DrawHighlight(totalRect);
             Text.Anchor = TextAnchor.MiddleCenter;
-            Text.Font = GameFont.Medium;
-            GUI.color = new Color(1f, 0f, 0f, 0.5f);
+            style.fontSize = 30;
+            GUI.color = new Color(1f, 0f, 0f, 0.85f);
             Widgets.Label(totalRect, "PsycheCurrentlyDisabled".Translate());
             GUI.color = Color.white;
-            Text.Font = GameFont.Small;
+            style.fontSize = OldSmallFontSize;
             Text.Anchor = OldAnchor;
         }
 
@@ -926,17 +927,17 @@ public class PsycheCardUtility
         {
             return;
         }
-        float[] gaussianList = new float[PersonalityNodeParentMatrix.order];
+        float[] gaussianList = new float[PersonalityNodeMatrix.order];
         foreach (PersonalityNode node in PsycheHelper.Comp(pawn).Psyche.PersonalityNodes)
         {
-            int index = PersonalityNodeParentMatrix.indexDict[node.def];
+            int index = PersonalityNodeMatrix.indexDict[node.def];
             gaussianList[index] = PsycheHelper.NormalCDFInv(node.AdjustedRating);
         }
         for (int p = 0; p < 5; p++)
         {
-            float dotProduct = PersonalityNodeParentMatrix.DotProduct(gaussianList, PersonalityNodeParentMatrix.bigFiveVectors[p]);
+            float dotProduct = PersonalityNodeMatrix.DotProduct(gaussianList, PersonalityNodeMatrix.bigFiveVectors[p]);
             // Added 0.5f here to make the big five ratings have a bell shaped curve along the range of 0 to 1;
-            bigFiveRatings[p] = PsycheHelper.NormalCDF(0.5f * PersonalityNodeParentMatrix.bigFiveStandardDevInvs[p] * dotProduct);
+            bigFiveRatings[p] = PsycheHelper.NormalCDF(0.5f * PersonalityNodeMatrix.bigFiveStandardDevInvs[p] * dotProduct);
         }
     }
 
@@ -952,7 +953,7 @@ public class PsycheCardUtility
         Find.WindowStack.Add(new Dialog_EditPsyche(pawn));
     }
 
-    public static void HasCachedChanged(Pawn pawn)
+    public static void CheckIfCachedChanged(Pawn pawn)
     {
         bool bool0 = Ticker > 0;
         bool bool1 = PawnCached == pawn;

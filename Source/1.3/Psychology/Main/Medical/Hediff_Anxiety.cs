@@ -8,14 +8,11 @@ namespace Psychology;
 
 public class Hediff_Anxiety : HediffWithComps
 {
-    public bool panic = false;
-    public bool needToFire = true;
-    public const int intervalsPerDay = 25;
+    public const int intervalsPerDay = 20;
     public const int ticksPerInterval = GenDate.TicksPerDay / intervalsPerDay;
-    public int ticksPerIntervalTracker = 0;
-    public int cooldownIntervals = 0;
+    public int ticksPerIntervalTracker = Mathf.CeilToInt(ticksPerInterval * Rand.Value);
+    public int cooldownIntervalTracker = 0;
 
-    
     public override void Tick()
     {
         base.Tick();
@@ -25,42 +22,30 @@ public class Hediff_Anxiety : HediffWithComps
             return;
         }
         ticksPerIntervalTracker = ticksPerInterval;
-
-        if (cooldownIntervals > 0)
+        if (cooldownIntervalTracker > 0)
         {
-            cooldownIntervals--;
-            panic = false;
+            cooldownIntervalTracker--;
             return;
         }
-
-        if (!pawn.Spawned || !pawn.RaceProps.Humanlike)
+        if (pawn.InMentalState == true)
         {
-            panic = false;
             return;
         }
-
-        //float chance = 0.02f / Math.Max(1, 11 - 2 * this.CurStageIndex);
-        float chance = 0.02f / Math.Max(1, 12 - 10 * this.Severity);
-        int seed = pawn.GetHashCode() ^ (GenLocalDate.DayOfYear(pawn) + GenLocalDate.Year(pawn) + (int)(GenLocalDate.DayPercent(pawn) * 5) * 60) * 391;
-
-        if (Rand.ChanceSeeded(chance, seed))
+        //int x = pawn.GetHashCode() ^ (GenLocalDate.DayOfYear(pawn) + GenLocalDate.Year(pawn) + (int)(GenLocalDate.DayPercent(pawn) * 5) * 60) * 391;
+        //int modBase = 50 * (11 - 2 * this.CurStageIndex);
+        //if (x % modBase != 0)
+        //{
+        //    return;
+        //}
+        if (Rand.MTBEventOccurs(CurStage.mentalBreakMtbDays, GenDate.TicksPerDay, ticksPerInterval) != true)
         {
-            this.Severity += 0.00000002f * ticksPerInterval;
-            // Give at least one day between anxiety attacks
-            cooldownIntervals = intervalsPerDay;
-
-            panic = true;
-            if (pawn.jobs.curDriver.asleep)
-            {
-                pawn.needs.mood.thoughts.memories.TryGainMemory(ThoughtDefOfPsychology.DreamNightmare);
-            }
-            else if (pawn.jobs.curJob.def != JobDefOf.FleeAndCower && !pawn.Downed)
-            {
-                pawn.jobs.StartJob(new Job(JobDefOf.FleeAndCower, pawn.Position), JobCondition.InterruptForced, null, false, true, null);
-            }
             return;
         }
-        panic = false;
+        if (pawn.jobs.curDriver.asleep)
+        {
+            pawn.needs.mood.thoughts.memories.TryGainMemory(ThoughtDefOfPsychology.DreamNightmare);
+            pawn.mindState.mentalStateHandler.TryStartMentalState(MentalStateDefOfPsychology.PanicAttack, forceWake: true);
+        }
     }
 }
 

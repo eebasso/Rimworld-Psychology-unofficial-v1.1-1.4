@@ -54,5 +54,11 @@
 			<workerClass>Psychology.MentalStateWorker_FireStartingSpree</workerClass>
 		</value>
 	</Operation>
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/MentalStateDef[defName="FireStartingSpree"]/stateClass</xpath>
+		<value>
+			<stateClass>Psychology.MentalState_FireStartingSpreePsychology</stateClass>
+		</value>
+	</Operation>
 
 </Patch>

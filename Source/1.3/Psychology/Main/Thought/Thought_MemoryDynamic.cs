@@ -10,6 +10,12 @@ namespace Psychology
 {
     public class Thought_MemoryDynamic : Thought_Memory
     {
+        private string topic;
+        private string label;
+        private string description;
+        private float duration;
+        private float baseMoodEffect;
+
         public Thought_MemoryDynamic()
         {
         }
@@ -57,10 +63,6 @@ namespace Psychology
             return thought_MemoryDynamic != null && this.LabelCap == thought_MemoryDynamic.LabelCap;
         }
 
-        private string topic;
-        private string label;
-        private string description;
-        private float duration;
-        private float baseMoodEffect;
+
     }
 }

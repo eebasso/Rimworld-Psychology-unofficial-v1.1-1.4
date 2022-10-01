@@ -12,11 +12,15 @@ namespace Psychology
             {
                 return ThoughtState.Inactive;
             }
-            if (p.RaceProps?.Humanlike != true)
+            //if (p.RaceProps?.Humanlike != true)
+            //{
+            //    return ThoughtState.Inactive;
+            //}
+            if (p.story?.traits?.HasTrait(TraitDefOfPsychology.Codependent) != true)
             {
                 return ThoughtState.Inactive;
             }
-            if (p.story?.traits?.HasTrait(TraitDefOfPsychology.Codependent) != true)
+            if (PsycheHelper.PsychologyEnabled(p) != true)
             {
                 return ThoughtState.Inactive;
             }

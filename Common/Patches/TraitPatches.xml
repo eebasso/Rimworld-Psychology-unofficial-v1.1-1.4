@@ -1,9 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <Patch>
-	<Operation Class="PatchOperationSequence">
+	<Operation Class="Psychology.PatchOperationReplaceKinseyEnabled">
+		<xpath>Defs/TraitDef[defName="Asexual"]/commonality</xpath>
+		<value>
+			<commonality>0</commonality>
+    </value>
+	</Operation>
+	<Operation Class="Psychology.PatchOperationReplaceKinseyEnabled">
+		<xpath>Defs/TraitDef[defName="Bisexual"]/commonality</xpath>
+		<value>
+			<commonality>0</commonality>
+    </value>
+	</Operation>
+	<Operation Class="Psychology.PatchOperationReplaceKinseyEnabled">
+		<xpath>Defs/TraitDef[defName="Gay"]/commonality</xpath>
+		<value>
+			<commonality>0</commonality>
+    </value>
+	</Operation>
+
+	<Operation Class="Psychology.PatchOperationAddOrCreate">
+		<xpath>Defs/TraitDef[defName="Nudist"]/conflictingTraits</xpath>
+		<value>
+			<li>Prude</li>
+		</value>
+	</Operation>
+	<!--<Operation Class="PatchOperationSequence">
 		<success>Always</success>
 		<operations>
 			<li Class="PatchOperationTest">
-			  <xpath>*/TraitDef[defName="Nudist"]/conflictingTraits</xpath>
+				<xpath>*/TraitDef[defName="Nudist"]/conflictingTraits</xpath>
 			</li>
 			<li Class="PatchOperationAdd">
 				<xpath>*/TraitDef[defname="Nudist"]/conflictingTraits</xpath>
@@ -13,139 +39,12 @@
 			</li>
 		</operations>
 	</Operation>
-	
 	<Operation Class="PatchOperationSequence">
 		<success>Always</success>
 		<operations>
 			<li Class="PatchOperationTest">
-			  <xpath>*/TraitDef[defName="Bloodlust"]/conflictingTraits</xpath>
-			</li>
-			<li Class="PatchOperationAdd">
-				<xpath>*/TraitDef[defname="Bloodlust"]/conflictingTraits</xpath>
-				<value>
-					<li>BleedingHeart</li>
-					<li>Desensitized</li>
-				</value>
-			</li>
-		</operations>
-	</Operation>
-	
-	<Operation Class="PatchOperationSequence">
-		<success>Always</success>
-		<operations>
-			<li Class="PatchOperationTest">
-			  <xpath>*/TraitDef[defName="Psychopath"]/conflictingTraits</xpath>
-			</li>
-			<li Class="PatchOperationAdd">
-				<xpath>*/TraitDef[defname="Psychopath"]/conflictingTraits</xpath>
-				<value>
-					<li>BleedingHeart</li>
-					<li>Desensitized</li>
-					<li>OpenMinded</li>
-				</value>
-			</li>
-		</operations>
-	</Operation>
-	
-	<Operation Class="PatchOperationSequence">
-		<success>Always</success>
-		<operations>
-			<li Class="PatchOperationTest">
-			  <xpath>*/TraitDef[defName="Cannibal"]/conflictingTraits</xpath>
-			</li>
-			<li Class="PatchOperationAdd">
-				<xpath>*/TraitDef[defname="Cannibal"]/conflictingTraits</xpath>
-				<value>
-					<li>BleedingHeart</li>
-					<li>Gourmet</li>
-				</value>
-			</li>
-		</operations>
-	</Operation>
-	
-	<Operation Class="PatchOperationSequence">
-		<success>Always</success>
-		<operations>
-			<li Class="PatchOperationTest">
-			  <xpath>*/TraitDef[defName="Ascetic"]/conflictingTraits</xpath>
-			</li>
-			<li Class="PatchOperationAdd">
-				<xpath>*/TraitDef[defname="Ascetic"]/conflictingTraits</xpath>
-				<value>
-					<li>Gourmet</li>
-				</value>
-			</li>
-		</operations>
-	</Operation>
-	
-	<Operation Class="PatchOperationSequence">
-		<success>Always</success>
-		<operations>
-			<li Class="PatchOperationTest">
-			  <xpath>*/TraitDef[defName="Neurotic"]/conflictingTraits</xpath>
-			</li>
-			<li Class="PatchOperationAdd">
-				<xpath>*/TraitDef[defname="Neurotic"]/conflictingTraits</xpath>
-				<value>
-					<li>HeavySleeper</li>
-				</value>
-			</li>
-		</operations>
-	</Operation>
-	
-	<Operation Class="PatchOperationSequence">
-		<success>Always</success>
-		<operations>
-			<li Class="PatchOperationTest">
-			  <xpath>*/TraitDef[defName="DislikesMen"]/conflictingTraits</xpath>
-			</li>
-			<li Class="PatchOperationAdd">
-				<xpath>*/TraitDef[defname="DislikesMen"]/conflictingTraits</xpath>
-				<value>
-					<li>OpenMinded</li>
-				</value>
-			</li>
-		</operations>
-	</Operation>
-	
-	<Operation Class="PatchOperationSequence">
-		<success>Always</success>
-		<operations>
-			<li Class="PatchOperationTest">
-			  <xpath>*/TraitDef[defName="DislikesWomen"]/conflictingTraits</xpath>
-			</li>
-			<li Class="PatchOperationAdd">
-				<xpath>*/TraitDef[defname="DislikesWomen"]/conflictingTraits</xpath>
-				<value>
-					<li>OpenMinded</li>
-				</value>
-			</li>
-		</operations>
-	</Operation>
-	
-	<Operation Class="PatchOperationSequence">
-		<success>Always</success>
-		<operations>
-			<li Class="PatchOperationTest">
-			  <xpath>*/TraitDef[defName="Prosthophobe"]/conflictingTraits</xpath>
-			</li>
-			<li Class="PatchOperationAdd">
-				<xpath>*/TraitDef[defname="Prosthophobe"]/conflictingTraits</xpath>
-				<value>
-					<li>OpenMinded</li>
-				</value>
-			</li>
-		</operations>
-	</Operation>
-	
-	<!-- conflictingTraits doesn't exist -->
-	
-	<Operation Class="PatchOperationSequence">
-		<success>Always</success>
-		<operations>
-			<li Class="PatchOperationTest">
-			  <xpath>*/TraitDef[defName="Nudist"]/conflictingTraits</xpath>
-			  <success>Invert</success>
+				<xpath>*/TraitDef[defName="Nudist"]/conflictingTraits</xpath>
+				<success>Invert</success>
 			</li>
 			<li Class="PatchOperationAdd">
 				<xpath>*/TraitDef[defname="Nudist"]</xpath>
@@ -156,14 +55,36 @@
 				</value>
 			</li>
 		</operations>
+	</Operation>-->
+
+	<Operation Class="Psychology.PatchOperationAddOrCreate">
+		<xpath>Defs/TraitDef[defName="Bloodlust"]/conflictingTraits</xpath>
+		<value>
+			<li>BleedingHeart</li>
+			<li>Desensitized</li>
+		</value>
 	</Operation>
-	
+	<!--<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+			<li Class="PatchOperationTest">
+				<xpath>*/TraitDef[defName="Bloodlust"]/conflictingTraits</xpath>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>*/TraitDef[defname="Bloodlust"]/conflictingTraits</xpath>
+				<value>
+					<li>BleedingHeart</li>
+					<li>Desensitized</li>
+				</value>
+			</li>
+		</operations>
+	</Operation>
 	<Operation Class="PatchOperationSequence">
 		<success>Always</success>
 		<operations>
 			<li Class="PatchOperationTest">
-			  <xpath>*/TraitDef[defName="Bloodlust"]/conflictingTraits</xpath>
-			  <success>Invert</success>
+				<xpath>*/TraitDef[defName="Bloodlust"]/conflictingTraits</xpath>
+				<success>Invert</success>
 			</li>
 			<li Class="PatchOperationAdd">
 				<xpath>*/TraitDef[defname="Bloodlust"]</xpath>
@@ -175,14 +96,38 @@
 				</value>
 			</li>
 		</operations>
+	</Operation>-->
+
+	<Operation Class="Psychology.PatchOperationAddOrCreate">
+		<xpath>Defs/TraitDef[defName="Psychopath"]/conflictingTraits</xpath>
+		<value>
+			<li>BleedingHeart</li>
+			<li>Desensitized</li>
+			<li>OpenMinded</li>
+		</value>
 	</Operation>
-	
+	<!--<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+			<li Class="PatchOperationTest">
+				<xpath>*/TraitDef[defName="Psychopath"]/conflictingTraits</xpath>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>*/TraitDef[defname="Psychopath"]/conflictingTraits</xpath>
+				<value>
+					<li>BleedingHeart</li>
+					<li>Desensitized</li>
+					<li>OpenMinded</li>
+				</value>
+			</li>
+		</operations>
+	</Operation>
 	<Operation Class="PatchOperationSequence">
 		<success>Always</success>
 		<operations>
 			<li Class="PatchOperationTest">
-			  <xpath>*/TraitDef[defName="Psychopath"]/conflictingTraits</xpath>
-			  <success>Invert</success>
+				<xpath>*/TraitDef[defName="Psychopath"]/conflictingTraits</xpath>
+				<success>Invert</success>
 			</li>
 			<li Class="PatchOperationAdd">
 				<xpath>*/TraitDef[defname="Psychopath"]</xpath>
@@ -195,14 +140,36 @@
 				</value>
 			</li>
 		</operations>
+	</Operation>-->
+
+	<Operation Class="Psychology.PatchOperationAddOrCreate">
+		<xpath>Defs/TraitDef[defName="Cannibal"]/conflictingTraits</xpath>
+		<value>
+			<li>BleedingHeart</li>
+			<li>Gourmet</li>
+		</value>
 	</Operation>
-	
-	<Operation Class="PatchOperationSequence">
+	<!--<Operation Class="PatchOperationSequence">
 		<success>Always</success>
 		<operations>
 			<li Class="PatchOperationTest">
-			  <xpath>*/TraitDef[defName="Cannibal"]/conflictingTraits</xpath>
-			  <success>Invert</success>
+				<xpath>*/TraitDef[defName="Cannibal"]/conflictingTraits</xpath>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>*/TraitDef[defname="Cannibal"]/conflictingTraits</xpath>
+				<value>
+					<li>BleedingHeart</li>
+					<li>Gourmet</li>
+				</value>
+			</li>
+		</operations>
+	</Operation>
+		<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+			<li Class="PatchOperationTest">
+				<xpath>*/TraitDef[defName="Cannibal"]/conflictingTraits</xpath>
+				<success>Invert</success>
 			</li>
 			<li Class="PatchOperationAdd">
 				<xpath>*/TraitDef[defname="Cannibal"]</xpath>
@@ -214,14 +181,34 @@
 				</value>
 			</li>
 		</operations>
+	</Operation>-->
+
+	<Operation Class="Psychology.PatchOperationAddOrCreate">
+		<xpath>Defs/TraitDef[defName="Ascetic"]/conflictingTraits</xpath>
+		<value>
+			<li>Gourmet</li>
+		</value>
 	</Operation>
-	
+	<!--<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+			<li Class="PatchOperationTest">
+				<xpath>*/TraitDef[defName="Ascetic"]/conflictingTraits</xpath>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>*/TraitDef[defname="Ascetic"]/conflictingTraits</xpath>
+				<value>
+					<li>Gourmet</li>
+				</value>
+			</li>
+		</operations>
+	</Operation>
 	<Operation Class="PatchOperationSequence">
 		<success>Always</success>
 		<operations>
 			<li Class="PatchOperationTest">
-			  <xpath>*/TraitDef[defName="Ascetic"]/conflictingTraits</xpath>
-			  <success>Invert</success>
+				<xpath>*/TraitDef[defName="Ascetic"]/conflictingTraits</xpath>
+				<success>Invert</success>
 			</li>
 			<li Class="PatchOperationAdd">
 				<xpath>*/TraitDef[defname="Ascetic"]</xpath>
@@ -232,14 +219,34 @@
 				</value>
 			</li>
 		</operations>
+	</Operation>-->
+
+	<Operation Class="Psychology.PatchOperationAddOrCreate">
+		<xpath>Defs/TraitDef[defName="Neurotic"]/conflictingTraits</xpath>
+		<value>
+			<li>HeavySleeper</li>
+		</value>
 	</Operation>
-	
+	<!--<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+			<li Class="PatchOperationTest">
+				<xpath>*/TraitDef[defName="Neurotic"]/conflictingTraits</xpath>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>*/TraitDef[defname="Neurotic"]/conflictingTraits</xpath>
+				<value>
+					<li>HeavySleeper</li>
+				</value>
+			</li>
+		</operations>
+	</Operation>
 	<Operation Class="PatchOperationSequence">
 		<success>Always</success>
 		<operations>
 			<li Class="PatchOperationTest">
-			  <xpath>*/TraitDef[defName="Neurotic"]/conflictingTraits</xpath>
-			  <success>Invert</success>
+				<xpath>*/TraitDef[defName="Neurotic"]/conflictingTraits</xpath>
+				<success>Invert</success>
 			</li>
 			<li Class="PatchOperationAdd">
 				<xpath>*/TraitDef[defname="Neurotic"]</xpath>
@@ -250,14 +257,35 @@
 				</value>
 			</li>
 		</operations>
+	</Operation>-->
+
+
+	<Operation Class="Psychology.PatchOperationAddOrCreate">
+		<xpath>Defs/TraitDef[defName="DislikesMen"]/conflictingTraits</xpath>
+		<value>
+			<li>OpenMinded</li>
+		</value>
 	</Operation>
-	
+	<!--<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+			<li Class="PatchOperationTest">
+				<xpath>*/TraitDef[defName="DislikesMen"]/conflictingTraits</xpath>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>*/TraitDef[defname="DislikesMen"]/conflictingTraits</xpath>
+				<value>
+					<li>OpenMinded</li>
+				</value>
+			</li>
+		</operations>
+	</Operation>
 	<Operation Class="PatchOperationSequence">
 		<success>Always</success>
 		<operations>
 			<li Class="PatchOperationTest">
-			  <xpath>*/TraitDef[defName="DislikesMen"]/conflictingTraits</xpath>
-			  <success>Invert</success>
+				<xpath>*/TraitDef[defName="DislikesMen"]/conflictingTraits</xpath>
+				<success>Invert</success>
 			</li>
 			<li Class="PatchOperationAdd">
 				<xpath>*/TraitDef[defname="DislikesMen"]</xpath>
@@ -268,14 +296,34 @@
 				</value>
 			</li>
 		</operations>
+	</Operation>-->
+
+	<Operation Class="Psychology.PatchOperationAddOrCreate">
+		<xpath>Defs/TraitDef[defName="DislikesWomen"]/conflictingTraits</xpath>
+		<value>
+			<li>OpenMinded</li>
+		</value>
 	</Operation>
-	
+	<!--<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+			<li Class="PatchOperationTest">
+				<xpath>*/TraitDef[defName="DislikesWomen"]/conflictingTraits</xpath>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>*/TraitDef[defname="DislikesWomen"]/conflictingTraits</xpath>
+				<value>
+					<li>OpenMinded</li>
+				</value>
+			</li>
+		</operations>
+	</Operation>
 	<Operation Class="PatchOperationSequence">
 		<success>Always</success>
 		<operations>
 			<li Class="PatchOperationTest">
-			  <xpath>*/TraitDef[defName="DislikesWomen"]/conflictingTraits</xpath>
-			  <success>Invert</success>
+				<xpath>*/TraitDef[defName="DislikesWomen"]/conflictingTraits</xpath>
+				<success>Invert</success>
 			</li>
 			<li Class="PatchOperationAdd">
 				<xpath>*/TraitDef[defname="DislikesWomen"]</xpath>
@@ -286,14 +334,34 @@
 				</value>
 			</li>
 		</operations>
-	</Operation>
-	
-	<Operation Class="PatchOperationSequence">
+	</Operation>-->
+
+	<!--<Operation Class="Psychology.PatchOperationAddOrCreate">
+		<xpath>Defs/TraitDef[defName="Prosthophobe"]/conflictingTraits</xpath>
+		<value>
+			<li>OpenMinded</li>
+		</value>
+	</Operation>-->
+	<!--<Operation Class="PatchOperationSequence">
 		<success>Always</success>
 		<operations>
 			<li Class="PatchOperationTest">
-			  <xpath>*/TraitDef[defName="Prosthophobe"]/conflictingTraits</xpath>
-			  <success>Invert</success>
+				<xpath>*/TraitDef[defName="Prosthophobe"]/conflictingTraits</xpath>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>*/TraitDef[defname="Prosthophobe"]/conflictingTraits</xpath>
+				<value>
+					<li>OpenMinded</li>
+				</value>
+			</li>
+		</operations>
+	</Operation>-->
+	<!--<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+			<li Class="PatchOperationTest">
+				<xpath>*/TraitDef[defName="Prosthophobe"]/conflictingTraits</xpath>
+				<success>Invert</success>
 			</li>
 			<li Class="PatchOperationAdd">
 				<xpath>*/TraitDef[defname="Prosthophobe"]</xpath>
@@ -304,14 +372,19 @@
 				</value>
 			</li>
 		</operations>
+	</Operation>-->
+
+	<Operation Class="Psychology.PatchOperationAddOrCreate">
+		<xpath>Defs/TraitDef[defName="Undergrounder"]/conflictingTraits</xpath>
+		<value>
+			<li>Outdoorsy</li>
+		</value>
 	</Operation>
-	
-	
-	<Operation Class="PatchOperationSequence">
+	<!--<Operation Class="PatchOperationSequence">
 		<success>Always</success>
 		<operations>
 			<li Class="PatchOperationTest">
-			  <xpath>*/TraitDef[defName="Undergrounder"]/conflictingTraits</xpath>
+				<xpath>*/TraitDef[defName="Undergrounder"]/conflictingTraits</xpath>
 			</li>
 			<li Class="PatchOperationAdd">
 				<xpath>*/TraitDef[defname="Undergrounder"]/conflictingTraits</xpath>
@@ -320,5 +393,6 @@
 				</value>
 			</li>
 		</operations>
-	</Operation>
+	</Operation>-->
+	
 </Patch>

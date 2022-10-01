@@ -16,7 +16,7 @@ public static class Pawn_IdeoTracker_CertaintyChangePerDay_Patch
         {
             return;
         }
-        __result += Current.Game.GetComponent<PsychologyGameComponent>().CertaintyChange(___pawn);
+        __result += Current.Game.GetComponent<PsychologyGameComponent>().CertaintyChange(___pawn, false);
     }
 }
 

@@ -18,9 +18,100 @@ public class Pawn_SexualityTracker : IExposable
     public Dictionary<Pawn, int> knownSexualities = new Dictionary<Pawn, int>();
     public Pawn pawn;
 
-    public Pawn_SexualityTracker(Pawn pawn)
+    public float AdjustedSexDrive
     {
-        this.pawn = pawn;
+        get
+        {
+            float age = pawn.ageTracker.AgeBiologicalYears;
+            SpeciesSettings settings = PsychologySettings.speciesDict[pawn.def.defName];
+            float minLovinAge = settings.minLovinAge;
+            if (!settings.enablePsyche || minLovinAge < 0f)
+            {
+                return 0f;
+            }
+            if (!settings.enableAgeGap)
+            {
+                return age > minLovinAge ? this.sexDrive : 0f;
+            }
+            if (minLovinAge == 0f)
+            {
+                return this.sexDrive;
+            }
+            float scaledAge = PsycheHelper.LovinAgeToVanilla(age, minLovinAge);
+            float ageFactor = 1f;
+            if (pawn.gender == Gender.Female)
+            {
+                ageFactor = FemaleSexDriveCurve.Evaluate(scaledAge);
+            }
+            else if (pawn.gender == Gender.Male)
+            {
+                ageFactor = MaleSexDriveCurve.Evaluate(scaledAge);
+            }
+            else
+            {
+                // Maybe one day other genders will come to the Rim...
+                ageFactor = 0.5f * (FemaleSexDriveCurve.Evaluate(scaledAge) + MaleSexDriveCurve.Evaluate(scaledAge));
+            }
+            return ageFactor * this.sexDrive;
+        }
+    }
+
+    public float AdjustedRomanticDrive
+    {
+        get
+        {
+            float age = pawn.ageTracker.AgeBiologicalYears;
+            SpeciesSettings settings = PsychologySettings.speciesDict[pawn.def.defName];
+            float minDatingAge = settings.minDatingAge;
+            if (!settings.enablePsyche || minDatingAge < 0f)
+            {
+                return 0f;
+            }
+            if (!settings.enableAgeGap)
+            {
+                return age > minDatingAge ? this.romanticDrive : 0f;
+            }
+            if (minDatingAge == 0f)
+            {
+                return this.romanticDrive;
+            }
+            float scaledAge = PsycheHelper.DatingAgeToVanilla(age, minDatingAge);
+            float ageFactor = RomanticDriveCurve.Evaluate(scaledAge);
+            return ageFactor * this.romanticDrive;
+        }
+    }
+
+    public static readonly SimpleCurve FemaleSexDriveCurve = new SimpleCurve
+    {
+        new CurvePoint(12, 0f),
+        new CurvePoint(15, 1f),
+        new CurvePoint(35, 1.6f),
+        new CurvePoint(50, 1f),
+        new CurvePoint(80, 0.6f),
+    };
+
+    public static readonly SimpleCurve MaleSexDriveCurve = new SimpleCurve
+    {
+        new CurvePoint(12, 0f),
+        new CurvePoint(15, 1f),
+        new CurvePoint(20, 1.6f),
+        new CurvePoint(50, 1f),
+        new CurvePoint(80, 0.6f),
+    };
+
+    public static readonly SimpleCurve RomanticDriveCurve = new SimpleCurve
+    {
+        new CurvePoint(10f, 0f),
+        new CurvePoint(15f, 1.3f),
+        new CurvePoint(25f, 1.6f),
+        new CurvePoint(35f, 1.3f),
+        new CurvePoint(50f, 1f),
+        new CurvePoint(80f, 0.8f),
+    };
+
+    public Pawn_SexualityTracker(Pawn p)
+    {
+        this.pawn = p;
     }
 
     public virtual bool IncompatibleSexualityKnown(Pawn recipient)
@@ -169,177 +260,52 @@ public class Pawn_SexualityTracker : IExposable
         return RandSexDrive(859456 + 3 * inputSeed);
     }
 
-    public float AdjustedSexDrive
-    {
-        get
-        {
-            float age = pawn.ageTracker.AgeBiologicalYears;
-            SpeciesSettings settings = PsychologySettings.speciesDict[pawn.def.defName];
-            float minLovinAge = settings.minLovinAge;
-            if (!settings.enablePsyche || minLovinAge < 0f)
-            {
-                return 0f;
-            }
-            if (!settings.enableAgeGap)
-            {
-                return age > minLovinAge ? this.sexDrive : 0f;
-            }
-            if (minLovinAge == 0f)
-            {
-                return this.sexDrive;
-            }
-            float scaledAge = PsycheHelper.LovinAgeToVanilla(age, minLovinAge);
-            float ageFactor = 1f;
-            if (pawn.gender == Gender.Female)
-            {
-                ageFactor = FemaleSexDriveCurve.Evaluate(scaledAge);
-            }
-            else if (pawn.gender == Gender.Male)
-            {
-                ageFactor = MaleSexDriveCurve.Evaluate(scaledAge);
-            }
-            else
-            {
-                // Maybe one day other genders will come to the Rim...
-                ageFactor = 0.5f * (FemaleSexDriveCurve.Evaluate(scaledAge) + MaleSexDriveCurve.Evaluate(scaledAge));
-            }
-            return ageFactor * this.sexDrive;
-        }
-    }
 
-    public float AdjustedRomanticDrive
-    {
-        get
-        {
-            float age = pawn.ageTracker.AgeBiologicalYears;
-            SpeciesSettings settings = PsychologySettings.speciesDict[pawn.def.defName];
-            float minDatingAge = settings.minDatingAge;
-            if (!settings.enablePsyche || minDatingAge < 0f)
-            {
-                return 0f;
-            }
-            if (!settings.enableAgeGap)
-            {
-                return age > minDatingAge ? this.romanticDrive : 0f;
-            }
-            if (minDatingAge == 0f)
-            {
-                return this.romanticDrive;
-            }
-            float scaledAge = PsycheHelper.DatingAgeToVanilla(age, minDatingAge);
-            float ageFactor = RomanticDriveCurve.Evaluate(scaledAge);
-            return ageFactor * this.romanticDrive;
-        }
-    }
 
-    public static readonly SimpleCurve FemaleSexDriveCurve = new SimpleCurve
-    {
-        {
-            new CurvePoint(12, 0f),
-            true
-        },
-        {
-            new CurvePoint(15, 1f),
-            true
-        },
-        {
-            new CurvePoint(35, 1.6f),
-            true
-        },
-        {
-            new CurvePoint(50, 1f),
-            true
-        },
-        {
-            new CurvePoint(80, 0.6f),
-            true
-        },
-    };
-
-    public static readonly SimpleCurve MaleSexDriveCurve = new SimpleCurve
-    {
-        {
-            new CurvePoint(12, 0f),
-            true
-        },
-        {
-            new CurvePoint(15, 1f),
-            true
-        },
-        {
-            new CurvePoint(20, 1.6f),
-            true
-        },
-        {
-            new CurvePoint(50, 1f),
-            true
-        },
-        {
-            new CurvePoint(80, 0.6f),
-            true
-        },
-    };
-
-    public static readonly SimpleCurve RomanticDriveCurve = new SimpleCurve
-    {
-        {
-            new CurvePoint(10f, 0f),
-            true
-        },
-        {
-            new CurvePoint(15f, 1.3f),
-            true
-        },
-        {
-            new CurvePoint(25f, 1.6f),
-            true
-        },
-        {
-            new CurvePoint(35f, 1.3f),
-            true
-        },
-        {
-            new CurvePoint(50f, 1f),
-            true
-        },
-        {
-            new CurvePoint(80f, 0.8f),
-            true
-        },
-    };
-
-    public void AsexualReroll()
+    public void AsexualTraitReroll()
     {
         this.sexDrive = 0.10f * Rand.ValueSeeded(11 * PsycheHelper.PawnSeed(this.pawn) + 8);
     }
 
-    public void BisexualReroll()
+    public void BisexualTraitReroll()
     {
-        GenerateKinsey(0f, 0.01f, 1f, 2f, 1f, 0.01f, 0f);
+        GenerateKinsey(0f, 0f, 0f, 1f, 0f, 0f, 0f);
         PsycheHelper.Comp(this.pawn).Psyche.CalculateAdjustedRatings();
     }
 
-    public void GayReroll()
+    public void GayTraitReroll()
     {
-        GenerateKinsey(0f, 0.01f, 0.02f, 0.03f, 0.04f, 1f, 2f);
+        GenerateKinsey(0f, 0f, 0f, 0f, 0f, 0f, 1f);
         PsycheHelper.Comp(pawn).Psyche.CalculateAdjustedRatings();
     }
 
     public void DeepCopyFromOtherTracker(Pawn_SexualityTracker otherTracker)
     {
+        //Log.Message("Pawn_SexualityTracker.DeepCopyFromOtherTracker step 0");
         this.kinseyRating = otherTracker.kinseyRating;
+        //Log.Message("Pawn_SexualityTracker.DeepCopyFromOtherTracker step 1, otherTracker.kinseyRating = " + otherTracker.kinseyRating);
         this.sexDrive = otherTracker.sexDrive;
+        //Log.Message("Pawn_SexualityTracker.DeepCopyFromOtherTracker step 2, otherTracker.sexDrive = " + otherTracker.sexDrive);
         this.romanticDrive = otherTracker.romanticDrive;
-        this.knownSexualitiesWorkingKeys = new List<Pawn>();
-        foreach (Pawn p in otherTracker.knownSexualitiesWorkingKeys)
+        //Log.Message("Pawn_SexualityTracker.DeepCopyFromOtherTracker step 3, otherTracker.romanticDrive " + otherTracker.romanticDrive);
+        if (otherTracker.knownSexualitiesWorkingKeys != null)
         {
-            this.knownSexualitiesWorkingKeys.Add(p);
+            this.knownSexualitiesWorkingKeys = new List<Pawn>();
+            foreach (Pawn p in otherTracker.knownSexualitiesWorkingKeys)
+            {
+                this.knownSexualitiesWorkingKeys.Add(p);
+            }
         }
-        this.knownSexualitiesWorkingValues = new List<int>();
-        foreach (int i in otherTracker.knownSexualitiesWorkingValues)
+        //Log.Message("Pawn_SexualityTracker.DeepCopyFromOtherTracker step 4");
+        if (otherTracker.knownSexualitiesWorkingValues != null)
         {
-            this.knownSexualitiesWorkingValues.Add(i);
+            this.knownSexualitiesWorkingValues = new List<int>();
+            foreach (int i in otherTracker.knownSexualitiesWorkingValues)
+            {
+                this.knownSexualitiesWorkingValues.Add(i);
+            }
         }
+        //Log.Message("Pawn_SexualityTracker.DeepCopyFromOtherTracker step 5");
         this.knownSexualities = new Dictionary<Pawn, int>();
         foreach (KeyValuePair<Pawn, int> kvp in otherTracker.knownSexualities)
         {

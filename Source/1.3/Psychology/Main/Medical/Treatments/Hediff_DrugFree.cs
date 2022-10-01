@@ -5,17 +5,17 @@ using System.Text;
 using RimWorld;
 using Verse;
 
-namespace Psychology
+namespace Psychology;
+
+// ToDo: fix this with patch or class extension
+public class Hediff_DrugFree : Hediff
 {
-    public class Hediff_DrugFree : Hediff
+    public override void PostTick()
     {
-        public override void PostTick()
+        base.PostTick();
+        if (pawn.InMentalState && (pawn.MentalState.def == DefDatabase<MentalStateDef>.GetNamed("BingingDrugMajor") || (pawn.MentalState.def == DefDatabase<MentalStateDef>.GetNamed("BingingDrugExtreme"))))
         {
-            base.PostTick();
-            if(pawn.InMentalState && (pawn.MentalState.def == DefDatabase<MentalStateDef>.GetNamed("BingingDrugMajor") || (pawn.MentalState.def == DefDatabase<MentalStateDef>.GetNamed("BingingDrugExtreme"))))
-            {
-                pawn.MentalState.PostEnd();
-            }
+            pawn.MentalState.PostEnd();
         }
     }
 }

@@ -1,60 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Patch>
-	<Operation Class="Psychology.TraitMultiplierPatchOperation">
+	<Operation Class="Psychology.PatchOperationTraitMultiplier">
 		<xpath>Defs/ThoughtDef[defName="Disfigured"]/stages/li[1]/baseOpinionOffset/text()</xpath>
 	</Operation>
 
-	<Operation Class="Psychology.TraitMultiplierPatchOperation">
+	<Operation Class="Psychology.PatchOperationTraitMultiplier">
 		<xpath>Defs/ThoughtDef[defName="Pretty"]/stages/li[1]/baseOpinionOffset/text()</xpath>
 	</Operation>
-	<Operation Class="Psychology.TraitMultiplierPatchOperation">
+	<Operation Class="Psychology.PatchOperationTraitMultiplier">
 		<xpath>Defs/ThoughtDef[defName="Pretty"]/stages/li[2]/baseOpinionOffset/text()</xpath>
 	</Operation>
 
-	<Operation Class="Psychology.TraitMultiplierPatchOperation">
+	<Operation Class="Psychology.PatchOperationTraitMultiplier">
 		<xpath>Defs/ThoughtDef[defName="Ugly"]/stages/li[1]/baseOpinionOffset/text()</xpath>
 	</Operation>
-	<Operation Class="Psychology.TraitMultiplierPatchOperation">
+	<Operation Class="Psychology.PatchOperationTraitMultiplier">
 		<xpath>Defs/ThoughtDef[defName="Ugly"]/stages/li[2]/baseOpinionOffset/text()</xpath>
 	</Operation>
 
-	<Operation Class="Psychology.TraitMultiplierPatchOperation">
+	<Operation Class="Psychology.PatchOperationTraitMultiplier">
 		<xpath>Defs/ThoughtDef[defName="AnnoyingVoice"]/stages/li[1]/baseOpinionOffset/text()</xpath>
 	</Operation>
 
-	<Operation Class="Psychology.TraitMultiplierPatchOperation">
+	<Operation Class="Psychology.PatchOperationTraitMultiplier">
 		<xpath>Defs/ThoughtDef[defName="CreepyBreathing"]/stages/li[1]/baseOpinionOffset/text()</xpath>
 	</Operation>
 
-	<Operation Class="Psychology.TraitMultiplierPatchOperation">
+	<Operation Class="Psychology.PatchOperationTraitMultiplier">
 		<xpath>Defs/ThoughtDef[defName="TranshumanistAppreciation"]/stages/li[1]/baseOpinionOffset/text()</xpath>
 	</Operation>
-	<Operation Class="Psychology.TraitMultiplierPatchOperation">
+	<Operation Class="Psychology.PatchOperationTraitMultiplier">
 		<xpath>Defs/ThoughtDef[defName="TranshumanistAppreciation"]/stages/li[2]/baseOpinionOffset/text()</xpath>
 	</Operation>
-	<Operation Class="Psychology.TraitMultiplierPatchOperation">
+	<Operation Class="Psychology.PatchOperationTraitMultiplier">
 		<xpath>Defs/ThoughtDef[defName="TranshumanistAppreciation"]/stages/li[3]/baseOpinionOffset/text()</xpath>
 	</Operation>
-	<Operation Class="Psychology.TraitMultiplierPatchOperation">
+	<Operation Class="Psychology.PatchOperationTraitMultiplier">
 		<xpath>Defs/ThoughtDef[defName="TranshumanistAppreciation"]/stages/li[4]/baseOpinionOffset/text()</xpath>
 	</Operation>
-	<Operation Class="Psychology.TraitMultiplierPatchOperation">
+	<Operation Class="Psychology.PatchOperationTraitMultiplier">
 		<xpath>Defs/ThoughtDef[defName="TranshumanistAppreciation"]/stages/li[5]/baseOpinionOffset/text()</xpath>
 	</Operation>
 
-	<Operation Class="Psychology.TraitMultiplierPatchOperation">
+	<Operation Class="Psychology.PatchOperationTraitMultiplier">
 		<xpath>Defs/ThoughtDef[defName="BodyPuristDisgust"]/stages/li[1]/baseOpinionOffset/text()</xpath>
 	</Operation>
-	<Operation Class="Psychology.TraitMultiplierPatchOperation">
+	<Operation Class="Psychology.PatchOperationTraitMultiplier">
 		<xpath>Defs/ThoughtDef[defName="BodyPuristDisgust"]/stages/li[2]/baseOpinionOffset/text()</xpath>
 	</Operation>
-	<Operation Class="Psychology.TraitMultiplierPatchOperation">
+	<Operation Class="Psychology.PatchOperationTraitMultiplier">
 		<xpath>Defs/ThoughtDef[defName="BodyPuristDisgust"]/stages/li[3]/baseOpinionOffset/text()</xpath>
 	</Operation>
-	<Operation Class="Psychology.TraitMultiplierPatchOperation">
+	<Operation Class="Psychology.PatchOperationTraitMultiplier">
 		<xpath>Defs/ThoughtDef[defName="BodyPuristDisgust"]/stages/li[4]/baseOpinionOffset/text()</xpath>
 	</Operation>
-	<Operation Class="Psychology.TraitMultiplierPatchOperation">
+	<Operation Class="Psychology.PatchOperationTraitMultiplier">
 		<xpath>Defs/ThoughtDef[defName="BodyPuristDisgust"]/stages/li[5]/baseOpinionOffset/text()</xpath>
 	</Operation>
 

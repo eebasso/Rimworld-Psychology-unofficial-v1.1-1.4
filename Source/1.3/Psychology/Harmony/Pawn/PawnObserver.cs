@@ -30,7 +30,7 @@ public static class PawnObserver_ObserveSurroundingPatch
     
     public static Thought_Memory AddDesensitizedChance(Thought_Memory thought_Memory, Pawn pawn)
     {
-        if (thought_Memory != null && thought_Memory.def == ThoughtDefOf.AteCorpse) // TEST IN 1.3. ObservedLayingCorpse missing in 1.3 ?
+        if (thought_Memory != null && thought_Memory.def == ThoughtDefOf.AteCorpse) // ToDo: TEST IN 1.3. ObservedLayingCorpse missing in 1.3 ?
         {
             if (!pawn.story.traits.HasTrait(TraitDefOfPsychology.BleedingHeart) && !pawn.story.traits.HasTrait(TraitDefOf.Psychopath) && !pawn.story.traits.HasTrait(TraitDefOf.Bloodlust) && !pawn.story.traits.HasTrait(TraitDefOfPsychology.Desensitized))
             {

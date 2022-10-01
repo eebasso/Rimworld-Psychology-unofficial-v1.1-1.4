@@ -10,10 +10,11 @@ namespace Psychology;
 
 public class JobGiver_ArmSelf : ThinkNode_JobGiver
 {
-    
+    // ToDo: include ranged weapons?
     protected override Job TryGiveJob(Pawn pawn)
     {
-        if(pawn.equipment == null)
+        Log.Warning("JobGiver_ArmSelf, TryGiveJob fired!");
+        if (pawn.equipment == null)
         {
             return null;
         }

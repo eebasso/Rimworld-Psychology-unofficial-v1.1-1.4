@@ -7,6 +7,8 @@ using UnityEngine;
 using Verse;
 using RimWorld;
 using HarmonyLib;
+using System.Reflection.Emit;
+
 
 namespace Psychology.Harmony;
 
@@ -19,6 +21,20 @@ public static class InteractionWorker_RomanceAttempt_SelectionWeightPatch
     [HarmonyPrefix]
     public static bool RandomSelectionWeight(ref float __result, Pawn initiator, Pawn recipient)
     {
+        if (!PsycheHelper.PsychologyEnabled(initiator) || !PsycheHelper.PsychologyEnabled(recipient))
+        {
+            try
+            {
+                Log.Message("InteractionWorker_RomanceAttempt.RandomSelectionWeight, initiator = " + initiator.LabelShort + ", recipient = " + recipient.LabelShort + ", Psyche not enabled");
+            }
+            catch
+            {
+                Log.Warning("InteractionWorker_RomanceAttempt.RandomSelectionWeight, PsychologyEnabled != true");
+            }
+            __result = 0f;
+            return false;
+        }
+
         // From vanilla, no romance in these cases
         if (TutorSystem.TutorialMode || LovePartnerRelationUtility.LovePartnerRelationExists(initiator, recipient))
         {
@@ -26,16 +42,7 @@ public static class InteractionWorker_RomanceAttempt_SelectionWeightPatch
             __result = 0f;
             return false;
         }
-        
-        bool initiatorPsycheEnabled = PsycheHelper.PsychologyEnabled(initiator);
-        bool recipientPsycheEnabled = PsycheHelper.PsychologyEnabled(recipient);
-        if (!initiatorPsycheEnabled || !recipientPsycheEnabled)
-        {
-            Log.Message("InteractionWorker_RomanceAttempt.RandomSelectionWeight, initiator = " + initiator.LabelShort + ", recipient = " + recipient.LabelShort + ", Psyche not enabled");
-            __result = 0f;
-            return false;
-        }
-        
+
         // Codependents won't romance anyone if they are in a relationship
         if (LovePartnerRelationUtility.HasAnyLovePartner(initiator) && initiator.story.traits.HasTrait(TraitDefOfPsychology.Codependent))
         {
@@ -43,7 +50,7 @@ public static class InteractionWorker_RomanceAttempt_SelectionWeightPatch
             __result = 0f;
             return false;
         }
-        
+
         //Don't hit on people in mental breaks... unless you're really freaky.
         float initiatorExperimental = PsycheHelper.Comp(initiator).Psyche.GetPersonalityRating(PersonalityNodeDefOf.Experimental);
         bool initiatorLecher = initiator.story.traits.HasTrait(TraitDefOfPsychology.Lecher);
@@ -62,12 +69,12 @@ public static class InteractionWorker_RomanceAttempt_SelectionWeightPatch
         /* - PAWN SEX AND ROMANCE DRIVE FACTORS */
         /* - INCEST FACTOR */
         /* - PSYCHIC LOVE SPELL FACTOR */
-        Log.Message("InteractionWorker_RomanceAttempt.RandomSelectionWeight, initiator = " + initiator.LabelShort + ", recipient = " + recipient.LabelShort + ", calculate SecondaryRomanceChanceFactor");
+
         float romChance = initiator.relations.SecondaryRomanceChanceFactor(recipient);
-        
+        //Log.Message("InteractionWorker_RomanceAttempt.RandomSelectionWeight, initiator = " + initiator.LabelShort + ", recipient = " + recipient.LabelShort + ", SecondaryRomanceChanceFactor = " + romChance);
         if (romChance < 0.15f)
         {
-            Log.Message("InteractionWorker_RomanceAttempt.RandomSelectionWeight, initiator = " + initiator.LabelShort + ", recipient = " + recipient.LabelShort + ", romChance < 0.15") ;
+            //Log.Message("InteractionWorker_RomanceAttempt.RandomSelectionWeight, initiator = " + initiator.LabelShort + ", recipient = " + recipient.LabelShort + ", romChance < 0.15");
             __result = 0f;
             return false;
         }
@@ -87,14 +94,14 @@ public static class InteractionWorker_RomanceAttempt_SelectionWeightPatch
         float initiatorOpinion = (float)initiator.relations.OpinionOf(recipient);
         //float recipientOpinion = (float)recipient.relations.OpinionOf(initiator);
         float initiatorOpinMult;
-        
+
         //Only lechers will romance someone that has less than base opinion of them
         if (!initiatorLecher)
         {
             //if (Mathf.Max(initiatorOpinion, recipientOpinion) < PsychologySettings.romanceOpinionThreshold)
             if (initiatorOpinion < PsychologySettings.romanceOpinionThreshold)
             {
-                Log.Message("InteractionWorker_RomanceAttempt.RandomSelectionWeight, initiator = " + initiator.LabelShort + ", recipient = " + recipient.LabelShort + ", initiator opinion too low");
+                //Log.Message("InteractionWorker_RomanceAttempt.RandomSelectionWeight, initiator = " + initiator.LabelShort + ", recipient = " + recipient.LabelShort + ", initiator opinion too low");
                 __result = 0f;
                 return false;
             }
@@ -112,9 +119,6 @@ public static class InteractionWorker_RomanceAttempt_SelectionWeightPatch
             // Lechers are more frisky
             initiatorOpinMult = 1f;
         }
-        
-        /* GET INITIATOR PERSONALITY VALUES */
-        
 
         //float initiatorOpenMinded = initiator.story.traits.HasTrait(TraitDefOfPsychology.OpenMinded) ? 1f : 0f;
 
@@ -135,7 +139,7 @@ public static class InteractionWorker_RomanceAttempt_SelectionWeightPatch
                 existingPartnerMult = Mathf.InverseLerp(maxOpinionOfLover, minOpinionOfLover, opinionOfLover);
             }
         }
-        
+
 
         /* INITIATOR KNOWN SEXUALITY FACTOR */
         float knownSexFactor;
@@ -173,7 +177,7 @@ public static class InteractionWorker_RomanceAttempt_SelectionWeightPatch
         //float adjResult = __result < chanceCutOff ? __result : chanceCutOff + confidenceFactor * (__result - chanceCutOff);
         //__result = adjResult;
 
-        Log.Message("InteractionWorker_RomanceAttempt.RandomSelectionWeight, initiator = " + initiator.LabelShort + ", recipient = " + recipient.LabelShort + ", romChanceMult = " + romChanceMult + ", initiatorOpinMult = " + initiatorOpinMult + ", existingPartnerMult = " + existingPartnerMult + ", knownSexFactor = " + knownSexFactor + ", straightWomanFactor = " + straightWomanFactor + ", result = " + __result);
+        //Log.Message("InteractionWorker_RomanceAttempt.RandomSelectionWeight, initiator = " + initiator.LabelShort + ", recipient = " + recipient.LabelShort + ", romChanceMult = " + romChanceMult + ", initiatorOpinMult = " + initiatorOpinMult + ", existingPartnerMult = " + existingPartnerMult + ", knownSexFactor = " + knownSexFactor + ", straightWomanFactor = " + straightWomanFactor + ", result = " + __result);
 
         return false;
     }
@@ -187,6 +191,7 @@ public static class InteractionWorker_RomanceAttempt_SuccessChancePatch
     public static bool SuccessChance(ref float __result, Pawn initiator, Pawn recipient)
     {
         Log.Warning("InteractionWorker_RomanceAttempt.SuccessChance fired!");
+
         /* Throw out the result and replace it with our own formula. */
         if (!PsycheHelper.PsychologyEnabled(initiator) || !PsycheHelper.PsychologyEnabled(recipient))
         {
@@ -194,12 +199,21 @@ public static class InteractionWorker_RomanceAttempt_SuccessChancePatch
             return false;
         }
 
-        // Codependents won't romance anyone if they are in a relationship
         bool recipientCodependent = recipient.story.traits.HasTrait(TraitDefOfPsychology.Codependent);
-        if (LovePartnerRelationUtility.HasAnyLovePartner(recipient) && recipientCodependent)
+        if (recipientCodependent)
         {
-            __result = 0f;
-            return false;
+            // Codependents won't romance anyone if they are in a relationship
+            if (LovePartnerRelationUtility.HasAnyLovePartner(recipient))
+            {
+                __result = 0f;
+                return false;
+            }
+            // Codependents will always get back together with their ex
+            if (LovePartnerRelationUtility.ExLovePartnerRelationExists(initiator, recipient))
+            {
+                __result = 1f;
+                return false;
+            }
         }
 
         /* ROMANCE CHANCE FACTOR INCLUDES THE FOLLOWING: */
@@ -219,9 +233,7 @@ public static class InteractionWorker_RomanceAttempt_SuccessChancePatch
 
         /* RECIPIENT OPINION FACTOR */
         float recipientRomantic = PsycheHelper.Comp(recipient).Psyche.GetPersonalityRating(PersonalityNodeDefOf.Romantic);
-        
         bool recipientPsychopath = recipient.story.traits.HasTrait(TraitDefOf.Psychopath);
-
         float recipientOpinion = (float)recipient.relations.OpinionOf(initiator);
         if (recipientOpinion < PsychologySettings.romanceOpinionThreshold && !recipientLecher)
         {
@@ -229,7 +241,6 @@ public static class InteractionWorker_RomanceAttempt_SuccessChancePatch
             return false;
         }
         float opinionFactor = Mathf.InverseLerp(PsychologySettings.romanceOpinionThreshold, 100f, recipientOpinion);
-
         if (recipientLecher)
         {
             // Lechers will romance someone that they have a low opinion of
@@ -240,14 +251,13 @@ public static class InteractionWorker_RomanceAttempt_SuccessChancePatch
             // Psychopaths have lower opinion standards
             opinionFactor = 0.3f + 0.7f * opinionFactor;
         }
-
         // More romantic recipients have higher standards but respond more strongly to overtures from high opinion initiators
         float recipientOpinionFactor = 0.5f * Mathf.Pow(2f * opinionFactor, 2f * recipientRomantic + 1e-5f);
 
         float existingLovePartnerMult = 1f;
         /* EXISTING LOVE PARTNER FACTOR */
         if (!new HistoryEvent(recipient.GetHistoryEventForLoveRelationCountPlusOne(), recipient.Named(HistoryEventArgsNames.Doer)).DoerWillingToDo() && !recipient.story.traits.HasTrait(TraitDefOfPsychology.Polygamous))
-        {   
+        {
             Pawn pawn = null;
             if (recipient.relations.GetFirstDirectRelationPawn(PawnRelationDefOf.Lover, (Pawn x) => !x.Dead) != null)
             {
@@ -284,12 +294,14 @@ public static class InteractionWorker_RomanceAttempt_SuccessChancePatch
                 existingLovePartnerMult = 0.5f + Mathf.Sqrt(existingLovePartnerMult);
             }
         }
-        
-        // Account for user setting of romance chance multiplier
-        float successChance = 0.6f * PsychologySettings.romanceChanceMultiplier * existingLovePartnerMult * recipientOpinionFactor * romChanceFactor;
 
-        Log.Message("InteractionWorker_RomanceAttempt.SuccessChance initiator = " + initiator.LabelShort + ", recipient = " + recipient.LabelShort + ", romChanceFactor = " + romChanceFactor + ", recipientOpinionFactor = " + recipientOpinionFactor + ", existingLovePartnerMult = " + existingLovePartnerMult + ", successChance = " + successChance);
-        __result = successChance;
+        // Account for user setting of romance chance multiplier
+        __result = 0.6f * PsychologySettings.romanceChanceMultiplier * existingLovePartnerMult * recipientOpinionFactor * romChanceFactor;
+        // Always prevent 100% chance, not sure whether to do this
+        __result = 1f - Mathf.Exp(-__result);
+
+        Log.Message("InteractionWorker_RomanceAttempt.SuccessChance initiator = " + initiator.LabelShort + ", recipient = " + recipient.LabelShort + ", romChanceFactor = " + romChanceFactor + ", recipientOpinionFactor = " + recipientOpinionFactor + ", existingLovePartnerMult = " + existingLovePartnerMult + ", successChance = " + __result);
+
         return false;
     }
 }
@@ -327,13 +339,15 @@ public static class InteractionWorker_RomanceAttempt_Interacted_Patches
             }
             initiator.needs.mood.thoughts.memories.RemoveMemoriesOfDefWhereOtherPawnIs(ThoughtDefOfPsychology.BrokeUpWithMeCodependent, recipient);
             recipient.needs.mood.thoughts.memories.RemoveMemoriesOfDefWhereOtherPawnIs(ThoughtDefOfPsychology.BrokeUpWithMeCodependent, initiator);
+            return;
         }
-        else if (extraSentencePacks.Contains(RulePackDefOf.Sentence_RomanceAttemptRejected))
+        if (extraSentencePacks.Contains(RulePackDefOf.Sentence_RomanceAttemptRejected))
         {
             if (initiator.story.traits.HasTrait(TraitDefOfPsychology.Lecher))
             {
                 initiator.needs.mood.thoughts.memories.TryGainMemory(ThoughtDefOfPsychology.RebuffedMyRomanceAttemptLecher, recipient);
             }
+            return;
         }
     }
 
@@ -342,68 +356,177 @@ public static class InteractionWorker_RomanceAttempt_Interacted_Patches
 [HarmonyPatch(typeof(InteractionWorker_RomanceAttempt), "BreakLoverAndFianceRelations")]
 public static class InteractionWorker_RomanceAttempt_BreakRelationsPatch
 {
-    [HarmonyPrefix]
-    public static bool BreakRelations(Pawn pawn, ref List<Pawn> oldLoversAndFiances)
+
+    public static bool Prefix(Pawn pawn, ref List<Pawn> oldLoversAndFiances)
     {
         oldLoversAndFiances = new List<Pawn>();
-        while (true)
-        {
-            Pawn firstDirectRelationPawn = pawn.relations.GetFirstDirectRelationPawn(PawnRelationDefOf.Lover, null);
-            if (firstDirectRelationPawn != null && (!firstDirectRelationPawn.story.traits.HasTrait(TraitDefOfPsychology.Polygamous) || !pawn.story.traits.HasTrait(TraitDefOfPsychology.Polygamous)))
-            {
-                pawn.relations.RemoveDirectRelation(PawnRelationDefOf.Lover, firstDirectRelationPawn);
-                Pawn recipient = firstDirectRelationPawn;
-                if (PsycheHelper.PsychologyEnabled(pawn) && PsycheHelper.PsychologyEnabled(recipient))
-                {
-                    BreakupHelperMethods.AddExLover(pawn, recipient);
-                    BreakupHelperMethods.AddExLover(recipient, pawn);
-                    BreakupHelperMethods.AddBrokeUpOpinion(recipient, pawn);
-                    BreakupHelperMethods.AddBrokeUpMood(recipient, pawn);
-                    BreakupHelperMethods.AddBrokeUpMood(pawn, recipient);
-                }
-                else
-                {
-                    pawn.relations.AddDirectRelation(PawnRelationDefOf.ExLover, firstDirectRelationPawn);
-                }
-                oldLoversAndFiances.Add(firstDirectRelationPawn);
-            }
-            else
-            {
-                Pawn firstDirectRelationPawn2 = pawn.relations.GetFirstDirectRelationPawn(PawnRelationDefOf.Fiance, null);
-                if (firstDirectRelationPawn2 == null)
-                {
-                    break;
-                }
-                else if (!firstDirectRelationPawn2.story.traits.HasTrait(TraitDefOfPsychology.Polygamous) || !pawn.story.traits.HasTrait(TraitDefOfPsychology.Polygamous))
-                {
-                    pawn.relations.RemoveDirectRelation(PawnRelationDefOf.Fiance, firstDirectRelationPawn2);
-                    Pawn recipient2 = firstDirectRelationPawn2;
-                    if (PsycheHelper.PsychologyEnabled(pawn) && PsycheHelper.PsychologyEnabled(recipient2))
-                    {
-                        BreakupHelperMethods.AddExLover(pawn, recipient2);
-                        BreakupHelperMethods.AddExLover(recipient2, pawn);
-                        BreakupHelperMethods.AddBrokeUpOpinion(recipient2, pawn);
-                        BreakupHelperMethods.AddBrokeUpMood(recipient2, pawn);
-                        BreakupHelperMethods.AddBrokeUpMood(pawn, recipient2);
-                    }
-                    else
-                    {
-                        pawn.relations.AddDirectRelation(PawnRelationDefOf.ExLover, firstDirectRelationPawn2);
-                    }
-                    oldLoversAndFiances.Add(firstDirectRelationPawn2);
-                }
-            }
-        }
-        return false;
+        return pawn.story.traits.HasTrait(TraitDefOfPsychology.Polygamous) != true;
     }
+
+    [HarmonyTranspiler]
+    public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> codes)
+    {
+        List<CodeInstruction> cList = codes.ToList();
+        for (int i = 0; i < cList.Count(); i++)
+        {   
+            if (cList[i].opcode == OpCodes.Brfalse_S)
+            {
+                yield return CodeInstruction.Call(typeof(InteractionWorker_RomanceAttempt_BreakRelationsPatch), nameof(MakeNullIfPolygamous));
+            }
+            yield return cList[i];
+        }
+    }
+
+    public static Pawn MakeNullIfPolygamous(Pawn pawn)
+    {
+        if (pawn == null)
+        {
+            return null;
+        }
+        if (pawn.story?.traits?.HasTrait(TraitDefOfPsychology.Polygamous) == true)
+        {
+            return null;
+        }
+        return pawn;
+    }
+
+
+
+    //[HarmonyPrefix]
+    //public static bool BreakRelations(Pawn pawn, ref List<Pawn> oldLoversAndFiances)
+    //{
+    //    oldLoversAndFiances = new List<Pawn>();
+    //    int num = 200;
+    //    if (pawn.story.traits.HasTrait(TraitDefOfPsychology.Polygamous))
+    //    {
+    //        return false;
+    //    }
+    //    while (num > 0 && !new HistoryEvent(pawn.GetHistoryEventForLoveRelationCountPlusOne(), pawn.Named(HistoryEventArgsNames.Doer)).DoerWillingToDo())
+    //    {
+    //        Pawn firstDirectRelationPawn = pawn.relations.GetFirstDirectRelationPawn(PawnRelationDefOf.Lover, null);
+    //        if (firstDirectRelationPawn != null && !firstDirectRelationPawn.story.traits.HasTrait(TraitDefOfPsychology.Polygamous))
+    //        {
+    //            pawn.relations.RemoveDirectRelation(PawnRelationDefOf.Lover, firstDirectRelationPawn);
+    //            Pawn recipient = firstDirectRelationPawn;
+    //            if (PsycheHelper.PsychologyEnabled(pawn) && PsycheHelper.PsychologyEnabled(recipient))
+    //            {
+    //                BreakupHelperMethods.AddExLover(pawn, recipient);
+    //                BreakupHelperMethods.AddExLover(recipient, pawn);
+    //                BreakupHelperMethods.AddBrokeUpOpinion(recipient, pawn);
+    //                BreakupHelperMethods.AddBrokeUpMood(recipient, pawn);
+    //                BreakupHelperMethods.AddBrokeUpMood(pawn, recipient);
+    //            }
+    //            else
+    //            {
+    //                pawn.relations.AddDirectRelation(PawnRelationDefOf.ExLover, firstDirectRelationPawn);
+    //            }
+    //            oldLoversAndFiances.Add(firstDirectRelationPawn);
+    //            num--;
+    //            continue;
+    //        }
+    //        Pawn firstDirectRelationPawn2 = pawn.relations.GetFirstDirectRelationPawn(PawnRelationDefOf.Fiance, null);
+    //        if (firstDirectRelationPawn2 != null && !firstDirectRelationPawn2.story.traits.HasTrait(TraitDefOfPsychology.Polygamous))
+    //        {
+    //            pawn.relations.RemoveDirectRelation(PawnRelationDefOf.Fiance, firstDirectRelationPawn2);
+    //            Pawn recipient2 = firstDirectRelationPawn2;
+    //            if (PsycheHelper.PsychologyEnabled(pawn) && PsycheHelper.PsychologyEnabled(recipient2))
+    //            {
+    //                BreakupHelperMethods.AddExLover(pawn, recipient2);
+    //                BreakupHelperMethods.AddExLover(recipient2, pawn);
+    //                BreakupHelperMethods.AddBrokeUpOpinion(recipient2, pawn);
+    //                BreakupHelperMethods.AddBrokeUpMood(recipient2, pawn);
+    //                BreakupHelperMethods.AddBrokeUpMood(pawn, recipient2);
+    //            }
+    //            else
+    //            {
+    //                pawn.relations.AddDirectRelation(PawnRelationDefOf.ExLover, firstDirectRelationPawn2);
+    //            }
+    //            oldLoversAndFiances.Add(firstDirectRelationPawn2);
+
+    //        }
+
+
+
+    //        break;
+    //    }
+    //    return false;
+    //}
+
+    //[HarmonyPrefix]
+    //public static bool BreakRelations(Pawn pawn, ref List<Pawn> oldLoversAndFiances)
+    //{
+    //    oldLoversAndFiances = new List<Pawn>();
+    //    while (true)
+    //    {
+    //        Pawn firstDirectRelationPawn = pawn.relations.GetFirstDirectRelationPawn(PawnRelationDefOf.Lover, null);
+    //        if (firstDirectRelationPawn != null && (!firstDirectRelationPawn.story.traits.HasTrait(TraitDefOfPsychology.Polygamous) || !pawn.story.traits.HasTrait(TraitDefOfPsychology.Polygamous)))
+    //        {
+    //            pawn.relations.RemoveDirectRelation(PawnRelationDefOf.Lover, firstDirectRelationPawn);
+    //            Pawn recipient = firstDirectRelationPawn;
+    //            if (PsycheHelper.PsychologyEnabled(pawn) && PsycheHelper.PsychologyEnabled(recipient))
+    //            {
+    //                BreakupHelperMethods.AddExLover(pawn, recipient);
+    //                BreakupHelperMethods.AddExLover(recipient, pawn);
+    //                BreakupHelperMethods.AddBrokeUpOpinion(recipient, pawn);
+    //                BreakupHelperMethods.AddBrokeUpMood(recipient, pawn);
+    //                BreakupHelperMethods.AddBrokeUpMood(pawn, recipient);
+    //            }
+    //            else
+    //            {
+    //                pawn.relations.AddDirectRelation(PawnRelationDefOf.ExLover, firstDirectRelationPawn);
+    //            }
+    //            oldLoversAndFiances.Add(firstDirectRelationPawn);
+    //        }
+    //        else
+    //        {
+    //            Pawn firstDirectRelationPawn2 = pawn.relations.GetFirstDirectRelationPawn(PawnRelationDefOf.Fiance, null);
+    //            if (firstDirectRelationPawn2 == null)
+    //            {
+    //                break;
+    //            }
+    //            else if (!firstDirectRelationPawn2.story.traits.HasTrait(TraitDefOfPsychology.Polygamous) || !pawn.story.traits.HasTrait(TraitDefOfPsychology.Polygamous))
+    //            {
+    //                pawn.relations.RemoveDirectRelation(PawnRelationDefOf.Fiance, firstDirectRelationPawn2);
+    //                Pawn recipient2 = firstDirectRelationPawn2;
+    //                if (PsycheHelper.PsychologyEnabled(pawn) && PsycheHelper.PsychologyEnabled(recipient2))
+    //                {
+    //                    BreakupHelperMethods.AddExLover(pawn, recipient2);
+    //                    BreakupHelperMethods.AddExLover(recipient2, pawn);
+    //                    BreakupHelperMethods.AddBrokeUpOpinion(recipient2, pawn);
+    //                    BreakupHelperMethods.AddBrokeUpMood(recipient2, pawn);
+    //                    BreakupHelperMethods.AddBrokeUpMood(pawn, recipient2);
+    //                }
+    //                else
+    //                {
+    //                    pawn.relations.AddDirectRelation(PawnRelationDefOf.ExLover, firstDirectRelationPawn2);
+    //                }
+    //                oldLoversAndFiances.Add(firstDirectRelationPawn2);
+    //            }
+    //        }
+    //    }
+    //    return false;
+    //}
 }
 
-[HarmonyPatch(typeof(InteractionWorker_RomanceAttempt), "TryAddCheaterThought")]
-public static class InteractionWorker_RomanceAttempt_CheaterThoughtPatch
+//[HarmonyPatch(typeof(InteractionWorker_RomanceAttempt), "TryAddCheaterThought")]
+//public static class InteractionWorker_RomanceAttempt_CheaterThoughtPatch
+//{
+//    [HarmonyPostfix]
+//    public static void AddCodependentThought(Pawn pawn, Pawn cheater)
+//    {
+//        pawn.needs.mood.thoughts.memories.TryGainMemory(ThoughtDefOfPsychology.CheatedOnMeCodependent, cheater);
+//    }
+//}
+
+[HarmonyPatch(typeof(InteractionWorker_RomanceAttempt), "RemoveBrokeUpAndFailedRomanceThoughts")]
+public static class InteractionWorker_RomanceAttempt_RemoveBrokeUpAndFailedRomanceThoughtsPatch
 {
     [HarmonyPostfix]
-    public static void AddCodependentThought(Pawn pawn, Pawn cheater)
+    public static void RemoveBrokeUpAndFailedRomanceThoughts(Pawn pawn, Pawn otherPawn)
     {
-        pawn.needs.mood.thoughts.memories.TryGainMemory(ThoughtDefOfPsychology.CheatedOnMeCodependent, cheater);
+        if (pawn.needs.mood != null)
+        {
+            pawn.needs.mood.thoughts.memories.RemoveMemoriesOfDefWhereOtherPawnIs(ThoughtDefOfPsychology.BrokeUpWithMeCodependent, otherPawn);
+        }
     }
 }

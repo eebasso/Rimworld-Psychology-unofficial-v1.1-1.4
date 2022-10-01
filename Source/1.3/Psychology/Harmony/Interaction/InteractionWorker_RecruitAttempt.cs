@@ -21,9 +21,22 @@ namespace Psychology.Harmony
         [HarmonyPrefix]
         public static bool AddCapturedThoughts(Pawn recruiter, Pawn recruitee)
         {
-            if (recruitee.RaceProps.Humanlike && PsychologySettings.enableImprisonedDebuff)
+            //if (recruitee.RaceProps.Humanlike && PsychologySettings.imprisonedDebuff != 0f)
+            if (PsycheHelper.PsychologyEnabled(recruitee) && PsychologySettings.imprisonedDebuff != 0f)
             {
-                recruitee.needs.mood.thoughts.memories.RemoveMemoriesOfDef(ThoughtDefOf.RapportBuilt);
+                //recruitee.needs.mood.thoughts.memories.RemoveMemoriesOfDef(ThoughtDefOf.RapportBuilt);
+                //List<Thought_Memory> memories = recruitee.needs.mood.thoughts.memories.Memories;
+                //foreach (Thought_Memory mem in memories)
+                //{
+                //    if (mem.def == ThoughtDefOf.RapportBuilt)
+                //    {
+                //        mem.CurStage.baseOpinionOffset *= 
+                //    }
+                //}
+                if (PsychologySettings.imprisonedDebuff >= PsychologySettings.imprisonedDebuffDefault)
+                {
+                    recruitee.needs.mood.thoughts.memories.RemoveMemoriesOfDef(ThoughtDefOf.RapportBuilt);
+                }
                 IEnumerable<Pawn> allFactionPawns = Find.Maps.SelectMany(m => from p in m.mapPawns.FreeColonistsSpawned
                                                                               where p != recruitee
                                                                               select p);

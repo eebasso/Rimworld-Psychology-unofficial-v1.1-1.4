@@ -7,15 +7,17 @@ using Verse.AI;
 using Verse;
 using HarmonyLib;
 
-namespace Psychology.Harmony
+namespace Psychology.Harmony;
+
+[HarmonyPatch(typeof(MentalStateWorker_BingingDrug), nameof(MentalStateWorker_BingingDrug.StateCanOccur), new Type[] { typeof(Pawn) })]
+public static class MentalStateWorker_BingingDrugPatch
 {
-    [HarmonyPatch(typeof(MentalStateWorker_BingingDrug), nameof(MentalStateWorker_BingingDrug.StateCanOccur), new Type[] { typeof(Pawn) })]
-    public static class MentalStateWorker_BingingDrugPatch
+    [HarmonyPostfix]
+    public static void DrugFreeDisable(ref bool __result, Pawn pawn)
     {
-        [HarmonyPostfix]
-        public static void DrugFreeDisable(ref bool __result, Pawn pawn)
+        if (pawn.health.hediffSet.HasHediff(HediffDefOfPsychology.DrugFree) == true)
         {
-            __result = __result && !pawn.health.hediffSet.HasHediff(HediffDefOfPsychology.DrugFree);
+            __result = false;
         }
     }
 }

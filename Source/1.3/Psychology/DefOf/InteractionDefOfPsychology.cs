@@ -11,4 +11,6 @@ public static class InteractionDefOfPsychology
     public static InteractionDef EndConversation;
     public static InteractionDef HangOut;
     //public static InteractionDef TourFinished;
+    public static InteractionDef Indoctrinate;
+
 }

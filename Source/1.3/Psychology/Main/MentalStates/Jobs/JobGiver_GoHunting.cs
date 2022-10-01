@@ -12,6 +12,7 @@ namespace Psychology
     {
         protected override Job TryGiveJob(Pawn pawn)
         {
+            Log.Warning("JobGiver_GoHunting, TryGiveJob fired!");
             if (pawn.Map == null)
             {
                 return null;

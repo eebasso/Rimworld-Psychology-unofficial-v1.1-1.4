@@ -5,13 +5,12 @@ using System.Text;
 using RimWorld;
 using Verse;
 
-namespace Psychology
+namespace Psychology;
+
+public class PersonalityNodeIncapableModifier
 {
-    public class PersonalityNodeIncapableModifier
-    {
-        //The work tag that affects this node.
-        public WorkTypeDef type;
-        //How much having this trait adds or subtracts from this node.
-        public float modifier;
-    }
+    //The work tag that affects this node.
+    public WorkTypeDef type;
+    //How much having this trait adds or subtracts from this node.
+    public float modifier;
 }

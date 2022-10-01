@@ -19,6 +19,7 @@ public class EditPsycheUtility
     static float pawnRomanticDrive = 0f;
 
     static float TitleHeight;
+    static float TitleWidth;
     //static float WarningHeight;
     static Vector2 KinseySize;
     static Vector2 SexDriveSize;
@@ -99,9 +100,9 @@ public class EditPsycheUtility
         NodeWidth = labelWidth;
         EditWidth = EditMargin + labelWidth + BoundaryPadding + SliderWidth + HighlightPadding + GenUI.ScrollBarWidth + EditMargin;
 
-        float width = EditWidth - 2f * EditMargin;
+        TitleWidth = labelWidth + BoundaryPadding + SliderWidth;
         Text.Font = GameFont.Medium;
-        TitleHeight = Text.CalcHeight(TitleText, width);
+        TitleHeight = Text.CalcHeight(TitleText, TitleWidth);
         Text.Font = GameFont.Small;
         //WarningHeight = Text.CalcHeight(WarningText + " buffer buffer buffer buffer  buffer buffer buffer buffer buffer buffer buffer buffer ", width) + 5f;
         //WarningHeight = UIAssets.TextCalcHeight(WarningText, width) + 5f;
@@ -133,10 +134,12 @@ public class EditPsycheUtility
         mainRect.xMin += HighlightPadding;
         mainRect.xMax -= HighlightPadding;
 
+        Rect titleHighlightRect = new Rect(mainRect.x, mainRect.y, TitleWidth, TitleHeight);
         Text.Font = GameFont.Medium;
         Widgets.Label(mainRect, TitleText);
         Text.Font = GameFont.Small;
-        Rect titleHighlightRect = new Rect(mainRect.x - HighlightPadding, mainRect.y, SexualityWidth + HighlightPadding, TitleHeight);
+        titleHighlightRect.xMin -= HighlightPadding;
+        titleHighlightRect.xMax += HighlightPadding;
         Widgets.DrawHighlightIfMouseover(titleHighlightRect);
         TooltipHandler.TipRegion(titleHighlightRect, delegate
         {

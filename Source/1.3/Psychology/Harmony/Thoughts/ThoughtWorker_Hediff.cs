@@ -7,23 +7,20 @@ using RimWorld;
 using UnityEngine;
 using HarmonyLib;
 
-namespace Psychology.Harmony
+namespace Psychology.Harmony;
+
+[HarmonyPatch(typeof(ThoughtWorker_Hediff), "CurrentStateInternal")]
+public static class ThoughtWorker_HediffPsychology
 {
-    [HarmonyPatch(typeof(ThoughtWorker_Hediff), "CurrentStateInternal")]
-    public static class ThoughtWorker_HediffPsychology
+    [HarmonyPostfix]
+    public static void MethadoneHigh(ThoughtWorker_Hediff __instance, ref ThoughtState __result, Pawn p)
     {
-        
-        [HarmonyPostfix]
-        public static void MethadoneHigh(ThoughtWorker_Hediff __instance, ref ThoughtState __result, Pawn p)
+        if(__result.StageIndex != ThoughtState.Inactive.StageIndex)
         {
-            if(__result.StageIndex != ThoughtState.Inactive.StageIndex)
+            if (__instance.def.defName.Contains("Withdrawal") && p.health.hediffSet.HasHediff(HediffDefOfPsychology.MethadoneHigh))
             {
-                //Hediff firstHediffOfDef = p.health.hediffSet.GetFirstHediffOfDef(__instance.def.hediff);
-                if (__instance.def.defName.Contains("Withdrawal") && p.health.hediffSet.HasHediff(HediffDefOfPsychology.MethadoneHigh))
-                {
-                    __result = ThoughtState.Inactive;
-                    return;
-                }
+                __result = ThoughtState.Inactive;
+                return;
             }
         }
     }

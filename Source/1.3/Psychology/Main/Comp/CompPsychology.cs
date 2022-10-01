@@ -117,4 +117,23 @@ public class CompPsychology : ThingComp
         Scribe_Values.Look(ref this.tickSinceLastSeenLover, "tickSinceLastSeenLover", Find.TickManager.TicksAbs);
     }
 
+    public void DeepCopyFromOtherComp(CompPsychology otherComp)
+    {
+        Pawn pawn = this.parent as Pawn;
+        this.sexuality = new Pawn_SexualityTracker(pawn);
+        this.sexuality.DeepCopyFromOtherTracker(otherComp.Sexuality);
+        this.psyche = new Pawn_PsycheTracker(pawn);
+        this.psyche.DeepCopyFromOtherTracker(otherComp.Psyche);
+        this.beenBuried = otherComp.AlreadyBuried;
+        this.tickSinceLastSeenLover = otherComp.LDRTick;
+        try
+        {
+            Pawn otherPawn = otherComp.parent as Pawn;
+            Log.Message("CompPsychology, deep copy complete for pawn = " + pawn + ", " + pawn.def.label + " from otherPawn = " + otherPawn.Label + ", " + otherPawn.def.label);
+        }
+        catch (Exception ex)
+        {
+            Log.Warning("CompPsychology, deep copy complete for pawn = " + pawn + ", " + pawn.def.label + ", cast of otherComp.parent failed because of " + ex);
+        }
+    }
 }
