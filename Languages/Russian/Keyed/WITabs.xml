@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+
+  <!-- WITab titles -->
+  <TabPsyche>Психология</TabPsyche>
+  
+  <!-- WITab text -->
+  <SexualityDisabledWarning>Система сексуальности Psychology отключена конфликтующими модами. Пожалуйста, отключите все моды, меняющие механику отношений и сексуальности.</SexualityDisabledWarning>
+  <Sexuality>Сексуальность</Sexuality>
+  <KinseyRating>Рейтинг Кинси:</KinseyRating>
+  <Asexual>Асексуальность</Asexual>
+  <AsexualDescription>У этого персонажа очень низкое половое влечение. Этот персонаж почти не испытывает потребностей сексуального характера и вряд ли вступит в какие-либо половые отношения.</AsexualDescription>
+  <Aromantic>Аромантичность</Aromantic>
+  <AromanticDescription>У этого персонажа очень низкое романтическое влечение. Этот персонаж может и будет вступать в сексуальную связь с другими поселенцами, но вряд ли будет стремиться к романтическим отношениям или принимать предложения подобного рода.</AromanticDescription>
+  
+  <!-- Dialog text -->
+  <EditPsyche>Режим разработчика</EditPsyche>
+  <PsycheEditor>Изменение психологического портрета {PAWN_labelShort}:</PsycheEditor>
+  <PsycheEditorNewColonist>Изменение психологического портрета поселенца:</PsycheEditorNewColonist>
+  <PersonalityNodeWarning>Вы редактируете неоткорректированные показатели психологического портрета поселенца. Реальные показатели формируются за счёт других факторов.</PersonalityNodeWarning>
+  <SexDrive>Половое влечение:</SexDrive>
+  <RomanticDrive>Романтическое влечение:</RomanticDrive>
+
+</LanguageData>

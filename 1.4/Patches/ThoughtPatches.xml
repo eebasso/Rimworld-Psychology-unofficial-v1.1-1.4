@@ -1,0 +1,467 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Patch>
+
+	<!-- KnowGuestExecuted -->
+	<Operation Class="Psychology.PatchOperationAddOrCreate">
+		<xpath>Defs/ThoughtDef[defName="KnowGuestExecuted"]/nullifyingTraits</xpath>
+		<value>
+			<li>BleedingHeart</li>
+		</value>
+	</Operation>
+	<Operation Class="Psychology.PatchOperationReplaceEmpathyEnabled">
+		<xpath>Defs/ThoughtDef[defName="KnowGuestExecuted"]/stages/li[1]/baseMoodEffect</xpath>
+		<value>
+			<baseMoodEffect>-1</baseMoodEffect>
+		</value>
+	</Operation>
+	<Operation Class="Psychology.PatchOperationReplaceEmpathyEnabled">
+		<xpath>Defs/ThoughtDef[defName="KnowGuestExecuted"]/stages/li[2]/baseMoodEffect</xpath>
+		<value>
+			<baseMoodEffect>-2</baseMoodEffect>
+		</value>
+	</Operation>
+	<Operation Class="Psychology.PatchOperationReplaceEmpathyEnabled">
+		<xpath>Defs/ThoughtDef[defName="KnowGuestExecuted"]/stages/li[3]/baseMoodEffect</xpath>
+		<value>
+			<baseMoodEffect>-4</baseMoodEffect>
+		</value>
+	</Operation>
+	<Operation Class="Psychology.PatchOperationReplaceEmpathyEnabled">
+		<xpath>Defs/ThoughtDef[defName="KnowGuestExecuted"]/stages/li[4]/baseMoodEffect</xpath>
+		<value>
+			<baseMoodEffect>-5</baseMoodEffect>
+		</value>
+	</Operation>
+
+	<!-- KnowColonistExecuted -->
+	<Operation Class="Psychology.PatchOperationAddOrCreate">
+		<xpath>Defs/ThoughtDef[defName="KnowColonistExecuted"]/nullifyingTraits</xpath>
+		<value>
+			<li>BleedingHeart</li>
+		</value>
+	</Operation>
+	<Operation Class="Psychology.PatchOperationReplaceEmpathyEnabled">
+		<xpath>Defs/ThoughtDef[defName="KnowColonistExecuted"]/stages/li[1]/baseMoodEffect</xpath>
+		<value>
+			<baseMoodEffect>-1</baseMoodEffect>
+		</value>
+	</Operation>
+	<Operation Class="Psychology.PatchOperationReplaceEmpathyEnabled">
+		<xpath>Defs/ThoughtDef[defName="KnowColonistExecuted"]/stages/li[2]/baseMoodEffect</xpath>
+		<value>
+			<baseMoodEffect>-2</baseMoodEffect>
+		</value>
+	</Operation>
+	<Operation Class="Psychology.PatchOperationReplaceEmpathyEnabled">
+		<xpath>Defs/ThoughtDef[defName="KnowColonistExecuted"]/stages/li[3]/baseMoodEffect</xpath>
+		<value>
+			<baseMoodEffect>-4</baseMoodEffect>
+		</value>
+	</Operation>
+	<Operation Class="Psychology.PatchOperationReplaceEmpathyEnabled">
+		<xpath>Defs/ThoughtDef[defName="KnowColonistExecuted"]/stages/li[4]/baseMoodEffect</xpath>
+		<value>
+			<baseMoodEffect>-5</baseMoodEffect>
+		</value>
+	</Operation>
+
+	<!-- KnowPrisonerDiedInnocent -->
+	<Operation Class="Psychology.PatchOperationAddOrCreate">
+		<xpath>Defs/ThoughtDef[defName="KnowPrisonerDiedInnocent"]/nullifyingTraits</xpath>
+		<value>
+			<li>BleedingHeart</li>
+		</value>
+	</Operation>
+	<Operation Class="Psychology.PatchOperationReplaceEmpathyEnabled">
+		<xpath>Defs/ThoughtDef[defName="KnowPrisonerDiedInnocent"]/stages/li[1]/baseMoodEffect</xpath>
+		<value>
+			<baseMoodEffect>-4</baseMoodEffect>
+		</value>
+	</Operation>
+
+	<!-- KnowColonistDied -->
+	<Operation Class="Psychology.PatchOperationAddOrCreate">
+		<xpath>Defs/ThoughtDef[defName="KnowColonistDied"]/nullifyingTraits</xpath>
+		<value>
+			<li>BleedingHeart</li>
+		</value>
+	</Operation>
+	<Operation Class="Psychology.PatchOperationReplaceEmpathyEnabled">
+		<xpath>Defs/ThoughtDef[defName="KnowColonistDied"]/stages/li[1]/baseMoodEffect</xpath>
+		<value>
+			<baseMoodEffect>-2</baseMoodEffect>
+		</value>
+	</Operation>
+
+	<!-- ColonistBanished -->
+	<Operation Class="Psychology.PatchOperationAddOrCreate">
+		<xpath>Defs/ThoughtDef[defName="ColonistBanished"]/nullifyingTraits</xpath>
+		<value>
+			<li>BleedingHeart</li>
+		</value>
+	</Operation>
+	<Operation Class="Psychology.PatchOperationReplaceEmpathyEnabled">
+		<xpath>Defs/ThoughtDef[defName="ColonistBanished"]/stages/li[1]/baseMoodEffect</xpath>
+		<value>
+			<baseMoodEffect>-2</baseMoodEffect>
+		</value>
+	</Operation>
+
+	<!-- ColonistBanishedToDie -->
+	<Operation Class="Psychology.PatchOperationAddOrCreate">
+		<xpath>Defs/ThoughtDef[defName="ColonistBanishedToDie"]/nullifyingTraits</xpath>
+		<value>
+			<li>BleedingHeart</li>
+		</value>
+	</Operation>
+	<Operation Class="Psychology.PatchOperationReplaceEmpathyEnabled">
+		<xpath>Defs/ThoughtDef[defName="ColonistBanishedToDie"]/stages/li[1]/baseMoodEffect</xpath>
+		<value>
+			<baseMoodEffect>-4</baseMoodEffect>
+		</value>
+	</Operation>
+
+	<!-- PrisonerBanishedToDie -->
+	<Operation Class="Psychology.PatchOperationAddOrCreate">
+		<xpath>Defs/ThoughtDef[defName="PrisonerBanishedToDie"]/nullifyingTraits</xpath>
+		<value>
+			<li>BleedingHeart</li>
+		</value>
+	</Operation>
+	<Operation Class="Psychology.PatchOperationReplaceEmpathyEnabled">
+		<xpath>Defs/ThoughtDef[defName="PrisonerBanishedToDie"]/stages/li[1]/baseMoodEffect</xpath>
+		<value>
+			<baseMoodEffect>-3</baseMoodEffect>
+		</value>
+	</Operation>
+
+	<!-- KnowPrisonerSold -->
+	<Operation Class="Psychology.PatchOperationAddOrCreate">
+		<xpath>Defs/ThoughtDef[defName="KnowPrisonerSold"]/nullifyingTraits</xpath>
+		<value>
+			<li>BleedingHeart</li>
+		</value>
+	</Operation>
+	<Operation Class="Psychology.PatchOperationReplaceEmpathyEnabled">
+		<xpath>Defs/ThoughtDef[defName="KnowPrisonerSold"]/stages/li[1]/baseMoodEffect</xpath>
+		<value>
+			<baseMoodEffect>-4</baseMoodEffect>
+		</value>
+	</Operation>
+
+	<!-- KnowGuestOrganHarvested -->
+	<Operation Class="Psychology.PatchOperationAddOrCreate">
+		<xpath>Defs/ThoughtDef[defName="KnowGuestOrganHarvested"]/nullifyingTraits</xpath>
+		<value>
+			<li>BleedingHeart</li>
+		</value>
+	</Operation>
+	<Operation Class="Psychology.PatchOperationReplaceEmpathyEnabled">
+		<xpath>Defs/ThoughtDef[defName="KnowGuestOrganHarvested"]/stages/li[1]/baseMoodEffect</xpath>
+		<value>
+			<baseMoodEffect>-4</baseMoodEffect>
+		</value>
+	</Operation>
+
+	<!-- KnowColonistOrganHarvested -->
+	<Operation Class="Psychology.PatchOperationAddOrCreate">
+		<xpath>Defs/ThoughtDef[defName="KnowColonistOrganHarvested"]/nullifyingTraits</xpath>
+		<value>
+			<li>BleedingHeart</li>
+		</value>
+	</Operation>
+	<Operation Class="Psychology.PatchOperationReplaceEmpathyEnabled">
+		<xpath>Defs/ThoughtDef[defName="KnowColonistOrganHarvested"]/stages/li[1]/baseMoodEffect</xpath>
+		<value>
+			<baseMoodEffect>-4</baseMoodEffect>
+		</value>
+	</Operation>
+
+	<!-- Remove thoughtToMake from BrokeUpWithMe -->
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThoughtDef[defName="BrokeUpWithMe"]/thoughtToMake</xpath>
+  </Operation>
+
+	<!-- Remove thoughtToMake from DivorcedMe -->
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThoughtDef[defName="DivorcedMe"]/thoughtToMake</xpath>
+  </Operation>
+
+	<!-- Remove thoughtToMake from RejectedMyProposal -->
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThoughtDef[defName="RejectedMyProposal"]/thoughtToMake</xpath>
+  </Operation>
+
+	<!-- Remove thoughtToMake from CheatedOnMe -->
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThoughtDef[defName="CheatedOnMe"]/thoughtToMake</xpath>
+  </Operation>
+
+	<!-- Pessimistic antidepressant patch -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThoughtDef[defName="MoodOffsetPessimist"]/workerClass</xpath>
+		<value>
+			<workerClass>Psychology.ThoughtWorker_AlwaysActivePsychology</workerClass>
+		</value>
+	</Operation>
+
+	<!-- Depressive antidepressant patch -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThoughtDef[defName="MoodOffsetDepressive"]/workerClass</xpath>
+		<value>
+			<workerClass>Psychology.ThoughtWorker_AlwaysActivePsychology</workerClass>
+		</value>
+	</Operation>
+
+	<!-- Tortured Artist antidepressant patch -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThoughtDef[defName="MoodOffsetTorturedArtist"]/workerClass</xpath>
+		<value>
+			<workerClass>Psychology.ThoughtWorker_AlwaysActivePsychology</workerClass>
+		</value>
+	</Operation>
+
+	<!-- Legacy code, keep for backwards compatibility -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>*/ThoughtDef[defName="MoodOffsetDepressive"]/stages</xpath>
+		<value>
+			<li>
+				<label>depressive</label>
+				<description>Penalty from 'depressive' trait with antidepressants.</description>
+				<baseMoodEffect>-6</baseMoodEffect>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- Relabel Chitchat -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>*/ThoughtDef[defName="Chitchat"]/stages/li[1]/label</xpath>
+		<value>
+			<label>Smalltalk</label>
+		</value>
+	</Operation>
+
+	<!-- CapturedMe opinion offset -->
+	<Operation Class="Psychology.PatchOperationImprisonedMe">
+		<xpath>*/ThoughtDef[defName="CapturedMe"]/stages/li[1]/baseOpinionOffset/text()</xpath>
+	</Operation>
+
+	<!-- RapportBuilt opinion offset -->
+	<Operation Class="Psychology.PatchOperationRapportBuilt">
+		<xpath>*/ThoughtDef[defName="RapportBuilt"]/stages/li[1]/baseOpinionOffset/text()</xpath>
+	</Operation>
+
+	<!-- AteLavishMeal nullifying traits -->
+	<Operation Class="Psychology.PatchOperationAddOrCreate">
+		<xpath>Defs/ThoughtDef[defName="AteLavishMeal"]/nullifyingTraits</xpath>
+		<value>
+			<li>Gourmet</li>
+		</value>
+	</Operation>
+
+	<!-- AteFineMeal nullifying traits -->
+	<Operation Class="Psychology.PatchOperationAddOrCreate">
+		<xpath>Defs/ThoughtDef[defName="AteFineMeal"]/nullifyingTraits</xpath>
+		<value>
+			<li>Gourmet</li>
+		</value>
+	</Operation>
+
+	<!-- AteAwfulMeal nullifying traits -->
+	<!--<Operation Class="Psychology.PatchOperationAddOrCreate">
+		<xpath>Defs/ThoughtDef[defName="AteAwfulMeal"]/nullifyingTraits</xpath>
+		<value>
+			<li>Gourmet</li>
+		</value>
+	</Operation>-->
+
+	<!-- AteRawFood nullifying traits -->
+	<Operation Class="Psychology.PatchOperationAddOrCreate">
+		<xpath>Defs/ThoughtDef[defName="AteRawFood"]/nullifyingTraits</xpath>
+		<value>
+			<li>Gourmet</li>
+		</value>
+	</Operation>
+
+	<!-- AteInsectMeatAsIngredient nullifying traits -->
+	<Operation Class="Psychology.PatchOperationAddOrCreate">
+		<xpath>Defs/ThoughtDef[defName="AteInsectMeatAsIngredient"]/nullifyingTraits</xpath>
+		<value>
+			<li>Gourmet</li>
+		</value>
+	</Operation>
+
+	<!-- AteInsectMeatDirect nullifying traits -->
+	<Operation Class="Psychology.PatchOperationAddOrCreate">
+		<xpath>Defs/ThoughtDef[defName="AteInsectMeatDirect"]/nullifyingTraits</xpath>
+		<value>
+			<li>Gourmet</li>
+		</value>
+	</Operation>
+
+	<!-- AteRottenFood nullifying traits -->
+	<Operation Class="Psychology.PatchOperationAddOrCreate">
+		<xpath>Defs/ThoughtDef[defName="AteRottenFood"]/nullifyingTraits</xpath>
+		<value>
+			<li>Gourmet</li>
+		</value>
+	</Operation>
+
+	<!-- SleepDisturbed nullifying traits -->
+	<Operation Class="Psychology.PatchOperationAddOrCreate">
+		<xpath>Defs/ThoughtDef[defName="SleepDisturbed"]/nullifyingTraits</xpath>
+		<value>
+			<li>HeavySleeper</li>
+		</value>
+	</Operation>
+
+	<!-- ObservedLayingCorpse nullifying traits -->
+	<Operation Class="Psychology.PatchOperationAddOrCreate">
+		<xpath>Defs/ThoughtDef[defName="ObservedLayingCorpse"]/nullifyingTraits</xpath>
+		<value>
+			<li>Desensitized</li>
+		</value>
+	</Operation>
+	
+	<!-- DeadMansApparel nullifying traits -->
+	<Operation Class="Psychology.PatchOperationAddOrCreate">
+		<xpath>Defs/ThoughtDef[defName="DeadMansApparel"]/nullifyingTraits</xpath>
+		<value>
+			<li>Desensitized</li>
+		</value>
+	</Operation>
+	
+	<!-- WitnessedDeathAlly nullifying traits -->
+	<Operation Class="Psychology.PatchOperationAddOrCreate">
+		<xpath>Defs/ThoughtDef[defName="WitnessedDeathAlly"]/nullifyingTraits</xpath>
+		<value>
+			<li>BleedingHeart</li>
+			<li>Desensitized</li>
+		</value>
+	</Operation>
+	
+	<!-- WitnessedDeathNonAlly nullifying traits -->
+	<Operation Class="Psychology.PatchOperationAddOrCreate">
+		<xpath>Defs/ThoughtDef[defName="WitnessedDeathNonAlly"]/nullifyingTraits</xpath>
+		<value>
+			<li>BleedingHeart</li>
+			<li>Desensitized</li>
+		</value>
+	</Operation>
+	
+	<!-- ColonistLeftUnburied nullifying traits -->
+	<Operation Class="Psychology.PatchOperationAddOrCreate">
+		<xpath>Defs/ThoughtDef[defName="ColonistLeftUnburied"]/nullifyingTraits</xpath>
+		<value>
+			<li>BleedingHeart</li>
+			<li>Desensitized</li>
+		</value>
+	</Operation>
+	
+	<!-- FeelingRandom nullifying traits -->
+	<!--<Operation Class="Psychology.PatchOperationAddOrCreate">
+		<xpath>Defs/ThoughtDef[defName="FeelingRandom"]/nullifyingTraits</xpath>
+		<value>
+			<li>Unstable</li>
+		</value>
+	</Operation>-->
+	
+	<!-- ApparelDamaged nullifying traits -->
+	<Operation Class="Psychology.PatchOperationAddOrCreate">
+		<xpath>Defs/ThoughtDef[defName="ApparelDamaged"]/nullifyingTraits</xpath>
+		<value>
+			<li>Prude</li>
+		</value>
+	</Operation>
+	
+	<!-- Naked nullifying traits -->
+	<Operation Class="Psychology.PatchOperationAddOrCreate">
+		<xpath>Defs/ThoughtDef[defName="Naked"]/nullifyingTraits</xpath>
+		<value>
+			<li>Prude</li>
+		</value>
+	</Operation>
+	
+	<!-- EnvironmentDark nullifying traits -->
+	<Operation Class="Psychology.PatchOperationAddOrCreate">
+		<xpath>Defs/ThoughtDef[defName="EnvironmentDark"]/nullifyingTraits</xpath>
+		<value>
+			<li>Photosensitive</li>
+		</value>
+	</Operation>
+
+	<!-- CheatedOnMe nullifying traits -->
+	<Operation Class="Psychology.PatchOperationAddOrCreate">
+		<xpath>Defs/ThoughtDef[defName="CheatedOnMe"]/nullifyingTraits</xpath>
+		<value>
+			<li>Polygamous</li>
+			<li>Codependent</li>
+		</value>
+	</Operation>
+
+	<!-- Affair nullifying traits -->
+	<Operation Class="Psychology.PatchOperationAddOrCreate">
+		<xpath>Defs/ThoughtDef[defName="Affair"]/nullifyingTraits</xpath>
+		<value>
+			<li>Polygamous</li>
+		</value>
+	</Operation>
+
+	<!-- Disfigured nullifying traits -->
+	<Operation Class="Psychology.PatchOperationAddOrCreate">
+		<xpath>Defs/ThoughtDef[defName="Disfigured"]/nullifyingTraits</xpath>
+		<value>
+			<li>OpenMinded</li>
+		</value>
+	</Operation>
+
+	<!-- Pretty nullifying traits -->
+	<Operation Class="Psychology.PatchOperationAddOrCreate">
+		<xpath>Defs/ThoughtDef[defName="Pretty"]/nullifyingTraits</xpath>
+		<value>
+			<li>OpenMinded</li>
+		</value>
+	</Operation>
+	
+	<!-- Ugly nullifying traits -->
+	<Operation Class="Psychology.PatchOperationAddOrCreate">
+		<xpath>Defs/ThoughtDef[defName="Ugly"]/nullifyingTraits</xpath>
+		<value>
+			<li>OpenMinded</li>
+		</value>
+	</Operation>
+	
+	<!-- SleptOutside nullifying traits -->
+	<Operation Class="Psychology.PatchOperationAddOrCreate">
+		<xpath>Defs/ThoughtDef[defName="SleptOutside"]/nullifyingTraits</xpath>
+		<value>
+			<li>Outdoorsy</li>
+		</value>
+	</Operation>
+	
+	<!-- RebuffedMyRomanceAttempt nullifying traits -->
+	<Operation Class="Psychology.PatchOperationAddOrCreate">
+		<xpath>Defs/ThoughtDef[defName="RebuffedMyRomanceAttempt"]/nullifyingTraits</xpath>
+		<value>
+			<li>Lecher</li>
+		</value>
+	</Operation>
+	
+	<!-- SoakingWet nullifying traits -->
+	<Operation Class="Psychology.PatchOperationAddOrCreate">
+		<xpath>Defs/ThoughtDef[defName="SoakingWet"]/nullifyingTraits</xpath>
+		<value>
+			<li>Pluviophile</li>
+		</value>
+	</Operation>
+	
+	<!-- BrokeUpWithMe nullifying traits -->
+	<!-- BrokeUpWithMeMood nullifying traits -->
+	<!-- CheatedOnMe nullifying traits -->
+	<!-- CheatedOnMeMood nullifying traits -->
+	<!-- DivorcedMe nullifying traits -->
+	<!-- DivorcedMeMood nullifying traits -->
+	<!-- RejectedMyProposal nullifying traits -->
+	<!-- RejectedMyProposalMood nullifying traits -->
+
+</Patch>

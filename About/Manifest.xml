@@ -4,7 +4,7 @@
 	<version>1.0.7</version>
 	<dependencies>
 		<li>Harmony</li>
-		<li>HugsLib</li>
+<!--		<li>HugsLib</li>-->
 	</dependencies>
 	<incompatibleWith />
 	<loadAfter>

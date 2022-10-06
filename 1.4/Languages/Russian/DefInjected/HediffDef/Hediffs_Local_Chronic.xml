@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <Anxiety.label>тревожность</Anxiety.label>
+  <Anxiety.stages.managed.label>преодолимая</Anxiety.stages.managed.label>
+  <Anxiety.stages.minor-0.label>слабая</Anxiety.stages.minor-0.label>
+  <Anxiety.stages.minor-1.label>слабая</Anxiety.stages.minor-1.label>
+  <Anxiety.stages.severe-0.label>умеренная</Anxiety.stages.severe-0.label>
+  <Anxiety.stages.severe-1.label>тяжёлая</Anxiety.stages.severe-1.label>
+  <Anxiety.stages.extreme.label>невыносимая</Anxiety.stages.extreme.label>
+
+  <RecoveringPyromaniac.label>пироманьяк в ремиссии</RecoveringPyromaniac.label>
+  <DrugFree.label>в завязке</DrugFree.label>
+  <Antidepressants.label>Антидепрессанты</Antidepressants.label>
+  <SleepingPills.label>Транквилизаторы</SleepingPills.label>
+
+
+</LanguageData>

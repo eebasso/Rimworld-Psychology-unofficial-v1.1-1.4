@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <Methadone.label>метадон</Methadone.label>
+  <Methadone.description>Опиоид для лечения наркозависимости. Предотвращает развитие ломки при резком прекращении употребления наркотиков. Наркотическая зависимость вызывает снижение работоспособности и периодические наркотические срывы. Принимайте один раз в день. Прекратите употребление после исчезновения зависимости.</Methadone.description>
+  <Methadone.ingestible.ingestCommandString>Принять {0}</Methadone.ingestible.ingestCommandString>
+  <Methadone.ingestible.ingestReportString>Принимает {0}.</Methadone.ingestible.ingestReportString>
+
+
+</LanguageData>

@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+    <Chitchat.stages.Smalltalk.label>болтовня</Chitchat.stages.Smalltalk.label>
+    <MoodOffsetDepressive.stages.depressive-1.label>депрессивность</MoodOffsetDepressive.stages.depressive-1.label>
+    <MoodOffsetDepressive.stages.depressive-1.description>Постоянный штраф к настроению за черту «депрессия».</MoodOffsetDepressive.stages.depressive-1.description>
+    <MethadoneWithdrawal.stages.methadone_withdrawal.label>метадоновая ломка</MethadoneWithdrawal.stages.methadone_withdrawal.label>
+    <MethadoneWithdrawal.stages.methadone_withdrawal.description>Меня тошнит и голова кружится.</MethadoneWithdrawal.stages.methadone_withdrawal.description>
+    <AttendedFuneral.stages.attended_a_funeral.label>посещены похороны</AttendedFuneral.stages.attended_a_funeral.label>
+    <AttendedFuneral.stages.attended_a_funeral.description>Недавно прошли похороны одного из поселенцев. После них мне стало немного легче.</AttendedFuneral.stages.attended_a_funeral.description>
+    <WitnessedDeathAllyBleedingHeart.stages.witnessed_allys_death.label>смерть союзника</WitnessedDeathAllyBleedingHeart.stages.witnessed_allys_death.label>
+    <WitnessedDeathAllyBleedingHeart.stages.witnessed_allys_death.description>Один из наших умер. Не могу поверить, что больше никогда не увижу этого человека и не смогу с ним поговорить.</WitnessedDeathAllyBleedingHeart.stages.witnessed_allys_death.description>
+    <WitnessedDeathNonAllyBleedingHeart.stages.witnessed_outsiders_death.label>смерть чужеземца</WitnessedDeathNonAllyBleedingHeart.stages.witnessed_outsiders_death.label>
+    <WitnessedDeathNonAllyBleedingHeart.stages.witnessed_outsiders_death.description>Умер чужеземец. Не могу поверить, что в один момент это был живой человек, а секундой позже, уже нет.</WitnessedDeathNonAllyBleedingHeart.stages.witnessed_outsiders_death.description>
+    <KnowGuestExecutedBleedingHeart.stages.justified_execution.label>справедливая казнь</KnowGuestExecutedBleedingHeart.stages.justified_execution.label>
+    <KnowGuestExecutedBleedingHeart.stages.justified_execution.description>Виновного пленника или гостя казнили. Хоть это и справедливо, я никак не могу смириться с этим.</KnowGuestExecutedBleedingHeart.stages.justified_execution.description>
+    <KnowGuestExecutedBleedingHeart.stages.someone_was_euthanized.label>эвтаназия</KnowGuestExecutedBleedingHeart.stages.someone_was_euthanized.label>
+    <KnowGuestExecutedBleedingHeart.stages.someone_was_euthanized.description>Пленника или гостя подвергли эвтаназии. Это гуманно, но мне всё равно грустно.</KnowGuestExecutedBleedingHeart.stages.someone_was_euthanized.description>
+    <KnowGuestExecutedBleedingHeart.stages.someone_was_executed.label>казнь</KnowGuestExecutedBleedingHeart.stages.someone_was_executed.label>
+    <KnowGuestExecutedBleedingHeart.stages.someone_was_executed.description>Пленника или гостя хладнокровно убили. Наше поселение с каждым днём всё быстрее катится в пропасть!</KnowGuestExecutedBleedingHeart.stages.someone_was_executed.description>
+    <KnowGuestExecutedBleedingHeart.stages.someone_killed_by_organ_harvest.label>смерть из-за удаления органа</KnowGuestExecutedBleedingHeart.stages.someone_killed_by_organ_harvest.label>
+    <KnowGuestExecutedBleedingHeart.stages.someone_killed_by_organ_harvest.description>Пленник или гость умер из-за того, что у него удалили жизненно важные органы. Это просто ужасно!</KnowGuestExecutedBleedingHeart.stages.someone_killed_by_organ_harvest.description>
+    <KnowColonistExecutedBleedingHeart.stages.justified_execution_of_colonist.label>справедливая казнь поселенца</KnowColonistExecutedBleedingHeart.stages.justified_execution_of_colonist.label>
+    <KnowColonistExecutedBleedingHeart.stages.justified_execution_of_colonist.description>Виновного колониста казнили. Хоть это и справедливо, я никак не могу смириться с этим...</KnowColonistExecutedBleedingHeart.stages.justified_execution_of_colonist.description>
+    <KnowColonistExecutedBleedingHeart.stages.colonist_euthanized.label>эвтаназия поселенца</KnowColonistExecutedBleedingHeart.stages.colonist_euthanized.label>
+    <KnowColonistExecutedBleedingHeart.stages.colonist_euthanized.description>Поселенца подвергли эвтаназии. Это гуманно, но мне всё равно грустно...</KnowColonistExecutedBleedingHeart.stages.colonist_euthanized.description>
+    <KnowColonistExecutedBleedingHeart.stages.colonist_executed.label>казнь поселенца</KnowColonistExecutedBleedingHeart.stages.colonist_executed.label>
+    <KnowColonistExecutedBleedingHeart.stages.colonist_executed.description>Поселенца хладнокровно убили. Наше поселение с каждым днём всё быстрее катится в пропасть!</KnowColonistExecutedBleedingHeart.stages.colonist_executed.description>
+    <KnowColonistExecutedBleedingHeart.stages.colonist_killed_by_organ_harvest.label>смерть поселенца от извлечения органов</KnowColonistExecutedBleedingHeart.stages.colonist_killed_by_organ_harvest.label>
+    <KnowColonistExecutedBleedingHeart.stages.colonist_killed_by_organ_harvest.description>Поселенец умер из-за того, что у него удалили жизненно важные органы. Это просто ужасно!</KnowColonistExecutedBleedingHeart.stages.colonist_killed_by_organ_harvest.description>
+    <KnowPrisonerDiedInnocentBleedingHeart.stages.innocent_prisoner_died.label>смерть пленника</KnowPrisonerDiedInnocentBleedingHeart.stages.innocent_prisoner_died.label>
+    <KnowPrisonerDiedInnocentBleedingHeart.stages.innocent_prisoner_died.description>Один из пленников умер, несмотря на то, что он никому не причинил вреда. Мы должны быть в состоянии позаботиться о тех, кого берём в плен. Если нам действительно нужна их смерть, мы должны организовать казнь, но не допускать такого варварства.</KnowPrisonerDiedInnocentBleedingHeart.stages.innocent_prisoner_died.description>
+    <KnowColonistDiedBleedingHeart.stages.colonist_died.label>смерть поселенца</KnowColonistDiedBleedingHeart.stages.colonist_died.label>
+    <KnowColonistDiedBleedingHeart.stages.colonist_died.description>Один из наших умер. Мы должны быть в состоянии заботиться о своих людях.</KnowColonistDiedBleedingHeart.stages.colonist_died.description>
+    <AteLavishMealPickyEater.stages.ate_lavish_meal.label>съедено шикарное блюдо</AteLavishMealPickyEater.stages.ate_lavish_meal.label>
+    <AteLavishMealPickyEater.stages.ate_lavish_meal.description>Это блюдо было восхитительно Это именно то, что я хочу есть каждый день.</AteLavishMealPickyEater.stages.ate_lavish_meal.description>
+    <AteFineMealPickyEater.stages.ate_fine_meal.label>съедено вкусное блюдо</AteFineMealPickyEater.stages.ate_fine_meal.label>
+    <AteFineMealPickyEater.stages.ate_fine_meal.description>Это было вкусное блюдо. Прямо как мне нравится</AteFineMealPickyEater.stages.ate_fine_meal.description>
+    <AteAwfulMealPickyEater.stages.ate_awful_meal.label>съедено отвратительное блюдо</AteAwfulMealPickyEater.stages.ate_awful_meal.label>
+    <AteAwfulMealPickyEater.stages.ate_awful_meal.description>Это было отвратительное, безвкусное блюдо. Омерзительно. Я хочу пищу сильно лучше этого.</AteAwfulMealPickyEater.stages.ate_awful_meal.description>
+    <AteRawFoodPickyEater.stages.ate_raw_food.label>съедена сырая пища</AteRawFoodPickyEater.stages.ate_raw_food.label>
+    <AteRawFoodPickyEater.stages.ate_raw_food.description>Мне пришлось съесть сырую пищу. Я не хочу здесь жить, если мы не можем хотя бы кого-нибудь назначить поваром.</AteRawFoodPickyEater.stages.ate_raw_food.description>
+    <AteNormalMealPickyEater.stages.ate_plain_meal.label>съедено простое блюдо</AteNormalMealPickyEater.stages.ate_plain_meal.label>
+    <AteNormalMealPickyEater.stages.ate_plain_meal.description>Это блюдо не отвечает моим стандартам. Мне пришлось его съесть только потому, что не было ничего другого.</AteNormalMealPickyEater.stages.ate_plain_meal.description>
+    <AteInsectMeatAsIngredientPickyEater.stages.ate_cooked_insect_meat.label>съедено блюдо с мясом насекомого</AteInsectMeatAsIngredientPickyEater.stages.ate_cooked_insect_meat.label>
+    <AteInsectMeatAsIngredientPickyEater.stages.ate_cooked_insect_meat.description>Мне пришлось съесть блюдо из серого склизкого мяса насекомого. Это был очень неприятный сюрприз на моей тарелке.</AteInsectMeatAsIngredientPickyEater.stages.ate_cooked_insect_meat.description>
+    <AteInsectMeatDirectPickyEater.stages.ate_insect_meat.label>съедено мясо насекомого</AteInsectMeatDirectPickyEater.stages.ate_insect_meat.label>
+    <AteInsectMeatDirectPickyEater.stages.ate_insect_meat.description>Мне пришлось съесть серое и склизкое мясо насекомого. Убейте меня кто-нибудь.</AteInsectMeatDirectPickyEater.stages.ate_insect_meat.description>
+    <AteRottenFoodPickyEater.stages.ate_rotten_food.label>съедена гнилая пища</AteRottenFoodPickyEater.stages.ate_rotten_food.label>
+    <AteRottenFoodPickyEater.stages.ate_rotten_food.description>Мне пришлось съесть отвратительную, гнилую пищу. Лучше смерть, чем такие унижения.</AteRottenFoodPickyEater.stages.ate_rotten_food.description>
+    <Dynamic.stages.dynamic.label>энергичность</Dynamic.stages.dynamic.label>
+    <MayorNoOffice.stages.no_mayoral_office.label>нет офиса</MayorNoOffice.stages.no_mayoral_office.label>
+    <MayorNoOffice.stages.no_mayoral_office.description>Мне пришлось проводить встречу с избирателем в своей спальне. Наличие офиса помогло бы мне исполнять свои обязанности более профессионально.</MayorNoOffice.stages.no_mayoral_office.description>
+    <MayorNoBedroom.stages.no_mayoral_office.label>нет офиса</MayorNoBedroom.stages.no_mayoral_office.label>
+    <MayorNoBedroom.stages.no_mayoral_office.description>Мне пришлось проводить встречу с избирателем в месте для сбора. Выделите мне хотя бы личную спальню, чтобы я мог проводить эти встречи тет-а-тет.</MayorNoBedroom.stages.no_mayoral_office.description>
+    <WonElection.stages.won_an_election.label>победа в выборах</WonElection.stages.won_an_election.label>
+    <WonElection.stages.won_an_election.description>Да! Теперь я мэр! Спасибо всем, кто голосовал за меня.</WonElection.stages.won_an_election.description>
+    <KilledHumanlikeEnemy.stages.adrenaline_rush.label>прилив адреналина</KilledHumanlikeEnemy.stages.adrenaline_rush.label>
+    <KilledHumanlikeEnemy.stages.adrenaline_rush.description>Моими руками убит напавший на наше поселение. Я весь трясусь... Не могу поверить, что я в живых.</KilledHumanlikeEnemy.stages.adrenaline_rush.description>
+    <KnowPrisonerSoldBleedingHeart.stages.a_prisoner_was_sold.label>заключённый продан в рабство</KnowPrisonerSoldBleedingHeart.stages.a_prisoner_was_sold.label>
+    <KnowPrisonerSoldBleedingHeart.stages.a_prisoner_was_sold.description>Мы продали заключённого в рабство. Не могу поверить, что мы практикуем такое варварство.</KnowPrisonerSoldBleedingHeart.stages.a_prisoner_was_sold.description>
+    <KnowGuestOrganHarvestedBleedingHeart.stages.someones_organ_harvested.label>вырезан чей-то орган</KnowGuestOrganHarvestedBleedingHeart.stages.someones_organ_harvested.label>
+    <KnowGuestOrganHarvestedBleedingHeart.stages.someones_organ_harvested.description>У гостя или пленника удалили орган. Это ужасно, резать людей на части без их согласия.</KnowGuestOrganHarvestedBleedingHeart.stages.someones_organ_harvested.description>
+    <KnowColonistOrganHarvestedBleedingHeart.stages.colonists_organ_harvested.label>поселенцу вырезали орган</KnowColonistOrganHarvestedBleedingHeart.stages.colonists_organ_harvested.label>
+    <KnowColonistOrganHarvestedBleedingHeart.stages.colonists_organ_harvested.description>У поселенца удалили орган. Это ужасно, разбирать людей на части, когда у них нет выбора.</KnowColonistOrganHarvestedBleedingHeart.stages.colonists_organ_harvested.description>
+    <ReplacedPartBleedingHeart.stages.installed_an_organ_or_body_part.label>вживлён орган или часть тела</ReplacedPartBleedingHeart.stages.installed_an_organ_or_body_part.label>
+    <ReplacedPartBleedingHeart.stages.installed_an_organ_or_body_part.description>С моей помощью у другого человека появилась новая часть тела или орган! Возможно, качество жизни этого человека теперь улучшится. Какое счастье!.</ReplacedPartBleedingHeart.stages.installed_an_organ_or_body_part.description>
+    <DoctorBleedingHeart.stages.helped_a_patient.label>помощь пациенту</DoctorBleedingHeart.stages.helped_a_patient.label>
+    <DoctorBleedingHeart.stages.helped_a_patient.description>Обожаю медицину. Так много возможностей помочь другим людям.</DoctorBleedingHeart.stages.helped_a_patient.description>
+    <RescuedBleedingHeart.stages.saved_someone.label>кто-то спасён</RescuedBleedingHeart.stages.saved_someone.label>
+    <RescuedBleedingHeart.stages.saved_someone.description>Я спас человека на волоске от смерти. Не стоит благодарности, для меня одна возможность помочь была самой наградой.</RescuedBleedingHeart.stages.saved_someone.description>
+    <CookedMealBleedingHeart.stages.cooked_a_meal.label>приготовлено блюдо</CookedMealBleedingHeart.stages.cooked_a_meal.label>
+    <CookedMealBleedingHeart.stages.cooked_a_meal.description>Люблю готовить, потому что чувствую, что помогаю людям. Благодаря мне все в поселении сыты!</CookedMealBleedingHeart.stages.cooked_a_meal.description>
+    <FilledGraveBleedingHeart.stages.buried_someone.label>кто-то погребён</FilledGraveBleedingHeart.stages.buried_someone.label>
+    <FilledGraveBleedingHeart.stages.buried_someone.description>Покойся с миром.</FilledGraveBleedingHeart.stages.buried_someone.description>
+    <KilledPatientBleedingHeart.stages.killed_a_patient.label>пациент погиб</KilledPatientBleedingHeart.stages.killed_a_patient.label>
+    <KilledPatientBleedingHeart.stages.killed_a_patient.description>Из-за меня во время операции погиб пациент. Это всё моя ошибка... Этот человек мог бы сейчас быть с нами.</KilledPatientBleedingHeart.stages.killed_a_patient.description>
+    <RecentlyDesensitized.stages.desensitized_to_violence.label>бесчувственность к насилию</RecentlyDesensitized.stages.desensitized_to_violence.label>
+    <RecentlyDesensitized.stages.desensitized_to_violence.description>Я видел смерть другого человека и ничего не почувствовал. Как же это угнетает...</RecentlyDesensitized.stages.desensitized_to_violence.description>
+    <DreamGood.stages.had_a_good_dream.label>приснился хороший сон</DreamGood.stages.had_a_good_dream.label>
+    <DreamGood.stages.had_a_good_dream.description>Это был хороший сон. Он вселил в меня надежду.</DreamGood.stages.had_a_good_dream.description>
+    <DreamBad.stages.had_a_bad_dream.label>приснился плохой сон</DreamBad.stages.had_a_bad_dream.label>
+    <DreamBad.stages.had_a_bad_dream.description>Это был неприятный сон. До сих пор о нём думаю.</DreamBad.stages.had_a_bad_dream.description>
+    <DreamNightmare.stages.had_a_nightmare.label>приснился кошмар</DreamNightmare.stages.had_a_nightmare.label>
+    <DreamNightmare.stages.had_a_nightmare.description>Аа! Какой ужасный кошмар. Мне плохо даже от одной мысли о нём.</DreamNightmare.stages.had_a_nightmare.description>
+    <TreatmentFailed.stages.treatment_failed.label>лечение {0} провалилось</TreatmentFailed.stages.treatment_failed.label>
+    <TreatmentFailed.stages.treatment_failed.description>Доктор не смог мне помочь... Такое ощущение, будто меня совсем не поняли.</TreatmentFailed.stages.treatment_failed.description>
+    <SuccessfulPlot.stages.fell_plot_succeeded.label>сумасшедший заговор удался</SuccessfulPlot.stages.fell_plot_succeeded.label>
+    <SuccessfulPlot.stages.fell_plot_succeeded.description>Я стёр с лица земли эту чуму. Теперь мы в безопасности.</SuccessfulPlot.stages.fell_plot_succeeded.description>
+    <HeardParanoia.stages.exposed_to_paranoid_rambling.label>параноидальный бред</HeardParanoia.stages.exposed_to_paranoid_rambling.label>
+    <HeardParanoia.stages.exposed_to_paranoid_rambling.description>Все эти вещи... Это же неправда да?</HeardParanoia.stages.exposed_to_paranoid_rambling.description>
+    <ColonistAbandonedBleedingHeart.stages.colonist_abandoned.label>поселенец брошен</ColonistAbandonedBleedingHeart.stages.colonist_abandoned.label>
+    <ColonistAbandonedBleedingHeart.stages.colonist_abandoned.description>Мы оставили кого-то позади. Не могу перестать думать, что же может произойти с этим человеком.</ColonistAbandonedBleedingHeart.stages.colonist_abandoned.description>
+    <ColonistAbandonedToDieBleedingHeart.stages.colonist_abandoned_to_die.label>поселенец брошен умирать</ColonistAbandonedToDieBleedingHeart.stages.colonist_abandoned_to_die.label>
+    <ColonistAbandonedToDieBleedingHeart.stages.colonist_abandoned_to_die.description>Мы бросили кого-то на верную смерть! Как мы могли?</ColonistAbandonedToDieBleedingHeart.stages.colonist_abandoned_to_die.description>
+    <PrisonerAbandonedToDieBleedingHeart.stages.prisoner_abandoned_to_die.label>заключённый брошен умирать</PrisonerAbandonedToDieBleedingHeart.stages.prisoner_abandoned_to_die.label>
+    <PrisonerAbandonedToDieBleedingHeart.stages.prisoner_abandoned_to_die.description>Мы бросили заключённого на верную смерть. Мы должны нести ответственность за тех, кого берём в плен.</PrisonerAbandonedToDieBleedingHeart.stages.prisoner_abandoned_to_die.description>
+    <DateCancelled.stages.had_to_cancel_a_date.label>пришлось отменить свидание</DateCancelled.stages.had_to_cancel_a_date.label>
+    <DateCancelled.stages.had_to_cancel_a_date.description>У меня было запланировано свидание со своим партнёром, но в поселении что-то пошло не так и всё пришлось отменить. Такая досада...</DateCancelled.stages.had_to_cancel_a_date.description>
+    <WonFight.stages.won_a_social_fight.label>победа в драке</WonFight.stages.won_a_social_fight.label>
+    <WonFight.stages.won_a_social_fight.description>Каждый теперь дважды подумает, прежде чем лезть на меня.</WonFight.stages.won_a_social_fight.description>
+    <PrudeSeen.stages.witnessed_the_human_form.label>голое тело</PrudeSeen.stages.witnessed_the_human_form.label>
+    <PrudeSeen.stages.witnessed_the_human_form.description>Этот человек был голый? У нас тут что, теперь все без одежды бегают? Отвратительно.</PrudeSeen.stages.witnessed_the_human_form.description>
+    <DynamicSocial.stages.conversation.label>разговор</DynamicSocial.stages.conversation.label>
+    <BrokeUpWithMeCodependent.stages.codependent.label>эмоциональная зависимость</BrokeUpWithMeCodependent.stages.codependent.label>
+    <BrokeUpWithMeCodependentMood.stages.codependent_on.label>зависимость от {0}</BrokeUpWithMeCodependentMood.stages.codependent_on.label>
+    <BrokeUpWithMeCodependentMood.stages.codependent_on.description>Я скучаю по тебе... Пожалуйста, вернись.</BrokeUpWithMeCodependentMood.stages.codependent_on.description>
+    <CheatedOnMeCodependent.stages.cheated_on_me.label>{1_gender ? изменил : изменила} мне</CheatedOnMeCodependent.stages.cheated_on_me.label>
+    <CheatedOnMeCodependentMood.stages.cheated_on_by.label>{0} изменяет мне</CheatedOnMeCodependentMood.stages.cheated_on_by.label>
+    <CheatedOnMeCodependentMood.stages.cheated_on_by.description>Не понимаю... Это, должно быть, моя ошибка.</CheatedOnMeCodependentMood.stages.cheated_on_by.description>
+    <RebuffedMyRomanceAttemptLecher.stages.rebuffed_me.label>{1_gender ? отверг : отвергла} меня</RebuffedMyRomanceAttemptLecher.stages.rebuffed_me.label>
+    <CapturedMe.stages.faction_imprisoned_me.label>фракция взяла меня в плен</CapturedMe.stages.faction_imprisoned_me.label>
+    <WentOnDate.stages.went_on_a_date.label>свидание</WentOnDate.stages.went_on_a_date.label>
+    <HungOut.stages.hung_out_together.label>провёл с кем-то время</HungOut.stages.hung_out_together.label>
+    <MissedDate.stages.missed_our_date.label>пропущено свидание</MissedDate.stages.missed_our_date.label>
+    <ApparelDamagedPrude.stages.wearing_wornout_apparel.label>изношенная одежда</ApparelDamagedPrude.stages.wearing_wornout_apparel.label>
+    <ApparelDamagedPrude.stages.wearing_wornout_apparel.description>Моя одежда выглядит довольно плохо. Дырки становятся всё больше...</ApparelDamagedPrude.stages.wearing_wornout_apparel.description>
+    <ApparelDamagedPrude.stages.wearing_tattered_apparel.label>в лохмотьях</ApparelDamagedPrude.stages.wearing_tattered_apparel.label>
+    <ApparelDamagedPrude.stages.wearing_tattered_apparel.description>Я хожу в каком-то ужасе с помойки. Эта «одежда» даже не прикрывает ничего.</ApparelDamagedPrude.stages.wearing_tattered_apparel.description>
+    <Individuality.stages.matching_apparel-0.label>идентичная одежда</Individuality.stages.matching_apparel-0.label>
+    <Individuality.stages.matching_apparel-0.description>Кто-то в поселении ходит в такой же одежде, что и я. Это неприятно.</Individuality.stages.matching_apparel-0.description>
+    <Individuality.stages.matching_apparel-1.label>идентичная одежда</Individuality.stages.matching_apparel-1.label>
+    <Individuality.stages.matching_apparel-1.description>Другие поселенцы ходят в такой же одежде, что и я. Это довольно неприятно.</Individuality.stages.matching_apparel-1.description>
+    <Individuality.stages.stifled_individuality-0.label>подавленная индивидуальность</Individuality.stages.stifled_individuality-0.label>
+    <Individuality.stages.stifled_individuality-0.description>Большая часть колонистов ходит в том же, что и я. Это жутковато, я хочу выражать свою индивидуальность.</Individuality.stages.stifled_individuality-0.description>
+    <Individuality.stages.stifled_individuality-1.label>подавленная индивидуальность</Individuality.stages.stifled_individuality-1.label>
+    <Individuality.stages.stifled_individuality-1.description>Абсолютно все в поселении одеты в то же, что и я! Это ужасно, я хочу выражать свою индивидуальность</Individuality.stages.stifled_individuality-1.description>
+    <SurvivedTogether.stages.survived_together_for_a_year.label>прожили вместе год</SurvivedTogether.stages.survived_together_for_a_year.label>
+    <SurvivedTogether.stages.survived_together_for_two_years.label>прожили вместе два года</SurvivedTogether.stages.survived_together_for_two_years.label>
+    <SurvivedTogether.stages.survived_together_for_three_years.label>прожили вместе три года</SurvivedTogether.stages.survived_together_for_three_years.label>
+    <SurvivedTogether.stages.survived_together_for_four_years.label>прожили вместе четыре года</SurvivedTogether.stages.survived_together_for_four_years.label>
+    <SurvivedTogether.stages.survived_together_for_five_years.label>прожили вместе пять лет</SurvivedTogether.stages.survived_together_for_five_years.label>
+    <SurvivedTogether.stages.survived_together_for_more_than_five_years.label>прожили вместе больше пяти лет</SurvivedTogether.stages.survived_together_for_more_than_five_years.label>
+    <LongDistance.stages.longdistance_relationship-0.label>отношения на расстоянии</LongDistance.stages.longdistance_relationship-0.label>
+    <LongDistance.stages.longdistance_relationship-1.label>отношения на расстоянии</LongDistance.stages.longdistance_relationship-1.label>
+    <LongDistance.stages.longdistance_relationship-2.label>отношения на расстоянии</LongDistance.stages.longdistance_relationship-2.label>
+    <LongDistance.stages.longdistance_relationship-3.label>отношения на расстоянии</LongDistance.stages.longdistance_relationship-3.label>
+    <LongDistance.stages.longdistance_relationship-4.label>отношения на расстоянии</LongDistance.stages.longdistance_relationship-4.label>
+    <LongDistance.stages.longdistance_relationship-5.label>отношения на расстоянии</LongDistance.stages.longdistance_relationship-5.label>
+    <LongDistance.stages.longdistance_relationship-6.label>отношения на расстоянии</LongDistance.stages.longdistance_relationship-6.label>
+    <ColonistLeftUnburiedBleedingHeart.stages.colonist_left_unburied.label>поселенец не похоронен</ColonistLeftUnburiedBleedingHeart.stages.colonist_left_unburied.label>
+    <ColonistLeftUnburiedBleedingHeart.stages.colonist_left_unburied.description>Один из наших умер, а мы просто оставили тело лежать. Не могу перестать думать об этом. Как мы могли допустить, чтобы человек вот так вот гнил?</ColonistLeftUnburiedBleedingHeart.stages.colonist_left_unburied.description>
+    <NakedPrude.stages.naked.label>без одежды</NakedPrude.stages.naked.label>
+    <NakedPrude.stages.naked.description>Я без одежды. Все на меня пялятся! ПОЖАЛУЙСТА, ДАЙТЕ МНЕ ОДЕТЬСЯ ВО ЧТО-НИБУДЬ!</NakedPrude.stages.naked.description>
+    <PanicAttack.stages.having_a_panic_attack.label>паническая атака</PanicAttack.stages.having_a_panic_attack.label>
+    <PanicAttack.stages.having_a_panic_attack.description>Прочь от меня! Я задыхаюсь!</PanicAttack.stages.having_a_panic_attack.description>
+    <FeelingRandomBipolar.stages.Feeling_manic.label>великолепное самочувствие</FeelingRandomBipolar.stages.Feeling_manic.label>
+    <FeelingRandomBipolar.stages.Feeling_manic.description>Без какой-либо конкретной причины я чувствую себя просто великолепно.</FeelingRandomBipolar.stages.Feeling_manic.description>
+    <FeelingRandomBipolar.stages.Feeling_great.label>очень хорошее самочувствие</FeelingRandomBipolar.stages.Feeling_great.label>
+    <FeelingRandomBipolar.stages.Feeling_great.description>Без какой-либо конкретной причины я чувствую себя очень хорошо.</FeelingRandomBipolar.stages.Feeling_great.description>
+    <FeelingRandomBipolar.stages.Feeling_good.label>хорошее самочувствие</FeelingRandomBipolar.stages.Feeling_good.label>
+    <FeelingRandomBipolar.stages.Feeling_good.description>Без какой-либо конкретной причины я чувствую себя хорошо.</FeelingRandomBipolar.stages.Feeling_good.description>
+    <FeelingRandomBipolar.stages.Feeling_bad.label>плохое самочувствие</FeelingRandomBipolar.stages.Feeling_bad.label>
+    <FeelingRandomBipolar.stages.Feeling_bad.description>Без какой-либо конкретной причины я чувствую себя плохо.</FeelingRandomBipolar.stages.Feeling_bad.description>
+    <FeelingRandomBipolar.stages.Feeling_terrible.label>ужасное самочувствие</FeelingRandomBipolar.stages.Feeling_terrible.label>
+    <FeelingRandomBipolar.stages.Feeling_terrible.description>Без какой-либо конкретной причины я чувствую себя ужасно.</FeelingRandomBipolar.stages.Feeling_terrible.description>
+    <FeelingRandomBipolar.stages.Feeling_depressive.label>отвратительное самочувствие</FeelingRandomBipolar.stages.Feeling_depressive.label>
+    <FeelingRandomBipolar.stages.Feeling_depressive.description>Без какой-либо конкретной причины я чувствую себя просто отвратительно...</FeelingRandomBipolar.stages.Feeling_depressive.description>
+    <Codependency.stages.feeling_alone.label>одиночество</Codependency.stages.feeling_alone.label>
+    <Codependency.stages.feeling_alone.description>Мне так одиноко... Мне нужен партнёр.</Codependency.stages.feeling_alone.description>
+    <Codependency.stages.in_a_codependent_relationship.label>в зависимости от партнёра</Codependency.stages.in_a_codependent_relationship.label>
+    <Codependency.stages.in_a_codependent_relationship.description>Я люблю своего партнёра. Не могу себе представить жизнь без этого человека.</Codependency.stages.in_a_codependent_relationship.description>
+    <Codependency.stages.in_a_codependent_marriage.label>в зависимости от брачного партнёра</Codependency.stages.in_a_codependent_marriage.label>
+    <Codependency.stages.in_a_codependent_marriage.description>Я люблю свою вторую половинку. Без этого человека я точно умру.</Codependency.stages.in_a_codependent_marriage.description>
+    <Codependency.stages.desolate.label>безысходность</Codependency.stages.desolate.label>
+    <Codependency.stages.desolate.description>Моего партнёра больше нет со мной... Что же мне делать?</Codependency.stages.desolate.description>
+    <Outdoorsy.stages.in_the_open-0.label>на свежем воздухе</Outdoorsy.stages.in_the_open-0.label>
+    <Outdoorsy.stages.in_the_open-0.description>Люблю, когда надо мной небо.</Outdoorsy.stages.in_the_open-0.description>
+    <Outdoorsy.stages.in_the_open-1.label>на свежем воздухе</Outdoorsy.stages.in_the_open-1.label>
+    <Outdoorsy.stages.in_the_open-1.description>Ахх, как же здорово быть на свежем воздухе.</Outdoorsy.stages.in_the_open-1.description>
+    <Pluviophile.stages.raining_outside.label>идёт дождь</Pluviophile.stages.raining_outside.label>
+    <Pluviophile.stages.raining_outside.description>Люблю звук дождя.</Pluviophile.stages.raining_outside.description>
+    <Pluviophile.stages.in_the_rain.label>под дождём</Pluviophile.stages.in_the_rain.label>
+    <Pluviophile.stages.in_the_rain.description>Дождь так расслабляет. Мокрая одежда совсем не мешает.</Pluviophile.stages.in_the_rain.description>
+    <PolygamousRelationship.stages.in_a_monogamous_relationship.label>в моногамных отношениях</PolygamousRelationship.stages.in_a_monogamous_relationship.label>
+    <PolygamousRelationship.stages.in_a_monogamous_relationship.description>Как бы мне хотелось проявлять чувства не к одному единственному человеку.</PolygamousRelationship.stages.in_a_monogamous_relationship.description>
+    <EnvironmentDarkLightSensitive.stages.in_darkness.label>в темноте</EnvironmentDarkLightSensitive.stages.in_darkness.label>
+    <EnvironmentDarkLightSensitive.stages.in_darkness.description>Ах... Как же хорошо в темноте.</EnvironmentDarkLightSensitive.stages.in_darkness.description>
+    <EnvironmentDarkLightSensitive.stages.in_the_light.label>на свету</EnvironmentDarkLightSensitive.stages.in_the_light.label>
+    <EnvironmentDarkLightSensitive.stages.in_the_light.description>Ай... Неприятно.</EnvironmentDarkLightSensitive.stages.in_the_light.description>
+    <EnvironmentDarkLightSensitive.stages.in_bright_light.label>На ярком свету</EnvironmentDarkLightSensitive.stages.in_bright_light.label>
+    <EnvironmentDarkLightSensitive.stages.in_bright_light.description>Мои глаза! Мои глаза болят!</EnvironmentDarkLightSensitive.stages.in_bright_light.description>
+    <Sedentary.stages.settled_in.label>обустроился</Sedentary.stages.settled_in.label>
+    <Sedentary.stages.settled_in.description>Хорошо, когда не надо бегать туда-сюда.</Sedentary.stages.settled_in.description>
+    <Sedentary.stages.comfortably_settled_in.label>обустроился с комфортом</Sedentary.stages.comfortably_settled_in.label>
+    <Sedentary.stages.comfortably_settled_in.description>Приятное, удобное место, где можно немного отдохнуть. Прямо как мне нравится.</Sedentary.stages.comfortably_settled_in.description>
+
+</LanguageData>

@@ -1,27 +1,64 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ModMetaData>
-	<name>Psychology (unofficial) v1.1-1.3</name>
+	<name>Psychology (unofficial) v1.1-1.4</name>
 	<author>Linq</author>
 	<url>https://ludeon.com/forums/index.php?topic=34112.0</url>
+	<packageId>Community.Psychology.UnofficialUpdate</packageId>
 	<supportedVersions>
 		<li>1.1</li>
 		<li>1.2</li>
 		<li>1.3</li>
+		<li>1.4</li>
 	</supportedVersions>
-	<packageId>Community.Psychology.UnofficialUpdate</packageId>
-	<modDependencies>
-		<li>
-			<packageId>UnlimitedHugs.HugsLib</packageId>
-			<displayName>HugsLib</displayName>
-			<steamWorkshopUrl>https://steamcommunity.com/sharedfiles/filedetails/?id=818773962</steamWorkshopUrl>
-		</li>
-		<li>
-			<packageId>brrainz.harmony</packageId>
-			<displayName>Harmony</displayName>
-			<steamWorkshopUrl>steam://url/CommunityFilePage/2009463077</steamWorkshopUrl>
-			<downloadUrl>https://github.com/pardeike/HarmonyRimWorld/releases/latest</downloadUrl>
-		</li>
-	</modDependencies>
+	<modDependenciesByVersion>
+		<v1.1>
+			<li>
+				<packageId>UnlimitedHugs.HugsLib</packageId>
+				<displayName>HugsLib</displayName>
+				<steamWorkshopUrl>https://steamcommunity.com/sharedfiles/filedetails/?id=818773962</steamWorkshopUrl>
+			</li>
+			<li>
+				<packageId>brrainz.harmony</packageId>
+				<displayName>Harmony</displayName>
+				<steamWorkshopUrl>steam://url/CommunityFilePage/2009463077</steamWorkshopUrl>
+				<downloadUrl>https://github.com/pardeike/HarmonyRimWorld/releases/latest</downloadUrl>
+			</li>
+		</v1.1>
+		<v1.2>
+			<li>
+				<packageId>UnlimitedHugs.HugsLib</packageId>
+				<displayName>HugsLib</displayName>
+				<steamWorkshopUrl>https://steamcommunity.com/sharedfiles/filedetails/?id=818773962</steamWorkshopUrl>
+			</li>
+			<li>
+				<packageId>brrainz.harmony</packageId>
+				<displayName>Harmony</displayName>
+				<steamWorkshopUrl>steam://url/CommunityFilePage/2009463077</steamWorkshopUrl>
+				<downloadUrl>https://github.com/pardeike/HarmonyRimWorld/releases/latest</downloadUrl>
+			</li>
+		</v1.2>
+		<v1.3>
+			<li>
+				<packageId>UnlimitedHugs.HugsLib</packageId>
+				<displayName>HugsLib</displayName>
+				<steamWorkshopUrl>https://steamcommunity.com/sharedfiles/filedetails/?id=818773962</steamWorkshopUrl>
+			</li>
+			<li>
+				<packageId>brrainz.harmony</packageId>
+				<displayName>Harmony</displayName>
+				<steamWorkshopUrl>steam://url/CommunityFilePage/2009463077</steamWorkshopUrl>
+				<downloadUrl>https://github.com/pardeike/HarmonyRimWorld/releases/latest</downloadUrl>
+			</li>
+		</v1.3>
+		<v1.4>
+			<li>
+				<packageId>brrainz.harmony</packageId>
+				<displayName>Harmony</displayName>
+				<steamWorkshopUrl>steam://url/CommunityFilePage/2009463077</steamWorkshopUrl>
+				<downloadUrl>https://github.com/pardeike/HarmonyRimWorld/releases/latest</downloadUrl>
+			</li>
+		</v1.4>
+	</modDependenciesByVersion>
 	<loadAfter>
 		<li>brrainz.harmony</li>
 		<li>UnlimitedHugs.HugsLib</li>
@@ -29,47 +66,39 @@
 		<li>EdB.PrepareCarefully</li>
 		<li>tachyonite.pawnmorpherpublic</li>
 	</loadAfter>
-	<description>&lt;b&gt;Doesn't break saves!&lt;/b&gt;  &lt;b&gt;Mod options available!&lt;/b&gt;
+	<description>&lt;b&gt;Major update for 1.4!&lt;/b&gt;
 
-"This is the absolute best mod for Rimworld. It adds innumerable layers of depth other mods could never hope to achieve. Well done."
-"I can't play rimworld without this beautiful mod!"
-"This is truly a masterpiece of a mod and I hope the developers see that and include it in the core game :)"
-"This is the mod in my opinion that TRUELY makes Rimworld one of the best games on Steam."
-"This mod really enriches the gameplay of Rimworld. I am much less likely to play without it."
-	
-This is a total overhaul of Rimworld's psychological and social systems. Your colonists, and the stories you can tell about them, are what make Rimworld such a fun game. Unfortunately, besides what they can contribute to the colony, colonists are pretty much interchangeable. Now, everyone you encounter will have a unique and recognizable character archetype, giving them massively increased depth and charm. Their personality traits will affect absolutely every facet of their interactions with other people, which have also been expanded to allow your colonists more ways to get to know each other and express their individuality.
-	
-&lt;b&gt;Psyche&lt;/b&gt;
-Every person on the rimworld now has their own attitude and personality as part of the new psyche system, entirely separate from traits. You can view a rundown of their personality traits in the Psyche tab. A colonist's psyche has a real and noticeable effect on their social interactions and self-expression. Colonists' relationships with each other are now far more realistic, varied, and driven by their persistent identity.
-	
-&lt;b&gt;Social&lt;/b&gt;
-Pawns hold conversations with each other about a multitude of topics in order to form opinions on them. Two colonists might briefly remark on something as they pass each other in the hallway, or have a long discussion while working on crafting tables in the same room. Instead of being arbitrarily assigned a compatibility with each other, they will naturally gravitate towards like-minded people and away from those they have strong disagreements with. They will also now invite each other to hang out when they have free time, and spend a few hours relaxing and talking. Romantic couples will make plans to go on dates. Unless their work schedule changes, they will meet at the scheduled date and spend time together to keep their relationship alive. Of course, if they're not meant for each other, a date may also reveal an incompatibility between them.
-	
-&lt;b&gt;Sexuality and Romance&lt;/b&gt;
-Instead of being arbitrarily assigned a slot-hogging Gay trait, everyone's sexuality is now graded on the Kinsey scale, from zero to six. The overwhelming majority of colonists will be straight, but their sexual orientations can have much more variety and their romantic interest in each other will be adjusted accordingly. Everyone also has both a sexual and romantic drive, influencing their interest in that part of a relationship. Depending on their personality, colonists may be more likely to have multiple "flings" rather than a single lover, and how they treat breakups is affected accordingly.
-	
-&lt;b&gt;Mayorship&lt;/b&gt;
-A slate of colonists will announce their candidacy for mayor with a platform based on their personality. After a few days later, a polling place will be chosen where colonists will go to cast their votes. They will vote for a candidate based on opinion and how strongly they agree with their platform. Once elected, the mayor will receive visits from constituents in their office or bedroom unless their schedule is set to Work during that period, particularly by people who are very unhappy or very content. Complaining colonists can find relief in venting to the mayor, and the mayor of a happy, well-functioning colony will be pleased by the words of support they receive.
-	
-&lt;b&gt;Mental Illness and Treatment&lt;/b&gt;
-The number of mental breaks has been vastly improved, and colonists will break differently depending on their traits. Inhabitants of the rimworld can also develop anxiety after suffering PTSD from a stressful mental break. This will require occasional treatment to keep it in check, but it won't affect their day-to-day life once managed. Some undesirable traits, like chemical interest and pyromania, can also be treated to mitigate their effects at the cost of medical upkeep. Additionally, the drug methadone is now available to help treat addiction by eliminating the severe mood penalty from withdrawal, though all the same physical effects will still occur. Methadone itself is mildly addictive, so be careful! Mental breaks have been rebalanced and tweaked, and new ones have been added. Some of the new vanilla mental breaks are replaced by better versions that were in Psychology already.
-	
+&lt;b&gt;GUI updates&lt;/b&gt;
+The Psyche tab has been reworked for a better display of a pawn's personality. Antonyms and colors have been introduced for all personality nodes, a.k.a. personality traits. The new word cloud allows one to understand the relative strength of every trait at a glance. A concise summary of a pawn's personality in terms of the Big Five (or Five Factor Model) is also displayed by a radar graph. Sex and romance drives are now described for all pawns, not just asexual/aromantic ones.
+
+&lt;b&gt;Ideology features&lt;/b&gt;
+Personality will now interact with ideology. For example, a highly compassionate pawn will find the slavery precepts less appealing and a highly drug-friendly pawn will find the High Life meme more appealling. This compatibility affects the difficulty of converting pawns, and the daily certainty gain for established followers. Highly incompatible pawns can actually lose certainty over time. The player can remedy this with a new ability for the Moral Guide role called Indoctrinate. When used on other believers, it creates a shift in their personality that better favors their ideoligion. For example, indoctrination in a High Life ideoligion would make a pawn more drug-friendly, more experimental, and less pure. Several rounds of indoctrination will be needed for highly incompatible pawns, with gains diminishing as the pawn becomes more aligned with their ideoligion.
+
+&lt;b&gt;Updated mod settings&lt;/b&gt;
+Mod settings have been reworked and expanded. Several on/off settings have been converted into continuum values for more customized play. Dependency on HugsLib has been eliminated in favor of a more expansive settings window. The psychology and romance behavior now differs by individual species/race. For example, simple minded Tier-1 androids from the Android Tiers mod by default have psychology behaviors disabled, including dating. Elf-like/immortal species by default no longer have a romantic age gap factor applied to them once they reach adulthood. Sentient androids can now date at any age. All of this and more can be customized in the settings window.
+
+&lt;b&gt;Compatibility with other mods&lt;/b&gt;
+Psychology is now compatible with Character Editor and Prepare Carefully, but the player is &lt;b&gt;highly&lt;/b&gt; encouraged to choose Character Editor to avoid the various bugs and glitches of the latter. Former humans from Pawnmorpher will now keep their personalities has along as they remain sapient. Word of Love has been fixed for Vanilla Psycasters Expanded.
+
+Optimizations have been made to reduce computational waste and (hopefully) improve performance. Various fixes and tweaks have been made to improve romance and conversation mechanics.
+
+&lt;b&gt;The 1.4 update is a work in progress and maybe be unstable.&lt;/b&gt;
+Please comment to report bugs and suggest additional features.
+
 &lt;b&gt;Support&lt;/b&gt;
 There is no form of financial support for this mod, but please subscribe, rate, and tell everyone about it. If you absolutely must spend money on something, then gift Rimworld to someone who hasn't yet experienced it to support Tynan and the incredible work that he does. This mod would not be possible without the great game he created, and the strenuous effort he has put into supporting mod creators.
 
 &lt;b&gt;Credits&lt;/b&gt;
+Original mod by TheWordMule.
 Idea for passionate work mood bonus by ({x}) Disarray.
 Ideas for many of the new mental breaks by twoski.
 Name of the Socialite trait by Wellech.
 Initial patching for Rimworld 1.1 by Nationality.
 Translators: Russian by Паулк, German by Chaos, Chinese by Mr.Gha, French by Éloïse Rodrake
-Further fixes for Rimworld 1.1 by KEMPER.
-Update for Rimworld 1.3 by WILDCARD.
+Further fixes for Rimworld 1.1-1.3 by KEMPER.
+Update for Rimworld 1.4 by WILDCARD.
 
 	</description>
-
 	<!--&lt;b&gt;Compatibility&lt;/b&gt;
 Thanks to HugsLib and Harmony, this mod should be compatible with practically everything. You can disable many features from the mod's options if you don't want to play with them, and also adjust your play experience. Mods which make changes to the code but do not use Harmony are quite likely to be incompatible with Psychology.-->
-
 </ModMetaData>
-
