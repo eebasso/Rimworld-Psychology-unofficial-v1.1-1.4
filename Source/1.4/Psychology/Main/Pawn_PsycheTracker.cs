@@ -189,30 +189,30 @@ public class Pawn_PsycheTracker : IExposable
 
     public void CalculateAdjustedRatings()
     {
-        Stopwatch stopwatch = new Stopwatch();
-        stopwatch.Start();
+        //Stopwatch stopwatch = new Stopwatch();
+        //stopwatch.Start();
         Gender gender = pawn.gender;
-        stopwatch.Stop();
-        PsycheHelper.CircumstanceTimings[0] += (float)stopwatch.Elapsed.TotalMilliseconds;
-        stopwatch.Reset();
+        //stopwatch.Stop();
+        //PsycheHelper.CircumstanceTimings[0] += (float)stopwatch.Elapsed.TotalMilliseconds;
+        //stopwatch.Reset();
 
-        stopwatch.Start();
+        //stopwatch.Start();
         List<Trait> traits = pawn.story.traits.allTraits;
-        stopwatch.Stop();
-        PsycheHelper.CircumstanceTimings[1] += (float)stopwatch.Elapsed.TotalMilliseconds;
-        stopwatch.Reset();
+        //stopwatch.Stop();
+        //PsycheHelper.CircumstanceTimings[1] += (float)stopwatch.Elapsed.TotalMilliseconds;
+        //stopwatch.Reset();
 
-        stopwatch.Start();
+        //stopwatch.Start();
         List<SkillRecord> skills = pawn.skills.skills;
-        stopwatch.Stop();
-        PsycheHelper.CircumstanceTimings[2] += (float)stopwatch.Elapsed.TotalMilliseconds;
-        stopwatch.Reset();
+        //stopwatch.Stop();
+        //PsycheHelper.CircumstanceTimings[2] += (float)stopwatch.Elapsed.TotalMilliseconds;
+        //stopwatch.Reset();
 
-        stopwatch.Start();
+        //stopwatch.Start();
         List<WorkTypeDef> incapables = pawn.GetDisabledWorkTypes();
-        stopwatch.Stop();
-        PsycheHelper.CircumstanceTimings[3] += (float)stopwatch.Elapsed.TotalMilliseconds;
-        stopwatch.Reset();
+        //stopwatch.Stop();
+        //PsycheHelper.CircumstanceTimings[3] += (float)stopwatch.Elapsed.TotalMilliseconds;
+        //stopwatch.Reset();
 
         int index;
         float[] adjustedRatingList = new float[PersonalityNodeMatrix.order];
@@ -237,21 +237,21 @@ public class Pawn_PsycheTracker : IExposable
             node.AdjustedRating = adjustedRatingList[PersonalityNodeMatrix.indexDict[node.def]];
         }
         AdjustedRatingTicker = 500;
-        string text = "AdjustForCircumstance, total timings in ms:";
-        for (index = 0; index < PsycheHelper.CircumstanceTimings.Count(); index++)
-        {
-            text += " | {" + index + ", " + PsycheHelper.CircumstanceTimings[index] + "}";
-        }
-        Log.Message(text);
-        Log.Message("AdjustForCircumstance, average timings in ms: " + PsycheHelper.CircumstanceTimings.Sum() / PsycheHelper.CircumstanceCount + " for count = " + PsycheHelper.CircumstanceCount);
+        //string text = "AdjustForCircumstance, total timings in ms:";
+        //for (index = 0; index < PsycheHelper.CircumstanceTimings.Count(); index++)
+        //{
+        //    text += " | {" + index + ", " + PsycheHelper.CircumstanceTimings[index] + "}";
+        //}
+        //Log.Message(text);
+        //Log.Message("AdjustForCircumstance, average timings in ms: " + PsycheHelper.CircumstanceTimings.Sum() / PsycheHelper.CircumstanceCount + " for count = " + PsycheHelper.CircumstanceCount);
     }
 
     public void AdjustForCircumstance(float[] ratings, bool applyTwice, Gender gender, List<Trait> traits, List<SkillRecord> skills, List<WorkTypeDef> incapables)
     {
-        PsycheHelper.CircumstanceCount++;
-        Stopwatch stopwatch = new Stopwatch();
-        Stopwatch stopwatch2 = new Stopwatch();
-        Stopwatch stopwatch3 = new Stopwatch();
+        //PsycheHelper.CircumstanceCount++;
+        //Stopwatch stopwatch = new Stopwatch();
+        //Stopwatch stopwatch2 = new Stopwatch();
+        //Stopwatch stopwatch3 = new Stopwatch();
 
         float[] tM = new float[PersonalityNodeMatrix.order];
         float s;
@@ -259,125 +259,125 @@ public class Pawn_PsycheTracker : IExposable
         int index;
         Dictionary<int, float> dict;
         
-        stopwatch.Start();
+        //stopwatch.Start();
         float gM;
         float gMm1;
         float kinseyFactor = PsychologySettings.enableKinsey ? 1f - PsycheHelper.Comp(pawn).Sexuality.kinseyRating / 6f : pawn.story.traits.HasTrait(TraitDefOf.Gay) ? 0f : 1f;
-        stopwatch.Stop();
-        PsycheHelper.CircumstanceTimings[4] += (float)stopwatch.Elapsed.TotalMilliseconds;
-        stopwatch.Reset();
+        //stopwatch.Stop();
+        //PsycheHelper.CircumstanceTimings[4] += (float)stopwatch.Elapsed.TotalMilliseconds;
+        //stopwatch.Reset();
 
-        stopwatch.Start();
+        //stopwatch.Start();
         if (PsycheHelper.GenderModifierNodeDefDict.TryGetValue(gender, out dict) && kinseyFactor != 0f)
         {
-            stopwatch2.Start();
+            //stopwatch2.Start();
             foreach (KeyValuePair<int, float> kvp in dict)
             {
-                stopwatch3.Start();
+                //stopwatch3.Start();
                 gM = kvp.Value * kinseyFactor;
                 if (Mathf.Abs(gM) > 0.001f)
                 {
                     gMm1 = gM - 1f;
                     ratings[kvp.Key] = (gMm1 + Mathf.Sqrt(gMm1 * gMm1 + 4f * gM * ratings[kvp.Key])) / (2f * gM);
                 }
-                stopwatch3.Stop();
-                PsycheHelper.CircumstanceTimings[5] += (float)stopwatch3.Elapsed.TotalMilliseconds;
-                PsycheHelper.CircumstanceTimings[6] -= (float)stopwatch3.Elapsed.TotalMilliseconds;
-                stopwatch3.Reset();
+                //stopwatch3.Stop();
+                //PsycheHelper.CircumstanceTimings[5] += (float)stopwatch3.Elapsed.TotalMilliseconds;
+                //PsycheHelper.CircumstanceTimings[6] -= (float)stopwatch3.Elapsed.TotalMilliseconds;
+                //stopwatch3.Reset();
             }
-            stopwatch2.Stop();
-            PsycheHelper.CircumstanceTimings[6] += (float)stopwatch2.Elapsed.TotalMilliseconds;
-            PsycheHelper.CircumstanceTimings[7] -= (float)stopwatch2.Elapsed.TotalMilliseconds;
-            stopwatch2.Reset();
+            //stopwatch2.Stop();
+            //PsycheHelper.CircumstanceTimings[6] += (float)stopwatch2.Elapsed.TotalMilliseconds;
+            //PsycheHelper.CircumstanceTimings[7] -= (float)stopwatch2.Elapsed.TotalMilliseconds;
+            //stopwatch2.Reset();
         }
-        stopwatch.Stop();
-        PsycheHelper.CircumstanceTimings[7] += (float)stopwatch.Elapsed.TotalMilliseconds;
-        stopwatch.Reset();
+        //stopwatch.Stop();
+        //PsycheHelper.CircumstanceTimings[7] += (float)stopwatch.Elapsed.TotalMilliseconds;
+        //stopwatch.Reset();
 
-        stopwatch.Start();
+        //stopwatch.Start();
         Pair<TraitDef, int> traitPair = new Pair<TraitDef, int>();
         bool trygetvalue;
         if (traits.NullOrEmpty() != true)
         {
             foreach (Trait trait in traits)
             {
-                stopwatch2.Start();
+                //stopwatch2.Start();
                 traitPair = new Pair<TraitDef, int>(trait.def, trait.Degree);
                 trygetvalue = PsycheHelper.TraitModifierNodeDefDict.TryGetValue(traitPair, out dict);
-                stopwatch2.Stop();
-                PsycheHelper.CircumstanceTimings[8] += (float)stopwatch2.Elapsed.TotalMilliseconds;
-                PsycheHelper.CircumstanceTimings[10] -= (float)stopwatch2.Elapsed.TotalMilliseconds;
-                stopwatch2.Reset();
+                //stopwatch2.Stop();
+                //PsycheHelper.CircumstanceTimings[8] += (float)stopwatch2.Elapsed.TotalMilliseconds;
+                //PsycheHelper.CircumstanceTimings[10] -= (float)stopwatch2.Elapsed.TotalMilliseconds;
+                //stopwatch2.Reset();
 
                 if (trygetvalue != true)
                 {
                     continue;
                 }
 
-                stopwatch2.Start();
+                //stopwatch2.Start();
                 foreach (KeyValuePair<int, float> kvp in dict)
                 {
                     index = kvp.Key;
                     tM[index] = PsycheHelper.RelativisticAddition(tM[index], kvp.Value);
                     
                 }
-                stopwatch2.Stop();
-                PsycheHelper.CircumstanceTimings[9] += (float)stopwatch2.Elapsed.TotalMilliseconds;
-                PsycheHelper.CircumstanceTimings[10] -= (float)stopwatch2.Elapsed.TotalMilliseconds;
-                stopwatch2.Reset();
+                //stopwatch2.Stop();
+                //PsycheHelper.CircumstanceTimings[9] += (float)stopwatch2.Elapsed.TotalMilliseconds;
+                //PsycheHelper.CircumstanceTimings[10] -= (float)stopwatch2.Elapsed.TotalMilliseconds;
+                //stopwatch2.Reset();
             }
         }
-        stopwatch.Stop();
-        PsycheHelper.CircumstanceTimings[10] += (float)stopwatch.Elapsed.TotalMilliseconds;
-        stopwatch.Reset();
+        //stopwatch.Stop();
+        //PsycheHelper.CircumstanceTimings[10] += (float)stopwatch.Elapsed.TotalMilliseconds;
+        //stopwatch.Reset();
 
-        stopwatch.Start();
+        //stopwatch.Start();
         float skillWeight;
         if (skills.NullOrEmpty() != true)
         {
             foreach (SkillRecord skill in skills)
             {
-                stopwatch2.Start();
+                //stopwatch2.Start();
                 trygetvalue = PsycheHelper.SkillModifierNodeDefDict.TryGetValue(skill.def, out HashSet<int> indices);
-                stopwatch2.Stop();
-                PsycheHelper.CircumstanceTimings[11] += (float)stopwatch2.Elapsed.TotalMilliseconds;
-                PsycheHelper.CircumstanceTimings[15] -= (float)stopwatch2.Elapsed.TotalMilliseconds;
-                stopwatch2.Reset();
+                //stopwatch2.Stop();
+                //PsycheHelper.CircumstanceTimings[11] += (float)stopwatch2.Elapsed.TotalMilliseconds;
+                //PsycheHelper.CircumstanceTimings[15] -= (float)stopwatch2.Elapsed.TotalMilliseconds;
+                //stopwatch2.Reset();
 
                 if (trygetvalue != true)
                 {
                     continue;
                 }
 
-                stopwatch2.Start();
+                //stopwatch2.Start();
                 foreach (int i in indices)
                 {
-                    stopwatch3.Start();
+                    //stopwatch3.Start();
                     skillWeight = Mathf.Lerp(-0.20f, 0.85f, skill.levelInt / 20f);
-                    stopwatch3.Stop();
-                    PsycheHelper.CircumstanceTimings[12] += (float)stopwatch3.Elapsed.TotalMilliseconds;
-                    PsycheHelper.CircumstanceTimings[14] -= (float)stopwatch3.Elapsed.TotalMilliseconds;
-                    stopwatch3.Reset();
+                    //stopwatch3.Stop();
+                    //PsycheHelper.CircumstanceTimings[12] += (float)stopwatch3.Elapsed.TotalMilliseconds;
+                    //PsycheHelper.CircumstanceTimings[14] -= (float)stopwatch3.Elapsed.TotalMilliseconds;
+                    //stopwatch3.Reset();
 
-                    stopwatch3.Start();
+                    //stopwatch3.Start();
                     tM[i] = PsycheHelper.RelativisticAddition(tM[i], skillWeight);
-                    stopwatch3.Stop();
-                    PsycheHelper.CircumstanceTimings[13] += (float)stopwatch3.Elapsed.TotalMilliseconds;
-                    PsycheHelper.CircumstanceTimings[14] -= (float)stopwatch3.Elapsed.TotalMilliseconds;
-                    stopwatch3.Reset();
+                    //stopwatch3.Stop();
+                    //PsycheHelper.CircumstanceTimings[13] += (float)stopwatch3.Elapsed.TotalMilliseconds;
+                    //PsycheHelper.CircumstanceTimings[14] -= (float)stopwatch3.Elapsed.TotalMilliseconds;
+                    //stopwatch3.Reset();
                 }
-                stopwatch2.Stop();
-                PsycheHelper.CircumstanceTimings[14] += (float)stopwatch2.Elapsed.TotalMilliseconds;
-                PsycheHelper.CircumstanceTimings[15] -= (float)stopwatch2.Elapsed.TotalMilliseconds;
-                stopwatch2.Reset();
+                //stopwatch2.Stop();
+                //PsycheHelper.CircumstanceTimings[14] += (float)stopwatch2.Elapsed.TotalMilliseconds;
+                //PsycheHelper.CircumstanceTimings[15] -= (float)stopwatch2.Elapsed.TotalMilliseconds;
+                //stopwatch2.Reset();
 
             }
         }
-        stopwatch.Stop();
-        PsycheHelper.CircumstanceTimings[15] += (float)stopwatch.Elapsed.TotalMilliseconds;
-        stopwatch.Reset();
+        //stopwatch.Stop();
+        //PsycheHelper.CircumstanceTimings[15] += (float)stopwatch.Elapsed.TotalMilliseconds;
+        //stopwatch.Reset();
 
-        stopwatch.Start();
+        //stopwatch.Start();
         if (incapables.NullOrEmpty() != true)
         {
             foreach (WorkTypeDef incapable in incapables)
@@ -393,27 +393,27 @@ public class Pawn_PsycheTracker : IExposable
                 }
             }
         }
-        stopwatch.Stop();
-        PsycheHelper.CircumstanceTimings[16] += (float)stopwatch.Elapsed.TotalMilliseconds;
-        stopwatch.Reset();
+        //stopwatch.Stop();
+        //PsycheHelper.CircumstanceTimings[16] += (float)stopwatch.Elapsed.TotalMilliseconds;
+        //stopwatch.Reset();
 
-        stopwatch.Start();
+        //stopwatch.Start();
         index = PersonalityNodeMatrix.indexDict[PersonalityNodeDefOf.Cool];
-        stopwatch.Stop();
-        PsycheHelper.CircumstanceTimings[17] += (float)stopwatch.Elapsed.TotalMilliseconds;
-        stopwatch.Reset();
-        stopwatch.Start();
+        //stopwatch.Stop();
+        //PsycheHelper.CircumstanceTimings[17] += (float)stopwatch.Elapsed.TotalMilliseconds;
+        //stopwatch.Reset();
+        //stopwatch.Start();
         tM[index] = RelationsUtility.IsDisfigured(this.pawn) ? PsycheHelper.RelativisticAddition(tM[index], -0.1f) : tM[index];
-        stopwatch.Stop();
-        PsycheHelper.CircumstanceTimings[18] += (float)stopwatch.Elapsed.TotalMilliseconds;
-        stopwatch.Reset();
-        stopwatch.Start();
+        //stopwatch.Stop();
+        //PsycheHelper.CircumstanceTimings[18] += (float)stopwatch.Elapsed.TotalMilliseconds;
+        //stopwatch.Reset();
+        //stopwatch.Start();
         tM[index] = PsycheHelper.RelativisticAddition(tM[index], 0.3f * this.pawn.GetStatValue(StatDefOf.PawnBeauty));
-        stopwatch.Stop();
-        PsycheHelper.CircumstanceTimings[19] += (float)stopwatch.Elapsed.TotalMilliseconds;
-        stopwatch.Reset();
+        //stopwatch.Stop();
+        //PsycheHelper.CircumstanceTimings[19] += (float)stopwatch.Elapsed.TotalMilliseconds;
+        //stopwatch.Reset();
 
-        stopwatch.Start();
+        //stopwatch.Start();
         index = PersonalityNodeMatrix.indexDict[PersonalityNodeDefOf.LaidBack];
         foreach (Hediff hediff in pawn.health.hediffSet.hediffs)
         {
@@ -424,11 +424,11 @@ public class Pawn_PsycheTracker : IExposable
                 break;
             }
         }
-        stopwatch.Stop();
-        PsycheHelper.CircumstanceTimings[20] += (float)stopwatch.Elapsed.TotalMilliseconds;
-        stopwatch.Reset();
+        //stopwatch.Stop();
+        //PsycheHelper.CircumstanceTimings[20] += (float)stopwatch.Elapsed.TotalMilliseconds;
+        //stopwatch.Reset();
 
-        stopwatch.Start();
+        //stopwatch.Start();
         bool flag;
         if (applyTwice)
         {
@@ -445,18 +445,18 @@ public class Pawn_PsycheTracker : IExposable
 
             }
         }
-        stopwatch.Stop();
-        PsycheHelper.CircumstanceTimings[21] += (float)stopwatch.Elapsed.TotalMilliseconds;
-        stopwatch.Reset();
+        //stopwatch.Stop();
+        //PsycheHelper.CircumstanceTimings[21] += (float)stopwatch.Elapsed.TotalMilliseconds;
+        //stopwatch.Reset();
 
-        stopwatch.Start();
+        //stopwatch.Start();
         for (index = 0; index < PersonalityNodeMatrix.order; index++)
         {
             ratings[index] = (1f - Mathf.Abs(tM[index])) * ratings[index] + Mathf.Max(0f, tM[index]);
         }
-        stopwatch.Stop();
-        PsycheHelper.CircumstanceTimings[22] += (float)stopwatch.Elapsed.TotalMilliseconds;
-        stopwatch.Reset();
+        //stopwatch.Stop();
+        //PsycheHelper.CircumstanceTimings[22] += (float)stopwatch.Elapsed.TotalMilliseconds;
+        //stopwatch.Reset();
     }
 
     public void DeepCopyFromOtherTracker(Pawn_PsycheTracker otherTracker)

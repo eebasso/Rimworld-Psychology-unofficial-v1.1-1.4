@@ -35,7 +35,7 @@ public static class ChildRelationUtility_ManualPatches
             {
                 if (opcodesBreakFalseList.Contains(clist[i].opcode))
                 {
-                    Log.Message("Found break");
+                    //Log.Message("Found break");
                     searchingForBreak = false;
                     searchingForMultiplier = true;
                 }
@@ -45,7 +45,7 @@ public static class ChildRelationUtility_ManualPatches
             {
                 if (clist[i].opcode == OpCodes.Ldc_R4)
                 {
-                    Log.Message("Found multiplier");
+                    //Log.Message("Found multiplier");
                     searchingForMultiplier = false;
                     // Load pawn
                     yield return clist[pawnLoadIndex];
@@ -64,7 +64,7 @@ public static class ChildRelationUtility_ManualPatches
             {
                 continue;
             }
-            Log.Message("Found HasTrait(Gay)");
+            //Log.Message("Found HasTrait(Gay)");
             searchingForBreak = true;
             yield return CodeInstruction.Call(typeof(ChildRelationUtility_ManualPatches), nameof(HasTraitGayKinseyEnabled));
             pawnLoadIndex = i;

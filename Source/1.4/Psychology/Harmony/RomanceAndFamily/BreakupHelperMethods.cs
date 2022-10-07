@@ -84,9 +84,10 @@ public static class BreakupHelperMethods
 
     public static IEnumerable<CodeInstruction> InterdictTryGainAndRemoveMemories(IEnumerable<CodeInstruction> codes)
     {
-        Log.Message("InterdictTryGainAndRemoveMemories, start");
+        //Log.Message("InterdictTryGainAndRemoveMemories, start");
         List<CodeInstruction> clist = codes.ToList();
         //bool success = false;
+
 
         FieldInfo fieldInfoMemories = AccessTools.Field(typeof(ThoughtHandler), nameof(ThoughtHandler.memories));
         MethodInfo methodInfoTryGainMemory = AccessTools.Method(typeof(MemoryThoughtHandler), nameof(MemoryThoughtHandler.TryGainMemory), new Type[] { typeof(ThoughtDef), typeof(Pawn), typeof(Precept) });
@@ -114,7 +115,7 @@ public static class BreakupHelperMethods
 
         //List<CodeInstruction> listPawnCode = new List<CodeInstruction>();
         //List<CodeInstruction> listOtherPawnCode = new List<CodeInstruction>();
-        Log.Message("InterdictTryGainAndRemoveMemories, search clist for matches");
+        //Log.Message("InterdictTryGainAndRemoveMemories, search clist for matches");
         int searchMode = 0;
         for (int i = clist.Count() - 1; i >= 0; i--)
         {
@@ -127,7 +128,7 @@ public static class BreakupHelperMethods
                         searchMode++;
                         listTryGainOrRemoveIndexInClist.Add(i);
                         listGainVsRemoveBit.Add(gainVsRemoveBit);
-                        Log.Message("InterdictTryGainAndRemoveMemories, found TryGainOrRemove");
+                        //Log.Message("InterdictTryGainAndRemoveMemories, found TryGainOrRemove");
                     }
                     break;
                 case 1:
@@ -136,7 +137,7 @@ public static class BreakupHelperMethods
                         searchMode++;
                         listMemoriesIndexInClist.Add(i);
                         listPawnIndexInClist.Add(i - 4);
-                        Log.Message("InterdictTryGainAndRemoveMemories, found memories");
+                        //Log.Message("InterdictTryGainAndRemoveMemories, found memories");
                     }
                     break;
                 default:
@@ -151,7 +152,7 @@ public static class BreakupHelperMethods
                                 listOtherPawnIndexInClist.Add(j + 1);
                                 listThoughtDefIndexInClist.Add(j);
                                 listThoughtDefIndexInOpinionThoughtDefs.Add(pair.First);
-                                Log.Message("InterdictTryGainAndRemoveMemories, found ThoughtDef");
+                                //Log.Message("InterdictTryGainAndRemoveMemories, found ThoughtDef");
                                 break;
                             }
                         }
@@ -181,8 +182,8 @@ public static class BreakupHelperMethods
             }
             yield break;
         }
-        Log.Message("InterdictTryGainThoughtAndRemoveMemories, found this number of matches: " + listPawnIndexInClist.Count());
-        Log.Message("InterdictTryGainAndRemoveMemories, start yield return");
+        //Log.Message("InterdictTryGainThoughtAndRemoveMemories, found this number of matches: " + listPawnIndexInClist.Count());
+        //Log.Message("InterdictTryGainAndRemoveMemories, start yield return");
         for (int i = 0; i < clist.Count(); i++)
         {
             yield return clist[i];
@@ -194,17 +195,17 @@ public static class BreakupHelperMethods
                 yield return CodeInstruction.Call(typeof(BreakupHelperMethods), PsychologyMethodNameDict[thoughtDef][listGainVsRemoveBit[matchNum]]);
                 i = listTryGainOrRemoveIndexInClist[matchNum];
 
-                Log.Message("InterdictTryGainAndRemoveMemories, matchNum: " + matchNum + (listGainVsRemoveBit[matchNum] == 0 ? ", TryGain" : ", Remove") + " ThoughtDef: " + OpinionThoughtDefs[listThoughtDefIndexInOpinionThoughtDefs[matchNum]] + ", implement " + PsychologyMethodNameDict[thoughtDef] +
-                            "\nindexOfPawnInClist: " + listPawnIndexInClist[matchNum] +
-                            "\nindexOfMemoriesInClist: " + listMemoriesIndexInClist[matchNum] +
-                            "\nindexOfThoughtDefInClist: " + listThoughtDefIndexInClist[matchNum] +
-                            "\nindexOfOtherPawnInClist: " + listOtherPawnIndexInClist[matchNum] +
-                            "\nindexOfTryGainOrRemoveMemoriesInClist: " + listTryGainOrRemoveIndexInClist[matchNum] +
-                            "\nindexOfThoughtDefInOpinionThoughtDefs: " + listThoughtDefIndexInOpinionThoughtDefs[matchNum]
-                            );
+                //Log.Message("InterdictTryGainAndRemoveMemories, matchNum: " + matchNum + (listGainVsRemoveBit[matchNum] == 0 ? ", TryGain" : ", Remove") + " ThoughtDef: " + OpinionThoughtDefs[listThoughtDefIndexInOpinionThoughtDefs[matchNum]] + ", implement " + PsychologyMethodNameDict[thoughtDef] +
+                //            "\nindexOfPawnInClist: " + listPawnIndexInClist[matchNum] +
+                //            "\nindexOfMemoriesInClist: " + listMemoriesIndexInClist[matchNum] +
+                //            "\nindexOfThoughtDefInClist: " + listThoughtDefIndexInClist[matchNum] +
+                //            "\nindexOfOtherPawnInClist: " + listOtherPawnIndexInClist[matchNum] +
+                //            "\nindexOfTryGainOrRemoveMemoriesInClist: " + listTryGainOrRemoveIndexInClist[matchNum] +
+                //            "\nindexOfThoughtDefInOpinionThoughtDefs: " + listThoughtDefIndexInOpinionThoughtDefs[matchNum]
+                //            );
             }
         }
-        Log.Message("InterdictTryGainAndRemoveMemories, end");
+        //Log.Message("InterdictTryGainAndRemoveMemories, end");
 
 
         //    switch (searchMode)
