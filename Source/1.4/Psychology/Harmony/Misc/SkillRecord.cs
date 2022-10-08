@@ -22,7 +22,7 @@ namespace Psychology.Harmony;
         }
         if (count == 2)
         {
-            Log.Message("Psychology: SkillRecord.Learn patch successful");
+            //Log.Message("Psychology: SkillRecord.Learn patch successful");
             yield break;
         }
         Log.Error("Psychology: SkillRecord.Learn patch unsuccessful");
