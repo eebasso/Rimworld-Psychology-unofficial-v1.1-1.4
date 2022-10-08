@@ -1,2 +1,0 @@
-﻿//using System;//using Verse;//using RimWorld;//namespace Psychology;
-//[StaticConstructorOnStartup]//public class PsychologySCOS//{//    public PsychologySCOS()//    {//        Psychology.Harmony.HarmonyInitialize.Initialize();//    }//}
