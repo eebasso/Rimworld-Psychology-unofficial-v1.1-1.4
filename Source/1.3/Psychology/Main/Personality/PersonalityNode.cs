@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,184 +6,197 @@ using RimWorld;
 using Verse;
 using Verse.AI;
 using UnityEngine;
-using System.Diagnostics;
 
-namespace Psychology;
-
-public class PersonalityNode : IExposable
+namespace Psychology
 {
-    public Pawn pawn;
-    public PersonalityNodeDef def;
-    public float rawRating;
-    private float cachedRating = -1f;
-
-    public bool HasConvoTopics => this.def.conversationTopics.NullOrEmpty() != true;
-    public bool HasPlatformIssue => this.def.platformIssueHigh != null && this.def.platformIssueLow != null;
-    public string PlatformIssue => this.AdjustedRating < 0.5f ? this.def.platformIssueLow : this.def.platformIssueHigh;
-    public float AdjustedRating
+    public class PersonalityNode : IExposable
     {
-        get
+        public PersonalityNode()
         {
-            return cachedRating;
         }
-        set
+
+        public PersonalityNode(Pawn pawn)
         {
-            cachedRating = value;
+            this.pawn = pawn;
         }
+
+        public void Initialize()
+        {
+            if (this.Core)
+            {
+                /* "Core" nodes are seeded based on a pawn's upbringing, separating pawns into 16 categories, similar to the Meyers-Brigg test.
+                 * Two pawns with the same upbringing will always have the same core personality ratings.
+                 * Pawns will never have conversations about core nodes, they exist only to influence child nodes.
+                 */
+                int defSeed = this.def.defName.GetHashCode();
+                this.rawRating = Rand.ValueSeeded(this.pawn.GetComp<CompPsychology>().Psyche.upbringing + defSeed + Find.World.info.Seed);
+            }
+            else
+            {
+                this.rawRating = Rand.Value;
+            }
+        }
+
+        public void ExposeData()
+        {
+            Scribe_Defs.Look(ref this.def, "def");
+            Scribe_Values.Look(ref this.rawRating, "rawRating", -1f, false);
+        }
+
+        [LogPerformance]
+        public float AdjustForParents(float rating)
+        {
+            foreach (PersonalityNode parent in this.ParentNodes)
+            {
+                float parentRating = (def.GetModifier(parent.def) < 0 ? (1f - parent.AdjustedRating) : parent.AdjustedRating) * Mathf.Abs(def.GetModifier(parent.def));
+                rating = ((rating * (1f + (1f - Mathf.Abs(def.GetModifier(parent.def))))) + parentRating) / 2f;
+            }
+            return Mathf.Clamp01(rating);
+        }
+
+        [LogPerformance]
+        public float AdjustForCircumstance(float rating)
+        {
+            if (this.def.traitModifiers != null && this.def.traitModifiers.Any())
+            {
+                foreach (PersonalityNodeTraitModifier traitMod in this.def.traitModifiers)
+                {
+                    if (this.pawn.story.traits.HasTrait(traitMod.trait) && this.pawn.story.traits.DegreeOfTrait(traitMod.trait) == traitMod.degree)
+                    {
+                        rating += traitMod.modifier;
+                    }
+                }
+                rating = Mathf.Clamp01(rating);
+            }
+            if (this.def.skillModifiers != null && this.def.skillModifiers.Any())
+            {
+                int totalLearning = 0;
+                foreach(SkillRecord s in this.pawn.skills.skills)
+                {
+                    totalLearning += s.Level;
+                }
+                int skillWeight = 0;
+                foreach (PersonalityNodeSkillModifier skillMod in this.def.skillModifiers)
+                {
+                    skillWeight += this.pawn.skills.GetSkill(skillMod.skill).Level;
+                }
+                if(totalLearning > 0)
+                {
+                    float totalWeight = skillWeight / totalLearning;
+                    rating += Mathf.InverseLerp(.05f, .4f, totalWeight);
+                    rating = Mathf.Clamp01(rating);
+                }
+            }
+            if (this.def.incapableModifiers != null && this.def.incapableModifiers.Any())
+            {
+                foreach (PersonalityNodeIncapableModifier incapableMod in this.def.incapableModifiers)
+                {
+                    if (this.pawn.WorkTypeIsDisabled(incapableMod.type))
+                    {
+                        rating += incapableMod.modifier;
+                    }
+                }
+                rating = Mathf.Clamp01(rating);
+            }
+            if (this.def == PersonalityNodeDefOf.Cool && RelationsUtility.IsDisfigured(this.pawn))
+            {
+                rating = Mathf.Clamp01(rating - 0.1f);
+            }
+            return rating;
+        }
+
+        [LogPerformance]
+        public float AdjustGender(float rating)
+        {
+            if (this.def.femaleModifier > 0f && this.pawn.gender == Gender.Female && PsychologyBase.ActivateKinsey())
+            {
+                rating = (Rand.ValueSeeded(pawn.HashOffset()) < 0.8f ? rating * Mathf.Lerp(this.def.femaleModifier, 1f, (this.pawn.GetComp<CompPsychology>().Sexuality.kinseyRating / 6)) : rating);
+            }
+            else if(this.def.femaleModifier > 0f && this.pawn.gender == Gender.Female)
+            {
+                rating = (this.pawn.story.traits.HasTrait(TraitDefOf.Gay) ? rating : rating * this.def.femaleModifier);
+            }
+            return rating;
+        }
+
+        public bool Core
+        {
+            get
+            {
+                return this.def.ParentNodes == null || !this.def.ParentNodes.Any();
+            }
+        }
+
+        public HashSet<PersonalityNode> ParentNodes
+        {
+            [LogPerformance]
+            get
+            {
+                if(this.parents == null || this.pawn.IsHashIntervalTick(500))
+                {
+                    this.parents = new HashSet<PersonalityNode>();
+                    if(this.def.ParentNodes != null && this.def.ParentNodes.Any())
+                    {
+                        this.parents = (from p in this.pawn.GetComp<CompPsychology>().Psyche.PersonalityNodes
+                                        where this.def.ParentNodes.ContainsKey(p.def)
+                                        select p) as HashSet<PersonalityNode>;
+                    }
+                }
+                return this.parents;
+            }
+        }
+
+        public string PlatformIssue
+        {
+            get
+            {
+                if(this.AdjustedRating >= 0.5f)
+                {
+                    return this.def.platformIssueHigh;
+                }
+                else
+                {
+                    return this.def.platformIssueLow;
+                }
+            }
+        }
+
+        /* Hook for modding. */
+        public float AdjustHook(float rating)
+        {
+            return rating;
+        }
+
+        public float AdjustedRating
+        {
+            [LogPerformance]
+            get
+            {
+                if(cachedRating < 0f || this.pawn.IsHashIntervalTick(100))
+                {
+                    float adjustedRating = AdjustForCircumstance(this.rawRating);
+                    adjustedRating = AdjustHook(adjustedRating);
+                    adjustedRating = AdjustGender(adjustedRating);
+                    if (this.ParentNodes != null && this.ParentNodes.Any())
+                    {
+                        adjustedRating = AdjustForParents(adjustedRating);
+                    }
+                    adjustedRating = ((3 * adjustedRating) + rawRating) / 4f; //Prevent it from being adjusted too strongly
+                    cachedRating = Mathf.Clamp01(adjustedRating);
+                }
+                return cachedRating;
+            }
+        }
+
+        public override int GetHashCode()
+        {
+            return this.def.defName.GetHashCode();
+        }
+
+        public Pawn pawn;
+        public PersonalityNodeDef def;
+        public float rawRating;
+        public float cachedRating = -1f;
+        private HashSet<PersonalityNode> parents;
     }
-
-    public PersonalityNode()
-    {
-    }
-
-    public PersonalityNode(Pawn pawn)
-    {
-        this.pawn = pawn;
-    }
-
-    public void ExposeData()
-    {
-        Scribe_Defs.Look(ref this.def, "def");
-        Scribe_Values.Look(ref this.rawRating, "rawRating", -1f, false);
-    }
-
-    public override int GetHashCode()
-    {
-        return this.pawn.GetHashCode() + GenText.StableStringHash(this.def.defName);
-    }
-
-    //public float AdjustForCircumstance(float rating, bool applyingTwice = false)
-    //{
-    //    Stopwatch stopwatch = new Stopwatch();
-
-    //    stopwatch.Start();
-    //    float gM = (this.pawn.gender == Gender.Female) ? this.def.femaleModifier : -this.def.femaleModifier;
-    //    gM *= PsychologySettings.enableKinsey ? 1f - PsycheHelper.Comp(this.pawn).Sexuality.kinseyRating / 6f : this.pawn.story.traits.HasTrait(TraitDefOf.Gay) ? 0f : 1f;
-    //    if (Mathf.Abs(gM) > 0.001f)
-    //    {
-    //        float gMm1 = gM - 1f;
-    //        rating = (gMm1 + Mathf.Sqrt(gMm1 * gMm1 + 4f * gM * rating)) / (2f * gM);
-    //    }
-    //    stopwatch.Stop();
-    //    PsycheHelper.CircumstanceTimings[0] += (float)stopwatch.Elapsed.TotalMilliseconds;
-    //    stopwatch.Reset();
-
-    //    stopwatch.Start();
-    //    float tM = 0f;
-    //    if (this.def.traitModifiers != null && this.def.traitModifiers.Any())
-    //    {
-    //        foreach (PersonalityNodeTraitModifier traitMod in this.def.traitModifiers)
-    //        {
-    //            //if (this.pawn.story.traits.HasTrait(traitMod.trait) && this.pawn.story.traits.DegreeOfTrait(traitMod.trait) == traitMod.degree)
-    //            //{
-    //            //    tM = PsycheHelper.RelativisticAddition(tM, traitMod.modifier);
-    //            //}
-    //            if (this.pawn.story.traits.HasTrait(traitMod.trait, traitMod.degree))
-    //            {
-    //                tM = PsycheHelper.RelativisticAddition(tM, traitMod.modifier);
-    //            }
-    //        }
-    //    }
-    //    stopwatch.Stop();
-    //    PsycheHelper.CircumstanceTimings[1] += (float)stopwatch.Elapsed.TotalMilliseconds;
-    //    stopwatch.Reset();
-
-    //    stopwatch.Start();
-    //    if (this.def.skillModifiers != null && this.def.skillModifiers.Any())
-    //    {
-    //        foreach (PersonalityNodeSkillModifier skillMod in this.def.skillModifiers)
-    //        {
-    //            float skillWeight = Mathf.Lerp(-0.20f, 0.85f, this.pawn.skills.GetSkill(skillMod.skill).Level / 20f);
-    //            tM = PsycheHelper.RelativisticAddition(tM, skillWeight);
-    //        }
-    //    }
-    //    stopwatch.Stop();
-    //    PsycheHelper.CircumstanceTimings[2] += (float)stopwatch.Elapsed.TotalMilliseconds;
-    //    stopwatch.Reset();
-
-    //    stopwatch.Start();
-    //    if (this.def.incapableModifiers != null && this.def.incapableModifiers.Any())
-    //    {
-    //        stopwatch.Stop();
-    //        PsycheHelper.CircumstanceTimings[3] += (float)stopwatch.Elapsed.TotalMilliseconds;
-    //        stopwatch.Reset();
-
-    //        foreach (PersonalityNodeIncapableModifier incapableMod in this.def.incapableModifiers)
-    //        {
-    //            stopwatch.Start();
-    //            if (this.pawn.WorkTypeIsDisabled(incapableMod.type))
-    //            {
-    //                stopwatch.Stop();
-    //                PsycheHelper.CircumstanceTimings[4] += (float)stopwatch.Elapsed.TotalMilliseconds;
-    //                stopwatch.Reset();
-
-    //                stopwatch.Start();
-    //                tM = PsycheHelper.RelativisticAddition(tM, incapableMod.modifier);
-    //                stopwatch.Stop();
-    //                PsycheHelper.CircumstanceTimings[5] += (float)stopwatch.Elapsed.TotalMilliseconds;
-    //                stopwatch.Reset();
-    //            }
-    //            else
-    //            {
-    //                stopwatch.Stop();
-    //                PsycheHelper.CircumstanceTimings[4] += (float)stopwatch.Elapsed.TotalMilliseconds;
-    //                stopwatch.Reset();
-    //            }
-    //        }
-    //    }
-    //    else
-    //    {
-    //        stopwatch.Stop();
-    //        PsycheHelper.CircumstanceTimings[3] += (float)stopwatch.Elapsed.TotalMilliseconds;
-    //        stopwatch.Reset();
-    //    }
-        
-    //    stopwatch.Start();
-    //    if (this.def == PersonalityNodeDefOf.Cool)
-    //    {
-    //        tM = RelationsUtility.IsDisfigured(this.pawn) ? PsycheHelper.RelativisticAddition(tM, -0.1f) : tM;
-    //        tM = PsycheHelper.RelativisticAddition(tM, 0.3f * this.pawn.GetStatValue(StatDefOf.PawnBeauty));
-    //    }
-    //    stopwatch.Stop();
-    //    PsycheHelper.CircumstanceTimings[6] += (float)stopwatch.Elapsed.TotalMilliseconds;
-    //    stopwatch.Reset();
-
-    //    stopwatch.Start();
-    //    if (this.def == PersonalityNodeDefOf.LaidBack)
-    //    {
-    //        foreach (Hediff hediff in pawn.health.hediffSet.hediffs)
-    //        {
-    //            if (hediff.def == HediffDefOfPsychology.Anxiety)
-    //            {
-    //                float anxietyWeight = Mathf.Lerp(-0.75f, -0.999f, hediff.Severity);
-    //                tM = PsycheHelper.RelativisticAddition(tM, anxietyWeight);
-    //                break;
-    //            }
-    //        }
-    //    }
-    //    stopwatch.Stop();
-    //    PsycheHelper.CircumstanceTimings[7] += (float)stopwatch.Elapsed.TotalMilliseconds;
-    //    stopwatch.Reset();
-
-    //    //tM = Mathf.Clamp(tM, -1f, 1f);
-    //    stopwatch.Start();
-    //    if (applyingTwice)
-    //    {
-    //        tM = Mathf.Sign(tM) * (1f - Mathf.Sqrt(1f - Mathf.Abs(tM)));
-    //    }
-    //    stopwatch.Stop();
-    //    PsycheHelper.CircumstanceTimings[8] += (float)stopwatch.Elapsed.TotalMilliseconds;
-    //    stopwatch.Reset();
-
-    //    stopwatch.Start();
-    //    float newRating = (1f - Mathf.Abs(tM)) * rating + Mathf.Max(0f, tM);
-    //    stopwatch.Stop();
-    //    PsycheHelper.CircumstanceTimings[9] += (float)stopwatch.Elapsed.TotalMilliseconds;
-    //    stopwatch.Reset();
-
-    //    return newRating;
-    //}
-
-
-    
 }

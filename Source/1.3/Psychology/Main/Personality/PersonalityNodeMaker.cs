@@ -4,14 +4,16 @@ using System.Linq;
 using System.Text;
 using Verse;
 
-namespace Psychology;
-
-public static class PersonalityNodeMaker
+namespace Psychology
 {
-    public static PersonalityNode MakeNode(PersonalityNodeDef def, Pawn pawn)
+    public static class PersonalityNodeMaker
     {
-        PersonalityNode node = new PersonalityNode(pawn);
-        node.def = def;
-        return node;
+        public static PersonalityNode MakeNode(PersonalityNodeDef def, Pawn pawn)
+        {
+            PersonalityNode node = new PersonalityNode(pawn);
+            node.def = def;
+            node.Initialize();
+            return node;
+        }
     }
 }

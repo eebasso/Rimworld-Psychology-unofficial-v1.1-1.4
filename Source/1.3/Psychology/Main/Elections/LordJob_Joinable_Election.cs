@@ -9,20 +9,11 @@ using Verse.AI.Group;
 
 namespace Psychology
 {
-    class LordJob_Joinable_Election : LordJob_VoluntarilyJoinable
+    class LordJob_Joinable_Election: LordJob_VoluntarilyJoinable
     {
-
-        private IntVec3 spot;
-        private Map map;
-        private string baseName;
-        private Trigger_TicksPassed timeoutTrigger;
-        public List<string> votes = new List<string>();
-        public List<int> voters = new List<int>();
-        public List<Candidate> candidates = new List<Candidate>();
-
         public LordJob_Joinable_Election()
         { }
-
+        
         public LordJob_Joinable_Election(IntVec3 spot)
         {
             this.spot = spot;
@@ -45,7 +36,7 @@ namespace Psychology
             stateGraph.AddToil(lordToil_End);
             Transition transition = new Transition(lordToil_Election, lordToil_End);
             transition.AddTrigger(new Trigger_TickCondition(() => this.ShouldBeCalledOff()));
-            transition.AddTrigger(new Trigger_TickCondition(() => this.candidates.Count < 1));
+            transition.AddTrigger(new Trigger_TickCondition(() => this.candidates.Count == 0));
             transition.AddTrigger(new Trigger_PawnLostViolently());
             transition.AddPreAction(new TransitionAction_Message("MessageElectionCalledOff".Translate(this.baseName), MessageTypeDefOf.NegativeEvent, new TargetInfo(this.spot, this.Map, false)));
             stateGraph.AddTransition(transition);
@@ -59,7 +50,7 @@ namespace Psychology
             stateGraph.AddTransition(transition2);
             return stateGraph;
         }
-
+        
         public override void ExposeData()
         {
             Scribe_Values.Look(ref this.spot, "spot", default(IntVec3));
@@ -70,34 +61,31 @@ namespace Psychology
             Scribe_Collections.Look(ref this.votes, "votes", LookMode.Value, new object[0]);
         }
 
-        
+        [LogPerformance]
         private void Finished()
         {
             List<Pair<Pawn, int>> voteTally = new List<Pair<Pawn, int>>();
             foreach (Candidate candidate in this.candidates)
             {
                 IEnumerable<string> votesForMe = (from v in this.votes
-                                                  where v == candidate.pawn.LabelShort
-                                                  select v);
+                                           where v == candidate.pawn.LabelShort
+                                           select v);
                 voteTally.Add(new Pair<Pawn, int>(candidate.pawn, votesForMe.Count()));
             }
             //If there ends up being a tie, we'll just assume the least competitive candidates drop out.
             //The chances of there being a tie after that are exceedingly slim, but the result will be essentially random.
-            IEnumerable<Pair<Pawn, int>> orderedTally = from v in voteTally
-                                                        orderby PsycheHelper.Comp(v.First).Psyche.GetPersonalityRating(PersonalityNodeDefOf.Competitive) descending
-                                                        orderby v.Second descending
-                                                        select v;
+            IEnumerable<Pair<Pawn, int>> orderedTally = (from v in voteTally
+                                                                   orderby PsycheHelper.Comp(v.First).Psyche.GetPersonalityRating(PersonalityNodeDefOf.Competitive) descending
+                                                                   orderby v.Second descending
+                                                                   select v);
             if (Prefs.DevMode && Prefs.LogVerbose)
             {
-                foreach (Pair<Pawn, int> t in orderedTally)
+                foreach(Pair<Pawn, int> t in orderedTally)
                 {
                     Log.Message("Psychology :: Votes for " + t.First + ": " + t.Second);
                 }
             }
             Pair<Pawn, int> winningCandidate = orderedTally.First();
-            Pawn newMayor = winningCandidate.First;
-
-
             if (orderedTally.Count() > 1 && orderedTally.First().Second == orderedTally.ElementAt(1).Second)
             {
                 Find.LetterStack.ReceiveLetter("LetterLabelTieSettled".Translate(winningCandidate.First), "LetterTieSettled".Translate(winningCandidate.First), LetterDefOf.NeutralEvent, winningCandidate.First);
@@ -107,52 +95,42 @@ namespace Psychology
             {
                 issuesString.AppendFormat("{0}) {1}{2}", i + 1, PsycheHelper.Comp(winningCandidate.First).Psyche.GetPersonalityNodeOfDef(candidates.Find(c => c.pawn == winningCandidate.First).nodes[i]).PlatformIssue, (i != candidates.Find(c => c.pawn == winningCandidate.First).nodes.Count - 1 ? "\n" : ""));
             }
-
-            if (this.map == null)
+            if(this.map == null)
             {
                 this.map = winningCandidate.First.Map;
             }
-            int mapTile = this.map.Tile;
-
-
-            PsycheHelper.GameComp.RemoveMayorOfThisColony(mapTile);
-
-
-            Hediff hediffMayor = HediffMaker.MakeHediff(HediffDefOfPsychology.Mayor, newMayor);
-            (hediffMayor as Hediff_Mayor).worldTileElectedOn = map.Tile;
-            (hediffMayor as Hediff_Mayor).yearElected = GenLocalDate.Year(map);
-
-            newMayor.health.AddHediff(hediffMayor);
-            PsycheHelper.GameComp.Mayors.Add(mapTile, new Pair<Pawn, Hediff>(newMayor, hediffMayor));
-
-            newMayor.needs.mood.thoughts.memories.TryGainMemory(ThoughtDefOfPsychology.WonElection);
-            Find.LetterStack.ReceiveLetter("LetterLabelElectionWon".Translate(newMayor), "LetterElectionWon".Translate(newMayor, this.baseName, winningCandidate.Second, issuesString.ToString()), LetterDefOf.NeutralEvent, newMayor);
+            Hediff mayor = HediffMaker.MakeHediff(HediffDefOfPsychology.Mayor, winningCandidate.First);
+            (mayor as Hediff_Mayor).worldTileElectedOn = map.Tile;
+            (mayor as Hediff_Mayor).yearElected = GenLocalDate.Year(map);
+            winningCandidate.First.health.AddHediff(mayor);
+            winningCandidate.First.needs.mood.thoughts.memories.TryGainMemory(ThoughtDefOfPsychology.WonElection);
+            Find.LetterStack.ReceiveLetter("LetterLabelElectionWon".Translate(winningCandidate.First), "LetterElectionWon".Translate(winningCandidate.First, this.baseName, winningCandidate.Second, issuesString.ToString()), LetterDefOf.NeutralEvent, winningCandidate.First);
         }
-
+        
         public override string GetReport(Pawn pawn)
         {
             return "LordReportAttendingElection".Translate();
         }
-
+        
         private bool IsInvited(Pawn p)
         {
             return p.Faction == this.lord.faction;
         }
-
+        
         private bool IsPartyAboutToEnd()
         {
             return this.timeoutTrigger.TicksLeft < 1200;
         }
-
+        
         private bool ShouldBeCalledOff()
         {
             return !GatheringsUtility.AcceptableGameConditionsToContinueGathering(base.Map) || candidates.Count < 1;
         }
 
-        
+        [LogPerformance]
         private bool ShouldPawnKeepVoting(Pawn p)
         {
-            if (!PsycheHelper.PsychologyEnabled(p))
+            if(!PsycheHelper.PsychologyEnabled(p))
             {
                 return false;
             }
@@ -181,10 +159,15 @@ namespace Psychology
             {
                 return 0f;
             }
-            //return 30f;
-            return 100f;
+            return 30f;
         }
-
-
+        
+        private IntVec3 spot;
+        private Map map;
+        private string baseName;
+        private Trigger_TicksPassed timeoutTrigger;
+        public List<string> votes = new List<string>();
+        public List<int> voters = new List<int>();
+        public List<Candidate> candidates = new List<Candidate>();
     }
 }

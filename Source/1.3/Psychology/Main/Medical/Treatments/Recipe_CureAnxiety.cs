@@ -7,38 +7,39 @@ using Verse;
 using System.Diagnostics;
 using UnityEngine;
 
-namespace Psychology;
-
-public class Recipe_CureAnxiety : Recipe_Surgery
+namespace Psychology
 {
-    public Recipe_CureAnxiety() : base()
+    public class Recipe_CureAnxiety : Recipe_Surgery
     {
-    }
-
-    public override void ApplyOnPawn(Pawn pawn, BodyPartRecord part, Pawn billDoer, List<Thing> ingredients, Bill bill)
-    {
-        if (!CheckSurgeryFail(billDoer, pawn, ingredients, part, bill))
+        public Recipe_CureAnxiety() : base()
         {
-            TaleRecorder.RecordTale(TaleDefOfPsychology.CuredAnxiety, new object[]
+        }
+
+        public override void ApplyOnPawn(Pawn pawn, BodyPartRecord part, Pawn billDoer, List<Thing> ingredients, Bill bill)
+        {
+            if(!CheckSurgeryFail(billDoer, pawn, ingredients, part, bill))
             {
-                billDoer,
-                pawn
-            });
-            Hediff anxiety = pawn.health.hediffSet.GetFirstHediffOfDef(HediffDefOfPsychology.Anxiety);
-            pawn.health.RemoveHediff(anxiety);
-            return;
+                TaleRecorder.RecordTale(TaleDefOfPsychology.CuredAnxiety, new object[]
+                {
+                    billDoer,
+                    pawn
+                });
+                Hediff anxiety = pawn.health.hediffSet.GetFirstHediffOfDef(HediffDefOfPsychology.Anxiety);
+                pawn.health.RemoveHediff(anxiety);
+                return;
+            }
         }
-    }
 
-    [DebuggerHidden]
-    public override IEnumerable<BodyPartRecord> GetPartsToApplyOn(Pawn pawn, RecipeDef recipe)
-    {
-        if (pawn.RaceProps.Humanlike && pawn.health.hediffSet.HasHediff(HediffDefOfPsychology.Anxiety))
+        [DebuggerHidden]
+        public override IEnumerable<BodyPartRecord> GetPartsToApplyOn(Pawn pawn, RecipeDef recipe)
         {
-            List<BodyPartRecord> brain = new List<BodyPartRecord>();
-            brain.Add(pawn.health.hediffSet.GetBrain());
-            return brain;
+            if(pawn.RaceProps.Humanlike && pawn.health.hediffSet.HasHediff(HediffDefOfPsychology.Anxiety))
+            {
+                List<BodyPartRecord> brain = new List<BodyPartRecord>();
+                brain.Add(pawn.health.hediffSet.GetBrain());
+                return brain;
+            }
+            return new List<BodyPartRecord>();
         }
-        return new List<BodyPartRecord>();
     }
 }

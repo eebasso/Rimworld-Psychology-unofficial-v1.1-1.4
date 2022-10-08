@@ -9,8 +9,7 @@ namespace Psychology
 {
     public class JobGiver_Vote : ThinkNode_JobGiver
     {
-        public const float ReachDestDist = 50f;
-
+        [LogPerformance]
         protected override Job TryGiveJob(Pawn pawn)
         {
             IntVec3 result;
@@ -27,7 +26,10 @@ namespace Psychology
             return new Job(JobDefOf.Goto, result, 500, true);
         }
 
-        public static bool checkCell(IntVec3 cell) // TEST IN 1.3
+        private const float ReachDestDist = 50f;
+
+
+        private static bool checkCell(IntVec3 cell) // TEST IN 1.3
         {
             return (cell.x - cell.y) > cell.z;
         }

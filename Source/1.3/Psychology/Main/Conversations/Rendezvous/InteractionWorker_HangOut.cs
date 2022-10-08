@@ -11,14 +11,14 @@ namespace Psychology
 {
     public class InteractionWorker_HangOut : InteractionWorker
     {
-        
+        [LogPerformance]
         public override float RandomSelectionWeight(Pawn initiator, Pawn recipient)
         {
-            if (!PsycheHelper.PsychologyEnabled(initiator) || !PsycheHelper.PsychologyEnabled(recipient))
+            if (!GatheringsUtility.ShouldGuestKeepAttendingGathering(initiator) || !GatheringsUtility.ShouldGuestKeepAttendingGathering(recipient))
             {
                 return 0f;
             }
-            if (!GatheringsUtility.ShouldGuestKeepAttendingGathering(initiator) || !GatheringsUtility.ShouldGuestKeepAttendingGathering(recipient))
+            if (!PsycheHelper.PsychologyEnabled(initiator) || !PsycheHelper.PsychologyEnabled(recipient))
             {
                 return 0f;
             }
@@ -66,7 +66,7 @@ namespace Psychology
             return 0.05f * initiatorFactor * recipientFactor * scheduleFactor * RendezvousUtility.ColonySizeFactor(initiator);
         }
 
-        
+        [LogPerformance]
         public override void Interacted(Pawn initiator, Pawn recipient, List<RulePackDef> extraSentencePacks, out string letterText, out string letterLabel, out LetterDef letterDef, out LookTargets lookTargets)
         {
             letterText = null;

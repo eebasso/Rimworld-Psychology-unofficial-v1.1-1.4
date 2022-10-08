@@ -5,22 +5,23 @@ using System.Text;
 using RimWorld;
 using Verse;
 
-namespace Psychology;
-
-public class Alert_Individuality : Alert_Thought
+namespace Psychology
 {
-    public Alert_Individuality()
+    public class Alert_Individuality : Alert_Thought
     {
-        this.defaultLabel = "Individuality".Translate();
-        this.explanationKey = "IndividualityDesc";
-    }
-
-    protected override ThoughtDef Thought
-    {
-        get
+        public Alert_Individuality()
         {
-            return ThoughtDefOfPsychology.Individuality;
+            this.defaultLabel = "Individuality".Translate();
+            this.explanationKey = "IndividualityDesc";
         }
-    }
 
+        protected override ThoughtDef Thought
+        {
+            get
+            {
+                return ThoughtDefOfPsychology.Individuality;
+            }
+        }
+
+    }
 }

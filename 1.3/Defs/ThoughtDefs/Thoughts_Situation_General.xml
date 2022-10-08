@@ -115,32 +115,4 @@
       </li>
     </stages>
   </ThoughtDef>
-
-  <ThoughtDef>
-    <defName>PrudeVsNudist</defName>
-    <thoughtClass>Thought_SituationalSocial</thoughtClass>
-    <workerClass>Psychology.ThoughtWorker_PrudeVsNudist</workerClass>
-    <validWhileDespawned>true</validWhileDespawned>
-    <stages>
-      <li>
-        <label>prude vs nudist</label>
-        <baseOpinionOffset>-25</baseOpinionOffset>
-      </li>
-    </stages>
-  </ThoughtDef>
-
-   <ThoughtDef>
-    <defName>NudistVsPrude</defName>
-    <thoughtClass>Thought_SituationalSocial</thoughtClass>
-    <workerClass>Psychology.ThoughtWorker_NudistVsPrude</workerClass>
-    <validWhileDespawned>true</validWhileDespawned>
-    <stages>
-      <li>
-        <label>nudist vs prude</label>
-        <baseOpinionOffset>-25</baseOpinionOffset>
-      </li>
-    </stages>
-  </ThoughtDef>
-
-
 </Defs>

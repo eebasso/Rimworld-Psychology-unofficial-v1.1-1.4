@@ -8,90 +8,43 @@
 	<SexualityChangesTooltip>Turn this off to disable Kinsey scaling of pawns and re-enable the Gay trait. Do NOT change this during play, and restart the game after toggling this.</SexualityChangesTooltip>
 	
 	<KinseyModeTitle>Kinsey scale formula</KinseyModeTitle>
-	<KinseyModeTooltip>This setting determines what formula is used to set the Kinsey rating of generated pawns. Weights do not have to sum to 100.</KinseyModeTooltip>
+	<KinseyModeTooltip>This setting determines what formula is used to weight the Kinsey scale when pawns are generated.</KinseyModeTooltip>
 	<KinseyMode_Realistic>Default</KinseyMode_Realistic>
 	<KinseyMode_Invisible>Center</KinseyMode_Invisible>
 	<KinseyMode_Gaypocalypse>Inverse</KinseyMode_Gaypocalypse>
 	<KinseyMode_Uniform>Uniform</KinseyMode_Uniform>
-	<KinseyMode_Custom>Custom</KinseyMode_Custom>
-
-	<KWTitle>Kinsey {0}</KWTitle>
-	<KWTooltip>The relative weight that a pawn will generate with a Kinsey rating of {0}. Weights do not have to sum to 100.</KWTooltip>
-
-	<IndividualityTitle>Enable individuality thoughts</IndividualityTitle>
-	<IndividualityTooltip>Turn this off to disable the negative thought your colonists will get if they are wearing perfectly matching outfits with other colonists. This thought adds extra difficulty, so it's optional, but recommended. Requires restart.</IndividualityTooltip>
+	
+	<IndividualityTitle>Enable Individuality thoughts</IndividualityTitle>
+	<IndividualityTooltip>Turn this off to disable the negative thought your colonists will get if they are wearing perfectly matching outfits with other colonists. This thought adds extra difficulty, so it's optional, but recommended.</IndividualityTooltip>
 	
 	<ElectionsTitle>Enable elections</ElectionsTitle>
-	 <ElectionsTooltip>Turn this off to prevent your colonists from having yearly elections. It will not stop an election in progress, and any existing mayor will be reverted to a normal colonist. This will not affect compatibility with other mods. Requires restart for full effect.</ElectionsTooltip> 
-	<!--<ElectionsTooltip>Turn this off to prevent your colonists from having yearly elections for leaders. This will not affect compatibility with other mods.</ElectionsTooltip>-->
+	<ElectionsTooltip>Turn this off to prevent your colonists from having yearly elections. It will not stop an election in progress, and any existing mayor will be reverted to a normal colonist. This will not affect compatibility with other mods.</ElectionsTooltip>
 	
-	<DurationTitle>Conversation memory duration</DurationTitle>
-	<DurationTooltip>Set how long people will remember conversations for. The default is 60 days, i.e. one year. The minimum is 15 day, one quadrum, and the maximum is 180 days, three years. Setting it lower will make colonists' interactions with each other more ephemeral, and setting it higher will make them more lasting. Requires restart.</DurationTooltip>
+	<DurationTitle>Conversation duration</DurationTitle>
+	<DurationTooltip>Set how long people will remember conversations for. The default is 60 days, i.e. one year. The minimum is 15 days, or a quadrum, to a maximum of 180 days, or three years. Setting it lower will make colonists' interactions with each other more ephemeral, and setting it higher will make them more lasting.</DurationTooltip>
 	
 	<SendDateLettersTitle>Send date letters</SendDateLettersTitle>
 	<SendDateLettersTooltip>Turn this off to disable receiving letters when your colonists plan a date together.</SendDateLettersTooltip>
 	
-<!--	<BenchmarkingTitle>Enable performance testing</BenchmarkingTitle>
-	<BenchmarkingTooltip>Turn this on to receive occasional performance reports in the console relating to Psychology systems. You can copy and paste these reports to assist in optimization of the mod. WARNING: Performance testing comes with its own performance impact.\n\nToggling this will restart your game.</BenchmarkingTooltip>-->
+	<BenchmarkingTitle>Enable performance testing</BenchmarkingTitle>
+	<BenchmarkingTooltip>Turn this on to receive occasional performance reports in the console relating to Psychology systems. You can copy and paste these reports to assist in optimization of the mod. WARNING: Performance testing comes with its own performance impact.\n\nToggling this will restart your game.</BenchmarkingTooltip>
   
 	<ImprisonedTitle>Prisoner recruitment penalty</ImprisonedTitle>
-	<ImprisonedTooltip>This sets the negative opinion penalty (Faction imprison me) for recruited prisoners. Requires restart.</ImprisonedTooltip>
+	<ImprisonedTooltip>Enable/disable negative opinion penalty for recruited prisoners (-40 Faction imprisoned me).</ImprisonedTooltip>
 
 	<RomanceMultiplierTitle>Romance chance multiplier</RomanceMultiplierTitle>
-	<RomanceMultiplierTooltip>Romance chance will be multiplied by this value. Setting to 0 should eliminate new romances entirely.</RomanceMultiplierTooltip>
+	<RomanceMultiplierTooltip>Romance chance will be multiplied by this value.</RomanceMultiplierTooltip>
 
 	<RomanceChanceThresholdTitle>Minimum romance opinion</RomanceChanceThresholdTitle>
-	<RomanceChanceThresholdTooltip>Minimum opinion one colonist must have of another in order to be romanced.</RomanceChanceThresholdTooltip>
+	<RomanceChanceThresholdTooltip>Minimum opinion one colonist must be of another colonist to be romanced by him/her.</RomanceChanceThresholdTooltip>
 
 	<MayorAgeTitle>Mayor age</MayorAgeTitle>
-	<MayorAgeTooltip>Minimum age required for someone to be able to become a mayor.</MayorAgeTooltip>
+	<MayorAgeTooltip>Age required for someone to be able to become a mayor.</MayorAgeTooltip>
 
-	<MayorVisitMtbHoursTitle>Hours between mayor vists</MayorVisitMtbHoursTitle>
-	<MayorVisitMtbHoursTooltip>This controls the expected time in hours between constituents meeting with their mayor. Lower values will increase the frequency of visits.</MayorVisitMtbHoursTooltip>
+	<AllowAnxietyTitle>Allow post mental break anxiety</AllowAnxietyTitle>
+	<AllowAnxietyTooltip>Allow colonists to get anxiety after mental breaks (chance depends on colonist's psyche and mental breaks severity). Note that you might still see it as random disease.</AllowAnxietyTooltip>
 
-	<MentalBreakAnxietyChanceTitle>Mental break anxiety chance</MentalBreakAnxietyChanceTitle>
-	<MentalBreakAnxietyChanceTooltip>This sets the mean chance a pawn will develop anxiety after having a major mental break. For minor breaks, the chance is halved and for extreme breaks the chance is doubled. The chance will also depend on colonist's psyche. Note that you might still see it as random disease due to aging.</MentalBreakAnxietyChanceTooltip>
-
-	<!--<BeatyOverrideEnabledTitle>Disable opinion changes from beauty traits</BeatyOverrideEnabledTitle>
-	<BeatyOverrideEnabledToolip>Disables opinion changes from traits such as: Pretty, Beautiful, Ugly, etc. Note that Psychology's changes to those traits would still work even if you disable this option. Its recommended to keep this option enabled.</BeatyOverrideEnabledToolip>-->
-	<TraitOpinionMultiplierTitle>Opinion from traits multiplier</TraitOpinionMultiplierTitle>
-	<TraitOpinionMultiplierTooltip>Scale the opinion changes from the following traits: Pretty, Ugly, Disfigured, Annoying voice, Creepy breathing, Body modder appreciation, and Body purist disgust. Set to zero to completely disable. Requires restart.</TraitOpinionMultiplierTooltip>
-
-	<PersonalityExtremenessTitle>Personality extremeness</PersonalityExtremenessTitle>
-	<PersonalityExtremenessTooltip>Set the degree to which personalities will be boosted to match Big Five archetypes.</PersonalityExtremenessTooltip>
-
-	<IdeoPsycheMultiplierTitle>Ideology interaction multiplier</IdeoPsycheMultiplierTitle>
-	<IdeoPsycheMultiplierTooltip>This controls how strongly personality and ideology interact with each other. Set to zero to disable entirely.</IdeoPsycheMultiplierTooltip>
-
-	<DisplayOptionsTitle>Psyche tab display options</DisplayOptionsTitle>
-	<DisplayOptionsTooltip>Change the default display option for the Psyche tab.</DisplayOptionsTooltip>
-	<UseColorsTooltip>Colorize traits displayed in the Psyche tab.</UseColorsTooltip>
-	<ListAlphabeticalTooltip>List the traits alphabetically in the Psyche tab.</ListAlphabeticalTooltip>
-	<UseAntonymsTooltip>Use trait antonyms in the Psyche tab.</UseAntonymsTooltip>
-
-	<SpeciesSettingsTitle>Species name</SpeciesSettingsTitle>
-	<SpeciesSettingsTooltip>Adjust settings for each species.</SpeciesSettingsTooltip>
-
-	<EnablePsycheTitle>Psyche</EnablePsycheTitle>
-	<EnablePsycheTooltip>Turn this off to deactivate personality. This is recommended for species not capable of having a human-like personality such as zombies or simple robots. Note that deep conversations and romance will be disabled for this species.</EnablePsycheTooltip>
-
-	<EnableAgeGapTitle>Age gap</EnableAgeGapTitle>
-	<EnableAgeGapTooltip>Turn this off to deactivate the romantic age gap preference for pawns considering to romance this species. This is recommended for android-like and elf-like species that do not experience aging and remain equally attractive once they reach adulthood.</EnableAgeGapTooltip>
-
-<!--	<MinDatingAgeTooltip>Set the minimum dating age for this species. When positive, the effective age for dating-related formulas scales by this number relative to 14. Setting to 0 allows dating at any age and effectively disables the age gap. This is recommended for species such as sentient androids with no childhood phase. Any negative number disables dating completely for this species.</MinDatingAgeTooltip>-->
-<!--	<MinLovinAgeTooltip>Set the minimum lovin age for this species. When positive, the effective age for lovin-related formulas scales by this number relative to 16. Setting to 0 allows lovin at any age and effectively disables the age gap. This is recommended for species such as sentient androids with no childhood phase. Any negative number disables lovin completely for this species.</MinLovinAgeTooltip>-->
-  <MinDatingAgeTitle>Dating</MinDatingAgeTitle>
-	<MinLovinAgeTitle>Lovin</MinLovinAgeTitle>
-
-	<datingRomanceBehavior>dating</datingRomanceBehavior>
-	<lovinRomanceBehavior>lovin</lovinRomanceBehavior>
-	<MinRomanceAgeTooltip>The minimum {0_RomanceBehavior} age for this species. When positive, the effective age in {0_RomanceBehavior}-related formulas is scaled by this number relative to {1_MinAge}. Setting to 0 allows {0_RomanceBehavior} at any age and effectively disables the age gap. This is recommended for species with no childhood phase such as sentient androids. Any negative number disables {0_RomanceBehavior} for this species.</MinRomanceAgeTooltip>
-
-	<!--<UpdateIntroMessageTitle>Update to Psychology</UpdateIntroMessageTitle>-->
-	<!--<UpdateIntroMessage>The method to generate personalities has been updated. The player is encouraged to select "update" to reset the personalities of old pawns. This option will always be available in the mod settings.</UpdateIntroMessage>-->
-	<!--<ApplyUpdateButton>Update</ApplyUpdateButton>-->
-	<!--<UpdateIntroMessage>Check out the mod settings to set your preferences for some of the new features.</UpdateIntroMessage>-->
-
-	<!--<UpdateYesNoDescription>This will reset the personalities of all pawns using the updated Psychology formula. The outcome is deterministic and pseudo-random based on an integer ID asscoiated with each pawn. This is recommended for the mod to act as intended. Do you wish to proceed?</UpdateYesNoDescription>-->
-	
+	<BeatyOverrideEnabledTitle>Disable opinion changes from beaty traits</BeatyOverrideEnabledTitle>
+	<BeatyOverrideEnabledToolip>Disables opinion changes from traits such as: Pretty, Beautifull, Ugly, etc. Note that Psychology's changes to those traits would still work even if you disable this option. Its recommended to keep this option enabled.</BeatyOverrideEnabledToolip>
+  
 </LanguageData>

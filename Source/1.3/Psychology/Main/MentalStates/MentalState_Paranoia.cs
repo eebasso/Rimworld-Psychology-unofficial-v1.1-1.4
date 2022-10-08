@@ -7,29 +7,31 @@ using Verse;
 using Verse.AI;
 using UnityEngine;
 
-namespace Psychology;
-
-public class MentalState_Paranoia : MentalState
+namespace Psychology
 {
-    public override RandomSocialMode SocialModeMax()
+    public class MentalState_Paranoia : MentalState
     {
-        return RandomSocialMode.Off;
-    }
-
-    public override void MentalStateTick()
-    {
-        base.MentalStateTick();
-        if (pawn.IsHashIntervalTick(1000) && pawn.Map != null)
+        public override RandomSocialMode SocialModeMax()
         {
-            if (Rand.Value < 0.75f)
+            return RandomSocialMode.Off;
+        }
+
+        [LogPerformance]
+        public override void MentalStateTick()
+        {
+            base.MentalStateTick();
+            if(pawn.IsHashIntervalTick(1000) && pawn.Map != null)
             {
-                Vector3 pos = pawn.DrawPos + pawn.Drawer.renderer.BaseHeadOffsetAt(pawn.Rotation);
-                MoteMaker.ThrowText(pos, pawn.Map, ("ParanoidRambling" + Rand.RangeInclusive(1, 33)).Translate(), Color.Lerp(Color.black, Color.red, 0.85f), 3.85f);
-                foreach (Pawn p in pawn.Map.mapPawns.AllPawns)
+                if(Rand.Value < 0.75f)
                 {
-                    if (p.RaceProps.Humanlike && p != pawn && (pawn.Position - p.Position).LengthHorizontalSquared <= 36f && GenSight.LineOfSight(pawn.Position, p.Position, pawn.Map, true))
+                    Vector3 pos = pawn.DrawPos + pawn.Drawer.renderer.BaseHeadOffsetAt(pawn.Rotation);
+                    MoteMaker.ThrowText(pos, pawn.Map, ("ParanoidRambling" + Rand.RangeInclusive(1,33)).Translate(), Color.Lerp(Color.black, Color.red, 0.85f), 3.85f);
+                    foreach (Pawn p in pawn.Map.mapPawns.AllPawns)
                     {
-                        p.needs.mood.thoughts.memories.TryGainMemory(ThoughtDefOfPsychology.HeardParanoia);
+                        if(p.RaceProps.Humanlike && p != pawn && (pawn.Position - p.Position).LengthHorizontalSquared <= 36f && GenSight.LineOfSight(pawn.Position, p.Position, pawn.Map, true))
+                        {
+                            p.needs.mood.thoughts.memories.TryGainMemory(ThoughtDefOfPsychology.HeardParanoia);
+                        }
                     }
                 }
             }

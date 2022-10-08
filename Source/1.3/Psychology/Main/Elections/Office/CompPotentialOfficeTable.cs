@@ -6,84 +6,85 @@ using RimWorld;
 using Verse;
 using HarmonyLib;
 
-namespace Psychology;
-
-public class CompPotentialOfficeTable : ThingComp
+namespace Psychology
 {
-    //Working vars
-    private bool active = false;
-
-    public bool Active
+    public class CompPotentialOfficeTable : ThingComp
     {
-        get
-        {
-            return active;
-        }
-        set
-        {
-            if (value == active)
-                return;
+        //Working vars
+        private bool active = false;
 
-            active = value;
-
-            if (parent.Spawned)
+        public bool Active
+        {
+            get
             {
-                if (active)
+                return active;
+            }
+            set
+            {
+                if (value == active)
+                    return;
+
+                active = value;
+
+                if (parent.Spawned)
                 {
-                    if (parent.Map.GetComponent<OfficeTableMapComponent>().officeTable != null && parent.Map.GetComponent<OfficeTableMapComponent>().officeTable != this)
+                    if (active)
                     {
-                        parent.Map.GetComponent<OfficeTableMapComponent>().officeTable.Active = false;
+                        if (parent.Map.GetComponent<OfficeTableMapComponent>().officeTable != null && parent.Map.GetComponent<OfficeTableMapComponent>().officeTable != this)
+                        {
+                            parent.Map.GetComponent<OfficeTableMapComponent>().officeTable.Active = false;
+                        }
+                        parent.Map.GetComponent<OfficeTableMapComponent>().officeTable = this;
                     }
-                    parent.Map.GetComponent<OfficeTableMapComponent>().officeTable = this;
-                }
-                else
-                {
-                    if (parent.Map.GetComponent<OfficeTableMapComponent>().officeTable == this)
+                    else
                     {
-                        parent.Map.GetComponent<OfficeTableMapComponent>().officeTable = null;
+                        if (parent.Map.GetComponent<OfficeTableMapComponent>().officeTable == this)
+                        {
+                            parent.Map.GetComponent<OfficeTableMapComponent>().officeTable = null;
+                        }
                     }
                 }
             }
         }
-    }
 
 
-    public override void PostExposeData()
-    {
-        Scribe_Values.Look(ref active, "office", false);
-    }
-
-    public override void PostSpawnSetup(bool respawningAfterLoad)
-    {
-        base.PostSpawnSetup(respawningAfterLoad);
-
-        if (Active)
-            parent.Map.GetComponent<OfficeTableMapComponent>().officeTable = this;
-    }
-
-    public override void PostDeSpawn(Map map)
-    {
-        base.PostDeSpawn(map);
-
-        if (Active)
+        public override void PostExposeData()
         {
-            map.GetComponent<OfficeTableMapComponent>().officeTable = null;
+            Scribe_Values.Look(ref active, "office", false);
         }
-    }
 
-    public override IEnumerable<Gizmo> CompGetGizmosExtra()
-    {
-        Command_Toggle com = new Command_Toggle();
-        com.defaultLabel = "CommandOfficeTableToggleLabel".Translate();
-        com.icon = UIAssets.OfficeTable;
-        com.isActive = () => Active;
-        com.toggleAction = () => Active = !Active;
+        public override void PostSpawnSetup(bool respawningAfterLoad)
+        {
+            base.PostSpawnSetup(respawningAfterLoad);
 
-        if (Active)
-            com.defaultDesc = "CommandOfficeTableToggleDescActive".Translate();
-        else
-            com.defaultDesc = "CommandOfficeTableToggleDescInactive".Translate();
+            if (Active)
+                parent.Map.GetComponent<OfficeTableMapComponent>().officeTable = this;
+        }
 
-        yield return com;
+        public override void PostDeSpawn(Map map)
+        {
+            base.PostDeSpawn(map);
+
+            if (Active)
+            {
+                map.GetComponent<OfficeTableMapComponent>().officeTable = null;
+            }
+        }
+
+        public override IEnumerable<Gizmo> CompGetGizmosExtra()
+        {
+            Command_Toggle com = new Command_Toggle();
+            com.defaultLabel = "CommandOfficeTableToggleLabel".Translate();
+            com.icon = PsychologyTexCommand.OfficeTable;
+            com.isActive = () => Active;
+            com.toggleAction = () => Active = !Active;
+
+            if (Active)
+                com.defaultDesc = "CommandOfficeTableToggleDescActive".Translate();
+            else
+                com.defaultDesc = "CommandOfficeTableToggleDescInactive".Translate();
+
+            yield return com;
+        }
     }
 }

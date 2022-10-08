@@ -6,12 +6,13 @@ using RimWorld;
 using Verse;
 using Verse.AI;
 
-namespace Psychology;
-
-public class MentalState_Abuse : MentalState
+namespace Psychology
 {
-    public override RandomSocialMode SocialModeMax()
+    public class MentalState_Abuse : MentalState
     {
-        return RandomSocialMode.Off;
+        public override RandomSocialMode SocialModeMax()
+        {
+            return RandomSocialMode.Off;
+        }
     }
 }

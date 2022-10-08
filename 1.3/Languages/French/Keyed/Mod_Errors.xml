@@ -1,9 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<LanguageData>
-
-    <KinseyDisable>Désactivation de l'échèle de Kinsey puisqu'un mod de romance/sexualité à été detecté.</KinseyDisable>
-	<KinseyDetourDisable>Détournement de méthodes vitales au fonctionnement de certains traits désactivés pour protéger la compatibilité. Paramétrage de ces traits à 0 de probabilité.</KinseyDetourDisable>
-	<MedicalDetourDisable>Désactivation des détournement des méthodes médicales suite à la detection d'un mod d'assemblage médical/chirurgical. Ceci va retirer certains fonctionnalité des colons Bleedind Heart à moins que le mod en question soit Less Arbitrary Surgery.</MedicalDetourDisable>
-	<DuplicateDefLabel>Duplication du PersonalityNodeDef label sur {0}. Raportez ce problème pour que la traduction puisse être corrigée.</DuplicateDefLabel>
-  
-</LanguageData>

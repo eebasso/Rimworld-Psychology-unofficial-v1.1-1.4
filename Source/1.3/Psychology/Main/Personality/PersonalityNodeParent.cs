@@ -5,12 +5,19 @@ using System.Text;
 using RimWorld;
 using Verse;
 
-namespace Psychology;
-
-public class PersonalityNodeParent
+namespace Psychology
 {
-    //The parent node that correlates with this node.
-    public PersonalityNodeDef node;
-    // How the parent node correlates with this node.
-    public float modifier;
+    public class PersonalityNodeParent
+    {
+        //The node this node descends from.
+        public PersonalityNodeDef node;
+        /* How that node modifies the node.
+         * -1f = Half as influential.
+         * 0f = Normal.
+         * 1f = Inverse.
+         * 2f = Inverse, half as influential.
+         * Yes, this is the opposite of what you would expect it to be.
+         */ 
+        public float modifier;
+    }
 }

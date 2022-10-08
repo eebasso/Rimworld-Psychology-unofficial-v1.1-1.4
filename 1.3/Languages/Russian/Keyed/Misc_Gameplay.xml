@@ -15,7 +15,16 @@
 	<ConversationEnded>заканчивает разговор</ConversationEnded>
 	<Complained>{0_labelShort} жалуется мэру.</Complained>
 	<Supported>{0_labelShort} высказывает свою поддержку мэру.</Supported>
-		
+	
+<!-- Node descriptions -->
+	<PsycheNot>Не типична</PsycheNot>
+	<PsycheSlightly>Мизерная</PsycheSlightly>
+	<PsycheLess>Слабая</PsycheLess>
+	<PsycheMore>Умеренная</PsycheMore>
+	<PsycheVery>Сильная</PsycheVery>
+	<PsycheExtremely>Небывалая</PsycheExtremely>
+	<ConversationTooltip>Люди будут говорить о {0}, чтобы обсудить это между собой.</ConversationTooltip>
+	
 <!-- Comp text -->
 	<CommandOfficeTableToggleLabel>Офис мэра</CommandOfficeTableToggleLabel>
 	<CommandOfficeTableToggleDescActive>Эта комната обозначена как офис мэра. Если он у вас есть, его встречи с поселенцами будут проходить здесь.</CommandOfficeTableToggleDescActive>

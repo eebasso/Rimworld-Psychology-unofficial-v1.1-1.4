@@ -1,87 +1,24 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8" ?>
 <LanguageData>
 
-	<!-- WITab title -->
-	<TabPsyche>психика</TabPsyche>
-
-	<!-- Sexuality disabled warning -->
-	<SexualityDisabledWarning>Система сексуальности Psychology отключена конфликтующими модами. Пожалуйста, отключите все моды, меняющие механику отношений и сексуальности.</SexualityDisabledWarning>
-
-	<!-- Kinsey display and tooltip-->
-	<KinseyRating>Рейтинг Кинси:</KinseyRating>
-	<KinseyDescription0>Шкала Кинси</KinseyDescription0>
-	<KinseyDescription>{0} попытка измерить сексуальную ориентацию людей по шкале от нуля (исключительно гетеросексуальная ориентация) до 6 (исключительно гомосексуальная ориентация).\n\nKinsey chose seven categories for the sake of simplicity, and wrote that "it should be recognized that the reality includes individuals of every intermediate type, lying in a continuum between the two extremes and between each and every category on the scale."</KinseyDescription>
-
-	<!-- Sex drive display and tooltip text -->
-	<SexDrive0>Асексуальность</SexDrive0>
-	<SexDrive1>Low sex drive</SexDrive1>
-	<SexDrive2>Medium sex drive</SexDrive2>
-	<SexDrive3>High sex drive</SexDrive3>
-	<SexDrive4>Extreme sex drive</SexDrive4>
-	<SexDriveDescription0>Sex drive</SexDriveDescription0>
-	<SexDriveDescription>{0}, also known as libido, describes a person's overall desire for sexual activity.</SexDriveDescription>
-	<AsexualDescription>У этого персонажа очень низкое половое влечение. Этот персонаж почти не испытывает потребностей сексуального характера и вряд ли вступит в какие-либо половые отношения.</AsexualDescription>
-
-	<!-- Romance drive display and tooltip -->
-	<RomanticDrive0>Аромантичность</RomanticDrive0>
-	<RomanticDrive1>Low romantic drive</RomanticDrive1>
-	<RomanticDrive2>Medium romantic drive</RomanticDrive2>
-	<RomanticDrive3>High romantic drive</RomanticDrive3>
-	<RomanticDrive4>Extreme romantic drive</RomanticDrive4>
-	<RomanticDriveDescription0>Romantic drive</RomanticDriveDescription0>
-	<RomanticDriveDescription>{0} describes a person's overall desire for romantic relationships.</RomanticDriveDescription>
-	<AromanticDescription>У этого персонажа очень низкое романтическое влечение. Этот персонаж может и будет вступать в сексуальную связь с другими поселенцами, но вряд ли будет стремиться к романтическим отношениям или принимать предложения подобного рода.</AromanticDescription>
-
-	<!-- Display options -->
-	<OptionsText4>Word cloud</OptionsText4>
-	<OptionsText3>List least</OptionsText3>
-	<OptionsText2>List more</OptionsText2>
-	<OptionsText1>List most</OptionsText1>
-	<OptionsText0>List all</OptionsText0>
-	<UseColors>Colorize traits</UseColors>
-	<ListAlphabetical>List alphabetical</ListAlphabetical>
-	<UseAntonyms>Use antonyms</UseAntonyms>
-
-	<!-- Dev edit text -->
-	<EditPsyche>Редактировать</EditPsyche>
-	<PsycheEditor>Изменение психологического портрета {0}:</PsycheEditor>
-	<PsycheEditorNewColonist>Изменение психологического портрета поселенца:</PsycheEditorNewColonist>
-	<PersonalityNodeWarning>Вы редактируете неоткорректированные показатели психологического портрета поселенца. Реальные показатели формируются за счёт других факторов.</PersonalityNodeWarning>
-	<SexDrive>Половое влечение:</SexDrive>
-	<RomanticDrive>Романтическое влечение:</RomanticDrive>
-
-	<!-- Node descriptions -->
-	<PsycheNot>Не типична</PsycheNot>
-	<PsycheSlightly>Мизерная</PsycheSlightly>
-	<PsycheLess>Слабая</PsycheLess>
-	<PsycheSomewhat>Somewhat</PsycheSomewhat>
-	<PsycheMore>Умеренная</PsycheMore>
-	<PsycheVery>Сильная</PsycheVery>
-	<PsycheExtremely>Небывалая</PsycheExtremely>
-
-	<!-- Conversation Tooltip -->
-	<ConversationTooltip>Люди будут говорить о {0}, и {1} чтобы обсудить это между собой.</ConversationTooltip>
-	<PsycheComma>, </PsycheComma>
-	<AntonymColon> Antonym: {0}.</AntonymColon>
-
-	<!-- Big Five descriptions -->
-	<FiveFactorModelTitle>Big Five Summary</FiveFactorModelTitle>
-	<FiveFactorDescription0>five-factor model</FiveFactorDescription0>
-	<FiveFactorDescription>The {0} (Big Five) was developed in the late 20th century based on the lexical hypothesis, which suggested that the fundamental traits of personality are encoded in language.\n\nFive factors have consistently emerged from analyses conducted on numerous data sets of descriptive trait terms from multiple languages, including English, Chinese, and German.\n\nTwin and adoption studies have revealed a substantial genetic component, and individuals' relative standings have also been shown to be fairly stable across the adult life span.\n\nSource: Britannica</FiveFactorDescription>
-	<BigFiveO>O</BigFiveO>
-	<BigFiveODescription0>Openness to experience</BigFiveODescription0>
-	<BigFiveODescription>{0} is the willingness to embrace novel ideas, values, actions, feelings, fantasy, and aesthetics.</BigFiveODescription>
-	<BigFiveC>C</BigFiveC>
-	<BigFiveCDescription0>Conscientiousness</BigFiveCDescription0>
-	<BigFiveCDescription>{0} is the propensity for diligence, efficiency, organization, planning, duty, and self-discipline.</BigFiveCDescription>
-	<BigFiveE>E</BigFiveE>
-	<BigFiveEDescription0>Extroversion</BigFiveEDescription0>
-	<BigFiveEDescription>{0} is the outward pursuit of gratification, and manifests as outgoing, talkative, energetic, upbeat, assertive, and gregarious behavior.</BigFiveEDescription>
-	<BigFiveA>A</BigFiveA>
-	<BigFiveADescription0>Agreeableness</BigFiveADescription0>
-	<BigFiveADescription>{0} is the capacity for kindness, sympathy, cooperation, warmth, politeness, and compassion.</BigFiveADescription>
-	<BigFiveN>N</BigFiveN>
-	<BigFiveNDescription0>Neuroticism</BigFiveNDescription0>
-	<BigFiveNDescription>{0} is the tendency towards negative emotions such as anxiety, fear, anger, envy, guilt, and sadness.</BigFiveNDescription>
+  <!-- WITab titles -->
+  <TabPsyche>Психология</TabPsyche>
+  
+  <!-- WITab text -->
+  <SexualityDisabledWarning>Система сексуальности Psychology отключена конфликтующими модами. Пожалуйста, отключите все моды, меняющие механику отношений и сексуальности.</SexualityDisabledWarning>
+  <Sexuality>Сексуальность</Sexuality>
+  <KinseyRating>Рейтинг Кинси:</KinseyRating>
+  <Asexual>Асексуальность</Asexual>
+  <AsexualDescription>У этого персонажа очень низкое половое влечение. Этот персонаж почти не испытывает потребностей сексуального характера и вряд ли вступит в какие-либо половые отношения.</AsexualDescription>
+  <Aromantic>Аромантичность</Aromantic>
+  <AromanticDescription>У этого персонажа очень низкое романтическое влечение. Этот персонаж может и будет вступать в сексуальную связь с другими поселенцами, но вряд ли будет стремиться к романтическим отношениям или принимать предложения подобного рода.</AromanticDescription>
+  
+  <!-- Dialog text -->
+  <EditPsyche>Режим разработчика</EditPsyche>
+  <PsycheEditor>Изменение психологического портрета {PAWN_labelShort}:</PsycheEditor>
+  <PsycheEditorNewColonist>Изменение психологического портрета поселенца:</PsycheEditorNewColonist>
+  <PersonalityNodeWarning>Вы редактируете неоткорректированные показатели психологического портрета поселенца. Реальные показатели формируются за счёт других факторов.</PersonalityNodeWarning>
+  <SexDrive>Половое влечение:</SexDrive>
+  <RomanticDrive>Романтическое влечение:</RomanticDrive>
 
 </LanguageData>

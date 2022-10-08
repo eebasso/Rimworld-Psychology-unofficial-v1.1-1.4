@@ -1,87 +1,23 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8" ?>
 <LanguageData>
 
-	<!-- WITab titles -->
-	<TabPsyche>Psyche</TabPsyche>
-
-	<!-- Sexuality disabled warning -->
-	<SexualityDisabledWarning>Psychologys Sexualitätssystem ist deaktiviert, entweder von dir oder von einer Mod, die Konflikte verursacht. Bitte deaktiviere jegliche Mod, die die Sexualität der Kolonisten ändert.</SexualityDisabledWarning>
-
-	<!-- Kinsey display and tooltip-->
-	<KinseyRating>Kinsey-Skala:</KinseyRating>
-	<KinseyDescription0>Kinsey-Skala</KinseyDescription0>
-	<KinseyDescription>The {0} describes a person's sexual orientation, and ranges from 0, meaning exclusively heterosexual, to a 6, meaning exclusively homosexual.\n\nKinsey chose seven categories for the sake of simplicity, and wrote that "it should be recognized that the reality includes individuals of every intermediate type, lying in a continuum between the two extremes and between each and every category on the scale."</KinseyDescription>
-
-	<!-- Sex drive display and tooltip-->
-	<SexDrive0>Asexuell</SexDrive0>
-	<SexDrive1>Low sex drive</SexDrive1>
-	<SexDrive2>Medium sex drive</SexDrive2>
-	<SexDrive3>High sex drive</SexDrive3>
-	<SexDrive4>Extreme sex drive</SexDrive4>
-	<SexDriveDescription0>Sex drive</SexDriveDescription0>
-	<SexDriveDescription>{0}, also known as libido, describes a person's overall desire for sexual activity.</SexDriveDescription>
-	<AsexualDescription>Dieser Kolonist hat einen sehr niedrigen Sex-Drang. Diese werden nicht besonders sexuell angeregt und verzichten lieber auf intime Auseinandersetzungen.</AsexualDescription>
-
-	<!-- Romance drive display and tooltip -->
-	<RomanticDrive0>Aromantisch</RomanticDrive0>
-	<RomanticDrive1>Low romantic drive</RomanticDrive1>
-	<RomanticDrive2>Medium romantic drive</RomanticDrive2>
-	<RomanticDrive3>High romantic drive</RomanticDrive3>
-	<RomanticDrive4>Extreme romantic drive</RomanticDrive4>
-	<RomanticDriveDescription0>Romantic drive</RomanticDriveDescription0>
-	<RomanticDriveDescription>{0} describes a person's overall desire for romantic relationships.</RomanticDriveDescription>
-	<AromanticDescription>Dieser Kolonist hat einen sehr niedrigen romantischen Drang. Diese werden weniger romantische Schritte unternehmen und es ist sehr unwahrscheinlich, dass sie Heiratsanträge annehmen. Sie können destotrotz Liebhaber haben.</AromanticDescription>
-
-	<!-- Display options -->
-	<OptionsText4>Word cloud</OptionsText4>
-	<OptionsText3>List least</OptionsText3>
-	<OptionsText2>List more</OptionsText2>
-	<OptionsText1>List most</OptionsText1>
-	<OptionsText0>List all</OptionsText0>
-	<UseColors>Colorize traits</UseColors>
-	<ListAlphabetical>List alphabetical</ListAlphabetical>
-	<UseAntonyms>Use antonyms</UseAntonyms>
-
-	<!-- Edit text -->
-	<EditPsyche>Bearbeiten</EditPsyche>
-	<PsycheEditor>Modifiziere die Psyche von {0}:</PsycheEditor>
-	<PersonalityNodeWarning>Du editierst gerade die Grundwerte der Persönlichkeit eines Kolonisten. Die aktuellen Werte werden von anderen Faktoren angepasst.</PersonalityNodeWarning>
-	<SexDrive>Sexualtrieb:</SexDrive>
-	<RomanticDrive>Romantischer Trieb:</RomanticDrive>
-
-	<!-- Node descriptions -->
-	<PsycheNot>Nicht</PsycheNot>
-	<PsycheSlightly>Kaum</PsycheSlightly>
-	<PsycheLess>Etwas</PsycheLess>
-	<PsycheSomewhat>Ausgewogen</PsycheSomewhat>
-	<!--<PsycheSomewhat>Somewhat</PsycheSomewhat>-->
-	<PsycheMore>Mehr</PsycheMore>
-	<PsycheVery>Sehr</PsycheVery>
-	<PsycheExtremely>Äußerst</PsycheExtremely>
-
-	<!-- Conversation Tooltip -->
-	<ConversationTooltip>Die Leute werden über {0}, und {1} sprechen um dies miteinander zu besprechen.</ConversationTooltip>
-	<PsycheComma>, </PsycheComma>
-	<AntonymColon> Antonym: {0}.</AntonymColon>
-
-	<!-- Big Five descriptions -->
-	<FiveFactorModelTitle>Big Five Summary</FiveFactorModelTitle>
-	<FiveFactorDescription0>five-factor model</FiveFactorDescription0>
-	<FiveFactorDescription>The {0} (Big Five) was developed in the late 20th century based on the lexical hypothesis, which suggested that the fundamental traits of personality are encoded in language.\n\nFive factors have consistently emerged from analyses conducted on numerous data sets of descriptive trait terms from multiple languages, including English, Chinese, and German.\n\nTwin and adoption studies have revealed a substantial genetic component, and individuals' relative standings have also been shown to be fairly stable across the adult life span.\n\nSource: Britannica</FiveFactorDescription>
-	<BigFiveO>O</BigFiveO>
-	<BigFiveODescription0>Openness to experience</BigFiveODescription0>
-	<BigFiveODescription>{0} is the willingness to embrace novel ideas, values, actions, feelings, fantasy, and aesthetics.</BigFiveODescription>
-	<BigFiveC>C</BigFiveC>
-	<BigFiveCDescription0>Conscientiousness</BigFiveCDescription0>
-	<BigFiveCDescription>{0} is the propensity for diligence, efficiency, organization, planning, duty, and self-discipline.</BigFiveCDescription>
-	<BigFiveE>E</BigFiveE>
-	<BigFiveEDescription0>Extroversion</BigFiveEDescription0>
-	<BigFiveEDescription>{0} is the outward pursuit of gratification, and manifests as outgoing, talkative, energetic, upbeat, assertive, and gregarious behavior.</BigFiveEDescription>
-	<BigFiveA>A</BigFiveA>
-	<BigFiveADescription0>Agreeableness</BigFiveADescription0>
-	<BigFiveADescription>{0} is the capacity for kindness, sympathy, cooperation, warmth, politeness, and compassion.</BigFiveADescription>
-	<BigFiveN>N</BigFiveN>
-	<BigFiveNDescription0>Neuroticism</BigFiveNDescription0>
-	<BigFiveNDescription>{0} is the tendency towards negative emotions such as anxiety, fear, anger, envy, guilt, and sadness.</BigFiveNDescription>
+  <!-- WITab titles -->
+  <TabPsyche>Psyche</TabPsyche>
+  
+  <!-- WITab text -->
+  <SexualityDisabledWarning>Psychologys Sexualitätssystem ist deaktiviert, entweder von dir oder von einer Mod, die Konflikte verursacht. Bitte deaktiviere jegliche Mod, die die Sexualität der Kolonisten ändert.</SexualityDisabledWarning>
+  <Sexuality>Sexualität</Sexuality>
+  <KinseyRating>Kinsey-Skala:</KinseyRating>
+  <Asexual>Asexuell</Asexual>
+  <AsexualDescription>Dieser Kolonist hat einen sehr niedrigen Sex-Drang. Diese werden nicht besonders sexuell angeregt und verzichten lieber auf intime Auseinandersetzungen.</AsexualDescription>
+  <Aromantic>Aromantisch</Aromantic>
+  <AromanticDescription>Dieser Kolonist hat einen sehr niedrigen romantischen Drang. Diese werden weniger romantische Schritte unternehmen und es ist sehr unwahrscheinlich, dass sie Heiratsanträge annehmen. Sie können destotrotz Liebhaber haben.</AromanticDescription>
+  
+  <!-- Dialog text -->
+  <EditPsyche>Entwickler-Modus</EditPsyche>
+  <PsycheEditor>Modifiziere die Psyche von {0_labelShort}:</PsycheEditor>
+  <PersonalityNodeWarning>Du editierst gerade die Grundwerte der Persönlichkeit eines Kolonisten. Die aktuellen Werte werden von anderen Faktoren angepasst.</PersonalityNodeWarning>
+  <SexDrive>Sexualtrieb:</SexDrive>
+  <RomanticDrive>Romantischer Trieb:</RomanticDrive>
 
 </LanguageData>

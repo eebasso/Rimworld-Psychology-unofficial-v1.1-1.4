@@ -2,8 +2,7 @@
 <Defs>
   <TraitDef>
     <defName>Prude</defName>
-    <!--<commonality>0.2</commonality>-->
-    <commonality>0.7</commonality> <!-- Changed the commonality to match Nudist -->
+    <commonality>0.2</commonality>
     <degreeDatas>
       <li>
         <label>prude</label>
@@ -20,20 +19,15 @@
   
   <TraitDef>
     <defName>Insomniac</defName>
-    <!--<commonality>0.1</commonality>-->
-    <commonality>0.5</commonality> 
+    <commonality>0.1</commonality>
     <degreeDatas>
       <li>
         <label>insomniac</label>
         <description>[PAWN_nameDef] finds it difficult to sleep because of [PAWN_possessive] condition. [PAWN_pronoun] will prioritize sleep less, wake up sooner, and get less rest from sleeping.</description>
-        <statOffsets>
-          <RestRateMultiplier>1.50</RestRateMultiplier>
-        </statOffsets>
       </li>
     </degreeDatas>
     <conflictingTraits>
       <li>HeavySleeper</li>
-      <li>QuickSleeper</li> <!--Added QuickSleeper -->
     </conflictingTraits>
   </TraitDef>
   
@@ -71,8 +65,7 @@
   
   <TraitDef>
     <defName>Unstable</defName>
-    <!--<commonality>0.08</commonality>-->
-    <commonality>0.4</commonality>
+    <commonality>0.08</commonality>
     <degreeDatas>
       <li>
         <label>unstable</label>
@@ -103,8 +96,7 @@
   
   <TraitDef>
     <defName>Codependent</defName>
-    <!--<commonality>0.2</commonality>-->
-     <commonality>0.4</commonality>
+    <commonality>0.2</commonality>
     <degreeDatas>
       <li>
         <label>codependent</label>
@@ -145,8 +137,7 @@
   
   <TraitDef>
     <defName>Photosensitive</defName>
-    <!--<commonality>0.08</commonality>-->
-    <commonality>0.4</commonality>
+    <commonality>0.08</commonality>
     <degreeDatas>
       <li>
         <label>photosensitive</label>
@@ -197,15 +188,13 @@
     <conflictingTraits>
       <li>Insomniac</li>
       <li>Neurotic</li>
-      <li>QuickSleeper</li>  <!--Added QuickSleeper -->
     </conflictingTraits>
   </TraitDef>
   
   <TraitDef>
     <defName>Polygamous</defName>
-    <!--<commonality>0.1</commonality>-->
-    <commonality>0.4</commonality>
-    <!--<commonalityFemale>0.08</commonalityFemale>-->
+    <commonality>0.1</commonality>
+    <commonalityFemale>0.08</commonalityFemale>
     <degreeDatas>
       <li>
         <label>polyamorous</label>
@@ -262,7 +251,6 @@
   
   <TraitDef>
     <defName>Chatty</defName>
-    <commonality>0.9</commonality> <!-- Added commonality -->
     <degreeDatas>
       <li>
         <label>chatty</label>

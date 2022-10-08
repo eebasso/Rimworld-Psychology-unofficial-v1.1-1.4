@@ -147,7 +147,7 @@
       <li>
         <label>colonist died</label>
         <description>One of our people died. If only we'd done something differently...</description>
-        <baseMoodEffect>-4</baseMoodEffect>
+        <baseMoodEffect>-3</baseMoodEffect>
       </li>
     </stages>
   </ThoughtDef>

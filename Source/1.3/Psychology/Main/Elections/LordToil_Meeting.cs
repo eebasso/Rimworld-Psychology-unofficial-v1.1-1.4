@@ -25,7 +25,7 @@ namespace Psychology
             }
         }
 
-        
+        [LogPerformance]
         public override void LordToilTick()
         {
             base.LordToilTick();
@@ -40,8 +40,7 @@ namespace Psychology
             if (meeting != null)
             {
                 meeting.ticksInSameRoom += 1;
-                //if (meeting.ticksInSameRoom % 200 == 0 && Rand.Value < 0.2f)
-                if (meeting.ticksInSameRoom % 500 == 0 && Rand.Value < 0.5f)
+                if(meeting.ticksInSameRoom % 200 == 0 && Rand.Value < 0.2f)
                 {
                     meeting.mayor.skills.Learn(SkillDefOf.Social, 0.5f);
                     MoteMaker.MakeInteractionBubble(meeting.constituent, meeting.mayor, InteractionDefOf.DeepTalk.interactionMote, InteractionDefOf.DeepTalk.GetSymbol()); // TEST in 1.3

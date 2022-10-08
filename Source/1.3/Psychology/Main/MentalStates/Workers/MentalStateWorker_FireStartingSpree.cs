@@ -6,23 +6,13 @@ using RimWorld;
 using Verse;
 using Verse.AI;
 
-namespace Psychology;
-
-public class MentalStateWorker_FireStartingSpree : MentalStateWorker
+namespace Psychology
 {
-    public override bool StateCanOccur(Pawn pawn)
+    public class MentalStateWorker_FireStartingSpree : MentalStateWorker
     {
-        Hediff hediff = pawn.health.hediffSet.GetFirstHediffOfDef(HediffDefOfPsychology.RecoveringPyromaniac);
-        //if ((hediff is Hediff_RecoveringPyromaniac hediff_RecoveringPyromaniac) != true)
-        //{
-        //    return true;
-        //}
-        if (hediff == null)
+        public override bool StateCanOccur(Pawn pawn)
         {
-            return true;
+            return !pawn.health.hediffSet.HasHediff(HediffDefOfPsychology.RecoveringPyromaniac);
         }
-        float severity = hediff.Severity;
-        float maxSeverity = hediff.def.maxSeverity;
-        return Rand.Chance(1f - severity / maxSeverity);
     }
 }

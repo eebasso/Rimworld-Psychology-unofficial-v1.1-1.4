@@ -6,31 +6,31 @@ using RimWorld;
 using Verse;
 using Verse.AI;
 
-namespace Psychology;
-
-public class JobGiver_ArmSelf : ThinkNode_JobGiver
+namespace Psychology
 {
-    // ToDo: include ranged weapons?
-    protected override Job TryGiveJob(Pawn pawn)
+    public class JobGiver_ArmSelf : ThinkNode_JobGiver
     {
-        Log.Warning("JobGiver_ArmSelf, TryGiveJob fired!");
-        if (pawn.equipment == null)
+        [LogPerformance]
+        protected override Job TryGiveJob(Pawn pawn)
         {
-            return null;
+            if(pawn.equipment == null)
+            {
+                return null;
+            }
+            IEnumerable<Thing> meleeWeapons = (from t in pawn.Map.listerThings.ThingsInGroup(ThingRequestGroup.Weapon)
+                                               where t.def.weaponTags != null && t.def.weaponTags.Contains("Melee") && pawn.CanReserveAndReach(t, PathEndMode.Touch, Danger.None)
+                                               orderby t.GetStatValue(StatDefOf.MeleeDPS) descending
+                                               select t);
+            if (meleeWeapons.Count() == 0)
+            {
+                return null;
+            }
+            Thing bestWeapon = meleeWeapons.First();
+            if (pawn.equipment.Primary != null && pawn.equipment.Primary.def.weaponTags.Contains("Melee") && pawn.equipment.Primary.GetStatValue(StatDefOf.MeleeDPS) >= bestWeapon.GetStatValue(StatDefOf.MeleeDPS))
+            {
+                return null;
+            }
+            return new Job(JobDefOf.Equip, bestWeapon);
         }
-        IEnumerable<Thing> meleeWeapons = (from t in pawn.Map.listerThings.ThingsInGroup(ThingRequestGroup.Weapon)
-                                           where t.def.weaponTags != null && t.def.weaponTags.Contains("Melee") && pawn.CanReserveAndReach(t, PathEndMode.Touch, Danger.None)
-                                           orderby t.GetStatValue(StatDefOf.MeleeDPS) descending
-                                           select t);
-        if (meleeWeapons.Count() == 0)
-        {
-            return null;
-        }
-        Thing bestWeapon = meleeWeapons.First();
-        if (pawn.equipment.Primary != null && pawn.equipment.Primary.def.weaponTags.Contains("Melee") && pawn.equipment.Primary.GetStatValue(StatDefOf.MeleeDPS) >= bestWeapon.GetStatValue(StatDefOf.MeleeDPS))
-        {
-            return null;
-        }
-        return new Job(JobDefOf.Equip, bestWeapon);
     }
 }

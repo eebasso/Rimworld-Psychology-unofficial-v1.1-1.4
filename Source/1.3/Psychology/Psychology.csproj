@@ -1,0 +1,264 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{83960198-EE67-473E-AE85-3138BE23A47E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Psychology</RootNamespace>
+    <AssemblyName>Psychology</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\..\1.3\Assemblies\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>2</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="0Harmony">
+      <HintPath>..\..\..\..\..\..\..\workshop\content\294100\2009463077\Current\Assemblies\0Harmony.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\Assembly-CSharp.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="EdBPrepareCarefully">
+      <HintPath>..\..\..\..\..\..\..\workshop\content\294100\735106432\Assemblies\EdBPrepareCarefully.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="HugsLib">
+      <HintPath>..\..\..\..\..\..\..\workshop\content\294100\818773962\v1.1\Assemblies\HugsLib.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.InteropServices.RuntimeInformation" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="UnityEngine">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.IMGUIModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.IMGUIModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.UI.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UIElementsModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.UIElementsModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UIModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.UIModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Defs\DutyDefOfPsychology.cs" />
+    <Compile Include="Defs\IncidentDefOfPsychology.cs" />
+    <Compile Include="Defs\GameConditionDefOfPsychology.cs" />
+    <Compile Include="Defs\InteractionDefOfPsychology.cs" />
+    <Compile Include="Defs\RulePackDefOfPsychology.cs" />
+    <Compile Include="Harmony\CompAbilityEffect_WordOfLove.cs" />
+    <Compile Include="Harmony\MentalState_SocialFighting.cs" />
+    <Compile Include="Defs\PersonalityNodeDefOf.cs" />
+    <Compile Include="Defs\PsychologyTexCommand.cs" />
+    <Compile Include="Harmony\Dialog_FormCaravan.cs" />
+    <Compile Include="Harmony\InteractionUtility.cs" />
+    <Compile Include="Harmony\InteractionWorker_DeepTalk.cs" />
+    <Compile Include="Harmony\NegativeInteractionUtility.cs" />
+    <Compile Include="Harmony\CharacterCardUtility.cs" />
+    <Compile Include="Harmony\Pawn_StoryTracker.cs" />
+    <Compile Include="Harmony\Performance\Attribute.cs" />
+    <Compile Include="Harmony\Performance\PerformanceSetup.cs" />
+    <Compile Include="Harmony\Performance\PerformancePatches.cs" />
+    <Compile Include="Harmony\Recipes.cs" />
+    <Compile Include="Harmony\Thing.cs" />
+    <Compile Include="Harmony\ThoughtWorker_ChemicalInterestVsTeetotaler.cs" />
+    <Compile Include="Harmony\ThoughtWorker_HardWorkerVsLazy.cs" />
+    <Compile Include="Harmony\ThoughtWorker_TeetotalerVsChemicalInterest.cs" />
+    <Compile Include="Harmony\TraitSet.cs" />
+    <Compile Include="Main\CompProperties_Psychology.cs" />
+    <Compile Include="Main\Conversations\Rendezvous\Hediff_PlannedDate.cs" />
+    <Compile Include="Main\Conversations\Rendezvous\InteractionWorker_PlanDate.cs" />
+    <Compile Include="Main\Conversations\Rendezvous\InteractionWorker_HangOut.cs" />
+    <Compile Include="Main\Conversations\Rendezvous\JobGiver_SpendTimeTogether.cs" />
+    <Compile Include="Main\Conversations\Rendezvous\LordJob_Date.cs" />
+    <Compile Include="Main\Conversations\Rendezvous\LordJob_HangOut.cs" />
+    <Compile Include="Main\Conversations\Rendezvous\LordToil_HangOut.cs" />
+    <Compile Include="Main\Conversations\PlayLogEntry_InteractionConversation.cs" />
+    <Compile Include="Main\Conversations\Rendezvous\RendezvousUtility.cs" />
+    <Compile Include="Main\Dialog_ViewPsyche.cs" />
+    <Compile Include="Main\Dialog_EditPsyche.cs" />
+    <Compile Include="Main\Elections\Candidate.cs" />
+    <Compile Include="Main\Elections\Office\CompPotentialOfficeTable.cs" />
+    <Compile Include="Main\Elections\Hediff_Mayor.cs" />
+    <Compile Include="Main\Elections\JobGiver_Vote.cs" />
+    <Compile Include="Main\Elections\Office\OfficeTableMapComponent.cs" />
+    <Compile Include="Main\Elections\Office\RoomRoleWorker_Office.cs" />
+    <Compile Include="Main\Funerals\Hediff_Funeral.cs" />
+    <Compile Include="Main\Funerals\LordJob_Joinable_Funeral.cs" />
+    <Compile Include="Main\Elections\LordJob_VisitMayor.cs" />
+    <Compile Include="Main\Elections\LordJob_Joinable_Election.cs" />
+    <Compile Include="Main\Elections\LordToil_Meeting.cs" />
+    <Compile Include="Main\Elections\LordToil_Election.cs" />
+    <Compile Include="Main\Conversations\Hediff_Conversation.cs" />
+    <Compile Include="Main\Elections\IncidentWorker_Election.cs" />
+    <Compile Include="Main\Elections\GameCondition_Election.cs" />
+    <Compile Include="Main\Conversations\InteractionWorker_Conversation.cs" />
+    <Compile Include="Harmony\InteractionWorker_MarriageProposal.cs" />
+    <Compile Include="Harmony\JobGiver_DoLovin.cs" />
+    <Compile Include="Harmony\VoluntarilyJoinableLordsStarter.cs" />
+    <Compile Include="Main\Alerts\Alert_Individuality.cs" />
+    <Compile Include="Harmony\ThoughtWorker_WantToSleepWithSpouseOrLover.cs" />
+    <Compile Include="Main\Funerals\LordToil_Funeral.cs" />
+    <Compile Include="Main\Medical\Treatments\Recipe_TreatInsomnia.cs" />
+    <Compile Include="Main\Medical\Treatments\Recipe_CureAnxiety.cs" />
+    <Compile Include="Main\MentalStates\Jobs\JobDriver_BreakHunt.cs" />
+    <Compile Include="Main\MentalStates\Jobs\JobGiver_GoHunting.cs" />
+    <Compile Include="Main\MentalStates\MentalState_HuntingTrip.cs" />
+    <Compile Include="Main\MentalStates\Workers\MentalStateWorker_HuntingTrip.cs" />
+    <Compile Include="Main\PrepareCarefully\SaveRecordPsycheV4.cs" />
+    <Compile Include="Main\Recruiting\LordJob_WardenTour.cs" />
+    <Compile Include="Main\Recruiting\LordToil_WardenTour.cs" />
+    <Compile Include="Main\Recruiting\Pawn_TourMemories.cs" />
+    <Compile Include="Main\Recruiting\RecruitingUtility.cs" />
+    <Compile Include="Main\ThoughtWorkers\ThoughtWorker_LDR.cs" />
+    <Compile Include="Main\ThoughtWorkers\ThoughtWorker_SurvivedTogether.cs" />
+    <Compile Include="Main\ThoughtWorkers\ThoughtWorker_Sedentary.cs" />
+    <Compile Include="Main\Thought_MemoryDynamic.cs" />
+    <Compile Include="Main\ITab_Pawn_Psyche.cs" />
+    <Compile Include="Main\Pawn_PsycheTracker.cs" />
+    <Compile Include="Main\Personality\PersonalityNode.cs" />
+    <Compile Include="Main\Personality\PersonalityNodeMaker.cs" />
+    <Compile Include="Main\Personality\PersonalityNodeParent.cs" />
+    <Compile Include="Main\Personality\PersonalityNodeSkillModifier.cs" />
+    <Compile Include="Main\Personality\PersonalityNodeIncapableModifier.cs" />
+    <Compile Include="Main\Personality\PersonalityNodeTraitModifier.cs" />
+    <Compile Include="Main\Personality\PersonalityNodeDef.cs" />
+    <Compile Include="Main\PsycheCardUtility.cs" />
+    <Compile Include="Harmony\ThoughtWorker_Hediff.cs" />
+    <Compile Include="Main\Thought_MemorySocialDynamic.cs" />
+    <Compile Include="Main\Medical\Treatments\Recipe_TreatDepression.cs" />
+    <Compile Include="Harmony\ThoughtWorker_AlwaysActiveDepression.cs" />
+    <Compile Include="Main\Thought_WantToSleepWithSpouseOrLoverPsychology.cs" />
+    <Compile Include="Main\Thought_TreatmentFailed.cs" />
+    <Compile Include="Main\MentalStates\Jobs\JobGiver_ArmSelf.cs" />
+    <Compile Include="Main\MentalStates\Jobs\JobGiver_EnactPlot.cs" />
+    <Compile Include="Main\MentalStates\MentalState_FellPlotting.cs" />
+    <Compile Include="Main\MentalStates\MentalState_Paranoia.cs" />
+    <Compile Include="Main\MentalStates\Workers\MentalStateWorker_FellPlotting.cs" />
+    <Compile Include="Harmony\MentalStateWorker_BingingDrug.cs" />
+    <Compile Include="Main\Medical\Treatments\Hediff_DrugFree.cs" />
+    <Compile Include="Main\Medical\Treatments\Hediff_RecoveringPyromaniac.cs" />
+    <Compile Include="Harmony\InteractionWorker_RecruitAttempt.cs" />
+    <Compile Include="Harmony\Building_Grave.cs" />
+    <Compile Include="Harmony\MentalBreaker.cs" />
+    <Compile Include="Harmony\Pawn.cs" />
+    <Compile Include="Harmony\ChildRelationUtility.cs" />
+    <Compile Include="Harmony\FoodUtility.cs" />
+    <Compile Include="Harmony\InteractionWorker_Breakup.cs" />
+    <Compile Include="Harmony\InteractionWorker_RomanceAttempt.cs" />
+    <Compile Include="Harmony\LovePartnerRelationUtility.cs" />
+    <Compile Include="Harmony\PawnGenerator.cs" />
+    <Compile Include="Harmony\PawnObserver.cs" />
+    <Compile Include="Harmony\PawnRelationWorker_Sibling.cs" />
+    <Compile Include="Harmony\Pawn_JobTracker.cs" />
+    <Compile Include="Harmony\PawnDiedOrDownedThoughtsUtility.cs" />
+    <Compile Include="Main\MentalStates\Jobs\JobDriver_MakeAdvance.cs" />
+    <Compile Include="Main\MentalStates\Jobs\JobDriver_Abuse.cs" />
+    <Compile Include="Main\MentalStates\Jobs\JobGiver_MakeAdvance.cs" />
+    <Compile Include="Main\MentalStates\Jobs\JobGiver_Compulsion.cs" />
+    <Compile Include="Main\MentalStates\Jobs\JobGiver_Apathy.cs" />
+    <Compile Include="Main\MentalStates\Jobs\JobGiver_Abuse.cs" />
+    <Compile Include="Main\MentalStates\Workers\MentalStateWorker_Compulsion.cs" />
+    <Compile Include="Main\MentalStates\Workers\MentalStateWorker_Abuse.cs" />
+    <Compile Include="Main\MentalStates\Workers\MentalStateWorker_Histrionic.cs" />
+    <Compile Include="Main\MentalStates\Workers\MentalStateWorker_FireStartingSpree.cs" />
+    <Compile Include="Main\MentalStates\MentalState_Histrionic.cs" />
+    <Compile Include="Main\MentalStates\MentalState_SelfHarm.cs" />
+    <Compile Include="Main\MentalStates\MentalState_Compulsion.cs" />
+    <Compile Include="Main\MentalStates\MentalState_Apathy.cs" />
+    <Compile Include="Main\MentalStates\MentalState_Antisocial.cs" />
+    <Compile Include="Main\MentalStates\MentalState_Abuse.cs" />
+    <Compile Include="Defs\TaleDefOfPsychology.cs" />
+    <Compile Include="Defs\RecipeDefOfPsychology.cs" />
+    <Compile Include="Main\Medical\Treatments\Recipe_TreatChemicalFascination.cs" />
+    <Compile Include="Main\Medical\Treatments\Recipe_Treatment.cs" />
+    <Compile Include="Main\Medical\Treatments\Recipe_TreatChemicalInterest.cs" />
+    <Compile Include="Main\Medical\Treatments\Recipe_TreatPyromaniac.cs" />
+    <Compile Include="Defs\StatDefOfPsychology.cs" />
+    <Compile Include="Harmony\ThoughtWorker_CreepyBreathing.cs" />
+    <Compile Include="Harmony\ThoughtWorker_AnnoyingVoice.cs" />
+    <Compile Include="Harmony\ThoughtWorker_Ugly.cs" />
+    <Compile Include="Harmony\ThoughtWorker_Pretty.cs" />
+    <Compile Include="Harmony\ThoughtWorker_Disfigured.cs" />
+    <Compile Include="Harmony\Need_Outdoors.cs" />
+    <Compile Include="Defs\JobDefOfPsychology.cs" />
+    <Compile Include="Main\Pawn_SexualityTracker.cs" />
+    <Compile Include="Main\CompPsychology.cs" />
+    <Compile Include="Defs\HediffDefOfPsychology.cs" />
+    <Compile Include="Main\ThoughtWorkers\ThoughtWorker_Individuality.cs" />
+    <Compile Include="Main\ThoughtWorkers\ThoughtWorker_PanicAttack.cs" />
+    <Compile Include="Main\ThoughtWorkers\ThoughtWorker_Polygamous.cs" />
+    <Compile Include="Harmony\RecordsUtility.cs" />
+    <Compile Include="Harmony\Need_Rest.cs" />
+    <Compile Include="Harmony\Pawn_RelationsTracker.cs" />
+    <Compile Include="Harmony\JobGiver_GetRest.cs" />
+    <Compile Include="Harmony\Recipe_InstallArtificialBodyPart.cs" />
+    <Compile Include="Harmony\Recipe_InstallImplant.cs" />
+    <Compile Include="Harmony\Recipe_InstallNaturalBodyPart.cs" />
+    <Compile Include="Harmony\Recipe_Surgery.cs" />
+    <Compile Include="Harmony\TendUtility.cs" />
+    <Compile Include="Main\InteractionWorkers\InteractionWorker_PrudeSeen.cs" />
+    <Compile Include="Main\PsycheHelper.cs" />
+    <Compile Include="PsychologyBase.cs" />
+    <Compile Include="Main\ThoughtWorkers\ThoughtWorker_Light.cs" />
+    <Compile Include="Main\ThoughtWorkers\ThoughtWorker_Pluviophile.cs" />
+    <Compile Include="Main\ThoughtWorkers\ThoughtWorker_Outdoorsy.cs" />
+    <Compile Include="Main\ThoughtWorkers\ThoughtWorker_Codependency.cs" />
+    <Compile Include="Defs\ThoughtDefOfPsychology.cs" />
+    <Compile Include="Harmony\ThoughtUtility.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Main\Medical\Hediff_Anxiety.cs" />
+    <Compile Include="Main\ThoughtWorkers\ThoughtWorker_RandomMoodBipolar.cs" />
+    <Compile Include="Defs\TraitDefOfPsychology.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
