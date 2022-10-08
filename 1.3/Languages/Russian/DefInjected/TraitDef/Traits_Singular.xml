@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+    <Prude.degreeDatas.prude.label>ханжа</Prude.degreeDatas.prude.label>
+    <Prude.degreeDatas.prude.description>[PAWN_nameDef] не выносит вид человеческого тела. [PAWN_pronoun] будет сильнее расстраиваться, нося рваную одежду и особенно расстроится, если будет без одежды вообще или увидит другого человека голым.</Prude.degreeDatas.prude.description>
+
+    <Insomniac.degreeDatas.insomniac.label>бессонница</Insomniac.degreeDatas.insomniac.label>
+    <Insomniac.degreeDatas.insomniac.description>[PAWN_nameDef] имеет трудности со сном из-за своей болезни. [PAWN_pronoun] будет раньше просыпаться, меньше спать и хуже высыпаться.</Insomniac.degreeDatas.insomniac.description>
+
+    <BleedingHeart.degreeDatas.bleeding_heart.label>чуткое сердце</BleedingHeart.degreeDatas.bleeding_heart.label>
+    <BleedingHeart.degreeDatas.bleeding_heart.description>[PAWN_nameDef] обладает большим сердцем и с лёгкостью поддаётся сильным эмоциям. [PAWN_pronoun] любит помогать другим людям и не выносит насилия и несправедливости. [PAWN_pronoun] легче поддаётся негативному влиянию подобных вещей.</BleedingHeart.degreeDatas.bleeding_heart.description>
+
+    <Gourmet.degreeDatas.gourmet.label>гурман</Gourmet.degreeDatas.gourmet.label>
+    <Gourmet.degreeDatas.gourmet.description>[PAWN_nameDef] очень критично относится к любой еде. [PAWN_pronoun] всегда ожидает хорошего качества блюд и расстроится, если [PAWN_possessive] требования к еде не будут соблюдаться.</Gourmet.degreeDatas.gourmet.description>
+
+    <Unstable.degreeDatas.unstable.label>нестабильность</Unstable.degreeDatas.unstable.label>
+    <Unstable.degreeDatas.unstable.description>Для [PAWN_nameDef] характеры внезапные и более неприятные скачки настроения, чем для остальных.</Unstable.degreeDatas.unstable.description>
+
+    <Lecher.degreeDatas.lecher.label>похоть</Lecher.degreeDatas.lecher.label>
+    <Lecher.degreeDatas.lecher.description>[PAWN_nameDef] обладает невероятной похотью и постоянно разбивает окружающим сердца. [PAWN_pronoun] будет приставать ко всему, что движется, вне зависимости от последствий.</Lecher.degreeDatas.lecher.description>
+
+    <Codependent.degreeDatas.codependent.label>эмоциональная зависимость</Codependent.degreeDatas.codependent.label>
+    <Codependent.degreeDatas.codependent.description>[PAWN_nameDef] очень нуждается в романтическом внимании и не знает счастья без отношений. Разрывы и измены будут особенно травмировать [PAWN_possessive].</Codependent.degreeDatas.codependent.description>
+
+    <Outdoorsy.degreeDatas.outdoorsy.label>любовь к природе</Outdoorsy.degreeDatas.outdoorsy.label>
+    <Outdoorsy.degreeDatas.outdoorsy.description>[PAWN_nameDef] любит быть на свежем воздухе. [PAWN_pronoun] получает бонус к настроению, когда находится в открытом пространстве.</Outdoorsy.degreeDatas.outdoorsy.description>
+
+    <Pluviophile.degreeDatas.pluviophile.label>плювиофилия</Pluviophile.degreeDatas.pluviophile.label>
+    <Pluviophile.degreeDatas.pluviophile.description>[PAWN_nameDef] обожает дожди. [PAWN_pronoun] получает бонус к настроению, каждый раз когда идёт дождь, особенно находясь под ним.</Pluviophile.degreeDatas.pluviophile.description>
+
+    <Photosensitive.degreeDatas.photosensitive.label>светочувствительность</Photosensitive.degreeDatas.photosensitive.label>
+    <Photosensitive.degreeDatas.photosensitive.description>Глаза [PAWN_nameDef] очень чувствительны к свету, вследствие мутации или намеренного генетического вмешательства. [PAWN_pronoun] очень болезненно переносит яркий свет, а искусственное освещение считает раздражительным. Напротив, [PAWN_pronoun] прекрасно чувствует себя в темноте.</Photosensitive.degreeDatas.photosensitive.description>
+
+    <Socialite.degreeDatas.socialite.label>социальность</Socialite.degreeDatas.socialite.label>
+    <Socialite.degreeDatas.socialite.description>[PAWN_nameDef] обожает вечеринки! Одно [PAWN_possessive] присутствие является поводом для частых вечеринок, потому что всем нравится находиться рядом с [PAWN_nameDef].</Socialite.degreeDatas.socialite.description>
+
+    <Desensitized.degreeDatas.desensitized.label>бесчувственность к насилию</Desensitized.degreeDatas.desensitized.label>
+    <Desensitized.degreeDatas.desensitized.description>[PAWN_nameDef] видит столько насилия и смерти в своей жизни, что всё это больше не вызывает у н[PAWN_possessive] никаких эмоций.</Desensitized.degreeDatas.desensitized.description>
+
+    <HeavySleeper.degreeDatas.heavy_sleeper.label>мертвецкий сон</HeavySleeper.degreeDatas.heavy_sleeper.label>
+    <HeavySleeper.degreeDatas.heavy_sleeper.description>[PAWN_nameDef] не разбудить даже артиллерийской канонадой. [PAWN_possessive] сон невозможно потревожить, но и разбудить очень тяжело.</HeavySleeper.degreeDatas.heavy_sleeper.description>
+
+    <Polygamous.degreeDatas.polyamorous.label>полиамор</Polygamous.degreeDatas.polyamorous.label>
+    <Polygamous.degreeDatas.polyamorous.description>[PAWN_nameDef] не видит проблемы в отношениях сразу с несколькими партнёрами. [PAWN_pronoun] не расстроится, если [PAWN_possessive] партнёр будет заигрывать с другими персонажами, но в моногамных отношениях счастья испытывать не будет.</Polygamous.degreeDatas.polyamorous.description>
+
+    <OpenMinded.degreeDatas.openminded.label>непредвзятость</OpenMinded.degreeDatas.openminded.label>
+    <OpenMinded.degreeDatas.openminded.description>Для [PAWN_nameDef] важно только то, что у людей внутри, а не снаружи. [PAWN_pronoun] не будет судить окружающих по внешнему виду.</OpenMinded.degreeDatas.openminded.description>
+
+
+    <Sedentary.degreeDatas.sedentary.label>сидячий образ жизни</Sedentary.degreeDatas.sedentary.label>
+    <Sedentary.degreeDatas.sedentary.description>[PAWN_nameDef] не очень активный персонаж. [PAWN_possessive] оставляет желать лучшего, но [PAWN_pronoun] любит сидеть днями напролёт и работать над чем-то.</Sedentary.degreeDatas.sedentary.description>
+
+    <Chatty.degreeDatas.chatty.label>разговорчивый</Chatty.degreeDatas.chatty.label>
+    <Chatty.degreeDatas.chatty.description>[PAWN_nameDef] говорит, говорит, говорит... и говорит. [PAWN_pronoun] чаще чем другие растягивает беседы, потому что, похоже, совсем не умеет их заканчивать.</Chatty.degreeDatas.chatty.description>
+
+
+</LanguageData>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <MethadoneHigh.label>Под метадоном</MethadoneHigh.label>
+
+
+  <!-- Methadone addiction -->
+  <MethadoneTolerance.label>толерантность к метадону</MethadoneTolerance.label>
+  <MethadoneTolerance.stages.small-0.label>небольшая</MethadoneTolerance.stages.small-0.label>
+  <MethadoneTolerance.stages.small-1.label>небольшая</MethadoneTolerance.stages.small-1.label>
+  <MethadoneTolerance.stages.large.label>средняя</MethadoneTolerance.stages.large.label>
+  <MethadoneTolerance.stages.massive.label>сильная</MethadoneTolerance.stages.massive.label>
+
+  <MethadoneAddiction.label>метадоновая зависимость</MethadoneAddiction.label>
+  <MethadoneAddiction.stages.withdrawal.label>метадоновая ломка</MethadoneAddiction.stages.withdrawal.label>
+
+
+</LanguageData>

@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <KinseyDisable>检测到启用了其它影响 romance/sexuality 的mod，金赛量表已被禁用。</KinseyDisable>
+  <KinseyDetourDisable>为了保护兼容性，已禁用一部分特性及其相关功能。将那些特性的共性值设置为0.</KinseyDetourDisable>
+  <MedicalDetourDisable>检测到启用了其它影响医疗/手术系统的mod，已禁用一部分特性及其相关功能。This will remove some functionality from Bleeding Heart pawns unless the mod in question is Less Arbitrary Surgery.</MedicalDetourDisable>
+  <DuplicateDefLabel>检测到{0}上的 PersonalityNodeDef  标签重复。请反馈这一点以便翻译能够及时修复。</DuplicateDefLabel>
+
+</LanguageData>

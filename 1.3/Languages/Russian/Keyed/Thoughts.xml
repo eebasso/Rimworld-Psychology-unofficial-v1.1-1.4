@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+
+	<ComplaintLabel>разговор с мэром</ComplaintLabel>
+	<ComplaintDesc>Разговор с мэром заставил меня себя чувствовать следующим образом.</ComplaintDesc>
+	
+	<VisitLabel>разговор с избирателем</VisitLabel>
+	<VisitDesc>Визит избирателя заставил меня себя чувствовать следующим образом.</VisitDesc>
+	
+	<AttendedFuneralThought>посещены похороны {0}</AttendedFuneralThought>
+	<AttendedFuneralDesc>До сих пор не могу поверь, что {0_pronoun} больше не с нами, однако... Я чувствую себя более умиротворённо после похорон.</AttendedFuneralDesc>
+
+</LanguageData>

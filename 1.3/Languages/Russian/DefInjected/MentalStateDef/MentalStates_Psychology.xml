@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <FellPlotting.label>сумасшедший заговор</FellPlotting.label>
+  <FellPlotting.baseInspectLine>Душевное состояние: планирует заговор</FellPlotting.baseInspectLine>
+  <FellPlotting.beginLetter>{0} прячется в своей комнате и что-то замышляет.</FellPlotting.beginLetter>
+  <FellPlotting.beginLetterLabel>сумасшедший заговор</FellPlotting.beginLetterLabel>
+  <FellPlotting.recoveryMessage>{0} {PAWN_gender ? пришёл : пришла} в себя и {PAWN_gender ? прекратил : прекратила} строить свой сумасшедший заговор.</FellPlotting.recoveryMessage>
+  
+  <SelfHarm.label>членовредительство</SelfHarm.label>
+  <SelfHarm.baseInspectLine>Душевное состояние: членовредительство</SelfHarm.baseInspectLine>
+  <SelfHarm.beginLetter>{0} {PAWN_gender ? перерезал : перерезала} себе запястья и теперь прячется в своей комнате.</SelfHarm.beginLetter>
+  <SelfHarm.beginLetterLabel>членовредительство</SelfHarm.beginLetterLabel>
+  <SelfHarm.recoveryMessage>{0} {PAWN_gender ? прекратил : прекратила} наносить себе вред.</SelfHarm.recoveryMessage>
+
+  <Paranoia.label>паранойя</Paranoia.label>
+  <Paranoia.baseInspectLine>Душевное состояние: паранойя</Paranoia.baseInspectLine>
+  <Paranoia.beginLetter>{0} что-то параноидально бормочет себе под нос.</Paranoia.beginLetter>
+  <Paranoia.beginLetterLabel>паранойя</Paranoia.beginLetterLabel>
+  <Paranoia.recoveryMessage>{0} {PAWN_gender ? оправился : оправилась} от своего приступа паранойи.</Paranoia.recoveryMessage>
+  
+  <Abuse.label>вербальная агрессия</Abuse.label>
+  <Abuse.baseInspectLine>Душевное состояние: вербальная агрессия</Abuse.baseInspectLine>
+  <Abuse.beginLetter>{0} в ярости и оскорбляет всех, кого видит.</Abuse.beginLetter>
+  <Abuse.beginLetterLabel>вербальная агрессия</Abuse.beginLetterLabel>
+  <Abuse.recoveryMessage>{0} {PAWN_gender ? прекратил : прекратила} оскорблять окружающих.</Abuse.recoveryMessage>
+  
+  <Compulsion.label>компульсивная уборка</Compulsion.label>
+  <Compulsion.baseInspectLine>Душевное состояние: компульсивная уборка</Compulsion.baseInspectLine>
+  <Compulsion.beginLetter>{0} чистит и убирает как {PAWN_gender ? одержимый : одержимая} всё, что видит, не обращая внимания на то, что с {PAWN_gender ? ним : ней} происходит.</Compulsion.beginLetter>
+  <Compulsion.beginLetterLabel>компульсивная уборка</Compulsion.beginLetterLabel>
+  <Compulsion.recoveryMessage>{0} {PAWN_gender ? прекратил : прекратила} убирать всё, что видит.</Compulsion.recoveryMessage>
+  
+  <Antisocial.label>антисоциальность</Antisocial.label>
+  <Antisocial.baseInspectLine>Душевное состояние: антисоциальность</Antisocial.baseInspectLine>
+  <Antisocial.beginLetter>{0} избегает других поселенцев.</Antisocial.beginLetter>
+  <Antisocial.beginLetterLabel>антисоциальность</Antisocial.beginLetterLabel>
+  <Antisocial.recoveryMessage>{0} {PAWN_gender ? прекратил : прекратила} избегать других поселенцев.</Antisocial.recoveryMessage>
+  
+  <Apathy.label>апатия</Apathy.label>
+  <Apathy.baseInspectLine>Душевное состояние: апатия</Apathy.baseInspectLine>
+  <Apathy.beginLetter>{0} впадает в апатию и вряд ли будет выполнять какую-либо работу.</Apathy.beginLetter>
+  <Apathy.beginLetterLabel>апатия</Apathy.beginLetterLabel>
+  <Apathy.recoveryMessage>{0} {PAWN_gender ? вышел : вышла} из состояния апатии.</Apathy.recoveryMessage>
+  
+  <Histrionic.label>гистрионическое расстройство</Histrionic.label>
+  <Histrionic.baseInspectLine>Душевное состояние: гистрионическое расстройство</Histrionic.baseInspectLine>
+  <Histrionic.beginLetter>{0} впадает в истерику и отчаянно ищет внимания.</Histrionic.beginLetter>
+  <Histrionic.beginLetterLabel>гистрионическое расстройство</Histrionic.beginLetterLabel>
+  <Histrionic.recoveryMessage>{0} {PAWN_gender ? оправился : оправилась} от своей истерики.</Histrionic.recoveryMessage>
+  
+  <HuntingTrip.label>побег на природу</HuntingTrip.label>
+  <HuntingTrip.baseInspectLine>Душевное состояние: побег на природу</HuntingTrip.baseInspectLine>
+  <HuntingTrip.beginLetter>{0} сбегает на природу и пытается отвлечься охотой.</HuntingTrip.beginLetter>
+  <HuntingTrip.beginLetterLabel>побег на природу</HuntingTrip.beginLetterLabel>
+  <HuntingTrip.recoveryMessage>{0} {PAWN_gender ? решил : решила} вернуться обратно с охоты.</HuntingTrip.recoveryMessage>
+  
+
+
+</LanguageData>

@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <FeelingRandomBipolar.stages.0.label>感到兴奋</FeelingRandomBipolar.stages.0.label>
+  <FeelingRandomBipolar.stages.0.description>不知道为什么，我现在感觉非常兴奋！</FeelingRandomBipolar.stages.0.description>
+  <FeelingRandomBipolar.stages.1.label>感觉很棒</FeelingRandomBipolar.stages.1.label>
+  <FeelingRandomBipolar.stages.1.description>不知道为什么，我现在感觉棒极了。</FeelingRandomBipolar.stages.1.description>
+  <FeelingRandomBipolar.stages.2.label>感觉不错</FeelingRandomBipolar.stages.2.label>
+  <FeelingRandomBipolar.stages.2.description>不知道为什么，我现在感觉心情愉快。</FeelingRandomBipolar.stages.2.description>
+  <FeelingRandomBipolar.stages.3.label>感觉不妙</FeelingRandomBipolar.stages.3.label>
+  <FeelingRandomBipolar.stages.3.description>不知道为什么，我现在觉得心情不是很好。</FeelingRandomBipolar.stages.3.description>
+  <FeelingRandomBipolar.stages.4.label>感觉很糟</FeelingRandomBipolar.stages.4.label>
+  <FeelingRandomBipolar.stages.4.description>不知道为什么，我现在感觉糟透了。</FeelingRandomBipolar.stages.4.description>
+  <FeelingRandomBipolar.stages.5.label>感到绝望</FeelingRandomBipolar.stages.5.label>
+  <FeelingRandomBipolar.stages.5.description>不知道为什么，我现在感觉非常绝望……</FeelingRandomBipolar.stages.5.description>
+
+  <Codependency.stages.0.label>感到孤独</Codependency.stages.0.label>
+  <Codependency.stages.0.description>我好孤单……真希望有人能陪伴我。</Codependency.stages.0.description>
+  <Codependency.stages.1.label>恋爱依赖</Codependency.stages.1.label>
+  <Codependency.stages.1.description>我爱我的伴侣，没了另一半我都不知道应该怎么活下去。</Codependency.stages.1.description>
+  <Codependency.stages.2.label>婚姻依赖</Codependency.stages.2.label>
+  <Codependency.stages.2.description>我爱我的伴侣，没了另一半我都不知道应该怎么活下去。</Codependency.stages.2.description>
+  <Codependency.stages.3.label>绝望忧伤</Codependency.stages.3.label>
+  <Codependency.stages.3.description>我的伴侣去世了……我的生命好像也失去了意义。</Codependency.stages.3.description>
+
+  <Outdoorsy.stages.0.label>苍穹之下</Outdoorsy.stages.0.label>
+  <Outdoorsy.stages.0.description>我爱这无际的天空！</Outdoorsy.stages.0.description>
+  <Outdoorsy.stages.1.label>苍穹之下</Outdoorsy.stages.1.label>
+  <Outdoorsy.stages.1.description>啊~这天地真是广阔！</Outdoorsy.stages.1.description>
+
+  <Pluviophile.stages.0.label>室外雨落</Pluviophile.stages.0.label>
+  <Pluviophile.stages.0.description>我喜欢倾听雨滴落下啪嗒啪嗒的声音。</Pluviophile.stages.0.description>
+  <Pluviophile.stages.1.label>雨中漫步</Pluviophile.stages.1.label>
+  <Pluviophile.stages.1.description>这雨点打在身上真让我感到放松，什么？我湿透了？没关系~我喜欢这种感觉。</Pluviophile.stages.1.description>
+
+  <PolygamousRelationship.stages.0.label>一夫一妻制</PolygamousRelationship.stages.0.label>
+  <PolygamousRelationship.stages.0.description>我希望我的爱能不止局限于一个人……</PolygamousRelationship.stages.0.description>
+
+  <EnvironmentDarkLightSensitive.stages.0.label>在黑暗中</EnvironmentDarkLightSensitive.stages.0.label>
+  <EnvironmentDarkLightSensitive.stages.0.description>啊~黑暗真让人觉得舒心。</EnvironmentDarkLightSensitive.stages.0.description>
+  <EnvironmentDarkLightSensitive.stages.1.label>在光亮中</EnvironmentDarkLightSensitive.stages.1.label>
+  <EnvironmentDarkLightSensitive.stages.1.description>嗷！有点太亮了！</EnvironmentDarkLightSensitive.stages.1.description>
+  <EnvironmentDarkLightSensitive.stages.2.label>在耀眼的光亮中</EnvironmentDarkLightSensitive.stages.2.label>
+  <EnvironmentDarkLightSensitive.stages.2.description>我的眼睛！我要被亮瞎了！</EnvironmentDarkLightSensitive.stages.2.description>
+
+  <Sedentary.stages.0.label>安定下来</Sedentary.stages.0.label>
+  <Sedentary.stages.0.description>不用再四处奔波真是太好了。</Sedentary.stages.0.description>
+  <Sedentary.stages.1.label>舒适安定</Sedentary.stages.1.label>
+  <Sedentary.stages.1.description>能有个舒适的地方休息真是太棒了。</Sedentary.stages.1.description>
+
+
+</LanguageData>

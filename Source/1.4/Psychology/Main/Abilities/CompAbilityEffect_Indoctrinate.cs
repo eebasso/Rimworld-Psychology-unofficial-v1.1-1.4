@@ -39,6 +39,10 @@ public class CompAbilityEffect_Indoctrinate : CompAbilityEffect
 
     public override bool Valid(LocalTargetInfo target, bool throwMessages = false)
     {
+        if (target == null)
+        {
+            return false;
+        }
         Pawn pawn = target.Pawn;
         if (pawn == null)
         {
@@ -95,8 +99,12 @@ public class CompAbilityEffect_Indoctrinate : CompAbilityEffect
 
     public override string ExtraLabelMouseAttachment(LocalTargetInfo target)
     {
-        Pawn initiator = parent.pawn;
+        if (target == null || !Valid(target))
+        {
+            return null;
+        }
         Pawn recipient = target.Pawn;
+        Pawn initiator = parent.pawn;
         float multiplier = AbilityMultiplier(initiator, recipient);
         return PsycheHelper.Comp(recipient).Psyche.IdeoAbilityEffectOnPsycheTooltip(multiplier);
     }

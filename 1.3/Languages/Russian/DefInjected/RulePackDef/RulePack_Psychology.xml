@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+    <Sentence_SocialFightConvoInitiatorStarted.rulePack.rulesStrings.0>sent->Их противоречия перерастают в конфликт и [INITIATOR_nameDef] начинает драку!</Sentence_SocialFightConvoInitiatorStarted.rulePack.rulesStrings.0>
+    <Sentence_SocialFightConvoRecipientStarted.rulePack.rulesStrings.0>sent->Их противоречия перерастают в конфликт и [RECIPIENT_nameDef] начинает драку!</Sentence_SocialFightConvoRecipientStarted.rulePack.rulesStrings.0>
+
+</LanguageData>

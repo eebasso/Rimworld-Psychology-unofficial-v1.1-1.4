@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<!--<CertaintyChangePerDay>Daily change due to mood + personality</CertaintyChangePerDay>-->
+
+	<CertaintyChangePerDay>Change per day</CertaintyChangePerDay>
+	<AbilityIdeoConvertBreakdownPsychologyEffects>Personality</AbilityIdeoConvertBreakdownPsychologyEffects>
+	<AbilityIdeoConvertBreakdownPawnCompatWithIdeo>{PAWN_labelShort}'s compatiblity with {IDEO}</AbilityIdeoConvertBreakdownPawnCompatWithIdeo>
+	<AbilityIdeoConvertBreakdownPawnIncompatWithIdeo>{PAWN_labelShort}'s incompatiblity with {IDEO}</AbilityIdeoConvertBreakdownPawnIncompatWithIdeo>
+	<PsycheCurrentlyDisabled>Psyche currenlty disabled</PsycheCurrentlyDisabled>
+
+	<!-- WITab title -->
+	<TabPsyche>Psyche</TabPsyche>
+
+	<!-- Sexuality disabled warning -->
+	<SexualityDisabledWarning>Psychology's sexuality system is disabled, either by you or by the presence of a conflicting mod on your mod list. Please disable any other mods that alter colonist sexuality or interaction.</SexualityDisabledWarning>
+
+	<!-- Kinsey display and tooltip-->
+	<KinseyRating>Kinsey rating:</KinseyRating>
+	<KinseyDescription0>Kinsey scale</KinseyDescription0>
+	<KinseyDescription>The {0} describes a person's sexual orientation, and ranges from 0, meaning exclusively heterosexual, to a 6, meaning exclusively homosexual.\n\nKinsey chose seven categories for the sake of simplicity, and wrote that "it should be recognized that the reality includes individuals of every intermediate type, lying in a continuum between the two extremes and between each and every category on the scale."</KinseyDescription>
+
+	<!-- Sex drive display and tooltip-->
+	<SexDrive0>Asexual</SexDrive0>
+	<SexDrive1>Low sex drive</SexDrive1>
+	<SexDrive2>Medium sex drive</SexDrive2>
+	<SexDrive3>High sex drive</SexDrive3>
+	<SexDrive4>Extreme sex drive</SexDrive4>
+	<SexDriveDescription0>Sex drive</SexDriveDescription0>
+	<SexDriveDescription>{0}, also known as libido, describes a person's overall desire for sexual activity.</SexDriveDescription>
+	<AsexualDescription>This pawn has a very low sex drive. They don't experience much sexual attraction and are unlikely to engage in anything intimate, but may still engage in romance.</AsexualDescription>
+
+	<!-- Romance drive display and tooltip -->
+	<RomanticDrive0>Aromantic</RomanticDrive0>
+	<RomanticDrive1>Low romantic drive</RomanticDrive1>
+	<RomanticDrive2>Medium romantic drive</RomanticDrive2>
+	<RomanticDrive3>High romantic drive</RomanticDrive3>
+	<RomanticDrive4>Extreme romantic drive</RomanticDrive4>
+	<RomanticDriveDescription0>Romantic drive</RomanticDriveDescription0>
+	<RomanticDriveDescription>{0} describes a person's overall desire for romantic relationships.</RomanticDriveDescription>
+	<AromanticDescription>This pawn has a very low romantic drive. They are unlikely to make romance attempts or accept marriage proposals, but may still take lovers.</AromanticDescription>
+
+	<!-- Display options -->
+	<OptionsText4>Word cloud</OptionsText4>
+	<OptionsText3>List least</OptionsText3>
+	<OptionsText2>List more</OptionsText2>
+	<OptionsText1>List most</OptionsText1>
+	<OptionsText0>List all</OptionsText0>
+	<UseColors>Colorize traits</UseColors>
+	<ListAlphabetical>List alphabetical</ListAlphabetical>
+	<UseAntonyms>Use antonyms</UseAntonyms>
+	
+	<!-- Edit Psyche text -->
+	<EditPsyche>Edit</EditPsyche>
+	<PsycheEditor>Modifying the psyche of {0}:</PsycheEditor>
+	<PsycheEditorNewColonist>Modifying colonist's psyche:</PsycheEditorNewColonist>
+	<PersonalityNodeWarning>You are editing the raw values of a pawn's personality. The actual stats will be adjusted by other factors.</PersonalityNodeWarning>
+	<SexDrive>Sex drive:</SexDrive>
+	<RomanticDrive>Romantic drive:</RomanticDrive>
+	<PsycheResetTooltip>Reset this pawn's psyche to default based on their unique HashCode ID.</PsycheResetTooltip>
+
+	<!-- Node descriptions -->
+	<PsycheNot>Not</PsycheNot>
+	<PsycheSlightly>Slightly</PsycheSlightly>
+	<PsycheLess>Less</PsycheLess>
+	<PsycheSomewhat>Somewhat</PsycheSomewhat>
+	<PsycheMore>More</PsycheMore>
+	<PsycheVery>Very</PsycheVery>
+	<PsycheExtremely>Extremely</PsycheExtremely>
+
+	<!-- Conversation Tooltip -->
+	<ConversationTooltip>People will talk about {0}, and {1} to discuss this with each other.</ConversationTooltip>
+	<PsycheComma>, </PsycheComma>
+	<AntonymColon> Antonym: {0}.</AntonymColon>
+
+	<!-- Big Five descriptions -->
+	<FiveFactorModelTitle>Big Five Summary</FiveFactorModelTitle>
+	<FiveFactorDescription0>five-factor model</FiveFactorDescription0>
+	<FiveFactorDescription>The {0} (Big Five) was developed in the late 20th century based on the lexical hypothesis, which suggested that the fundamental traits of personality are encoded in language.\n\nFive factors have consistently emerged from analyses conducted on numerous data sets of descriptive trait terms from multiple languages, including English, Chinese, Russian, and German.\n\nTwin and adoption studies have revealed a substantial genetic component, and individuals' relative standings have also been shown to be fairly stable across the adult life span.<!--\n\nSource: Britannica--></FiveFactorDescription>
+	<BigFiveO>O</BigFiveO>
+	<BigFiveODescription0>Openness to experience</BigFiveODescription0>
+	<BigFiveODescription>{0} is the willingness to embrace novel ideas, values, actions, feelings, fantasy, and aesthetics.</BigFiveODescription>
+	<BigFiveC>C</BigFiveC>
+	<BigFiveCDescription0>Conscientiousness</BigFiveCDescription0>
+	<BigFiveCDescription>{0} is the propensity for diligence, efficiency, organization, planning, duty, and self-discipline.</BigFiveCDescription>
+	<BigFiveE>E</BigFiveE>
+	<BigFiveEDescription0>Extroversion</BigFiveEDescription0>
+	<BigFiveEDescription>{0} is the outward pursuit of gratification, and manifests as outgoing, talkative, energetic, upbeat, assertive, and gregarious behavior.</BigFiveEDescription>
+	<BigFiveA>A</BigFiveA>
+	<BigFiveADescription0>Agreeableness</BigFiveADescription0>
+	<BigFiveADescription>{0} is the capacity for kindness, sympathy, cooperation, warmth, politeness, and compassion.</BigFiveADescription>
+	<BigFiveN>N</BigFiveN>
+	<BigFiveNDescription0>Neuroticism</BigFiveNDescription0>
+	<BigFiveNDescription>{0} is the tendency towards negative emotions such as anxiety, fear, anger, envy, guilt, and sadness.</BigFiveNDescription>
+
+</LanguageData>

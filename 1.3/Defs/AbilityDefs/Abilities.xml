@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+	<AbilityDef>
+		<defName>Indoctrinate</defName>
+		<label>indoctrinate</label>
+		<description>A round of indoctrination will alter the follower's psyche to be more aligned with their ideology. The gain in compatibility is based on the speaker's negotiation ability. Indoctrination becomes less effective as the follower's compatibility increases.</description>
+		<groupDef>Moralist</groupDef>
+		<iconPath>UI/Abilities/Reassure</iconPath>
+		<warmupMoteSocialSymbol>UI/Abilities/Reassure</warmupMoteSocialSymbol>
+		<warmupSound>MoralistAbility_Warmup</warmupSound>
+		<hotKey>Misc2</hotKey>
+		<jobDef>CastAbilityOnThingMelee</jobDef>
+		<stunTargetWhileCasting>True</stunTargetWhileCasting>
+		<!--<showPsycastEffects>False</showPsycastEffects>-->
+		<displayGizmoWhileUndrafted>True</displayGizmoWhileUndrafted>
+		<disableGizmoWhileUndrafted>False</disableGizmoWhileUndrafted>
+		<uiOrder>2</uiOrder>
+		<comps>
+			<li Class="Psychology.CompProperties_AbilityIndoctrinate">
+				<successMessage>{INITIATOR_labelShort} conducted indoctrination on {RECIPIENT_labelShort}, altering {RECIPIENT_possessive} psyche to be more compatible with {IDEO}. Daily certainty change due to personality has increased from {OLDDAILYCHANGE} to {NEWDAILYCHANGE}.</successMessage>
+				<baseDailyCertaintyChangeIncrease>0.2</baseDailyCertaintyChangeIncrease>
+				<sound>MoralistAbility_Resolve</sound>
+			</li>
+			<li Class="CompProperties_AbilityMustBeCapableOf">
+				<workTags>
+					<li>Social</li>
+				</workTags>
+			</li>
+			<li Class="CompProperties_AbilityShowTargetIdeoCertainty" />
+		</comps>
+		<verbProperties>
+			<verbClass>Verb_CastAbilityTouch</verbClass>
+			<drawAimPie>False</drawAimPie>
+			<range>-1</range>
+			<warmupTime>3.0</warmupTime>
+			<targetParams>
+				<canTargetBuildings>False</canTargetBuildings>
+				<neverTargetHostileFaction>True</neverTargetHostileFaction>
+			</targetParams>
+		</verbProperties>
+	</AbilityDef>
+</Defs>

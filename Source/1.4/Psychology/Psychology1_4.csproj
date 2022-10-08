@@ -272,7 +272,6 @@
     <Compile Include="PsychologyMod.cs" />
     <Compile Include="Main\Settings\PsychologySettings.cs" />
     <Compile Include="PsychologyGameComponent.cs" />
-    <Compile Include="PsychologyDefInjector.cs" />
     <Compile Include="Main\Comp\CompProperties_Psychology.cs" />
     <Compile Include="Main\Comp\CompPsychology.cs" />
     <Compile Include="Main\GUI\EditPsycheUtility.cs" />
@@ -308,6 +307,7 @@
     <Compile Include="Main\MentalStates\MentalState_PanicAttack.cs" />
     <Compile Include="DefOf\MentalStateDefOfPsychology.cs" />
     <Compile Include="Harmony\RomanceAndFamily\BreakupHelperMethods.cs" />
+    <Compile Include="Main\Settings\Parameter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\About\preview.png">

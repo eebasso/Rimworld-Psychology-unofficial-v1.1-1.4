@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+    <TreatedPyromania.label>лечится от пиромании</TreatedPyromania.label>
+    <TreatedPyromania.rulePack.rulesStrings.0>tale_noun->терапия [patient_nameShortDef] против пиромании</TreatedPyromania.rulePack.rulesStrings.0>
+    <TreatedPyromania.rulePack.rulesStrings.1>image->[psychologist_nameFull] сидит на краю кровати [patient_nameFull] [circumstance_group]</TreatedPyromania.rulePack.rulesStrings.1>
+    <TreatedPyromania.rulePack.rulesStrings.2>image->[psychologist_nameFull] кивает, пока [patient_nameFull] говорит [circumstance_group]</TreatedPyromania.rulePack.rulesStrings.2>
+    <TreatedPyromania.rulePack.rulesStrings.3>image->[psychologist_nameFull] обсуждает с [patient_nameFull] [patient_possessive] проблемы [circumstance_group]</TreatedPyromania.rulePack.rulesStrings.3>
+    <TreatedPyromania.rulePack.rulesStrings.4>circumstance_phrase->и делает заметки в своём журнале</TreatedPyromania.rulePack.rulesStrings.4>
+    <TreatedPyromania.rulePack.rulesStrings.5>circumstance_phrase->и выписывает рекомендации</TreatedPyromania.rulePack.rulesStrings.5>
+    <TreatedPyromania.rulePack.rulesStrings.6>circumstance_phrase->и продумывает путь к выздоровлению пациента</TreatedPyromania.rulePack.rulesStrings.6>
+    <TreatedPyromania.rulePack.rulesStrings.7>circumstance_phrase->и выглядит очень понимающе</TreatedPyromania.rulePack.rulesStrings.7>
+    <TreatedPyromania.rulePack.rulesStrings.8>desc_sentence->[psychologist_nameShortDef] выглядит уверенно и профессионально.</TreatedPyromania.rulePack.rulesStrings.8>
+    <TreatedPyromania.rulePack.rulesStrings.9>desc_sentence->[psychologist_nameShortDef] выглядит сосредоточенно.</TreatedPyromania.rulePack.rulesStrings.9>
+    <TreatedPyromania.rulePack.rulesStrings.10>desc_sentence->[psychologist_nameShortDef] ведёт себя серьёзно, но дружелюбно.</TreatedPyromania.rulePack.rulesStrings.10>
+    <TreatedPyromania.rulePack.rulesStrings.11>desc_sentence->[patient_nameShortDef] улыбается.</TreatedPyromania.rulePack.rulesStrings.11>
+    <TreatedPyromania.rulePack.rulesStrings.12>desc_sentence->[patient_nameShortDef] выглядит, как совсем новый человек.</TreatedPyromania.rulePack.rulesStrings.12>
+
+    <TreatedDrugDesire.label>лечится от наркозависимости</TreatedDrugDesire.label>
+    <TreatedDrugDesire.rulePack.rulesStrings.0>tale_noun->терапия [patient_nameShortDef] против наркомании</TreatedDrugDesire.rulePack.rulesStrings.0>
+    <TreatedDrugDesire.rulePack.rulesStrings.1>image->[psychologist_nameFull] сидит на краю кровати [patient_nameFull] [circumstance_group]</TreatedDrugDesire.rulePack.rulesStrings.1>
+    <TreatedDrugDesire.rulePack.rulesStrings.2>image->[psychologist_nameFull] кивает, пока [patient_nameFull] говорит [circumstance_group]</TreatedDrugDesire.rulePack.rulesStrings.2>
+    <TreatedDrugDesire.rulePack.rulesStrings.3>image->[psychologist_nameFull] обсуждает с [patient_nameFull] [patient_possessive] проблемы [circumstance_group]</TreatedDrugDesire.rulePack.rulesStrings.3>
+    <TreatedDrugDesire.rulePack.rulesStrings.4>circumstance_phrase->и делает заметки в своём журнале</TreatedDrugDesire.rulePack.rulesStrings.4>
+    <TreatedDrugDesire.rulePack.rulesStrings.5>circumstance_phrase->и выписывает рекомендации</TreatedDrugDesire.rulePack.rulesStrings.5>
+    <TreatedDrugDesire.rulePack.rulesStrings.6>circumstance_phrase->и продумывает путь к выздоровлению пациента</TreatedDrugDesire.rulePack.rulesStrings.6>
+    <TreatedDrugDesire.rulePack.rulesStrings.7>circumstance_phrase->и выглядит очень понимающе</TreatedDrugDesire.rulePack.rulesStrings.7>
+    <TreatedDrugDesire.rulePack.rulesStrings.8>desc_sentence->[psychologist_nameShortDef] выглядит уверенно и профессионально.</TreatedDrugDesire.rulePack.rulesStrings.8>
+    <TreatedDrugDesire.rulePack.rulesStrings.9>desc_sentence->[psychologist_nameShortDef] выглядит сосредоточенно.</TreatedDrugDesire.rulePack.rulesStrings.9>
+    <TreatedDrugDesire.rulePack.rulesStrings.10>desc_sentence->[psychologist_nameShortDef] ведёт себя серьёзно, но дружелюбно.</TreatedDrugDesire.rulePack.rulesStrings.10>
+    <TreatedDrugDesire.rulePack.rulesStrings.11>desc_sentence->[patient_nameShortDef] улыбается.</TreatedDrugDesire.rulePack.rulesStrings.11>
+    <TreatedDrugDesire.rulePack.rulesStrings.12>desc_sentence->[patient_nameShortDef] выглядит, как совсем новый человек.</TreatedDrugDesire.rulePack.rulesStrings.12>
+
+    <TreatedDepression.label>лечится от депрессии</TreatedDepression.label>
+    <TreatedDepression.rulePack.rulesStrings.0>tale_noun->терапия [patient_nameShortDef] против депрессии</TreatedDepression.rulePack.rulesStrings.0>
+    <TreatedDepression.rulePack.rulesStrings.1>image->[psychologist_nameFull] сидит на краю кровати [patient_nameFull] [circumstance_group]</TreatedDepression.rulePack.rulesStrings.1>
+    <TreatedDepression.rulePack.rulesStrings.2>image->[psychologist_nameFull] кивает, пока [patient_nameFull] говорит [circumstance_group]</TreatedDepression.rulePack.rulesStrings.2>
+    <TreatedDepression.rulePack.rulesStrings.3>image->[psychologist_nameFull] обсуждает с [patient_nameFull] [patient_possessive] проблемы [circumstance_group]</TreatedDepression.rulePack.rulesStrings.3>
+    <TreatedDepression.rulePack.rulesStrings.4>circumstance_phrase->и делает заметки в своём журнале</TreatedDepression.rulePack.rulesStrings.4>
+    <TreatedDepression.rulePack.rulesStrings.5>circumstance_phrase->и выписывает рекомендации</TreatedDepression.rulePack.rulesStrings.5>
+    <TreatedDepression.rulePack.rulesStrings.6>circumstance_phrase->и продумывает путь к выздоровлению пациента</TreatedDepression.rulePack.rulesStrings.6>
+    <TreatedDepression.rulePack.rulesStrings.7>circumstance_phrase->и выглядит очень понимающе</TreatedDepression.rulePack.rulesStrings.7>
+    <TreatedDepression.rulePack.rulesStrings.8>desc_sentence->[psychologist_nameShortDef] выглядит уверенно и профессионально.</TreatedDepression.rulePack.rulesStrings.8>
+    <TreatedDepression.rulePack.rulesStrings.9>desc_sentence->[psychologist_nameShortDef] выглядит сосредоточенно.</TreatedDepression.rulePack.rulesStrings.9>
+    <TreatedDepression.rulePack.rulesStrings.10>desc_sentence->[psychologist_nameShortDef] ведёт себя серьёзно, но дружелюбно.</TreatedDepression.rulePack.rulesStrings.10>
+    <TreatedDepression.rulePack.rulesStrings.11>desc_sentence->[patient_nameShortDef] слабо улыбается.</TreatedDepression.rulePack.rulesStrings.11>
+    <TreatedDepression.rulePack.rulesStrings.12>desc_sentence->[patient_nameShortDef] выглядит немного радостнее.</TreatedDepression.rulePack.rulesStrings.12>
+
+    <TreatedInsomnia.label>лечится от бессонницы</TreatedInsomnia.label>
+    <TreatedInsomnia.rulePack.rulesStrings.0>tale_noun->терапия [patient_nameShortDef] против бессонницы</TreatedInsomnia.rulePack.rulesStrings.0>
+    <TreatedInsomnia.rulePack.rulesStrings.1>image->[patient_nameFull] выглядит как зомби, [circumstance_group]</TreatedInsomnia.rulePack.rulesStrings.1>
+    <TreatedInsomnia.rulePack.rulesStrings.2>image->[patient_nameFull] периодически засыпает, </TreatedInsomnia.rulePack.rulesStrings.2>
+    <TreatedInsomnia.rulePack.rulesStrings.3>image->[psychologist_nameFull] обсуждает с [patient_nameFull] проблемы со сном, [circumstance_group]</TreatedInsomnia.rulePack.rulesStrings.3>
+    <TreatedInsomnia.rulePack.rulesStrings.4>circumstance_phrase->пока [psychologist_nameShortDef] делает заметки в своём журнале</TreatedInsomnia.rulePack.rulesStrings.4>
+    <TreatedInsomnia.rulePack.rulesStrings.5>circumstance_phrase->пока [psychologist_nameShortDef] выписывает рекомендации</TreatedInsomnia.rulePack.rulesStrings.5>
+    <TreatedInsomnia.rulePack.rulesStrings.6>circumstance_phrase->пока [psychologist_nameShortDef] протягивает своему пациенту баночку с таблетками</TreatedInsomnia.rulePack.rulesStrings.6>
+    <TreatedInsomnia.rulePack.rulesStrings.7>circumstance_phrase->пока мириада Z летает над головой пациента</TreatedInsomnia.rulePack.rulesStrings.7>
+    <TreatedInsomnia.rulePack.rulesStrings.8>desc_sentence->[psychologist_nameShortDef] выглядит уверенно и профессионально.</TreatedInsomnia.rulePack.rulesStrings.8>
+    <TreatedInsomnia.rulePack.rulesStrings.9>desc_sentence->[psychologist_nameShortDef] похлопывает пациента по плечу.</TreatedInsomnia.rulePack.rulesStrings.9>
+    <TreatedInsomnia.rulePack.rulesStrings.10>desc_sentence->[psychologist_nameShortDef] ведёт себя серьёзно, но дружелюбно.</TreatedInsomnia.rulePack.rulesStrings.10>
+    <TreatedInsomnia.rulePack.rulesStrings.11>desc_sentence->[patient_nameShortDef] наконец спокойно засыпает.</TreatedInsomnia.rulePack.rulesStrings.11>
+    <TreatedInsomnia.rulePack.rulesStrings.12>desc_sentence->[patient_nameShortDef] похоже, боится засыпать.</TreatedInsomnia.rulePack.rulesStrings.12>
+
+    <CuredAnxiety.label>лечится от тревожности</CuredAnxiety.label>
+    <CuredAnxiety.rulePack.rulesStrings.0>tale_noun->терапия [patient_nameShortDef] против тревожности</CuredAnxiety.rulePack.rulesStrings.0>
+    <CuredAnxiety.rulePack.rulesStrings.1>image->[doctor_nameFull] открывает набор лекарств из мира-утопии, [circumstance_group]</CuredAnxiety.rulePack.rulesStrings.1>
+    <CuredAnxiety.rulePack.rulesStrings.2>image->[doctor_nameFull] копается в голове [patient_nameFull], [circumstance_group]</CuredAnxiety.rulePack.rulesStrings.2>
+    <CuredAnxiety.rulePack.rulesStrings.3>image->[patient_nameFull] нервно посматривает на набор футуристических медицинских инструментов, [circumstance_group]</CuredAnxiety.rulePack.rulesStrings.3>
+    <CuredAnxiety.rulePack.rulesStrings.4>circumstance_phrase->пока [patient_nameShortDef] начинает выглядеть ещё тревожнее, чем обычно</CuredAnxiety.rulePack.rulesStrings.4>
+    <CuredAnxiety.rulePack.rulesStrings.5>circumstance_phrase->пока [doctor_nameShortDef] сетует на сложность лечения</CuredAnxiety.rulePack.rulesStrings.5>
+    <CuredAnxiety.rulePack.rulesStrings.6>circumstance_phrase->пока [doctor_nameShortDef] восхищается уровнем медицины миров-утопий</CuredAnxiety.rulePack.rulesStrings.6>
+    <CuredAnxiety.rulePack.rulesStrings.7>circumstance_phrase->пока внутренние демоны [patient_nameShortDef] символично кружат вокруг [patient_possessive] головы</CuredAnxiety.rulePack.rulesStrings.7>
+    <CuredAnxiety.rulePack.rulesStrings.8>circumstance_phrase->пока физическое воплощение тревоги нависает за спиной [patient_nameShortDef]</CuredAnxiety.rulePack.rulesStrings.8>
+    <CuredAnxiety.rulePack.rulesStrings.9>desc_sentence->[psychologist_nameShortDef] выглядит уверенно и профессионально.</CuredAnxiety.rulePack.rulesStrings.9>
+    <CuredAnxiety.rulePack.rulesStrings.10>desc_sentence->[doctor_nameShortDef] успокаивает [patient_possessive].</CuredAnxiety.rulePack.rulesStrings.10>
+    <CuredAnxiety.rulePack.rulesStrings.11>desc_sentence->[patient_nameShortDef] с трудом пытается представить себе жизнь без тревожности.</CuredAnxiety.rulePack.rulesStrings.11>
+    <CuredAnxiety.rulePack.rulesStrings.12>desc_sentence->Глаза [patient_nameShortDef] широко раскрыты.</CuredAnxiety.rulePack.rulesStrings.12>
+    <CuredAnxiety.rulePack.rulesStrings.13>desc_sentence->Близкие [patient_nameShortDef] наблюдают издалека.</CuredAnxiety.rulePack.rulesStrings.13>
+
+    <MentalStateTantrum.label>деструктивная ярость</MentalStateTantrum.label>
+    <MentalStateTantrum.rulePack.rulesStrings.0>tale_noun->[pawn_nameShortDef] впадает в истерику</MentalStateTantrum.rulePack.rulesStrings.0>
+    <MentalStateTantrum.rulePack.rulesStrings.1>image->[PAWN_nameFull] бьётся в истерике, [circumstance_group]</MentalStateTantrum.rulePack.rulesStrings.1>
+    <MentalStateTantrum.rulePack.rulesStrings.2>image->[PAWN_nameFull] вымещает свою злобу на мебели, [circumstance_group]</MentalStateTantrum.rulePack.rulesStrings.2>
+    <MentalStateTantrum.rulePack.rulesStrings.3>image->[PAWN_nameFull] натыкается на мебель с бешеным взглядом на лице, [circumstance_group]</MentalStateTantrum.rulePack.rulesStrings.3>
+    <MentalStateTantrum.rulePack.rulesStrings.4>circumstance_phrase->извергая из себя проклятия</MentalStateTantrum.rulePack.rulesStrings.4>
+    <MentalStateTantrum.rulePack.rulesStrings.5>circumstance_phrase->без видимой причины</MentalStateTantrum.rulePack.rulesStrings.5>
+    <MentalStateTantrum.rulePack.rulesStrings.6>circumstance_phrase->пока остальные испуганно прячутся</MentalStateTantrum.rulePack.rulesStrings.6>
+    <MentalStateTantrum.rulePack.rulesStrings.7>circumstance_phrase->пока остальные наблюдают с ужасом</MentalStateTantrum.rulePack.rulesStrings.7>
+    <MentalStateTantrum.rulePack.rulesStrings.8>circumstance_phrase->причиной чему стресс</MentalStateTantrum.rulePack.rulesStrings.8>
+    <MentalStateTantrum.rulePack.rulesStrings.9>circumstance_phrase->громко крича</MentalStateTantrum.rulePack.rulesStrings.9>
+    <MentalStateTantrum.rulePack.rulesStrings.10>circumstance_phrase->дрожа от ярости</MentalStateTantrum.rulePack.rulesStrings.10>
+    <MentalStateTantrum.rulePack.rulesStrings.11>desc_sentence->[PAWN_pronoun] трясётся от неконтролируемой ярости.</MentalStateTantrum.rulePack.rulesStrings.11>
+    <MentalStateTantrum.rulePack.rulesStrings.12>desc_sentence->[PAWN_possessive] сжались в злостный оскал.</MentalStateTantrum.rulePack.rulesStrings.12>
+    <MentalStateTantrum.rulePack.rulesStrings.13>desc_sentence->[PAWN_possessive] глаза налились кровью от злобы.</MentalStateTantrum.rulePack.rulesStrings.13>
+    <MentalStateTantrum.rulePack.rulesStrings.14>desc_sentence->[PAWN_pronoun] сбивает свои кулаки в кровь.</MentalStateTantrum.rulePack.rulesStrings.14>
+    <MentalStateTantrum.rulePack.rulesStrings.15>desc_sentence->[PAWN_pronoun] лицо исказилось гримасой отчаяния.</MentalStateTantrum.rulePack.rulesStrings.15>
+    <MentalStateTantrum.rulePack.rulesStrings.16>desc_sentence->[PAWN_pronoun] держит стул над своей головой.</MentalStateTantrum.rulePack.rulesStrings.16>
+    <MentalStateTantrum.rulePack.rulesStrings.17>desc_sentence->Всё [PAWN_possessive] тело дрожит от ненависти.</MentalStateTantrum.rulePack.rulesStrings.17>
+    <MentalStateTantrum.rulePack.rulesStrings.18>desc_sentence->Одинокая слеза сползает по [PAWN_possessive] щеке.</MentalStateTantrum.rulePack.rulesStrings.18>
+
+    <MentalStateSelfHarm.label>глубокая депрессия</MentalStateSelfHarm.label>
+    <MentalStateSelfHarm.rulePack.rulesStrings.0>tale_noun->[pawn_nameShortDef] наносит себе повреждения</MentalStateSelfHarm.rulePack.rulesStrings.0>
+    <MentalStateSelfHarm.rulePack.rulesStrings.1>image->[PAWN_nameFull] режет свои запястья, [circumstance_group]</MentalStateSelfHarm.rulePack.rulesStrings.1>
+    <MentalStateSelfHarm.rulePack.rulesStrings.2>image->[PAWN_nameFull] сидит в луже своей крови, [circumstance_group]</MentalStateSelfHarm.rulePack.rulesStrings.2>
+    <MentalStateSelfHarm.rulePack.rulesStrings.3>image->[PAWN_nameFull] пялится в пустоту, [circumstance_group]</MentalStateSelfHarm.rulePack.rulesStrings.3>
+    <MentalStateSelfHarm.rulePack.rulesStrings.4>circumstance_phrase->хныкая</MentalStateSelfHarm.rulePack.rulesStrings.4>
+    <MentalStateSelfHarm.rulePack.rulesStrings.5>circumstance_phrase->прячась в своей комнате</MentalStateSelfHarm.rulePack.rulesStrings.5>
+    <MentalStateSelfHarm.rulePack.rulesStrings.6>circumstance_phrase->не произнося ни слова</MentalStateSelfHarm.rulePack.rulesStrings.6>
+    <MentalStateSelfHarm.rulePack.rulesStrings.7>circumstance_phrase->плача</MentalStateSelfHarm.rulePack.rulesStrings.7>
+    <MentalStateSelfHarm.rulePack.rulesStrings.8>desc_sentence->[PAWN_pronoun] выглядит бледно и болезненно.</MentalStateSelfHarm.rulePack.rulesStrings.8>
+    <MentalStateSelfHarm.rulePack.rulesStrings.9>desc_sentence->[PAWN_possessive] руки бессильно свисают по бокам.</MentalStateSelfHarm.rulePack.rulesStrings.9>
+    <MentalStateSelfHarm.rulePack.rulesStrings.10>desc_sentence->[PAWN_possessive] одежда запятнана кровью.</MentalStateSelfHarm.rulePack.rulesStrings.10>
+    <MentalStateSelfHarm.rulePack.rulesStrings.11>desc_sentence->[PAWN_pronoun] сидит на полу и качается из стороны в сторону.</MentalStateSelfHarm.rulePack.rulesStrings.11>
+    <MentalStateSelfHarm.rulePack.rulesStrings.12>desc_sentence->Взгляд [PAWN_pronoun] пуст.</MentalStateSelfHarm.rulePack.rulesStrings.12>
+
+    <MentalStateApathy.label>апатия</MentalStateApathy.label>
+    <MentalStateApathy.rulePack.rulesStrings.0>tale_noun->[pawn_nameShortDef] ходит, погрузившись в апатию</MentalStateApathy.rulePack.rulesStrings.0>
+    <MentalStateApathy.rulePack.rulesStrings.1>image->[PAWN_nameFull] апатично бродит по поселению, [circumstance_group]</MentalStateApathy.rulePack.rulesStrings.1>
+    <MentalStateApathy.rulePack.rulesStrings.2>image->[PAWN_nameFull] летаргично сидит, [circumstance_group]</MentalStateApathy.rulePack.rulesStrings.2>
+    <MentalStateApathy.rulePack.rulesStrings.3>image->[PAWN_nameFull] не выполняет свои обязанности, [circumstance_group]</MentalStateApathy.rulePack.rulesStrings.3>
+    <MentalStateApathy.rulePack.rulesStrings.4>image->[PAWN_nameFull] нехотя выполняет свои обязанности, [circumstance_group]</MentalStateApathy.rulePack.rulesStrings.4>
+    <MentalStateApathy.rulePack.rulesStrings.5>image->[PAWN_nameFull] отлынивает от работы, [circumstance_group]</MentalStateApathy.rulePack.rulesStrings.5>
+    <MentalStateApathy.rulePack.rulesStrings.6>circumstance_phrase->раздражённо осматривая окрестности</MentalStateApathy.rulePack.rulesStrings.6>
+    <MentalStateApathy.rulePack.rulesStrings.7>circumstance_phrase->на что-то надувшись</MentalStateApathy.rulePack.rulesStrings.7>
+    <MentalStateApathy.rulePack.rulesStrings.8>circumstance_phrase->недовольно что-то бормоча себе под нос</MentalStateApathy.rulePack.rulesStrings.8>
+    <MentalStateApathy.rulePack.rulesStrings.9>circumstance_phrase->полуприкрыв свои глаза</MentalStateApathy.rulePack.rulesStrings.9>
+    <MentalStateApathy.rulePack.rulesStrings.10>desc_sentence->[PAWN_pronoun] выглядит очень устало.</MentalStateApathy.rulePack.rulesStrings.10>
+    <MentalStateApathy.rulePack.rulesStrings.11>desc_sentence->[PAWN_possessive] руки скрещены на груди.</MentalStateApathy.rulePack.rulesStrings.11>
+    <MentalStateApathy.rulePack.rulesStrings.12>desc_sentence->[PAWN_pronoun] выглядит так, как будто бы [PAWN_objective] нет никакого дела до чего-либо.</MentalStateApathy.rulePack.rulesStrings.12>
+
+    <MentalStateSadism.label>садизм</MentalStateSadism.label>
+    <MentalStateSadism.rulePack.rulesStrings.0>tale_noun->[pawn_nameShortDef] заливается садистическим хохотом</MentalStateSadism.rulePack.rulesStrings.0>
+    <MentalStateSadism.rulePack.rulesStrings.1>image->[PAWN_nameFull] размахивает своим оружием, [circumstance_group]</MentalStateSadism.rulePack.rulesStrings.1>
+    <MentalStateSadism.rulePack.rulesStrings.2>image->[PAWN_nameFull] громко дышит и что-то бормочет, [circumstance_group]</MentalStateSadism.rulePack.rulesStrings.2>
+    <MentalStateSadism.rulePack.rulesStrings.3>image->[PAWN_nameFull] ищет цель для избиения, [circumstance_group]</MentalStateSadism.rulePack.rulesStrings.3>
+    <MentalStateSadism.rulePack.rulesStrings.4>circumstance_phrase->бродя туда-сюда</MentalStateSadism.rulePack.rulesStrings.4>
+    <MentalStateSadism.rulePack.rulesStrings.5>circumstance_phrase->расплываясь в жестокой улыбке</MentalStateSadism.rulePack.rulesStrings.5>
+    <MentalStateSadism.rulePack.rulesStrings.6>circumstance_phrase->злобно скалясь</MentalStateSadism.rulePack.rulesStrings.6>
+    <MentalStateSadism.rulePack.rulesStrings.7>desc_sentence->[PAWN_pronoun] выглядит, как будто бы {PAWN_gender ? потерял : потеряла} свой рассудок.</MentalStateSadism.rulePack.rulesStrings.7>
+    <MentalStateSadism.rulePack.rulesStrings.8>desc_sentence->[PAWN_possessive] левый глаз подёргивается.</MentalStateSadism.rulePack.rulesStrings.8>
+    <MentalStateSadism.rulePack.rulesStrings.9>desc_sentence->[PAWN_possessive] руки трясутся.</MentalStateSadism.rulePack.rulesStrings.9>
+
+    <MentalStateCompulsion.label>компульсивная уборка</MentalStateCompulsion.label>
+    <MentalStateCompulsion.rulePack.rulesStrings.0>tale_noun->[pawn_nameShortDef] нервно убирается</MentalStateCompulsion.rulePack.rulesStrings.0>
+    <MentalStateCompulsion.rulePack.rulesStrings.1>image->[PAWN_nameFull] одержимо переставляет всё местами, [circumstance_group]</MentalStateCompulsion.rulePack.rulesStrings.1>
+    <MentalStateCompulsion.rulePack.rulesStrings.2>image->[PAWN_nameFull] пачкается в грязи и земле, [circumstance_group]</MentalStateCompulsion.rulePack.rulesStrings.2>
+    <MentalStateCompulsion.rulePack.rulesStrings.3>image->[PAWN_nameFull] одержимо чистит полы [circumstance_group]</MentalStateCompulsion.rulePack.rulesStrings.3>
+    <MentalStateCompulsion.rulePack.rulesStrings.4>circumstance_phrase->бормоча что-то себе под нос</MentalStateCompulsion.rulePack.rulesStrings.4>
+    <MentalStateCompulsion.rulePack.rulesStrings.5>circumstance_phrase->обливаясь потом</MentalStateCompulsion.rulePack.rulesStrings.5>
+    <MentalStateCompulsion.rulePack.rulesStrings.6>circumstance_phrase->с трудом держась на ногах</MentalStateCompulsion.rulePack.rulesStrings.6>
+    <MentalStateCompulsion.rulePack.rulesStrings.7>desc_sentence->[PAWN_pronoun] выглядит так, как будто не {PAWN_gender ? спал : спала} несколько дней.</MentalStateCompulsion.rulePack.rulesStrings.7>
+    <MentalStateCompulsion.rulePack.rulesStrings.8>desc_sentence->[PAWN_pronoun] выглядит {PAWN_gender ? уставшим : уставшей} и {PAWN_gender ? голодным : голодной}.</MentalStateCompulsion.rulePack.rulesStrings.8>
+    <MentalStateCompulsion.rulePack.rulesStrings.9>desc_sentence->[PAWN_pronoun] выглядит дико и решительно.</MentalStateCompulsion.rulePack.rulesStrings.9>
+    <MentalStateCompulsion.rulePack.rulesStrings.10>desc_sentence->[PAWN_possessive] руки трясутся.</MentalStateCompulsion.rulePack.rulesStrings.10>
+
+    <MentalStateAbuse.label>вербальная агрессия</MentalStateAbuse.label>
+    <MentalStateAbuse.rulePack.rulesStrings.0>tale_noun->[pawn_nameShortDef] озлобленно кричит</MentalStateAbuse.rulePack.rulesStrings.0>
+    <MentalStateAbuse.rulePack.rulesStrings.1>image->[PAWN_nameFull] ходит туда-сюда, [circumstance_group]</MentalStateAbuse.rulePack.rulesStrings.1>
+    <MentalStateAbuse.rulePack.rulesStrings.2>image->[PAWN_nameFull] яростно носится кругами, [circumstance_group]</MentalStateAbuse.rulePack.rulesStrings.2>
+    <MentalStateAbuse.rulePack.rulesStrings.3>image->[PAWN_nameFull] ищет, с кем бы поругаться, [circumstance_group]</MentalStateAbuse.rulePack.rulesStrings.3>
+    <MentalStateAbuse.rulePack.rulesStrings.4>image->[PAWN_nameFull] ищет, на кого накричать, [circumstance_group]</MentalStateAbuse.rulePack.rulesStrings.4>
+    <MentalStateAbuse.rulePack.rulesStrings.5>circumstance_phrase->пока остальные смотрят неодобрительно</MentalStateAbuse.rulePack.rulesStrings.5>
+    <MentalStateAbuse.rulePack.rulesStrings.6>circumstance_phrase->пока остальные неодобрительно качают головами</MentalStateAbuse.rulePack.rulesStrings.6>
+    <MentalStateAbuse.rulePack.rulesStrings.7>circumstance_phrase->пока остальные избегают с {PAWN_gender ? ним : ней} зрительного контакта</MentalStateAbuse.rulePack.rulesStrings.7>
+    <MentalStateAbuse.rulePack.rulesStrings.8>circumstance_phrase->пока остальные стараются держаться подальше</MentalStateAbuse.rulePack.rulesStrings.8>
+    <MentalStateAbuse.rulePack.rulesStrings.9>circumstance_phrase->щурясь и скалясь</MentalStateAbuse.rulePack.rulesStrings.9>
+    <MentalStateAbuse.rulePack.rulesStrings.10>desc_sentence->Слюни летят из [PAWN_possessive] рта.</MentalStateAbuse.rulePack.rulesStrings.10>
+    <MentalStateAbuse.rulePack.rulesStrings.11>desc_sentence->[PAWN_possessive] лицо наливается кровью.</MentalStateAbuse.rulePack.rulesStrings.11>
+    <MentalStateAbuse.rulePack.rulesStrings.12>desc_sentence->Всё [PAWN_possessive] тело трясётся от злобы.</MentalStateAbuse.rulePack.rulesStrings.12>
+    <MentalStateAbuse.rulePack.rulesStrings.13>desc_sentence->[PAWN_possessive] глаза наполнены яростью.</MentalStateAbuse.rulePack.rulesStrings.13>
+
+    <MentalStateAntisocial.label>антисоциальность</MentalStateAntisocial.label>
+    <MentalStateAntisocial.rulePack.rulesStrings.0>tale_noun->[pawn_nameShortDef] покидает поселение</MentalStateAntisocial.rulePack.rulesStrings.0>
+    <MentalStateAntisocial.rulePack.rulesStrings.1>image->[PAWN_nameFull] уходит из поселения [circumstance_group]</MentalStateAntisocial.rulePack.rulesStrings.1>
+    <MentalStateAntisocial.rulePack.rulesStrings.2>image->[PAWN_nameFull] избегает общения с другими поселенцами [circumstance_group]</MentalStateAntisocial.rulePack.rulesStrings.2>
+    <MentalStateAntisocial.rulePack.rulesStrings.3>image->[PAWN_nameFull] уходит [circumstance_group]</MentalStateAntisocial.rulePack.rulesStrings.3>
+    <MentalStateAntisocial.rulePack.rulesStrings.4>image->[PAWN_nameFull] убегает [circumstance_group]</MentalStateAntisocial.rulePack.rulesStrings.4>
+    <MentalStateAntisocial.rulePack.rulesStrings.5>image->[PAWN_nameFull] уходит в глушь [circumstance_group]</MentalStateAntisocial.rulePack.rulesStrings.5>
+    <MentalStateAntisocial.rulePack.rulesStrings.6>image->[PAWN_nameFull] убегает в глушь [circumstance_group]</MentalStateAntisocial.rulePack.rulesStrings.6>
+    <MentalStateAntisocial.rulePack.rulesStrings.7>circumstance_phrase->из-за стресса</MentalStateAntisocial.rulePack.rulesStrings.7>
+    <MentalStateAntisocial.rulePack.rulesStrings.8>circumstance_phrase->с безэмоциональным выражением лица</MentalStateAntisocial.rulePack.rulesStrings.8>
+    <MentalStateAntisocial.rulePack.rulesStrings.9>circumstance_phrase->с параноидальным взглядом на лице</MentalStateAntisocial.rulePack.rulesStrings.9>
+    <MentalStateAntisocial.rulePack.rulesStrings.10>desc_sentence->[PAWN_pronoun] выглядит очень устало.</MentalStateAntisocial.rulePack.rulesStrings.10>
+    <MentalStateAntisocial.rulePack.rulesStrings.11>desc_sentence->[PAWN_possessive] лицо бледное.</MentalStateAntisocial.rulePack.rulesStrings.11>
+    <MentalStateAntisocial.rulePack.rulesStrings.12>desc_sentence->[PAWN_possessive] голова склонилась вниз.</MentalStateAntisocial.rulePack.rulesStrings.12>
+
+    <MentalStateHistrionic.label>гистрионическое расстройство</MentalStateHistrionic.label>
+    <MentalStateHistrionic.rulePack.rulesStrings.0>tale_noun->[pawn_nameShortDef] отчаянно ищет внимания</MentalStateHistrionic.rulePack.rulesStrings.0>
+    <MentalStateHistrionic.rulePack.rulesStrings.1>image->[PAWN_nameFull] гонится за кем-то, [circumstance_group]</MentalStateHistrionic.rulePack.rulesStrings.1>
+    <MentalStateHistrionic.rulePack.rulesStrings.2>image->[PAWN_nameFull] неуклюже пристаёт к другим поселенцам, [circumstance_group]</MentalStateHistrionic.rulePack.rulesStrings.2>
+    <MentalStateHistrionic.rulePack.rulesStrings.3>image->[PAWN_nameFull] закатывает сцену, [circumstance_group]</MentalStateHistrionic.rulePack.rulesStrings.3>
+    <MentalStateHistrionic.rulePack.rulesStrings.4>image->[PAWN_nameFull] ищет, с кем поговорить, [circumstance_group]</MentalStateHistrionic.rulePack.rulesStrings.4>
+    <MentalStateHistrionic.rulePack.rulesStrings.5>circumstance_phrase->осматриваясь с одержимым взглядом на лице</MentalStateHistrionic.rulePack.rulesStrings.5>
+    <MentalStateHistrionic.rulePack.rulesStrings.6>circumstance_phrase->оглядываясь с жалобным взглядом на лице</MentalStateHistrionic.rulePack.rulesStrings.6>
+    <MentalStateHistrionic.rulePack.rulesStrings.7>circumstance_phrase->пока остальные озабоченно наблюдают со стороны</MentalStateHistrionic.rulePack.rulesStrings.7>
+    <MentalStateHistrionic.rulePack.rulesStrings.8>circumstance_phrase->совершенно не контролируя себя</MentalStateHistrionic.rulePack.rulesStrings.8>
+    <MentalStateHistrionic.rulePack.rulesStrings.9>circumstance_phrase->ведя себя чрезмерно драматично</MentalStateHistrionic.rulePack.rulesStrings.9>
+    <MentalStateHistrionic.rulePack.rulesStrings.10>desc_sentence-Все избегают [PAWN_pronoun].</MentalStateHistrionic.rulePack.rulesStrings.10>
+    <MentalStateHistrionic.rulePack.rulesStrings.11>desc_sentence->[PAWN_pronoun] заламывает себе руки.</MentalStateHistrionic.rulePack.rulesStrings.11>
+    <MentalStateHistrionic.rulePack.rulesStrings.12>desc_sentence->[PAWN_pronoun] выглядит нетерпеливо.</MentalStateHistrionic.rulePack.rulesStrings.12>
+    <MentalStateHistrionic.rulePack.rulesStrings.13>desc_sentence->[PAWN_pronoun] пытается поговорить с людьми, но все [PAWN_possessive] избегают.</MentalStateHistrionic.rulePack.rulesStrings.13>
+    <MentalStateHistrionic.rulePack.rulesStrings.14>desc_sentence->[PAWN_pronoun] пристаёт ко всему, что движется.</MentalStateHistrionic.rulePack.rulesStrings.14>
+
+    <MentalStateFellPlotting.label>сумасшедший заговор</MentalStateFellPlotting.label>
+    <MentalStateFellPlotting.rulePack.rulesStrings.0>tale_noun->[pawn_nameShortDef] замышляет какой-то заговор</MentalStateFellPlotting.rulePack.rulesStrings.0>
+    <MentalStateFellPlotting.rulePack.rulesStrings.1>image->[PAWN_nameFull] замышляет что-то у себя в комнате, [circumstance_group]</MentalStateFellPlotting.rulePack.rulesStrings.1>
+    <MentalStateFellPlotting.rulePack.rulesStrings.2>image->[PAWN_nameFull] склоняется над чем-то, что пишет, [circumstance_group]</MentalStateFellPlotting.rulePack.rulesStrings.2>
+    <MentalStateFellPlotting.rulePack.rulesStrings.3>image->[PAWN_nameFull] ходит взад и вперёд, [circumstance_group]</MentalStateFellPlotting.rulePack.rulesStrings.3>
+    <MentalStateFellPlotting.rulePack.rulesStrings.4>image->[PAWN_nameFull] пишет что-то на листах бумаги, [circumstance_group]</MentalStateFellPlotting.rulePack.rulesStrings.4>
+    <MentalStateFellPlotting.rulePack.rulesStrings.5>image->[PAWN_nameFull] шастает с оружием в руках, [circumstance_group]</MentalStateFellPlotting.rulePack.rulesStrings.5>
+    <MentalStateFellPlotting.rulePack.rulesStrings.6>image->[PAWN_nameFull] стоит за спиной другого поселенца</MentalStateFellPlotting.rulePack.rulesStrings.6>
+    <MentalStateFellPlotting.rulePack.rulesStrings.7>circumstance_phrase->тяжело дыша и что-то бормоча</MentalStateFellPlotting.rulePack.rulesStrings.7>
+    <MentalStateFellPlotting.rulePack.rulesStrings.8>circumstance_phrase->оглядываясь с параноидальным взглядом на своем лице</MentalStateFellPlotting.rulePack.rulesStrings.8>
+    <MentalStateFellPlotting.rulePack.rulesStrings.9>circumstance_phrase->осматриваясь своими бешеными глазами</MentalStateFellPlotting.rulePack.rulesStrings.9>
+    <MentalStateFellPlotting.rulePack.rulesStrings.10>circumstance_phrase->оглядываясь с мрачным выражением лица</MentalStateFellPlotting.rulePack.rulesStrings.10>
+    <MentalStateFellPlotting.rulePack.rulesStrings.11>circumstance_phrase->бубня что-то непонятное</MentalStateFellPlotting.rulePack.rulesStrings.11>
+    <MentalStateFellPlotting.rulePack.rulesStrings.12>circumstance_phrase->яростно что-то нашёптывая</MentalStateFellPlotting.rulePack.rulesStrings.12>
+    <MentalStateFellPlotting.rulePack.rulesStrings.13>circumstance_phrase->разговаривая с {PAWN_gender ? самим : самой} собой</MentalStateFellPlotting.rulePack.rulesStrings.13>
+    <MentalStateFellPlotting.rulePack.rulesStrings.14>desc_sentence->[PAWN_pronoun] держит в руках украденное оружие.</MentalStateFellPlotting.rulePack.rulesStrings.14>
+    <MentalStateFellPlotting.rulePack.rulesStrings.15>desc_sentence->[PAWN_pronoun] хватает своё оружие покрепче.</MentalStateFellPlotting.rulePack.rulesStrings.15>
+    <MentalStateFellPlotting.rulePack.rulesStrings.16>desc_sentence->[PAWN_pronoun] смотрит вокруг с взглядом полным ненависти.</MentalStateFellPlotting.rulePack.rulesStrings.16>
+    <MentalStateFellPlotting.rulePack.rulesStrings.17>desc_sentence->[PAWN_pronoun] выглядит уверенно.</MentalStateFellPlotting.rulePack.rulesStrings.17>
+    <MentalStateFellPlotting.rulePack.rulesStrings.18>desc_sentence->[PAWN_pronoun] пилит взглядом зрителя.</MentalStateFellPlotting.rulePack.rulesStrings.18>
+
+    <MentalStateParanoia.label>паранойя</MentalStateParanoia.label>
+    <MentalStateParanoia.rulePack.rulesStrings.0>tale_noun->[pawn_nameShortDef] впадает в паранойю</MentalStateParanoia.rulePack.rulesStrings.0>
+    <MentalStateParanoia.rulePack.rulesStrings.1>image->[PAWN_nameFull] впадает в параноидальный бред [circumstance_group]</MentalStateParanoia.rulePack.rulesStrings.1>
+    <MentalStateParanoia.rulePack.rulesStrings.2>image->[PAWN_nameFull] бранит другого поселенца [circumstance_group]</MentalStateParanoia.rulePack.rulesStrings.2>
+    <MentalStateParanoia.rulePack.rulesStrings.3>image->[PAWN_nameFull] бесцельно бродит по поселению [circumstance_group]</MentalStateParanoia.rulePack.rulesStrings.3>
+    <MentalStateParanoia.rulePack.rulesStrings.4>image->[PAWN_nameFull] выкрикивает предупреждения проходит [circumstance_group]</MentalStateParanoia.rulePack.rulesStrings.4>
+    <MentalStateParanoia.rulePack.rulesStrings.5>image->[PAWN_nameFull] качается вперёд и назад на полу [circumstance_group]</MentalStateParanoia.rulePack.rulesStrings.5>
+    <MentalStateParanoia.rulePack.rulesStrings.6>circumstance_phrase->с безумным взглядом на лице</MentalStateParanoia.rulePack.rulesStrings.6>
+    <MentalStateParanoia.rulePack.rulesStrings.7>circumstance_phrase->с пустым взглядом на лице</MentalStateParanoia.rulePack.rulesStrings.7>
+    <MentalStateParanoia.rulePack.rulesStrings.8>circumstance_phrase->с перепуганным взглядом на лице</MentalStateParanoia.rulePack.rulesStrings.8>
+    <MentalStateParanoia.rulePack.rulesStrings.9>circumstance_phrase->и широко размахивает своими руками</MentalStateParanoia.rulePack.rulesStrings.9>
+    <MentalStateParanoia.rulePack.rulesStrings.10>circumstance_phrase->и активно жестикулирует</MentalStateParanoia.rulePack.rulesStrings.10>
+    <MentalStateParanoia.rulePack.rulesStrings.11>circumstance_phrase->и спорит с {PAWN_gender ? самим : самой} собой</MentalStateParanoia.rulePack.rulesStrings.11>
+    <MentalStateParanoia.rulePack.rulesStrings.12>desc_sentence->[PAWN_pronoun] кричит и плачет.</MentalStateParanoia.rulePack.rulesStrings.12>
+    <MentalStateParanoia.rulePack.rulesStrings.13>desc_sentence->[PAWN_pronoun] качает головой туда-сюда в ужасе.</MentalStateParanoia.rulePack.rulesStrings.13>
+    <MentalStateParanoia.rulePack.rulesStrings.14>desc_sentence->[PAWN_pronoun] смотрит вдаль пустыми глазами.</MentalStateParanoia.rulePack.rulesStrings.14>
+
+    <MentalStateHuntingTrip.label>побег на природу</MentalStateHuntingTrip.label>
+    <MentalStateHuntingTrip.rulePack.rulesStrings.0>tale_noun->[PAWN_nameDef] сбегает на природу, чтобы отгородиться от тягот в поселении</MentalStateHuntingTrip.rulePack.rulesStrings.0>
+    <MentalStateHuntingTrip.rulePack.rulesStrings.1>tale_noun->[PAWN_nameDef] убегает из поселения, чтобы поохотиться</MentalStateHuntingTrip.rulePack.rulesStrings.1>
+    <MentalStateHuntingTrip.rulePack.rulesStrings.2>image->[PAWN_nameFull] преследует дикое животное [circumstance_group]</MentalStateHuntingTrip.rulePack.rulesStrings.2>
+    <MentalStateHuntingTrip.rulePack.rulesStrings.3>image->[PAWN_nameFull] бродит по глуши [circumstance_group]</MentalStateHuntingTrip.rulePack.rulesStrings.3>
+    <MentalStateHuntingTrip.rulePack.rulesStrings.4>image->[PAWN_nameFull] наслаждается природой [circumstance_group]</MentalStateHuntingTrip.rulePack.rulesStrings.4>
+    <MentalStateHuntingTrip.rulePack.rulesStrings.5>image->[PAWN_nameFull] идёт прочь от зрителя, оборачиваясь, [circumstance_group]</MentalStateHuntingTrip.rulePack.rulesStrings.5>
+    <MentalStateHuntingTrip.rulePack.rulesStrings.6>image->[PAWN_nameFull] исчезает в глуши [circumstance_group]</MentalStateHuntingTrip.rulePack.rulesStrings.6>
+    <MentalStateHuntingTrip.rulePack.rulesStrings.7>circumstance_phrase->с угрюмым выражением лица</MentalStateHuntingTrip.rulePack.rulesStrings.7>
+    <MentalStateHuntingTrip.rulePack.rulesStrings.8>circumstance_phrase->со стоическим выражением лица</MentalStateHuntingTrip.rulePack.rulesStrings.8>
+    <MentalStateHuntingTrip.rulePack.rulesStrings.9>circumstance_phrase->с пустым взглядом на лице</MentalStateHuntingTrip.rulePack.rulesStrings.9>
+    <MentalStateHuntingTrip.rulePack.rulesStrings.10>circumstance_phrase->и сжимает оружие в своих руках</MentalStateHuntingTrip.rulePack.rulesStrings.10>
+    <MentalStateHuntingTrip.rulePack.rulesStrings.11>circumstance_phrase->и не спускает взгляд с [Animal]</MentalStateHuntingTrip.rulePack.rulesStrings.11>
+    <MentalStateHuntingTrip.rulePack.rulesStrings.12>circumstance_phrase->и остаётся незамеченной для других людей</MentalStateHuntingTrip.rulePack.rulesStrings.12>
+    <MentalStateHuntingTrip.rulePack.rulesStrings.13>desc_sentence->[PAWN_pronoun] крепче сжимает в руках своё оружие.</MentalStateHuntingTrip.rulePack.rulesStrings.13>
+    <MentalStateHuntingTrip.rulePack.rulesStrings.14>desc_sentence->[PAWN_pronoun] осторожно осматривает окрестности.</MentalStateHuntingTrip.rulePack.rulesStrings.14>
+    <MentalStateHuntingTrip.rulePack.rulesStrings.15>desc_sentence->[PAWN_pronoun] выглядит облегчённо, после своего побега от цивилизации.</MentalStateHuntingTrip.rulePack.rulesStrings.15>
+    <MentalStateHuntingTrip.rulePack.rulesStrings.16>desc_sentence->[Animal] крадётся рядом, пока [PAWN_pronoun] не смотрит.</MentalStateHuntingTrip.rulePack.rulesStrings.16>
+    <MentalStateHuntingTrip.rulePack.rulesStrings.17>desc_sentence->[Animal] символично обходят [PAWN_possessive] стороной.</MentalStateHuntingTrip.rulePack.rulesStrings.17>
+    <MentalStateHuntingTrip.rulePack.rulesStrings.18>desc_sentence->На фоне можно увидеть [TerrainFeature].</MentalStateHuntingTrip.rulePack.rulesStrings.18>
+
+
+</LanguageData>

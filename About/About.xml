@@ -39,11 +39,6 @@
 		</v1.2>
 		<v1.3>
 			<li>
-				<packageId>UnlimitedHugs.HugsLib</packageId>
-				<displayName>HugsLib</displayName>
-				<steamWorkshopUrl>https://steamcommunity.com/sharedfiles/filedetails/?id=818773962</steamWorkshopUrl>
-			</li>
-			<li>
 				<packageId>brrainz.harmony</packageId>
 				<displayName>Harmony</displayName>
 				<steamWorkshopUrl>steam://url/CommunityFilePage/2009463077</steamWorkshopUrl>
@@ -66,7 +61,7 @@
 		<li>EdB.PrepareCarefully</li>
 		<li>tachyonite.pawnmorpherpublic</li>
 	</loadAfter>
-	<description>&lt;b&gt;Major update for 1.4!&lt;/b&gt;
+	<description>&lt;b&gt;Major update for 1.3 and 1.4!&lt;/b&gt;
 
 &lt;b&gt;GUI updates&lt;/b&gt;
 The Psyche tab has been reworked for a better display of a pawn's personality. Antonyms and colors have been introduced for all personality nodes, a.k.a. personality traits. The new word cloud allows one to understand the relative strength of every trait at a glance. A concise summary of a pawn's personality in terms of the Big Five (or Five Factor Model) is also displayed by a radar graph. Sex and romance drives are now described for all pawns, not just asexual/aromantic ones.
@@ -77,13 +72,13 @@ Personality will now interact with ideology. For example, a highly compassionate
 &lt;b&gt;Updated mod settings&lt;/b&gt;
 Mod settings have been reworked and expanded. Several on/off settings have been converted into continuum values for more customized play. Dependency on HugsLib has been eliminated in favor of a more expansive settings window. The psychology and romance behavior now differs by individual species/race. For example, simple minded Tier-1 androids from the Android Tiers mod by default have psychology behaviors disabled, including dating. Elf-like/immortal species by default no longer have a romantic age gap factor applied to them once they reach adulthood. Sentient androids can now date at any age. All of this and more can be customized in the settings window.
 
-&lt;b&gt;Compatibility with other mods&lt;/b&gt;
-Psychology is now compatible with Character Editor and Prepare Carefully, but the player is &lt;b&gt;highly&lt;/b&gt; encouraged to choose Character Editor to avoid the various bugs and glitches of the latter. Former humans from Pawnmorpher will now keep their personalities has along as they remain sapient. Word of Love has been fixed for Vanilla Psycasters Expanded.
+&lt;b&gt;Compatibility with other mods in 1.3&lt;/b&gt;
+Psychology is now compatible with Character Editor and Prepare Carefully in 1.3, but the player is &lt;b&gt;highly&lt;/b&gt; encouraged to choose Character Editor to avoid the various bugs and glitches of the latter. Former humans from Pawnmorpher will now keep their personalities has along as they remain sapient. Word of Love has been fixed for Vanilla Psycasters Expanded. Unfortunately, Character Editor and Prepare Carefully are likely to be broken indefinitely until a new modder steps up to update for 1.4.
 
 Optimizations have been made to reduce computational waste and (hopefully) improve performance. Various fixes and tweaks have been made to improve romance and conversation mechanics.
 
-&lt;b&gt;The 1.4 update is a work in progress and maybe be unstable.&lt;/b&gt;
-Please comment to report bugs and suggest additional features.
+&lt;b&gt;The updates to 1.3 and 1.4 are a work in progress and maybe be unstable.&lt;/b&gt;
+Please bare with us while we fix things. We encourage and appreciate all constructive comments on Steam Workshop to report bugs and suggestions for additional features.
 
 &lt;b&gt;Support&lt;/b&gt;
 There is no form of financial support for this mod, but please subscribe, rate, and tell everyone about it. If you absolutely must spend money on something, then gift Rimworld to someone who hasn't yet experienced it to support Tynan and the incredible work that he does. This mod would not be possible without the great game he created, and the strenuous effort he has put into supporting mod creators.
@@ -96,9 +91,6 @@ Name of the Socialite trait by Wellech.
 Initial patching for Rimworld 1.1 by Nationality.
 Translators: Russian by Паулк, German by Chaos, Chinese by Mr.Gha, French by Éloïse Rodrake
 Further fixes for Rimworld 1.1-1.3 by KEMPER.
-Update for Rimworld 1.4 by WILDCARD.
-
+Update for Rimworld 1.3 and 1.4 by WILDCARD and KEMPER.
 	</description>
-	<!--&lt;b&gt;Compatibility&lt;/b&gt;
-Thanks to HugsLib and Harmony, this mod should be compatible with practically everything. You can disable many features from the mod's options if you don't want to play with them, and also adjust your play experience. Mods which make changes to the code but do not use Harmony are quite likely to be incompatible with Psychology.-->
 </ModMetaData>
