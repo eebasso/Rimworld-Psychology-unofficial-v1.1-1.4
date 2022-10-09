@@ -39,7 +39,35 @@ public class SpeciesHelper
     public static bool zombieNotNull;
 
     // At startup, add everything to every humanlike def, but only register Human to show up settings window
+    //static SpeciesHelper()
+    //{
+    //    zombieThinkTree = DefDatabase<ThinkTreeDef>.GetNamedSilentFail("Zombie");
+    //    zombieNotNull = zombieThinkTree != null;
+    //    foreach (ThingDef t in DefDatabase<ThingDef>.AllDefs)
+    //    {
+    //        if (CheckIntelligenceAndAddEverythingToSpeciesDef(t, checkIntelligence: true, register: false, allowAddComp: true) != true)
+    //        {
+    //            continue;
+    //        }
+    //        if (t.defName != "Human")
+    //        {
+    //            continue;
+    //        }
+    //        if (registeredSpecies.Add(t))
+    //        {
+    //            Log.Message("SpeciesHelper(), registered = " + t);
+    //        }
+    //    }
+    //    SettingsWindowUtility.Initialize();
+    //}
+
     static SpeciesHelper()
+    {
+        Initialize();
+    }
+
+
+    public static void Initialize()
     {
         zombieThinkTree = DefDatabase<ThinkTreeDef>.GetNamedSilentFail("Zombie");
         zombieNotNull = zombieThinkTree != null;
@@ -60,6 +88,7 @@ public class SpeciesHelper
         }
         SettingsWindowUtility.Initialize();
     }
+
 
     // Things that need to be done by these methods:
     // - Check intelligence
@@ -182,9 +211,9 @@ public class SpeciesHelper
         pawnDef.recipes.AddDistinct(RecipeDefOfPsychology.TreatChemicalInterest);
         pawnDef.recipes.AddDistinct(RecipeDefOfPsychology.TreatChemicalFascination);
         pawnDef.recipes.AddDistinct(RecipeDefOfPsychology.TreatDepression);
-        pawnDef.recipes.AddDistinct(RecipeDefOfPsychology.TreatInsomnia);        
+        pawnDef.recipes.AddDistinct(RecipeDefOfPsychology.TreatInsomnia);
         pawnDef.recipes.AddDistinct(RecipeDefOfPsychology.TreatPyromania);
-        
+
         if (!pawnDef.race.hediffGiverSets.NullOrEmpty())
         {
             if (pawnDef.race.hediffGiverSets.Contains(DefDatabase<HediffGiverSetDef>.GetNamed("OrganicStandard")))
