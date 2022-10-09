@@ -2,15 +2,27 @@
 <LanguageData>
 
 	<LetterLabelNewElection>Election being held in {0}</LetterLabelNewElection>
+
 	<LetterNewElection>A mayoral election is being held in {0}. Some colonists there have announced their candidacy.</LetterNewElection>
+	<!--<LetterNewElection>An election is being held in {0}. Some colonists there have announced their candidacy.</LetterNewElection>-->
+
 	<LetterLabelElectionHeld>Election underway in {0}</LetterLabelElectionHeld>
 	<LetterElectionHeld>The election in {0} is now underway. The colony has selected a polling place from the available gathering spots, and colonists will go there to vote.</LetterElectionHeld>
 	<LetterLabelElectionCandidate>Candidate: {0_labelShort}</LetterLabelElectionCandidate>
+
 	<LetterElectionCandidate>{0_labelShort} is running for mayor of {1}. This is {0_possessive} platform:\n{2}</LetterElectionCandidate>
+	<!--<LetterElectionCandidate>{0_labelShort} is running for position of {1}. This is {0_possessive} platform:\n{2}</LetterElectionCandidate>-->
+
 	<LetterLabelTieSettled>Election tie settled in favor of {0_labelShort}</LetterLabelTieSettled>
-	<LetterTieSettled>The mayoral election resulted in a tie, and after a battle royale bickering match, {0} was the only one willing to continue arguing about it. The other candidates have withdrawn, leaving {0_objective} the victor.</LetterTieSettled>
+
+	<!--<LetterTieSettled>The mayoral election resulted in a tie, and after a battle royale bickering match, {0} was the only one willing to continue arguing about it. The other candidates have withdrawn, leaving {0_objective} the victor.</LetterTieSettled>-->
+	<LetterTieSettled>The election resulted in a tie, and after a battle royale bickering match, {0} was the only one willing to continue arguing about it. The other candidates have withdrawn, leaving {0_objective} the victor.</LetterTieSettled>
+
 	<LetterLabelElectionWon>Election won by {0_labelShort}</LetterLabelElectionWon>
+
 	<LetterElectionWon>{0_labelShort} won the mayoral election at {1}. {0_pronoun} received {2} votes.\n\nAs a reminder, this was {0_possessive} platform:\n{3}\n\n{0_pronoun} will now receive visits from {0_possessive} constituents in {0_possessive} room if {0_pronoun} has one. If they have complaints, they will likely feel better after talking to {0_objective} if {0_pronoun} is good at talking to people and understanding their feelings. Having a beautiful room to meet them in won't hurt either.\n\nKeep a close eye on {0_objective}; {0_pronoun} has no one to complain to and bearing the burdens of an entire colony can be hard, especially if things are going badly.</LetterElectionWon>
+	<!--<LetterElectionWon>{0_labelShort} won the election for {1}. {0_pronoun} received {2} votes.\n\nAs a reminder, this was {0_possessive} platform:\n{3}\n\n{0_pronoun} will now receive visits from {0_possessive} constituents in {0_possessive} room if {0_pronoun} has one. If they have complaints, they will likely feel better after talking to {0_objective} if {0_pronoun} is good at talking to people and understanding their feelings. Having a beautiful room to meet them in won't hurt either.\n\nKeep a close eye on {0_objective}; {0_pronoun} has no one to complain to and bearing the burdens of an entire colony can be hard, especially if things are going badly.</LetterElectionWon>-->
+
 	<LetterLabelFuneralPlanned>Funeral planned for {0}</LetterLabelFuneralPlanned>
 	<LetterFuneralPlanned>{0_labelShort} has planned a funeral for {1_labelShort}. The service will be held on the {2}, at {3}h.</LetterFuneralPlanned>
 	<LetterLabelFuneralStarted>Funeral service being held for {0}</LetterLabelFuneralStarted>

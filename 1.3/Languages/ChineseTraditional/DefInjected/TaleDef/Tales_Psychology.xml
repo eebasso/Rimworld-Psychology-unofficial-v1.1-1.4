@@ -1,0 +1,264 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <TreatedPyromania.label>纠正纵火癖</TreatedPyromania.label>
+  <TreatedPyromania.rulePack.rulesStrings.0>tale_noun->[patient_nameShortDef] 针对纵火癖的心理咨询</TreatedPyromania.rulePack.rulesStrings.0>
+  <TreatedPyromania.rulePack.rulesStrings.1>image->[psychologist_nameFull] 坐在 [patient_nameFull] 的床边 [circumstance_group]</TreatedPyromania.rulePack.rulesStrings.1>
+  <TreatedPyromania.rulePack.rulesStrings.2>image->[psychologist_nameFull] 点头倾听 [patient_nameFull] 谈论自己对纵火的痴迷 [circumstance_group]</TreatedPyromania.rulePack.rulesStrings.2>
+  <TreatedPyromania.rulePack.rulesStrings.3>image->[psychologist_nameFull] 谈论 [patient_nameFull] 的纵火冲动 [circumstance_group]</TreatedPyromania.rulePack.rulesStrings.3>
+  <TreatedPyromania.rulePack.rulesStrings.4>circumstance_phrase->同时 [psychologist_nameShortDef] 做了一些记录</TreatedPyromania.rulePack.rulesStrings.4>
+  <TreatedPyromania.rulePack.rulesStrings.5>circumstance_phrase->同时 [psychologist_nameShortDef] 开了一个处方</TreatedPyromania.rulePack.rulesStrings.5>
+  <TreatedPyromania.rulePack.rulesStrings.6>circumstance_phrase->同时制定了一条治疗方案</TreatedPyromania.rulePack.rulesStrings.6>
+  <TreatedPyromania.rulePack.rulesStrings.7>circumstance_phrase->对对方的感受表示理解</TreatedPyromania.rulePack.rulesStrings.7>
+  <TreatedPyromania.rulePack.rulesStrings.8>desc_sentence->[psychologist_nameShortDef] 很有经验地看着 [psychologist_possessive] 的脸。</TreatedPyromania.rulePack.rulesStrings.8>
+  <TreatedPyromania.rulePack.rulesStrings.9>desc_sentence->[psychologist_nameShortDef] 看上去非常专注于这项工作。</TreatedPyromania.rulePack.rulesStrings.9>
+  <TreatedPyromania.rulePack.rulesStrings.10>desc_sentence->[psychologist_nameShortDef] 对待工作严肃认真，但态度十分友好。</TreatedPyromania.rulePack.rulesStrings.10>
+  <TreatedPyromania.rulePack.rulesStrings.11>desc_sentence->[patient_nameShortDef] 正在微笑。</TreatedPyromania.rulePack.rulesStrings.11>
+  <TreatedPyromania.rulePack.rulesStrings.12>desc_sentence->[patient_nameShortDef] 看上去重获新生。</TreatedPyromania.rulePack.rulesStrings.12>
+
+  <TreatedDrugDesire.label>治疗成瘾品渴求</TreatedDrugDesire.label>
+  <TreatedDrugDesire.rulePack.rulesStrings.0>tale_noun->[patient_nameShortDef] 针对治疗成瘾品渴求的心理咨询</TreatedDrugDesire.rulePack.rulesStrings.0>
+  <TreatedDrugDesire.rulePack.rulesStrings.1>image->[psychologist_nameFull] 坐在 [patient_nameFull] 的床边 [circumstance_group]</TreatedDrugDesire.rulePack.rulesStrings.1>
+  <TreatedDrugDesire.rulePack.rulesStrings.2>image->[psychologist_nameFull] 点头倾听 [patient_nameFull] 谈论自己对成瘾品的渴求 [circumstance_group]</TreatedDrugDesire.rulePack.rulesStrings.2>
+  <TreatedDrugDesire.rulePack.rulesStrings.3>image->[psychologist_nameFull] 谈论 [patient_nameFull] 的吸毒欲望 [circumstance_group]</TreatedDrugDesire.rulePack.rulesStrings.3>
+  <TreatedDrugDesire.rulePack.rulesStrings.4>circumstance_phrase->同时 [psychologist_nameShortDef] 做了一些记录</TreatedDrugDesire.rulePack.rulesStrings.4>
+  <TreatedDrugDesire.rulePack.rulesStrings.5>circumstance_phrase->同时 [psychologist_nameShortDef] 开了一个处方</TreatedDrugDesire.rulePack.rulesStrings.5>
+  <TreatedDrugDesire.rulePack.rulesStrings.6>circumstance_phrase->同时制定了一条治疗方案</TreatedDrugDesire.rulePack.rulesStrings.6>
+  <TreatedDrugDesire.rulePack.rulesStrings.7>circumstance_phrase->对对方的感受表示理解</TreatedDrugDesire.rulePack.rulesStrings.7>
+  <TreatedDrugDesire.rulePack.rulesStrings.8>desc_sentence->[psychologist_nameShortDef] 很有经验地看着 [psychologist_possessive] 的脸。</TreatedDrugDesire.rulePack.rulesStrings.8>
+  <TreatedDrugDesire.rulePack.rulesStrings.9>desc_sentence->[psychologist_nameShortDef] 看上去非常专注于这项工作。</TreatedDrugDesire.rulePack.rulesStrings.9>
+  <TreatedDrugDesire.rulePack.rulesStrings.10>desc_sentence->[psychologist_nameShortDef] 对待工作严肃认真，但态度十分友好。</TreatedDrugDesire.rulePack.rulesStrings.10>
+  <TreatedDrugDesire.rulePack.rulesStrings.11>desc_sentence->[patient_nameShortDef] 正在微笑。</TreatedDrugDesire.rulePack.rulesStrings.11>
+  <TreatedDrugDesire.rulePack.rulesStrings.12>desc_sentence->[patient_nameShortDef] 看上去重获新生。</TreatedDrugDesire.rulePack.rulesStrings.12>
+
+  <TreatedDepression.label>治疗抑郁症</TreatedDepression.label>
+  <TreatedDepression.rulePack.rulesStrings.0>tale_noun->[patient_nameShortDef] 针对抑郁症的心理咨询</TreatedDepression.rulePack.rulesStrings.0>
+  <TreatedDepression.rulePack.rulesStrings.1>image->[psychologist_nameFull] 坐在 [patient_nameFull] 的床边 [circumstance_group]</TreatedDepression.rulePack.rulesStrings.1>
+  <TreatedDepression.rulePack.rulesStrings.2>image->[psychologist_nameFull] 点头倾听 [patient_nameFull] 谈起自己的状况 [circumstance_group]</TreatedDepression.rulePack.rulesStrings.2>
+  <TreatedDepression.rulePack.rulesStrings.3>image->[psychologist_nameFull] 谈论 [patient_nameFull] 心中黑暗的情绪 [circumstance_group]</TreatedDepression.rulePack.rulesStrings.3>
+  <TreatedDepression.rulePack.rulesStrings.4>circumstance_phrase->同时 [psychologist_nameShortDef] 做了一些记录</TreatedDepression.rulePack.rulesStrings.4>
+  <TreatedDepression.rulePack.rulesStrings.5>circumstance_phrase->同时 [psychologist_nameShortDef] 开了一个处方</TreatedDepression.rulePack.rulesStrings.5>
+  <TreatedDepression.rulePack.rulesStrings.6>circumstance_phrase->同时制定了一条治疗方案</TreatedDepression.rulePack.rulesStrings.6>
+  <TreatedDepression.rulePack.rulesStrings.7>circumstance_phrase->对对方的感受表示理解</TreatedDepression.rulePack.rulesStrings.7>
+  <TreatedDepression.rulePack.rulesStrings.8>desc_sentence->[psychologist_nameShortDef] 很有经验地看着 [psychologist_possessive] 的脸。</TreatedDepression.rulePack.rulesStrings.8>
+  <TreatedDepression.rulePack.rulesStrings.9>desc_sentence->[psychologist_nameShortDef] 看上去非常专注于这项工作。</TreatedDepression.rulePack.rulesStrings.9>
+  <TreatedDepression.rulePack.rulesStrings.10>desc_sentence->[psychologist_nameShortDef] 对待工作严肃认真，但态度十分友好。</TreatedDepression.rulePack.rulesStrings.10>
+  <TreatedDepression.rulePack.rulesStrings.11>desc_sentence->[patient_nameShortDef] 淡淡地笑着。</TreatedDepression.rulePack.rulesStrings.11>
+  <TreatedDepression.rulePack.rulesStrings.12>desc_sentence->[patient_nameShortDef] 看上去开心了不少。</TreatedDepression.rulePack.rulesStrings.12>
+
+  <TreatedInsomnia.label>治疗失眠症</TreatedInsomnia.label>
+  <TreatedInsomnia.rulePack.rulesStrings.0>tale_noun->[patient_nameShortDef] 针对失眠症的治疗</TreatedInsomnia.rulePack.rulesStrings.0>
+  <TreatedInsomnia.rulePack.rulesStrings.1>image->[patient_nameFull] 看上去像一只死鱼眼的僵尸 [circumstance_group]</TreatedInsomnia.rulePack.rulesStrings.1>
+  <TreatedInsomnia.rulePack.rulesStrings.2>image->[patient_nameFull] 在和 [psychologist_nameFull] 的谈话中不停地打瞌睡</TreatedInsomnia.rulePack.rulesStrings.2>
+  <TreatedInsomnia.rulePack.rulesStrings.3>image->[psychologist_nameFull] 谈论 [patient_nameFull] 的睡眠问题 [circumstance_group]</TreatedInsomnia.rulePack.rulesStrings.3>
+  <TreatedInsomnia.rulePack.rulesStrings.4>circumstance_phrase->同时 [psychologist_nameShortDef] 做了一些记录</TreatedInsomnia.rulePack.rulesStrings.4>
+  <TreatedInsomnia.rulePack.rulesStrings.5>circumstance_phrase->同时 [psychologist_nameShortDef] 开了一个处方</TreatedInsomnia.rulePack.rulesStrings.5>
+  <TreatedInsomnia.rulePack.rulesStrings.6>circumstance_phrase->同时 [psychologist_nameShortDef] 给了 [patient_nameShortDef] 一瓶药片</TreatedInsomnia.rulePack.rulesStrings.6>
+  <TreatedInsomnia.rulePack.rulesStrings.7>circumstance_phrase->[patient_possessive] 的脑袋上都快冒出“ZZZ”了</TreatedInsomnia.rulePack.rulesStrings.7>
+  <TreatedInsomnia.rulePack.rulesStrings.8>desc_sentence->[psychologist_nameShortDef] 很有经验地看着 [psychologist_possessive] 的脸。</TreatedInsomnia.rulePack.rulesStrings.8>
+  <TreatedInsomnia.rulePack.rulesStrings.9>desc_sentence->[psychologist_nameShortDef] 拍了拍 [patient_possessive] 的肩膀。</TreatedInsomnia.rulePack.rulesStrings.9>
+  <TreatedInsomnia.rulePack.rulesStrings.10>desc_sentence->[psychologist_nameShortDef] 对待工作严肃认真，但态度十分友好。</TreatedInsomnia.rulePack.rulesStrings.10>
+  <TreatedInsomnia.rulePack.rulesStrings.11>desc_sentence->[patient_nameShortDef] 终于睡了个好觉。</TreatedInsomnia.rulePack.rulesStrings.11>
+  <TreatedInsomnia.rulePack.rulesStrings.12>desc_sentence->[patient_nameShortDef] 看上去急切地想要找张床睡觉。</TreatedInsomnia.rulePack.rulesStrings.12>
+
+  <CuredAnxiety.label>治愈焦虑症</CuredAnxiety.label>
+  <CuredAnxiety.rulePack.rulesStrings.0>tale_noun->[patient_nameShortDef] 针对焦虑症的治疗</CuredAnxiety.rulePack.rulesStrings.0>
+  <CuredAnxiety.rulePack.rulesStrings.1>image->[doctor_nameFull] 打开了一个闪耀世界的医药箱 [circumstance_group]</CuredAnxiety.rulePack.rulesStrings.1>
+  <CuredAnxiety.rulePack.rulesStrings.2>image->[doctor_nameFull] 在 [patient_nameFull] 的头上摆弄着什么 [circumstance_group]</CuredAnxiety.rulePack.rulesStrings.2>
+  <CuredAnxiety.rulePack.rulesStrings.3>image->[patient_nameFull] 看上去对这堆未来科技的产物感到不安 [circumstance_group]</CuredAnxiety.rulePack.rulesStrings.3>
+  <CuredAnxiety.rulePack.rulesStrings.4>circumstance_phrase->同时 [patient_nameShortDef] 看起来比以前更加焦虑了</CuredAnxiety.rulePack.rulesStrings.4>
+  <CuredAnxiety.rulePack.rulesStrings.5>circumstance_phrase->同时 [doctor_nameShortDef] 评论了一下这项治疗的难度</CuredAnxiety.rulePack.rulesStrings.5>
+  <CuredAnxiety.rulePack.rulesStrings.6>circumstance_phrase->同时 [doctor_nameShortDef] 称赞着闪耀世界的先进医疗技术</CuredAnxiety.rulePack.rulesStrings.6>
+  <CuredAnxiety.rulePack.rulesStrings.7>circumstance_phrase->同时 [patient_nameShortDef]的焦虑症心魔似乎被具象化在 [patient_possessive] 脑袋边上</CuredAnxiety.rulePack.rulesStrings.7>
+  <CuredAnxiety.rulePack.rulesStrings.8>circumstance_phrase->同时，焦虑症心魔被完全具象化了出来，萦绕在 [patient_nameShortDef] 身体四周</CuredAnxiety.rulePack.rulesStrings.8>
+  <CuredAnxiety.rulePack.rulesStrings.9>desc_sentence->[doctor_nameShortDef] 很有经验地看着 [doctor_possessive] 的脸。</CuredAnxiety.rulePack.rulesStrings.9>
+  <CuredAnxiety.rulePack.rulesStrings.10>desc_sentence->[doctor_nameShortDef] 安慰着 [patient_possessive] 。</CuredAnxiety.rulePack.rulesStrings.10>
+  <CuredAnxiety.rulePack.rulesStrings.11>desc_sentence->[patient_nameShortDef] 努力想象着没有焦虑症以后的人生。</CuredAnxiety.rulePack.rulesStrings.11>
+  <CuredAnxiety.rulePack.rulesStrings.12>desc_sentence->[patient_nameShortDef] 的眼眶湿润了。</CuredAnxiety.rulePack.rulesStrings.12>
+  <CuredAnxiety.rulePack.rulesStrings.13>desc_sentence->[patient_nameShortDef] 的亲友正在不远处观望着。</CuredAnxiety.rulePack.rulesStrings.13>
+
+  <MentalStateTantrum.label>破坏狂</MentalStateTantrum.label>
+  <MentalStateTantrum.rulePack.rulesStrings.0>tale_noun->[PAWN_nameDef] 正在发脾气</MentalStateTantrum.rulePack.rulesStrings.0>
+  <MentalStateTantrum.rulePack.rulesStrings.1>image->[PAWN_nameFull] 勃然大怒 [circumstance_group]</MentalStateTantrum.rulePack.rulesStrings.1>
+  <MentalStateTantrum.rulePack.rulesStrings.2>image->[PAWN_nameFull] 将 [PAWN_possessive] 的怒火发泄到家具上 [circumstance_group]</MentalStateTantrum.rulePack.rulesStrings.2>
+  <MentalStateTantrum.rulePack.rulesStrings.3>image->[PAWN_nameFull] 疯了一样磕磕碰碰地撞向家具 [circumstance_group]</MentalStateTantrum.rulePack.rulesStrings.3>
+  <MentalStateTantrum.rulePack.rulesStrings.4>circumstance_phrase->同时破口大骂</MentalStateTantrum.rulePack.rulesStrings.4>
+  <MentalStateTantrum.rulePack.rulesStrings.5>circumstance_phrase->看上去无缘无故</MentalStateTantrum.rulePack.rulesStrings.5>
+  <MentalStateTantrum.rulePack.rulesStrings.6>circumstance_phrase->而其他人害怕地畏缩着</MentalStateTantrum.rulePack.rulesStrings.6>
+  <MentalStateTantrum.rulePack.rulesStrings.7>circumstance_phrase->而其他人惊恐地注视着</MentalStateTantrum.rulePack.rulesStrings.7>
+  <MentalStateTantrum.rulePack.rulesStrings.8>circumstance_phrase->因为压力</MentalStateTantrum.rulePack.rulesStrings.8>
+  <MentalStateTantrum.rulePack.rulesStrings.9>circumstance_phrase->同时尖叫着</MentalStateTantrum.rulePack.rulesStrings.9>
+  <MentalStateTantrum.rulePack.rulesStrings.10>circumstance_phrase->同时气得发抖</MentalStateTantrum.rulePack.rulesStrings.10>
+  <MentalStateTantrum.rulePack.rulesStrings.11>desc_sentence->[PAWN_pronoun] 由于怒不可遏而浑身颤抖。</MentalStateTantrum.rulePack.rulesStrings.11>
+  <MentalStateTantrum.rulePack.rulesStrings.12>desc_sentence->[PAWN_possessive] 发出了恐怖的咆哮。</MentalStateTantrum.rulePack.rulesStrings.12>
+  <MentalStateTantrum.rulePack.rulesStrings.13>desc_sentence->[PAWN_possessive] 露出了可怕的眼神。</MentalStateTantrum.rulePack.rulesStrings.13>
+  <MentalStateTantrum.rulePack.rulesStrings.14>desc_sentence->[PAWN_pronoun] 瘀伤了 [PAWN_possessive] 的拳头。</MentalStateTantrum.rulePack.rulesStrings.14>
+  <MentalStateTantrum.rulePack.rulesStrings.15>desc_sentence->[PAWN_pronoun] 由于痛苦而面目狰狞。</MentalStateTantrum.rulePack.rulesStrings.15>
+  <MentalStateTantrum.rulePack.rulesStrings.16>desc_sentence->[PAWN_pronoun] 正把一把椅子举过 [PAWN_possessive] 的头顶。</MentalStateTantrum.rulePack.rulesStrings.16>
+  <MentalStateTantrum.rulePack.rulesStrings.17>desc_sentence->[PAWN_possessive] 由于愤恨而不停颤抖。</MentalStateTantrum.rulePack.rulesStrings.17>
+  <MentalStateTantrum.rulePack.rulesStrings.18>desc_sentence->一滴泪水划过 [PAWN_possessive] 的脸颊。</MentalStateTantrum.rulePack.rulesStrings.18>
+
+  <MentalStateSelfHarm.label>重度抑郁症</MentalStateSelfHarm.label>
+  <MentalStateSelfHarm.rulePack.rulesStrings.0>tale_noun->[PAWN_nameDef] 想要杀了 [PAWN_pronoun] 自己</MentalStateSelfHarm.rulePack.rulesStrings.0>
+  <MentalStateSelfHarm.rulePack.rulesStrings.1>image->[PAWN_nameFull] 正在割 [PAWN_possessive] 的手腕 [circumstance_group]</MentalStateSelfHarm.rulePack.rulesStrings.1>
+  <MentalStateSelfHarm.rulePack.rulesStrings.2>image->[PAWN_nameFull] 坐在 [PAWN_possessive] 的血泊之中 [circumstance_group]</MentalStateSelfHarm.rulePack.rulesStrings.2>
+  <MentalStateSelfHarm.rulePack.rulesStrings.3>image->[PAWN_nameFull] 静静地注视着远方 [circumstance_group]</MentalStateSelfHarm.rulePack.rulesStrings.3>
+  <MentalStateSelfHarm.rulePack.rulesStrings.4>circumstance_phrase->同时呜咽着</MentalStateSelfHarm.rulePack.rulesStrings.4>
+  <MentalStateSelfHarm.rulePack.rulesStrings.5>circumstance_phrase->同时在 [PAWN_possessive] 的房间里抱膝痛哭</MentalStateSelfHarm.rulePack.rulesStrings.5>
+  <MentalStateSelfHarm.rulePack.rulesStrings.6>circumstance_phrase->一言不发</MentalStateSelfHarm.rulePack.rulesStrings.6>
+  <MentalStateSelfHarm.rulePack.rulesStrings.7>circumstance_phrase->同时哭泣着</MentalStateSelfHarm.rulePack.rulesStrings.7>
+  <MentalStateSelfHarm.rulePack.rulesStrings.8>desc_sentence->[PAWN_pronoun] 看上去面色苍白，病怏怏的。</MentalStateSelfHarm.rulePack.rulesStrings.8>
+  <MentalStateSelfHarm.rulePack.rulesStrings.9>desc_sentence->[PAWN_possessive] 手臂软弱无力。</MentalStateSelfHarm.rulePack.rulesStrings.9>
+  <MentalStateSelfHarm.rulePack.rulesStrings.10>desc_sentence->[PAWN_possessive] 衣服上沾满了鲜血。</MentalStateSelfHarm.rulePack.rulesStrings.10>
+  <MentalStateSelfHarm.rulePack.rulesStrings.11>desc_sentence->[PAWN_pronoun] 坐在地板上晃来晃去。</MentalStateSelfHarm.rulePack.rulesStrings.11>
+  <MentalStateSelfHarm.rulePack.rulesStrings.12>desc_sentence->[PAWN_pronoun] 面无表情，心如死灰。</MentalStateSelfHarm.rulePack.rulesStrings.12>
+
+  <MentalStateApathy.label>冷漠</MentalStateApathy.label>
+  <MentalStateApathy.rulePack.rulesStrings.0>tale_noun->[PAWN_nameDef] 冷漠地四处游荡</MentalStateApathy.rulePack.rulesStrings.0>
+  <MentalStateApathy.rulePack.rulesStrings.1>image->[PAWN_nameFull] 冷漠地在殖民地周围游荡 [circumstance_group]</MentalStateApathy.rulePack.rulesStrings.1>
+  <MentalStateApathy.rulePack.rulesStrings.2>image->[PAWN_nameFull] 无精打采地坐着 [circumstance_group]</MentalStateApathy.rulePack.rulesStrings.2>
+  <MentalStateApathy.rulePack.rulesStrings.3>image->[PAWN_nameFull] 正在逃避 [PAWN_possessive] 应该做的工作 [circumstance_group]</MentalStateApathy.rulePack.rulesStrings.3>
+  <MentalStateApathy.rulePack.rulesStrings.4>image->[PAWN_nameFull] 不情愿地做着 [PAWN_possessive] 自己的工作 [circumstance_group]</MentalStateApathy.rulePack.rulesStrings.4>
+  <MentalStateApathy.rulePack.rulesStrings.5>image->[PAWN_nameFull] 在偷懒 [circumstance_group]</MentalStateApathy.rulePack.rulesStrings.5>
+  <MentalStateApathy.rulePack.rulesStrings.6>circumstance_phrase->同时满脸厌烦</MentalStateApathy.rulePack.rulesStrings.6>
+  <MentalStateApathy.rulePack.rulesStrings.7>circumstance_phrase->同时撅着嘴</MentalStateApathy.rulePack.rulesStrings.7>
+  <MentalStateApathy.rulePack.rulesStrings.8>circumstance_phrase->同时抱怨着什么</MentalStateApathy.rulePack.rulesStrings.8>
+  <MentalStateApathy.rulePack.rulesStrings.9>circumstance_phrase->同时半闭着眼</MentalStateApathy.rulePack.rulesStrings.9>
+  <MentalStateApathy.rulePack.rulesStrings.10>desc_sentence->[PAWN_pronoun] 看上去筋疲力尽。</MentalStateApathy.rulePack.rulesStrings.10>
+  <MentalStateApathy.rulePack.rulesStrings.11>desc_sentence->[PAWN_possessive] 叉着双臂。</MentalStateApathy.rulePack.rulesStrings.11>
+  <MentalStateApathy.rulePack.rulesStrings.12>desc_sentence->[PAWN_pronoun] 看上去漠不关心。</MentalStateApathy.rulePack.rulesStrings.12>
+
+  <MentalStateSadism.label>施虐癖</MentalStateSadism.label>
+  <MentalStateSadism.rulePack.rulesStrings.0>tale_noun->[PAWN_nameDef] 狂笑着</MentalStateSadism.rulePack.rulesStrings.0>
+  <MentalStateSadism.rulePack.rulesStrings.1>image->[PAWN_nameFull] 挥舞着 [PAWN_possessive] 的武器 [circumstance_group]</MentalStateSadism.rulePack.rulesStrings.1>
+  <MentalStateSadism.rulePack.rulesStrings.2>image->[PAWN_nameFull] 低声咕哝着什么 [circumstance_group]</MentalStateSadism.rulePack.rulesStrings.2>
+  <MentalStateSadism.rulePack.rulesStrings.3>image->[PAWN_nameFull] 在寻找一个施虐的对象 [circumstance_group]</MentalStateSadism.rulePack.rulesStrings.3>
+  <MentalStateSadism.rulePack.rulesStrings.4>circumstance_phrase->同时四处游荡着</MentalStateSadism.rulePack.rulesStrings.4>
+  <MentalStateSadism.rulePack.rulesStrings.5>circumstance_phrase->同时残忍地笑着</MentalStateSadism.rulePack.rulesStrings.5>
+  <MentalStateSadism.rulePack.rulesStrings.6>circumstance_phrase->同时露出威胁的笑容</MentalStateSadism.rulePack.rulesStrings.6>
+  <MentalStateSadism.rulePack.rulesStrings.7>desc_sentence->[PAWN_pronoun] 看上去已经失去了理智。</MentalStateSadism.rulePack.rulesStrings.7>
+  <MentalStateSadism.rulePack.rulesStrings.8>desc_sentence->[PAWN_possessive] 左眼在抽搐。</MentalStateSadism.rulePack.rulesStrings.8>
+  <MentalStateSadism.rulePack.rulesStrings.9>desc_sentence->[PAWN_possessive] 双手在颤抖。</MentalStateSadism.rulePack.rulesStrings.9>
+
+  <MentalStateCompulsion.label>强迫症</MentalStateCompulsion.label>
+  <MentalStateCompulsion.rulePack.rulesStrings.0>tale_noun->[PAWN_nameDef] 发了疯似地清洁</MentalStateCompulsion.rulePack.rulesStrings.0>
+  <MentalStateCompulsion.rulePack.rulesStrings.1>image->[PAWN_nameFull] 沉溺于整理物资 [circumstance_group]</MentalStateCompulsion.rulePack.rulesStrings.1>
+  <MentalStateCompulsion.rulePack.rulesStrings.2>image->[PAWN_nameFull] 浑身污垢 [circumstance_group]</MentalStateCompulsion.rulePack.rulesStrings.2>
+  <MentalStateCompulsion.rulePack.rulesStrings.3>image->[PAWN_nameFull] 疯狂地擦地板 [circumstance_group]</MentalStateCompulsion.rulePack.rulesStrings.3>
+  <MentalStateCompulsion.rulePack.rulesStrings.4>circumstance_phrase->一边喘气一边喃喃自语</MentalStateCompulsion.rulePack.rulesStrings.4>
+  <MentalStateCompulsion.rulePack.rulesStrings.5>circumstance_phrase->同时大汗淋漓</MentalStateCompulsion.rulePack.rulesStrings.5>
+  <MentalStateCompulsion.rulePack.rulesStrings.6>circumstance_phrase->同时努力保持清醒</MentalStateCompulsion.rulePack.rulesStrings.6>
+  <MentalStateCompulsion.rulePack.rulesStrings.7>desc_sentence->[PAWN_pronoun] 看上去已经一整天没休息过了。</MentalStateCompulsion.rulePack.rulesStrings.7>
+  <MentalStateCompulsion.rulePack.rulesStrings.8>desc_sentence->[PAWN_pronoun] 看上去已经饿得有些营养不良了。</MentalStateCompulsion.rulePack.rulesStrings.8>
+  <MentalStateCompulsion.rulePack.rulesStrings.9>desc_sentence->[PAWN_pronoun] 看起来意志坚定，目光狂野。</MentalStateCompulsion.rulePack.rulesStrings.9>
+  <MentalStateCompulsion.rulePack.rulesStrings.10>desc_sentence->[PAWN_possessive] 双手在颤抖。</MentalStateCompulsion.rulePack.rulesStrings.10>
+
+  <MentalStateAbuse.label>恶语伤人</MentalStateAbuse.label>
+  <MentalStateAbuse.rulePack.rulesStrings.0>tale_noun->[PAWN_nameDef] 怒不可遏地嘶吼着</MentalStateAbuse.rulePack.rulesStrings.0>
+  <MentalStateAbuse.rulePack.rulesStrings.1>image->[PAWN_nameFull] 来回踱步 [circumstance_group]</MentalStateAbuse.rulePack.rulesStrings.1>
+  <MentalStateAbuse.rulePack.rulesStrings.2>image->[PAWN_nameFull] 气得直跺脚 [circumstance_group]</MentalStateAbuse.rulePack.rulesStrings.2>
+  <MentalStateAbuse.rulePack.rulesStrings.3>image->[PAWN_nameFull] 正在寻找一个辱骂的对象 [circumstance_group]</MentalStateAbuse.rulePack.rulesStrings.3>
+  <MentalStateAbuse.rulePack.rulesStrings.4>image->[PAWN_nameFull] 正在找人泄愤</MentalStateAbuse.rulePack.rulesStrings.4>
+  <MentalStateAbuse.rulePack.rulesStrings.5>circumstance_phrase->而其他人则不以为然地看着</MentalStateAbuse.rulePack.rulesStrings.5>
+  <MentalStateAbuse.rulePack.rulesStrings.6>circumstance_phrase->而其他人则无奈地摇着头</MentalStateAbuse.rulePack.rulesStrings.6>
+  <MentalStateAbuse.rulePack.rulesStrings.7>circumstance_phrase->而其他人则避开了眼神接触</MentalStateAbuse.rulePack.rulesStrings.7>
+  <MentalStateAbuse.rulePack.rulesStrings.8>circumstance_phrase->而其他人则畏缩不前 [PAWN_pronoun]</MentalStateAbuse.rulePack.rulesStrings.8>
+  <MentalStateAbuse.rulePack.rulesStrings.9>circumstance_phrase->张牙舞爪地</MentalStateAbuse.rulePack.rulesStrings.9>
+  <MentalStateAbuse.rulePack.rulesStrings.10>desc_sentence->唾沫横飞。</MentalStateAbuse.rulePack.rulesStrings.10>
+  <MentalStateAbuse.rulePack.rulesStrings.11>desc_sentence->[PAWN_possessive] 面红耳赤。</MentalStateAbuse.rulePack.rulesStrings.11>
+  <MentalStateAbuse.rulePack.rulesStrings.12>desc_sentence->[PAWN_possessive] 全身因愤怒而不停颤抖。</MentalStateAbuse.rulePack.rulesStrings.12>
+  <MentalStateAbuse.rulePack.rulesStrings.13>desc_sentence->[PAWN_possessive] 满眼怒火。</MentalStateAbuse.rulePack.rulesStrings.13>
+
+  <MentalStateAntisocial.label>反社交</MentalStateAntisocial.label>
+  <MentalStateAntisocial.rulePack.rulesStrings.0>tale_noun->[PAWN_nameDef] 正在离开殖民地</MentalStateAntisocial.rulePack.rulesStrings.0>
+  <MentalStateAntisocial.rulePack.rulesStrings.1>image->[PAWN_nameFull] 正让 [PAWN_possessive] 自己和殖民地保持距离 [circumstance_group]</MentalStateAntisocial.rulePack.rulesStrings.1>
+  <MentalStateAntisocial.rulePack.rulesStrings.2>image->[PAWN_nameFull] 正避免和其他殖民者交流 [circumstance_group]</MentalStateAntisocial.rulePack.rulesStrings.2>
+  <MentalStateAntisocial.rulePack.rulesStrings.3>image->[PAWN_nameFull] 自己走远了 [circumstance_group]</MentalStateAntisocial.rulePack.rulesStrings.3>
+  <MentalStateAntisocial.rulePack.rulesStrings.4>image->[PAWN_nameFull] 自己跑远了 [circumstance_group]</MentalStateAntisocial.rulePack.rulesStrings.4>
+  <MentalStateAntisocial.rulePack.rulesStrings.5>image->[PAWN_nameFull] 走进野外 [circumstance_group]</MentalStateAntisocial.rulePack.rulesStrings.5>
+  <MentalStateAntisocial.rulePack.rulesStrings.6>image->[PAWN_nameFull] 逃入荒野 [circumstance_group]</MentalStateAntisocial.rulePack.rulesStrings.6>
+  <MentalStateAntisocial.rulePack.rulesStrings.7>circumstance_phrase->迫于压力</MentalStateAntisocial.rulePack.rulesStrings.7>
+  <MentalStateAntisocial.rulePack.rulesStrings.8>circumstance_phrase->面无表情</MentalStateAntisocial.rulePack.rulesStrings.8>
+  <MentalStateAntisocial.rulePack.rulesStrings.9>circumstance_phrase->满脸偏执</MentalStateAntisocial.rulePack.rulesStrings.9>
+  <MentalStateAntisocial.rulePack.rulesStrings.10>desc_sentence->[PAWN_pronoun] 看上去又疲惫又厌倦</MentalStateAntisocial.rulePack.rulesStrings.10>
+  <MentalStateAntisocial.rulePack.rulesStrings.11>desc_sentence->[PAWN_possessive] 面色苍白。</MentalStateAntisocial.rulePack.rulesStrings.11>
+  <MentalStateAntisocial.rulePack.rulesStrings.12>desc_sentence->[PAWN_possessive] 垂头丧气。</MentalStateAntisocial.rulePack.rulesStrings.12>
+
+  <MentalStateHistrionic.label>装腔作势</MentalStateHistrionic.label>
+  <MentalStateHistrionic.rulePack.rulesStrings.0>tale_noun->[PAWN_nameDef] 正拼命地寻求关注</MentalStateHistrionic.rulePack.rulesStrings.0>
+  <MentalStateHistrionic.rulePack.rulesStrings.1>image->[PAWN_nameFull] 正在追赶着谁 [circumstance_group]</MentalStateHistrionic.rulePack.rulesStrings.1>
+  <MentalStateHistrionic.rulePack.rulesStrings.2>image->[PAWN_nameFull] 笨拙地到处找人求婚 [circumstance_group]</MentalStateHistrionic.rulePack.rulesStrings.2>
+  <MentalStateHistrionic.rulePack.rulesStrings.3>image->[PAWN_nameFull] 歇斯底里地大吵大闹 [circumstance_group]</MentalStateHistrionic.rulePack.rulesStrings.3>
+  <MentalStateHistrionic.rulePack.rulesStrings.4>image->[PAWN_nameFull] 正在找别人谈论些什么 [circumstance_group]</MentalStateHistrionic.rulePack.rulesStrings.4>
+  <MentalStateHistrionic.rulePack.rulesStrings.5>circumstance_phrase->神色狂躁</MentalStateHistrionic.rulePack.rulesStrings.5>
+  <MentalStateHistrionic.rulePack.rulesStrings.6>circumstance_phrase->一脸诚恳</MentalStateHistrionic.rulePack.rulesStrings.6>
+  <MentalStateHistrionic.rulePack.rulesStrings.7>circumstance_phrase->而其他人则关切地看着</MentalStateHistrionic.rulePack.rulesStrings.7>
+  <MentalStateHistrionic.rulePack.rulesStrings.8>circumstance_phrase->完全失去了控制</MentalStateHistrionic.rulePack.rulesStrings.8>
+  <MentalStateHistrionic.rulePack.rulesStrings.9>circumstance_phrase->仿佛小丑附体</MentalStateHistrionic.rulePack.rulesStrings.9>
+  <MentalStateHistrionic.rulePack.rulesStrings.10>desc_sentence->每个人都试图避开</MentalStateHistrionic.rulePack.rulesStrings.10>
+  <MentalStateHistrionic.rulePack.rulesStrings.11>desc_sentence->[PAWN_pronoun] 紧紧攥着拳头。</MentalStateHistrionic.rulePack.rulesStrings.11>
+  <MentalStateHistrionic.rulePack.rulesStrings.12>desc_sentence->[PAWN_pronoun] 看上去既不耐烦又不自信。</MentalStateHistrionic.rulePack.rulesStrings.12>
+  <MentalStateHistrionic.rulePack.rulesStrings.13>desc_sentence->[PAWN_pronoun] 正试图和别人交谈，但所有人都躲着 [PAWN_pronoun] 。</MentalStateHistrionic.rulePack.rulesStrings.13>
+  <MentalStateHistrionic.rulePack.rulesStrings.14>desc_sentence->[PAWN_pronoun] 正在四处顶撞。</MentalStateHistrionic.rulePack.rulesStrings.14>
+
+  <MentalStateFellPlotting.label>邪恶狂想</MentalStateFellPlotting.label>
+  <MentalStateFellPlotting.rulePack.rulesStrings.0>tale_noun->[PAWN_nameDef] 正在孵化阴谋</MentalStateFellPlotting.rulePack.rulesStrings.0>
+  <MentalStateFellPlotting.rulePack.rulesStrings.1>image->[PAWN_nameFull] 在自己的房间里策划些什么</MentalStateFellPlotting.rulePack.rulesStrings.1>
+  <MentalStateFellPlotting.rulePack.rulesStrings.2>image->[PAWN_nameFull] 蜷在桌面上写着什么 [circumstance_group]</MentalStateFellPlotting.rulePack.rulesStrings.2>
+  <MentalStateFellPlotting.rulePack.rulesStrings.3>image->[PAWN_nameFull] 来回踱步 [circumstance_group]</MentalStateFellPlotting.rulePack.rulesStrings.3>
+  <MentalStateFellPlotting.rulePack.rulesStrings.4>image->[PAWN_nameFull] 在纸上涂涂改改 [circumstance_group]</MentalStateFellPlotting.rulePack.rulesStrings.4>
+  <MentalStateFellPlotting.rulePack.rulesStrings.5>image->[PAWN_nameFull] 鬼鬼祟祟地拿着武器摸过房间 [circumstance_group]</MentalStateFellPlotting.rulePack.rulesStrings.5>
+  <MentalStateFellPlotting.rulePack.rulesStrings.6>image->[PAWN_nameFull] 悄悄地站在了一个殖民者的身后</MentalStateFellPlotting.rulePack.rulesStrings.6>
+  <MentalStateFellPlotting.rulePack.rulesStrings.7>circumstance_phrase->喘着大气喃喃自语</MentalStateFellPlotting.rulePack.rulesStrings.7>
+  <MentalStateFellPlotting.rulePack.rulesStrings.8>circumstance_phrase->一脸偏执</MentalStateFellPlotting.rulePack.rulesStrings.8>
+  <MentalStateFellPlotting.rulePack.rulesStrings.9>circumstance_phrase->露出了狂野的眼神</MentalStateFellPlotting.rulePack.rulesStrings.9>
+  <MentalStateFellPlotting.rulePack.rulesStrings.10>circumstance_phrase->神情冷酷</MentalStateFellPlotting.rulePack.rulesStrings.10>
+  <MentalStateFellPlotting.rulePack.rulesStrings.11>circumstance_phrase->同时胡言乱语着什么</MentalStateFellPlotting.rulePack.rulesStrings.11>
+  <MentalStateFellPlotting.rulePack.rulesStrings.12>circumstance_phrase->同时疯狂地怒骂着</MentalStateFellPlotting.rulePack.rulesStrings.12>
+  <MentalStateFellPlotting.rulePack.rulesStrings.13>circumstance_phrase->自言自语着什么</MentalStateFellPlotting.rulePack.rulesStrings.13>
+  <MentalStateFellPlotting.rulePack.rulesStrings.14>desc_sentence->[PAWN_pronoun] 手里拿着偷来的武器。</MentalStateFellPlotting.rulePack.rulesStrings.14>
+  <MentalStateFellPlotting.rulePack.rulesStrings.15>desc_sentence->[PAWN_pronoun] 紧握着手中的武器</MentalStateFellPlotting.rulePack.rulesStrings.15>
+  <MentalStateFellPlotting.rulePack.rulesStrings.16>desc_sentence->[PAWN_pronoun] 露出了邪恶的眼神</MentalStateFellPlotting.rulePack.rulesStrings.16>
+  <MentalStateFellPlotting.rulePack.rulesStrings.17>desc_sentence->[PAWN_pronoun] 似乎下定了决心。</MentalStateFellPlotting.rulePack.rulesStrings.17>
+  <MentalStateFellPlotting.rulePack.rulesStrings.18>desc_sentence->[PAWN_pronoun] 直盯盯地看着屏幕外的你。</MentalStateFellPlotting.rulePack.rulesStrings.18>
+
+  <MentalStateParanoia.label>偏执症</MentalStateParanoia.label>
+  <MentalStateParanoia.rulePack.rulesStrings.0>tale_noun->[PAWN_nameDef] 被偏执所吞噬</MentalStateParanoia.rulePack.rulesStrings.0>
+  <MentalStateParanoia.rulePack.rulesStrings.1>image->[PAWN_nameFull] 含混不清地谋划着什么 [circumstance_group]</MentalStateParanoia.rulePack.rulesStrings.1>
+  <MentalStateParanoia.rulePack.rulesStrings.2>image->[PAWN_nameFull] 对其他人破口大骂 [circumstance_group]</MentalStateParanoia.rulePack.rulesStrings.2>
+  <MentalStateParanoia.rulePack.rulesStrings.3>image->[PAWN_nameFull] 在殖民地周围漫无目的地游荡 [circumstance_group]</MentalStateParanoia.rulePack.rulesStrings.3>
+  <MentalStateParanoia.rulePack.rulesStrings.4>image->[PAWN_nameFull] 对路过的人大喊大叫 [circumstance_group]</MentalStateParanoia.rulePack.rulesStrings.4>
+  <MentalStateParanoia.rulePack.rulesStrings.5>image->[PAWN_nameFull] 坐在地板上晃来晃去。 [circumstance_group]</MentalStateParanoia.rulePack.rulesStrings.5>
+  <MentalStateParanoia.rulePack.rulesStrings.6>circumstance_phrase->满脸疯狂</MentalStateParanoia.rulePack.rulesStrings.6>
+  <MentalStateParanoia.rulePack.rulesStrings.7>circumstance_phrase->一脸漫不经心的样子</MentalStateParanoia.rulePack.rulesStrings.7>
+  <MentalStateParanoia.rulePack.rulesStrings.8>circumstance_phrase->满脸惊恐</MentalStateParanoia.rulePack.rulesStrings.8>
+  <MentalStateParanoia.rulePack.rulesStrings.9>circumstance_phrase->并疯狂挥舞着手臂</MentalStateParanoia.rulePack.rulesStrings.9>
+  <MentalStateParanoia.rulePack.rulesStrings.10>circumstance_phrase->并疯狂用手势暗示些什么</MentalStateParanoia.rulePack.rulesStrings.10>
+  <MentalStateParanoia.rulePack.rulesStrings.11>circumstance_phrase->并自言自语着什么</MentalStateParanoia.rulePack.rulesStrings.11>
+  <MentalStateParanoia.rulePack.rulesStrings.12>desc_sentence->[PAWN_pronoun] 一边尖叫，一边抽泣着。</MentalStateParanoia.rulePack.rulesStrings.12>
+  <MentalStateParanoia.rulePack.rulesStrings.13>desc_sentence->[PAWN_pronoun] 正在用脑袋可怕地撞来撞去</MentalStateParanoia.rulePack.rulesStrings.13>
+  <MentalStateParanoia.rulePack.rulesStrings.14>desc_sentence->[PAWN_pronoun] 两眼茫然。</MentalStateParanoia.rulePack.rulesStrings.14>
+
+  <MentalStateHuntingTrip.label>皈依自然</MentalStateHuntingTrip.label>
+  <MentalStateHuntingTrip.rulePack.rulesStrings.0>tale_noun->[PAWN_nameDef] 回归自然以逃避殖民地的压力</MentalStateHuntingTrip.rulePack.rulesStrings.0>
+  <MentalStateHuntingTrip.rulePack.rulesStrings.1>tale_noun->[PAWN_nameDef] 远离殖民地开始了游猎生活</MentalStateHuntingTrip.rulePack.rulesStrings.1>
+  <MentalStateHuntingTrip.rulePack.rulesStrings.2>image->[PAWN_nameFull] 正在跟踪一只野生动物 [circumstance_group]</MentalStateHuntingTrip.rulePack.rulesStrings.2>
+  <MentalStateHuntingTrip.rulePack.rulesStrings.3>image->[PAWN_nameFull] 正在野外自由漫步 [circumstance_group]</MentalStateHuntingTrip.rulePack.rulesStrings.3>
+  <MentalStateHuntingTrip.rulePack.rulesStrings.4>image->[PAWN_nameFull] 把自己沉浸在大自然中寻求放松 [circumstance_group]</MentalStateHuntingTrip.rulePack.rulesStrings.4>
+  <MentalStateHuntingTrip.rulePack.rulesStrings.5>image->[PAWN_nameFull] 走出了众人的视线 [circumstance_group]</MentalStateHuntingTrip.rulePack.rulesStrings.5>
+  <MentalStateHuntingTrip.rulePack.rulesStrings.6>image->[PAWN_nameFull] 消失在了荒野之中 [circumstance_group]</MentalStateHuntingTrip.rulePack.rulesStrings.6>
+  <MentalStateHuntingTrip.rulePack.rulesStrings.7>circumstance_phrase->神情冷酷</MentalStateHuntingTrip.rulePack.rulesStrings.7>
+  <MentalStateHuntingTrip.rulePack.rulesStrings.8>circumstance_phrase->满脸坚定</MentalStateHuntingTrip.rulePack.rulesStrings.8>
+  <MentalStateHuntingTrip.rulePack.rulesStrings.9>circumstance_phrase->一脸茫然</MentalStateHuntingTrip.rulePack.rulesStrings.9>
+  <MentalStateHuntingTrip.rulePack.rulesStrings.10>circumstance_phrase->紧握着自己的武器</MentalStateHuntingTrip.rulePack.rulesStrings.10>
+  <MentalStateHuntingTrip.rulePack.rulesStrings.11>circumstance_phrase->并紧紧地盯着一只 [Animal]</MentalStateHuntingTrip.rulePack.rulesStrings.11>
+  <MentalStateHuntingTrip.rulePack.rulesStrings.12>circumstance_phrase->忽略了眼前的其他人</MentalStateHuntingTrip.rulePack.rulesStrings.12>
+  <MentalStateHuntingTrip.rulePack.rulesStrings.13>desc_sentence->[PAWN_pronoun] 紧紧地握着自己的武器。</MentalStateHuntingTrip.rulePack.rulesStrings.13>
+  <MentalStateHuntingTrip.rulePack.rulesStrings.14>desc_sentence->[PAWN_pronoun] 谨慎的察看着周围的环境。</MentalStateHuntingTrip.rulePack.rulesStrings.14>
+  <MentalStateHuntingTrip.rulePack.rulesStrings.15>desc_sentence->[PAWN_pronoun] 似乎从这一切中得到了解脱。</MentalStateHuntingTrip.rulePack.rulesStrings.15>
+  <MentalStateHuntingTrip.rulePack.rulesStrings.16>desc_sentence->一只 [Animal] 在 [PAWN_pronoun] 心烦意乱时悄悄走过。</MentalStateHuntingTrip.rulePack.rulesStrings.16>
+  <MentalStateHuntingTrip.rulePack.rulesStrings.17>desc_sentence->[Animal] 象征性地碰了碰 [PAWN_objective].</MentalStateHuntingTrip.rulePack.rulesStrings.17>
+  <MentalStateHuntingTrip.rulePack.rulesStrings.18>desc_sentence->一片 [TerrainFeature] 出现在背景中。</MentalStateHuntingTrip.rulePack.rulesStrings.18>
+
+
+</LanguageData>

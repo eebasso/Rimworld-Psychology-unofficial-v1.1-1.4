@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Special nature thoughts -->
+
+  <AteLavishMealPickyEater.stages.0.label>享用了奢侈食物</AteLavishMealPickyEater.stages.0.label>
+  <AteLavishMealPickyEater.stages.0.description>简直是奢华享受！为什么要让我吃到如此美味的东西，真想每天都能吃到啊！</AteLavishMealPickyEater.stages.0.description>
+
+  <AteFineMealPickyEater.stages.0.label>享用了精致食物</AteFineMealPickyEater.stages.0.label>
+  <AteFineMealPickyEater.stages.0.description>我享用了非常精致的一餐，简直太美味了！真是让人心情舒畅。</AteFineMealPickyEater.stages.0.description>
+
+  <AteAwfulMealPickyEater.stages.0.label>恶心的食物</AteAwfulMealPickyEater.stages.0.label>
+  <AteAwfulMealPickyEater.stages.0.description>我不得不吃一些恶心的“食物”，它们真的能叫食物吗。如果可以，我想吃点正常的东西。</AteAwfulMealPickyEater.stages.0.description>
+
+  <AteRawFoodPickyEater.stages.0.label>吃了生食</AteRawFoodPickyEater.stages.0.label>
+  <AteRawFoodPickyEater.stages.0.description>我不得不吃下一些生的食物。原始人都会用火呢！如果我们连厨师都没有，我可不想在这而久留。</AteRawFoodPickyEater.stages.0.description>
+
+  <AteNormalMealPickyEater.stages.0.label>平淡的一餐</AteNormalMealPickyEater.stages.0.label>
+  <AteNormalMealPickyEater.stages.0.description>索然无味的一餐，没有达到我的预期，我吃它只是因为没有更好的选择了。</AteNormalMealPickyEater.stages.0.description>
+
+  <AteInsectMeatAsIngredientPickyEater.stages.0.label>吃了烹饪过的虫肉</AteInsectMeatAsIngredientPickyEater.stages.0.label>
+  <AteInsectMeatAsIngredientPickyEater.stages.0.description>我吃了一顿用灰溜溜、黏糊糊的虫肉做成的饭，原料的恶心让我完全失去了胃口，这可真是个“惊喜”啊。</AteInsectMeatAsIngredientPickyEater.stages.0.description>
+
+  <AteInsectMeatDirectPickyEater.stages.0.label>吃了生的虫肉</AteInsectMeatDirectPickyEater.stages.0.label>
+  <AteInsectMeatDirectPickyEater.stages.0.description>我生吃了一些灰溜溜、黏糊糊的虫肉，太恶心了！神啊！杀了我吧！</AteInsectMeatDirectPickyEater.stages.0.description>
+
+  <AteRottenFoodPickyEater.stages.0.label>吃了腐烂的食物</AteRottenFoodPickyEater.stages.0.label>
+  <AteRottenFoodPickyEater.stages.0.description>我吃了一些恶心、腐烂的食物。我宁愿死也不愿沦落到这个地步。</AteRottenFoodPickyEater.stages.0.description>
+
+
+</LanguageData>

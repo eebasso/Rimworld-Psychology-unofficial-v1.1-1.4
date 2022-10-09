@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <Dynamic.stages.0.label>活力充沛</Dynamic.stages.0.label>
+
+  <MayorNoOffice.stages.0.label>缺少镇长办公室</MayorNoOffice.stages.0.label>
+  <MayorNoOffice.stages.0.description>我不得不在自己的卧室里和选民们会面，一间办公室会让这一切显得更专业一点。</MayorNoOffice.stages.0.description>
+
+  <MayorNoBedroom.stages.0.label>缺少镇长办公室</MayorNoBedroom.stages.0.label>
+  <MayorNoBedroom.stages.0.description>不止办公室，我连自己的卧室都没有。我需要拥有一些更私有的空间和我的选民们会面。</MayorNoBedroom.stages.0.description>
+
+  <WonElection.stages.0.label>赢得选举</WonElection.stages.0.label>
+  <WonElection.stages.0.description>我做到了！我现在是这个殖民地的镇长了！感谢支持我的选民们！我一定不负众望！</WonElection.stages.0.description>
+
+  <KilledHumanlikeEnemy.stages.0.label>肾上腺素</KilledHumanlikeEnemy.stages.0.label>
+  <KilledHumanlikeEnemy.stages.0.description>我亲手干掉了一个攻击我们殖民地的敌人……我的手现在还在发抖……真不敢相信我还活着！</KilledHumanlikeEnemy.stages.0.description>
+
+  <KnowPrisonerSoldBleedingHeart.stages.0.label>囚犯被贩卖</KnowPrisonerSoldBleedingHeart.stages.0.label>
+  <KnowPrisonerSoldBleedingHeart.stages.0.description>殖民地里的一名囚犯被当成奴隶卖掉了，我真是不能忍受这种野蛮行径。</KnowPrisonerSoldBleedingHeart.stages.0.description>
+
+  <KnowGuestOrganHarvestedBleedingHeart.stages.0.label>有人被收割器官</KnowGuestOrganHarvestedBleedingHeart.stages.0.label>
+  <KnowGuestOrganHarvestedBleedingHeart.stages.0.description>这个殖民地从一名囚犯或是访客身上取走了器官，他们会在别无选择的情况下把人拆成零件，真是难以接受。</KnowGuestOrganHarvestedBleedingHeart.stages.0.description>
+
+  <KnowColonistOrganHarvestedBleedingHeart.stages.0.label>殖民者被收割器官</KnowColonistOrganHarvestedBleedingHeart.stages.0.label>
+  <KnowColonistOrganHarvestedBleedingHeart.stages.0.description>这个殖民地从一名殖民者身上取走了器官，他们会在别无选择的情况下把人拆成零件，可怕！谁知道自己会不会是下一个。</KnowColonistOrganHarvestedBleedingHeart.stages.0.description>
+
+  <ReplacedPartBleedingHeart.stages.0.label>安装器官或身体部件</ReplacedPartBleedingHeart.stages.0.label>
+  <ReplacedPartBleedingHeart.stages.0.description>我给别人安装上了一个新的器官或者身体部件，帮助他们提高了生活质量，我感到很自豪。</ReplacedPartBleedingHeart.stages.0.description>
+
+  <DoctorBleedingHeart.stages.0.label>帮助病患</DoctorBleedingHeart.stages.0.label>
+  <DoctorBleedingHeart.stages.0.description>我爱医学，它给了你更多帮助别人的机会，健康和生命总是珍贵的。</DoctorBleedingHeart.stages.0.description>
+
+  <RescuedBleedingHeart.stages.0.label>拯救他人</RescuedBleedingHeart.stages.0.label>
+  <RescuedBleedingHeart.stages.0.description>我拯救了一个濒死的人。不必言谢，善行本身就是最好的报答。</RescuedBleedingHeart.stages.0.description>
+
+  <CookedMealBleedingHeart.stages.0.label>烹饪食物</CookedMealBleedingHeart.stages.0.label>
+  <CookedMealBleedingHeart.stages.0.description>我喜欢烹饪！这让我感觉是在帮助别人获得生命力，我要让这个殖民地充满生机！</CookedMealBleedingHeart.stages.0.description>
+
+  <FilledGraveBleedingHeart.stages.0.label>埋葬了某人</FilledGraveBleedingHeart.stages.0.label>
+  <FilledGraveBleedingHeart.stages.0.description>我希望逝者能得到安息……</FilledGraveBleedingHeart.stages.0.description>
+
+  <KilledPatientBleedingHeart.stages.0.label>误杀病患</KilledPatientBleedingHeart.stages.0.label>
+  <KilledPatientBleedingHeart.stages.0.description>我在我的手术中误杀了我的病人。都是我的错……他们本应活着的……</KilledPatientBleedingHeart.stages.0.description>
+
+  <RecentlyDesensitized.stages.0.label>漠不关心</RecentlyDesensitized.stages.0.label>
+  <RecentlyDesensitized.stages.0.description>我亲眼目睹了死亡，但我对此已经麻木了。这感觉真郁闷……</RecentlyDesensitized.stages.0.description>
+
+  <DreamGood.stages.0.label>美梦</DreamGood.stages.0.label>
+  <DreamGood.stages.0.description>真是一场好梦！我干劲儿更足了。</DreamGood.stages.0.description>
+
+  <DreamBad.stages.0.label>噩梦</DreamBad.stages.0.label>
+  <DreamBad.stages.0.description>那个噩梦现在依然萦绕在我心头……太糟糕了。</DreamBad.stages.0.description>
+
+  <DreamNightmare.stages.0.label>梦魇</DreamNightmare.stages.0.label>
+  <DreamNightmare.stages.0.description>啊啊啊！太可怕了，我甚至不敢再闭上眼！那些恐怖的梦魇会摧毁我的精神。</DreamNightmare.stages.0.description>
+
+  <TreatmentFailed.stages.0.label>{0}治疗失败</TreatmentFailed.stages.0.label>
+  <TreatmentFailed.stages.0.description>医生也没能治好我的精神问题……我觉得再也没人能够理解我了。</TreatmentFailed.stages.0.description>
+
+  <SuccessfulPlot.stages.0.label>阴谋成功</SuccessfulPlot.stages.0.label>
+  <SuccessfulPlot.stages.0.description>我消灭了我们这片土地上的瘟疫！我们安全啦！</SuccessfulPlot.stages.0.description>
+
+  <HeardParanoia.stages.0.label>听信谣言</HeardParanoia.stages.0.label>
+  <HeardParanoia.stages.0.description>我听到了一些事情……它们不会是……肯定不会是真的吧。</HeardParanoia.stages.0.description>
+
+
+  <!-- Abandoning pawns -->
+
+  <ColonistAbandonedBleedingHeart.stages.0.label>殖民者被抛弃</ColonistAbandonedBleedingHeart.stages.0.label>
+  <ColonistAbandonedBleedingHeart.stages.0.description>我们刚刚放逐了一名殖民者，不知道等待他的将会是什么样的未来。</ColonistAbandonedBleedingHeart.stages.0.description>
+
+  <ColonistAbandonedToDieBleedingHeart.stages.0.label>抛弃殖民者致死</ColonistAbandonedToDieBleedingHeart.stages.0.label>
+  <ColonistAbandonedToDieBleedingHeart.stages.0.description>我们在如此恶劣的情况下抛弃了同伴，他简直没有活下去的可能，我们怎么能这样！</ColonistAbandonedToDieBleedingHeart.stages.0.description>
+
+  <PrisonerAbandonedToDieBleedingHeart.stages.0.label>抛弃囚犯致死</PrisonerAbandonedToDieBleedingHeart.stages.0.label>
+  <PrisonerAbandonedToDieBleedingHeart.stages.0.description>我们在如此恶劣的情况下抛弃了囚犯，他简直没有活下去的可能，我们也应该对囚犯负责！</PrisonerAbandonedToDieBleedingHeart.stages.0.description>
+
+  <DateCancelled.stages.0.label>不得不取消约会</DateCancelled.stages.0.label>
+  <DateCancelled.stages.0.description>我本来应该和我的搭档去约会的，但是殖民地出了点事，我们不得不取消约会。我本来还很期待呢……</DateCancelled.stages.0.description>
+
+  <WonFight.stages.0.label>赢得打架</WonFight.stages.0.label>
+  <WonFight.stages.0.description>告诉我，现在谁是老大！？</WonFight.stages.0.description>
+
+
+</LanguageData>

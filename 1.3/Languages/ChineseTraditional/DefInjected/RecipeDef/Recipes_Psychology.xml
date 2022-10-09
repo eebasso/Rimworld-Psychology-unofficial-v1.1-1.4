@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <TreatPyromania.label>纠正纵火癖</TreatPyromania.label>
+  <TreatPyromania.description>帮助患者纠正纵火癖。</TreatPyromania.description>
+  <TreatPyromania.jobString>纠正纵火癖。</TreatPyromania.jobString>
+
+  <TreatChemicalInterest.label>纠正成瘾品爱好</TreatChemicalInterest.label>
+  <TreatChemicalInterest.description>帮助成瘾品爱好者戒毒。</TreatChemicalInterest.description>
+  <TreatChemicalInterest.jobString>纠正成瘾品爱好。</TreatChemicalInterest.jobString>
+
+  <TreatChemicalFascination.label>纠正成瘾品痴迷</TreatChemicalFascination.label>
+  <TreatChemicalFascination.description>帮助成瘾品痴迷者戒毒。</TreatChemicalFascination.description>
+  <TreatChemicalFascination.jobString>纠正成瘾品痴迷。</TreatChemicalFascination.jobString>
+
+  <TreatDepression.label>治疗抑郁症</TreatDepression.label>
+  <TreatDepression.description>帮助抑郁症患者控制情绪。</TreatDepression.description>
+  <TreatDepression.jobString>治疗抑郁症。</TreatDepression.jobString>
+
+  <TreatInsomnia.label>治疗失眠症</TreatInsomnia.label>
+  <TreatInsomnia.description>帮助失眠症患者也能睡得香。</TreatInsomnia.description>
+  <TreatInsomnia.jobString>治疗失眠症。</TreatInsomnia.jobString>
+
+  <CureAnxiety.label>治愈焦虑症</CureAnxiety.label>
+  <CureAnxiety.description>利用闪耀世界的技术彻底消除患者的焦虑症。</CureAnxiety.description>
+  <CureAnxiety.jobString>治愈焦虑症。</CureAnxiety.jobString>
+
+
+</LanguageData>

@@ -1,46 +1,1064 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <Defs>
-
-	<Psychology.PersonalityNodeDef>
-		<defName>Confident</defName>
-		<label>confident</label>
-		<description>A confident person has high self-assurance and self-esteem.</description>
-	</Psychology.PersonalityNodeDef>
-
+	<!-- Big Five: Openness to experience / 10 Aspects: Openness -->
 	<Psychology.PersonalityNodeDef>
 		<defName>Experimental</defName>
 		<label>experimental</label>
-		<description>Someone experimental is likely to try everything once, enjoy surprises, and be more experienced.</description>
+		<antonymLabel>conservative</antonymLabel>
+		<nodeHSV>(120,1,1)</nodeHSV>
+		<antonymHSV>(270,0.35,0.75)</antonymHSV>
+		<descriptionLabel>experimental</descriptionLabel>
+		<description>Someone {0} is likely to try everything once, enjoy surprises, and be more experienced.</description>
+		<traitModifiers>
+			<li>
+				<trait>OpenMinded</trait>
+				<modifier>0.5</modifier>
+			</li>
+		</traitModifiers>
+		<bigFiveModifiers>
+			<li>2</li>
+			<li>0</li>
+			<li>0</li>
+			<li>0</li>
+			<li>0</li>
+		</bigFiveModifiers>
+		<tenAspects>
+			<li>
+				<aspect>Openness</aspect>
+				<weight>1</weight>
+			</li>
+		</tenAspects>
+		<preceptCertaintyModifiers>
+			<li>
+				<precept>Lovin_Prohibited</precept>
+				<modifier>-2</modifier>
+			</li>
+			<li>
+				<precept>Lovin_Horrible</precept>
+				<modifier>-1.5</modifier>
+			</li>
+			<li>
+				<precept>Lovin_SpouseOnly_Strict</precept>
+				<modifier>-1</modifier>
+			</li>
+			<li>
+				<precept>Lovin_SpouseOnly_Moderate</precept>
+				<modifier>-0.5</modifier>
+			</li>
+			<li>
+				<precept>Lovin_SpouseOnly_Mild</precept>
+				<modifier>0</modifier>
+			</li>
+			<li>
+				<precept>Lovin_FreeApproved</precept>
+				<modifier>1</modifier>
+			</li>
+		</preceptCertaintyModifiers>
 	</Psychology.PersonalityNodeDef>
-
+	<Psychology.PersonalityNodeDef>
+		<defName>DrugFriendly</defName>
+		<label>drug-friendly</label>
+		<antonymLabel>straight-edge</antonymLabel>
+		<nodeHSV>(120,0.9,0.825)</nodeHSV>
+		<antonymHSV>(360,0,0.85)</antonymHSV>
+		<descriptionLabel>drug-friendly</descriptionLabel>
+		<description>A {0} person sees nothing wrong with drugs and makes no effort to avoid them.</description>
+		<controversiality>1.2</controversiality>
+		<conversationTopics>
+			<li>drugs</li>
+			<li>drunkenness</li>
+			<li>getting drunk</li>
+			<li>getting high</li>
+			<li>smokeleaf</li>
+			<li>beer</li>
+			<li>flake</li>
+			<li>yayo</li>
+			<li>go-juice</li>
+			<li>ambrosia</li>
+			<li>psychoid tea</li>
+		</conversationTopics>
+		<platformIssueHigh>Drugs can make our lives easier and better.</platformIssueHigh>
+		<platformIssueLow>Drugs have no place in this colony.</platformIssueLow>
+		<parents>
+			<li>
+				<node>Experimental</node>
+				<modifier>0.9</modifier>
+			</li>
+			<li>
+				<node>Ambitious</node>
+				<modifier>-0.5</modifier>
+			</li>
+			<li>
+				<node>Optimistic</node>
+				<modifier>-0.4</modifier>
+			</li>
+			<li>
+				<node>Adventurous</node>
+				<modifier>0.7</modifier>
+			</li>
+			<li>
+				<node>Creative</node>
+				<modifier>0.7</modifier>
+			</li>
+			<li>
+				<node>Nostalgic</node>
+				<modifier>-0.5</modifier>
+			</li>
+			<li>
+				<node>Spontaneous</node>
+				<modifier>0.8</modifier>
+			</li>
+			<li>
+				<node>Cultured</node>
+				<modifier>0.75</modifier>
+			</li>
+			<li>
+				<node>Thoughtful</node>
+				<modifier>-0.65</modifier>
+			</li>
+			<li>
+				<node>LaidBack</node>
+				<modifier>0.5</modifier>
+			</li>
+		</parents>
+		<traitModifiers>
+			<li>
+				<trait>DrugDesire</trait>
+				<degree>-1</degree>
+				<modifier>-0.95</modifier>
+			</li>
+			<li>
+				<trait>DrugDesire</trait>
+				<degree>1</degree>
+				<modifier>0.9</modifier>
+			</li>
+			<li>
+				<trait>DrugDesire</trait>
+				<degree>2</degree>
+				<modifier>0.95</modifier>
+			</li>
+		</traitModifiers>
+		<preferredDateHours>
+			<li>20</li>
+			<li>21</li>
+			<li>22</li>
+			<li>23</li>
+			<li>0</li>
+			<li>1</li>
+			<li>2</li>
+		</preferredDateHours>
+		<bigFiveModifiers>
+			<li>1</li>
+			<li>0</li>
+			<li>0</li>
+			<li>0</li>
+			<li>0.5</li>
+		</bigFiveModifiers>
+		<tenAspects>
+			<li>
+				<aspect>Openness</aspect>
+				<weight>0.87</weight>
+			</li>
+			<li>
+				<aspect>Withdrawal</aspect>
+				<weight>0.5</weight>
+			</li>
+		</tenAspects>
+		<memeCertaintyModifiers>
+			<li>
+				<meme>HighLife</meme>
+				<modifier>0.5</modifier>
+			</li>
+		</memeCertaintyModifiers>
+		<preceptCertaintyModifiers>
+			<li>
+				<precept>DrugUse_Prohibited</precept>
+				<modifier>-2</modifier>
+			</li>
+			<li>
+				<precept>DrugUse_MedicalOnly</precept>
+				<modifier>-1</modifier>
+			</li>
+			<li>
+				<precept>DrugUse_MedicalOrSocial</precept>
+				<modifier>1</modifier>
+			</li>
+			<li>
+				<precept>DrugUse_Essential</precept>
+				<modifier>2</modifier>
+			</li>
+		</preceptCertaintyModifiers>
+	</Psychology.PersonalityNodeDef>
+	<Psychology.PersonalityNodeDef>
+		<defName>Creative</defName>
+		<label>creative</label>
+		<!--<antonymLabel>boring</antonymLabel>-->
+		<!--<antonymLabel>uncreative</antonymLabel>-->
+		<!--<antonymLabel>conventional</antonymLabel>-->
+		<!--<antonymLabel>unoriginal</antonymLabel>-->
+		<antonymLabel>staid</antonymLabel>
+		<nodeHSV>(200,0.7,1)</nodeHSV>
+		<antonymHSV>(360,0,0.7)</antonymHSV>
+		<descriptionLabel>Creative</descriptionLabel>
+		<description>{0} people can imagine things in vivid detail, whether they ever existed or not.</description>
+		<controversiality>0.75</controversiality>
+		<conversationTopics>
+			<li>writing and drawing</li>
+			<li>art</li>
+			<li>theater</li>
+			<li>aliens</li>
+			<li>alien contact</li>
+			<li>cryptids</li>
+			<li>ghost stories</li>
+			<li>fantasy</li>
+			<li>their favorite books</li>
+			<li>their favorite movies</li>
+			<li>xenohumans</li>
+		</conversationTopics>
+		<platformIssueHigh>I'll bring innovative solutions to the table.</platformIssueHigh>
+		<platformIssueLow>We need to look at things as they are.</platformIssueLow>
+		<parents>
+			<li>
+				<node>Experimental</node>
+				<modifier>0.85</modifier>
+			</li>
+			<li>
+				<node>Ambitious</node>
+				<modifier>-0.5</modifier>
+			</li>
+			<li>
+				<node>Extroverted</node>
+				<modifier>-0.5</modifier>
+			</li>
+			<li>
+				<node>Confident</node>
+				<modifier>-0.5</modifier>
+			</li>
+			<li>
+				<node>Intelligent</node>
+				<modifier>0.85</modifier>
+			</li>
+			<li>
+				<node>Spontaneous</node>
+				<modifier>0.6</modifier>
+			</li>
+			<li>
+				<node>Optimistic</node>
+				<modifier>-0.6</modifier>
+			</li>
+			<li>
+				<node>Upbeat</node>
+				<modifier>-0.5</modifier>
+			</li>
+			<li>
+				<node>Cultured</node>
+				<modifier>0.5</modifier>
+			</li>
+			<li>
+				<node>Organized</node>
+				<modifier>-0.5</modifier>
+			</li>
+			<li>
+				<node>Nostalgic</node>
+				<modifier>-0.5</modifier>
+			</li>
+			<li>
+				<node>Thoughtful</node>
+				<modifier>0.5</modifier>
+			</li>
+			<li>
+				<node>Empathetic</node>
+				<modifier>0.5</modifier>
+			</li>
+			<li>
+				<node>Logical</node>
+				<modifier>0.35</modifier>
+			</li>
+		</parents>
+		<skillModifiers>
+			<li>
+				<skill>Artistic</skill>
+			</li>
+		</skillModifiers>
+		<traitModifiers>
+			<li>
+				<trait>TorturedArtist</trait>
+				<modifier>0.99</modifier>
+			</li>
+		</traitModifiers>
+		<incapableModifiers>
+			<li>
+				<type>Art</type>
+				<modifier>-0.8</modifier>
+			</li>
+		</incapableModifiers>
+		<preferredDateHours>
+			<li>16</li>
+			<li>17</li>
+			<li>18</li>
+			<li>19</li>
+			<li>20</li>
+			<li>21</li>
+			<li>22</li>
+			<li>23</li>
+			<li>0</li>
+		</preferredDateHours>
+		<bigFiveModifiers>
+			<li>1</li>
+			<li>0</li>
+			<li>0</li>
+			<li>0</li>
+			<li>0</li>
+		</bigFiveModifiers>
+		<tenAspects>
+			<li>
+				<aspect>Openness</aspect>
+				<weight>0.8</weight>
+			</li>
+			<li>
+				<aspect>Intellect</aspect>
+				<weight>0.6</weight>
+			</li>
+		</tenAspects>
+	</Psychology.PersonalityNodeDef>
+	<Psychology.PersonalityNodeDef>
+		<defName>Pure</defName>
+		<label>pure</label>
+		<antonymLabel>debauched</antonymLabel>
+		<nodeHSV>(360,0,1)</nodeHSV>
+		<antonymHSV>(0,0.7,0.92)</antonymHSV>
+		<descriptionLabel>pure</descriptionLabel>
+		<description>People who are {0} try to be chaste, traditional, and wholesome.</description>
+		<controversiality>1.48</controversiality>
+		<conversationTopics>
+			<li>religion</li>
+			<li>spirituality</li>
+			<li>traditional values</li>
+			<li>sexual morality</li>
+			<li>femininity</li>
+			<li>masculinity</li>
+			<li>gender roles</li>
+			<li>deities</li>
+			<li>family</li>
+			<li>kinship</li>
+			<li>homosexuality</li>
+		</conversationTopics>
+		<platformIssueHigh>Traditional values are our values.</platformIssueHigh>
+		<platformIssueLow>We need to advance as a people.</platformIssueLow>
+		<parents>
+			<li>
+				<node>Experimental</node>
+				<modifier>-0.9</modifier>
+			</li>
+			<li>
+				<node>Ambitious</node>
+				<modifier>0.5</modifier>
+			</li>
+			<li>
+				<node>LaidBack</node>
+				<modifier>-0.5</modifier>
+			</li>
+			<li>
+				<node>Cultured</node>
+				<modifier>-0.7</modifier>
+			</li>
+			<li>
+				<node>Nostalgic</node>
+				<modifier>0.8</modifier>
+			</li>
+			<li>
+				<node>DrugFriendly</node>
+				<modifier>-0.9</modifier>
+			</li>
+			<li>
+				<node>Adventurous</node>
+				<modifier>-0.8</modifier>
+			</li>
+			<li>
+				<node>Spontaneous</node>
+				<modifier>-0.8</modifier>
+			</li>
+			<li>
+				<node>Thoughtful</node>
+				<modifier>0.65</modifier>
+			</li>
+			<li>
+				<node>Trusting</node>
+				<modifier>0.25</modifier>
+			</li>
+			<li>
+				<node>Creative</node>
+				<modifier>-0.85</modifier>
+			</li>
+		</parents>
+		<traitModifiers>
+			<li>
+				<trait>Nudist</trait>
+				<modifier>-0.6</modifier>
+			</li>
+			<li>
+				<trait>Prude</trait>
+				<modifier>0.6</modifier>
+			</li>
+			<li>
+				<trait>Lecher</trait>
+				<modifier>-0.9</modifier>
+			</li>
+		</traitModifiers>
+		<preferredDateHours>
+			<li>7</li>
+			<li>8</li>
+			<li>9</li>
+			<li>10</li>
+		</preferredDateHours>
+		<bigFiveModifiers>
+			<li>-1</li>
+			<li>0</li>
+			<li>0</li>
+			<li>0</li>
+			<li>0</li>
+		</bigFiveModifiers>
+		<tenAspects>
+			<li>
+				<aspect>Openness</aspect>
+				<weight>-1</weight>
+			</li>
+		</tenAspects>
+		<memeCertaintyModifiers>
+			<li>
+				<meme>MaleSupremacy</meme>
+				<modifier>2</modifier>
+			</li>
+			<li>
+				<meme>Nudism</meme>
+				<modifier>-1.5</modifier>
+			</li>
+		</memeCertaintyModifiers>
+		<preceptCertaintyModifiers>
+			<li>
+				<precept>Lovin_Prohibited</precept>
+				<modifier>2</modifier>
+			</li>
+			<li>
+				<precept>Lovin_Horrible</precept>
+				<modifier>1.5</modifier>
+			</li>
+			<li>
+				<precept>Lovin_SpouseOnly_Strict</precept>
+				<modifier>0.5</modifier>
+			</li>
+			<li>
+				<precept>Lovin_SpouseOnly_Moderate</precept>
+				<modifier>0.5</modifier>
+			</li>
+			<li>
+				<precept>Lovin_SpouseOnly_Mild</precept>
+				<modifier>-0.5</modifier>
+			</li>
+			<li>
+				<precept>Lovin_FreeApproved</precept>
+				<modifier>-2</modifier>
+			</li>
+			<li>
+				<precept>DrugUse_Prohibited</precept>
+				<modifier>1</modifier>
+			</li>
+			<li>
+				<precept>DrugUse_MedicalOnly</precept>
+				<modifier>0.5</modifier>
+			</li>
+			<li>
+				<precept>DrugUse_MedicalOrSocial</precept>
+				<modifier>-0.5</modifier>
+			</li>
+			<li>
+				<precept>DrugUse_Essential</precept>
+				<modifier>-2</modifier>
+			</li>
+		</preceptCertaintyModifiers>
+	</Psychology.PersonalityNodeDef>
+	<!-- Big Five: Openness to experience / 10 Aspects: Intellect -->
 	<Psychology.PersonalityNodeDef>
 		<defName>Intelligent</defName>
 		<label>intelligent</label>
-		<description>An intelligent person possesses a lot of raw brain-power.</description>
+		<antonymLabel>simple</antonymLabel>
+		<!--<antonymLabel>ignorant</antonymLabel>-->
+		<nodeHSV>(135,1,0.9)</nodeHSV>
+		<antonymHSV>(360,0,0.65)</antonymHSV>
+		<descriptionLabel>intelligent</descriptionLabel>
+		<description>An {0} person possesses a lot of raw brain-power.</description>
+		<skillModifiers>
+			<li>
+				<skill>Intellectual</skill>
+			</li>
+		</skillModifiers>
 		<traitModifiers>
 			<li>
 				<trait>TooSmart</trait>
-				<modifier>0.4</modifier>
+				<modifier>0.8</modifier>
 			</li>
 		</traitModifiers>
+		<bigFiveModifiers>
+			<li>1</li>
+			<li>0</li>
+			<li>0</li>
+			<li>0</li>
+			<li>0</li>
+		</bigFiveModifiers>
+		<tenAspects>
+			<li>
+				<aspect>Intellect</aspect>
+				<weight>1</weight>
+			</li>
+		</tenAspects>
+		<preceptCertaintyModifiers>
+			<li>
+				<precept>NeuralSupercharge_Preferred</precept>
+				<modifier>1</modifier>
+			</li>
+		</preceptCertaintyModifiers>
 	</Psychology.PersonalityNodeDef>
-
 	<Psychology.PersonalityNodeDef>
-		<defName>Extroverted</defName>
-		<label>extroverted</label>
-		<description>Extroverted people enjoy getting out, experiencing things, and being active.</description>
+		<defName>Rational</defName>
+		<label>rational</label>
+		<antonymLabel>irrational</antonymLabel>
+		<nodeHSV>(135,0.75,0.9)</nodeHSV>
+		<antonymHSV>(330,1,0.9)</antonymHSV>
+		<descriptionLabel>rational</descriptionLabel>
+		<description>The more {0} someone is, the more capable they are of thinking about things from a factual, objective standpoint.</description>
+		<controversiality>1</controversiality>
+		<conversationTopics>
+			<li>philosophy</li>
+			<li>maturity</li>
+			<li>reality</li>
+			<li>epistemology</li>
+			<li>causality</li>
+			<li>confirmation bias</li>
+			<li>belief perseverance</li>
+		</conversationTopics>
+		<platformIssueHigh>We need a facts-based approach to the issues.</platformIssueHigh>
+		<platformIssueLow>We need to trust our instincts.</platformIssueLow>
+		<parents>
+			<li>
+				<node>Experimental</node>
+				<modifier>0.5</modifier>
+			</li>
+			<li>
+				<node>Cultured</node>
+				<modifier>0.8</modifier>
+			</li>
+			<li>
+				<node>Intelligent</node>
+				<modifier>0.8</modifier>
+			</li>
+			<li>
+				<node>Logical</node>
+				<modifier>0.8</modifier>
+			</li>
+			<li>
+				<node>Emotional</node>
+				<modifier>-0.95</modifier>
+			</li>
+			<li>
+				<node>LaidBack</node>
+				<modifier>0.5</modifier>
+			</li>
+			<li>
+				<node>Thoughtful</node>
+				<modifier>0.5</modifier>
+			</li>
+			<li>
+				<node>Nostalgic</node>
+				<modifier>-0.25</modifier>
+			</li>
+			<li>
+				<node>Pure</node>
+				<modifier>-0.5</modifier>
+			</li>
+		</parents>
+		<preferredDateHours>
+			<li>9</li>
+			<li>10</li>
+			<li>11</li>
+			<li>12</li>
+			<li>13</li>
+			<li>14</li>
+		</preferredDateHours>
+		<bigFiveModifiers>
+			<li>0.8</li>
+			<li>0</li>
+			<li>0</li>
+			<li>0</li>
+			<li>-0.6</li>
+		</bigFiveModifiers>
+		<tenAspects>
+			<li>
+				<aspect>Intellect</aspect>
+				<weight>0.8</weight>
+			</li>
+			<li>
+				<aspect>Volatility</aspect>
+				<weight>-0.6</weight>
+			</li>
+		</tenAspects>
+		<preceptCertaintyModifiers>
+			<li>
+				<precept>Research_None</precept>
+				<modifier>-2</modifier>
+			</li>
+			<li>
+				<precept>Research_ExtremelySlow</precept>
+				<modifier>-1.5</modifier>
+			</li>
+			<li>
+				<precept>Research_VerySlow</precept>
+				<modifier>-1</modifier>
+			</li>
+			<li>
+				<precept>Research_Slow</precept>
+				<modifier>-0.5</modifier>
+			</li>
+			<li>
+				<precept>Research_Fast</precept>
+				<modifier>0.5</modifier>
+			</li>
+			<li>
+				<precept>Research_VeryFast</precept>
+				<modifier>1</modifier>
+			</li>
+		</preceptCertaintyModifiers>
 	</Psychology.PersonalityNodeDef>
-
 	<Psychology.PersonalityNodeDef>
-		<defName>Emotional</defName>
-		<label>emotional</label>
-		<description>Someone emotional has a lot of raw capacity for feeling emotion.</description>
+		<defName>Logical</defName>
+		<label>logical</label>
+		<antonymLabel>illogical</antonymLabel>
+		<nodeHSV>(135,0.5,0.85)</nodeHSV>
+		<antonymHSV>(345,0.8,0.9)</antonymHSV>
+		<descriptionLabel>logical</descriptionLabel>
+		<description>A {0} person is highly capable of connecting cause and effect, and predicting the consequences of actions.</description>
+		<controversiality>1</controversiality>
+		<conversationTopics>
+			<li>inventing things</li>
+			<li>conspiracy theories</li>
+			<li>logical fallacies</li>
+			<li>human limitations</li>
+			<li>research</li>
+			<li>science</li>
+			<li>astronomy</li>
+			<li>chemistry</li>
+			<li>engineering</li>
+			<li>biology</li>
+			<li>technology</li>
+		</conversationTopics>
+		<platformIssueHigh>Our problems are solveable.</platformIssueHigh>
+		<platformIssueLow>I will solve our problems.</platformIssueLow>
+		<parents>
+			<li>
+				<node>Intelligent</node>
+				<modifier>0.85</modifier>
+			</li>
+			<li>
+				<node>Thoughtful</node>
+				<modifier>0.5</modifier>
+			</li>
+			<li>
+				<node>Cultured</node>
+				<modifier>0.85</modifier>
+			</li>
+			<li>
+				<node>Experimental</node>
+				<modifier>0.5</modifier>
+			</li>
+		</parents>
+		<skillModifiers>
+			<li>
+				<skill>Intellectual</skill>
+			</li>
+		</skillModifiers>
+		<incapableModifiers>
+			<li>
+				<type>Research</type>
+				<modifier>-0.6</modifier>
+			</li>
+		</incapableModifiers>
+		<preferredDateHours>
+			<li>7</li>
+			<li>8</li>
+			<li>9</li>
+			<li>10</li>
+		</preferredDateHours>
+		<bigFiveModifiers>
+			<li>0.87</li>
+			<li>0.5</li>
+			<li>0</li>
+			<li>0</li>
+			<li>0</li>
+		</bigFiveModifiers>
+		<tenAspects>
+			<li>
+				<aspect>Intellect</aspect>
+				<weight>0.87</weight>
+			</li>
+			<li>
+				<aspect>Orderliness</aspect>
+				<weight>0.5</weight>
+			</li>
+		</tenAspects>
+		<preceptCertaintyModifiers>
+			<li>
+				<precept>Research_None</precept>
+				<modifier>-2</modifier>
+			</li>
+			<li>
+				<precept>Research_ExtremelySlow</precept>
+				<modifier>-1.5</modifier>
+			</li>
+			<li>
+				<precept>Research_VerySlow</precept>
+				<modifier>-1</modifier>
+			</li>
+			<li>
+				<precept>Research_Slow</precept>
+				<modifier>-0.5</modifier>
+			</li>
+			<li>
+				<precept>Research_Fast</precept>
+				<modifier>0.5</modifier>
+			</li>
+			<li>
+				<precept>Research_VeryFast</precept>
+				<modifier>1</modifier>
+			</li>
+		</preceptCertaintyModifiers>
 	</Psychology.PersonalityNodeDef>
-
+	<Psychology.PersonalityNodeDef>
+		<defName>Cultured</defName>
+		<label>cultured</label>
+		<antonymLabel>ignorant</antonymLabel>
+		<!--<antonymLabel>crude</antonymLabel>-->
+		<nodeHSV>(165,1,1)</nodeHSV>
+		<antonymHSV>(15,1,0.85)</antonymHSV>
+		<descriptionLabel>cultured</descriptionLabel>
+		<description>A {0} person is well-read, well-educated, and refined.</description>
+		<controversiality>0.8</controversiality>
+		<conversationTopics>
+			<li>aesthetics</li>
+			<li>television</li>
+			<li>books they've read</li>
+			<li>movies they've watched</li>
+			<li>statues</li>
+			<li>arts and literature</li>
+			<li>art history</li>
+			<li>the legitimacy of art</li>
+			<li>education</li>
+			<li>teachers</li>
+			<li>ancient history</li>
+			<li>fine foods</li>
+		</conversationTopics>
+		<platformIssueHigh>Those who do not learn history are doomed to repeat it.</platformIssueHigh>
+		<platformIssueLow>I'm just a regular person like all of you.</platformIssueLow>
+		<parents>
+			<li>
+				<node>Intelligent</node>
+				<modifier>0.8</modifier>
+			</li>
+			<li>
+				<node>Experimental</node>
+				<modifier>0.6</modifier>
+			</li>
+		</parents>
+		<bigFiveModifiers>
+			<li>1</li>
+			<li>0</li>
+			<li>0</li>
+			<li>0</li>
+			<li>0</li>
+		</bigFiveModifiers>
+		<tenAspects>
+			<!--<li>
+				<aspect>Openness</aspect>
+				<weight>0.61</weight>
+            </li>-->
+			<li>
+				<aspect>Intellect</aspect>
+				<weight>0.87</weight>
+			</li>
+			<li>
+				<aspect>Openness</aspect>
+				<weight>0.5</weight>
+			</li>
+		</tenAspects>
+	</Psychology.PersonalityNodeDef>
+	<Psychology.PersonalityNodeDef>
+		<defName>Geeky</defName>
+		<label>geeky</label>
+		<antonymLabel>normie</antonymLabel>
+		<nodeHSV>(145,0.7,0.9)</nodeHSV>
+		<antonymHSV>(360,0,0.75)</antonymHSV>
+		<descriptionLabel>geeky</descriptionLabel>
+		<description>Someone who is {0} is intellectual, eccentric, and frequently socially awkward.</description>
+		<controversiality>0.8</controversiality>
+		<conversationTopics>
+			<li>their hobbies</li>
+			<li>self-replicating machines</li>
+			<li>generation ships</li>
+			<li>Von Neumann probes</li>
+			<li>archotechnology</li>
+			<li>mechanoids</li>
+			<li>cryptosleep</li>
+			<li>cryptosleep tombs</li>
+			<li>artificial intelligence</li>
+			<li>the Johnson-Tanaka drive</li>
+			<li>the Ordo Historia</li>
+			<li>computer technology</li>
+			<li>weapons technology</li>
+			<li>AI personas</li>
+			<li>bionics</li>
+			<li>transhumanism</li>
+		</conversationTopics>
+		<platformIssueHigh>Think of the possibilities we can pursue.</platformIssueHigh>
+		<platformIssueLow>Let's focus on what's practical.</platformIssueLow>
+		<parents>
+			<li>
+				<node>Intelligent</node>
+				<modifier>0.75</modifier>
+			</li>
+			<li>
+				<node>Logical</node>
+				<modifier>0.75</modifier>
+			</li>
+			<li>
+				<node>Rational</node>
+				<modifier>0.5</modifier>
+			</li>
+			<li>
+				<node>Cultured</node>
+				<modifier>0.9</modifier>
+			</li>
+			<li>
+				<node>Creative</node>
+				<modifier>0.75</modifier>
+			</li>
+			<li>
+				<node>Extroverted</node>
+				<modifier>-0.65</modifier>
+			</li>
+			<li>
+				<node>Upbeat</node>
+				<modifier>-0.3</modifier>
+			</li>
+		</parents>
+		<traitModifiers>
+			<li>
+				<trait>Transhumanist</trait>
+				<modifier>0.5</modifier>
+			</li>
+			<li>
+				<trait>BodyPurist</trait>
+				<modifier>-0.5</modifier>
+			</li>
+			<li>
+				<trait>TooSmart</trait>
+				<modifier>0.75</modifier>
+			</li>
+		</traitModifiers>
+		<bigFiveModifiers>
+			<li>0.8</li>
+			<li>0</li>
+			<li>-0.6</li>
+			<li>0</li>
+			<li>0</li>
+		</bigFiveModifiers>
+		<tenAspects>
+			<li>
+				<aspect>Intellect</aspect>
+				<weight>0.8</weight>
+			</li>
+			<li>
+				<aspect>Assertiveness</aspect>
+				<weight>-0.6</weight>
+			</li>
+		</tenAspects>
+	</Psychology.PersonalityNodeDef>
+	<Psychology.PersonalityNodeDef>
+		<defName>Naive</defName>
+		<label>naive</label>
+		<antonymLabel>skeptical</antonymLabel>
+		<nodeHSV>(315,0.7,0.93)</nodeHSV>
+		<antonymHSV>(165,0.85,1)</antonymHSV>
+		<descriptionLabel>naive</descriptionLabel>
+		<description>Someone {0} is guileless and often superstitious.</description>
+		<controversiality>1.3</controversiality>
+		<conversationTopics>
+			<li>idealism</li>
+			<li>life after death</li>
+			<li>honor</li>
+			<li>fate</li>
+			<li>destiny</li>
+			<li>truth</li>
+			<li>prophecy</li>
+			<li>karma</li>
+			<li>astrology</li>
+			<li>fortune telling</li>
+			<li>luck</li>
+		</conversationTopics>
+		<platformIssueHigh>My commitment to ideals would make me a good leader.</platformIssueHigh>
+		<platformIssueLow>My experience and know-how would make me a good leader.</platformIssueLow>
+		<parents>
+			<li>
+				<node>Experimental</node>
+				<modifier>-0.6</modifier>
+			</li>
+			<li>
+				<node>Rational</node>
+				<modifier>-0.8</modifier>
+			</li>
+			<li>
+				<node>Logical</node>
+				<modifier>-0.75</modifier>
+			</li>
+			<li>
+				<node>Intelligent</node>
+				<modifier>-0.8</modifier>
+			</li>
+			<li>
+				<node>Pure</node>
+				<modifier>0.9</modifier>
+			</li>
+			<li>
+				<node>Cultured</node>
+				<modifier>-0.9</modifier>
+			</li>
+			<li>
+				<node>Trusting</node>
+				<modifier>0.5</modifier>
+			</li>
+			<li>
+				<node>Adventurous</node>
+				<modifier>-0.7</modifier>
+			</li>
+			<li>
+				<node>DrugFriendly</node>
+				<modifier>-0.6</modifier>
+			</li>
+			<li>
+				<node>Spontaneous</node>
+				<modifier>-0.5</modifier>
+			</li>
+		</parents>
+		<preferredDateHours>
+			<li>9</li>
+			<li>10</li>
+			<li>11</li>
+			<li>12</li>
+		</preferredDateHours>
+		<bigFiveModifiers>
+			<li>-0.5</li>
+			<li>0</li>
+			<li>0</li>
+			<li>0</li>
+			<li>0</li>
+		</bigFiveModifiers>
+		<tenAspects>
+			<li>
+				<aspect>Intellect</aspect>
+				<weight>-0.87</weight>
+			</li>
+			<li>
+				<aspect>Openness</aspect>
+				<weight>0.5</weight>
+			</li>
+		</tenAspects>
+	</Psychology.PersonalityNodeDef>
+	<!-- Big Five: Conscientiousness /  10 Aspects: Industriousness -->
+	<Psychology.PersonalityNodeDef>
+		<defName>Ambitious</defName>
+		<label>ambitious</label>
+		<antonymLabel>content</antonymLabel>
+		<nodeHSV>(15,0.85,1)</nodeHSV>
+		<antonymHSV>(210,1,1)</antonymHSV>
+		<descriptionLabel>ambitious</descriptionLabel>
+		<description>Someone {0} sets large, difficult goals for themselves and wants to be successful.</description>
+		<controversiality>0.9</controversiality>
+		<conversationTopics>
+			<li>their hopes and dreams</li>
+			<li>their fears</li>
+			<li>life challenges</li>
+			<li>perseverance</li>
+			<li>believing in oneself</li>
+			<li>becoming wealthy</li>
+			<li>lofty goals</li>
+			<li>luxury</li>
+		</conversationTopics>
+		<platformIssueHigh>We need to dream big.</platformIssueHigh>
+		<platformIssueLow>Let's ground ourselves in reality.</platformIssueLow>
+		<traitModifiers>
+			<li>
+				<trait>Neurotic</trait>
+				<degree>2</degree>
+				<modifier>0.25</modifier>
+			</li>
+			<li>
+				<trait>Neurotic</trait>
+				<degree>1</degree>
+				<modifier>0.1</modifier>
+			</li>
+			<li>
+				<trait>Industriousness</trait>
+				<degree>2</degree>
+				<modifier>0.9</modifier>
+			</li>
+			<li>
+				<trait>Industriousness</trait>
+				<degree>1</degree>
+				<modifier>0.8</modifier>
+			</li>
+			<li>
+				<trait>Industriousness</trait>
+				<degree>-1</degree>
+				<modifier>-0.8</modifier>
+			</li>
+			<li>
+				<trait>Industriousness</trait>
+				<degree>-2</degree>
+				<modifier>-0.9</modifier>
+			</li>
+		</traitModifiers>
+		<preferredDateHours>
+			<li>18</li>
+			<li>19</li>
+			<li>20</li>
+			<li>21</li>
+			<li>22</li>
+		</preferredDateHours>
+		<bigFiveModifiers>
+			<li>0</li>
+			<li>2</li>
+			<li>0</li>
+			<li>0</li>
+			<li>0</li>
+		</bigFiveModifiers>
+		<tenAspects>
+			<li>
+				<aspect>Industriousness</aspect>
+				<weight>1</weight>
+			</li>
+		</tenAspects>
+		<preceptCertaintyModifiers>
+			<li>
+				<precept>WorkDrive_Tripled</precept>
+				<modifier>1</modifier>
+			</li>
+		</preceptCertaintyModifiers>
+	</Psychology.PersonalityNodeDef>
 	<Psychology.PersonalityNodeDef>
 		<defName>Independent</defName>
 		<label>independent</label>
-		<description>An independent person is perfectly happy being on their own and doesn't rely on others.</description>
+		<antonymLabel>dependent</antonymLabel>
+		<nodeHSV>(15,0.7,0.93)</nodeHSV>
+		<antonymHSV>(315,1,0.8)</antonymHSV>
+		<descriptionLabel>independent</descriptionLabel>
+		<description>An {0} person is perfectly happy being on their own and doesn't rely on others.</description>
 		<controversiality>1.15</controversiality>
 		<conversationTopics>
 			<li>solitude</li>
@@ -59,13 +1077,82 @@
 		<platformIssueLow>We're stronger when we're united.</platformIssueLow>
 		<parents>
 			<li>
+				<node>Ambitious</node>
+				<modifier>0.8</modifier>
+			</li>
+			<li>
+				<node>Empathetic</node>
+				<modifier>-0.3</modifier>
+			</li>
+			<li>
+				<node>Organized</node>
+				<modifier>0.8</modifier>
+			</li>
+			<li>
+				<node>Extroverted</node>
+				<modifier>-0.8</modifier>
+			</li>
+			<li>
 				<node>Confident</node>
+				<modifier>0.8</modifier>
+			</li>
+			<li>
+				<node>Romantic</node>
+				<modifier>-0.8</modifier>
+			</li>
+			<li>
+				<node>Competitive</node>
+				<modifier>0.8</modifier>
+			</li>
+			<li>
+				<node>Aggressive</node>
+				<modifier>0.3</modifier>
+			</li>
+			<li>
+				<node>LaidBack</node>
+				<modifier>0.3</modifier>
+			</li>
+			<li>
+				<node>Nostalgic</node>
+				<modifier>-0.5</modifier>
+			</li>
+			<li>
+				<node>Thoughtful</node>
+				<modifier>0.6</modifier>
+			</li>
+			<li>
+				<node>Trusting</node>
+				<modifier>-0.5</modifier>
+			</li>
+			<li>
+				<node>Compassionate</node>
+				<modifier>-0.5</modifier>
 			</li>
 		</parents>
 		<traitModifiers>
 			<li>
 				<trait>Codependent</trait>
-				<modifier>-1</modifier>
+				<modifier>-0.95</modifier>
+			</li>
+			<li>
+				<trait>Industriousness</trait>
+				<degree>2</degree>
+				<modifier>0.6</modifier>
+			</li>
+			<li>
+				<trait>Industriousness</trait>
+				<degree>1</degree>
+				<modifier>0.3</modifier>
+			</li>
+			<li>
+				<trait>Industriousness</trait>
+				<degree>-1</degree>
+				<modifier>-0.3</modifier>
+			</li>
+			<li>
+				<trait>Industriousness</trait>
+				<degree>-2</degree>
+				<modifier>-0.6</modifier>
 			</li>
 		</traitModifiers>
 		<incapableModifiers>
@@ -138,50 +1225,617 @@
 				<modifier>-0.05</modifier>
 			</li>
 		</incapableModifiers>
+		<bigFiveModifiers>
+			<li>0</li>
+			<li>0.84</li>
+			<li>0</li>
+			<li>0</li>
+			<li>-0.32</li>
+		</bigFiveModifiers>
+		<tenAspects>
+			<li>
+				<aspect>Industriousness</aspect>
+				<weight>0.84</weight>
+			</li>
+			<li>
+				<aspect>Enthusiasm</aspect>
+				<weight>-0.32</weight>
+			</li>
+			<li>
+				<aspect>Assertiveness</aspect>
+				<weight>0.32</weight>
+			</li>
+			<li>
+				<aspect>Withdrawal</aspect>
+				<weight>-0.32</weight>
+			</li>
+		</tenAspects>
+		<memeCertaintyModifiers>
+			<li>
+				<meme>Individualist</meme>
+				<modifier>2</modifier>
+			</li>
+			<li>
+				<meme>Collectivist</meme>
+				<modifier>-2</modifier>
+			</li>
+		</memeCertaintyModifiers>
+		<preceptCertaintyModifiers>
+			<li>
+				<precept>MarriageName_AlwaysMans</precept>
+				<modifier>-0.5</modifier>
+			</li>
+			<li>
+				<precept>MarriageName_Random</precept>
+				<modifier>-0.25</modifier>
+			</li>
+			<li>
+				<precept>MarriageName_KeepNames</precept>
+				<modifier>0.5</modifier>
+			</li>
+			<li>
+				<precept>MarriageName_UsuallyWomans</precept>
+				<modifier>-0.4</modifier>
+			</li>
+			<li>
+				<precept>MarriageName_AlwaysWomans</precept>
+				<modifier>-0.5</modifier>
+			</li>
+		</preceptCertaintyModifiers>
 	</Psychology.PersonalityNodeDef>
-	
+	<!-- Big Five: Conscientiousness /  10 Aspects: Orderliness -->
 	<Psychology.PersonalityNodeDef>
-		<defName>Aggressive</defName>
-		<label>aggressive</label>
-		<description>An aggressive person is straightforward, blunt, and usually combative when they don't get what they want.</description>
-		<controversiality>1.25</controversiality>
+		<defName>Organized</defName>
+		<label>organized</label>
+		<antonymLabel>messy</antonymLabel>
+		<nodeHSV>(180,0.6,1)</nodeHSV>
+		<antonymHSV>(75,0.9,0.8)</antonymHSV>
+		<descriptionLabel>organized</descriptionLabel>
+		<description>An {0} person keeps everything tidy, neat, and minimalistic.</description>
+		<controversiality>0.7</controversiality>
 		<conversationTopics>
-			<li>a disagreement between them</li>
-			<li>a conflict between them</li>
-			<li>personal boundaries</li>
-			<li>conflict resolution</li>
-			<li>kindness</li>
-			<li>social fighting</li>
-			<li>stubbornness</li>
-			<li>civility</li>
-			<li>other people's feelings</li>
+			<li>cleanliness</li>
+			<li>pets</li>
+			<li>laundry</li>
+			<li>hauling</li>
+			<li>cleaning</li>
+			<li>eating with tables</li>
+			<li>filth</li>
+			<li>exotic animals</li>
 		</conversationTopics>
-		<platformIssueHigh>We need greater support for free speech.</platformIssueHigh>
-		<platformIssueLow>We need to be more mindful of each other.</platformIssueLow>
-		<femaleModifier>0.5</femaleModifier>
+		<!--<platformIssueHigh>Simple solutions are usually best.</platformIssueHigh>
+		<platformIssueLow>Life is complex, and so are our problems.</platformIssueLow>-->
+		<platformIssueHigh>We should focus more on cleaning and organizing.</platformIssueHigh>
+		<platformIssueLow>We shouldn't burden ourselves with too many chores.</platformIssueLow>
 		<parents>
 			<li>
-				<node>Confident</node>
+				<node>Ambitious</node>
+				<modifier>0.9</modifier>
+			</li>
+			<li>
+				<node>Nostalgic</node>
+				<modifier>-0.7</modifier>
+			</li>
+			<li>
+				<node>Thoughtful</node>
+				<modifier>0.9</modifier>
+			</li>
+			<li>
+				<node>LaidBack</node>
+				<modifier>-0.8</modifier>
+			</li>
+			<li>
+				<node>Spontaneous</node>
+				<modifier>-0.9</modifier>
+			</li>
+			<li>
+				<node>Adventurous</node>
+				<modifier>-0.3</modifier>
+			</li>
+			<li>
+				<node>Competitive</node>
+				<modifier>0.4</modifier>
 			</li>
 		</parents>
 		<traitModifiers>
 			<li>
-				<trait>Abrasive</trait>
-				<modifier>0.25</modifier>
+				<trait>Industriousness</trait>
+				<degree>2</degree>
+				<modifier>0.7</modifier>
+			</li>
+			<li>
+				<trait>Industriousness</trait>
+				<degree>1</degree>
+				<modifier>0.5</modifier>
+			</li>
+			<li>
+				<trait>Industriousness</trait>
+				<degree>-1</degree>
+				<modifier>-0.5</modifier>
+			</li>
+			<li>
+				<trait>Industriousness</trait>
+				<degree>-2</degree>
+				<modifier>-0.7</modifier>
+			</li>
+			<li>
+				<trait>Neurotic</trait>
+				<degree>2</degree>
+				<modifier>0.7</modifier>
+			</li>
+			<li>
+				<trait>Neurotic</trait>
+				<degree>1</degree>
+				<modifier>0.4</modifier>
 			</li>
 		</traitModifiers>
 		<incapableModifiers>
 			<li>
-				<type>Hunting</type>
-				<modifier>-0.6</modifier>
+				<type>Cleaning</type>
+				<modifier>-0.5</modifier>
+			</li>
+			<li>
+				<type>Hauling</type>
+				<modifier>-0.5</modifier>
 			</li>
 		</incapableModifiers>
+		<preferredDateHours>
+			<li>6</li>
+			<li>7</li>
+			<li>8</li>
+			<li>9</li>
+		</preferredDateHours>
+		<bigFiveModifiers>
+			<li>0</li>
+			<li>2</li>
+			<li>0</li>
+			<li>0</li>
+			<li>0</li>
+		</bigFiveModifiers>
+		<tenAspects>
+			<li>
+				<aspect>Orderliness</aspect>
+				<weight>1</weight>
+			</li>
+		</tenAspects>
 	</Psychology.PersonalityNodeDef>
-	
+	<Psychology.PersonalityNodeDef>
+		<defName>Spontaneous</defName>
+		<label>spontaneous</label>
+		<antonymLabel>measured</antonymLabel>
+		<nodeHSV>(30,0.85,0.95)</nodeHSV>
+		<antonymHSV>(255,0.75,1)</antonymHSV>
+		<descriptionLabel>spontaneous</descriptionLabel>
+		<description>A {0} person tends to be impulsive and enjoy surprising others.</description>
+		<controversiality>0.8</controversiality>
+		<conversationTopics>
+			<li>practical jokes</li>
+			<li>humor</li>
+			<li>puns</li>
+			<li>planning ahead</li>
+			<li>introspection</li>
+			<li>surprise parties</li>
+			<li>presents</li>
+		</conversationTopics>
+		<platformIssueHigh>As a leader, I'll get things done.</platformIssueHigh>
+		<platformIssueLow>As a leader, I'll tackle our problems carefully.</platformIssueLow>
+		<parents>
+			<li>
+				<node>Ambitious</node>
+				<modifier>-0.7</modifier>
+			</li>
+			<li>
+				<node>Experimental</node>
+				<modifier>0.5</modifier>
+			</li>
+			<li>
+				<node>Thoughtful</node>
+				<modifier>-0.95</modifier>
+			</li>
+			<li>
+				<node>Extroverted</node>
+				<modifier>0.5</modifier>
+			</li>
+			<li>
+				<node>Adventurous</node>
+				<modifier>0.9</modifier>
+			</li>
+			<li>
+				<node>LaidBack</node>
+				<modifier>0.65</modifier>
+			</li>
+		</parents>
+		<bigFiveModifiers>
+			<li>0.35</li>
+			<li>-0.5</li>
+			<li>0</li>
+			<li>0</li>
+			<li>0</li>
+		</bigFiveModifiers>
+		<tenAspects>
+			<li>
+				<aspect>Openness</aspect>
+				<weight>0.35</weight>
+			</li>
+			<li>
+				<aspect>Orderliness</aspect>
+				<weight>-0.5</weight>
+			</li>
+		</tenAspects>
+		<traitModifiers>
+			<li>
+				<trait>ShootingAccuracy</trait>
+				<degree>-1</degree>
+				<modifier>0.75</modifier>
+			</li>
+			<li>
+				<trait>ShootingAccuracy</trait>
+				<degree>1</degree>
+				<modifier>-0.75</modifier>
+			</li>
+		</traitModifiers>
+	</Psychology.PersonalityNodeDef>
+	<Psychology.PersonalityNodeDef>
+		<defName>Thoughtful</defName>
+		<label>thoughtful</label>
+		<antonymLabel>careless</antonymLabel>
+		<!--<antonymLabel>reckless</antonymLabel>-->
+		<nodeHSV>(180,1,0.9)</nodeHSV>
+		<antonymHSV>(30,1,0.85)</antonymHSV>
+		<descriptionLabel>Thoughtful</descriptionLabel>
+		<description>{0} people are introspective and critical, and tend to plan ahead.</description>
+		<controversiality>1</controversiality>
+		<conversationTopics>
+			<li>the future</li>
+			<li>life goals</li>
+			<li>priorities</li>
+			<li>solutions</li>
+			<li>memory</li>
+			<li>brainstorming</li>
+			<li>dreams</li>
+			<li>procastination</li>
+			<li>punctuality</li>
+			<li>responsibility</li>
+		</conversationTopics>
+		<platformIssueHigh>We need plans for the future.</platformIssueHigh>
+		<platformIssueLow>We need to address what's happening right now.</platformIssueLow>
+		<parents>
+			<li>
+				<node>Experimental</node>
+				<modifier>-0.5</modifier>
+			</li>
+			<li>
+				<node>Intelligent</node>
+				<modifier>0.5</modifier>
+			</li>
+			<li>
+				<node>Ambitious</node>
+				<modifier>0.7</modifier>
+			</li>
+			<li>
+				<node>Extroverted</node>
+				<modifier>-0.5</modifier>
+			</li>
+			<li>
+				<node>Cultured</node>
+				<modifier>0.5</modifier>
+			</li>
+		</parents>
+		<preferredDateHours>
+			<li>8</li>
+			<li>9</li>
+			<li>10</li>
+			<li>11</li>
+			<li>12</li>
+		</preferredDateHours>
+		<traitModifiers>
+			<li>
+				<trait>Industriousness</trait>
+				<degree>2</degree>
+				<modifier>0.85</modifier>
+			</li>
+			<li>
+				<trait>Industriousness</trait>
+				<degree>1</degree>
+				<modifier>0.65</modifier>
+			</li>
+			<li>
+				<trait>Industriousness</trait>
+				<degree>-1</degree>
+				<modifier>-0.65</modifier>
+			</li>
+			<li>
+				<trait>Industriousness</trait>
+				<degree>-2</degree>
+				<modifier>-0.85</modifier>
+			</li>
+			<li>
+				<trait>TooSmart</trait>
+				<modifier>-0.25</modifier>
+			</li>
+		</traitModifiers>
+		<bigFiveModifiers>
+			<li>0.5</li>
+			<li>0.87</li>
+			<li>0</li>
+			<li>0</li>
+			<li>0</li>
+		</bigFiveModifiers>
+		<tenAspects>
+			<li>
+				<aspect>Intellect</aspect>
+				<weight>0.5</weight>
+			</li>
+			<li>
+				<aspect>Orderliness</aspect>
+				<weight>0.71</weight>
+			</li>
+			<li>
+				<aspect>Industriousness</aspect>
+				<weight>0.5</weight>
+			</li>
+		</tenAspects>
+	</Psychology.PersonalityNodeDef>
+	<!-- Big Five: Extroversion / 10 Aspects: Enthusiasm -->
+	<Psychology.PersonalityNodeDef>
+		<defName>Extroverted</defName>
+		<label>extroverted</label>
+		<antonymLabel>introverted</antonymLabel>
+		<nodeHSV>(60,1,0.9)</nodeHSV>
+		<antonymHSV>(150,1,1)</antonymHSV>
+		<descriptionLabel>Extroverted</descriptionLabel>
+		<description>{0} people enjoy getting out, experiencing things, and being active.</description>
+		<traitModifiers>
+			<li>
+				<trait>Socialite</trait>
+				<modifier>0.75</modifier>
+			</li>
+			<li>
+				<trait>Chatty</trait>
+				<modifier>0.75</modifier>
+			</li>
+			<li>
+				<trait>NaturalMood</trait>
+				<degree>2</degree>
+				<modifier>0.7</modifier>
+			</li>
+			<li>
+				<trait>NaturalMood</trait>
+				<degree>1</degree>
+				<modifier>0.4</modifier>
+			</li>
+		</traitModifiers>
+		<incapableModifiers>
+			<li>
+				<type>Warden</type>
+				<modifier>-0.85</modifier>
+			</li>
+		</incapableModifiers>
+		<bigFiveModifiers>
+			<li>0</li>
+			<li>0</li>
+			<li>2</li>
+			<li>0</li>
+			<li>0</li>
+		</bigFiveModifiers>
+		<tenAspects>
+			<li>
+				<aspect>Enthusiasm</aspect>
+				<weight>1</weight>
+			</li>
+		</tenAspects>
+	</Psychology.PersonalityNodeDef>
+	<Psychology.PersonalityNodeDef>
+		<defName>Passionate</defName>
+		<label>passionate</label>
+		<antonymLabel>apathetic</antonymLabel>
+		<nodeHSV>(345,1,1)</nodeHSV>
+		<antonymHSV>(210,1,0.825)</antonymHSV>
+		<descriptionLabel>passionate</descriptionLabel>
+		<description>People who are {0} feel very strongly about things and tend to express themselves emphatically.</description>
+		<controversiality>0.85</controversiality>
+		<conversationTopics>
+			<li>their likes and dislikes</li>
+			<li>enthusiasm</li>
+			<li>their desires</li>
+			<li>learning</li>
+			<li>being overbearing</li>
+			<li>apathy</li>
+		</conversationTopics>
+		<platformIssueHigh>I'll put all my energy into the job.</platformIssueHigh>
+		<platformIssueLow>I'll do what needs to be done.</platformIssueLow>
+		<parents>
+			<li>
+				<node>Emotional</node>
+				<modifier>0.95</modifier>
+			</li>
+			<li>
+				<node>Thoughtful</node>
+				<modifier>-0.25</modifier>
+			</li>
+			<li>
+				<node>Aggressive</node>
+				<modifier>0.65</modifier>
+			</li>
+			<li>
+				<node>LaidBack</node>
+				<modifier>-0.8</modifier>
+			</li>
+			<li>
+				<node>Geeky</node>
+				<modifier>0.5</modifier>
+			</li>
+			<li>
+				<node>Moralistic</node>
+				<modifier>0.5</modifier>
+			</li>
+			<li>
+				<node>Ambitious</node>
+				<modifier>0.5</modifier>
+			</li>
+			<li>
+				<node>Extroverted</node>
+				<modifier>0.5</modifier>
+			</li>
+			<li>
+				<node>Rational</node>
+				<modifier>-0.25</modifier>
+			</li>
+		</parents>
+		<preferredDateHours>
+			<li>18</li>
+			<li>19</li>
+			<li>20</li>
+			<li>21</li>
+			<li>22</li>
+		</preferredDateHours>
+		<bigFiveModifiers>
+			<li>0</li>
+			<li>0</li>
+			<li>0.8</li>
+			<li>0</li>
+			<li>0.6</li>
+		</bigFiveModifiers>
+		<tenAspects>
+			<li>
+				<aspect>Enthusiasm</aspect>
+				<weight>0.8</weight>
+			</li>
+			<li>
+				<aspect>Volatility</aspect>
+				<weight>0.6</weight>
+			</li>
+		</tenAspects>
+		<traitModifiers>
+			<li>
+				<trait>Unstable</trait>
+				<modifier>0.8</modifier>
+			</li>
+		</traitModifiers>
+	</Psychology.PersonalityNodeDef>
+	<Psychology.PersonalityNodeDef>
+		<defName>Upbeat</defName>
+		<label>upbeat</label>
+		<antonymLabel>gloomy</antonymLabel>
+		<nodeHSV>(60,1,1)</nodeHSV>
+		<antonymHSV>(240,0.7,1)</antonymHSV>
+		<descriptionLabel>Upbeat</descriptionLabel>
+		<description>{0} people are happy, warm, and pleasant to be around.</description>
+		<controversiality>0.75</controversiality>
+		<conversationTopics>
+			<li>life</li>
+			<li>adulthood</li>
+			<li>nightmares</li>
+			<li>pet peeves</li>
+			<li>life's annoyances</li>
+			<li>doing one's best</li>
+			<li>positivity</li>
+			<li>looking on the bright side of life</li>
+			<li>skepticism</li>
+		</conversationTopics>
+		<platformIssueHigh>This colony is on the right track.</platformIssueHigh>
+		<platformIssueLow>This colony is headed for disaster.</platformIssueLow>
+		<parents>
+			<li>
+				<node>Extroverted</node>
+				<modifier>0.7</modifier>
+			</li>
+			<li>
+				<node>Empathetic</node>
+				<modifier>0.3</modifier>
+			</li>
+			<li>
+				<node>Confident</node>
+				<modifier>0.3</modifier>
+			</li>
+			<li>
+				<node>Compassionate</node>
+				<modifier>0.3</modifier>
+			</li>
+			<li>
+				<node>Optimistic</node>
+				<modifier>0.9</modifier>
+			</li>
+			<li>
+				<node>Aggressive</node>
+				<modifier>-0.8</modifier>
+			</li>
+			<li>
+				<node>LaidBack</node>
+				<modifier>0.7</modifier>
+			</li>
+			<li>
+				<node>Adventurous</node>
+				<modifier>0.5</modifier>
+			</li>
+			<li>
+				<node>Trusting</node>
+				<modifier>0.7</modifier>
+			</li>
+			<li>
+				<node>Competitive</node>
+				<modifier>-0.4</modifier>
+			</li>
+			<li>
+				<node>Passionate</node>
+				<modifier>0.6</modifier>
+			</li>
+		</parents>
+		<traitModifiers>
+			<li>
+				<trait>NaturalMood</trait>
+				<degree>2</degree>
+				<modifier>0.95</modifier>
+			</li>
+			<li>
+				<trait>NaturalMood</trait>
+				<degree>1</degree>
+				<modifier>0.9</modifier>
+			</li>
+			<li>
+				<trait>NaturalMood</trait>
+				<degree>-1</degree>
+				<modifier>-0.9</modifier>
+			</li>
+			<li>
+				<trait>NaturalMood</trait>
+				<degree>-2</degree>
+				<modifier>-0.95</modifier>
+			</li>
+		</traitModifiers>
+		<preferredDateHours>
+			<li>10</li>
+			<li>11</li>
+			<li>12</li>
+			<li>13</li>
+			<li>14</li>
+		</preferredDateHours>
+		<bigFiveModifiers>
+			<li>0</li>
+			<li>0</li>
+			<li>1</li>
+			<li>0</li>
+			<li>-1</li>
+		</bigFiveModifiers>
+		<tenAspects>
+			<li>
+				<aspect>Enthusiasm</aspect>
+				<weight>0.8</weight>
+			</li>
+			<li>
+				<aspect>Withdrawal</aspect>
+				<weight>-0.6</weight>
+			</li>
+		</tenAspects>
+	</Psychology.PersonalityNodeDef>
 	<Psychology.PersonalityNodeDef>
 		<defName>Adventurous</defName>
 		<label>adventurous</label>
-		<description>Someone who is adventurous feels more fulfilled when they try new things, expand their horizons, and go new places.</description>
+		<antonymLabel>cautious</antonymLabel>
+		<nodeHSV>(30,1,1)</nodeHSV>
+		<antonymHSV>(270,0.85,1)</antonymHSV>
+		<descriptionLabel>adventurous</descriptionLabel>
+		<description>Someone who is {0} feels more fulfilled when they try new things, expand their horizons, and go new places.</description>
 		<controversiality>0.7</controversiality>
 		<conversationTopics>
 			<li>their bucket lists</li>
@@ -200,436 +1854,241 @@
 		<platformIssueLow>Our colony has everything we need.</platformIssueLow>
 		<parents>
 			<li>
-				<node>Confident</node>
-			</li>
-			<li>
 				<node>Experimental</node>
+				<modifier>0.8</modifier>
 			</li>
 			<li>
 				<node>Extroverted</node>
+				<modifier>0.8</modifier>
+			</li>
+			<li>
+				<node>Confident</node>
+				<modifier>0.7</modifier>
+			</li>
+			<li>
+				<node>Optimistic</node>
+				<modifier>0.6</modifier>
+			</li>
+			<li>
+				<node>Thoughtful</node>
+				<modifier>-0.5</modifier>
+			</li>
+			<li>
+				<node>Ambitious</node>
+				<modifier>-0.3</modifier>
+			</li>
+			<li>
+				<node>Nostalgic</node>
+				<modifier>-0.8</modifier>
 			</li>
 		</parents>
 		<traitModifiers>
 			<li>
 				<trait>Outdoorsy</trait>
-				<modifier>0.1</modifier>
+				<modifier>0.9</modifier>
 			</li>
 			<li>
 				<trait>Sedentary</trait>
-				<modifier>-0.2</modifier>
+				<modifier>-0.9</modifier>
 			</li>
 		</traitModifiers>
+		<bigFiveModifiers>
+			<li>0.6</li>
+			<li>0</li>
+			<li>0.8</li>
+			<li>0</li>
+			<li>0</li>
+		</bigFiveModifiers>
+		<tenAspects>
+			<li>
+				<aspect>Openness</aspect>
+				<weight>0.6</weight>
+			</li>
+			<li>
+				<aspect>Enthusiasm</aspect>
+				<weight>0.8</weight>
+			</li>
+		</tenAspects>
 	</Psychology.PersonalityNodeDef>
-	
+	<!-- Big Five: Extroversion / 10 Aspects: Assertiveness -->
 	<Psychology.PersonalityNodeDef>
-		<defName>DrugFriendly</defName>
-		<label>drug-friendly</label>
-		<description>A drug-friendly person sees nothing wrong with drugs and makes no effort to avoid them.</description>
-		<controversiality>1.2</controversiality>
-		<conversationTopics>
-			<li>drugs</li>
-			<li>drunkenness</li>
-			<li>getting drunk</li>
-			<li>getting high</li>
-			<li>smokeleaf</li>
-			<li>beer</li>
-			<li>flake</li>
-			<li>yayo</li>
-			<li>go-juice</li>
-			<li>ambrosia</li>
-			<li>psychoid tea</li>
-		</conversationTopics>
-		<platformIssueHigh>Drugs can make our lives easier and better.</platformIssueHigh>
-		<platformIssueLow>Drugs have no place in this colony.</platformIssueLow>
+		<defName>Confident</defName>
+		<label>confident</label>
+		<antonymLabel>insecure</antonymLabel>
+		<!--<antonymLabel>humble</antonymLabel>-->
+		<nodeHSV>(15,1,1)</nodeHSV>
+		<antonymHSV>(150,1,0.8)</antonymHSV>
+		<descriptionLabel>confident</descriptionLabel>
+		<description>A {0} person has high self-assurance and self-esteem.</description>
+		<femaleModifier>-0.5</femaleModifier>
 		<parents>
 			<li>
-				<node>Experimental</node>
+				<node>Ambitious</node>
+				<modifier>0.85</modifier>
+			</li>
+			<li>
+				<node>Extroverted</node>
+				<modifier>0.7</modifier>
+			</li>
+			<li>
+				<node>Optimistic</node>
+				<modifier>0.5</modifier>
 			</li>
 		</parents>
-		<traitModifiers>
+		<bigFiveModifiers>
+			<li>0</li>
+			<li>0</li>
+			<li>0.8</li>
+			<li>0</li>
+			<li>-0.6</li>
+		</bigFiveModifiers>
+		<tenAspects>
 			<li>
-				<trait>DrugDesire</trait>
-				<degree>-1</degree>
-				<modifier>-1</modifier>
+				<aspect>Assertiveness</aspect>
+				<weight>0.8</weight>
 			</li>
 			<li>
-				<trait>DrugDesire</trait>
-				<degree>1</degree>
+				<aspect>Withdrawal</aspect>
+				<weight>-0.6</weight>
+			</li>
+		</tenAspects>
+	</Psychology.PersonalityNodeDef>
+	<Psychology.PersonalityNodeDef>
+		<defName>Outspoken</defName>
+		<label>outspoken</label>
+		<antonymLabel>reserved</antonymLabel>
+		<nodeHSV>(30,0.75,0.975)</nodeHSV>
+		<antonymHSV>(255,0.62,1)</antonymHSV>
+		<descriptionLabel>outspoken</descriptionLabel>
+		<description>An {0} person has a lot of strong opinions and doesn't hesitate to share them.</description>
+		<controversiality>1.5</controversiality>
+		<conversationTopics>
+			<li>politics</li>
+			<li>rule of law</li>
+			<li>government</li>
+			<li>civil rights</li>
+			<li>extremism</li>
+			<li>radicalism</li>
+			<li>political debate</li>
+			<li>political opinions</li>
+			<li>crime and punishment</li>
+			<li>activism</li>
+			<li>leadership</li>
+			<li>arguing about things</li>
+			<li>their friends</li>
+		</conversationTopics>
+		<platformIssueHigh>We need greater support for free speech.</platformIssueHigh>
+		<platformIssueLow>We need to be more mindful of each other.</platformIssueLow>
+		<parents>
+			<li>
+				<node>Intelligent</node>
+				<modifier>0.2</modifier>
+			</li>
+			<li>
+				<node>Experimental</node>
+				<modifier>0.4</modifier>
+			</li>
+			<li>
+				<node>Extroverted</node>
 				<modifier>0.5</modifier>
 			</li>
 			<li>
-				<trait>DrugDesire</trait>
-				<degree>2</degree>
-				<modifier>1</modifier>
+				<node>Confident</node>
+				<modifier>0.7</modifier>
 			</li>
-		</traitModifiers>
-		<preferredDateHours>
-			<li>20</li>
-			<li>21</li>
-			<li>22</li>
-			<li>23</li>
-			<li>0</li>
-			<li>1</li>
-			<li>2</li>
-		</preferredDateHours>
-	</Psychology.PersonalityNodeDef>
-	
-	<Psychology.PersonalityNodeDef>
-		<defName>Spontaneous</defName>
-		<label>spontaneous</label>
-		<description>A spontaneous person tends to be impulsive and enjoy surprising others.</description>
-		<controversiality>0.8</controversiality>
-		<conversationTopics>
-			<li>practical jokes</li>
-			<li>humor</li>
-			<li>puns</li>
-			<li>planning ahead</li>
-			<li>introspection</li>
-			<li>surprise parties</li>
-			<li>presents</li>
-		</conversationTopics>
-		<platformIssueHigh>As mayor, I'll get things done.</platformIssueHigh>
-		<platformIssueLow>As mayor, I'll tackle our problems carefully.</platformIssueLow>
-		<parents>
 			<li>
-				<node>Experimental</node>
+				<node>Spontaneous</node>
+				<modifier>0.8</modifier>
 			</li>
-		</parents>
-	</Psychology.PersonalityNodeDef>
-	
-	<Psychology.PersonalityNodeDef>
-		<defName>Rational</defName>
-		<label>rational</label>
-		<description>The more rational someone is, the more capable they are of thinking about things from a factual, objective standpoint.</description>
-		<controversiality>1</controversiality>
-		<conversationTopics>
-			<li>philosophy</li>
-			<li>maturity</li>
-			<li>reality</li>
-			<li>epistemology</li>
-			<li>causality</li>
-			<li>confirmation bias</li>
-			<li>belief perseverance</li>
-		</conversationTopics>
-		<platformIssueHigh>We need a facts-based approach to the issues.</platformIssueHigh>
-		<platformIssueLow>History is written by the winners.</platformIssueLow>
-		<parents>
-			<li>
-				<node>Intelligent</node>
-			</li>
-		</parents>
-		<preferredDateHours>
-			<li>9</li>
-			<li>10</li>
-			<li>11</li>
-			<li>12</li>
-			<li>13</li>
-			<li>14</li>
-		</preferredDateHours>
-	</Psychology.PersonalityNodeDef>
-	
-	<Psychology.PersonalityNodeDef>
-		<defName>Logical</defName>
-		<label>logical</label>
-		<description>A logical person is highly capable of connecting cause and effect, and predicting the consequences of actions.</description>
-		<controversiality>1</controversiality>
-		<conversationTopics>
-			<li>inventing things</li>
-			<li>conspiracy theories</li>
-			<li>logical fallacies</li>
-			<li>human limitations</li>
-			<li>research</li>
-			<li>science</li>
-			<li>astronomy</li>
-			<li>chemistry</li>
-			<li>engineering</li>
-			<li>biology</li>
-			<li>technology</li>
-		</conversationTopics>
-		<platformIssueHigh>Our problems are solveable.</platformIssueHigh>
-		<platformIssueLow>I will solve our problems.</platformIssueLow>
-		<parents>
-			<li>
-				<node>Intelligent</node>
-			</li>
-		</parents>
-		<skillModifiers>
-			<li>
-				<skill>Intellectual</skill>
-			</li>
-		</skillModifiers>
-		<incapableModifiers>
-			<li>
-				<type>Research</type>
-				<modifier>-0.6</modifier>
-			</li>
-		</incapableModifiers>
-		<preferredDateHours>
-			<li>7</li>
-			<li>8</li>
-			<li>9</li>
-			<li>10</li>
-		</preferredDateHours>
-	</Psychology.PersonalityNodeDef>
-	
-	<Psychology.PersonalityNodeDef>
-		<defName>Creative</defName>
-		<label>creative</label>
-		<description>Creative people can imagine things in vivid detail, whether they ever existed or not.</description>
-		<controversiality>0.75</controversiality>
-		<conversationTopics>
-			<li>writing and drawing</li>
-			<li>art</li>
-			<li>theater</li>
-			<li>aliens</li>
-			<li>alien contact</li>
-			<li>cryptids</li>
-			<li>ghost stories</li>
-			<li>fantasy</li>
-			<li>their favorite books</li>
-			<li>their favorite movies</li>
-			<li>xenohumans</li>
-		</conversationTopics>
-		<platformIssueHigh>I'll bring innovative solutions to the table.</platformIssueHigh>
-		<platformIssueLow>We need to look at things as they are.</platformIssueLow>
-		<parents>
-			<li>
-				<node>Intelligent</node>
-			</li>
-		</parents>
-		<skillModifiers>
-			<li>
-				<skill>Artistic</skill>
-			</li>
-		</skillModifiers>
-		<incapableModifiers>
-			<li>
-				<type>Art</type>
-				<modifier>-0.6</modifier>
-			</li>
-		</incapableModifiers>
-		<preferredDateHours>
-			<li>16</li>
-			<li>17</li>
-			<li>18</li>
-			<li>19</li>
-			<li>20</li>
-			<li>21</li>
-			<li>22</li>
-			<li>23</li>
-			<li>0</li>
-		</preferredDateHours>
-	</Psychology.PersonalityNodeDef>
-	
-	<Psychology.PersonalityNodeDef>
-		<defName>Passionate</defName>
-		<label>passionate</label>
-		<description>People who are passionate feel very strongly about things and tend to express themselves emphatically.</description>
-		<controversiality>0.85</controversiality>
-		<conversationTopics>
-			<li>their likes and dislikes</li>
-			<li>enthusiasm</li>
-			<li>their desires</li>
-			<li>learning</li>
-			<li>being overbearing</li>
-			<li>apathy</li>
-		</conversationTopics>
-		<platformIssueHigh>I'll put all my energy into the job.</platformIssueHigh>
-		<platformIssueLow>I'll do what needs to be done.</platformIssueLow>
-		<parents>
 			<li>
 				<node>Emotional</node>
-			</li>
-		</parents>
-		<preferredDateHours>
-			<li>18</li>
-			<li>19</li>
-			<li>20</li>
-			<li>21</li>
-			<li>22</li>
-		</preferredDateHours>
-	</Psychology.PersonalityNodeDef>
-	
-	<Psychology.PersonalityNodeDef>
-		<defName>Nostalgic</defName>
-		<label>nostalgic</label>
-		<description>Someone nostalgic has a very strong connection to their past and anything that evokes those memories.</description>
-		<controversiality>0.7</controversiality>
-		<conversationTopics>
-			<li>the old days</li>
-			<li>childhood</li>
-			<li>regrets</li>
-			<li>old Earth</li>
-			<li>their origins</li>
-			<li>the way things were</li>
-			<li>history</li>
-			<li>mementos</li>
-		</conversationTopics>
-		<platformIssueHigh>Things were better in the old days.</platformIssueHigh>
-		<platformIssueLow>We can create a bright future.</platformIssueLow>
-		<parents>
-			<li>
-				<node>Emotional</node>
-			</li>
-		</parents>
-		<traitModifiers>
-			<li>
-				<trait>Transhumanist</trait>
-				<modifier>-0.3</modifier>
-			</li>
-		</traitModifiers>
-		<preferredDateHours>
-			<li>10</li>
-			<li>11</li>
-			<li>12</li>
-			<li>13</li>
-			<li>14</li>
-			<li>15</li>
-			<li>16</li>
-		</preferredDateHours>
-	</Psychology.PersonalityNodeDef>
-	
-	<Psychology.PersonalityNodeDef>
-		<defName>Empathetic</defName>
-		<label>empathetic</label>
-		<description>An empathetic person is able to put themselves into the shoes of others and understand their feelings.</description>
-		<controversiality>1.4</controversiality>
-		<conversationTopics>
-			<li>psychopathy</li>
-			<li>isolationism</li>
-			<li>understanding each other</li>
-			<li>taking advantage of people</li>
-			<li>community</li>
-			<li>caring</li>
-			<li>mercy</li>
-			<li>sparing lives</li>
-			<li>selfishness</li>
-		</conversationTopics>
-		<platformIssueHigh>The mayor should ensure that every colonist is taken care of.</platformIssueHigh>
-		<platformIssueLow>The mayor shouldn't meddle in the private affairs of colonists.</platformIssueLow>
-		<femaleModifier>1.25</femaleModifier>
-		<parents>
-			<li>
-				<node>Emotional</node>
-			</li>
-		</parents>
-		<traitModifiers>
-			<li>
-				<trait>Psychopath</trait>
-				<modifier>-1</modifier>
+				<modifier>0.9</modifier>
 			</li>
 			<li>
-				<trait>Cannibal</trait>
-				<modifier>-1</modifier>
+				<node>Passionate</node>
+				<modifier>0.9</modifier>
 			</li>
 			<li>
-				<trait>Bloodlust</trait>
-				<modifier>-0.5</modifier>
+				<node>Polite</node>
+				<modifier>-0.7</modifier>
 			</li>
 			<li>
-				<trait>Desensitized</trait>
+				<node>Aggressive</node>
+				<modifier>0.7</modifier>
+			</li>
+			<li>
+				<node>LaidBack</node>
 				<modifier>-0.25</modifier>
 			</li>
 			<li>
-				<trait>Kind</trait>
+				<node>Thoughtful</node>
+				<modifier>-0.7</modifier>
+			</li>
+			<li>
+				<node>Adventurous</node>
 				<modifier>0.25</modifier>
 			</li>
 			<li>
-				<trait>BleedingHeart</trait>
-				<modifier>0.75</modifier>
+				<node>Compassionate</node>
+				<modifier>-0.25</modifier>
 			</li>
-		</traitModifiers>
-		<preferredDateHours>
-			<li>16</li>
-			<li>17</li>
-			<li>18</li>
-		</preferredDateHours>
-	</Psychology.PersonalityNodeDef>
-	
-	<Psychology.PersonalityNodeDef>
-		<defName>Competitive</defName>
-		<label>competitive</label>
-		<controversiality>0.9</controversiality>
-		<description>For a competitive person, it's not enough that they succeed, others must fail.</description>
-		<conversationTopics>
-			<li>success</li>
-			<li>pride</li>
-			<li>social status</li>
-			<li>their accomplishments</li>
-			<li>talent</li>
-			<li>other settlements</li>
-			<li>their skills</li>
-		</conversationTopics>
-		<platformIssueHigh>Our colony should reward innovators.</platformIssueHigh>
-		<platformIssueLow>Everyone in our colony should be able to succeed.</platformIssueLow>
-		<parents>
 			<li>
-				<node>Aggressive</node>
+				<node>Competitive</node>
+				<modifier>0.7</modifier>
+			</li>
+			<li>
+				<node>Judgmental</node>
+				<modifier>0.5</modifier>
 			</li>
 		</parents>
+		<bigFiveModifiers>
+			<li>0</li>
+			<li>0</li>
+			<li>1</li>
+			<li>0</li>
+			<li>0</li>
+		</bigFiveModifiers>
+		<tenAspects>
+			<li>
+				<aspect>Assertiveness</aspect>
+				<weight>1</weight>
+			</li>
+		</tenAspects>
 		<traitModifiers>
 			<li>
-				<trait>Jealous</trait>
-				<modifier>0.6</modifier>
+				<trait>Abrasive</trait>
+				<modifier>0.8</modifier>
 			</li>
 		</traitModifiers>
-		<preferredDateHours>
-			<li>6</li>
-			<li>7</li>
-			<li>8</li>
-			<li>9</li>
-		</preferredDateHours>
-	</Psychology.PersonalityNodeDef>
-
-	<Psychology.PersonalityNodeDef>
-		<defName>Polite</defName>
-		<label>polite</label>
-		<description>A polite person is well-mannered and makes an effort not to offend other people.</description>
-		<controversiality>0.78</controversiality>
-		<conversationTopics>
-			<li>manners</li>
-			<li>tact</li>
-			<li>civility</li>
-			<li>feelings</li>
-			<li>respect</li>
-			<li>the golden rule</li>
-			<li>subtlety</li>
-			<li>rudeness</li>
-			<li>swearing</li>
-			<li>slurs</li>
-		</conversationTopics>
-		<platformIssueHigh>We should respect those who came before us.</platformIssueHigh>
-		<platformIssueLow>We should be judged on our merits.</platformIssueLow>
-		<parents>
-			<li>
-				<node>Aggressive</node>
-				<modifier>1</modifier>
-			</li>
-		</parents>
-		<skillModifiers>
-			<li>
-				<skill>Social</skill>
-			</li>
-		</skillModifiers>
 		<incapableModifiers>
 			<li>
 				<type>Warden</type>
-				<modifier>-0.6</modifier>
+				<modifier>-0.9</modifier>
 			</li>
 		</incapableModifiers>
-		<preferredDateHours>
-			<li>10</li>
-			<li>11</li>
-			<li>12</li>
-			<li>13</li>
-			<li>14</li>
-		</preferredDateHours>
+		<preceptCertaintyModifiers>
+			<li>
+				<precept>Proselytizing_Occasionally</precept>
+				<modifier>0.67</modifier>
+			</li>
+			<li>
+				<precept>Proselytizing_Sometimes</precept>
+				<modifier>1.33</modifier>
+			</li>
+			<li>
+				<precept>Proselytizing_Frequently</precept>
+				<modifier>2.00</modifier>
+			</li>
+		</preceptCertaintyModifiers>
 	</Psychology.PersonalityNodeDef>
-	
 	<Psychology.PersonalityNodeDef>
 		<defName>Cool</defName>
 		<label>cool</label>
-		<description>Someone who's cool is edgy, unique, and interesting, and people tend to like them more.</description>
+		<antonymLabel>square</antonymLabel>
+		<nodeHSV>(195,1,1)</nodeHSV>
+		<antonymHSV>(360,0,0.8)</antonymHSV>
+		<descriptionLabel>cool</descriptionLabel>
+		<description>Someone who's {0} is edgy, unique, and interesting, and people tend to like them more.</description>
 		<controversiality>1</controversiality>
 		<conversationTopics>
 			<li>glitterworld trends</li>
@@ -644,48 +2103,91 @@
 		<platformIssueLow>Vote for the person who will do the best job.</platformIssueLow>
 		<parents>
 			<li>
-				<node>DrugFriendly</node>
+				<node>Extroverted</node>
+				<modifier>0.5</modifier>
+			</li>
+			<li>
+				<node>Upbeat</node>
+				<modifier>0.3</modifier>
 			</li>
 			<li>
 				<node>LaidBack</node>
+				<modifier>0.85</modifier>
+			</li>
+			<li>
+				<node>DrugFriendly</node>
+				<modifier>0.7</modifier>
 			</li>
 			<li>
 				<node>Geeky</node>
-				<modifier>1</modifier>
+				<modifier>-0.65</modifier>
+			</li>
+			<li>
+				<node>Experimental</node>
+				<modifier>0.8</modifier>
+			</li>
+			<li>
+				<node>Confident</node>
+				<modifier>0.85</modifier>
+			</li>
+			<li>
+				<node>Pure</node>
+				<modifier>-0.85</modifier>
+			</li>
+			<li>
+				<node>Adventurous</node>
+				<modifier>0.85</modifier>
+			</li>
+			<li>
+				<node>Naive</node>
+				<modifier>-0.5</modifier>
+			</li>
+			<li>
+				<node>Nostalgic</node>
+				<modifier>-0.5</modifier>
+			</li>
+			<li>
+				<node>Spontaneous</node>
+				<modifier>0.5</modifier>
 			</li>
 		</parents>
 		<traitModifiers>
-			<li>
+			<!-- Beauty is now accounted for in general in PersonalityNode.AdjustForCircumstances -->
+			<!--<li>
 				<trait>Beauty</trait>
 				<degree>2</degree>
-				<modifier>0.75</modifier>
+				<modifier>0.7</modifier>
 			</li>
 			<li>
 				<trait>Beauty</trait>
 				<degree>1</degree>
-				<modifier>0.3</modifier>
+				<modifier>0.4</modifier>
 			</li>
 			<li>
 				<trait>Beauty</trait>
 				<degree>-1</degree>
-				<modifier>-0.3</modifier>
+				<modifier>-0.4</modifier>
 			</li>
 			<li>
 				<trait>Beauty</trait>
 				<degree>-2</degree>
-				<modifier>-0.8</modifier>
-			</li>
+				<modifier>-0.7</modifier>
+			</li>-->
 			<li>
 				<trait>Socialite</trait>
-				<modifier>0.2</modifier>
+				<modifier>0.4</modifier>
 			</li>
 			<li>
 				<trait>CreepyBreathing</trait>
-				<modifier>-0.3</modifier>
+				<modifier>-0.4</modifier>
 			</li>
 			<li>
 				<trait>AnnoyingVoice</trait>
-				<modifier>-0.3</modifier>
+				<modifier>-0.4</modifier>
+			</li>
+			<li>
+				<trait>Unstable</trait>
+				<modifier>-0.2</modifier>
 			</li>
 		</traitModifiers>
 		<preferredDateHours>
@@ -699,521 +2201,431 @@
 			<li>1</li>
 			<li>2</li>
 		</preferredDateHours>
+		<bigFiveModifiers>
+			<li>0</li>
+			<li>0</li>
+			<li>0.8</li>
+			<li>0</li>
+			<li>-0.6</li>
+		</bigFiveModifiers>
+		<tenAspects>
+			<li>
+				<aspect>Assertiveness</aspect>
+				<weight>0.8</weight>
+			</li>
+			<li>
+				<aspect>Volatility</aspect>
+				<weight>-0.6</weight>
+			</li>
+		</tenAspects>
 	</Psychology.PersonalityNodeDef>
-	
+	<!-- Big Five: Agreeableness / 10 Aspects: Compassion -->
 	<Psychology.PersonalityNodeDef>
-		<defName>Romantic</defName>
-		<label>romantic</label>
-		<description>Someone romantic likes long-term, meaningful relationships, commitment, and intimate gestures.</description>
-		<controversiality>1.25</controversiality>
+		<defName>Compassionate</defName>
+		<label>compassionate</label>
+		<antonymLabel>ruthless</antonymLabel>
+		<nodeHSV>(300,0.925,0.925)</nodeHSV>
+		<antonymHSV>(225,0.97,1)</antonymHSV>
+		<descriptionLabel>Compassionate</descriptionLabel>
+		<description>{0} people are concerned about other people's struggles and try to help them.</description>
+		<controversiality>1.3</controversiality>
 		<conversationTopics>
-			<li>relationships</li>
-			<li>old flames</li>
-			<li>children</li>
-			<li>having children</li>
-			<li>love</li>
-			<li>romance</li>
-			<li>sexuality</li>
-			<li>lovers</li>
-			<li>lovin'</li>
-			<li>commitment</li>
-			<li>adultery</li>
+			<li>the less fortunate</li>
+			<li>aiding the downtrodden</li>
+			<li>helping the sick</li>
+			<li>helping the poor</li>
+			<li>human rights</li>
+			<li>saving people</li>
+			<li>other people's problems</li>
+			<li>interventionism</li>
+			<li>concern for others</li>
 		</conversationTopics>
-		<platformIssueHigh>I will take the position seriously.</platformIssueHigh>
-		<platformIssueLow>This job won't go to my head.</platformIssueLow>
+		<platformIssueHigh>Any society is judged on the basis of how it treats its weakest members.</platformIssueHigh>
+		<platformIssueLow>A society is only as strong as its most capable members.</platformIssueLow>
 		<parents>
 			<li>
-				<node>Passionate</node>
+				<node>Ambitious</node>
+				<modifier>-0.5</modifier>
 			</li>
 			<li>
-				<node>Spontaneous</node>
-				<modifier>2</modifier>
+				<node>Empathetic</node>
+				<modifier>0.9</modifier>
 			</li>
-		</parents>
-		<traitModifiers>
 			<li>
-				<trait>Codependent</trait>
+				<node>Thoughtful</node>
+				<modifier>0.7</modifier>
+			</li>
+			<li>
+				<node>Aggressive</node>
+				<modifier>-0.85</modifier>
+			</li>
+			<li>
+				<node>Trusting</node>
 				<modifier>0.8</modifier>
 			</li>
 			<li>
-				<trait>Lecher</trait>
-				<modifier>-0.8</modifier>
-			</li>
-		</traitModifiers>
-		<preferredDateHours>
-			<li>14</li>
-			<li>15</li>
-			<li>16</li>
-			<li>17</li>
-			<li>18</li>
-			<li>19</li>
-			<li>20</li>
-		</preferredDateHours>
-	</Psychology.PersonalityNodeDef>
-	
-	<Psychology.PersonalityNodeDef>
-		<defName>Thoughtful</defName>
-		<label>thoughtful</label>
-		<description>Thoughtful people are introspective and critical, and tend to plan ahead.</description>
-		<controversiality>1</controversiality>
-		<conversationTopics>
-			<li>the future</li>
-			<li>life goals</li>
-			<li>priorities</li>
-			<li>solutions</li>
-			<li>memory</li>
-			<li>brainstorming</li>
-			<li>dreams</li>
-		</conversationTopics>
-		<platformIssueHigh>We need plans for the future.</platformIssueHigh>
-		<platformIssueLow>We need to address what's happening in the present.</platformIssueLow>
-		<parents>
-			<li>
-				<node>Rational</node>
-			</li>
-			<li>
-				<node>Logical</node>
-			</li>
-			<li>
-				<node>Spontaneous</node>
-				<modifier>-1</modifier>
-			</li>
-		</parents>
-		<preferredDateHours>
-			<li>8</li>
-			<li>9</li>
-			<li>10</li>
-			<li>11</li>
-			<li>12</li>
-		</preferredDateHours>
-	</Psychology.PersonalityNodeDef>
-	
-	<Psychology.PersonalityNodeDef>
-		<defName>Geeky</defName>
-		<label>geeky</label>
-		<description>Someone who is geeky is intellectual, eccentric, and frequently socially awkward.</description>
-		<controversiality>0.8</controversiality>
-		<conversationTopics>
-			<li>their hobbies</li>
-			<li>self-replicating machines</li>
-			<li>generation ships</li>
-			<li>Von Neumann probes</li>
-			<li>archotechnology</li>
-			<li>mechanoids</li>
-			<li>cryptosleep</li>
-			<li>cryptosleep tombs</li>
-			<li>artificial intelligence</li>
-			<li>the Johnson-Tanaka drive</li>
-			<li>the Ordo Historia</li>
-			<li>computer technology</li>
-			<li>weapons technology</li>
-			<li>AI personas</li>
-			<li>bionics</li>
-			<li>transhumanism</li>
-		</conversationTopics>
-		<platformIssueHigh>Think of the possibilities we can pursue.</platformIssueHigh>
-		<platformIssueLow>Let's focus on what's practical.</platformIssueLow>
-		<parents>
-			<li>
-				<node>Logical</node>
-			</li>
-			<li>
-				<node>Creative</node>
-			</li>
-			<li>
-				<node>Extroverted</node>
-				<modifier>1</modifier>
-			</li>
-		</parents>
-		<traitModifiers>
-			<li>
-				<trait>Transhumanist</trait>
-				<modifier>0.3</modifier>
-			</li>
-			<li>
-				<trait>BodyPurist</trait>
-				<modifier>-0.3</modifier>
-			</li>
-		</traitModifiers>
-	</Psychology.PersonalityNodeDef>
-	
-	<Psychology.PersonalityNodeDef>
-		<defName>Cultured</defName>
-		<label>cultured</label>
-		<description>A cultured person is well-read, well-educated, and refined.</description>
-		<controversiality>0.8</controversiality>
-		<conversationTopics>
-			<li>aesthetics</li>
-			<li>television</li>
-			<li>books they've read</li>
-			<li>movies they've watched</li>
-			<li>statues</li>
-			<li>arts and literature</li>
-			<li>art history</li>
-			<li>the legitimacy of art</li>
-			<li>education</li>
-			<li>teachers</li>
-			<li>ancient history</li>
-			<li>fine foods</li>
-		</conversationTopics>
-		<platformIssueHigh>Those who do not learn history are doomed to repeat it.</platformIssueHigh>
-		<platformIssueLow>I'm just a regular person like all of you.</platformIssueLow>
-		<parents>
-			<li>
-				<node>Creative</node>
-			</li>
-		</parents>
-	</Psychology.PersonalityNodeDef>
-	
-	<Psychology.PersonalityNodeDef>
-		<defName>Organized</defName>
-		<label>organized</label>
-		<description>An organized person keeps everything tidy, neat, and minimalistic.</description>
-		<controversiality>0.7</controversiality>
-		<conversationTopics>
-			<li>cleanliness</li>
-			<li>pets</li>
-			<li>laundry</li>
-			<li>hauling</li>
-			<li>cleaning</li>
-			<li>eating with tables</li>
-			<li>filth</li>
-			<li>exotic animals</li>
-		</conversationTopics>
-		<platformIssueHigh>Simple solutions are usually best.</platformIssueHigh>
-		<platformIssueLow>Life is complex, and so are our problems.</platformIssueLow>
-		<parents>
-			<li>
-				<node>Nostalgic</node>
-				<modifier>1</modifier>
+				<node>Optimistic</node>
+				<modifier>0.8</modifier>
 			</li>
 		</parents>
 		<incapableModifiers>
 			<li>
-				<type>Cleaning</type>
-				<modifier>-0.5</modifier>
-			</li>
-			<li>
-				<type>Hauling</type>
-				<modifier>-0.5</modifier>
+				<type>Doctor</type>
+				<modifier>-0.8</modifier>
 			</li>
 		</incapableModifiers>
-		<preferredDateHours>
-			<li>6</li>
-			<li>7</li>
-			<li>8</li>
-			<li>9</li>
-		</preferredDateHours>
-	</Psychology.PersonalityNodeDef>
-	
-	<Psychology.PersonalityNodeDef>
-		<defName>Naive</defName>
-		<label>naive</label>
-		<description>Someone naive is guileless and often superstitious.</description>
-		<controversiality>1.3</controversiality>
-		<conversationTopics>
-			<li>idealism</li>
-			<li>life after death</li>
-			<li>honor</li>
-			<li>fate</li>
-			<li>destiny</li>
-			<li>truth</li>
-			<li>prophecy</li>
-			<li>karma</li>
-			<li>astrology</li>
-			<li>fortune telling</li>
-			<li>luck</li>
-		</conversationTopics>
-		<platformIssueHigh>My commitment to ideals would make me a good mayor.</platformIssueHigh>
-		<platformIssueLow>My experience and know-how would make me a good mayor.</platformIssueLow>
-		<parents>
-			<li>
-				<node>Empathetic</node>
-			</li>
-			<li>
-				<node>Experimental</node>
-				<modifier>1</modifier>
-			</li>
-			<li>
-				<node>Rational</node>
-				<modifier>1</modifier>
-			</li>
-		</parents>
-		<preferredDateHours>
-			<li>9</li>
-			<li>10</li>
-			<li>11</li>
-			<li>12</li>
-		</preferredDateHours>
-	</Psychology.PersonalityNodeDef>
-	
-	<Psychology.PersonalityNodeDef>
-		<defName>Upbeat</defName>
-		<label>upbeat</label>
-		<description>Upbeat people are happy, warm, and pleasant to be around.</description>
-		<controversiality>0.75</controversiality>
-		<conversationTopics>
-			<li>life</li>
-			<li>adulthood</li>
-			<li>nightmares</li>
-			<li>pet peeves</li>
-			<li>life's annoyances</li>
-			<li>doing one's best</li>
-			<li>positivity</li>
-			<li>looking on the bright side of life</li>
-			<li>skepticism</li>
-		</conversationTopics>
-		<platformIssueHigh>This colony is on the right track.</platformIssueHigh>
-		<platformIssueLow>This colony is headed for disaster.</platformIssueLow>
-		<parents>
-			<li>
-				<node>Empathetic</node>
-			</li>
-		</parents>
 		<traitModifiers>
 			<li>
-				<trait>NaturalMood</trait>
-				<degree>2</degree>
+				<trait>Psychopath</trait>
+				<modifier>-0.9</modifier>
+			</li>
+			<li>
+				<trait>Kind</trait>
+				<modifier>0.85</modifier>
+			</li>
+			<li>
+				<trait>BleedingHeart</trait>
+				<modifier>0.9</modifier>
+			</li>
+		</traitModifiers>
+		<bigFiveModifiers>
+			<li>0</li>
+			<li>0</li>
+			<li>0</li>
+			<li>1</li>
+			<li>0</li>
+		</bigFiveModifiers>
+		<tenAspects>
+			<li>
+				<aspect>Compassion</aspect>
+				<weight>1</weight>
+			</li>
+		</tenAspects>
+		<preceptCertaintyModifiers>
+			<li>
+				<precept>Execution_Abhorrent</precept>
+				<modifier>2</modifier>
+			</li>
+			<li>
+				<precept>Execution_Horrible</precept>
 				<modifier>1</modifier>
 			</li>
 			<li>
-				<trait>NaturalMood</trait>
-				<degree>1</degree>
-				<modifier>0.5</modifier>
+				<precept>Execution_HorribleIfInnocent</precept>
+				<modifier>1</modifier>
 			</li>
 			<li>
-				<trait>NaturalMood</trait>
-				<degree>-1</degree>
+				<precept>Execution_DontCare</precept>
+				<modifier>-1</modifier>
+			</li>
+			<li>
+				<precept>Execution_RespectedIfGuilty</precept>
 				<modifier>-0.5</modifier>
 			</li>
 			<li>
-				<trait>NaturalMood</trait>
-				<degree>-2</degree>
+				<precept>OrganUse_Abhorrent</precept>
+				<modifier>1</modifier>
+			</li>
+			<li>
+				<precept>OrganUse_Acceptable</precept>
 				<modifier>-1</modifier>
 			</li>
-		</traitModifiers>
-		<preferredDateHours>
-			<li>10</li>
-			<li>11</li>
-			<li>12</li>
-			<li>13</li>
-			<li>14</li>
-		</preferredDateHours>
+			<li>
+				<precept>Skullspike_Desired</precept>
+				<modifier>-0.5</modifier>
+			</li>
+			<li>
+				<precept>Slavery_Abhorrent</precept>
+				<modifier>2</modifier>
+			</li>
+			<li>
+				<precept>Slavery_Horrible</precept>
+				<modifier>1</modifier>
+			</li>
+			<li>
+				<precept>Slavery_Acceptable</precept>
+				<modifier>-1</modifier>
+			</li>
+			<li>
+				<precept>Slavery_Honorable</precept>
+				<modifier>-2</modifier>
+			</li>
+			<li>
+				<precept>Raiding_Respected</precept>
+				<modifier>-1</modifier>
+			</li>
+			<li>
+				<precept>Raiding_Required</precept>
+				<modifier>-1.5</modifier>
+			</li>
+		</preceptCertaintyModifiers>
 	</Psychology.PersonalityNodeDef>
-	
 	<Psychology.PersonalityNodeDef>
-		<defName>Outspoken</defName>
-		<label>outspoken</label>
-		<description>An outspoken person has a lot of strong opinions and doesn't hesitate to share them.</description>
-		<controversiality>1.5</controversiality>
+		<defName>Empathetic</defName>
+		<label>empathetic</label>
+		<antonymLabel>cold-hearted</antonymLabel>
+		<nodeHSV>(300,0.9,0.8)</nodeHSV>
+		<antonymHSV>(225,0.85,0.9)</antonymHSV>
+		<descriptionLabel>empathetic</descriptionLabel>
+		<description>An {0} person is able to put themselves into the shoes of others and understand their feelings.</description>
+		<controversiality>1.4</controversiality>
 		<conversationTopics>
-			<li>politics</li>
-			<li>rule of law</li>
-			<li>government</li>
-			<li>civil rights</li>
-			<li>extremism</li>
-			<li>radicalism</li>
-			<li>political debate</li>
-			<li>political opinions</li>
-			<li>crime and punishment</li>
-			<li>activism</li>
-			<li>the mayorship</li>
-			<li>arguing about things</li>
-			<li>their friends</li>
+			<li>psychopathy</li>
+			<li>isolationism</li>
+			<li>understanding each other</li>
+			<li>taking advantage of people</li>
+			<li>community</li>
+			<li>caring</li>
+			<li>mercy</li>
+			<li>sparing lives</li>
+			<li>selfishness</li>
 		</conversationTopics>
-		<platformIssueHigh>This colony needs a strong leader.</platformIssueHigh>
-		<platformIssueLow>We need a leader that listens to our concerns.</platformIssueLow>
-		<parents>
-			<li>
-				<node>Competitive</node>
-			</li>
-			<li>
-				<node>Extroverted</node>
-			</li>
-		</parents>
-	</Psychology.PersonalityNodeDef>
-	
-	<Psychology.PersonalityNodeDef>
-		<defName>Ambitious</defName>
-		<label>ambitious</label>
-		<description>Someone ambitious sets large, difficult goals for themselves and wants to be successful.</description>
-		<controversiality>0.9</controversiality>
-		<conversationTopics>
-			<li>their hopes and dreams</li>
-			<li>their fears</li>
-			<li>life challenges</li>
-			<li>perseverance</li>
-			<li>believing in oneself</li>
-			<li>becoming wealthy</li>
-			<li>lofty goals</li>
-			<li>luxury</li>
-		</conversationTopics>
-		<platformIssueHigh>We need to dream big.</platformIssueHigh>
-		<platformIssueLow>Let's ground ourselves in reality.</platformIssueLow>
-		<parents>
-			<li>
-				<node>Competitive</node>
-			</li>
-		</parents>
+		<platformIssueHigh>A leader should ensure that every colonist is taken care of.</platformIssueHigh>
+		<platformIssueLow>A leader shouldn't meddle in the private affairs of colonists.</platformIssueLow>
+		<femaleModifier>0.25</femaleModifier>
 		<traitModifiers>
 			<li>
-				<trait>Industriousness</trait>
-				<degree>2</degree>
-				<modifier>0.2</modifier>
+				<trait>Psychopath</trait>
+				<modifier>-0.95</modifier>
 			</li>
 			<li>
-				<trait>Industriousness</trait>
-				<degree>1</degree>
-				<modifier>0.1</modifier>
+				<trait>Bloodlust</trait>
+				<modifier>-0.75</modifier>
 			</li>
 			<li>
-				<trait>Industriousness</trait>
-				<degree>-1</degree>
-				<modifier>-0.1</modifier>
+				<trait>Desensitized</trait>
+				<modifier>-0.5</modifier>
 			</li>
 			<li>
-				<trait>Industriousness</trait>
-				<degree>-2</degree>
-				<modifier>-0.4</modifier>
+				<trait>Kind</trait>
+				<modifier>0.8</modifier>
 			</li>
 			<li>
-				<trait>Neurotic</trait>
-				<degree>2</degree>
-				<modifier>0.25</modifier>
-			</li>
-			<li>
-				<trait>Neurotic</trait>
-				<degree>1</degree>
-				<modifier>0.1</modifier>
+				<trait>BleedingHeart</trait>
+				<modifier>0.95</modifier>
 			</li>
 		</traitModifiers>
 		<preferredDateHours>
+			<li>16</li>
+			<li>17</li>
 			<li>18</li>
-			<li>19</li>
-			<li>20</li>
-			<li>21</li>
-			<li>22</li>
 		</preferredDateHours>
+		<bigFiveModifiers>
+			<li>0</li>
+			<li>0</li>
+			<li>0</li>
+			<li>1</li>
+			<li>0</li>
+		</bigFiveModifiers>
+		<tenAspects>
+			<li>
+				<aspect>Compassion</aspect>
+				<weight>1</weight>
+			</li>
+		</tenAspects>
+		<preceptCertaintyModifiers>
+			<li>
+				<precept>Skullspike_Desired</precept>
+				<modifier>-0.5</modifier>
+			</li>
+			<li>
+				<precept>Slavery_Abhorrent</precept>
+				<modifier>2</modifier>
+			</li>
+			<li>
+				<precept>Slavery_Horrible</precept>
+				<modifier>1</modifier>
+			</li>
+			<li>
+				<precept>Slavery_Acceptable</precept>
+				<modifier>-1</modifier>
+			</li>
+			<li>
+				<precept>Slavery_Honorable</precept>
+				<modifier>-2</modifier>
+			</li>
+		</preceptCertaintyModifiers>
 	</Psychology.PersonalityNodeDef>
-	
 	<Psychology.PersonalityNodeDef>
-		<defName>LaidBack</defName>
-		<label>laid-back</label>
-		<description>Laid-back people don't get stressed out about things very easily and tend not to worry.</description>
-		<controversiality>1</controversiality>
+		<defName>Trusting</defName>
+		<label>trusting</label>
+		<antonymLabel>cynical</antonymLabel>
+		<nodeHSV>(45,0.7,1)</nodeHSV>
+		<antonymHSV>(165,1,0.75)</antonymHSV>
+		<descriptionLabel>trusting</descriptionLabel>
+		<description>Someone who is {0} tends to take people at their word and see the good in people.</description>
+		<controversiality>1.3</controversiality>
 		<conversationTopics>
-			<li>hardship</li>
-			<li>stress</li>
-			<li>their mood</li>
-			<li>anxiety</li>
-			<li>pressure</li>
-			<li>appearances</li>
-			<li>vacations</li>
-			<li>their perfect Sunday</li>
+			<li>human nature</li>
+			<li>honesty</li>
+			<li>integrity</li>
+			<li>con artistry</li>
+			<li>white lies</li>
+			<li>loyalty</li>
+			<li>fairness</li>
+			<li>corruption</li>
+			<li>new colonists</li>
 		</conversationTopics>
-		<platformIssueHigh>You need a leader that cares about performance.</platformIssueHigh>
-		<platformIssueLow>You need a leader that can take the stress.</platformIssueLow>
+		<platformIssueHigh>I will bring out the best in every colonist.</platformIssueHigh>
+		<platformIssueLow>I will stamp out the worst in every colonist.</platformIssueLow>
 		<parents>
 			<li>
+				<node>Aggressive</node>
+				<modifier>-0.8</modifier>
+			</li>
+			<li>
+				<node>Empathetic</node>
+				<modifier>0.8</modifier>
+			</li>
+			<li>
+				<node>Optimistic</node>
+				<modifier>0.8</modifier>
+			</li>
+			<li>
 				<node>Competitive</node>
-				<modifier>1</modifier>
+				<modifier>-0.9</modifier>
+			</li>
+			<li>
+				<node>Ambitious</node>
+				<modifier>-0.5</modifier>
+			</li>
+		</parents>
+		<bigFiveModifiers>
+			<li>0</li>
+			<li>0</li>
+			<li>0</li>
+			<li>1</li>
+			<li>0</li>
+		</bigFiveModifiers>
+		<tenAspects>
+			<li>
+				<aspect>Compassion</aspect>
+				<weight>1</weight>
+			</li>
+		</tenAspects>
+	</Psychology.PersonalityNodeDef>
+	<Psychology.PersonalityNodeDef>
+		<defName>Friendly</defName>
+		<label>friendly</label>
+		<antonymLabel>unfriendly</antonymLabel>
+		<nodeHSV>(45,0.9,1)</nodeHSV>
+		<antonymHSV>(240,0.567,0.95)</antonymHSV>
+		<descriptionLabel>friendly</descriptionLabel>
+		<description>Someone {0} is kind, tolerant, and inviting to talk to.</description>
+		<controversiality>0.7</controversiality>
+		<conversationTopics>
+			<li>each other</li>
+			<li>making friends</li>
+			<li>forgiveness</li>
+			<li>tolerance</li>
+			<li>their opinions of each other</li>
+			<li>admiration</li>
+			<li>whatever's on their minds</li>
+		</conversationTopics>
+		<platformIssueHigh>We're all in this together.</platformIssueHigh>
+		<platformIssueLow>We do what it takes to survive.</platformIssueLow>
+		<parents>
+			<li>
+				<node>Ambitious</node>
+				<modifier>-0.3</modifier>
 			</li>
 			<li>
 				<node>Upbeat</node>
-			</li>
-		</parents>
-		<traitModifiers>
-			<li>
-				<trait>Nerves</trait>
-				<degree>2</degree>
-				<modifier>0.6</modifier>
+				<modifier>0.8</modifier>
 			</li>
 			<li>
-				<trait>Nerves</trait>
-				<degree>1</degree>
+				<node>Trusting</node>
+				<modifier>0.9</modifier>
+			</li>
+			<li>
+				<node>Judgmental</node>
+				<modifier>-0.9</modifier>
+			</li>
+			<li>
+				<node>Aggressive</node>
+				<modifier>-0.8</modifier>
+			</li>
+			<li>
+				<node>Competitive</node>
+				<modifier>-0.8</modifier>
+			</li>
+			<li>
+				<node>Polite</node>
+				<modifier>0.5</modifier>
+			</li>
+			<li>
+				<node>Optimistic</node>
+				<modifier>0.5</modifier>
+			</li>
+			<li>
+				<node>Empathetic</node>
+				<modifier>0.8</modifier>
+			</li>
+			<li>
+				<node>Compassionate</node>
+				<modifier>0.8</modifier>
+			</li>
+			<li>
+				<node>Outspoken</node>
+				<modifier>-0.5</modifier>
+			</li>
+			<li>
+				<node>Cool</node>
 				<modifier>0.3</modifier>
 			</li>
 			<li>
-				<trait>Nerves</trait>
-				<degree>-1</degree>
-				<modifier>-0.2</modifier>
+				<node>Generous</node>
+				<modifier>0.8</modifier>
 			</li>
 			<li>
-				<trait>Nerves</trait>
-				<degree>-2</degree>
-				<modifier>-0.4</modifier>
+				<node>LaidBack</node>
+				<modifier>0.5</modifier>
 			</li>
 			<li>
-				<trait>Neurotic</trait>
-				<degree>2</degree>
-				<modifier>-0.35</modifier>
-			</li>
-			<li>
-				<trait>Neurotic</trait>
-				<degree>1</degree>
-				<modifier>-0.2</modifier>
-			</li>
-		</traitModifiers>
-		<preferredDateHours>
-			<li>17</li>
-			<li>18</li>
-			<li>19</li>
-			<li>20</li>
-			<li>21</li>
-			<li>22</li>
-		</preferredDateHours>
-	</Psychology.PersonalityNodeDef>
-	
-	<Psychology.PersonalityNodeDef>
-		<defName>Pure</defName>
-		<label>pure</label>
-		<description>People who are pure try to be chaste, traditional, and wholesome.</description>
-		<controversiality>1.48</controversiality>
-		<conversationTopics>
-			<li>religion</li>
-			<li>spirituality</li>
-			<li>traditional values</li>
-			<li>sexual morality</li>
-			<li>femininity</li>
-			<li>masculinity</li>
-			<li>gender roles</li>
-			<li>deities</li>
-			<li>family</li>
-			<li>kinship</li>
-			<li>homosexuality</li>
-		</conversationTopics>
-		<platformIssueHigh>Traditional values are our values.</platformIssueHigh>
-		<platformIssueLow>We need to advance as a people.</platformIssueLow>
-		<parents>
-			<li>
-				<node>Naive</node>
+				<node>Moralistic</node>
+				<modifier>0.5</modifier>
 			</li>
 			<li>
 				<node>Romantic</node>
+				<modifier>0.7</modifier>
 			</li>
 		</parents>
 		<traitModifiers>
 			<li>
-				<trait>Nudist</trait>
-				<modifier>-1</modifier>
+				<trait>Chatty</trait>
+				<modifier>0.3</modifier>
 			</li>
 			<li>
-				<trait>Prude</trait>
-				<modifier>0.6</modifier>
+				<trait>Kind</trait>
+				<modifier>0.85</modifier>
 			</li>
 		</traitModifiers>
-		<preferredDateHours>
-			<li>7</li>
-			<li>8</li>
-			<li>9</li>
-			<li>10</li>
-		</preferredDateHours>
+		<bigFiveModifiers>
+			<li>0</li>
+			<li>0</li>
+			<li>0.6</li>
+			<li>0.8</li>
+			<li>0</li>
+		</bigFiveModifiers>
+		<tenAspects>
+			<li>
+				<aspect>Enthusiasm</aspect>
+				<weight>0.6</weight>
+			</li>
+			<li>
+				<aspect>Compassion</aspect>
+				<weight>0.8</weight>
+			</li>
+		</tenAspects>
 	</Psychology.PersonalityNodeDef>
-	
 	<Psychology.PersonalityNodeDef>
 		<defName>Moralistic</defName>
 		<label>moralistic</label>
-		<description>Someone who is moralistic adheres to traditional ideas of morality.</description>
+		<antonymLabel>amoral</antonymLabel>
+		<nodeHSV>(285,1,0.9)</nodeHSV>
+		<antonymHSV>(225,0.7,0.85)</antonymHSV>
+		<descriptionLabel>moralistic</descriptionLabel>
+		<description>Someone who is {0} adheres to traditional ideas of morality.</description>
 		<controversiality>1.45</controversiality>
 		<conversationTopics>
 			<li>ethics</li>
@@ -1233,199 +2645,271 @@
 		<platformIssueLow>We can only do what's right for us.</platformIssueLow>
 		<parents>
 			<li>
-				<node>Naive</node>
+				<node>Empathetic</node>
+				<modifier>0.8</modifier>
+			</li>
+			<li>
+				<node>Compassionate</node>
+				<modifier>0.85</modifier>
+			</li>
+			<li>
+				<node>Pure</node>
+				<modifier>0.85</modifier>
+			</li>
+			<li>
+				<node>Trusting</node>
+				<modifier>0.5</modifier>
+			</li>
+			<li>
+				<node>Optimistic</node>
+				<modifier>0.5</modifier>
+			</li>
+			<li>
+				<node>Cultured</node>
+				<modifier>0.65</modifier>
+			</li>
+			<li>
+				<node>Aggressive</node>
+				<modifier>-0.5</modifier>
+			</li>
+			<li>
+				<node>Competitive</node>
+				<modifier>-0.5</modifier>
+			</li>
+			<li>
+				<node>Thoughtful</node>
+				<modifier>0.5</modifier>
 			</li>
 		</parents>
 		<traitModifiers>
 			<li>
 				<trait>Cannibal</trait>
-				<modifier>-1</modifier>
+				<modifier>-0.7</modifier>
 			</li>
-			<li>
-				<trait>Psychopath</trait>
-				<modifier>-0.8</modifier>
-			</li>
-			<li>
-				<trait>Desensitized</trait>
-				<modifier>-0.4</modifier>
-			</li>
-		</traitModifiers>
-	</Psychology.PersonalityNodeDef>
-	
-	<Psychology.PersonalityNodeDef>
-		<defName>Trusting</defName>
-		<label>trusting</label>
-		<description>Someone who is trusting tends to take people at their word and see the good in people.</description>
-		<controversiality>1.3</controversiality>
-		<conversationTopics>
-			<li>human nature</li>
-			<li>honesty</li>
-			<li>integrity</li>
-			<li>con artistry</li>
-			<li>white lies</li>
-			<li>loyalty</li>
-			<li>fairness</li>
-			<li>corruption</li>
-			<li>new colonists</li>
-		</conversationTopics>
-		<platformIssueHigh>Only good citizens deserve to be part of this colony.</platformIssueHigh>
-		<platformIssueLow>People in this colony come from all walks of life.</platformIssueLow>
-		<parents>
-			<li>
-				<node>Naive</node>
-			</li>
-		</parents>
-	</Psychology.PersonalityNodeDef>
-	
-	<Psychology.PersonalityNodeDef>
-		<defName>Judgmental</defName>
-		<label>judgmental</label>
-		<description>A judgmental person tends to form their opinions of people quickly and superficially, and is affected more by the actions of others.</description>
-		<controversiality>1.3</controversiality>
-		<conversationTopics>
-			<li>the latest gossip</li>
-			<li>the latest drama</li>
-			<li>culture</li>
-			<li>pettiness</li>
-			<li>melodrama</li>
-			<li>shallowness</li>
-			<li>fair-weather friends</li>
-			<li>jumping to conclusions</li>
-			<li>rash judgment</li>
-			<li>second chances</li>
-			<li>whether people can change</li>
-		</conversationTopics>
-		<platformIssueHigh>No one else is capable of leading this colony.</platformIssueHigh>
-		<platformIssueLow>I'm the most qualified to lead this colony.</platformIssueLow>
-		<parents>
-			<li>
-				<node>Naive</node>
-			</li>
-			<li>
-				<node>LaidBack</node>
-				<modifier>-1</modifier>
-			</li>
-		</parents>
-		<traitModifiers>
-			<li>
-				<trait>BodyPurist</trait>
-				<modifier>0.2</modifier>
-			</li>
-			<li>
-				<trait>Prude</trait>
-				<modifier>0.3</modifier>
-			</li>
-			<li>
-				<trait>OpenMinded</trait>
-				<modifier>-0.5</modifier>
-			</li>
-			<li>
-				<trait>Kind</trait>
-				<modifier>-0.3</modifier>
-			</li>
-		</traitModifiers>
-	</Psychology.PersonalityNodeDef>
-	
-	<Psychology.PersonalityNodeDef>
-		<defName>Friendly</defName>
-		<label>friendly</label>
-		<description>Someone friendly is kind, tolerant, and inviting to talk to.</description>
-		<controversiality>0.7</controversiality>
-		<conversationTopics>
-			<li>each other</li>
-			<li>making friends</li>
-			<li>forgiveness</li>
-			<li>tolerance</li>
-			<li>their opinions of each other</li>
-			<li>admiration</li>
-			<li>whatever's on their minds</li>
-		</conversationTopics>
-		<platformIssueHigh>We're all in this together.</platformIssueHigh>
-		<platformIssueLow>We do what it takes to survive.</platformIssueLow>
-		<parents>
-			<li>
-				<node>Upbeat</node>
-			</li>
-			<li>
-				<node>Judgmental</node>
-				<modifier>2</modifier>
-			</li>
-		</parents>
-		<traitModifiers>
-			<li>
-				<trait>Chatty</trait>
-				<modifier>0.1</modifier>
-			</li>
-		</traitModifiers>
-	</Psychology.PersonalityNodeDef>
-	
-	<Psychology.PersonalityNodeDef>
-		<defName>Optimistic</defName>
-		<label>optimistic</label>
-		<description>Someone who is optimistic looks on the bright side of life.</description>
-		<controversiality>1.1</controversiality>
-		<conversationTopics>
-			<li>their feelings</li>
-			<li>the meaning of life</li>
-			<li>hope</li>
-			<li>the inevitability of death</li>
-			<li>purpose</li>
-			<li>direction</li>
-			<li>getting through the day</li>
-			<li>what the future holds</li>
-			<li>leaving the planet</li>
-		</conversationTopics>
-		<platformIssueHigh>Things are good, but they could be better.</platformIssueHigh>
-		<platformIssueLow>Things are bad, but they will get worse.</platformIssueLow>
-		<parents>
-			<li>
-				<node>Upbeat</node>
-				<modifier>-2</modifier>
-			</li>
-		</parents>
-	</Psychology.PersonalityNodeDef>
-	
-	<Psychology.PersonalityNodeDef>
-		<defName>Compassionate</defName>
-		<label>compassionate</label>
-		<description>Compassionate people are concerned about other people's struggles and try to help them.</description>
-		<controversiality>1.3</controversiality>
-		<conversationTopics>
-			<li>the less fortunate</li>
-			<li>aiding the downtrodden</li>
-			<li>helping the sick</li>
-			<li>helping the poor</li>
-			<li>human rights</li>
-			<li>saving people</li>
-			<li>other people's problems</li>
-			<li>interventionism</li>
-			<li>concern for others</li>
-		</conversationTopics>
-		<platformIssueHigh>Any society is judged on the basis of how it treats its weakest members.</platformIssueHigh>
-		<platformIssueLow>A society is only as strong as its most capable members.</platformIssueLow>
-		<parents>
-			<li>
-				<node>Upbeat</node>
-			</li>
-		</parents>
-		<incapableModifiers>
-			<li>
-				<type>Doctor</type>
-				<modifier>-0.6</modifier>
-			</li>
-		</incapableModifiers>
-		<traitModifiers>
 			<li>
 				<trait>Bloodlust</trait>
 				<modifier>-0.8</modifier>
 			</li>
+			<li>
+				<trait>Psychopath</trait>
+				<modifier>-0.9</modifier>
+			</li>
+			<li>
+				<trait>Desensitized</trait>
+				<modifier>-0.7</modifier>
+			</li>
 		</traitModifiers>
+		<bigFiveModifiers>
+			<li>0</li>
+			<li>0</li>
+			<li>0</li>
+			<li>0.7</li>
+			<li>0</li>
+		</bigFiveModifiers>
+		<tenAspects>
+			<li>
+				<aspect>Compassion</aspect>
+				<weight>0.7</weight>
+			</li>
+		</tenAspects>
+		<preceptCertaintyModifiers>
+			<li>
+				<precept>Cannibalism_Abhorrent</precept>
+				<modifier>0.3</modifier>
+			</li>
+			<li>
+				<precept>Cannibalism_Horrible</precept>
+				<modifier>0.2</modifier>
+			</li>
+			<li>
+				<precept>Cannibalism_Disapproved</precept>
+				<modifier>0.1</modifier>
+			</li>
+			<li>
+				<precept>Cannibalism_Acceptable</precept>
+				<modifier>-0.5</modifier>
+			</li>
+			<li>
+				<precept>Cannibalism_Preferred</precept>
+				<modifier>-1</modifier>
+			</li>
+			<li>
+				<precept>Cannibalism_RequiredStrong</precept>
+				<modifier>-1.5</modifier>
+			</li>
+			<li>
+				<precept>Execution_HorribleIfInnocent</precept>
+				<modifier>1</modifier>
+			</li>
+			<li>
+				<precept>OrganUse_Acceptable</precept>
+				<modifier>-1</modifier>
+			</li>
+			<li>
+				<precept>Slavery_Abhorrent</precept>
+				<modifier>2</modifier>
+			</li>
+			<li>
+				<precept>Slavery_Horrible</precept>
+				<modifier>1</modifier>
+			</li>
+			<li>
+				<precept>Slavery_Acceptable</precept>
+				<modifier>-1</modifier>
+			</li>
+			<li>
+				<precept>Slavery_Honorable</precept>
+				<modifier>-2</modifier>
+			</li>
+			<li>
+				<precept>Raiding_Respected</precept>
+				<modifier>-1</modifier>
+			</li>
+			<li>
+				<precept>Raiding_Required</precept>
+				<modifier>-1.5</modifier>
+			</li>
+		</preceptCertaintyModifiers>
 	</Psychology.PersonalityNodeDef>
-	
+	<Psychology.PersonalityNodeDef>
+		<defName>Romantic</defName>
+		<label>romantic</label>
+		<antonymLabel>detached</antonymLabel>
+		<nodeHSV>(315,1,0.95)</nodeHSV>
+		<antonymHSV>(195,1,0.8)</antonymHSV>
+		<descriptionLabel>romantic</descriptionLabel>
+		<description>Someone {0} likes long-term, meaningful relationships, commitment, and intimate gestures.</description>
+		<controversiality>1.25</controversiality>
+		<conversationTopics>
+			<li>relationships</li>
+			<li>old flames</li>
+			<li>children</li>
+			<li>having children</li>
+			<li>love</li>
+			<li>romance</li>
+			<li>sexuality</li>
+			<li>lovers</li>
+			<li>lovin'</li>
+			<li>commitment</li>
+			<li>adultery</li>
+		</conversationTopics>
+		<platformIssueHigh>I will take the position seriously.</platformIssueHigh>
+		<platformIssueLow>This job won't go to my head.</platformIssueLow>
+		<parents>
+			<li>
+				<node>Experimental</node>
+				<modifier>-0.35</modifier>
+			</li>
+			<li>
+				<node>Adventurous</node>
+				<modifier>-0.65</modifier>
+			</li>
+			<li>
+				<node>Nostalgic</node>
+				<modifier>0.5</modifier>
+			</li>
+			<li>
+				<node>Trusting</node>
+				<modifier>0.9</modifier>
+			</li>
+			<li>
+				<node>Passionate</node>
+				<modifier>0.75</modifier>
+			</li>
+			<li>
+				<node>Pure</node>
+				<modifier>0.75</modifier>
+			</li>
+			<li>
+				<node>Spontaneous</node>
+				<modifier>-0.5</modifier>
+			</li>
+			<li>
+				<node>Polite</node>
+				<modifier>0.25</modifier>
+			</li>
+			<li>
+				<node>Empathetic</node>
+				<modifier>0.5</modifier>
+			</li>
+			<li>
+				<node>Compassionate</node>
+				<modifier>0.5</modifier>
+			</li>
+			<li>
+				<node>Thoughtful</node>
+				<modifier>0.4</modifier>
+			</li>
+			<li>
+				<node>Optimistic</node>
+				<modifier>0.6</modifier>
+			</li>
+			<li>
+				<node>Confident</node>
+				<modifier>-0.3</modifier>
+			</li>
+			<li>
+				<node>Aggressive</node>
+				<modifier>-0.3</modifier>
+			</li>
+			<li>
+				<node>Cool</node>
+				<modifier>-0.5</modifier>
+			</li>
+			<li>
+				<node>Competitive</node>
+				<modifier>-0.5</modifier>
+			</li>
+			<li>
+				<node>Moralistic</node>
+				<modifier>0.5</modifier>
+			</li>
+			<li>
+				<node>Naive</node>
+				<modifier>0.3</modifier>
+			</li>
+		</parents>
+		<traitModifiers>
+			<li>
+				<trait>Codependent</trait>
+				<modifier>0.98</modifier>
+			</li>
+			<li>
+				<trait>Lecher</trait>
+				<modifier>-0.98</modifier>
+			</li>
+		</traitModifiers>
+		<preferredDateHours>
+			<li>14</li>
+			<li>15</li>
+			<li>16</li>
+			<li>17</li>
+			<li>18</li>
+			<li>19</li>
+			<li>20</li>
+		</preferredDateHours>
+		<bigFiveModifiers>
+			<li>0</li>
+			<li>0</li>
+			<li>0</li>
+			<li>0.7</li>
+			<li>0</li>
+		</bigFiveModifiers>
+		<tenAspects>
+			<li>
+				<aspect>Compassion</aspect>
+				<weight>0.7</weight>
+			</li>
+		</tenAspects>
+	</Psychology.PersonalityNodeDef>
 	<Psychology.PersonalityNodeDef>
 		<defName>Generous</defName>
 		<label>generous</label>
-		<description>Generous people care less about having things and are more likely to give them to others.</description>
+		<antonymLabel>stingy</antonymLabel>
+		<nodeHSV>(285,0.7,1)</nodeHSV>
+		<antonymHSV>(105,1,0.85)</antonymHSV>
+		<descriptionLabel>Generous</descriptionLabel>
+		<description>{0} people care less about having things and are more likely to give them to others.</description>
 		<controversiality>1.2</controversiality>
 		<conversationTopics>
 			<li>charity</li>
@@ -1440,16 +2924,1080 @@
 		<platformIssueLow>Everyone should earn what they have.</platformIssueLow>
 		<parents>
 			<li>
-				<node>Upbeat</node>
+				<node>Compassionate</node>
+				<modifier>0.85</modifier>
+			</li>
+			<li>
+				<node>Empathetic</node>
+				<modifier>0.75</modifier>
+			</li>
+			<li>
+				<node>Optimistic</node>
+				<modifier>0.5</modifier>
+			</li>
+			<li>
+				<node>Nostalgic</node>
+				<modifier>-0.75</modifier>
 			</li>
 			<li>
 				<node>Moralistic</node>
+				<modifier>0.85</modifier>
+			</li>
+			<li>
+				<node>Aggressive</node>
+				<modifier>-0.5</modifier>
+			</li>
+			<li>
+				<node>Ambitious</node>
+				<modifier>-0.5</modifier>
+			</li>
+			<li>
+				<node>LaidBack</node>
+				<modifier>0.5</modifier>
+			</li>
+			<li>
+				<node>DrugFriendly</node>
+				<modifier>0.5</modifier>
+			</li>
+			<li>
+				<node>Trusting</node>
+				<modifier>0.75</modifier>
+			</li>
+			<li>
+				<node>Romantic</node>
+				<modifier>0.5</modifier>
+			</li>
+		</parents>
+		<traitModifiers>
+			<li>
+				<trait>Greedy</trait>
+				<modifier>-0.9</modifier>
+			</li>
+		</traitModifiers>
+		<bigFiveModifiers>
+			<li>0</li>
+			<li>0</li>
+			<li>0</li>
+			<li>0.7</li>
+			<li>0</li>
+		</bigFiveModifiers>
+		<tenAspects>
+			<li>
+				<aspect>Compassion</aspect>
+				<weight>0.7</weight>
+			</li>
+			<!--<li>
+				<aspect>Volatility</aspect>
+				<weight>0</weight>
+            </li>-->
+		</tenAspects>
+		<preceptCertaintyModifiers>
+			<li>
+				<precept>Charity_Essential</precept>
+				<modifier>3</modifier>
+			</li>
+			<li>
+				<precept>Charity_Important</precept>
+				<modifier>2</modifier>
+			</li>
+			<li>
+				<precept>Charity_Worthwhile</precept>
+				<modifier>1</modifier>
+			</li>
+		</preceptCertaintyModifiers>
+	</Psychology.PersonalityNodeDef>
+	<!-- Big Five: Agreeableness / 10 Aspects: Politeness -->
+	<Psychology.PersonalityNodeDef>
+		<defName>Polite</defName>
+		<label>polite</label>
+		<antonymLabel>rude</antonymLabel>
+		<nodeHSV>(270,0.65,1)</nodeHSV>
+		<antonymHSV>(0,1,0.85)</antonymHSV>
+		<descriptionLabel>polite</descriptionLabel>
+		<description>A {0} person is well-mannered and makes an effort not to offend other people.</description>
+		<controversiality>0.78</controversiality>
+		<conversationTopics>
+			<li>manners</li>
+			<li>tact</li>
+			<li>civility</li>
+			<li>feelings</li>
+			<li>respect</li>
+			<li>the golden rule</li>
+			<li>subtlety</li>
+			<li>rudeness</li>
+			<li>swearing</li>
+			<li>slurs</li>
+		</conversationTopics>
+		<platformIssueHigh>We should respect those around us.</platformIssueHigh>
+		<platformIssueLow>We should be judged on our merits.</platformIssueLow>
+		<parents>
+			<li>
+				<node>Extroverted</node>
+				<modifier>-0.5</modifier>
+			</li>
+			<li>
+				<node>Confident</node>
+				<modifier>-0.65</modifier>
+			</li>
+			<li>
+				<node>Aggressive</node>
+				<modifier>-0.9</modifier>
+			</li>
+			<li>
+				<node>Pure</node>
+				<modifier>0.8</modifier>
+			</li>
+			<li>
+				<node>Cultured</node>
+				<modifier>0.75</modifier>
+			</li>
+			<li>
+				<node>Moralistic</node>
+				<modifier>0.25</modifier>
+			</li>
+			<li>
+				<node>Spontaneous</node>
+				<modifier>-0.5</modifier>
+			</li>
+			<li>
+				<node>Upbeat</node>
+				<modifier>0.5</modifier>
+			</li>
+			<li>
+				<node>Empathetic</node>
+				<modifier>0.5</modifier>
+			</li>
+			<li>
+				<node>Optimistic</node>
+				<modifier>0.2</modifier>
+			</li>
+			<li>
+				<node>Thoughtful</node>
+				<modifier>0.8</modifier>
+			</li>
+			<li>
+				<node>Compassionate</node>
+				<modifier>0.6</modifier>
+			</li>
+			<li>
+				<node>Trusting</node>
+				<modifier>0.6</modifier>
+			</li>
+			<li>
+				<node>Passionate</node>
+				<modifier>-0.25</modifier>
+			</li>
+			<li>
+				<node>Emotional</node>
+				<modifier>-0.25</modifier>
+			</li>
+			<li>
+				<node>Cool</node>
+				<modifier>-0.4</modifier>
+			</li>
+			<li>
+				<node>Naive</node>
+				<modifier>0.5</modifier>
+			</li>
+			<li>
+				<node>Generous</node>
+				<modifier>0.5</modifier>
+			</li>
+		</parents>
+		<skillModifiers>
+			<li>
+				<skill>Social</skill>
+			</li>
+		</skillModifiers>
+		<traitModifiers>
+			<li>
+				<trait>Abrasive</trait>
+				<modifier>-0.95</modifier>
+			</li>
+		</traitModifiers>
+		<incapableModifiers>
+			<li>
+				<type>Warden</type>
+				<modifier>-0.8</modifier>
+			</li>
+		</incapableModifiers>
+		<preferredDateHours>
+			<li>10</li>
+			<li>11</li>
+			<li>12</li>
+			<li>13</li>
+			<li>14</li>
+		</preferredDateHours>
+		<bigFiveModifiers>
+			<li>0</li>
+			<li>0</li>
+			<li>0</li>
+			<li>1</li>
+			<li>0</li>
+		</bigFiveModifiers>
+		<tenAspects>
+			<li>
+				<aspect>Politeness</aspect>
+				<weight>1</weight>
+			</li>
+		</tenAspects>
+	</Psychology.PersonalityNodeDef>
+	<Psychology.PersonalityNodeDef>
+		<defName>Aggressive</defName>
+		<label>aggressive</label>
+		<antonymLabel>gentle</antonymLabel>
+		<nodeHSV>(0,1,1)</nodeHSV>
+		<antonymHSV>(300,0.65,0.95)</antonymHSV>
+		<descriptionLabel>aggressive</descriptionLabel>
+		<description>An {0} person is straightforward, blunt, and usually combative when they don't get what they want.</description>
+		<controversiality>1.25</controversiality>
+		<conversationTopics>
+			<li>a disagreement between them</li>
+			<li>a conflict between them</li>
+			<li>personal boundaries</li>
+			<li>conflict resolution</li>
+			<li>kindness</li>
+			<li>social fighting</li>
+			<li>stubbornness</li>
+			<li>civility</li>
+			<li>other people's feelings</li>
+		</conversationTopics>
+		<femaleModifier>-0.25</femaleModifier>
+		<platformIssueHigh>We need a leader who will stand up to our enemies.</platformIssueHigh>
+		<platformIssueLow>We need a leader who will make friends and allies.</platformIssueLow>
+		<parents>
+			<li>
+				<node>Ambitious</node>
+				<modifier>0.75</modifier>
+			</li>
+			<li>
+				<node>Extroverted</node>
+				<modifier>0.6</modifier>
+			</li>
+			<li>
+				<node>Empathetic</node>
+				<modifier>-0.8</modifier>
+			</li>
+			<li>
+				<node>Optimistic</node>
+				<modifier>-0.5</modifier>
+			</li>
+			<li>
+				<node>Confident</node>
+				<modifier>0.8</modifier>
+			</li>
+		</parents>
+		<traitModifiers>
+			<li>
+				<trait>Psychopath</trait>
+				<modifier>0.5</modifier>
+			</li>
+			<li>
+				<trait>Abrasive</trait>
+				<modifier>0.8</modifier>
+			</li>
+			<li>
+				<trait>Bloodlust</trait>
+				<modifier>0.8</modifier>
+			</li>
+			<li>
+				<trait>Kind</trait>
+				<modifier>-0.8</modifier>
+			</li>
+			<li>
+				<trait>BleedingHeart</trait>
+				<modifier>-0.8</modifier>
+			</li>
+		</traitModifiers>
+		<incapableModifiers>
+			<li>
+				<type>Hunting</type>
+				<modifier>-0.5</modifier>
+			</li>
+		</incapableModifiers>
+		<bigFiveModifiers>
+			<li>0</li>
+			<li>0</li>
+			<li>0</li>
+			<li>-0.8</li>
+			<li>0.6</li>
+		</bigFiveModifiers>
+		<tenAspects>
+			<li>
+				<aspect>Assertiveness</aspect>
+				<weight>0.5</weight>
+			</li>
+			<li>
+				<aspect>Politeness</aspect>
+				<weight>-0.71</weight>
+			</li>
+			<li>
+				<aspect>Volatility</aspect>
+				<weight>0.5</weight>
+			</li>
+		</tenAspects>
+		<memeCertaintyModifiers>
+			<li>
+				<meme>Raider</meme>
+				<modifier>2</modifier>
+			</li>
+			<li>
+				<meme>Supremacist</meme>
+				<modifier>2</modifier>
+			</li>
+		</memeCertaintyModifiers>
+		<preceptCertaintyModifiers>
+			<li>
+				<precept>Skullspike_Desired</precept>
+				<modifier>1</modifier>
+			</li>
+			<li>
+				<precept>Raiding_Respected</precept>
+				<modifier>1</modifier>
+			</li>
+			<li>
+				<precept>Raiding_Required</precept>
+				<modifier>1.5</modifier>
+			</li>
+		</preceptCertaintyModifiers>
+	</Psychology.PersonalityNodeDef>
+	<Psychology.PersonalityNodeDef>
+		<defName>Competitive</defName>
+		<label>competitive</label>
+		<antonymLabel>cooperative</antonymLabel>
+		<nodeHSV>(0,0.8,1)</nodeHSV>
+		<antonymHSV>(285,1,1)</antonymHSV>
+		<controversiality>0.9</controversiality>
+		<descriptionLabel>competitive</descriptionLabel>
+		<description>For a {0} person, it's not enough that they succeed, others must fail.</description>
+		<conversationTopics>
+			<li>success</li>
+			<li>pride</li>
+			<li>social status</li>
+			<li>their accomplishments</li>
+			<li>talent</li>
+			<li>other settlements</li>
+			<li>their skills</li>
+		</conversationTopics>
+		<platformIssueHigh>Our colony should reward innovators.</platformIssueHigh>
+		<platformIssueLow>Everyone in our colony should be able to succeed.</platformIssueLow>
+		<parents>
+			<li>
+				<node>Empathetic</node>
+				<modifier>-0.8</modifier>
+			</li>
+			<li>
+				<node>Optimistic</node>
+				<modifier>-0.5</modifier>
+			</li>
+			<li>
+				<node>Compassionate</node>
+				<modifier>-0.8</modifier>
+			</li>
+			<li>
+				<node>Ambitious</node>
+				<modifier>0.8</modifier>
+			</li>
+			<li>
+				<node>Aggressive</node>
+				<modifier>0.9</modifier>
+			</li>
+			<li>
+				<node>Confident</node>
+				<modifier>0.6</modifier>
+			</li>
+			<li>
+				<node>LaidBack</node>
+				<modifier>-0.5</modifier>
+			</li>
+			<li>
+				<node>Polite</node>
+				<modifier>-0.9</modifier>
+			</li>
+			<li>
+				<node>Generous</node>
+				<modifier>-0.75</modifier>
+			</li>
+		</parents>
+		<traitModifiers>
+			<li>
+				<trait>Jealous</trait>
+				<modifier>0.6</modifier>
+			</li>
+		</traitModifiers>
+		<preferredDateHours>
+			<li>6</li>
+			<li>7</li>
+			<li>8</li>
+			<li>9</li>
+		</preferredDateHours>
+		<bigFiveModifiers>
+			<li>0</li>
+			<li>0</li>
+			<li>0.6</li>
+			<li>-0.8</li>
+			<li>0</li>
+		</bigFiveModifiers>
+		<tenAspects>
+			<li>
+				<aspect>Politeness</aspect>
+				<weight>-0.8</weight>
+			</li>
+			<li>
+				<aspect>Assertiveness</aspect>
+				<weight>0.6</weight>
+			</li>
+		</tenAspects>
+		<memeCertaintyModifiers>
+			<li>
+				<meme>Individualist</meme>
+				<modifier>2</modifier>
+			</li>
+			<li>
+				<meme>Collectivist</meme>
+				<modifier>-2</modifier>
+			</li>
+			<li>
+				<meme>Raider</meme>
+				<modifier>1</modifier>
+			</li>
+			<li>
+				<meme>Supremacist</meme>
+				<modifier>2</modifier>
+			</li>
+		</memeCertaintyModifiers>
+		<preceptCertaintyModifiers>
+			<li>
+				<precept>Execution_RespectedIfGuilty</precept>
+				<modifier>1</modifier>
+			</li>
+			<li>
+				<precept>Raiding_Respected</precept>
+				<modifier>1</modifier>
+			</li>
+			<li>
+				<precept>Raiding_Required</precept>
+				<modifier>1.5</modifier>
+			</li>
+		</preceptCertaintyModifiers>
+	</Psychology.PersonalityNodeDef>
+	<!-- Big Five: Neuroticism / 10 Aspects: Volatility -->
+	<Psychology.PersonalityNodeDef>
+		<defName>Emotional</defName>
+		<label>emotional</label>
+		<antonymLabel>stoic</antonymLabel>
+		<nodeHSV>(330,1,1)</nodeHSV>
+		<antonymHSV>(240,0.33,0.85)</antonymHSV>
+		<descriptionLabel>emotional</descriptionLabel>
+		<description>Someone {0} has a lot of raw capacity for feeling emotion.</description>
+		<parents>
+			<li>
+				<node>Extroverted</node>
+				<modifier>0.25</modifier>
+			</li>
+			<li>
+				<node>Empathetic</node>
+				<modifier>0.5</modifier>
+			</li>
+			<li>
+				<node>Aggressive</node>
+				<modifier>0.65</modifier>
+			</li>
+			<li>
+				<node>Optimistic</node>
+				<modifier>-0.3</modifier>
+			</li>
+		</parents>
+		<traitModifiers>
+			<li>
+				<trait>Psychopath</trait>
+				<modifier>-0.25</modifier>
+			</li>
+			<li>
+				<trait>BleedingHeart</trait>
+				<modifier>0.9</modifier>
+			</li>
+			<li>
+				<trait>Unstable</trait>
+				<modifier>0.99</modifier>
+			</li>
+			<li>
+				<trait>Neurotic</trait>
+				<degree>1</degree>
+				<modifier>0.7</modifier>
+			</li>
+			<li>
+				<trait>Neurotic</trait>
+				<degree>2</degree>
+				<modifier>0.85</modifier>
+			</li>
+		</traitModifiers>
+		<bigFiveModifiers>
+			<li>0</li>
+			<li>0</li>
+			<li>0.6</li>
+			<li>0</li>
+			<li>0.8</li>
+		</bigFiveModifiers>
+		<tenAspects>
+			<li>
+				<aspect>Volatility</aspect>
+				<weight>0.8</weight>
+			</li>
+			<li>
+				<aspect>Enthusiasm</aspect>
+				<weight>0.6</weight>
+			</li>
+		</tenAspects>
+		<preceptCertaintyModifiers>
+			<li>
+				<precept>Scarification_Extreme</precept>
+				<modifier>-1</modifier>
+			</li>
+			<li>
+				<precept>Scarification_Heavy</precept>
+				<modifier>-0.66</modifier>
+			</li>
+			<li>
+				<precept>Scarification_Minor</precept>
+				<modifier>-0.33</modifier>
+			</li>
+		</preceptCertaintyModifiers>
+	</Psychology.PersonalityNodeDef>
+	<Psychology.PersonalityNodeDef>
+		<defName>LaidBack</defName>
+		<label>laid-back</label>
+		<antonymLabel>anxious</antonymLabel>
+		<nodeHSV>(210,0.8,1)</nodeHSV>
+		<antonymHSV>(90,0.95,0.95)</antonymHSV>
+		<descriptionLabel>Laid-back</descriptionLabel>
+		<description>{0} people don't get stressed out about things very easily and tend not to worry.</description>
+		<controversiality>1</controversiality>
+		<conversationTopics>
+			<li>hardship</li>
+			<li>stress</li>
+			<li>their mood</li>
+			<li>anxiety</li>
+			<li>pressure</li>
+			<li>appearances</li>
+			<li>vacations</li>
+			<li>their perfect Sunday</li>
+		</conversationTopics>
+		<platformIssueHigh>You need a leader that can handle the stress.</platformIssueHigh>
+		<platformIssueLow>You need a leader that cares about performance.</platformIssueLow>
+		<parents>
+			<li>
+				<node>Emotional</node>
+				<modifier>-0.65</modifier>
+			</li>
+			<li>
+				<node>Experimental</node>
+				<modifier>0.25</modifier>
+			</li>
+			<li>
+				<node>Ambitious</node>
+				<modifier>-0.8</modifier>
+			</li>
+			<li>
+				<node>Optimistic</node>
+				<modifier>0.7</modifier>
+			</li>
+			<li>
+				<node>Confident</node>
+				<modifier>0.7</modifier>
+			</li>
+			<li>
+				<node>Aggressive</node>
+				<modifier>-0.5</modifier>
+			</li>
+			<li>
+				<node>Adventurous</node>
+				<modifier>0.5</modifier>
+			</li>
+			<li>
+				<node>Trusting</node>
+				<modifier>0.35</modifier>
+			</li>
+		</parents>
+		<traitModifiers>
+			<li>
+				<trait>Nerves</trait>
+				<degree>2</degree>
+				<modifier>0.95</modifier>
+			</li>
+			<li>
+				<trait>Nerves</trait>
+				<degree>1</degree>
+				<modifier>0.9</modifier>
+			</li>
+			<li>
+				<trait>Nerves</trait>
+				<degree>-1</degree>
+				<modifier>-0.9</modifier>
+			</li>
+			<li>
+				<trait>Nerves</trait>
+				<degree>-2</degree>
+				<modifier>-0.95</modifier>
+			</li>
+			<li>
+				<trait>Neurotic</trait>
+				<degree>1</degree>
+				<modifier>-0.9</modifier>
+			</li>
+			<li>
+				<trait>Neurotic</trait>
+				<degree>2</degree>
+				<modifier>-0.95</modifier>
+			</li>
+			<li>
+				<trait>NaturalMood</trait>
+				<degree>-1</degree>
+				<modifier>-0.5</modifier>
+			</li>
+			<li>
+				<trait>NaturalMood</trait>
+				<degree>-2</degree>
+				<modifier>-0.75</modifier>
+			</li>
+			<li>
+				<trait>Jealous</trait>
+				<modifier>-0.65</modifier>
+			</li>
+			<li>
+				<trait>TooSmart</trait>
+				<modifier>-0.25</modifier>
+			</li>
+			<li>
+				<trait>TorturedArtist</trait>
+				<modifier>-0.8</modifier>
+			</li>
+			<li>
+				<trait>Unstable</trait>
+				<modifier>-0.9</modifier>
+			</li>
+		</traitModifiers>
+		<preferredDateHours>
+			<li>17</li>
+			<li>18</li>
+			<li>19</li>
+			<li>20</li>
+			<li>21</li>
+			<li>22</li>
+		</preferredDateHours>
+		<bigFiveModifiers>
+			<li>0</li>
+			<li>-0.5</li>
+			<li>0</li>
+			<li>0</li>
+			<li>-0.87</li>
+		</bigFiveModifiers>
+		<tenAspects>
+			<li>
+				<aspect>Volatility</aspect>
+				<weight>-0.87</weight>
+			</li>
+			<li>
+				<aspect>Industriousness</aspect>
+				<weight>-0.5</weight>
+			</li>
+		</tenAspects>
+	</Psychology.PersonalityNodeDef>
+	<Psychology.PersonalityNodeDef>
+		<defName>Judgmental</defName>
+		<label>judgmental</label>
+		<antonymLabel>tolerant</antonymLabel>
+		<nodeHSV>(345,0.9,0.8)</nodeHSV>
+		<antonymHSV>(195,0.6,0.95)</antonymHSV>
+		<descriptionLabel>judgmental</descriptionLabel>
+		<description>A {0} person tends to form their opinions of people quickly and superficially, and is affected more by the actions of others.</description>
+		<controversiality>1.3</controversiality>
+		<conversationTopics>
+			<li>the latest gossip</li>
+			<li>the latest drama</li>
+			<li>culture</li>
+			<li>pettiness</li>
+			<li>melodrama</li>
+			<li>shallowness</li>
+			<li>fair-weather friends</li>
+			<li>jumping to conclusions</li>
+			<li>rash judgment</li>
+			<li>second chances</li>
+			<li>whether people can change</li>
+		</conversationTopics>
+		<platformIssueHigh>Only good citizens deserve to be part of this colony.</platformIssueHigh>
+		<platformIssueLow>People in this colony come from all walks of life.</platformIssueLow>
+		<parents>
+			<li>
+				<node>Emotional</node>
+				<modifier>0.8</modifier>
+			</li>
+			<li>
+				<node>Experimental</node>
+				<modifier>-0.25</modifier>
+			</li>
+			<li>
+				<node>Ambitious</node>
+				<modifier>0.25</modifier>
+			</li>
+			<li>
+				<node>Empathetic</node>
+				<modifier>-0.5</modifier>
+			</li>
+			<li>
+				<node>Adventurous</node>
+				<modifier>-0.3</modifier>
+			</li>
+			<li>
+				<node>Aggressive</node>
+				<modifier>0.5</modifier>
+			</li>
+			<li>
+				<node>LaidBack</node>
+				<modifier>-0.9</modifier>
+			</li>
+			<li>
+				<node>Moralistic</node>
+				<modifier>0.75</modifier>
+			</li>
+			<li>
+				<node>Pure</node>
+				<modifier>0.75</modifier>
+			</li>
+			<li>
+				<node>Passionate</node>
+				<modifier>0.5</modifier>
 			</li>
 			<li>
 				<node>Competitive</node>
-				<modifier>2</modifier>
+				<modifier>0.5</modifier>
+			</li>
+			<li>
+				<node>Upbeat</node>
+				<modifier>-0.5</modifier>
+			</li>
+			<li>
+				<node>DrugFriendly</node>
+				<modifier>-0.5</modifier>
+			</li>
+			<li>
+				<node>Cool</node>
+				<modifier>-0.5</modifier>
 			</li>
 		</parents>
+		<traitModifiers>
+			<li>
+				<trait>BodyPurist</trait>
+				<modifier>0.3</modifier>
+			</li>
+			<li>
+				<trait>Prude</trait>
+				<modifier>0.4</modifier>
+			</li>
+			<li>
+				<trait>OpenMinded</trait>
+				<modifier>-0.7</modifier>
+			</li>
+			<li>
+				<trait>Kind</trait>
+				<modifier>-0.7</modifier>
+			</li>
+			<li>
+				<trait>Neurotic</trait>
+				<degree>1</degree>
+				<modifier>0.5</modifier>
+			</li>
+			<li>
+				<trait>Neurotic</trait>
+				<degree>2</degree>
+				<modifier>0.75</modifier>
+			</li>
+			<li>
+				<trait>Unstable</trait>
+				<modifier>0.9</modifier>
+			</li>
+		</traitModifiers>
+		<bigFiveModifiers>
+			<li>0</li>
+			<li>0</li>
+			<li>0</li>
+			<li>0</li>
+			<li>1</li>
+		</bigFiveModifiers>
+		<tenAspects>
+			<li>
+				<aspect>Volatility</aspect>
+				<weight>1</weight>
+			</li>
+		</tenAspects>
+		<memeCertaintyModifiers>
+			<li>
+				<meme>Loyalist</meme>
+				<modifier>2</modifier>
+			</li>
+		</memeCertaintyModifiers>
+		<preceptCertaintyModifiers>
+			<li>
+				<precept>IdeoDiversity_Abhorrent</precept>
+				<modifier>2</modifier>
+			</li>
+			<li>
+				<precept>IdeoDiversity_Horrible</precept>
+				<modifier>1</modifier>
+			</li>
+			<li>
+				<precept>IdeoDiversity_Disapproved</precept>
+				<modifier>0.5</modifier>
+			</li>
+			<li>
+				<precept>IdeoDiversity_Standard</precept>
+				<modifier>0</modifier>
+			</li>
+			<li>
+				<precept>IdeoDiversity_Approved</precept>
+				<modifier>-0.5</modifier>
+			</li>
+			<li>
+				<precept>IdeoDiversity_Respected</precept>
+				<modifier>-1</modifier>
+			</li>
+			<li>
+				<precept>IdeoDiversity_Exalted</precept>
+				<modifier>-2</modifier>
+			</li>
+			<li>
+				<precept>Apostasy_Abhorrent</precept>
+				<modifier>1.5</modifier>
+			</li>
+			<li>
+				<precept>Apostasy_Horrible</precept>
+				<modifier>1</modifier>
+			</li>
+			<li>
+				<precept>Apostasy_Disapproved</precept>
+				<modifier>0.5</modifier>
+			</li>
+		</preceptCertaintyModifiers>
 	</Psychology.PersonalityNodeDef>
-	
+	<!-- Big Five: Neuroticism / 10 Aspects: Withdrawal -->
+	<Psychology.PersonalityNodeDef>
+		<defName>Optimistic</defName>
+		<label>optimistic</label>
+		<antonymLabel>pessimistic</antonymLabel>
+		<nodeHSV>(60,0.65,1)</nodeHSV>
+		<antonymHSV>(240,0.633,1)</antonymHSV>
+		<descriptionLabel>optimistic</descriptionLabel>
+		<description>Someone who is {0} looks on the bright side of life.</description>
+		<controversiality>1.1</controversiality>
+		<conversationTopics>
+			<li>their feelings</li>
+			<li>the meaning of life</li>
+			<li>hope</li>
+			<li>the inevitability of death</li>
+			<li>purpose</li>
+			<li>direction</li>
+			<li>getting through the day</li>
+			<li>what the future holds</li>
+			<li>leaving the planet</li>
+		</conversationTopics>
+		<platformIssueHigh>Things are good, but they could be better.</platformIssueHigh>
+		<platformIssueLow>Things are bad, but they could get worse.</platformIssueLow>
+		<traitModifiers>
+			<li>
+				<trait>NaturalMood</trait>
+				<degree>2</degree>
+				<modifier>0.95</modifier>
+			</li>
+			<li>
+				<trait>NaturalMood</trait>
+				<degree>1</degree>
+				<modifier>0.9</modifier>
+			</li>
+			<li>
+				<trait>NaturalMood</trait>
+				<degree>-1</degree>
+				<modifier>-0.9</modifier>
+			</li>
+			<li>
+				<trait>NaturalMood</trait>
+				<degree>-2</degree>
+				<modifier>-0.95</modifier>
+			</li>
+			<li>
+				<trait>TorturedArtist</trait>
+				<modifier>-0.85</modifier>
+			</li>
+			<li>
+				<trait>Neurotic</trait>
+				<degree>1</degree>
+				<modifier>-0.7</modifier>
+			</li>
+			<li>
+				<trait>Neurotic</trait>
+				<degree>2</degree>
+				<modifier>-0.85</modifier>
+			</li>
+			<li>
+				<trait>Nerves</trait>
+				<degree>2</degree>
+				<modifier>0.8</modifier>
+			</li>
+			<li>
+				<trait>Nerves</trait>
+				<degree>1</degree>
+				<modifier>0.6</modifier>
+			</li>
+			<li>
+				<trait>Nerves</trait>
+				<degree>-1</degree>
+				<modifier>-0.6</modifier>
+			</li>
+			<li>
+				<trait>Nerves</trait>
+				<degree>-2</degree>
+				<modifier>-0.8</modifier>
+			</li>
+		</traitModifiers>
+		<bigFiveModifiers>
+			<li>0</li>
+			<li>0</li>
+			<li>0</li>
+			<li>0</li>
+			<li>-1</li>
+		</bigFiveModifiers>
+		<tenAspects>
+			<li>
+				<aspect>Withdrawal</aspect>
+				<weight>-1</weight>
+			</li>
+		</tenAspects>
+	</Psychology.PersonalityNodeDef>
+	<Psychology.PersonalityNodeDef>
+		<defName>Nostalgic</defName>
+		<label>nostalgic</label>
+		<antonymLabel>unsentimental</antonymLabel>
+		<nodeHSV>(330,0.8,0.95)</nodeHSV>
+		<antonymHSV>(180,1,0.7)</antonymHSV>
+		<descriptionLabel>nostalgic</descriptionLabel>
+		<description>Someone {0} has a very strong connection to their past and anything that evokes those memories.</description>
+		<controversiality>0.7</controversiality>
+		<conversationTopics>
+			<li>the old days</li>
+			<li>childhood</li>
+			<li>regrets</li>
+			<li>old Earth</li>
+			<li>their origins</li>
+			<li>the way things were</li>
+			<li>history</li>
+			<li>mementos</li>
+		</conversationTopics>
+		<platformIssueHigh>Things were better in the old days.</platformIssueHigh>
+		<platformIssueLow>We can create a bright future.</platformIssueLow>
+		<parents>
+			<li>
+				<node>Optimistic</node>
+				<modifier>-0.75</modifier>
+			</li>
+			<li>
+				<node>Experimental</node>
+				<modifier>-0.35</modifier>
+			</li>
+			<li>
+				<node>Cultured</node>
+				<modifier>-0.5</modifier>
+			</li>
+		</parents>
+		<traitModifiers>
+			<li>
+				<trait>Transhumanist</trait>
+				<modifier>-0.5</modifier>
+			</li>
+			<li>
+				<trait>BodyPurist</trait>
+				<modifier>0.5</modifier>
+			</li>
+		</traitModifiers>
+		<preferredDateHours>
+			<li>10</li>
+			<li>11</li>
+			<li>12</li>
+			<li>13</li>
+			<li>14</li>
+			<li>15</li>
+			<li>16</li>
+		</preferredDateHours>
+		<bigFiveModifiers>
+			<li>0</li>
+			<li>0</li>
+			<li>0</li>
+			<li>0</li>
+			<li>0.7</li>
+		</bigFiveModifiers>
+		<tenAspects>
+			<li>
+				<aspect>Withdrawal</aspect>
+				<weight>0.7</weight>
+			</li>
+		</tenAspects>
+		<memeCertaintyModifiers>
+			<li>
+				<meme>FleshPurity</meme>
+				<modifier>0.5</modifier>
+			</li>
+			<li>
+				<meme>Guilty</meme>
+				<modifier>0.5</modifier>
+			</li>
+			<li>
+				<meme>Transhumanist</meme>
+				<modifier>-0.5</modifier>
+			</li>
+		</memeCertaintyModifiers>
+		<preceptCertaintyModifiers>
+			<li>
+				<precept>Research_None</precept>
+				<modifier>2</modifier>
+			</li>
+			<li>
+				<precept>Research_ExtremelySlow</precept>
+				<modifier>1.5</modifier>
+			</li>
+			<li>
+				<precept>Research_VerySlow</precept>
+				<modifier>1</modifier>
+			</li>
+			<li>
+				<precept>Research_Slow</precept>
+				<modifier>0.5</modifier>
+			</li>
+			<li>
+				<precept>Research_Fast</precept>
+				<modifier>-0.5</modifier>
+			</li>
+			<li>
+				<precept>Research_VeryFast</precept>
+				<modifier>-1</modifier>
+			</li>
+			<li>
+				<precept>BodyMod_Abhorrent</precept>
+				<modifier>1</modifier>
+			</li>
+			<li>
+				<precept>BodyMod_Disapproved</precept>
+				<modifier>0.5</modifier>
+			</li>
+			<li>
+				<precept>BodyMod_Approved</precept>
+				<modifier>-0.5</modifier>
+			</li>
+			<li>
+				<precept>AgeReversal_Demanded</precept>
+				<modifier>-1</modifier>
+			</li>
+			<li>
+				<precept>BioSculpter_Despised</precept>
+				<modifier>1</modifier>
+			</li>
+		</preceptCertaintyModifiers>
+	</Psychology.PersonalityNodeDef>
 </Defs>

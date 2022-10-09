@@ -15,16 +15,7 @@
 	<ConversationEnded>Gespräch beendet</ConversationEnded>
 	<Complained>{0_labelShort} beschwerte sich beim Bürgermeister, {1_labelShort}.</Complained>
 	<Supported>{0_labelShort} habe {0_possessive} Unterstützung dem Bürgermeister zugesprochen, {1_labelShort}.</Supported>
-	
-<!-- Node descriptions -->
-	<PsycheNot>Nicht</PsycheNot>
-	<PsycheSlightly>Kaum</PsycheSlightly>
-	<PsycheLess>Etwas</PsycheLess>
-	<PsycheMore>Mehr</PsycheMore>
-	<PsycheVery>Sehr</PsycheVery>
-	<PsycheExtremely>Äußerst</PsycheExtremely>
-	<ConversationTooltip>Die Leute werden über {0} sprechen, um dies miteinander zu besprechen.</ConversationTooltip>
-	
+		
 <!-- Comp text -->
 	<CommandOfficeTableToggleLabel>Bürgermeisters Büro</CommandOfficeTableToggleLabel>
 	<CommandOfficeTableToggleDescActive>Dieses Zimmer ist als Bürgermeisters Büro gekennzeichnet. Wenn du einen Bürgermeister hast, dann werden hier die Treffen stattfinden.</CommandOfficeTableToggleDescActive>

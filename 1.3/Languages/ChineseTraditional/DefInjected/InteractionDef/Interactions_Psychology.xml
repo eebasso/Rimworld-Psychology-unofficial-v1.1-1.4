@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Random social interactions -->
+
+  <PrudeSeen.label>看见了不该看的东西</PrudeSeen.label>
+  <PrudeSeen.logRulesInitiator.rulesStrings.0>r_logentry->[INITIATOR_nameDef] 看见了 [RECIPIENT_nameDef] 的裸体。</PrudeSeen.logRulesInitiator.rulesStrings.0>
+
+  <Conversation.label>谈话</Conversation.label>
+  <Conversation.logRulesInitiator.rulesStrings.0>r_logentry(p=4)->[INITIATOR_nameDef] [conversed] 和 [RECIPIENT_nameDef].</Conversation.logRulesInitiator.rulesStrings.0>
+  <Conversation.logRulesInitiator.rulesStrings.1>r_logentry->[INITIATOR_nameDef] 招呼 [RECIPIENT_nameDef] 加入一场谈话。</Conversation.logRulesInitiator.rulesStrings.1>
+  <Conversation.logRulesInitiator.rulesStrings.2>r_logentry->[INITIATOR_nameDef] 向 [RECIPIENT_nameDef] 提出了一个话题。</Conversation.logRulesInitiator.rulesStrings.2>
+  <Conversation.logRulesInitiator.rulesStrings.3>conversed(p=4)->开始了一场谈话。</Conversation.logRulesInitiator.rulesStrings.3>
+  <Conversation.logRulesInitiator.rulesStrings.4>conversed->开始交流</Conversation.logRulesInitiator.rulesStrings.4>
+  <Conversation.logRulesInitiator.rulesStrings.5>conversed->正在谈天说地</Conversation.logRulesInitiator.rulesStrings.5>
+  <Conversation.logRulesInitiator.rulesStrings.6>conversed->抛出了一个话题</Conversation.logRulesInitiator.rulesStrings.6>
+  <Conversation.logRulesInitiator.rulesStrings.7>conversed->开始讨论起某些事情</Conversation.logRulesInitiator.rulesStrings.7>
+
+  <EndConversation.label>结束谈话</EndConversation.label>
+  <EndConversation.logRulesInitiator.rulesStrings.0>r_logentry->[INITIATOR_nameDef] 结束了和 [RECIPIENT_nameDef] 的谈话。</EndConversation.logRulesInitiator.rulesStrings.0>
+
+  <HangOut.label>闲逛</HangOut.label>
+  <HangOut.logRulesInitiator.rulesStrings.0>r_logentry->[INITIATOR_nameDef] 邀请 [RECIPIENT_nameDef] 和 [INITIATOR_objective] 有时间一起出去逛逛。</HangOut.logRulesInitiator.rulesStrings.0>
+
+  <PlanDate.label>计划一场约会</PlanDate.label>
+  <PlanDate.logRulesInitiator.rulesStrings.0>r_logentry->[INITIATOR_nameDef] 计划了一场和 [RECIPIENT_nameDef] 的约会。</PlanDate.logRulesInitiator.rulesStrings.0>
+
+
+</LanguageData>

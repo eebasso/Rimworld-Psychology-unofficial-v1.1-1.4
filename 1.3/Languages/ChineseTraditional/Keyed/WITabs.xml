@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<!-- WITab titles -->
+	<TabPsyche>心理</TabPsyche>
+
+	<!-- Sexuality disabled warning -->
+	<SexualityDisabledWarning>心理学mod的性欲系统被您禁用，或由于其它mod冲突禁用。 请禁用任何其他改变殖民者性欲或互动行为的mod。</SexualityDisabledWarning>
+
+	<!-- Kinsey display and tooltip-->
+	<KinseyRating>金赛评级:</KinseyRating>
+	<KinseyDescription0>金賽量表</KinseyDescription0>
+	<KinseyDescription>{0}描述一個人的性取向，範圍從 0 表示完全是異性戀，到 6 表示完全是同性戀。\n\n金賽為了簡單起見選擇了七個類別，並寫道“應該認識到現實包括每個中間類型的個體，位於兩個極端之間以及量表上的每個類別之間。”</KinseyDescription>
+
+	<!-- Sex drive display and tooltip-->
+	<SexDrive0>性冷淡</SexDrive0>
+	<SexDrive1>性慾低下</SexDrive1>
+	<SexDrive2>中等性慾</SexDrive2>
+	<SexDrive3>性慾高</SexDrive3>
+	<SexDrive4>極端的性慾</SexDrive4>
+	<SexDriveDescription0>性欲</SexDriveDescription0>
+	<SexDriveDescription>{0}描述了一個人對性活動的總體渴望。</SexDriveDescription>
+	<AsexualDescription>这个小人的性欲非常低，他们对其他人的性吸引力也很低，也不太愿意参加一些亲密行为。</AsexualDescription>
+
+	<!-- Romance drive display and tooltip -->
+	<RomanticDrive0>不解风情</RomanticDrive0>
+	<RomanticDrive1>低浪漫欲望</RomanticDrive1>
+	<RomanticDrive2>中等浪漫欲望</RomanticDrive2>
+	<RomanticDrive3>高度浪漫的欲望</RomanticDrive3>
+	<RomanticDrive4>极度浪漫的欲望</RomanticDrive4>
+	<RomanticDriveDescription0>浪漫欲</RomanticDriveDescription0>
+	<RomanticDriveDescription>{0}描述了一個人對戀愛關係的總體渴望。</RomanticDriveDescription>
+	<AromanticDescription>这个小人不怎么喜欢追逐浪漫。他们不太可能尝试谈情说爱或接受求婚，但是依然可能会接受恋爱关系。</AromanticDescription>
+
+	<!-- Display options -->
+	<OptionsText4>詞云</OptionsText4>
+	<OptionsText3>最少列出</OptionsText3>
+	<OptionsText2>列出更多</OptionsText2>
+	<OptionsText1>列出最多</OptionsText1>
+	<OptionsText0>列出所有</OptionsText0>
+	<UseColors>著色特徵</UseColors>
+	<ListAlphabetical>按字母順序列出</ListAlphabetical>
+	<UseAntonyms>使用反義詞</UseAntonyms>
+
+	<!-- Edit Psyche text -->
+	<EditPsyche>编辑</EditPsyche>
+	<PsycheEditor>改变 {0} 的心智:</PsycheEditor>
+	<PsycheEditorNewColonist>修改殖民者的心智:</PsycheEditorNewColonist>
+	<PersonalityNodeWarning>你正在修改人物特性的原始数值，实际数据也会受到其它因素的影响。</PersonalityNodeWarning>
+	<SexDrive>性欲:</SexDrive>
+	<RomanticDrive>情欲:</RomanticDrive>
+	<PsycheResetTooltip>根據其唯一的 HashCode ID 將此棋子的心理重置為默認值。</PsycheResetTooltip>
+
+	<!-- Node descriptions -->
+	<PsycheNot>无</PsycheNot>
+	<PsycheSlightly>轻微</PsycheSlightly>
+	<PsycheLess>较少</PsycheLess>
+	<PsycheSomewhat>有些</PsycheSomewhat>
+	<PsycheMore>较多</PsycheMore>
+	<PsycheVery>非常</PsycheVery>
+	<PsycheExtremely>极度</PsycheExtremely>
+	
+	<!-- Conversation Tooltip -->
+	<ConversationTooltip>人们会就{0}、{1}为话题相互讨论。</ConversationTooltip>
+	<PsycheComma>、</PsycheComma>
+	<AntonymColon>反義詞:{0}。</AntonymColon>
+
+	<!-- Big Five descriptions -->
+	<FiveFactorModelTitle>五大性格特质</FiveFactorModelTitle>
+	<FiveFactorDescription0>五因素模型</FiveFactorDescription0>
+	<FiveFactorDescription>{0}（五大性格特质）是在 20 世紀後期基於詞彙假設開發的，該假設表明人格的基本特徵是用語言編碼的。\n\n在對大量數據集進行的分析中始終出現五個因素來自多種語言的描述性特徵術語，包括英語、中文、俄語和德語。\n\n雙胞胎和收養研究揭示了一個重要的遺傳成分，並且個人的相對地位也被證明在成年後相當穩定.<!--\n\n來源：大英百科全書。--></FiveFactorDescription>
+	<BigFiveO>O</BigFiveO>
+	<BigFiveODescription0>經驗的開放性</BigFiveODescription0>
+	<BigFiveODescription>{0}驗是願意接受新穎的想法、價值觀、行動、感受、幻想和美學。</BigFiveODescription>
+	<BigFiveC>C</BigFiveC>
+	<BigFiveCDescription0>盡責性</BigFiveCDescription0>
+	<BigFiveCDescription>{0}是勤奮、效率、組織、計劃、責任和自律的傾向。</BigFiveCDescription>
+	<BigFiveE>E</BigFiveE>
+	<BigFiveEDescription0>外向性</BigFiveEDescription0>
+	<BigFiveEDescription>{0}是對滿足的外在追求，表現為外向、健談、精力充沛、樂觀、自信和合群的行為。</BigFiveEDescription>
+	<BigFiveA>A</BigFiveA>
+	<BigFiveADescription0>宜人性</BigFiveADescription0>
+	<BigFiveADescription>{0}是善良、同情、合作、熱情、禮貌和同情的能力。</BigFiveADescription>
+	<BigFiveN>N</BigFiveN>
+	<BigFiveNDescription0>神經質</BigFiveNDescription0>
+	<BigFiveNDescription>{0}是對負面情緒的傾向，如焦慮、恐懼、憤怒、嫉妒、內疚和悲傷。</BigFiveNDescription>
+</LanguageData>

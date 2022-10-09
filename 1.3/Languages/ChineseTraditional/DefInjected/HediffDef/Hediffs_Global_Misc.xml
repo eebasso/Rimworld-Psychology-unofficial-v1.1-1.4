@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <HoldingConversation.label>谈话</HoldingConversation.label>
+  <HoldingConversation.description>谈话</HoldingConversation.description>
+  <HoldingConversation.stages.0.label>隐藏</HoldingConversation.stages.0.label>
+
+  <Mayor.label>镇长</Mayor.label>
+  <Mayor.description>殖民地镇长</Mayor.description>
+  <Mayor.stages.0.label>隐藏</Mayor.stages.0.label>
+
+  <PlannedDate.label>约会</PlannedDate.label>
+  <PlannedDate.description>计划好的约会</PlannedDate.description>
+  <PlannedDate.stages.0.label>隐藏</PlannedDate.stages.0.label>
+
+  <PlannedFuneral.label>葬礼</PlannedFuneral.label>
+  <PlannedFuneral.description>安排好的葬礼</PlannedFuneral.description>
+  <PlannedFuneral.stages.0.label>隐藏</PlannedFuneral.stages.0.label>
+
+
+</LanguageData>

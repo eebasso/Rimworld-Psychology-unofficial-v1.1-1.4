@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <LetterLabelNewElection>选举正在 {0} 举办</LetterLabelNewElection>
+  <LetterNewElection>一场镇长选举正在 {0} 举办。一些殖民者已经宣布参选。</LetterNewElection>
+  <LetterLabelElectionHeld>选举正在 {0} 进行中</LetterLabelElectionHeld>
+  <LetterElectionHeld>选举正在 {0} 进行。 殖民者们将会选择殖民地中一个可用的聚会点作为投票站，投出他们宝贵的一票。</LetterElectionHeld>
+  <LetterLabelElectionCandidate>参选人: {0_labelShort}</LetterLabelElectionCandidate>
+  <LetterElectionCandidate>{0_labelShort} 正在竞选 {1} 的镇长。 这是{0_possessive}议题:\n{2}</LetterElectionCandidate>
+  <LetterLabelTieSettled>选举投票平局，最终倾向于 {0_labelShort}</LetterLabelTieSettled>
+  <LetterTieSettled>镇长投票选举的结果是平局， 但在经过一场激烈的辩论赛后, {0} 击败了其他参选者，赢得了最后的胜利。</LetterTieSettled>
+  <LetterLabelElectionWon> {0_labelShort} 选举获胜</LetterLabelElectionWon>
+  <LetterElectionWon>{0_labelShort} 在 {1} 赢得了镇长选举。{0_pronoun}最终获得了 {2} 票。\n\n请注意, 这是{0_possessive}议题:\n{3}\n\n{0_pronoun}将会在自己的房间里接受选民们的拜访， 如果{0_pronoun}有自己的房间的话。 如果选民们有所抱怨， 在和沟通能力更强或更能理解他人的镇长交谈后，选民们感觉会更好。当然，这也会受到接待室的美观度的影响。\n\n请密切注意{0_objective}; {0_pronoun}承担了整个殖民地的抱怨与压力，但{0_pronoun}没法向别的人倒苦水。如果殖民地本身就处境艰难，那{0_pronoun}会更加难受，请密切注意{0_pronoun}的精神状态。</LetterElectionWon>
+  <LetterLabelFuneralPlanned>为 {0} 安排葬礼</LetterLabelFuneralPlanned>
+  <LetterFuneralPlanned>{0_labelShort} 已经策划好了 {1_labelShort} 的葬礼。 葬礼将在 {2} 的 {3}时开始进行。</LetterFuneralPlanned>
+  <LetterLabelFuneralStarted>为 {0} 安排的葬礼正在进行</LetterLabelFuneralStarted>
+  <LetterFuneralStarted>{0_labelShort} 的葬礼正在进行中。 您的殖民者可能会参加，也可能不会，这取决于他们和 {0} 的关系。</LetterFuneralStarted>
+  <LetterLabelFuneralEnded>葬礼结束了</LetterLabelFuneralEnded>
+  <LetterFuneralEnded>{0_labelShort} 的葬礼已经结束了。\n\n出席人员如下:\n{1}</LetterFuneralEnded>
+  <LetterLabelPTSD>应激性创伤</LetterLabelPTSD>
+  <LetterPTSD>{0_labelShort} 的创伤后应激焦虑恶化导致了{0_possessive}精神崩溃。焦虑症是一种永久性精神疾病，但是能通过积极的治疗将其严重程度降低到可控的水平，让 {0_possessive} 依然能够正常生活。 任何进一步的精神崩溃都会导致{0_possessive}的焦虑症加重。\n\n传说，闪耀世界的医生已经找到了根除焦虑症的方法。如果你拥有闪耀世界的医药，可以让一名技术高超的医生去试着治愈 {0_labelShort} 的焦虑症。</LetterPTSD>
+  <LetterLabelDatePlanned>约会</LetterLabelDatePlanned>
+  <LetterDatePlanned>{0_labelShort} 已经安排好了和 {1_labelShort} 在 {2} ， {3}时的约会。\n\n约会可能因为各种原因被临时取消， 最常见的是由于殖民者被紧急征召、强制指配工作、因受伤等原因而无法移动。\n\n如果约会被迫取消， 原计划约会的两个人都会闷闷不乐。 殖民者也可能因为睡过头而错过约会。 这会让对方不太开心，不过不会存在太长时间的负面想法。</LetterDatePlanned>
+
+  <!-- Replaced vanilla letters -->
+  <LetterRejectedProposalPsychology>由于他们的性格差异， 他们的情绪和关系都会受到不同的影响。</LetterRejectedProposalPsychology>
+
+</LanguageData>

@@ -105,5 +105,19 @@
       </rulesStrings>
     </logRulesInitiator>
   </InteractionDef>-->
-  
+
+  <!-- Ideology -->
+
+  <InteractionDef>
+    <defName>Indoctrinate</defName>
+    <label>indoctrination</label>
+    <symbol>UI/Abilities/Indoctrinate</symbol>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] indoctrinated [RECIPIENT_nameDef].</li>
+      </rulesStrings>
+    </logRulesInitiator>
+  </InteractionDef>
+
+
 </Defs>

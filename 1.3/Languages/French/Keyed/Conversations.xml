@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+
+	<NumberOfShortTalks>10</NumberOfShortTalks>
+	<ShortTalk1>{INITIATOR_labelShort} a dit quelques mots à {RECIPIENT_labelShort} à propos de {0}.</ShortTalk1>
+	<ShortTalk2>{INITIATOR_labelShort} a échangé quelques mots avec {RECIPIENT_labelShort} à propos de {0}.</ShortTalk2>
+	<ShortTalk3>{INITIATOR_labelShort} a papoté brièvement avec {RECIPIENT_labelShort} à propos de {0}.</ShortTalk3>
+	<ShortTalk4>{INITIATOR_labelShort} a rapidement discuté de {0} avec {RECIPIENT_labelShort}.</ShortTalk4>
+	<ShortTalk5>{INITIATOR_labelShort} a papoté de {0} avec {RECIPIENT_labelShort}.</ShortTalk5>
+	<ShortTalk6>{INITIATOR_labelShort} a parlé de {0} avec {RECIPIENT_labelShort} en passant.</ShortTalk6>
+	<ShortTalk7>{INITIATOR_labelShort} a commenté succinctement {0} avec {RECIPIENT_labelShort}.</ShortTalk7>
+	<ShortTalk8>{INITIATOR_labelShort} a fait une remarque sur {0} avec {RECIPIENT_labelShort}.</ShortTalk8>
+	<ShortTalk9>{INITIATOR_labelShort} a échangé des mots avec {RECIPIENT_labelShort} à propos de {0} sur le moment.</ShortTalk9>
+	<ShortTalk10>{INITIATOR_labelShort} a eu un bref échange avec {RECIPIENT_labelShort} sur {0}.</ShortTalk10>
+	
+	<NumberOfNormalTalks>12</NumberOfNormalTalks>
+	<NormalTalk1>{INITIATOR_labelShort} a parlé de {0} avec {RECIPIENT_labelShort}.</NormalTalk1>
+	<NormalTalk2>{INITIATOR_labelShort} a eu une conversation à propos de {0} avec {RECIPIENT_labelShort}.</NormalTalk2>
+	<NormalTalk3>{INITIATOR_labelShort} a discuté de {0} avec {RECIPIENT_labelShort}.</NormalTalk3>
+	<NormalTalk4>{INITIATOR_labelShort} a échangé des points de vue sur {0} avec {RECIPIENT_labelShort}.</NormalTalk4>
+	<NormalTalk5>{INITIATOR_labelShort} a conversé avec {RECIPIENT_labelShort} à propos de {0}.</NormalTalk5>
+	<NormalTalk6>{INITIATOR_labelShort} a parlé avec {RECIPIENT_labelShort} à propos de {0}.</NormalTalk6>
+	<NormalTalk7>{INITIATOR_labelShort} a eu une discussion avec {RECIPIENT_labelShort} à propos de {0}.</NormalTalk7>
+	<NormalTalk8>{INITIATOR_labelShort} a appris à propos des opinions de {RECIPIENT_labelShort} sur {0}.</NormalTalk8>
+	<NormalTalk9>{INITIATOR_labelShort} a partagé son opinion sur {0} avec {RECIPIENT_labelShort}.</NormalTalk9>
+	<NormalTalk10>{INITIATOR_labelShort} a appris ce que {RECIPIENT_labelShort} penses de {0}.</NormalTalk10>
+	<NormalTalk11>{INITIATOR_labelShort} a débattu de {0} avec {RECIPIENT_labelShort}.</NormalTalk11>
+	<NormalTalk12>{INITIATOR_labelShort} consulté l'avis de {RECIPIENT_labelShort} à propos de {0}.</NormalTalk12>
+	
+	<NumberOfLongTalks>8</NumberOfLongTalks>
+	<LongTalk1>{INITIATOR_labelShort} a longuement discuté de {0} avec {RECIPIENT_labelShort}.</LongTalk1>
+	<LongTalk2>{INITIATOR_labelShort} a eu une longue conversation à propos de {0} avec {RECIPIENT_labelShort}.</LongTalk2>
+	<LongTalk3>{INITIATOR_labelShort} a parlé avec {RECIPIENT_labelShort} à propos de {0} pendant un bon moment.</LongTalk3>
+	<LongTalk4>{INITIATOR_labelShort} a eu une profonde discussion avec {RECIPIENT_labelShort} à propos de {0} .</LongTalk4>
+	<LongTalk5>{INITIATOR_labelShort} s'est intéressé'e à l'avis de {RECIPIENT_labelShort} sur {0}.</LongTalk5>
+	<LongTalk6>{INITIATOR_labelShort} a beaucoup appris sur ce que pense {RECIPIENT_labelShort} de {0}.</LongTalk6>
+	<LongTalk7>{INITIATOR_labelShort} s'est confié sur {0} avec {RECIPIENT_labelShort}.</LongTalk7>
+	<LongTalk8>{INITIATOR_labelShort} a eu un profond débat à propos de {0} avec {RECIPIENT_labelShort}.</LongTalk8>
+
+	<NumberOfEpicTalks>6</NumberOfEpicTalks>
+	<EpicTalk1>{INITIATOR_labelShort} a conféré avec {1_nameDef} pendant des heures à propos de {0}.</EpicTalk1>
+	<EpicTalk2>{INITIATOR_labelShort} a parlé sans fin avec {RECIPIENT_labelShort} à propos de {0}.</EpicTalk2>
+	<EpicTalk3>{INITIATOR_labelShort} a eu une très longue conversation à propos de {0} avec {RECIPIENT_labelShort}.</EpicTalk3>
+	<EpicTalk4>{INITIATOR_labelShort} a débattu très longtemps avec {RECIPIENT_labelShort} à propos de {0}.</EpicTalk4>
+	<EpicTalk5>{INITIATOR_labelShort} a eu un échange long et passionnant à propos de {0} avec {RECIPIENT_labelShort}.</EpicTalk5>
+	<EpicTalk6>{INITIATOR_labelShort} s'est lâché à propos de {0} avec {RECIPIENT_labelShort} pendant des heures.</EpicTalk6>
+	
+	<ConversationAnd>, et </ConversationAnd>
+	
+</LanguageData>
