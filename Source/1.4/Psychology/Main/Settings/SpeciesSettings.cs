@@ -25,10 +25,18 @@ public class SpeciesSettings : IExposable
 
     public SpeciesSettings(bool EnablePsyche = true, bool EnableAgeGap = true, float MinDatingAge = 14f, float MinLovinAge = 16f)
     {
-        enablePsyche = EnablePsyche;
-        enableAgeGap = EnableAgeGap;
-        minDatingAge = MinDatingAge;
-        minLovinAge = MinLovinAge;
+        this.enablePsyche = EnablePsyche;
+        this.enableAgeGap = EnableAgeGap;
+        this.minDatingAge = MinDatingAge;
+        this.minLovinAge = MinLovinAge;
+    }
+
+    public SpeciesSettings(SpeciesSettings settings)
+    {
+        this.enablePsyche = settings.enablePsyche;
+        this.enableAgeGap = settings.enableAgeGap;
+        this.minDatingAge = settings.minDatingAge;
+        this.minLovinAge = settings.minLovinAge;
     }
 
     public void ExposeData()
