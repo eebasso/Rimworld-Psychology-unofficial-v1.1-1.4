@@ -76,7 +76,8 @@ public static class SettingsWindowUtility{
         //Log.Message("SettingsWindowUtility.Initialize()");
         Text.Font = GameFont.Small;
         float leftColumnViewHeight = KinseyCustomEntryHeight;
-        foreach (string settingName in PsychologySettings.CombinedSettingNameList)        {            string title = (settingName.CapitalizeFirst() + "Title").Translate();            string tooltip = (settingName.CapitalizeFirst() + "Tooltip").Translate();            Vector2 size = Text.CalcSize(title);
+        foreach (string settingName in PsychologySettings.CombinedSettingNameList)        {            string title = (settingName.CapitalizeFirst() + "Title").Translate();            string tooltip = (settingName.CapitalizeFirst() + "Tooltip").Translate();            //Log.Message("SettingsWindowUtility," +
+            //    "\nsettingName:" + settingName +            //    "\nsettingName.CapitalizeFirst():" + settingName.CapitalizeFirst() +            //    "\nsettingName next:" + settingName.CapitalizeFirst() + "Title" +            //    "\nsettingName translate:" + (settingName.CapitalizeFirst() + "Title").Translate() +            //    "\ntitle = " + title +            //    "\ntooltip = " + tooltip            //    );                        Vector2 size = Text.CalcSize(title);
             TitleDict[settingName] = title;
             TooltipDict[settingName] = tooltip;
             TitleWidth = Mathf.Max(size.x, TitleWidth);            leftColumnViewHeight += RowHeight;
@@ -234,7 +235,9 @@ public static class SettingsWindowUtility{
         {
             NumericEntry(nameof(PsychologySettings.mayorAge), 0f, 1E+09f, ref titleRect, ref entryRect);
             NumericEntry(nameof(PsychologySettings.visitMayorMtbHours), 0f, 1E+09f, ref titleRect, ref entryRect);
-        }        CheckboxEntry(nameof(PsychologySettings.enableDateLetters), ref titleRect, ref entryRect);        NumericEntry(nameof(PsychologySettings.conversationDuration), 15f, 180f, ref titleRect, ref entryRect);        NumericEntry(nameof(PsychologySettings.convoOpinionMultiplier), 0f, 3f, ref titleRect, ref entryRect);        NumericEntry(nameof(PsychologySettings.romanceChanceMultiplier), 0f, 1E+09f, ref titleRect, ref entryRect);        NumericEntry(nameof(PsychologySettings.romanceOpinionThreshold), -99f, 99f, ref titleRect, ref entryRect);
+        }        CheckboxEntry(nameof(PsychologySettings.enableDateLetters), ref titleRect, ref entryRect);        NumericEntry(nameof(PsychologySettings.romanceChanceMultiplier), 0f, 1E+09f, ref titleRect, ref entryRect);        NumericEntry(nameof(PsychologySettings.romanceOpinionThreshold), -99f, 99f, ref titleRect, ref entryRect);
+
+        NumericEntry(nameof(PsychologySettings.conversationDuration), 15f, 180f, ref titleRect, ref entryRect);        NumericEntry(nameof(PsychologySettings.convoOpinionMultiplier), 0f, 3f, ref titleRect, ref entryRect);
 
         NumericEntry(nameof(PsychologySettings.mentalBreakAnxietyChance), 0f, 2f, ref titleRect, ref entryRect);        NumericEntry(nameof(PsychologySettings.imprisonedDebuff), 0f, 100f, ref titleRect, ref entryRect);
         NumericEntry(nameof(PsychologySettings.traitOpinionMultiplier), 0f, 2f, ref titleRect, ref entryRect);

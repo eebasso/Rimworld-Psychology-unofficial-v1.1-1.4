@@ -1,14 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <LanguageData>
 
-	<EmpathyChangesTitle>Enable empathy changes</EmpathyChangesTitle>
-	<EmpathyChangesTooltip>Turn this off to restore colonists' reactions to bad things happening to other people to normal. This will increase difficulty; Bleeding Heart pawns will be unaffected. Restart the game after disabling this.</EmpathyChangesTooltip>
+	<EnableKinseyTitle>Enable sexuality changes</EnableKinseyTitle>
+	<EnableEmpathyTooltip>Turn this off to disable Kinsey scaling of pawns and re-enable the Gay trait. Do NOT change this during play, and restart the game after toggling this.</EnableEmpathyTooltip>
+
+	<EnableEmpathyTitle>Enable empathy changes</EnableEmpathyTitle>
+	<EnableEmpathyTooltip>Turn this off to restore colonists' reactions to bad things happening to other people to normal. This will increase difficulty; Bleeding Heart pawns will be unaffected. Restart the game after disabling this.</EnableEmpathyTooltip>
 	
-	<SexualityChangesTitle>Enable sexuality changes</SexualityChangesTitle>
-	<SexualityChangesTooltip>Turn this off to disable Kinsey scaling of pawns and re-enable the Gay trait. Do NOT change this during play, and restart the game after toggling this.</SexualityChangesTooltip>
+
 	
-	<KinseyModeTitle>Kinsey scale formula</KinseyModeTitle>
-	<KinseyModeTooltip>This setting determines what formula is used to set the Kinsey rating of generated pawns. Weights do not have to sum to 100.</KinseyModeTooltip>
+	<KinseyFormulaTitle>Kinsey scale formula</KinseyFormulaTitle>
+	<KinseyFormulaTooltip>This setting determines what formula is used to set the Kinsey rating of generated pawns. Weights do not have to sum to 100.</KinseyFormulaTooltip>
 	<KinseyMode_Realistic>Default</KinseyMode_Realistic>
 	<KinseyMode_Invisible>Center</KinseyMode_Invisible>
 	<KinseyMode_Gaypocalypse>Inverse</KinseyMode_Gaypocalypse>
@@ -18,36 +20,36 @@
 	<KWTitle>Kinsey {0}</KWTitle>
 	<KWTooltip>The relative weight that a pawn will generate with a Kinsey rating of {0}. Weights do not have to sum to 100.</KWTooltip>
 
-	<IndividualityTitle>Enable individuality thoughts</IndividualityTitle>
-	<IndividualityTooltip>Turn this off to disable the negative thought your colonists will get if they are wearing perfectly matching outfits with other colonists. This thought adds extra difficulty, so it's optional, but recommended. Requires restart.</IndividualityTooltip>
+	<EnableIndividualityTitle>Enable individuality thoughts</EnableIndividualityTitle>
+	<EnableIndividualityTooltip>Turn this off to disable the negative thought your colonists will get if they are wearing perfectly matching outfits with other colonists. This thought adds extra difficulty, so it's optional, but recommended. Requires restart.</EnableIndividualityTooltip>
 	
-	<ElectionsTitle>Enable elections</ElectionsTitle>
-	 <ElectionsTooltip>Turn this off to prevent your colonists from having yearly elections. It will not stop an election in progress, and any existing mayor will be reverted to a normal colonist. This will not affect compatibility with other mods. Requires restart for full effect.</ElectionsTooltip> 
-	<!--<ElectionsTooltip>Turn this off to prevent your colonists from having yearly elections for leaders. This will not affect compatibility with other mods.</ElectionsTooltip>-->
+	<EnableElectionsTitle>Enable elections</EnableElectionsTitle>
+	<EnableElectionsTooltip>Turn this off to prevent your colonists from having yearly elections. It will not stop an election in progress, and any existing mayor will be reverted to a normal colonist. This will not affect compatibility with other mods. Requires restart for full effect.</EnableElectionsTooltip> 
+	<!--<EnableElectionsTooltip>Turn this off to prevent your colonists from having yearly elections for leaders. This will not affect compatibility with other mods.</EnableElectionsTooltip>-->
 	
-	<DurationTitle>Conversation memory duration</DurationTitle>
-	<DurationTooltip>Set how long people will remember conversations for. The default is 60 days, i.e. one year. The minimum is 15 day, one quadrum, and the maximum is 180 days, three years. Setting it lower will make colonists' interactions with each other more ephemeral, and setting it higher will make them more lasting. Requires restart.</DurationTooltip>
+	<ConversationDurationTitle>Conversation memory duration</ConversationDurationTitle>
+	<ConversationDurationTooltip>Set how long people will remember conversations for. The default is 60 days, i.e. one year. The minimum is 15 day, one quadrum, and the maximum is 180 days, three years. Setting it lower will make colonists' interactions with each other more ephemeral, and setting it higher will make them more lasting. Requires restart.</ConversationDurationTooltip>
 	
-	<SendDateLettersTitle>Send date letters</SendDateLettersTitle>
-	<SendDateLettersTooltip>Turn this off to disable receiving letters when your colonists plan a date together.</SendDateLettersTooltip>
+	<EnableDateLettersTitle>Send date letters</EnableDateLettersTitle>
+	<EnableDateLettersTooltip>Turn this off to disable receiving letters when your colonists plan a date together.</EnableDateLettersTooltip>
 	
 <!--	<BenchmarkingTitle>Enable performance testing</BenchmarkingTitle>
 	<BenchmarkingTooltip>Turn this on to receive occasional performance reports in the console relating to Psychology systems. You can copy and paste these reports to assist in optimization of the mod. WARNING: Performance testing comes with its own performance impact.\n\nToggling this will restart your game.</BenchmarkingTooltip>-->
   
-	<ImprisonedTitle>Prisoner recruitment penalty</ImprisonedTitle>
-	<ImprisonedTooltip>This sets the negative opinion penalty (Faction imprison me) for recruited prisoners. Requires restart.</ImprisonedTooltip>
+	<ImprisonedDebuffTitle>Prisoner recruitment penalty</ImprisonedDebuffTitle>
+	<ImprisonedDebuffTooltip>This sets the negative opinion penalty (Faction imprison me) for recruited prisoners. Requires restart.</ImprisonedDebuffTooltip>
 
-	<RomanceMultiplierTitle>Romance chance multiplier</RomanceMultiplierTitle>
-	<RomanceMultiplierTooltip>Romance chance will be multiplied by this value. Setting to 0 should eliminate new romances entirely.</RomanceMultiplierTooltip>
+	<RomanceChanceMultiplierTitle>Romance chance multiplier</RomanceChanceMultiplierTitle>
+	<RomanceChanceMultiplierTooltip>Romance chance will be multiplied by this value. Setting to 0 should eliminate new romances entirely.</RomanceChanceMultiplierTooltip>
 
-	<RomanceChanceThresholdTitle>Minimum romance opinion</RomanceChanceThresholdTitle>
-	<RomanceChanceThresholdTooltip>Minimum opinion one colonist must have of another in order to be romanced.</RomanceChanceThresholdTooltip>
+	<RomanceOpinionThresholdTitle>Minimum romance opinion</RomanceOpinionThresholdTitle>
+	<RomanceOpinionThresholdTooltip>Minimum opinion one colonist must have of another in order to be romanced.</RomanceOpinionThresholdTooltip>
 
 	<MayorAgeTitle>Mayor age</MayorAgeTitle>
 	<MayorAgeTooltip>Minimum age required for someone to be able to become a mayor.</MayorAgeTooltip>
 
-	<MayorVisitMtbHoursTitle>Hours between mayor vists</MayorVisitMtbHoursTitle>
-	<MayorVisitMtbHoursTooltip>This controls the expected time in hours between constituents meeting with their mayor. Lower values will increase the frequency of visits.</MayorVisitMtbHoursTooltip>
+	<VisitMayorMtbHoursTitle>Hours between mayor vists</VisitMayorMtbHoursTitle>
+	<VisitMayorMtbHoursTooltip>This controls the expected time in hours between constituents meeting with their mayor. Lower values will increase the frequency of visits.</VisitMayorMtbHoursTooltip>
 
 	<MentalBreakAnxietyChanceTitle>Mental break anxiety chance</MentalBreakAnxietyChanceTitle>
 	<MentalBreakAnxietyChanceTooltip>This sets the mean chance a pawn will develop anxiety after having a major mental break. For minor breaks, the chance is halved and for extreme breaks the chance is doubled. The chance will also depend on colonist's psyche. Note that you might still see it as random disease due to aging.</MentalBreakAnxietyChanceTooltip>

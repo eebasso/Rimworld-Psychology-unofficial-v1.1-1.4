@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <LanguageData>
 
-	<EmpathyChangesTitle>Activation des changements d'empathie</EmpathyChangesTitle>
-	<EmpathyChangesTooltip>Désactivez ceci pour réinitialiser les réactions des colons aux mauvaises choses qui arrivent à d'autres. Cela va augmenter la difficulté ; les colons de Bleeding Heart pawns seront innaffectés. Rechargez le jeu pour désactivez ceci.</EmpathyChangesTooltip>
+	<EnableEmpathyTitle>Activation des changements d'empathie</EnableEmpathyTitle>
+	<EnableEmpathyTooltip>Désactivez ceci pour réinitialiser les réactions des colons aux mauvaises choses qui arrivent à d'autres. Cela va augmenter la difficulté ; les colons de Bleeding Heart pawns seront innaffectés. Rechargez le jeu pour désactivez ceci.</EnableEmpathyTooltip>
 	
-	<SexualityChangesTitle>Activez les changements sur l'orientation</SexualityChangesTitle>
-	<SexualityChangesTooltip>Coupez ceci pour désactiber l'échelle de Kinsey des colons et réactiver le trait Homo. NE changez PAS ceci en plein jeu, et relancez le jeu après l'avoir activé.</SexualityChangesTooltip>
+	<EnableKinseyTitle>Activez les changements sur l'orientation</EnableKinseyTitle>
+	<EnableEmpathyTooltip>Coupez ceci pour désactiber l'échelle de Kinsey des colons et réactiver le trait Homo. NE changez PAS ceci en plein jeu, et relancez le jeu après l'avoir activé.</EnableEmpathyTooltip>
 	
-	<KinseyModeTitle>Formule de l'échelle de Kinsey</KinseyModeTitle>
-	<KinseyModeTooltip>Ce paramètre détermine quelle formule est utilisée pour déterminer où se trouve sur l'échelle de Kinsey lors de sa génération.</KinseyModeTooltip>
+	<KinseyFormulaTitle>Formule de l'échelle de Kinsey</KinseyFormulaTitle>
+	<KinseyFormulaTooltip>Ce paramètre détermine quelle formule est utilisée pour déterminer où se trouve sur l'échelle de Kinsey lors de sa génération.</KinseyFormulaTooltip>
 	<KinseyMode_Realistic>Défaut</KinseyMode_Realistic>
 	<KinseyMode_Invisible>Centre</KinseyMode_Invisible>
 	<KinseyMode_Gaypocalypse>Inversé</KinseyMode_Gaypocalypse>
@@ -18,30 +18,30 @@
 	<KWTitle>Kinsey {0}</KWTitle>
 	<KWTooltip>Quand le mode personnalisé est activé, cela règle l'importance relative à {0} sur l'échèlle de Kinsey pour les colons générés.</KWTooltip>
 
-	<IndividualityTitle>Activer les pensées individuelles</IndividualityTitle>
-	<IndividualityTooltip>Éteignez cette fonctionnalité pour désactiver le malus au moral si vos colons portent exactement les mêmes vêtements. Ceci ajoute de la difficulté, donc c'est optionnel, mais reccomandé.</IndividualityTooltip>
+	<EnableIndividualityTitle>Activer les pensées individuelles</EnableIndividualityTitle>
+	<EnableIndividualityTooltip>Éteignez cette fonctionnalité pour désactiver le malus au moral si vos colons portent exactement les mêmes vêtements. Ceci ajoute de la difficulté, donc c'est optionnel, mais reccomandé.</EnableIndividualityTooltip>
 	
-	<ElectionsTitle>Autoriser les élections</ElectionsTitle>
+	<EnableElectionsTitle>Autoriser les élections</EnableElectionsTitle>
 	<!-- <ÉlectionsInfo-bulle>Éteignez cette fonctionnalité pour désactiver les élections annuelles. Cela n'arrêtera pas une élection en cours, et le/la Maire perdra ses fonctions. Cela n'affecte pas la compatibilité.</ÉlectionsInfo-bulle> -->
-	<ElectionsTooltip>Éteignez cette fonctionnalité pour désactiver les élections annuelles pour leur chef. Cela n'affecte pas la compatibilité.</ElectionsTooltip>
+	<EnableElectionsTooltip>Éteignez cette fonctionnalité pour désactiver les élections annuelles pour leur chef. Cela n'affecte pas la compatibilité.</EnableElectionsTooltip>
 	
-	<DurationTitle>Durée de la mémoire des conversation</DurationTitle>
-	<DurationTooltip>Réglez le temps que metteront vos colons pour oublier une conversation. Par défaut, c'est 60 jours, soit un an. Le minimum est 15 jours, et le maximum est 180 jours (3 ans). Baissez ce temps rendra les conversations de vos colons plus éphémères, et augmenter les rendra plus durables.</DurationTooltip>
+	<ConversationDurationTitle>Durée de la mémoire des conversation</ConversationDurationTitle>
+	<ConversationDurationTooltip>Réglez le temps que metteront vos colons pour oublier une conversation. Par défaut, c'est 60 jours, soit un an. Le minimum est 15 jours, et le maximum est 180 jours (3 ans). Baissez ce temps rendra les conversations de vos colons plus éphémères, et augmenter les rendra plus durables.</ConversationDurationTooltip>
 	
-	<SendDateLettersTitle>Notifications en cas de rendez-vous amoureux</SendDateLettersTitle>
-	<SendDateLettersTooltip>Éteignez pour désactiver les notifications quand deux colons prévoient un rendez-vous amoureux.</SendDateLettersTooltip>
+	<EnableDateLettersTitle>Notifications en cas de rendez-vous amoureux</EnableDateLettersTitle>
+	<EnableDateLettersTooltip>Éteignez pour désactiver les notifications quand deux colons prévoient un rendez-vous amoureux.</EnableDateLettersTooltip>
 	
 	<BenchmarkingTitle>Activer les tests de performance</BenchmarkingTitle>
 	<BenchmarkingTooltip>Activez cette option pour recevoir des rapports de performance occasionnels dans la console vis-à-vis du système Psychology. Vous pouvez coupier-coller ces rapports pour aider l'optimisation du mod. AVERTISSEMENT : Les tests de performance ont un impact sur les performances.\n\nModifier ce paramètre relancera votre jeu.</BenchmarkingTooltip>
   
-	<ImprisonedTitle>Pénalité de rectrutement pour les prisonniers</ImprisonedTitle>
-	<ImprisonedTooltip>Active/désactive la pénalité d'opinion pour les prisonniers recrutés (-40 Untel me retiens en captivité).</ImprisonedTooltip>
+	<ImprisonedDebuffTitle>Pénalité de rectrutement pour les prisonniers</ImprisonedDebuffTitle>
+	<ImprisonedDebuffTooltip>Active/désactive la pénalité d'opinion pour les prisonniers recrutés (-40 Untel me retiens en captivité).</ImprisonedDebuffTooltip>
 
-	<RomanceMultiplierTitle>Multiplicateur de chance de séduction</RomanceMultiplierTitle>
-	<RomanceMultiplierTooltip>Les chances de séduction seront multipliées par cette valeur. Régler sur 0 retierera complètement la séduction.</RomanceMultiplierTooltip>
+	<RomanceChanceMultiplierTitle>Multiplicateur de chance de séduction</RomanceChanceMultiplierTitle>
+	<RomanceChanceMultiplierTooltip>Les chances de séduction seront multipliées par cette valeur. Régler sur 0 retierera complètement la séduction.</RomanceChanceMultiplierTooltip>
 
-	<RomanceChanceThresholdTitle>Opinion minimum de séduction</RomanceChanceThresholdTitle>
-	<RomanceChanceThresholdTooltip>L'opinion minimum d'un colon vers un autre pour être séduit.</RomanceChanceThresholdTooltip>
+	<RomanceOpinionThresholdTitle>Opinion minimum de séduction</RomanceOpinionThresholdTitle>
+	<RomanceOpinionThresholdTooltip>L'opinion minimum d'un colon vers un autre pour être séduit.</RomanceOpinionThresholdTooltip>
 
 	<MayorAgeTitle>Âge du Maire</MayorAgeTitle>
 	<MayorAgeTooltip>L'âge requis pour pouvoir devenir maire.</MayorAgeTooltip>

@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <LanguageData>
 
-	<EmpathyChangesTitle>Включить изменения эмпатии</EmpathyChangesTitle>
-	<EmpathyChangesTooltip>Отключите это, чтобы установить по-умолчанию реакцию поселенцев на плохие вещи, происходящие с другими. Это увеличит сложность игры, но на персонажей с чертой «чуткое сердце» не повлияет. Перезапустите игру после изменений параметра.</EmpathyChangesTooltip>
+	<EnableEmpathyTitle>Включить изменения эмпатии</EnableEmpathyTitle>
+	<EnableEmpathyTooltip>Отключите это, чтобы установить по-умолчанию реакцию поселенцев на плохие вещи, происходящие с другими. Это увеличит сложность игры, но на персонажей с чертой «чуткое сердце» не повлияет. Перезапустите игру после изменений параметра.</EnableEmpathyTooltip>
 	
-	<SexualityChangesTitle>Включить изменения сексуальных предпочтений</SexualityChangesTitle>
-	<SexualityChangesTooltip>Отключите это, чтобы убрать шкалу Кинси, влияющую на сексуальные предпочтения ваших поселенцев и вернуть механику через черту «гомосексуальность». НЕ ИЗМЕНЯЙТЕ параметр во время игры, перезапустите игру после изменений параметра.</SexualityChangesTooltip>
+	<EnableKinseyTitle>Включить изменения сексуальных предпочтений</EnableKinseyTitle>
+	<EnableEmpathyTooltip>Отключите это, чтобы убрать шкалу Кинси, влияющую на сексуальные предпочтения ваших поселенцев и вернуть механику через черту «гомосексуальность». НЕ ИЗМЕНЯЙТЕ параметр во время игры, перезапустите игру после изменений параметра.</EnableEmpathyTooltip>
 	
-	<KinseyModeTitle>Формула шкалы Кинси</KinseyModeTitle>
-	<KinseyModeTooltip>Этот параметр влияет на то, какая формула используется при создании персонажей, и какое будет их распределение по шкале Кинси.</KinseyModeTooltip>
+	<KinseyFormulaTitle>Формула шкалы Кинси</KinseyFormulaTitle>
+	<KinseyFormulaTooltip>Этот параметр влияет на то, какая формула используется при создании персонажей, и какое будет их распределение по шкале Кинси.</KinseyFormulaTooltip>
 	<KinseyMode_Realistic>По-умолчанию</KinseyMode_Realistic>
 	<KinseyMode_Invisible>Центрирование</KinseyMode_Invisible>
 	<KinseyMode_Gaypocalypse>Инверсия</KinseyMode_Gaypocalypse>
@@ -18,29 +18,29 @@
 	<KWTitle>Kinsey {0}</KWTitle>
 	<KWTooltip>When custom mode is enabled, this sets the relative weight for {0} on the Kinsey scale for generated pawns.</KWTooltip>
 
-	<IndividualityTitle>Включить индивидуальность в одежде</IndividualityTitle>
-	<IndividualityTooltip>Отключите это, чтобы ваши поселенцы не получали негативных мыслей от полностью совпадающей одежды. Этот параметр добавляет дополнительную сложность, поэтому необязателен, хоть и рекомендован.</IndividualityTooltip>
+	<EnableIndividualityTitle>Включить индивидуальность в одежде</EnableIndividualityTitle>
+	<EnableIndividualityTooltip>Отключите это, чтобы ваши поселенцы не получали негативных мыслей от полностью совпадающей одежды. Этот параметр добавляет дополнительную сложность, поэтому необязателен, хоть и рекомендован.</EnableIndividualityTooltip>
 	
-	<ElectionsTitle>Включить выборы мэра</ElectionsTitle>
-	<ElectionsTooltip>Отключите это, чтобы ваши колонисты не проводили ежегодные выборы. Это не остановит выборы идущие в данный момент, а любой существующий мэр превратится обратно в обычного поселенца. Изменение параметра не влияет на совместимость с другими модификациями.</ElectionsTooltip>
+	<EnableElectionsTitle>Включить выборы мэра</EnableElectionsTitle>
+	<EnableElectionsTooltip>Отключите это, чтобы ваши колонисты не проводили ежегодные выборы. Это не остановит выборы идущие в данный момент, а любой существующий мэр превратится обратно в обычного поселенца. Изменение параметра не влияет на совместимость с другими модификациями.</EnableElectionsTooltip>
 	
-	<DurationTitle>Память о разговорах</DurationTitle>
-	<DurationTooltip>Устанавливает период, в течение которого поселенцы будут помнить о разговорах с другими поселенцами. По-умолчанию период равняется 60 дням или одному году. Минимум — 15 дней или сезон, максимум — 180 дней или 3 года. Более низкие параметры делают память о разговорах короче, более высокие — длиннее.</DurationTooltip>
+	<ConversationDurationTitle>Память о разговорах</ConversationDurationTitle>
+	<ConversationDurationTooltip>Устанавливает период, в течение которого поселенцы будут помнить о разговорах с другими поселенцами. По-умолчанию период равняется 60 дням или одному году. Минимум — 15 дней или сезон, максимум — 180 дней или 3 года. Более низкие параметры делают память о разговорах короче, более высокие — длиннее.</ConversationDurationTooltip>
 	
-	<SendDateLettersTitle>Отправлять сообщения о свиданиях</SendDateLettersTitle>
-	<SendDateLettersTooltip>Отключите это, чтобы не получать уведомления о том, что кто-то из ваших поселенцев планирует свидание.</SendDateLettersTooltip>
+	<EnableDateLettersTitle>Отправлять сообщения о свиданиях</EnableDateLettersTitle>
+	<EnableDateLettersTooltip>Отключите это, чтобы не получать уведомления о том, что кто-то из ваших поселенцев планирует свидание.</EnableDateLettersTooltip>
 	
 	<BenchmarkingTitle>Включить тест производительности</BenchmarkingTitle>
 	<BenchmarkingTooltip>Включите это, чтобы получать периодические отчёты о производительности мода в консоли. Вы можете копировать эти отчёты и отправлять их разработчикам для улучшения оптимизации мода. ВНИМАНИЕ: тест производительности сам по себе может негативно повлиять на производительность.\n\nИзменение данного параметра перезапустит игру.</BenchmarkingTooltip>
 
-	<ImprisonedTitle>Prisoner recruitment penalty</ImprisonedTitle>
-	<ImprisonedTooltip>Enable/disable negative opinion penalty for recruited prisoners (-40 Faction imprisoned me).</ImprisonedTooltip>
+	<ImprisonedDebuffTitle>Prisoner recruitment penalty</ImprisonedDebuffTitle>
+	<ImprisonedDebuffTooltip>Enable/disable negative opinion penalty for recruited prisoners (-40 Faction imprisoned me).</ImprisonedDebuffTooltip>
 
-	<RomanceMultiplierTitle>Romance chance multiplier</RomanceMultiplierTitle>
-	<RomanceMultiplierTooltip>Romance chance will be multiplied by this value. Setting to 0 should eliminate romance entirely.</RomanceMultiplierTooltip>
+	<RomanceChanceMultiplierTitle>Romance chance multiplier</RomanceChanceMultiplierTitle>
+	<RomanceChanceMultiplierTooltip>Romance chance will be multiplied by this value. Setting to 0 should eliminate romance entirely.</RomanceChanceMultiplierTooltip>
 
-	<RomanceChanceThresholdTitle>Minimum romance opinion</RomanceChanceThresholdTitle>
-	<RomanceChanceThresholdTooltip>Minimum opinion one colonist must have of another in order to be romanced.</RomanceChanceThresholdTooltip>
+	<RomanceOpinionThresholdTitle>Minimum romance opinion</RomanceOpinionThresholdTitle>
+	<RomanceOpinionThresholdTooltip>Minimum opinion one colonist must have of another in order to be romanced.</RomanceOpinionThresholdTooltip>
 
 	<MayorAgeTitle>Mayor age</MayorAgeTitle>
 	<MayorAgeTooltip>Age required for someone to be able to become a mayor.</MayorAgeTooltip>
