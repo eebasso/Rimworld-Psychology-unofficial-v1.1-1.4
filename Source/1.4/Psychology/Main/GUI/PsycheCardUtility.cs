@@ -94,6 +94,7 @@ public class PsycheCardUtility
     public static readonly Color[] BigFiveColors = new Color[5];
     public const int RadialCategories = 2;
     public const float SideScaling = 0.809017f;
+    public static float[] BigFiveManualSliders = new float[] { 0.5f, 0.5f, 0.5f, 0.5f, 0.5f};
     //public static Texture2D PsycheLineTex = new Texture2D(1, 3, TextureFormat.ARGB32, mipChain: false);
     //public static Material PsycheYellowMat = SolidColorMaterials.SimpleSolidColorMaterial(new Color(1f, 1f, 0f, 0.5f));
     //public static Texture2D HexagonTexture;
@@ -237,7 +238,7 @@ public class PsycheCardUtility
         //Color32[] colorArray = TestTexture.GetPixels32();
         //for (int i = 0; i < colorArray.Count(); i++)
         //{
-        //    Log.Message("Setting to cyan");
+        //    //Log.Message("Setting to cyan");
         //    colorArray[i] = Color.cyan;
         //}
         //TestTexture.SetPixels32(colorArray);
@@ -447,8 +448,8 @@ public class PsycheCardUtility
                 {
                     for (int p = 0; p < 5; p++)
                     {
-
                         UIAssets.DrawLine(pentaPoints[p], pentaPoints[(p + 1) % 5], Color.white, 0.5f);
+                        
                     }
                 }
                 else
@@ -457,6 +458,15 @@ public class PsycheCardUtility
                     {
                         UIAssets.DrawLine(pentaPoints[p], pentaPoints[(p + 1) % 5], Color.white, 0.5f);
                         UIAssets.DrawLine(pentaCenter, pentaPoints[p], Color.white, 0.5f);
+                        //Log.Message("Check devmode");
+                        //if (Prefs.DevMode)
+                        //{
+                        //    //Log.Message("Call DrawSlider");
+                        //    float sliderVal = BigFiveManualSliders[p]; 
+                        //    UIAssets.DrawSlider(pentaCenter, pentaPoints[p], 15f, ref sliderVal);
+                        //    BigFiveManualSliders[p] = sliderVal;
+                        //}
+                        
                     }
                 }
             }
@@ -559,7 +569,7 @@ public class PsycheCardUtility
     {
         //if (ListTicker % 100 == 0)
         //{
-        //    Log.Message("ListTicker = " + ListTicker);
+        //    //Log.Message("ListTicker = " + ListTicker);
         //}
         //Log.Message("Start PersonalityTraitList");
         //Log.Message("PersonalityTraitList: Step 1");
@@ -692,7 +702,7 @@ public class PsycheCardUtility
     {
         //if (Ticker % 100 == 0)
         //{
-        //    Log.Message("Ticker = " + Ticker);
+        //    //Log.Message("Ticker = " + Ticker);
         //}
         //if (Ticker > 0 && pawn == PawnCached && DistanceFromMiddle == DistanceFromMiddleCached && UseColorsBool == UseColorsBoolCached && CloudTextRects.Any())
         if (UseCachedBool)

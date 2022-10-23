@@ -8,6 +8,8 @@ using Verse;
 using RimWorld;
 using HarmonyLib;
 using System.Reflection.Emit;
+using System.Runtime;
+using System.Security.Cryptography;
 
 
 namespace Psychology.Harmony;
@@ -25,7 +27,7 @@ public static class InteractionWorker_RomanceAttempt_SelectionWeightPatch
         {
             try
             {
-                Log.Message("InteractionWorker_RomanceAttempt.RandomSelectionWeight, initiator = " + initiator.LabelShort + ", recipient = " + recipient.LabelShort + ", Psyche not enabled");
+                //Log.Message("InteractionWorker_RomanceAttempt.RandomSelectionWeight, initiator = " + initiator.LabelShort + ", recipient = " + recipient.LabelShort + ", Psyche not enabled");
             }
             catch
             {
@@ -38,7 +40,7 @@ public static class InteractionWorker_RomanceAttempt_SelectionWeightPatch
         // From vanilla, no romance in these cases
         if (TutorSystem.TutorialMode || LovePartnerRelationUtility.LovePartnerRelationExists(initiator, recipient))
         {
-            Log.Message("InteractionWorker_RomanceAttempt.RandomSelectionWeight, initiator = " + initiator.LabelShort + ", recipient = " + recipient.LabelShort + ", already lovers");
+            //Log.Message("InteractionWorker_RomanceAttempt.RandomSelectionWeight, initiator = " + initiator.LabelShort + ", recipient = " + recipient.LabelShort + ", already lovers");
             __result = 0f;
             return false;
         }
@@ -46,7 +48,14 @@ public static class InteractionWorker_RomanceAttempt_SelectionWeightPatch
         // Codependents won't romance anyone if they are in a relationship
         if (LovePartnerRelationUtility.HasAnyLovePartner(initiator) && initiator.story.traits.HasTrait(TraitDefOfPsychology.Codependent))
         {
-            Log.Message("InteractionWorker_RomanceAttempt.RandomSelectionWeight, initiator = " + initiator.LabelShort + ", recipient = " + recipient.LabelShort + ", codependent");
+            //Log.Message("InteractionWorker_RomanceAttempt.RandomSelectionWeight, initiator = " + initiator.LabelShort + ", recipient = " + recipient.LabelShort + ", codependent");
+            __result = 0f;
+            return false;
+        }
+
+        // ToDo: allow teenagers to date but not do lovin
+        if (!initiator.ageTracker.Adult || !recipient.ageTracker.Adult)
+        {
             __result = 0f;
             return false;
         }
@@ -58,7 +67,7 @@ public static class InteractionWorker_RomanceAttempt_SelectionWeightPatch
 
         if (recipient.InMentalState && initiatorExperimental < 0.8f && !initiatorLecher)
         {
-            Log.Message("InteractionWorker_RomanceAttempt.RandomSelectionWeight, initiator = " + initiator.LabelShort + ", recipient = " + recipient.LabelShort + ", mental state");
+            //Log.Message("InteractionWorker_RomanceAttempt.RandomSelectionWeight, initiator = " + initiator.LabelShort + ", recipient = " + recipient.LabelShort + ", mental state");
             __result = 0f;
             return false;
         }
@@ -190,7 +199,7 @@ public static class InteractionWorker_RomanceAttempt_SuccessChancePatch
     [HarmonyPrefix]
     public static bool SuccessChance(ref float __result, Pawn initiator, Pawn recipient)
     {
-        Log.Warning("InteractionWorker_RomanceAttempt.SuccessChance fired!");
+        //Log.Warning("InteractionWorker_RomanceAttempt.SuccessChance fired!");
 
         /* Throw out the result and replace it with our own formula. */
         if (!PsycheHelper.PsychologyEnabled(initiator) || !PsycheHelper.PsychologyEnabled(recipient))
@@ -300,7 +309,7 @@ public static class InteractionWorker_RomanceAttempt_SuccessChancePatch
         // Always prevent 100% chance, not sure whether to do this
         __result = 1f - Mathf.Exp(-__result);
 
-        Log.Message("InteractionWorker_RomanceAttempt.SuccessChance initiator = " + initiator.LabelShort + ", recipient = " + recipient.LabelShort + ", romChanceFactor = " + romChanceFactor + ", recipientOpinionFactor = " + recipientOpinionFactor + ", existingLovePartnerMult = " + existingLovePartnerMult + ", successChance = " + __result);
+        //Log.Message("InteractionWorker_RomanceAttempt.SuccessChance initiator = " + initiator.LabelShort + ", recipient = " + recipient.LabelShort + ", romChanceFactor = " + romChanceFactor + ", recipientOpinionFactor = " + recipientOpinionFactor + ", existingLovePartnerMult = " + existingLovePartnerMult + ", successChance = " + __result);
 
         return false;
     }

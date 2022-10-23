@@ -91,7 +91,7 @@ public class PersonalityNodeDef : Def
             //Log.Message("this.parentDict contains:");
             //foreach (KeyValuePair<PersonalityNodeDef, PersonalityNodeParent> thing in this.parentDict)
             //{
-            //    Log.Message("{" + thing.Key.label + ", " + thing.Value.node.label + "}");
+            //    //Log.Message("{" + thing.Key.label + ", " + thing.Value.node.label + "}");
             //}
             return parentDict;
         }

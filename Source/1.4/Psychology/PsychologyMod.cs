@@ -24,11 +24,9 @@ namespace Psychology;
 public class PsychologyMod : Mod
 {
     public static PsychologySettings settings;
-
     public static int lastDrawFrame = Time.frameCount;
-
     public override string SettingsCategory() => "Psychology";
-
+    
     public PsychologyMod(ModContentPack content) : base(content)
     {
         settings = this.GetSettings<PsychologySettings>();
@@ -38,7 +36,7 @@ public class PsychologyMod : Mod
     {
         if (Time.frameCount - lastDrawFrame > 5)
         {
-            Log.Message("DoSettingsWindowContents, SpeciesHelper.Initialize()");
+            //Log.Message("DoSettingsWindowContents, SpeciesHelper.Initialize()");
             SettingsWindowUtility.Initialize();
         }
         SettingsWindowUtility.DrawSettingsWindow(inRect);

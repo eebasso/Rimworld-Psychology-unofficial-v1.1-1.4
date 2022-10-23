@@ -24,6 +24,8 @@ public static class UIAssets
     public static readonly Material PsycheYellowMat = SolidColorMaterials.SimpleSolidColorMaterial(new Color(1f, 1f, 0f, 0.5f));
     public static readonly Material PsycheHighlightMat = SolidColorMaterials.SimpleSolidColorMaterial(new Color(1f, 1f, 1f, 0.1f));
 
+    public static readonly KeyCode[] unfocusKeyCodes = new KeyCode[] { KeyCode.Escape, KeyCode.KeypadEnter, KeyCode.Return };
+
     public static void DrawLineHorizontal(float x, float y, float length, Color color)
     {
         Color oldColor = GUI.color;
@@ -64,25 +66,81 @@ public static class UIAssets
         return multiplier * size.y;
     }
 
-    public static void TextFieldFloat(Rect rect, ref float val, ref string buffer, float min = 0f, float max = 1E+09f)
+    public static void TextFieldFloat(Rect rect, ref float val, ref string buffer, float min = 0f, float max = 1E+09f, string customControlName = null)
     {
         if (buffer == null)
         {
             buffer = val.ToString();
         }
-        string text = "TextField" + rect.y.ToString("F0") + rect.x.ToString("F0");
-        GUI.SetNextControlName(text);
-        buffer = Widgets.TextField(rect, buffer);
-        if (GUI.GetNameOfFocusedControl() == text)
+        buffer = TextFieldCommon(rect, buffer, customControlName, "Float");
+        if (float.TryParse(buffer, out float parsedValue))
         {
-            return;
+            val = Mathf.Clamp(parsedValue, min, max);
         }
-        if (float.TryParse(buffer, out var result2))
-        {
-            val = Mathf.Clamp(result2, min, max);
-        }
-        buffer = val.ToString("0.##########");
     }
+
+    public static void TextFieldInt(Rect rect, ref int val, ref string buffer, int min = 0, int max = 1000000000, string customControlName = null)
+    {
+        if (buffer == null)
+        {
+            buffer = val.ToString();
+        }
+        buffer = TextFieldCommon(rect, buffer, customControlName, "Int");
+        if (int.TryParse(buffer, out int parsedInt))
+        {
+            val = Mathf.Clamp(parsedInt, min, max);
+        }
+        else if (float.TryParse(buffer, out float parsedFloat))
+        {
+            val = Mathf.Clamp(Mathf.RoundToInt(parsedFloat), min, max);
+        }
+    }
+
+    public static string TextFieldCommon(Rect rect, string buffer, string customControlName, string valueTypeString)
+    {
+        string controlName = "TextField" + valueTypeString + "_" + (customControlName.NullOrEmpty() ? rect.x.ToString("F0") + "_" + rect.y.ToString("F0") : customControlName);
+        GUI.SetNextControlName(controlName);
+        buffer = Widgets.TextField(rect, buffer);
+        if (GUI.GetNameOfFocusedControl() == controlName && Event.current.type == EventType.KeyDown && unfocusKeyCodes.Contains(Event.current.keyCode))
+        {
+            UI.UnfocusCurrentControl();
+            Event.current.Use();
+        }
+        if (OriginalEventUtility.EventType == EventType.MouseDown && !Mouse.IsOver(rect.ExpandedBy(2f)))
+        {
+            UI.UnfocusCurrentControl();
+        }
+        return buffer;
+    }
+
+    public static bool ButtonLabel(Rect rect, string label, bool doMouseOverSound = true)
+    {
+        Widgets.Label(rect, label);
+        return Widgets.ButtonInvisible(rect, doMouseOverSound);
+    }
+
+    //public static void DrawSlider(Vector2 start, Vector2 end, float width, ref float sliderVal)
+    //{
+    //    //Log.Message("DrawSlider, start");
+    //    float xDiff = end.x - start.x;
+    //    float yDiff = end.y - start.y;
+    //    float length = Mathf.Sqrt(xDiff * xDiff + yDiff * yDiff);
+    //    if (length > 0.01f)
+    //    {
+    //        //Log.Message("DrawSlider, length > 0.01f");
+    //        float z = Mathf.Atan2(yDiff, xDiff) * Mathf.Rad2Deg;
+    //        Matrix4x4 m = Matrix4x4.TRS(start, Quaternion.Euler(0f, 0f, z), Vector3.one) * Matrix4x4.TRS(-start, Quaternion.identity, Vector3.one);
+    //        Rect rect = new Rect(start.x, start.y - 0.5f * width, length, width);
+    //        GL.PushMatrix();
+    //        GL.MultMatrix(m);
+    //        //Log.Message("DrawSlider, draw horizontal slider");
+    //        sliderVal = Widgets.HorizontalSlider(rect, sliderVal, 0f, 1f);
+    //        GL.PopMatrix();
+    //    }
+    //    //Log.Message("DrawSlider, end");
+    //}
+
+
 }
 
 //class ColoredHexagon

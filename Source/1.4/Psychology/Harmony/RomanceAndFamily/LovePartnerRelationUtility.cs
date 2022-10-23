@@ -301,6 +301,12 @@ public static class LovePartnerRelationUtility_GetLovinMtbHours
             __result = -1f;
             return false;
         }
+        // No underage lovin
+        if (!pawn?.ageTracker?.Adult != true || !partner?.ageTracker?.Adult != true)
+        {
+            __result = -1f;
+            return false;
+        }
 
         float pawnAge = pawn.ageTracker.AgeBiologicalYearsFloat;
         float partnerAge = partner.ageTracker.AgeBiologicalYearsFloat;

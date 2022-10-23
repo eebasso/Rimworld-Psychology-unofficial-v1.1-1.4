@@ -28,24 +28,24 @@ public class ITab_Pawn_Psyche : ITab
             return PsycheHelper.HasLatentPsyche(pawn);
             //if (pawn == null)
             //{
-            //    Log.Message("IsVisible, PawnToShowInfoAbout == null");
+            //    //Log.Message("IsVisible, PawnToShowInfoAbout == null");
             //    return false;
             //}
             //CompPsychology comp = pawn.GetComp<CompPsychology>();
             //if (comp == null)
             //{
-            //    Log.Message("IsVisible, comp == null");
+            //    //Log.Message("IsVisible, comp == null");
             //    return false;
             //}
             //SpeciesSettings settings = SpeciesHelper.GetOrMakeSpeciesSettingsFromThingDef(pawn.def, noDating: true);
             //if (settings?.enablePsyche != true)
             //{
-            //    Log.Message("IsVisible, enablePsyche != true");
+            //    //Log.Message("IsVisible, enablePsyche != true");
             //    return false;
             //}
             //if (comp.IsPsychologyPawn != true)
             //{
-            //    Log.Message("IsVisible, comp.IsPsychologyPawn != true");
+            //    //Log.Message("IsVisible, comp.IsPsychologyPawn != true");
             //    return false;
             //}
             //return true;

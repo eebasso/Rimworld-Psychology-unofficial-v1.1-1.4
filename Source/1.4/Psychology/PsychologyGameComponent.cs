@@ -51,7 +51,7 @@ public class PsychologyGameComponent : GameComponent
 
     //public override void StartedNewGame()
     //{
-    //    Log.Message("Psychology: started new game");
+    //    //Log.Message("Psychology: started new game");
     //    this.firstTimeWithUpdate = false;
     //    InitializeRegisteredSpecies();
     //    BuildMayorDictionary();
@@ -76,7 +76,7 @@ public class PsychologyGameComponent : GameComponent
         float certaintyChange;
         int idnumber;
         idnumber = pawn.thingIDNumber;
-        if (!CachedCertaintyChangePerDayDict.TryGetValue(idnumber, out certaintyChange) || (idnumber + certaintyTick) % 240 == 23)
+        if (!CachedCertaintyChangePerDayDict.TryGetValue(idnumber, out certaintyChange) || Rand.ChanceSeeded(0.01f, idnumber + certaintyTick))
         {
             certaintyChange = PsycheHelper.Comp(pawn).Psyche.CalculateCertaintyChangePerDay(pawn.Ideo, addToDicts);
             CachedCertaintyChangePerDayDict[idnumber] = certaintyChange;
@@ -113,7 +113,7 @@ public class PsychologyGameComponent : GameComponent
 
     public virtual void BuildMayorDictionary()
     {
-        Log.Message("BuildMayorDictionary, start");
+        //Log.Message("BuildMayorDictionary, start");
         Mayors = new Dictionary<int, Pair<Pawn, Hediff>>();
         int mapTile;
         foreach (Pawn pawn in PawnsFinder.All_AliveOrDead)
@@ -145,7 +145,7 @@ public class PsychologyGameComponent : GameComponent
         {
             DeleteAllMayorHediffs();
         }
-        Log.Message("BuildMayorDictionary, end");
+        //Log.Message("BuildMayorDictionary, end");
     }
 
     public virtual void RemoveMayorOfThisColony(int mapTile)
@@ -225,7 +225,7 @@ public class PsychologyGameComponent : GameComponent
             constituentTick--;
             return;
         }
-        Log.Message("ConstituentTick, Step 1");
+        //Log.Message("ConstituentTick, Step 1");
         constituentTick = constituentTicksPerInterval;
         if (Mayors == null)
         {
@@ -233,15 +233,15 @@ public class PsychologyGameComponent : GameComponent
             BuildMayorDictionary();
             return;
         }
-        Log.Message("ConstituentTick, Mayors != null");
+        //Log.Message("ConstituentTick, Mayors != null");
 
         List<Settlement> playerSettlements = Find.WorldObjects.Settlements.FindAll(b => b.Faction.IsPlayer);
         //List<Settlement> playerSettlements = Find.WorldObjects.SettlementBases.FindAll(b => b.Faction.IsPlayer);
-        Log.Message("ConstituentTick, Step 2, length of playerSettlements = " + playerSettlements.Count());
+        //Log.Message("ConstituentTick, Step 2, length of playerSettlements = " + playerSettlements.Count());
         foreach (Settlement settlement in playerSettlements)
         {
-            Log.Message("settlement.Map.Tile = " + settlement?.Map?.Tile);
-            Log.Message("ConstituentTick, Step 3");
+            //Log.Message("settlement.Map.Tile = " + settlement?.Map?.Tile);
+            //Log.Message("ConstituentTick, Step 3");
             if (settlement?.Map?.Tile == null)
             {
                 Log.Warning("playerSettlement.Map.Tile was null");
@@ -250,10 +250,10 @@ public class PsychologyGameComponent : GameComponent
 
             if (Mayors.TryGetValue(settlement.Map.Tile, out Pair<Pawn,Hediff> mayorPair) != true)
             {
-                Log.Message("ConstituentTick, end settlement");
+                //Log.Message("ConstituentTick, end settlement");
                 continue;
             }
-            Log.Message("ConstituentTick, Step 4");
+            //Log.Message("ConstituentTick, Step 4");
             Pawn mayor = mayorPair.First;
             IEnumerable<Pawn> constituents = from p in settlement.Map.mapPawns.FreeColonistsSpawned
                                              where !p.health.hediffSet.HasHediff(HediffDefOfPsychology.Mayor)

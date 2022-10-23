@@ -243,7 +243,7 @@ public static class BreakupHelperMethods
         //                listTryGainOrRemoveMemoriesIndexInClist.Add(i);
         //                listGainVsRemoveBit.Add(gainVsRemoveBit);
         //                success = true;
-        //                Log.Message("InterdictTryGainAndRemoveMemories, matchNum: " + (listMemoriesIndexInClist.Count() - 1) + (gainVsRemoveBit == 0 ? ", TryGain" : ", Remove") + " ThoughtDef: " + OpinionThoughtDefs[indexOfThoughtDefInOpinionThoughtDefs] +
+        //                //Log.Message("InterdictTryGainAndRemoveMemories, matchNum: " + (listMemoriesIndexInClist.Count() - 1) + (gainVsRemoveBit == 0 ? ", TryGain" : ", Remove") + " ThoughtDef: " + OpinionThoughtDefs[indexOfThoughtDefInOpinionThoughtDefs] +
         //                    "\nindexOfPawnInClist: " + (indexOfMemoriesInClist - 4) +
         //                    "\nindexOfMemoriesInClist: " + indexOfMemoriesInClist +
         //                    "\nindexOfThoughtDefInClist: " + indexOfThoughtDefInClist +
@@ -265,12 +265,12 @@ public static class BreakupHelperMethods
         //    {
         //        //if (searchMode == 0)
         //        //{
-        //        //    Log.Message("InterdictTryGainAndRemoveMemories, clist[k]: " + clist[k] + ", clist[k]?.operand: " + clist[k]?.operand + ", clist[k]?.operand is Pawn" + (clist[k]?.operand is Pawn) + ", typeof(Pawn).IsInstanceOfType(clist[k]?.operand): " + typeof(Pawn).IsInstanceOfType(clist[k]?.operand));
+        //        //    //Log.Message("InterdictTryGainAndRemoveMemories, clist[k]: " + clist[k] + ", clist[k]?.operand: " + clist[k]?.operand + ", clist[k]?.operand is Pawn" + (clist[k]?.operand is Pawn) + ", typeof(Pawn).IsInstanceOfType(clist[k]?.operand): " + typeof(Pawn).IsInstanceOfType(clist[k]?.operand));
         //        //    if (typeof(Pawn).IsInstanceOfType(clist[k]?.operand))
         //        //    {
         //        //        searchMode++;
         //        //        listOtherPawnIndexInClist.Add(k);
-        //        //        Log.Message("InterdictTryGainAndRemoveMemories, found otherPawn");
+        //        //        //Log.Message("InterdictTryGainAndRemoveMemories, found otherPawn");
         //        //    }
         //        //    continue;
         //        //}
@@ -284,7 +284,7 @@ public static class BreakupHelperMethods
         //                    listOtherPawnIndexInClist.Add(k + 1);
         //                    listThoughtDefIndexInClist.Add(k);
         //                    listThoughtDefIndexInOpinionThoughtDefs.Add(pair.First);
-        //                    Log.Message("InterdictTryGainAndRemoveMemories, found ThoughtDef");
+        //                    //Log.Message("InterdictTryGainAndRemoveMemories, found ThoughtDef");
         //                    break;
         //                }
         //            }
@@ -297,7 +297,7 @@ public static class BreakupHelperMethods
         //                success = true;
         //                listMemoriesIndexInClist.Add(k);
         //                listPawnIndexInClist.Add(k - 4);
-        //                Log.Message("InterdictTryGainAndRemoveMemories, found memories");
+        //                //Log.Message("InterdictTryGainAndRemoveMemories, found memories");
         //                break;
         //            }
         //            continue;
@@ -308,7 +308,7 @@ public static class BreakupHelperMethods
         //        //    {
         //        //        success = true;
         //        //        listPawnIndexInClist.Add(k);
-        //        //        Log.Message("InterdictTryGainAndRemoveMemories, found pawn");
+        //        //        //Log.Message("InterdictTryGainAndRemoveMemories, found pawn");
         //        //        break;
         //        //    }
         //        //    continue;
@@ -323,7 +323,7 @@ public static class BreakupHelperMethods
         //        }
         //        yield break;
         //    }
-        //    Log.Message("InterdictTryGainAndRemoveMemories, matchNum: " + matchNum + (listGainVsRemoveBit[matchNum] == 0 ? ", TryGain" : ", Remove") + " ThoughtDef: " + OpinionThoughtDefs[listThoughtDefIndexInOpinionThoughtDefs[matchNum]] +
+        //    //Log.Message("InterdictTryGainAndRemoveMemories, matchNum: " + matchNum + (listGainVsRemoveBit[matchNum] == 0 ? ", TryGain" : ", Remove") + " ThoughtDef: " + OpinionThoughtDefs[listThoughtDefIndexInOpinionThoughtDefs[matchNum]] +
         //                    "\nindexOfPawnInClist: " + listPawnIndexInClist[matchNum] +
         //                    "\nindexOfMemoriesInClist: " + listMemoriesIndexInClist[matchNum] +
         //                    "\nindexOfThoughtDefInClist: " + listThoughtDefIndexInClist[matchNum] +

@@ -19,7 +19,7 @@ public class PawnmorpherPatches{
             }
             SpeciesHelper.AddEverythingExceptCompPsychology(pawnDef);
         }
-        Log.Message("Psychology: completed patches for compatibility with Pawnmorpher.");
+        //Log.Message("Psychology: completed patches for compatibility with Pawnmorpher.");
     }
 }
 
@@ -57,18 +57,18 @@ public class PawnmorphPatches_PsycheHelper_HasLatentPsyche
                 originalPawn = Pawnmorph.FormerHumanUtilities.IsFormerHuman(pawn) ? Pawnmorph.FormerHumanUtilities.GetOriginalPawnOfFormerHuman(pawn) : null;
                 if (originalPawn == null)
                 {
-                    Log.Message("PsychologyEnabled_Patch, comp == null and originalPawn == null");
+                    //Log.Message("PsychologyEnabled_Patch, comp == null and originalPawn == null");
                     return false;
                 }
                 originalComp = originalPawn.GetComp<CompPsychology>();
                 if (originalComp == null)
                 {
-                    Log.Message("PsychologyEnabled_Patch, originalComp == null");
+                    //Log.Message("PsychologyEnabled_Patch, originalComp == null");
                     return false;
                 }
                 if (originalComp.IsPsychologyPawn != true)
                 {
-                    Log.Message("PsychologyEnabled_Patch, originalComp.IsPsychologyPawn != true");
+                    //Log.Message("PsychologyEnabled_Patch, originalComp.IsPsychologyPawn != true");
                     return false;
                 }
                 comp = new CompPsychology { parent = pawn };
@@ -88,13 +88,13 @@ public class PawnmorphPatches_PsycheHelper_HasLatentPsyche
         }
         if (comp.IsPsychologyPawn != true)
         {
-            Log.Message("PsychologyEnabled_Patch, comp.IsPsychologyPawn != true");
+            //Log.Message("PsychologyEnabled_Patch, comp.IsPsychologyPawn != true");
             return false;
         }
         settings = SpeciesHelper.GetOrMakeSpeciesSettingsFromThingDef(pawn.def);
         if (settings?.enablePsyche != true)
         {
-            Log.Message("PsychologyEnabled_Patch, settings?.enablePsyche != true");
+            //Log.Message("PsychologyEnabled_Patch, settings?.enablePsyche != true");
             return false;
         }
         //Log.Message("PsychologyEnabled_Patch, return true for pawn = " + pawn.Label);
@@ -132,12 +132,12 @@ public class PawnmorphPatches_PsychologyGameComponent_LoadedGame
             //    originalComp = originalPawn.GetComp<CompPsychology>();
             //    if (originalComp == null)
             //    {
-            //        Log.Message("LoadedGame_PawnmorphPostfix, originalComp == null");
+            //        //Log.Message("LoadedGame_PawnmorphPostfix, originalComp == null");
             //        continue;
             //    }
             //    if (originalComp.IsPsychologyPawn != true)
             //    {
-            //        Log.Message("LoadedGame_PawnmorphPostfix, originalComp.IsPsychologyPawn != true");
+            //        //Log.Message("LoadedGame_PawnmorphPostfix, originalComp.IsPsychologyPawn != true");
             //        continue;
             //    }
             //    comp = new CompPsychology { parent = pawn };
@@ -147,7 +147,7 @@ public class PawnmorphPatches_PsychologyGameComponent_LoadedGame
             //}
             //if (comp.IsPsychologyPawn != true)
             //{
-            //    Log.Message("LoadedGame_PawnmorphPostfix, comp.IsPsychologyPawn != true");
+            //    //Log.Message("LoadedGame_PawnmorphPostfix, comp.IsPsychologyPawn != true");
             //}
         }
     }

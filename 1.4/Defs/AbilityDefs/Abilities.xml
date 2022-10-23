@@ -18,7 +18,7 @@
 		<comps>
 			<li Class="Psychology.CompProperties_AbilityIndoctrinate">
 				<successMessage>{INITIATOR_labelShort} conducted indoctrination on {RECIPIENT_labelShort}, altering {RECIPIENT_possessive} psyche to be more compatible with {IDEO}. Daily certainty change due to personality has increased from {OLDDAILYCHANGE} to {NEWDAILYCHANGE}.</successMessage>
-				<baseDailyCertaintyChangeIncrease>0.2</baseDailyCertaintyChangeIncrease>
+				<baseDailyCertaintyChangeIncrease>0.5</baseDailyCertaintyChangeIncrease>
 				<sound>MoralistAbility_Resolve</sound>
 			</li>
 			<li Class="CompProperties_AbilityMustBeCapableOf">

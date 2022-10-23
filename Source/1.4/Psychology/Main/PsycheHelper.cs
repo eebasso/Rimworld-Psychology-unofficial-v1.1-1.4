@@ -77,7 +77,7 @@ public static class PsycheHelper
         {
             if (SpeciesHelper.CheckIntelligenceAndAddEverythingToSpeciesDef(pawn.def) != true)
             {
-                Log.Message("PsychologyEnabled, Comp(pawn) == null, pawn = " + pawn + ", species = " + pawn.def);
+                //Log.Message("PsychologyEnabled, Comp(pawn) == null, pawn = " + pawn + ", species = " + pawn.def);
                 return false;
             }
             comp = Comp(pawn);
@@ -90,13 +90,13 @@ public static class PsycheHelper
         //Log.Message("PsychologyEnabled, Comp(pawn) != null");
         if (comp.IsPsychologyPawn != true)
         {
-            Log.Message("PsychologyEnabled, IsPsychologyPawn != true, pawn = " + pawn + ", species = " + pawn.def);
+            //Log.Message("PsychologyEnabled, IsPsychologyPawn != true, pawn = " + pawn + ", species = " + pawn.def);
             return false;
         }
         settings = SpeciesHelper.GetOrMakeSpeciesSettingsFromThingDef(pawn.def);
         if (settings.enablePsyche != true)
         {
-            Log.Message("PsychologyEnabled, settings.enablePsyche != true, " + pawn + ", species = " + pawn.def);
+            //Log.Message("PsychologyEnabled, settings.enablePsyche != true, " + pawn + ", species = " + pawn.def);
             return false;
         }
         //Log.Message("PsychologyEnabled, settings.enablePsyche == true");

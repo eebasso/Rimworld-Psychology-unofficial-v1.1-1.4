@@ -89,9 +89,9 @@ public static class HarmonyInitialize
         //if (ModsConfig.IdeologyActive)
         //{
         //    ManualPatches.IdeoPatches(harmonyInstance);
-        //    Log.Message("Psychology: implemented all ideology patches");
+        //    //Log.Message("Psychology: implemented all ideology patches");
         //}
-        Log.Message("Psychology: implemented all vanilla patches");
+        //Log.Message("Psychology: implemented all vanilla patches");
     }
 }
 

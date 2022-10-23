@@ -117,7 +117,7 @@ public static class ChildRelationUtility_ManualPatches
             Log.Error("ChanceOfBecomingChildOf.KinseyEnabledMultiplier, using old multiplier because PsychologyEnabled(parent) != true");
             return oldMultiplier;
         }
-        Log.Message("ChanceOfBecomingChildOf, KinseyEnabledMultiplier successfully fired");
+        //Log.Message("ChanceOfBecomingChildOf, KinseyEnabledMultiplier successfully fired");
         return Mathf.InverseLerp(6f, 0f, PsycheHelper.Comp(parent).Sexuality.kinseyRating);
     }
 

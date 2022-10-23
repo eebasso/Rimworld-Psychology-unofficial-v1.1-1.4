@@ -308,6 +308,8 @@
     <Compile Include="DefOf\MentalStateDefOfPsychology.cs" />
     <Compile Include="Harmony\RomanceAndFamily\BreakupHelperMethods.cs" />
     <Compile Include="Main\Settings\Parameter.cs" />
+    <Compile Include="Main\Translation\TranslationUtility.cs" />
+    <Compile Include="Main\Translation\Label.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\About\preview.png">
@@ -805,6 +807,9 @@
     <None Include="..\..\..\1.4\Languages\French\Keyed\Messages.xml">
       <Link>Common\Languages\French\Keyed\Messages.xml</Link>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Main\Translation\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -129,7 +129,7 @@ public class CompPsychology : ThingComp
         try
         {
             Pawn otherPawn = otherComp.parent as Pawn;
-            Log.Message("CompPsychology, deep copy complete for pawn = " + pawn + ", " + pawn.def.label + " from otherPawn = " + otherPawn.Label + ", " + otherPawn.def.label);
+            //Log.Message("CompPsychology, deep copy complete for pawn = " + pawn + ", " + pawn.def.label + " from otherPawn = " + otherPawn.Label + ", " + otherPawn.def.label);
         }
         catch (Exception ex)
         {

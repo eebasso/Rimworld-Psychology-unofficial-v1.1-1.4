@@ -101,13 +101,13 @@ public class PatchOperationImprisonedMe : PatchOperationPathed
         bool result = false;
         foreach (XmlNode xmlNode in xml.SelectNodes(xpath).Cast<XmlNode>().ToArray())
         {
-            Log.Message("Foreach xmlNode");
+            //Log.Message("Foreach xmlNode");
             if (xmlNode.Value != null && xmlNode.NodeType == XmlNodeType.Text)
             {
-                Log.Message("xmlNode.Value != null: " + xmlNode.Value);
+                //Log.Message("xmlNode.Value != null: " + xmlNode.Value);
                 result = true;
                 xmlNode.Value = (-PsychologySettings.imprisonedDebuff).ToString();
-                Log.Message("xmlNode.Value set to new modifier");
+                //Log.Message("xmlNode.Value set to new modifier");
             }
         }
         if (result != true)
@@ -128,12 +128,12 @@ public class PatchOperationRapportBuilt : PatchOperationPathed
         {
             if (xmlNode.Value != null && xmlNode.NodeType == XmlNodeType.Text)
             {
-                Log.Message("xmlNode.Value != null: " + xmlNode.Value);
+                //Log.Message("xmlNode.Value != null: " + xmlNode.Value);
                 result = true;
                 float oldValue = ParseHelper.FromString<int>(xmlNode.Value);
                 float newValue = Mathf.Lerp(oldValue, 0f, PsychologySettings.imprisonedDebuff / PsychologySettings.imprisonedDebuffDefault);
                 xmlNode.Value = newValue.ToString();
-                Log.Message("xmlNode.Value set to new modifier");
+                //Log.Message("xmlNode.Value set to new modifier");
             }
         }
         return result;

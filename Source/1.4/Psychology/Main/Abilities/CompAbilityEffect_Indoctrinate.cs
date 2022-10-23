@@ -75,12 +75,11 @@ public class CompAbilityEffect_Indoctrinate : CompAbilityEffect
         }
         Pawn initiator = parent.pawn;
         Pawn recipient = target.Pawn;
-        Pawn_PsycheTracker pt = PsycheHelper.Comp(recipient).Psyche;
-        float oldDailyChange = pt.CalculateCertaintyChangePerDay(recipient.Ideo, false);
 
-        float multiplier = AbilityMultiplier(initiator, recipient);
-        pt.BoostRatingsTowardsIdeo(recipient.Ideo, multiplier, randomize: true);
-        float newDailyChange = pt.CalculateCertaintyChangePerDay(recipient.Ideo, false);
+        Pawn_PsycheTracker pt = PsycheHelper.Comp(recipient).Psyche;
+        ApplyAbilityOutcomes(pt, initiator, recipient, out float oldDailyChange, out float newDailyChange);
+        pt.CalculateAdjustedRatings();
+        PsycheCardUtility.Ticker = -1;
 
         NamedArgument text1 = initiator.Named("INITIATOR");
         NamedArgument text2 = recipient.Named("RECIPIENT");
@@ -96,17 +95,44 @@ public class CompAbilityEffect_Indoctrinate : CompAbilityEffect
             Props.sound.PlayOneShot(new TargetInfo(target.Cell, parent.pawn.Map));
         }
     }
+    
+    
 
     public override string ExtraLabelMouseAttachment(LocalTargetInfo target)
     {
+        //Log.Message("ExtraLabelMouseAttachment, start");
         if (target == null || !Valid(target))
         {
             return null;
         }
         Pawn recipient = target.Pawn;
         Pawn initiator = parent.pawn;
+
+        //Log.Message("ExtraLabelMouseAttachment, step 1");
+        Pawn_PsycheTracker dummieTracker = new Pawn_PsycheTracker(recipient);
+        dummieTracker.Initialize();
+        dummieTracker.DeepCopyFromOtherTracker(PsycheHelper.Comp(recipient).Psyche);
+        ApplyAbilityOutcomes(dummieTracker, initiator, recipient, out float oldDailyChange, out float newDailyChange);
+        //Log.Message("ExtraLabelMouseAttachment, step 2, old daily = " + oldDailyChange + ",  new daily = " + newDailyChange);
+
+        string oldPercent = (oldDailyChange > 0f ? "+" : "") + oldDailyChange.ToStringPercent();
+        string newPercent = (newDailyChange > 0f ? "+" : "") + newDailyChange.ToStringPercent();
+
+        // ToDo: turn this into translation
+        string text = "Effect on daily certainty change due to personality:\nIncrease from " + oldPercent + " to " + newPercent + ".";
+        if (newDailyChange < oldDailyChange)
+        {
+            Log.ErrorOnce("New daily change is lower than old daily change", 23040934);
+        }
+        return text;
+    }
+
+    public void ApplyAbilityOutcomes(Pawn_PsycheTracker pt, Pawn initiator, Pawn recipient, out float oldDailyChange, out float newDailyChange)
+    {
+        oldDailyChange = pt.CalculateCertaintyChangePerDay(recipient.Ideo, true);
         float multiplier = AbilityMultiplier(initiator, recipient);
-        return PsycheHelper.Comp(recipient).Psyche.IdeoAbilityEffectOnPsycheTooltip(multiplier);
+        pt.BoostRatingsTowardsIdeo(recipient.Ideo, multiplier, randomize: false);
+        newDailyChange = pt.CalculateCertaintyChangePerDay(recipient.Ideo, true);
     }
 
     public float AbilityMultiplier(Pawn initiator, Pawn recipient)
@@ -115,12 +141,14 @@ public class CompAbilityEffect_Indoctrinate : CompAbilityEffect
         multiplier *= initiator.GetStatValue(StatDefOf.ConversionPower);
         multiplier *= SocialSkillFactor.Evaluate((float)initiator.skills.GetSkill(SkillDefOf.Social).levelInt);
         multiplier *= OpinionFactor.Evaluate((float)recipient.relations.OpinionOf(initiator));
-        if (Props.baseDailyCertaintyChangeIncrease == 0f)
-        {
-            Log.Error("Ability multiplier is 0");
-        }
+        //if (multiplier == 0f && Prefs.DevMode)
+        //{
+        //    Log.Error("Ability multiplier is 0");
+        //}
         return multiplier;
     }
+
+    
 
 }
 

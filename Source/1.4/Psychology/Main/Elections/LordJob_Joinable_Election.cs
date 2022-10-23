@@ -91,7 +91,7 @@ namespace Psychology
             {
                 foreach (Pair<Pawn, int> t in orderedTally)
                 {
-                    Log.Message("Psychology :: Votes for " + t.First + ": " + t.Second);
+                    //Log.Message("Psychology :: Votes for " + t.First + ": " + t.Second);
                 }
             }
             Pair<Pawn, int> winningCandidate = orderedTally.First();

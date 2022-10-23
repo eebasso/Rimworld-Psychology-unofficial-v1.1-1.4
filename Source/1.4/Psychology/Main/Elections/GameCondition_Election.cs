@@ -154,7 +154,7 @@ namespace Psychology
             base.End();
             if (candidates.Count == 0)
             {
-                Log.Message("Psychology :: Tried to start election... but there were no candidates.");
+                //Log.Message("Psychology :: Tried to start election... but there were no candidates.");
                 return;
             }
             IntVec3 intVec;

@@ -55,7 +55,7 @@ public class SpeciesHelper
     //        }
     //        if (registeredSpecies.Add(t))
     //        {
-    //            Log.Message("SpeciesHelper(), registered = " + t);
+    //            //Log.Message("SpeciesHelper(), registered = " + t);
     //        }
     //    }
     //    SettingsWindowUtility.Initialize();
@@ -83,7 +83,7 @@ public class SpeciesHelper
             }
             if (registeredSpecies.Add(t))
             {
-                Log.Message("SpeciesHelper(), registered = " + t);
+                //Log.Message("SpeciesHelper(), registered = " + t);
             }
         }
         SettingsWindowUtility.Initialize();
@@ -126,7 +126,7 @@ public class SpeciesHelper
         if (PsychologySettings.speciesDict.ContainsKey(defName) != true)
         {
             PsychologySettings.speciesDict[defName] = DefaultSettingsForSpeciesDef(thingDef);
-            Log.Message("CheckIntelligenceAndAddEverythingToHumanlikeDef, PsychologySettings.speciesDict, added defName = " + defName);
+            //Log.Message("CheckIntelligenceAndAddEverythingToHumanlikeDef, PsychologySettings.speciesDict, added defName = " + defName);
         }
         if (register)
         {
@@ -137,7 +137,7 @@ public class SpeciesHelper
                 {
                     AddCompPsychologyToHumanlikeDef(thingDef);
                 }
-                Log.Message("CheckIntelligenceAndAddEverythingToHumanlikeDef, registered = " + thingDef);
+                //Log.Message("CheckIntelligenceAndAddEverythingToHumanlikeDef, registered = " + thingDef);
             }
         }
         else
@@ -176,7 +176,7 @@ public class SpeciesHelper
         {
             settings = DefaultSettingsForSpeciesDef(pawnDef);
             PsychologySettings.speciesDict[pawnDef.defName] = settings;
-            Log.Message("GetOrMakeSpeciesSettingsFromThingDef, added to PsychologySettings.speciesDict, defName = " + pawnDef.defName);
+            //Log.Message("GetOrMakeSpeciesSettingsFromThingDef, added to PsychologySettings.speciesDict, defName = " + pawnDef.defName);
         }
         if (registeredSpecies.Add(pawnDef) == true)
         {
@@ -185,7 +185,7 @@ public class SpeciesHelper
             {
                 AddCompPsychologyToHumanlikeDef(pawnDef);
             }
-            Log.Message("SpeciesHelper.GetOrMakeSpeciesSettingsFromThingDef, registered = " + pawnDef);
+            //Log.Message("SpeciesHelper.GetOrMakeSpeciesSettingsFromThingDef, registered = " + pawnDef);
             SettingsWindowUtility.Initialize();
         }
         return settings;

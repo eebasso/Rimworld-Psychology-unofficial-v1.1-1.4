@@ -41,23 +41,38 @@ public class Hediff_Conversation : HediffWithComps
     public override void Tick()
     {
         base.Tick();
-        if (this.otherPawn == null)
-        {
-            this.pawn.health.RemoveHediff(this);
-            return;
-        }
-        if (!this.otherPawn.Spawned || !this.pawn.Spawned || !InteractionUtility.CanReceiveInteraction(this.pawn) || !InteractionUtility.CanReceiveInteraction(this.otherPawn))
-        {
-            this.pawn.health.RemoveHediff(this);
-            return;
-        }
-        if (this.otherPawn.Dead || this.otherPawn.Downed || this.otherPawn.InAggroMentalState)
-        {
-            this.pawn.health.RemoveHediff(this);
-            return;
-        }
+        //if (this.otherPawn == null)
+        //{
+        //    this.pawn.health.RemoveHediff(this);
+        //    return;
+        //}
+        //if (!this.otherPawn.Spawned || !this.pawn.Spawned || !InteractionUtility.CanReceiveInteraction(this.pawn) || !InteractionUtility.CanReceiveInteraction(this.otherPawn))
+        //{
+        //    this.pawn.health.RemoveHediff(this);
+        //    return;
+        //}
+        //if (this.otherPawn.Dead || this.otherPawn.Downed || this.otherPawn.InAggroMentalState)
+        //{
+        //    this.pawn.health.RemoveHediff(this);
+        //    return;
+        //}
         if (this.pawn.IsHashIntervalTick(200))
         {
+            if (this.otherPawn == null)
+            {
+                this.pawn.health.RemoveHediff(this);
+                return;
+            }
+            if (!this.otherPawn.Spawned || !this.pawn.Spawned || !InteractionUtility.CanReceiveInteraction(this.pawn) || !InteractionUtility.CanReceiveInteraction(this.otherPawn))
+            {
+                this.pawn.health.RemoveHediff(this);
+                return;
+            }
+            if (this.otherPawn.Dead || this.otherPawn.Downed || this.otherPawn.InAggroMentalState)
+            {
+                this.pawn.health.RemoveHediff(this);
+                return;
+            }
             if (this.pawn.Map != null && this.otherPawn.Map != null && ((this.pawn.Position - this.otherPawn.Position).LengthHorizontalSquared >= 54f || !GenSight.LineOfSight(this.pawn.Position, this.otherPawn.Position, this.pawn.Map, true)))
             {
                 this.pawn.health.RemoveHediff(this);
@@ -113,12 +128,12 @@ public class Hediff_Conversation : HediffWithComps
         base.PostRemoved();
         if (this.pawn == null && this.otherPawn == null)
         {
-            Log.Message("Hediff_Conversation.PostRemoved(), pawns were null");
+            Log.Warning("Hediff_Conversation.PostRemoved(), pawns were null");
             return;
         }
         if (this.pawn.Dead || this.otherPawn.Dead || !PsycheHelper.PsychologyEnabled(pawn) || !PsycheHelper.PsychologyEnabled(otherPawn))
         {
-            Log.Message("Hediff_Conversation.PostRemoved(), psychology not enabled");
+            Log.Warning("Hediff_Conversation.PostRemoved(), psychology not enabled or pawn dead");
             return;
         }
         //Log.Message("Hediff_Conversation.PostRemoved(), pawn = " + pawn.LabelShort + " otherPawn = " + otherPawn.LabelShort + ", step 0");

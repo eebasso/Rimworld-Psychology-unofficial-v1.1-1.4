@@ -1,4 +1,5 @@
 ﻿using System;using System.Collections.Generic;using System.Linq;using System.Text;using System.Text.RegularExpressions;using System.Reflection;using RimWorld;using RimWorld.Planet;using Verse;using Verse.AI.Group;using Verse.Grammar;using UnityEngine;using Verse.Noise;using Unity;
+using HarmonyLib;
 
 namespace Psychology;
 
@@ -184,7 +185,7 @@ public static class SettingsWindowUtility{
             Rect buttonRect = new Rect(titleRect.x - HighlightPadding, titleRect.y, LeftColumnViewRect.width, titleRect.height);            //KinseyMode delayedChoice = kinseyFormulaCached;
 
             if (Widgets.ButtonText(buttonRect, KinseyFormulaTitleDict[kinseyFormulaCached], drawBackground: true, doMouseoverSound: true, true))            {                List<FloatMenuOption> list = new List<FloatMenuOption>();                list.Add(new FloatMenuOption(KinseyFormulaTitleDict[KinseyMode.Realistic], delegate                {                    kinseyFormulaCached = KinseyMode.Realistic;
-                    SetCacheAndBufferBasedOnKinseyMode();                    Log.Message("Set to Realistic");                }));                list.Add(new FloatMenuOption(KinseyFormulaTitleDict[KinseyMode.Uniform], delegate                {                    kinseyFormulaCached = KinseyMode.Uniform;                    SetCacheAndBufferBasedOnKinseyMode();                    Log.Message("Set to Uniform");                }));                list.Add(new FloatMenuOption(KinseyFormulaTitleDict[KinseyMode.Invisible], delegate                {                    kinseyFormulaCached = KinseyMode.Invisible;                    SetCacheAndBufferBasedOnKinseyMode();                    Log.Message("Set to Invisible");                }));                list.Add(new FloatMenuOption(KinseyFormulaTitleDict[KinseyMode.Gaypocalypse], delegate                {                    kinseyFormulaCached = KinseyMode.Gaypocalypse;                    SetCacheAndBufferBasedOnKinseyMode();                    Log.Message("Set to Gaypocalypse");                }));                list.Add(new FloatMenuOption(KinseyFormulaTitleDict[KinseyMode.Custom], delegate                {                    kinseyFormulaCached = KinseyMode.Custom;                    SetCacheAndBufferBasedOnKinseyMode();                    Log.Message("Set to Custom");                }));                Find.WindowStack.Add(new FloatMenu(list));            }
+                    SetCacheAndBufferBasedOnKinseyMode();                    // ToDo: Add these as translations                    //Log.Message("Set to Realistic");                }));                list.Add(new FloatMenuOption(KinseyFormulaTitleDict[KinseyMode.Uniform], delegate                {                    kinseyFormulaCached = KinseyMode.Uniform;                    SetCacheAndBufferBasedOnKinseyMode();                    //Log.Message("Set to Uniform");                }));                list.Add(new FloatMenuOption(KinseyFormulaTitleDict[KinseyMode.Invisible], delegate                {                    kinseyFormulaCached = KinseyMode.Invisible;                    SetCacheAndBufferBasedOnKinseyMode();                    //Log.Message("Set to Invisible");                }));                list.Add(new FloatMenuOption(KinseyFormulaTitleDict[KinseyMode.Gaypocalypse], delegate                {                    kinseyFormulaCached = KinseyMode.Gaypocalypse;                    SetCacheAndBufferBasedOnKinseyMode();                    //Log.Message("Set to Gaypocalypse");                }));                list.Add(new FloatMenuOption(KinseyFormulaTitleDict[KinseyMode.Custom], delegate                {                    kinseyFormulaCached = KinseyMode.Custom;                    SetCacheAndBufferBasedOnKinseyMode();                    //Log.Message("Set to Custom");                }));                Find.WindowStack.Add(new FloatMenu(list));            }
             //Log.Message("SettingsWindowUtility.DrawSettingsWindow step 2");
             //Log.Message("SpeciesHelper.humanlikeDefs.Count() = " + SpeciesHelper.humanlikeDefs.Count());
             //Rect highlightRect = titleRect;
@@ -233,16 +234,16 @@ public static class SettingsWindowUtility{
 
         CheckboxEntry(nameof(PsychologySettings.enableEmpathy), ref titleRect, ref entryRect);        CheckboxEntry(nameof(PsychologySettings.enableIndividuality), ref titleRect, ref entryRect);                CheckboxEntry(nameof(PsychologySettings.enableElections), ref titleRect, ref entryRect);        if (BoolCachedDict.TryGetValue(nameof(PsychologySettings.enableElections), out bool value) && value)
         {
-            NumericEntry(nameof(PsychologySettings.mayorAge), 0f, 1E+09f, ref titleRect, ref entryRect);
-            NumericEntry(nameof(PsychologySettings.visitMayorMtbHours), 0f, 1E+09f, ref titleRect, ref entryRect);
-        }        CheckboxEntry(nameof(PsychologySettings.enableDateLetters), ref titleRect, ref entryRect);        NumericEntry(nameof(PsychologySettings.romanceChanceMultiplier), 0f, 1E+09f, ref titleRect, ref entryRect);        NumericEntry(nameof(PsychologySettings.romanceOpinionThreshold), -99f, 99f, ref titleRect, ref entryRect);
+            FloatEntry(nameof(PsychologySettings.mayorAge), 0f, 1E+09f, ref titleRect, ref entryRect);
+            FloatEntry(nameof(PsychologySettings.visitMayorMtbHours), 0f, 1E+09f, ref titleRect, ref entryRect);
+        }        CheckboxEntry(nameof(PsychologySettings.enableDateLetters), ref titleRect, ref entryRect);        FloatEntry(nameof(PsychologySettings.romanceChanceMultiplier), 0f, 1E+09f, ref titleRect, ref entryRect);        FloatEntry(nameof(PsychologySettings.romanceOpinionThreshold), -99f, 99f, ref titleRect, ref entryRect);
 
-        NumericEntry(nameof(PsychologySettings.conversationDuration), 15f, 180f, ref titleRect, ref entryRect);        NumericEntry(nameof(PsychologySettings.convoOpinionMultiplier), 0f, 3f, ref titleRect, ref entryRect);
+        FloatEntry(nameof(PsychologySettings.conversationDuration), 15f, 180f, ref titleRect, ref entryRect);        FloatEntry(nameof(PsychologySettings.convoOpinionMultiplier), 0f, 3f, ref titleRect, ref entryRect);
 
-        NumericEntry(nameof(PsychologySettings.mentalBreakAnxietyChance), 0f, 2f, ref titleRect, ref entryRect);        NumericEntry(nameof(PsychologySettings.imprisonedDebuff), 0f, 100f, ref titleRect, ref entryRect);
-        NumericEntry(nameof(PsychologySettings.traitOpinionMultiplier), 0f, 2f, ref titleRect, ref entryRect);
-        NumericEntry(nameof(PsychologySettings.personalityExtremeness), 0f, 1f, ref titleRect, ref entryRect);
-        NumericEntry(nameof(PsychologySettings.ideoPsycheMultiplier), 0f, 10f, ref titleRect, ref entryRect);
+        FloatEntry(nameof(PsychologySettings.mentalBreakAnxietyChance), 0f, 2f, ref titleRect, ref entryRect);        FloatEntry(nameof(PsychologySettings.imprisonedDebuff), 0f, 100f, ref titleRect, ref entryRect);
+        FloatEntry(nameof(PsychologySettings.traitOpinionMultiplier), 0f, 2f, ref titleRect, ref entryRect);
+        FloatEntry(nameof(PsychologySettings.personalityExtremeness), 0f, 1f, ref titleRect, ref entryRect);
+        FloatEntry(nameof(PsychologySettings.ideoPsycheMultiplier), 0f, 10f, ref titleRect, ref entryRect);
 
         Widgets.EndScrollView();
 
@@ -331,8 +332,18 @@ public static class SettingsWindowUtility{
             return;
         }
         Widgets.Checkbox(entryRect.x, entryRect.center.y - 0.5f * CheckboxSize, ref cachedBool);
-        BoolCachedDict[boolSettingName] = cachedBool;
-        Widgets.Label(titleRect, TitleDict[boolSettingName]);
+        
+        //Widgets.Label(titleRect, TitleDict[boolSettingName]);
+        if (UIAssets.ButtonLabel(titleRect, TitleDict[boolSettingName], false))
+        {
+            List<FloatMenuOption> list = new List<FloatMenuOption>();
+            list.Add(new FloatMenuOption("Reset".Translate(), delegate
+            {
+                FieldInfo fieldInfoDefault = AccessTools.Field(typeof(PsychologySettings), boolSettingName + "Default");
+                cachedBool = (bool)fieldInfoDefault.GetValue(null);
+            }));
+            Find.WindowStack.Add(new FloatMenu(list));
+        }
         Rect highlightRect = titleRect;
         highlightRect.xMin -= HighlightPadding;
         highlightRect.xMax = entryRect.xMax + HighlightPadding;
@@ -343,20 +354,35 @@ public static class SettingsWindowUtility{
         }, TooltipDict[boolSettingName].GetHashCode());
         titleRect.y += RowHeight;
         entryRect.y += RowHeight;
+        BoolCachedDict[boolSettingName] = cachedBool;
     }
 
-    public static void NumericEntry(string floatSettingName, float min, float max, ref Rect titleRect, ref Rect entryRect)    {
-        if (FloatCachedDict.TryGetValue(floatSettingName, out float numericCached) != true)
+    public static void FloatEntry(string floatSettingName, float min, float max, ref Rect titleRect, ref Rect entryRect)    {
+        if (FloatCachedDict.TryGetValue(floatSettingName, out float floatCached) != true)
         {
             Log.Warning("SettingsWindowUtility, could not find " + floatSettingName + " in cached settings");
             return;
         }
-        string numericBuffer = FloatBufferDict[floatSettingName];
-        UIAssets.TextFieldFloat(entryRect, ref numericCached, ref numericBuffer, min, max);
-        FloatCachedDict[floatSettingName] = numericCached;
-        FloatBufferDict[floatSettingName] = numericBuffer;
-        Widgets.Label(titleRect, TitleDict[floatSettingName]);
-        Rect highlightRect = titleRect;        highlightRect.xMin -= HighlightPadding;        highlightRect.xMax = entryRect.xMax + HighlightPadding;        Widgets.DrawHighlightIfMouseover(highlightRect);        TooltipHandler.TipRegion(highlightRect, delegate        {            return TooltipDict[floatSettingName];        }, TooltipDict[floatSettingName].GetHashCode());        titleRect.y += RowHeight;        entryRect.y += RowHeight;    }
+        string floatBuffer = FloatBufferDict[floatSettingName];
+        
+        
+        //Widgets.Label(titleRect, TitleDict[floatSettingName]);
+        if (UIAssets.ButtonLabel(titleRect, TitleDict[floatSettingName], false))
+        {
+            List<FloatMenuOption> list = new List<FloatMenuOption>();
+            list.Add(new FloatMenuOption("Reset".Translate(), delegate
+            {
+                FieldInfo fieldInfoDefault = AccessTools.Field(typeof(PsychologySettings), floatSettingName + "Default");
+                floatCached = (float)fieldInfoDefault.GetValue(null);
+                floatBuffer = floatCached.ToString();
+            }));
+            Find.WindowStack.Add(new FloatMenu(list));
+        }
+
+        UIAssets.TextFieldFloat(entryRect, ref floatCached, ref floatBuffer, min, max);
+
+        Rect highlightRect = titleRect;        highlightRect.xMin -= HighlightPadding;        highlightRect.xMax = entryRect.xMax + HighlightPadding;        Widgets.DrawHighlightIfMouseover(highlightRect);        TooltipHandler.TipRegion(highlightRect, delegate        {            return TooltipDict[floatSettingName];        }, TooltipDict[floatSettingName].GetHashCode());        titleRect.y += RowHeight;        entryRect.y += RowHeight;        FloatCachedDict[floatSettingName] = floatCached;
+        FloatBufferDict[floatSettingName] = floatBuffer;    }
 
     public static void KinseyCustomEntry(int i, ref Rect customWeightEntryRect)
     {
@@ -417,7 +443,7 @@ public static class SettingsWindowUtility{
             if (PsychologySettings.GetSettingFromName(boolSettingName) is bool boolValue)
             {
                 BoolCachedDict[boolSettingName] = boolValue;
-                Log.Message("Set cache of " + boolSettingName + " to a value of " + boolValue);
+                //Log.Message("Set cache of " + boolSettingName + " to a value of " + boolValue);
             }
             else
             {
@@ -429,7 +455,7 @@ public static class SettingsWindowUtility{
             {
                 FloatCachedDict[floatSettingName] = floatValue;
                 FloatBufferDict[floatSettingName] = floatValue.ToString();
-                Log.Message("Set cache of " + floatSettingName + " to a value of " + floatValue);
+                //Log.Message("Set cache of " + floatSettingName + " to a value of " + floatValue);
             }
             else
             {
@@ -479,11 +505,11 @@ public static class SettingsWindowUtility{
         //ideoPsycheMultiplierCached = PsychologySettings.ideoPsycheMultiplier;
         //ideoPsycheMultiplierBuffer = ideoPsycheMultiplierCached.ToString();
 
-        ////Log.Message("SetAllCachedToSettings(), step 4");
+        //Log.Message("SetAllCachedToSettings(), step 4");
         //speciesDictCached.Clear();
         //speciesBuffer.Clear();
-        ////Log.Message("humanlikeDefs.Count() = " + SpeciesHelper.humanlikeDefs.Count());
-        ////Log.Message("SetAllCachedToSettings(), step 5");
+        //Log.Message("humanlikeDefs.Count() = " + SpeciesHelper.humanlikeDefs.Count());
+        //Log.Message("SetAllCachedToSettings(), step 5");
         //foreach (ThingDef def in SpeciesHelper.registeredSpecies)
         //{
         //    //Log.Message("SetAllCachedToSettings(), step 5a");
@@ -496,7 +522,7 @@ public static class SettingsWindowUtility{
         //    speciesBuffer[defName] = new List<string> { settings.minDatingAge.ToString(), settings.minLovinAge.ToString() };
         //    //Log.Message("SetAllCachedToSettings(), step 5e");
         //}
-        ////Log.Message("SetAllCachedToSettings(), step 6");
+        //Log.Message("SetAllCachedToSettings(), step 6");
     }    public static void SaveAllSettings()    {        foreach (string boolSettingName in PsychologySettings.BoolSettingNameList)
         {
             PsychologySettings.SetSettingFromName(boolSettingName, BoolCachedDict[boolSettingName]);

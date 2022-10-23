@@ -164,7 +164,7 @@ public class PsychologySettings : ModSettings
             if (BoolSettingNameList.Add(settingName))
             {
                 CombinedSettingNameList.Add(settingName);
-                Log.Message("Psychology: added " + settingName + " as a bool setting");
+                //Log.Message("Psychology: added " + settingName + " as a bool setting");
             }
             return;
         }
@@ -175,11 +175,11 @@ public class PsychologySettings : ModSettings
             if (FloatSettingNameList.Add(settingName))
             {
                 CombinedSettingNameList.Add(settingName);
-                Log.Message("Psycholog: added " + settingName + " as a float setting");
+                //Log.Message("Psycholog: added " + settingName + " as a float setting");
             }
             return;
         }
-        Log.Error("Could not add " + settingName + " correctly");
+        Log.Error("Could not add setting " + settingName + " correctly");
     }
 
     public static object GetSettingFromName(string settingName)
@@ -188,7 +188,7 @@ public class PsychologySettings : ModSettings
         object obj = field.GetValue(null);
         if (obj == null)
         {
-            Log.Message("GetSettingFromName, object was null");
+            Log.Error("GetSettingFromName, object was null");
         }
         return obj;
     }
@@ -212,7 +212,7 @@ public class PsychologySettings : ModSettings
     public static void ResetSettingToDefault(string settingName)
     {
         FieldInfo fieldInfoSetting = AccessTools.Field(typeof(PsychologySettings), settingName);
-        FieldInfo fieldInfoDefault = AccessTools.Field(typeof(PsychologySettings), settingName + "");
+        FieldInfo fieldInfoDefault = AccessTools.Field(typeof(PsychologySettings), settingName + "Default");
         fieldInfoSetting.SetValue(null, fieldInfoDefault.GetValue(null));
     }
 

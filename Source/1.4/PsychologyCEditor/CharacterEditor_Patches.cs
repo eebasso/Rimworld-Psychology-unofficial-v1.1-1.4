@@ -33,7 +33,7 @@ public class CharacterEditor_Patches
         harmonyInstance.Patch(originalInfo, prefix: harmonyMethod);
 
         //harmonyInstance.PatchAll();
-        Log.Message("Psychology: completed patches for compatibility with Character Editor.");
+        //Log.Message("Psychology: completed patches for compatibility with Character Editor.");
         //Log.Message("Psychology: completed compability patches for Character Editor");
     }
 
@@ -89,26 +89,26 @@ public class CharacterEditor_Patches
     //// Transpiler method
     //public static IEnumerable<CodeInstruction> DoWindowContentsTranspiler(IEnumerable<CodeInstruction> codes)
     //{
-    //    Log.Message("DoWindowContentsTranspiler: Step 0");
+    //    //Log.Message("DoWindowContentsTranspiler: Step 0");
     //    Type CEditorType = AccessTools.TypeByName("CharacterEditor.CEditor");
-    //    Log.Message("DoWindowContentsTranspiler: Step 1");
+    //    //Log.Message("DoWindowContentsTranspiler: Step 1");
     //    MethodInfo methodInfo0 = AccessTools.Method(CEditorType, "get_API");
-    //    Log.Message("DoWindowContentsTranspiler: Step 2");
+    //    //Log.Message("DoWindowContentsTranspiler: Step 2");
     //    MethodInfo methodInfo1 = AccessTools.Method(CEditorType, "get_Pawn");
-    //    Log.Message("DoWindowContentsTranspiler: Step 3");
+    //    //Log.Message("DoWindowContentsTranspiler: Step 3");
     //    // Load inRect on the stack
-    //    Log.Message("DoWindowContentsTranspiler: Step 4");
+    //    //Log.Message("DoWindowContentsTranspiler: Step 4");
     //    yield return new CodeInstruction(OpCodes.Ldarg_1);
     //    // Load Character.CEditor.API
-    //    Log.Message("DoWindowContentsTranspiler: Step 5");
+    //    //Log.Message("DoWindowContentsTranspiler: Step 5");
     //    yield return new CodeInstruction(OpCodes.Call, methodInfo0);
     //    // Load Character.CEditor.API.Pawn
-    //    Log.Message("DoWindowContentsTranspiler: Step 6");
+    //    //Log.Message("DoWindowContentsTranspiler: Step 6");
     //    yield return new CodeInstruction(OpCodes.Callvirt, methodInfo1);
     //    // Call DrawPsycheWindow
-    //    Log.Message("DoWindowContentsTranspiler: Step 7");
+    //    //Log.Message("DoWindowContentsTranspiler: Step 7");
     //    yield return CodeInstruction.Call(typeof(CharacterEditor_DialogPsychology_Patch), nameof(DrawPsycheWindow), new Type[] { typeof(Rect), typeof(Pawn) });
-    //    Log.Message("DoWindowContentsTranspiler: Step 8");
+    //    //Log.Message("DoWindowContentsTranspiler: Step 8");
     //}
 
     //public static void DrawPsycheWindow(Rect inRect, Pawn pawn)
@@ -137,37 +137,37 @@ public class CharacterEditor_Patches
 
     //public static bool DoWindowContentsPrefix(Rect inRect)
     //{
-    //    Log.Message("DoWindowContentsPrefix: Step 0");
+    //    //Log.Message("DoWindowContentsPrefix: Step 0");
     //    GUI.EndGroup();
-    //    Log.Message("DoWindowContentsPrefix: Step 1");
+    //    //Log.Message("DoWindowContentsPrefix: Step 1");
     //    Pawn pawn = Get_Pawn(Get_API());
-    //    Log.Message("DoWindowContentsPrefix: Step 2");
+    //    //Log.Message("DoWindowContentsPrefix: Step 2");
     //    if (!PsycheHelper.PsychologyEnabled(pawn))
     //    {
     //        return false;
     //    }
-    //    Log.Message("DoWindowContentsPrefix: Step 3");
+    //    //Log.Message("DoWindowContentsPrefix: Step 3");
     //    Rect psycheRect = PsycheCardUtility.PsycheRect;
-    //    Log.Message("DoWindowContentsPrefix: Step 4");
+    //    //Log.Message("DoWindowContentsPrefix: Step 4");
     //    Rect editRect = new Rect(psycheRect.xMax, psycheRect.y, EditPsycheUtility.CalculateEditWidth(pawn), psycheRect.height);
-    //    Log.Message("DoWindowContentsPrefix: Step 5");
+    //    //Log.Message("DoWindowContentsPrefix: Step 5");
     //    inRect = new Rect(psycheRect.x, psycheRect.y, psycheRect.width + editRect.width, psycheRect.height);
-    //    Log.Message("DoWindowContentsPrefix: Step 6");
+    //    //Log.Message("DoWindowContentsPrefix: Step 6");
     //    Find.WindowStack.currentlyDrawnWindow.windowRect = inRect;
-    //    Log.Message("DoWindowContentsPrefix: Step 7");
+    //    //Log.Message("DoWindowContentsPrefix: Step 7");
     //    Find.WindowStack.currentlyDrawnWindow.windowRect.center = 0.5f * new Vector2(UI.screenWidth, UI.screenHeight);
-    //    Log.Message("DoWindowContentsPrefix: Step 8");
+    //    //Log.Message("DoWindowContentsPrefix: Step 8");
 
     //    GUI.BeginGroup(inRect);
-    //    Log.Message("DoWindowContentsPrefix: Step 9");
+    //    //Log.Message("DoWindowContentsPrefix: Step 9");
     //    PsycheCardUtility.DrawPsycheCard(psycheRect, pawn, true, true);
-    //    Log.Message("DoWindowContentsPrefix: Step 10");
+    //    //Log.Message("DoWindowContentsPrefix: Step 10");
     //    EditPsycheUtility.DrawEditPsyche(editRect, pawn);
-    //    Log.Message("DoWindowContentsPrefix: Step 11");
+    //    //Log.Message("DoWindowContentsPrefix: Step 11");
     //    UIAssets.DrawLineVertical(editRect.x, editRect.y, editRect.height, UIAssets.LineColor);
-    //    Log.Message("DoWindowContentsPrefix: Step 12");
+    //    //Log.Message("DoWindowContentsPrefix: Step 12");
     //    GUI.EndGroup();
-    //    Log.Message("DoWindowContentsPrefix: Step 13");
+    //    //Log.Message("DoWindowContentsPrefix: Step 13");
     //    return false;
     //}
 }

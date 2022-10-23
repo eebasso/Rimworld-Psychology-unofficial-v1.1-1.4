@@ -21,6 +21,16 @@ public static class InteractionWorker_MarriageProposal_SelectionWeightPatch
         {
             return;
         }
+        if (__result == 0f)
+        {
+            return;
+        }
+        if (initiator.relations.GetDirectRelation(PawnRelationDefOf.Lover, recipient) == null)
+        {
+            __result = 0f;
+            return;
+        }
+
         CompPsychology initiatorComp = PsycheHelper.Comp(initiator);
         __result *= initiatorComp.Psyche.GetPersonalityRating(PersonalityNodeDefOf.Adventurous) + initiatorComp.Psyche.GetPersonalityRating(PersonalityNodeDefOf.Romantic);
         if (PsychologySettings.enableKinsey)
@@ -34,7 +44,7 @@ public static class InteractionWorker_MarriageProposal_SelectionWeightPatch
         }
         if (initiator.story.traits.HasTrait(TraitDefOfPsychology.Codependent))
         {
-            __result += 0.5f;
+            __result *= 2f;
         }
         __result *= PsychologySettings.romanceChanceMultiplier;
     }

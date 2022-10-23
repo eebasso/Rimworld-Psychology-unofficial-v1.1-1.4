@@ -23,12 +23,13 @@
 	<EnableIndividualityTitle>Enable individuality thoughts</EnableIndividualityTitle>
 	<EnableIndividualityTooltip>Turn this off to disable the negative thought your colonists will get if they are wearing perfectly matching outfits with other colonists. This thought adds extra difficulty, so it's optional, but recommended. Requires restart.</EnableIndividualityTooltip>
 	
-	<EnableElectionsTitle>Enable elections</EnableElectionsTitle>
-	<EnableElectionsTooltip>Turn this off to prevent your colonists from having yearly elections. It will not stop an election in progress, and any existing mayor will be reverted to a normal colonist. This will not affect compatibility with other mods. Requires restart for full effect.</EnableElectionsTooltip> 
-	<!--<EnableElectionsTooltip>Turn this off to prevent your colonists from having yearly elections for leaders. This will not affect compatibility with other mods.</EnableElectionsTooltip>-->
+	
 	
 	<ConversationDurationTitle>Conversation memory duration</ConversationDurationTitle>
 	<ConversationDurationTooltip>Set how long people will remember conversations for. The default is 60 days, i.e. one year. The minimum is 15 day, one quadrum, and the maximum is 180 days, three years. Setting it lower will make colonists' interactions with each other more ephemeral, and setting it higher will make them more lasting. Requires restart.</ConversationDurationTooltip>
+
+	<ConvoOpinionMultiplierTitle>Conversation opinion multiplier</ConvoOpinionMultiplierTitle>
+	<ConvoOpinionMultiplierTooltip>This multiplier controls how large the opinion changes will be from conversations.</ConvoOpinionMultiplierTooltip>
 	
 	<EnableDateLettersTitle>Send date letters</EnableDateLettersTitle>
 	<EnableDateLettersTooltip>Turn this off to disable receiving letters when your colonists plan a date together.</EnableDateLettersTooltip>
@@ -48,7 +49,7 @@
 	<MayorAgeTitle>Mayor age</MayorAgeTitle>
 	<MayorAgeTooltip>Minimum age required for someone to be able to become a mayor.</MayorAgeTooltip>
 
-	<VisitMayorMtbHoursTitle>Hours between mayor vists</VisitMayorMtbHoursTitle>
+	<VisitMayorMtbHoursTitle>Hours between mayor visits</VisitMayorMtbHoursTitle>
 	<VisitMayorMtbHoursTooltip>This controls the expected time in hours between constituents meeting with their mayor. Lower values will increase the frequency of visits.</VisitMayorMtbHoursTooltip>
 
 	<MentalBreakAnxietyChanceTitle>Mental break anxiety chance</MentalBreakAnxietyChanceTitle>

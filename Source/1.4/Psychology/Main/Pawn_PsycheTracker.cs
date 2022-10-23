@@ -22,7 +22,7 @@ public class Pawn_PsycheTracker : IExposable
     private Pawn pawn;
     private HashSet<PersonalityNode> nodes;
 
-    private Dictionary<PersonalityNodeDef, PersonalityNode> nodeDict = new Dictionary<PersonalityNodeDef, PersonalityNode>();
+    public Dictionary<PersonalityNodeDef, PersonalityNode> nodeDict = new Dictionary<PersonalityNodeDef, PersonalityNode>();
     private Dictionary<string, float> cachedOpinions = new Dictionary<string, float>();
     private Dictionary<string, bool> recalcCachedOpinions = new Dictionary<string, bool>();
 
@@ -459,10 +459,10 @@ public class Pawn_PsycheTracker : IExposable
         //stopwatch.Reset();
     }
 
-    public void DeepCopyFromOtherTracker(Pawn_PsycheTracker otherTracker)
+    public void DeepCopyFromOtherTracker(Pawn_PsycheTracker trackerToCopy)
     {
-        this.upbringing = otherTracker.upbringing;
-        this.lastDateTick = otherTracker.lastDateTick;
+        this.upbringing = trackerToCopy.upbringing;
+        this.lastDateTick = trackerToCopy.lastDateTick;
 
         this.nodes = new HashSet<PersonalityNode>();
         foreach (PersonalityNodeDef def in PersonalityNodeMatrix.defList)
@@ -471,29 +471,29 @@ public class Pawn_PsycheTracker : IExposable
         }
         foreach (PersonalityNode node in this.nodes)
         {
-            node.rawRating = otherTracker.GetPersonalityNodeOfDef(node.def).rawRating;
+            node.rawRating = trackerToCopy.GetPersonalityNodeOfDef(node.def).rawRating;
         }
         foreach (PersonalityNode n in this.nodes)
         {
             this.nodeDict[n.def] = n;
         }
-        foreach (KeyValuePair<string, float> kvp in otherTracker.cachedOpinions)
+        foreach (KeyValuePair<string, float> kvp in trackerToCopy.cachedOpinions)
         {
             this.cachedOpinions[kvp.Key] = kvp.Value;
         }
-        foreach (KeyValuePair<string, bool> kvp in otherTracker.recalcCachedOpinions)
+        foreach (KeyValuePair<string, bool> kvp in trackerToCopy.recalcCachedOpinions)
         {
             this.recalcCachedOpinions[kvp.Key] = kvp.Value;
         }
-        foreach (KeyValuePair<Pair<string, string>, float> kvp in otherTracker.cachedDisagreementWeights)
+        foreach (KeyValuePair<Pair<string, string>, float> kvp in trackerToCopy.cachedDisagreementWeights)
         {
             this.cachedDisagreementWeights[new Pair<string, string>(kvp.Key.First, kvp.Key.Second)] = kvp.Value;
         }
-        foreach (KeyValuePair<Pair<string, string>, bool> kvp in otherTracker.recalcNodeDisagreement)
+        foreach (KeyValuePair<Pair<string, string>, bool> kvp in trackerToCopy.recalcNodeDisagreement)
         {
             this.recalcNodeDisagreement[new Pair<string, string>(kvp.Key.First, kvp.Key.Second)] = kvp.Value;
         }
-        foreach (KeyValuePair<MemeDef, Dictionary<PersonalityNodeDef, float>> kvp0 in otherTracker.dailyCertaintyFromMemesAndNodes)
+        foreach (KeyValuePair<MemeDef, Dictionary<PersonalityNodeDef, float>> kvp0 in trackerToCopy.dailyCertaintyFromMemesAndNodes)
         {
             this.dailyCertaintyFromMemesAndNodes[kvp0.Key] = new Dictionary<PersonalityNodeDef, float>();
             foreach (KeyValuePair<PersonalityNodeDef, float> kvp1 in kvp0.Value)
@@ -501,7 +501,7 @@ public class Pawn_PsycheTracker : IExposable
                 this.dailyCertaintyFromMemesAndNodes[kvp0.Key][kvp1.Key] = kvp1.Value;
             }
         }
-        foreach (KeyValuePair<PreceptDef, Dictionary<PersonalityNodeDef, float>> kvp0 in otherTracker.dailyCertaintyFromPerceptsAndNodes)
+        foreach (KeyValuePair<PreceptDef, Dictionary<PersonalityNodeDef, float>> kvp0 in trackerToCopy.dailyCertaintyFromPerceptsAndNodes)
         {
             this.dailyCertaintyFromPerceptsAndNodes[kvp0.Key] = new Dictionary<PersonalityNodeDef, float>();
             foreach (KeyValuePair<PersonalityNodeDef, float> kvp1 in kvp0.Value)
@@ -511,15 +511,19 @@ public class Pawn_PsycheTracker : IExposable
         }
     }
 
-    public float CalculateCertaintyChangePerDay(Ideo ideo, bool addToDicts)
+    public float CalculateCertaintyChangePerDay(Ideo ideo, bool addToDicts = true)
     {
+        //Log.Message("CalculateCertaintyChangePerDay, start");
+        CalculateAdjustedRatings();
         if (addToDicts)
         {
+            //Log.Message("CalculateCertaintyChangePerDay, clearing dictionaries");
             dailyCertaintyFromMemesAndNodes.Clear();
             dailyCertaintyFromPerceptsAndNodes.Clear();
         }
         if (ideo == null)
         {
+            //Log.Message("ideo is null for pawn " + pawn);
             return 0f;
         }
         //CalculateAdjustedRatings();
@@ -530,14 +534,16 @@ public class Pawn_PsycheTracker : IExposable
         PreceptDef preceptDef;
         PersonalityNodeDef nodeDef;
         foreach (KeyValuePair<MemeDef, Dictionary<PersonalityNodeDef, float>> kvp0 in PersonalityNodeIdeoUtility.memesAffectedByNodes)
-        {
+        {   
             memeDef = kvp0.Key;
+            //Log.Message("CalculateCertaintyChangePerDay, iterating over memesAffectedByNodes, meme def = " + memeDef.LabelCap);
             if (ideo.HasMeme(memeDef) != true)
             {
                 continue;
             }
             if (addToDicts && dailyCertaintyFromMemesAndNodes.ContainsKey(memeDef) != true)
             {
+                //Log.Message("CalculateCertaintyChangePerDay, created new dictionary for meme def " + memeDef.LabelCap);
                 dailyCertaintyFromMemesAndNodes[memeDef] = new Dictionary<PersonalityNodeDef, float>();
             }
             foreach (KeyValuePair<PersonalityNodeDef, float> kvp1 in kvp0.Value)
@@ -546,8 +552,10 @@ public class Pawn_PsycheTracker : IExposable
                 rating = GetPersonalityRating(nodeDef);
                 adjustment = PsycheHelper.DailyCertaintyChangeScale * (2f * rating - 1f) * kvp1.Value;
                 certaintyChange += adjustment;
+                //Log.Message("CalculateCertaintyChangePerDay, meme def " + memeDef.LabelCap + ", and node def = " + nodeDef.LabelCap);
                 if (addToDicts)
                 {
+                    //Log.Message("CalculateCertaintyChangePerDay, added memeDef: " + memeDef.LabelCap + ", with nodeDef: " + nodeDef + ", and adjustment: " + adjustment);
                     dailyCertaintyFromMemesAndNodes[memeDef][nodeDef] = adjustment;
                 }
             }
@@ -573,6 +581,13 @@ public class Pawn_PsycheTracker : IExposable
                 {
                     dailyCertaintyFromPerceptsAndNodes[preceptDef][nodeDef] = adjustment;
                 }
+            }
+        }
+        foreach (KeyValuePair<MemeDef, Dictionary<PersonalityNodeDef, float>> kvp0 in dailyCertaintyFromMemesAndNodes)
+        {
+            foreach (KeyValuePair<PersonalityNodeDef, float> kvp1 in kvp0.Value)
+            {
+                //Log.Message("CalculateCertaintyChangePerDay, memeDef: " + kvp0.Key.LabelCap + ", with nodeDef: " + kvp1.Key + ", and adjustment: " + kvp1.Value);
             }
         }
         return certaintyChange;
@@ -620,12 +635,15 @@ public class Pawn_PsycheTracker : IExposable
 
     public void BoostRatingsTowardsIdeo(Ideo ideo, float alpha, bool randomize)
     {
+        CalculateAdjustedRatings();
         float[] newRawRatings = RatingsAfterBoostTowardsIdeo(ideo, alpha, randomize);
         foreach (PersonalityNode node in this.nodes)
         {
             node.rawRating = newRawRatings[PersonalityNodeMatrix.indexDict[node.def]];
         }
-        CalculateAdjustedRatings();
+        int idnumber = pawn.thingIDNumber;
+        float certaintyChange = CalculateCertaintyChangePerDay(pawn.Ideo, true);
+        PsycheHelper.GameComp.CachedCertaintyChangePerDayDict[idnumber] = certaintyChange;
     }
 
     public float[] RatingsAfterBoostTowardsIdeo(Ideo ideo, float alpha, bool randomize = false)
@@ -656,68 +674,66 @@ public class Pawn_PsycheTracker : IExposable
         return newRawRatings;
     }
 
-    public string IdeoAbilityEffectOnPsycheTooltip(float multiplier)
-    {
-        Ideo ideo = this.pawn.Ideo;
-        int index;
-        // Calculate current compatibility 
-        CalculateAdjustedRatings();
-        float oldDailyChange = CalculateCertaintyChangePerDay(ideo, false);
-        float[] oldRawRatings = new float[PersonalityNodeMatrix.order];
-        float[] oldAdjRatings = new float[PersonalityNodeMatrix.order];
+    //public string IdeoAbilityEffectOnPsycheTooltip(float multiplier)
+    //{
+    //    Ideo ideo = this.pawn.Ideo;
+    //    int index;
+    //    // Calculate current compatibility 
+    //    CalculateAdjustedRatings();
+    //    float oldDailyChange = CalculateCertaintyChangePerDay(ideo, true);
+    //    float[] oldRawRatings = new float[PersonalityNodeMatrix.order];
+    //    //float[] oldAdjRatings = new float[PersonalityNodeMatrix.order];
 
-        // Calculate hypothetical new raw ratings
-        float[] newRawRatings = RatingsAfterBoostTowardsIdeo(ideo, multiplier, false);
-        float[] newAdjRatings = new float[PersonalityNodeMatrix.order];
-        foreach (PersonalityNode node in this.nodes)
-        {
-            index = PersonalityNodeMatrix.indexDict[node.def];
-            // Store old raw ratings
-            oldRawRatings[index] = node.rawRating;
-            // Store old adjusted ratings
-            oldAdjRatings[index] = node.AdjustedRating;
-            // Set raw to new ratings
-            node.rawRating = newRawRatings[index];
-        }
-        // Calculate new adjusted ratings and compatibility
-        CalculateAdjustedRatings();
-        float newDailyChange = CalculateCertaintyChangePerDay(ideo, false);
-        foreach (PersonalityNode node in this.nodes)
-        {
-            index = PersonalityNodeMatrix.indexDict[node.def];
-            // Store new adjusted ratings
-            newAdjRatings[index] = node.AdjustedRating;
-            // Restore old raw ratings
-            node.rawRating = oldRawRatings[index];
+    //    float[] newRawRatings = RatingsAfterBoostTowardsIdeo(ideo, multiplier, true);
+    //    //float[] newAdjRatings = new float[PersonalityNodeMatrix.order];
+    //    foreach (PersonalityNode node in this.nodes)
+    //    {
+    //        index = PersonalityNodeMatrix.indexDict[node.def];
+    //        // Store old raw ratings
+    //        oldRawRatings[index] = node.rawRating;
+    //        // Store old adjusted ratings
+    //        //oldAdjRatings[index] = node.AdjustedRating;
+    //        // Set raw to new ratings
+    //        node.rawRating = newRawRatings[index];
+    //    }
+    //    // Calculate new adjusted ratings and compatibility
+    //    CalculateAdjustedRatings();
+    //    float newDailyChange = CalculateCertaintyChangePerDay(ideo, false);
+    //    foreach (PersonalityNode node in this.nodes)
+    //    {
+    //        //index = PersonalityNodeMatrix.indexDict[node.def];
+    //        // Store new adjusted ratings
+    //        //newAdjRatings[index] = node.AdjustedRating;
+    //        // Restore old raw ratings
+    //        //node.rawRating = oldRawRatings[index];
+    //    }
+    //    // Restore old adjusted ratings
+    //    CalculateAdjustedRatings();
 
-        }
-        // Restore old adjusted ratings
-        CalculateAdjustedRatings();
+    //    //List<Pair<PersonalityNodeDef, float>> list = new List<Pair<PersonalityNodeDef, float>>();
+    //    //foreach (PersonalityNodeDef nodeDef in PersonalityNodeMatrix.defList)
+    //    //{
+    //    //    //index = PersonalityNodeMatrix.indexDict[nodeDef];
+    //    //    //list.Add(new Pair<PersonalityNodeDef, float>(nodeDef, newAdjRatings[index] - oldAdjRatings[index]));
+    //    //}
+    //    //list.OrderBy(x => -Mathf.Abs(x.Second));
 
-        List<Pair<PersonalityNodeDef, float>> list = new List<Pair<PersonalityNodeDef, float>>();
-        foreach (PersonalityNodeDef nodeDef in PersonalityNodeMatrix.defList)
-        {
-            index = PersonalityNodeMatrix.indexDict[nodeDef];
-            list.Add(new Pair<PersonalityNodeDef, float>(nodeDef, newAdjRatings[index] - oldAdjRatings[index]));
-        }
-        list.OrderBy(x => -Mathf.Abs(x.Second));
+    //    //string text = "";
+    //    //text += "Counseling will alter {PAWN_possessive} personality to be more compatible with {IDEO}.";
+    //    //text += "\n\nEffects on psyche";
+    //    //text += "\n -  Certainty change per day increases on average by " + (newCompat - oldCompat).ToStringPercent();
 
-        //string text = "";
-        //text += "Counseling will alter {PAWN_possessive} personality to be more compatible with {IDEO}.";
-        //text += "\n\nEffects on psyche";
-        //text += "\n -  Certainty change per day increases on average by " + (newCompat - oldCompat).ToStringPercent();
+    //    string oldPercent = (oldDailyChange > 0f ? "+" : "") + oldDailyChange.ToStringPercent();
+    //    string newPercent = (newDailyChange > 0f ? "+" : "") + newDailyChange.ToStringPercent();
 
-        string oldPercent = (oldDailyChange > 0f ? "+" : "") + oldDailyChange.ToStringPercent();
-        string newPercent = (newDailyChange > 0f ? "+" : "") + newDailyChange.ToStringPercent();
-
-        // ToDo: turn this into translation
-        string text = "After successful indoctrination, daily certainty change due to personality will increase from " + oldPercent + " to " + newPercent + " up to some randomness.";
-        if (newDailyChange < oldDailyChange)
-        {
-            Log.Error("New daily change is lower than old daily change");
-        }
-        return text;
-    }
+    //    // ToDo: turn this into translation
+    //    string text = "Effect on daily certainty change due to personality:\nShould increase from " + oldPercent + " to " + newPercent + ", up to some randomness.";
+    //    if (newDailyChange < oldDailyChange)
+    //    {
+    //        Log.Error("New daily change is lower than old daily change");
+    //    }
+    //    return text;
+    //}
 
 }
 

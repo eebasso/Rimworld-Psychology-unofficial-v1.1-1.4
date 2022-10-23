@@ -77,23 +77,23 @@ public class TraitSet_ManualPatches
         switch (num)
         {
             case 1:
-                Log.Message("GainTrait_KinseyEnabledPrefix, reset romantic drive for pawn " + ___pawn + " and trait " + trait);
+                //Log.Message("GainTrait_KinseyEnabledPrefix, reset romantic drive for pawn " + ___pawn + " and trait " + trait);
                 PsycheHelper.Comp(___pawn).Sexuality.romanticDrive = Mathf.Max(0.5f, PsycheHelper.Comp(___pawn).Sexuality.romanticDrive);
                 return true;
             case 2:
-                Log.Message("GainTrait_KinseyEnabledPrefix, reset sex drive for pawn " + ___pawn + " and trait " + trait);
+                //Log.Message("GainTrait_KinseyEnabledPrefix, reset sex drive for pawn " + ___pawn + " and trait " + trait);
                 PsycheHelper.Comp(___pawn).Sexuality.sexDrive = Mathf.Max(0.5f, PsycheHelper.Comp(___pawn).Sexuality.sexDrive);
                 return true;
             case 3:
-                Log.Message("GainTrait_KinseyEnabledPrefix, reroll sexuality to asexual for pawn " + ___pawn + " and trait " + trait);
+                //Log.Message("GainTrait_KinseyEnabledPrefix, reroll sexuality to asexual for pawn " + ___pawn + " and trait " + trait);
                 PsycheHelper.Comp(___pawn).Sexuality.AsexualTraitReroll();
                 return false;
             case 4:
-                Log.Message("GainTrait_KinseyEnabledPrefix, reroll sexuality to bisexual for pawn " + ___pawn + " and trait " + trait);
+                //Log.Message("GainTrait_KinseyEnabledPrefix, reroll sexuality to bisexual for pawn " + ___pawn + " and trait " + trait);
                 PsycheHelper.Comp(___pawn).Sexuality.BisexualTraitReroll();
                 return false;
             case 5:
-                Log.Message("GainTrait_KinseyEnabledPrefix, reroll sexuality to homosexual for pawn " + ___pawn + " and trait " + trait);
+                //Log.Message("GainTrait_KinseyEnabledPrefix, reroll sexuality to homosexual for pawn " + ___pawn + " and trait " + trait);
                 PsycheHelper.Comp(___pawn).Sexuality.GayTraitReroll();
                 return false;
             default:

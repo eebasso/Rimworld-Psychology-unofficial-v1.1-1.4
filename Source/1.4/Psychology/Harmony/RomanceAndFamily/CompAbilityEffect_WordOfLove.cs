@@ -106,7 +106,7 @@ public static class CompAbilityEffect_WordOfLove_KinseyEnabledPatches
             Log.Error(failureMessage);
             yield break;
         }
-        Log.Message("ChangeLogicForSexualityTraits, found number of matches = " + numMatches);
+        //Log.Message("ChangeLogicForSexualityTraits, found number of matches = " + numMatches);
     }
 
     public static bool AsexualCheckKinseyEnabled(Pawn pawn)

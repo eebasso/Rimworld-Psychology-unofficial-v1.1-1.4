@@ -39,14 +39,14 @@ public static class Pawn_RelationsTracker_LovinChancePatch
         // However, should we use the vanilla formula or just diable all dating?
         if (!pawnHasPsyche || !otherPawnHasPsyche)
         {
-            Log.Message("SecondaryLovinChanceFactor, Psychology not enabled for pawn and/or otherPawn");
+            //Log.Message("SecondaryLovinChanceFactor, Psychology not enabled for pawn and/or otherPawn");
             __result = 0f; // Disable all dating for pawns with no psyche
             return false;
             //return true // Use the vanilla formula
         }
         if (pawn == otherPawn)
         {
-            Log.Message("SecondaryLovinChanceFactor, pawn == otherPawn");
+            //Log.Message("SecondaryLovinChanceFactor, pawn == otherPawn");
             __result = 0f;
             return false;
         }
@@ -89,7 +89,7 @@ public static class Pawn_RelationsTracker_LovinChancePatch
         float ageFactor = CalculateAgeFactor(pawn, otherPawn);
         if (ageFactor == 0f)
         {
-            Log.Message("SecondaryLovinChanceFactor, ageFactor = 0");
+            //Log.Message("SecondaryLovinChanceFactor, ageFactor = 0");
             __result = 0f;
             return false;
         }

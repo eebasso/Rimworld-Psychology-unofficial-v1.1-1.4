@@ -30,7 +30,7 @@ namespace Psychology.Harmony;
 
     public static void RecalcAdjustedRatings(Pawn pawn)
     {
-        Log.Message("SkillRecord_Learn_Patch, AdjustRatings fired for pawn " + pawn);
+        //Log.Message("SkillRecord_Learn_Patch, AdjustRatings fired for pawn " + pawn);
         if (PsycheHelper.PsychologyEnabled(pawn) != true)
         {
             return;

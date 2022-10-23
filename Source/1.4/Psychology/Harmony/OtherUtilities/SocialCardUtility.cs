@@ -90,31 +90,43 @@ public class SocialCardUtility_DrawPawnCertainty
         }
         //Log.Message("AddPersonalityEffectsToTip, pawn.Ideo != null");
         Pawn_PsycheTracker pt = PsycheHelper.Comp(pawn).Psyche;
+
+        pt.CalculateAdjustedRatings();
         //Log.Message("AddPersonalityEffectsToTip, CompatibilityWithIdeo");
-        float changeFromPsyche = PsycheHelper.GameComp.CertaintyChange(pawn, true);
+        float changeFromPsyche = pt.CalculateCertaintyChangePerDay(pawn.Ideo, true);
         //Log.Message("AddPersonalityEffectsToTip, add to text");
+        int idnumber = pawn.thingIDNumber;
+        PsycheHelper.GameComp.CachedCertaintyChangePerDayDict[idnumber] = changeFromPsyche;
+
 
         string text = "\n\nEffects from personality: " + (changeFromPsyche > 0f ? "+" : "") + changeFromPsyche.ToStringPercent();
+        //Log.Message("AddPersonalityEffectsToTip, step 1");
         foreach (KeyValuePair<MemeDef, Dictionary<PersonalityNodeDef, float>> memeDict in pt.dailyCertaintyFromMemesAndNodes)
         {
+            //Log.Message("AddPersonalityEffectsToTip, step 2");
             if (pawn.Ideo.HasMeme(memeDict.Key) != true)
             {
                 continue;
             }
-            text += "\n -  " + memeDict.Key.label.CapitalizeFirst() + ": ";
+            //Log.Message("AddPersonalityEffectsToTip, step 2");
+            text += "\n -  " + memeDict.Key.LabelCap + ": ";
             TextFromDict(memeDict.Value, pt, ref text);
         }
+        //Log.Message("AddPersonalityEffectsToTip, step 4");
         foreach (KeyValuePair<PreceptDef, Dictionary<PersonalityNodeDef, float>> preceptDict in pt.dailyCertaintyFromPerceptsAndNodes)
         {
+            //Log.Message("AddPersonalityEffectsToTip, step 5");
             if (pawn.Ideo.HasPrecept(preceptDict.Key) != true)
             {
                 continue;
             }
-            text += "\n -  " + preceptDict.Key.issue.label.CapitalizeFirst() + ", " + preceptDict.Key.label + ": ";
+            //Log.Message("AddPersonalityEffectsToTip, step 6");
+            text += "\n -  " + preceptDict.Key.issue.LabelCap + ", " + preceptDict.Key.label + ": ";
             TextFromDict(preceptDict.Value, pt, ref text);
         }
         //Log.Message("Colorize text");
         text = text.Colorize(Color.grey);
+        //Log.Message("AddPersonalityEffectsToTip, text = " + text);
         return tip + text;
     }
 

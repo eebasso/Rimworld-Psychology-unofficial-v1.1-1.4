@@ -37,6 +37,7 @@ public static class PersonalityNodeIdeoUtility
             if (def.preceptCertaintyModifiers != null && def.preceptCertaintyModifiers.Count > 0)
             {
                 //Log.Message("preceptCertaintyModifiers exist for " + def.defName);
+                
                 foreach (PersonalityNodePreceptCertaintyModifier pcm in def.preceptCertaintyModifiers)
                 {
                     if (!preceptsAffectedByNodes.ContainsKey(pcm.precept))

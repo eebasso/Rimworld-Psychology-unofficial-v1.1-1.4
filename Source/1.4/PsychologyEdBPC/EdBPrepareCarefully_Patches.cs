@@ -25,7 +25,7 @@ public static class EdBPrepareCarefully_Patches
         harmonyMethod = new HarmonyMethod(typeof(EdBPrepareCarefully_Patches).GetMethod(nameof(EdBPrepareCarefully_Patches.PanelBackstory_DrawTranspiler)));
         harmonyInstance.Patch(originalInfo, transpiler: harmonyMethod);
 
-        Log.Message("Psychology: completed patches for compatibility with Prepare Carefully.");
+        //Log.Message("Psychology: completed patches for compatibility with Prepare Carefully.");
     }
 
     public static IEnumerable<CodeInstruction> PanelBackstory_DrawTranspiler(IEnumerable<CodeInstruction> codes)

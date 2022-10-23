@@ -212,7 +212,7 @@ public class PersonalityNodeMatrix
         //        float num3 = parentTransformMatrix[i + j * order];
         //        rowOfMCP += "{" + def2.defName + " " + num1 + ", " + num2 + ", " + num3 + "}, ";
         //    }
-        //    Log.Message(rowOfMCP);
+        //    //Log.Message(rowOfMCP);
         //}
         //for (int j = 0; j < 10; j++)
         //{
@@ -223,13 +223,13 @@ public class PersonalityNodeMatrix
         //        vecList.Add(new Pair<string, float>(def.defName, V[i + (order - 1 - j) * order]));
         //    }
         //    vecList = vecList.OrderBy(pair => -Mathf.Abs(pair.Second)).ToList();
-        //    Log.Message("Eigenvector " + j + ": " + string.Join(", ", vecList));
+        //    //Log.Message("Eigenvector " + j + ": " + string.Join(", ", vecList));
         //}
 
         //stopwatch.Stop();
         //TimeSpan ts = stopwatch.Elapsed;
         //Log.Message("Calculation time in seconds = " + String.Format("{0:00}.{1:000}", ts.Seconds, ts.Milliseconds));
-        Log.Message("Psychology: calculated personality correlation matrix");
+        //Log.Message("Psychology: calculated personality correlation matrix");
 
         PsycheHelper.InitializeDictionariesForPersonalityNodeDefs();
 
@@ -559,7 +559,7 @@ public class PersonalityNodeMatrix
                     // throw exception that Convergence Failed
                     if (iter >= Maxiter)
                     {
-                        Log.Message("Convergence failed");
+                        //Log.Message("Convergence failed");
                     }
                 } while (Math.Abs(e[l]) > eps * tst1);
             }

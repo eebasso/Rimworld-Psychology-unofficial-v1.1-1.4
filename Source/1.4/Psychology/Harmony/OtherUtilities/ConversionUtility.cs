@@ -17,7 +17,7 @@ public static class ConversionUtility_ConversionPowerFactor_MemesVsTraits_Patch
     [HarmonyPostfix]
     public static void ConversionPowerFactor_MemesVsTraits(ref float __result, Pawn initiator, Pawn recipient, StringBuilder sb)
     {
-        Log.Message("Begin ConversionPowerFactor_MemesVsTraits");
+        //Log.Message("Begin ConversionPowerFactor_MemesVsTraits");
         float initWithInitIdeo = 0.5f * PsychologySettings.ideoPsycheMultiplier * PsycheHelper.Comp(initiator).Psyche.CompatibilityWithIdeo(initiator.Ideo);
         float initWithReciIdeo = 0.5f * PsychologySettings.ideoPsycheMultiplier * PsycheHelper.Comp(initiator).Psyche.CompatibilityWithIdeo(recipient.Ideo);
         float reciWithInitIdeo = 1.0f * PsychologySettings.ideoPsycheMultiplier * PsycheHelper.Comp(recipient).Psyche.CompatibilityWithIdeo(initiator.Ideo);
