@@ -11,6 +11,7 @@ using Verse.Grammar;
 using UnityEngine;
 using System.Xml.Linq;
 using System.Runtime;
+using System.Security.Cryptography;
 //using System.Security.Cryptography;
 //using Verse.Sound;
 
@@ -65,7 +66,6 @@ public class SpeciesHelper
     {
         Initialize();
     }
-
 
     public static void Initialize()
     {
@@ -249,7 +249,6 @@ public class SpeciesHelper
         {
             speciesDict[def.defName] = DefaultSettingsForSpeciesDef(def);
         }
-        //Log.Message("ResetSpeciesDict humanlikeDefs.Count() = " + humanlikeDefs.Count());
         SettingsWindowUtility.Initialize();
     }
 
@@ -277,20 +276,20 @@ public class SpeciesHelper
         // No beastiality please
         if (IsHumanlikeIntelligence(def) != true)
         {
-            return CopySpeciesSettingsFrom(animalLikeSettings);
+            return new SpeciesSettings(animalLikeSettings);
         }
         // Use explicit defNames from well-known mods
         if (mindlessList.Contains(name))
         {
-            return CopySpeciesSettingsFrom(mindlessSettings);
+            return new SpeciesSettings(mindlessSettings);
         }
         if (androidLikeList.Contains(name))
         {
-            return CopySpeciesSettingsFrom(androidLikeSettings);
+            return new SpeciesSettings(androidLikeSettings);
         }
         if (elfLikeList.Contains(name))
         {
-            return CopySpeciesSettingsFrom(elfLikeSettings);
+            return new SpeciesSettings(elfLikeSettings);
         }
         // Use heuristics based on defNames
         if (mindlessSubstringList.Exists(entry => name.Contains(entry)) || (zombieNotNull && def.race.thinkTreeMain == zombieThinkTree))
@@ -337,15 +336,58 @@ public class SpeciesHelper
         return settings;
     }
 
-    public static SpeciesSettings CopySpeciesSettingsFrom(SpeciesSettings settingsToCopy)
+    public static float MinLifestageAge(ThingDef def, bool isTeen)
     {
-        SpeciesSettings newSettings = new SpeciesSettings();
-        newSettings.enablePsyche = settingsToCopy.enablePsyche;
-        newSettings.enableAgeGap = settingsToCopy.enableAgeGap;
-        newSettings.minDatingAge = settingsToCopy.minDatingAge;
-        newSettings.minLovinAge = settingsToCopy.minLovinAge;
-        return newSettings;
+        if (def?.race?.lifeStageAges != null)
+        {
+            if (def.race.lifeStageAges.Exists(x => x?.minAge != null && x.def.defName.Contains("Adult")))
+            {
+                if (isTeen && def.race.lifeStageAges.Exists(x => x?.minAge != null && x.def.defName.Contains("Teenager")))
+                {
+                    return def.race.lifeStageAges.First(x => x.def.defName.Contains("Teenager")).minAge;
+                }
+                return def.race.lifeStageAges.First(x => x.def.defName.Contains("Adult")).minAge;
+            }
+        }
+        return -1f;
     }
+
+    public static bool RomanceLifestageCheck(Pawn pawn, bool isDating)
+    {
+        if (!PsycheHelper.PsychologyEnabled(pawn))
+        {
+            return false;
+        }
+        // Allow teenagers to date but not do lovin
+        float minLifestageAge = MinLifestageAge(pawn.def, isDating);
+        return pawn.ageTracker != null && pawn.ageTracker.AgeBiologicalYearsFloat > minLifestageAge && minLifestageAge != -1f;
+    }
+
+    public static bool RomanceSettingsCheck(Pawn pawn, bool isDating)
+    {
+        SpeciesSettings settings = GetOrMakeSpeciesSettingsFromThingDef(pawn.def);
+        if (!settings.enablePsyche)
+        {
+            return false;
+        }
+        float minSettingsAge = isDating ? settings.minDatingAge : settings.minLovinAge;
+        if (minSettingsAge == 0f)
+        {
+            return true;
+        }
+        return pawn.ageTracker != null && minSettingsAge < pawn.ageTracker.AgeBiologicalYearsFloat && 0f < minSettingsAge;
+    }
+
+
+    //public static SpeciesSettings CopySpeciesSettingsFrom(SpeciesSettings settingsToCopy)
+    //{
+    //    SpeciesSettings newSettings = new SpeciesSettings();
+    //    newSettings.enablePsyche = settingsToCopy.enablePsyche;
+    //    newSettings.enableAgeGap = settingsToCopy.enableAgeGap;
+    //    newSettings.minDatingAge = settingsToCopy.minDatingAge;
+    //    newSettings.minLovinAge = settingsToCopy.minLovinAge;
+    //    return newSettings;
+    //}
 }public static class SpeciesHelperAlienRace
 {
     public static void HeuristicSettings(ref SpeciesSettings settings, ThingDef def)

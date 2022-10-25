@@ -25,14 +25,14 @@ public static class InteractionWorker_RomanceAttempt_SelectionWeightPatch
     {
         if (!PsycheHelper.PsychologyEnabled(initiator) || !PsycheHelper.PsychologyEnabled(recipient))
         {
-            try
-            {
-                //Log.Message("InteractionWorker_RomanceAttempt.RandomSelectionWeight, initiator = " + initiator.LabelShort + ", recipient = " + recipient.LabelShort + ", Psyche not enabled");
-            }
-            catch
-            {
-                Log.Warning("InteractionWorker_RomanceAttempt.RandomSelectionWeight, PsychologyEnabled != true");
-            }
+            //try
+            //{
+            //    //Log.Message("InteractionWorker_RomanceAttempt.RandomSelectionWeight, initiator = " + initiator.LabelShort + ", recipient = " + recipient.LabelShort + ", Psyche not enabled");
+            //}
+            //catch
+            //{
+            //    Log.Warning("InteractionWorker_RomanceAttempt.RandomSelectionWeight, PsychologyEnabled != true");
+            //}
             __result = 0f;
             return false;
         }
@@ -53,9 +53,9 @@ public static class InteractionWorker_RomanceAttempt_SelectionWeightPatch
             return false;
         }
 
-        // ToDo: allow teenagers to date but not do lovin
-        if (!initiator.ageTracker.Adult || !recipient.ageTracker.Adult)
+        if (!SpeciesHelper.RomanceLifestageCheck(initiator, true) || !SpeciesHelper.RomanceLifestageCheck(recipient, true))
         {
+            // No underage dating
             __result = 0f;
             return false;
         }
@@ -207,6 +207,12 @@ public static class InteractionWorker_RomanceAttempt_SuccessChancePatch
             __result = 0f;
             return false;
         }
+        if (!SpeciesHelper.RomanceLifestageCheck(initiator, true) || !SpeciesHelper.RomanceLifestageCheck(recipient, true))
+        {
+            // No underage dating
+            __result = 0f;
+            return false;
+        }
 
         bool recipientCodependent = recipient.story.traits.HasTrait(TraitDefOfPsychology.Codependent);
         if (recipientCodependent)
@@ -217,7 +223,7 @@ public static class InteractionWorker_RomanceAttempt_SuccessChancePatch
                 __result = 0f;
                 return false;
             }
-            // Codependents will always get back together with their ex
+            // Codependents will always get back together with their ex if they don't have a love partner
             if (LovePartnerRelationUtility.ExLovePartnerRelationExists(initiator, recipient))
             {
                 __result = 1f;

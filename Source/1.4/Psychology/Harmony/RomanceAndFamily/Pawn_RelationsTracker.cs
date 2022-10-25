@@ -32,24 +32,22 @@ public static class Pawn_RelationsTracker_LovinChancePatch
     public static bool SecondaryLovinChanceFactor(Pawn_RelationsTracker __instance, Pawn otherPawn, Pawn ___pawn, ref float __result)
     {
         Pawn pawn = ___pawn;
-        bool pawnHasPsyche = PsycheHelper.PsychologyEnabled(pawn);
-        bool otherPawnHasPsyche = PsycheHelper.PsychologyEnabled(otherPawn);
+        if (pawn == otherPawn)
+        {
+            __result = 0f;
+            return false;
+        }
 
         // Disable psyche for a species means no personality or sexuality generated
         // However, should we use the vanilla formula or just diable all dating?
-        if (!pawnHasPsyche || !otherPawnHasPsyche)
+        if (!PsycheHelper.PsychologyEnabled(pawn) || !PsycheHelper.PsychologyEnabled(otherPawn))
         {
             //Log.Message("SecondaryLovinChanceFactor, Psychology not enabled for pawn and/or otherPawn");
             __result = 0f; // Disable all dating for pawns with no psyche
             return false;
             //return true // Use the vanilla formula
         }
-        if (pawn == otherPawn)
-        {
-            //Log.Message("SecondaryLovinChanceFactor, pawn == otherPawn");
-            __result = 0f;
-            return false;
-        }
+        
 
         /* SEXUAL PREFERENCE FACTOR */
         float sexualityFactor = 1f;
@@ -117,8 +115,6 @@ public static class Pawn_RelationsTracker_LovinChancePatch
         /* Turn into multiplicative factor. This ranges between 0.27 and 2.85 */
         float beautyFactor = 0.1f + Mathf.Pow(0.5f + 1f / (1f + Mathf.Pow(4f, -physicalFactor - personalityFactor + 0.12f)), 2.5f);
 
-
-
         /* PAWN SEX AND ROMANCE DRIVE FACTORS */
         float pawnSexDrive = PsycheHelper.Comp(pawn).Sexuality.AdjustedSexDrive;
         float pawnRomanceDrive = PsycheHelper.Comp(pawn).Sexuality.AdjustedRomanticDrive;
@@ -132,6 +128,12 @@ public static class Pawn_RelationsTracker_LovinChancePatch
 
     public static float CalculateAgeFactor(Pawn pawn, Pawn otherPawn)
     {
+        if (!SpeciesHelper.RomanceLifestageCheck(pawn, true) || !SpeciesHelper.RomanceLifestageCheck(otherPawn, true))
+        {
+            // No romance factor for children, no exceptions
+            return 0f;
+        }
+
         float age1 = pawn.ageTracker.AgeBiologicalYearsFloat;
         float age2 = otherPawn.ageTracker.AgeBiologicalYearsFloat;
         SpeciesSettings settings1 = PsychologySettings.speciesDict[pawn.def.defName];

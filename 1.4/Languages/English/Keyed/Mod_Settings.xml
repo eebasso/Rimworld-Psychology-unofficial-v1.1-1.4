@@ -2,7 +2,7 @@
 <LanguageData>
 
 	<EnableKinseyTitle>Enable sexuality changes</EnableKinseyTitle>
-	<EnableEmpathyTooltip>Turn this off to disable Kinsey scaling of pawns and re-enable the Gay trait. Do NOT change this during play, and restart the game after toggling this.</EnableEmpathyTooltip>
+	<EnableKinseyTooltip>Turn this off to disable Kinsey scaling of pawns and re-enable the Gay trait. Do NOT change this during play, and restart the game after toggling this.</EnableKinseyTooltip>
 
 	<EnableEmpathyTitle>Enable empathy changes</EnableEmpathyTitle>
 	<EnableEmpathyTooltip>Turn this off to restore colonists' reactions to bad things happening to other people to normal. This will increase difficulty; Bleeding Heart pawns will be unaffected. Restart the game after disabling this.</EnableEmpathyTooltip>
@@ -46,6 +46,9 @@
 	<RomanceOpinionThresholdTitle>Minimum romance opinion</RomanceOpinionThresholdTitle>
 	<RomanceOpinionThresholdTooltip>Minimum opinion one colonist must have of another in order to be romanced.</RomanceOpinionThresholdTooltip>
 
+	<EnableElectionsTitle>Enable elections</EnableElectionsTitle>
+	 <EnableElectionsTooltip>Turn this off to prevent your colonists from having yearly elections. It will not stop an election in progress, and any existing mayor will be reverted to a normal colonist. This will not affect compatibility with other mods. Requires restart for full effect.</EnableElectionsTooltip> 
+
 	<MayorAgeTitle>Mayor age</MayorAgeTitle>
 	<MayorAgeTooltip>Minimum age required for someone to be able to become a mayor.</MayorAgeTooltip>
 
@@ -79,16 +82,16 @@
 	<EnablePsycheTooltip>Turn this off to deactivate personality. This is recommended for species not capable of having a human-like personality such as zombies or simple robots. Note that deep conversations and romance will be disabled for this species.</EnablePsycheTooltip>
 
 	<EnableAgeGapTitle>Age gap</EnableAgeGapTitle>
-	<EnableAgeGapTooltip>Turn this off to deactivate the romantic age gap preference for pawns considering to romance this species. This is recommended for android-like and elf-like species that do not experience aging and remain equally attractive once they reach adulthood.</EnableAgeGapTooltip>
+	<EnableAgeGapTooltip>Turn this off to deactivate the romantic age gap preference for all pawns considering a romance with individuals of this species. This is recommended for android-like and elf-like species that do not experience aging after reaching adulthood.</EnableAgeGapTooltip>
 
 <!--	<MinDatingAgeTooltip>Set the minimum dating age for this species. When positive, the effective age for dating-related formulas scales by this number relative to 14. Setting to 0 allows dating at any age and effectively disables the age gap. This is recommended for species such as sentient androids with no childhood phase. Any negative number disables dating completely for this species.</MinDatingAgeTooltip>-->
 <!--	<MinLovinAgeTooltip>Set the minimum lovin age for this species. When positive, the effective age for lovin-related formulas scales by this number relative to 16. Setting to 0 allows lovin at any age and effectively disables the age gap. This is recommended for species such as sentient androids with no childhood phase. Any negative number disables lovin completely for this species.</MinLovinAgeTooltip>-->
   <MinDatingAgeTitle>Dating</MinDatingAgeTitle>
 	<MinLovinAgeTitle>Lovin</MinLovinAgeTitle>
 
-	<datingRomanceBehavior>dating</datingRomanceBehavior>
-	<lovinRomanceBehavior>lovin</lovinRomanceBehavior>
-	<MinRomanceAgeTooltip>The minimum {0_RomanceBehavior} age for this species. When positive, the effective age in {0_RomanceBehavior}-related formulas is scaled by this number relative to {1_MinAge}. Setting to 0 allows {0_RomanceBehavior} at any age and effectively disables the age gap. This is recommended for species with no childhood phase such as sentient androids. Any negative number disables {0_RomanceBehavior} for this species.</MinRomanceAgeTooltip>
+	<dating>dating</dating>
+	<lovin>lovin</lovin>
+	<MinRomanceAgeTooltip>The minimum {0} age for this species. When positive, the effective age in {0}-related formulas is scaled by this number relative to {1}. Setting to 0 allows {0} at any age and effectively disables the age gap. This is recommended for species with no childhood phase such as sentient androids. Any negative number disables {0} for this species.</MinRomanceAgeTooltip>
 
 	<!--<UpdateIntroMessageTitle>Update to Psychology</UpdateIntroMessageTitle>-->
 	<!--<UpdateIntroMessage>The method to generate personalities has been updated. The player is encouraged to select "update" to reset the personalities of old pawns. This option will always be available in the mod settings.</UpdateIntroMessage>-->

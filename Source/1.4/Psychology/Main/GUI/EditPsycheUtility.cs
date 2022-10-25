@@ -294,20 +294,10 @@ public static class EditPsycheUtility
         if (Widgets.ButtonText(resetRect, ResetButtonText, true, true, true))
         {
             PsycheHelper.Comp(pawn).Psyche.RandomizeRatings();
-            //for (int i = 0; i < CachedList.Count; i++)
-            //{
-            //    string nodeLabel = CachedList[i].First;
-            //    PersonalityNode node = Nodes[nodeLabel];
-            //    CachedList[i] = new Pair<string, float>(nodeLabel, node.rawRating);
-            //}
-            //if (PsychologySettings.enableKinsey)
-            //{
-            //    PsycheHelper.Comp(pawn).Sexuality.GenerateSexuality();
-            //    pawnKinseyRating = PsycheHelper.Comp(pawn).Sexuality.kinseyRating;
-            //    pawnSexDrive = PsycheHelper.Comp(pawn).Sexuality.sexDrive;
-            //    pawnRomanticDrive = PsycheHelper.Comp(pawn).Sexuality.romanticDrive;
-            //}
-            //PsycheCardUtility.Ticker = -1;
+            if (PsychologySettings.enableKinsey)
+            {
+                PsycheHelper.Comp(pawn).Sexuality.GenerateSexuality();
+            }
         }
         TooltipHandler.TipRegion(resetRect, delegate
         {
@@ -316,8 +306,11 @@ public static class EditPsycheUtility
 
         if (Widgets.ButtonText(randomRect, RandomButtonText, true, true, true))
         {
-            int randomSeed = Mathf.CeilToInt(1e+7f * Rand.Value);
-            //PsycheHelper.Comp(pawn).Psyche.RandomizeRatings(randomSeed);
+            PsycheHelper.Comp(pawn).Psyche.RandomizeRatings(Mathf.CeilToInt(1e+7f * Rand.Value));
+            if (PsychologySettings.enableKinsey)
+            {
+                PsycheHelper.Comp(pawn).Sexuality.GenerateSexuality(Mathf.CeilToInt(1e+7f * Rand.Value));
+            }
             //for (int i = 0; i < CachedList.Count; i++)
             //{
             //    string nodeLabel = CachedList[i].First;

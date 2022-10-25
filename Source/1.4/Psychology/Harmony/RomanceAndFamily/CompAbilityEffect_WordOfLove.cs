@@ -22,14 +22,17 @@ public static class CompAbilityEffect_WordOfLove_KinseyEnabledPatches
         }
         Pawn pawn = ___selectedTarget.Pawn;
         Pawn pawn2 = target.Pawn;
-        if (PsycheHelper.TryGetPawnSeed(pawn2) != true)
+        if (!PsycheHelper.PsychologyEnabled(pawn) || !PsycheHelper.PsychologyEnabled(pawn2))
         {
             return;
         }
-        if (PsycheHelper.PsychologyEnabled(pawn2) != true)
+        if (!SpeciesHelper.RomanceLifestageCheck(pawn, true) || !SpeciesHelper.RomanceLifestageCheck(pawn2, true))
         {
+            // No underage dating
+            __result = false;
             return;
         }
+
         Gender gender = pawn.gender;
         Gender gender2 = pawn2.gender;
         int kinsey2 = PsycheHelper.Comp(pawn2).Sexuality.kinseyRating;

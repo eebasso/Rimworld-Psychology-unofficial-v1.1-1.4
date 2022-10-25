@@ -106,8 +106,9 @@ public static class UIAssets
             UI.UnfocusCurrentControl();
             Event.current.Use();
         }
-        if (OriginalEventUtility.EventType == EventType.MouseDown && !Mouse.IsOver(rect.ExpandedBy(2f)))
+        if (GUI.GetNameOfFocusedControl() == controlName && OriginalEventUtility.EventType == EventType.MouseDown && !Mouse.IsOver(rect.ExpandedBy(2f)))
         {
+            Log.Message("TextFieldCommon, unfocus");
             UI.UnfocusCurrentControl();
         }
         return buffer;

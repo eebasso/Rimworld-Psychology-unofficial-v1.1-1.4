@@ -301,23 +301,33 @@ public static class LovePartnerRelationUtility_GetLovinMtbHours
             __result = -1f;
             return false;
         }
-        // No underage lovin
         if (!pawn?.ageTracker?.Adult != true || !partner?.ageTracker?.Adult != true)
-        {
-            __result = -1f;
-            return false;
-        }
-
-        float pawnAge = pawn.ageTracker.AgeBiologicalYearsFloat;
-        float partnerAge = partner.ageTracker.AgeBiologicalYearsFloat;
-        float pawnMinLovinAge = PsychologySettings.speciesDict[pawn.def.defName].minLovinAge;
-        float partnerMinLovinAge = PsychologySettings.speciesDict[pawn.def.defName].minLovinAge;
-        if (pawnAge < pawnMinLovinAge || partnerAge < partnerMinLovinAge || pawnMinLovinAge < 0f || partnerMinLovinAge < 0f)
         {
             // No underage lovin
             __result = -1f;
             return false;
         }
+        if (!SpeciesHelper.RomanceLifestageCheck(pawn, false) || !SpeciesHelper.RomanceLifestageCheck(partner, false))
+        {
+            // No underage lovin
+            __result = -1f;
+            return false;
+        }
+
+        //float pawnAge = pawn.ageTracker.AgeBiologicalYearsFloat;
+        //float partnerAge = partner.ageTracker.AgeBiologicalYearsFloat;
+        //SpeciesSettings pawnSpeciesSettings = SpeciesHelper.GetOrMakeSpeciesSettingsFromThingDef(pawn.def);
+        //SpeciesSettings partnerSpeciesSettings = SpeciesHelper.GetOrMakeSpeciesSettingsFromThingDef(partner.def);
+
+        //float pawnMinLovinAge = PsychologySettings.speciesDict[pawn.def.defName].minLovinAge;
+        //float partnerMinLovinAge = PsychologySettings.speciesDict[partner.def.defName].minLovinAge;
+        //if (pawnAge < pawnMinLovinAge || partnerAge < partnerMinLovinAge || pawnMinLovinAge < 0f || partnerMinLovinAge < 0f)
+        //{
+        //    // No underage lovin
+        //    __result = -1f;
+        //    return false;
+        //}
+
         float pawnSexDrive = PsycheHelper.Comp(pawn).Sexuality.AdjustedSexDrive;
         float partnerSexDrive = PsycheHelper.Comp(partner).Sexuality.AdjustedSexDrive;
         if (pawnSexDrive < 0.1f || partnerSexDrive < 0.1f)
