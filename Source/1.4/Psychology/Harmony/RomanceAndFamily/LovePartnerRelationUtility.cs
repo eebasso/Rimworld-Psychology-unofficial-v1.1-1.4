@@ -16,18 +16,18 @@ public static class LovePartnerRelationUtility_GenerationChancePatch
     [HarmonyPrefix]
     public static bool LovePartnerRelationGenerationChance(ref float __result, Pawn generated, Pawn other, PawnGenerationRequest request, bool ex)
     {
-        //Log.Message("LovePartnerRelationGenerationChance, step 0");
-        SpeciesSettings generatedSettings = SpeciesHelper.GetOrMakeSpeciesSettingsFromThingDef(generated.def);
-        SpeciesSettings otherSettings = SpeciesHelper.GetOrMakeSpeciesSettingsFromThingDef(other.def);
-
-        float bioAge1 = generated.ageTracker.AgeBiologicalYearsFloat;
-        float bioAge2 = other.ageTracker.AgeBiologicalYearsFloat;
-        float minDatingAge1 = generatedSettings.minDatingAge;
-        float minDatingAge2 = otherSettings.minDatingAge;
-
-        if (bioAge1 < minDatingAge1 || bioAge2 < minDatingAge2 || minDatingAge1 < 0f || minDatingAge2 < 0f)
+        //if (!SpeciesHelper.RomanceLifestageAgeCheck(generated, true) || !SpeciesHelper.RomanceLifestageAgeCheck(other, true))
+        //{
+        //    __result = 0f;
+        //    return false;
+        //}
+        //if (!SpeciesHelper.RomanceSettingsAgeCheck(generated, true) || !SpeciesHelper.RomanceSettingsAgeCheck(other, true))
+        //{
+        //    __result = 0f;
+        //    return false;
+        //}
+        if (!SpeciesHelper.RomanceCombinedAgeCheck(generated, true) || !SpeciesHelper.RomanceCombinedAgeCheck(other, true))
         {
-            // No underage lover relations
             __result = 0f;
             return false;
         }
@@ -40,84 +40,22 @@ public static class LovePartnerRelationUtility_GenerationChancePatch
         {
             int kinsey1 = PsycheHelper.Comp(generated).Sexuality.kinseyRating;
             int kinsey2 = PsycheHelper.Comp(other).Sexuality.kinseyRating;
-
             sexualityFactor *= Mathf.Clamp01(sameGender ? kinsey1 / 3f : 2f - kinsey1 / 3f);
             sexualityFactor *= Mathf.Clamp01(sameGender ? kinsey2 / 3f : 2f - kinsey2 / 3f);
-
-            //float[] homoWeights = new float[] { 0f, 0.2f, 0.5f, 1f, 1f, 1f, 1f };
-            //float[] heteroWeights = new float[] { 1f, 1f, 1f, 1f, 0.5f, 0.2f, 0f };
-            //if (PsycheHelper.TryGetPawnSeed(other))
-            //{
-            //    if (PsycheHelper.PsychologyEnabled(other))
-            //    {
-            //        int kinsey = PsycheHelper.Comp(other).Sexuality.kinseyRating;
-            //        if (generated.gender == other.gender)
-            //        {
-            //            sexualityFactor = homoWeights[kinsey];
-            //        }
-            //        if (generated.gender == other.gender.Opposite())
-            //        {
-            //            sexualityFactor = heteroWeights[kinsey];
-            //        }
-            //    }
-            //    else
-            //    {
-            //        __result = 0f;
-            //        return false;
-            //    }
-            //}
-            //else
-            //{
-            //    //Log.Message("LovePartnerRelationGenerationChance, step 1");
-            //    float[] pList = PsycheHelper.KinseyProbabilities();
-            //    //Log.Message("LovePartnerRelationGenerationChance, step 2");
-            //    float[] homoList = new float[7];
-            //    float[] heteroList = new float[7];
-            //    //Log.Message("LovePartnerRelationGenerationChance, step 3");
-            //    for (int i = 0; i < 7; i++)
-            //    {
-            //        homoList[i] = homoWeights[i] * pList[i];
-            //        heteroList[i] = heteroWeights[i] * pList[i];
-            //    }
-            //    //Log.Message("LovePartnerRelationGenerationChance, step 4");
-            //    float homoChance = 0f;
-            //    float heteroChance = 0f;
-            //    for (int i = 0; i < 7; i++)
-            //    {
-            //        for (int k = 0; k < 7; k++)
-            //        {
-            //            homoChance += homoList[i] * homoList[k];
-            //            heteroChance += heteroList[i] * heteroList[k];
-            //        }
-            //    }
-            //    //Log.Message("LovePartnerRelationGenerationChance, step 5");
-            //    if (homoChance < heteroChance)
-            //    {
-            //        homoChance /= heteroChance;
-            //        heteroChance = 1f;
-            //    }
-            //    if (homoChance > heteroChance)
-            //    {
-            //        homoChance = 1f;
-            //        heteroChance /= homoChance;
-            //    }
-            //    //Log.Message("LovePartnerRelationGenerationChance, step 6");
-            //    sexualityFactor = (generated.gender == other.gender) ? homoChance : heteroChance;
-            //}
         }
         else
         {
-            if (generated.gender == other.gender && (!other.story.traits.HasTrait(TraitDefOf.Gay) || !request.AllowGay))
+            if (sameGender && (!other.story.traits.HasTrait(TraitDefOf.Gay) || !request.AllowGay))
             {
                 __result = 0f;
                 return false;
             }
-            if (generated.gender != other.gender && other.story.traits.HasTrait(TraitDefOf.Gay))
+            if (!sameGender && other.story.traits.HasTrait(TraitDefOf.Gay))
             {
                 __result = 0f;
                 return false;
             }
-            sexualityFactor = (generated.gender == other.gender) ? 0.01f : 1f;
+            sexualityFactor = sameGender ? 0.01f : 1f;
         }
 
         float existingExLoverFactor = 1f;
@@ -139,6 +77,14 @@ public static class LovePartnerRelationUtility_GenerationChancePatch
             __result = 0f;
             return false;
         }
+        SpeciesSettings generatedSettings = SpeciesHelper.GetOrMakeSpeciesSettingsFromThingDef(generated.def);
+        SpeciesSettings otherSettings = SpeciesHelper.GetOrMakeSpeciesSettingsFromThingDef(other.def);
+
+        float bioAge1 = generated.ageTracker.AgeBiologicalYearsFloat;
+        float bioAge2 = other.ageTracker.AgeBiologicalYearsFloat;
+        float minDatingAge1 = generatedSettings.minDatingAge;
+        float minDatingAge2 = otherSettings.minDatingAge;
+
         bool minAge1IsNotZero = minDatingAge1 != 0f;
         bool minAge2IsNotZero = minDatingAge2 != 0f;
         float generationChanceAgeFactor1 = 1f;
@@ -167,7 +113,6 @@ public static class LovePartnerRelationUtility_GenerationChancePatch
         {
             incestFactor = 0.01f;
         }
-        //float melaninFactor = !request.FixedMelanin.HasValue ? PawnSkinColors.GetMelaninCommonalityFactor(other.story.melanin) : ChildRelationUtility.GetMelaninSimilarityFactor(request.FixedMelanin.Value, other.story.melanin);
         __result = existingExLoverFactor * sexualityFactor * generationChanceAgeFactor1 * generationChanceAgeFactor2 * generationChanceAgeGapFactor * incestFactor;// * melaninFactor;
         return false;
     }
@@ -273,96 +218,157 @@ public static class LovePartnerRelationUtility_PolygamousSpousePatch
 public static class LovePartnerRelationUtility_GetLovinMtbHours
 {
     [HarmonyPrefix]
-    public static bool GetLovinMtbHours(ref float __result, Pawn pawn, Pawn partner)
+    public static bool GetLovinMtbHoursPrefix(ref float __result, Pawn pawn, Pawn partner)
     {
         if (!PsycheHelper.PsychologyEnabled(pawn) || !PsycheHelper.PsychologyEnabled(partner))
         {
-            __result = -1;
-            return false;
-            //return true;
-        }
-        if (pawn.Dead || partner.Dead)
-        {
             __result = -1f;
             return false;
         }
-        if (DebugSettings.alwaysDoLovin)
+        if (!SpeciesHelper.RomanceCombinedAgeCheck(pawn, false) || !SpeciesHelper.RomanceCombinedAgeCheck(partner, false))
         {
-            __result = 0.1f;
-            return false;
-        }
-        if (pawn.needs.food.Starving || partner.needs.food.Starving)
-        {
-            __result = -1f;
-            return false;
-        }
-        if (pawn.health.hediffSet.BleedRateTotal > 0f || partner.health.hediffSet.BleedRateTotal > 0f)
-        {
-            __result = -1f;
-            return false;
-        }
-        if (!pawn?.ageTracker?.Adult != true || !partner?.ageTracker?.Adult != true)
-        {
+            //Log.Message("GetLovinMtbHours, RomanceLifestageCheck != true");
             // No underage lovin
             __result = -1f;
             return false;
         }
-        if (!SpeciesHelper.RomanceLifestageCheck(pawn, false) || !SpeciesHelper.RomanceLifestageCheck(partner, false))
+        if (pawn?.ageTracker?.Adult != true || partner?.ageTracker?.Adult != true)
         {
+            //long AdultMinAgeTicks = pawn.ageTracker.AdultMinAgeTicks;
+            //long AgeBiologicalTicks = pawn.ageTracker.AgeBiologicalTicks;
+            //long TicksToAdulthood = AdultMinAgeTicks - AgeBiologicalTicks;
+            //bool Adult = TicksToAdulthood <= 0f;
+            //long AdultMinAgeTicks2 = partner.ageTracker.AdultMinAgeTicks;
+            //long AgeBiologicalTicks2 = partner.ageTracker.AgeBiologicalTicks;
+            //long TicksToAdulthood2 = AdultMinAgeTicks2 - AgeBiologicalTicks2;
+            //bool Adult2 = TicksToAdulthood2 <= 0f;
+            //Log.Message("GetLovinMtbHours, pawn: " + pawn + ", AdultMinAgeTicks: " + AdultMinAgeTicks + ", AgeBiologicalTicks: " + AgeBiologicalTicks + ", TicksToAdulthood: " + TicksToAdulthood + ", Adult: " + Adult + "\nGetLovinMtbHours, pawn2: " + partner + ", AdultMinAgeTicks2: " + AdultMinAgeTicks2 + ", AgeBiologicalTicks2: " + AgeBiologicalTicks2 + ", TicksToAdulthood2: " + TicksToAdulthood2 + ", Adult2: " + Adult2);
+
             // No underage lovin
             __result = -1f;
             return false;
         }
-
-        //float pawnAge = pawn.ageTracker.AgeBiologicalYearsFloat;
-        //float partnerAge = partner.ageTracker.AgeBiologicalYearsFloat;
-        //SpeciesSettings pawnSpeciesSettings = SpeciesHelper.GetOrMakeSpeciesSettingsFromThingDef(pawn.def);
-        //SpeciesSettings partnerSpeciesSettings = SpeciesHelper.GetOrMakeSpeciesSettingsFromThingDef(partner.def);
-
-        //float pawnMinLovinAge = PsychologySettings.speciesDict[pawn.def.defName].minLovinAge;
-        //float partnerMinLovinAge = PsychologySettings.speciesDict[partner.def.defName].minLovinAge;
-        //if (pawnAge < pawnMinLovinAge || partnerAge < partnerMinLovinAge || pawnMinLovinAge < 0f || partnerMinLovinAge < 0f)
-        //{
-        //    // No underage lovin
-        //    __result = -1f;
-        //    return false;
-        //}
-
-        float pawnSexDrive = PsycheHelper.Comp(pawn).Sexuality.AdjustedSexDrive;
-        float partnerSexDrive = PsycheHelper.Comp(partner).Sexuality.AdjustedSexDrive;
-        if (pawnSexDrive < 0.1f || partnerSexDrive < 0.1f)
-        {
-            // Asexual pawns avoid lovin
-            __result = -1f;
-            return false;
-        }
-        float frequency = 1f;
-        frequency *= LovinMtbSinglePawnFactor(pawn);
-        frequency *= LovinMtbSinglePawnFactor(partner);
-        frequency *= Mathf.Pow(pawnSexDrive, 2f);
-        frequency *= Mathf.Pow(partnerSexDrive, 2f);
-        frequency *= Mathf.Max(pawn.relations.SecondaryLovinChanceFactor(partner), 0.1f);
-        frequency *= Mathf.Max(partner.relations.SecondaryLovinChanceFactor(pawn), 0.1f);
-        frequency /= GenMath.LerpDouble(-100f, 100f, 1.3f, 0.7f, pawn.relations.OpinionOf(partner));
-        frequency /= GenMath.LerpDouble(-100f, 100f, 1.3f, 0.7f, partner.relations.OpinionOf(pawn));
-        if (pawn.health.hediffSet.HasHediff(HediffDefOf.PsychicLove))
-        {
-            frequency *= 4f;
-        }
-        __result = frequency > 0f ? 12f / frequency : -1f;
-        return false;
+        return true;
     }
 
-    public static float LovinMtbSinglePawnFactor(Pawn pawn)
+
+    //[HarmonyPrefix]
+    //public static bool GetLovinMtbHours(ref float __result, Pawn pawn, Pawn partner)
+    //{
+    //    if (!PsycheHelper.PsychologyEnabled(pawn) || !PsycheHelper.PsychologyEnabled(partner))
+    //    {
+    //        __result = -1;
+    //        return false;
+    //        //return true;
+    //    }
+    //    if (pawn.Dead || partner.Dead)
+    //    {
+    //        __result = -1f;
+    //        return false;
+    //    }
+    //    if (DebugSettings.alwaysDoLovin)
+    //    {
+    //        __result = 0.1f;
+    //        return false;
+    //    }
+    //    if (pawn.needs.food.Starving || partner.needs.food.Starving)
+    //    {
+    //        Log.Message("GetLovinMtbHours, pawn.needs.food.Starving == true");
+    //        __result = -1f;
+    //        return false;
+    //    }
+    //    if (pawn.health.hediffSet.BleedRateTotal > 0f || partner.health.hediffSet.BleedRateTotal > 0f)
+    //    {
+    //        Log.Message("GetLovinMtbHours, BleedRateTotal > 0f");
+    //        __result = -1f;
+    //        return false;
+    //    }
+    //    if (!pawn?.ageTracker?.Adult != true || !partner?.ageTracker?.Adult != true)
+    //    {
+    //        Log.Message("GetLovinMtbHours, pawn?.ageTracker?.Adult != true");
+    //        // No underage lovin
+    //        __result = -1f;
+    //        return false;
+    //    }
+    //    if (!SpeciesHelper.RomanceLifestageCheck(pawn, false) || !SpeciesHelper.RomanceLifestageCheck(partner, false))
+    //    {
+    //        Log.Message("GetLovinMtbHours, RomanceLifestageCheck != true");
+    //        // No underage lovin
+    //        __result = -1f;
+    //        return false;
+    //    }
+
+    //    //float pawnAge = pawn.ageTracker.AgeBiologicalYearsFloat;
+    //    //float partnerAge = partner.ageTracker.AgeBiologicalYearsFloat;
+    //    //SpeciesSettings pawnSpeciesSettings = SpeciesHelper.GetOrMakeSpeciesSettingsFromThingDef(pawn.def);
+    //    //SpeciesSettings partnerSpeciesSettings = SpeciesHelper.GetOrMakeSpeciesSettingsFromThingDef(partner.def);
+
+    //    //float pawnMinLovinAge = PsychologySettings.speciesDict[pawn.def.defName].minLovinAge;
+    //    //float partnerMinLovinAge = PsychologySettings.speciesDict[partner.def.defName].minLovinAge;
+    //    //if (pawnAge < pawnMinLovinAge || partnerAge < partnerMinLovinAge || pawnMinLovinAge < 0f || partnerMinLovinAge < 0f)
+    //    //{
+    //    //    // No underage lovin
+    //    //    __result = -1f;
+    //    //    return false;
+    //    //}
+
+    //    float pawnSexDrive = PsycheHelper.Comp(pawn).Sexuality.AdjustedSexDrive;
+    //    float partnerSexDrive = PsycheHelper.Comp(partner).Sexuality.AdjustedSexDrive;
+    //    if (pawnSexDrive < 0.1f || partnerSexDrive < 0.1f)
+    //    {
+    //        Log.Message("GetLovinMtbHours, sex drive too low");
+    //        // Asexual pawns avoid lovin
+    //        __result = -1f;
+    //        return false;
+    //    }
+    //    float frequency = 1f;
+    //    frequency *= LovinMtbSinglePawnFactor(pawn);
+    //    frequency *= LovinMtbSinglePawnFactor(partner);
+    //    frequency *= Mathf.Pow(pawnSexDrive, 2f);
+    //    frequency *= Mathf.Pow(partnerSexDrive, 2f);
+    //    frequency *= Mathf.Max(pawn.relations.SecondaryLovinChanceFactor(partner), 0.1f);
+    //    frequency *= Mathf.Max(partner.relations.SecondaryLovinChanceFactor(pawn), 0.1f);
+    //    frequency /= GenMath.LerpDouble(-100f, 100f, 1.3f, 0.7f, pawn.relations.OpinionOf(partner));
+    //    frequency /= GenMath.LerpDouble(-100f, 100f, 1.3f, 0.7f, partner.relations.OpinionOf(pawn));
+    //    if (pawn.health.hediffSet.HasHediff(HediffDefOf.PsychicLove))
+    //    {
+    //        frequency *= 4f;
+    //    }
+    //    __result = frequency > 0f ? 12f / frequency : -1f;
+    //    return false;
+    //}
+
+    //public static float LovinMtbSinglePawnFactor(Pawn pawn)
+    //{
+    //    float num = 1f;
+    //    num *= 1f - pawn.health.hediffSet.PainTotal;
+    //    float level = pawn.health.capacities.GetLevel(PawnCapacityDefOf.Consciousness);
+    //    if (level < 0.5f)
+    //    {
+    //        num *= level * 2f;
+    //    }
+    //    return num;
+    //}
+}
+
+[HarmonyPatch(typeof(LovePartnerRelationUtility), "LovinMtbSinglePawnFactor")]
+public static class LovePartnerRelationUtility_LovinMtbSinglePawnFactor_Patch
+{
+    [HarmonyPostfix]
+    public static void LovinMtbSinglePawnFactorPostfix(ref float __result, Pawn pawn)
     {
         float num = 1f;
-        num *= 1f - pawn.health.hediffSet.PainTotal;
+        num /= 1f - pawn.health.hediffSet.PainTotal;
         float level = pawn.health.capacities.GetLevel(PawnCapacityDefOf.Consciousness);
         if (level < 0.5f)
         {
-            num *= level * 2f;
+            num /= 2f * level;
         }
-        return num;
+        if (PsychologySettings.enableKinsey && PsycheHelper.PsychologyEnabled(pawn))
+        {
+            num /= Mathf.Pow(PsycheHelper.Comp(pawn).Sexuality.AdjustedSexDrive / 0.8f, 2f);
+        }
+        __result = num;
     }
 }
 

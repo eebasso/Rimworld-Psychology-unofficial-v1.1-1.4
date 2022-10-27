@@ -15,14 +15,16 @@ namespace Psychology.Harmony;
 public static class InteractionWorker_MarriageProposal_SelectionWeightPatch
 {
     [HarmonyPostfix]
+    [HarmonyPriority(Priority.Last)]
     public static void _RandomSelectionWeight(InteractionWorker_MarriageProposal __instance, Pawn initiator, Pawn recipient, ref float __result)
     {
-        if (PsycheHelper.PsychologyEnabled(initiator) != true)
+        if (__result == 0f)
         {
             return;
         }
-        if (__result == 0f)
+        if (!PsycheHelper.PsychologyEnabled(initiator) || !PsycheHelper.PsychologyEnabled(recipient))
         {
+            __result = 0f;
             return;
         }
         if (initiator.relations.GetDirectRelation(PawnRelationDefOf.Lover, recipient) == null)
@@ -30,7 +32,11 @@ public static class InteractionWorker_MarriageProposal_SelectionWeightPatch
             __result = 0f;
             return;
         }
-
+        if (!SpeciesHelper.RomanceLifestageAgeCheck(initiator, false) || !SpeciesHelper.RomanceLifestageAgeCheck(recipient, false))
+        {
+            __result = 0f;
+            return;
+        }
         CompPsychology initiatorComp = PsycheHelper.Comp(initiator);
         __result *= initiatorComp.Psyche.GetPersonalityRating(PersonalityNodeDefOf.Adventurous) + initiatorComp.Psyche.GetPersonalityRating(PersonalityNodeDefOf.Romantic);
         if (PsychologySettings.enableKinsey)
@@ -58,6 +64,12 @@ public static class InteractionWorker_MarriageProposal_AcceptanceChancePatch
     {
         if (PsycheHelper.PsychologyEnabled(recipient) != true)
         {
+            __result = 0f;
+            return;
+        }
+        if (!SpeciesHelper.RomanceLifestageAgeCheck(initiator, false) || !SpeciesHelper.RomanceLifestageAgeCheck(recipient, false))
+        {
+            __result = 0f;
             return;
         }
         if (recipient.story.traits.HasTrait(TraitDefOfPsychology.Codependent))
@@ -66,6 +78,7 @@ public static class InteractionWorker_MarriageProposal_AcceptanceChancePatch
             __result = 1f;
             return;
         }
+        
         CompPsychology recipientComp = PsycheHelper.Comp(recipient);
         float recipientRomanatic = recipientComp.Psyche.GetPersonalityRating(PersonalityNodeDefOf.Romantic);
         float recipientPure = recipientComp.Psyche.GetPersonalityRating(PersonalityNodeDefOf.Pure);

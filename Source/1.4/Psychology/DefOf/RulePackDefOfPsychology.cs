@@ -12,5 +12,8 @@ namespace Psychology
     {
         public static RulePackDef Sentence_SocialFightConvoInitiatorStarted;
         public static RulePackDef Sentence_SocialFightConvoRecipientStarted;
+        // Casual lovin
+        //public static RulePackDef HookupSucceeded;
+        //public static RulePackDef HookupFailed;
     }
 }

@@ -88,7 +88,9 @@ public class Hediff_Conversation : HediffWithComps
              * When it reaches an hour, the mean time for it to continue is 1 hour.
              * When it surpasses 2 hours, it will on average last for half an hour more.
              * Conversations will thus usually not surpass 2 hours, and very rarely surpass 2 and a half hours, but are very likely to last up to an hour.
+             * ToDo: perhaps make a setting for mean time of a conversation
              */
+            //float mtb = Mathf.Max(0f, 3f - this.ageTicks / GenDate.TicksPerHour);
             float mtb = 3f;
             if (this.ageTicks > 2f * GenDate.TicksPerHour)
             {
@@ -281,7 +283,7 @@ public class Hediff_Conversation : HediffWithComps
         }
 
         // Controls how much personality affects the opinion. Should be a positive number.
-        opinionMultiplier *= 1f;
+        //opinionMultiplier *= 1f;
 
         // Multiply by 1 + opinionMultiplier for positive multiplier
         // Divide by 1 - opinionMultiplier for negative multiplier. This ensures opinionMod will always remain positive.
@@ -292,7 +294,9 @@ public class Hediff_Conversation : HediffWithComps
         float t = ((float)ageTicks) / ((float)GenDate.TicksPerHour);
         float r = Rand.ValueSeeded(PsycheHelper.PawnSeed(pawn) + PsycheHelper.PawnSeed(otherPawn) + topic.GetHashCode());
 
+        // ToDo: perhaps make these multipliers into settings
         x *= 1f;
+        // Controls how much time affects the opinion. Should be a positive number.
         t *= 2f;
         float yr = 5f;
         float y0x = 10f;
@@ -302,6 +306,7 @@ public class Hediff_Conversation : HediffWithComps
 
         // Added time minimum to baseline to opinionMod because conversations often end very quickly
         float y = yr * r + y0x * Func(x) + y0t * Func(t) + y1 * Func(x) * Func(t) + y2 * Func(x * (1f + t));
+        y *= PsychologySettings.convoOpinionMultiplier;
 
         // In low-population colonies, pawns will put aside their differences.
         opinionMod = opinionModRawPositive ? Mathf.Ceil(y) : -Mathf.Ceil(y * PopulationModifier);

@@ -311,6 +311,14 @@
     <Compile Include="Main\Translation\TranslationUtility.cs" />
     <Compile Include="Main\Translation\Label.cs" />
     <Compile Include="Main\GUI\EntryObject.cs" />
+    <Compile Include="Main\LovinCasual\JobDriver_DoLovinCasual.cs" />
+    <Compile Include="Main\LovinCasual\RomanceUtilities.cs" />
+    <Compile Include="DefOf\PreceptDefOfPsychology.cs" />
+    <Compile Include="Main\LovinCasual\HookupSettingsUtilities.cs" />
+    <Compile Include="Main\LovinCasual\JobDriver_LeadHookup.cs" />
+    <Compile Include="Main\LovinCasual\JoyGiver_CasualHookup.cs" />
+    <Compile Include="Main\LovinCasual\Comp_PartnerList.cs" />
+    <Compile Include="Harmony\RomanceAndFamily\JoyKindDef.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\About\preview.png">
@@ -811,6 +819,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Main\Translation\" />
+    <Folder Include="Main\LovinCasual\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

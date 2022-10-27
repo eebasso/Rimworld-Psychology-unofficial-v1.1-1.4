@@ -84,7 +84,6 @@ public static class ChildRelationUtility_ManualPatches
         bool flag = true;
         if (PsycheHelper.TryGetPawnSeed(parent) != true)
         {
-
             flag = PsycheHelper.HasTraitDef(parent, TraitDefOf.Gay);
             if (flag)
             {

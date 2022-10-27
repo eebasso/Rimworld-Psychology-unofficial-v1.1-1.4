@@ -9,7 +9,7 @@ public class VanillaPsycastersExpanded_Patches
     {
         HarmonyLib.Harmony harmonyInstance = new HarmonyLib.Harmony("Community.Psychology.UnofficialUpdate.VanillaPsycastsExpanded");
         harmonyInstance.PatchAll();
-        //Log.Message("Psychology: completed patches for compatibility with Vanilla Psycasters Expanded");
+        Log.Message("Psychology: completed patches for compatibility with Vanilla Psycasters Expanded");
     }
 }
 
@@ -72,7 +72,7 @@ public class AbilityExtension_WordOfLove_Valid_Patch{    [HarmonyPostfix]    
             {
                 continue;
             }
-            if (PsycheHelper.Comp(pawn).Sexuality.AdjustedSexDrive < 0.1f)
+            if (PsycheHelper.Comp(pawn).Sexuality.IsAsexual)
             {
                 if (throwMessages)
                 {

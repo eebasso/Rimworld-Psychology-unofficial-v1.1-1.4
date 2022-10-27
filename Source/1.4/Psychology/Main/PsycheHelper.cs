@@ -68,7 +68,7 @@ public static class PsycheHelper
     {
         if (pawn == null)
         {
-            Log.Warning("PsychologyEnabled, pawn == null");
+            //Log.Warning("PsychologyEnabled, pawn == null");
             return false;
         }
         //Log.Message("PsychologyEnabled, pawn != null");
@@ -284,61 +284,69 @@ public static class PsycheHelper
 
     public static void CorrectTraitsForPawnKinseyEnabled(Pawn pawn)
     {
-        if (!TryGetPawnSeed(pawn))
-        {
-            return;
-        }
-        if (!PsychologyEnabled(pawn) || pawn?.story?.traits == null)
+        if (pawn?.story?.traits == null)
         {
             return;
         }
         if (TryRemoveTraitDef(pawn, TraitDefOf.Asexual))
         {
             Log.Warning("CorrectTraitsForPawnKinseyEnabled, Removed Asexual trait from pawn = " + pawn.Label);
+            if (!PsychologyEnabled(pawn))
+            {
+                return;
+            }
             Comp(pawn).Sexuality.AsexualTraitReroll();
         }
         if (TryRemoveTraitDef(pawn, TraitDefOf.Bisexual))
         {
             Log.Warning("CorrectTraitsForPawnKinseyEnabled, Removed Bisexual trait from pawn = " + pawn.Label);
+            if (!PsychologyEnabled(pawn))
+            {
+                return;
+            }
             Comp(pawn).Sexuality.BisexualTraitReroll();
         }
         if (TryRemoveTraitDef(pawn, TraitDefOf.Gay))
         {
             Log.Warning("CorrectTraitsForPawnKinseyEnabled, Removed Gay trait from pawn = " + pawn.Label);
+            if (!PsychologyEnabled(pawn))
+            {
+                return;
+            }
             Comp(pawn).Sexuality.GayTraitReroll();
         }
     }
 
-    //public static void CorrectTraitsForPawnKinseyDisabled(Pawn pawn)
-    //{
-    //    if (!PsycheHelper.PsychologyEnabled(pawn) || pawn?.story?.traits == null)
-    //    {
-    //        return;
-    //    }
-    //    int kinseyRating = PsycheHelper.Comp(pawn).Sexuality.kinseyRating;
-    //    if (PsycheHelper.Comp(pawn).Sexuality.sexDrive < 0.1f)
-    //    {
-    //        TryGainTraitDef(pawn, TraitDefOf.Asexual);
-    //    }
-    //    if (kinseyRating < 2)
-    //    {
-    //        // If pawn is mostly heterosexual
-    //        TryRemoveTraitDef(pawn, TraitDefOf.Bisexual);
-    //        TryRemoveTraitDef(pawn, TraitDefOf.Gay);
-    //    }
-    //    else if (kinseyRating < 5)
-    //    {
-    //        // If pawn is mostly bisexual
-    //        TryGainTraitDef(pawn, TraitDefOf.Bisexual);
-    //        TryRemoveTraitDef(pawn, TraitDefOf.Gay);
-    //    }
-    //    else
-    //    {
-    //        // If pawn is mostly homosexual
-    //        TryRemoveTraitDef(pawn, TraitDefOf.Bisexual);
-    //        TryGainTraitDef(pawn, TraitDefOf.Gay);
-    //    }
-    //}
+    public static void CorrectTraitsForPawnKinseyDisabled(Pawn pawn)
+    {
+        if (!PsycheHelper.PsychologyEnabled(pawn) || pawn?.story?.traits == null)
+        {
+            return;
+        }
+        int kinseyRating = PsycheHelper.Comp(pawn).Sexuality.kinseyRating;
+        if (PsycheHelper.Comp(pawn).Sexuality.sexDrive < 0.1f)
+        {
+            TryGainTraitDef(pawn, TraitDefOf.Asexual);
+        }
+        if (kinseyRating < 2)
+        {
+            // If pawn is mostly heterosexual
+            TryRemoveTraitDef(pawn, TraitDefOf.Bisexual);
+            TryRemoveTraitDef(pawn, TraitDefOf.Gay);
+        }
+        else if (kinseyRating < 5)
+        {
+            // If pawn is mostly bisexual
+            TryGainTraitDef(pawn, TraitDefOf.Bisexual);
+            TryRemoveTraitDef(pawn, TraitDefOf.Gay);
+        }
+        else
+        {
+            // If pawn is mostly homosexual
+            TryRemoveTraitDef(pawn, TraitDefOf.Bisexual);
+            TryGainTraitDef(pawn, TraitDefOf.Gay);
+        }
+    }
 
     public static bool HasTraitDef(Pawn pawn, TraitDef traitDef)
     {

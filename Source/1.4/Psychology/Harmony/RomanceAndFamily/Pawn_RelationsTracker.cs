@@ -128,7 +128,7 @@ public static class Pawn_RelationsTracker_LovinChancePatch
 
     public static float CalculateAgeFactor(Pawn pawn, Pawn otherPawn)
     {
-        if (!SpeciesHelper.RomanceLifestageCheck(pawn, true) || !SpeciesHelper.RomanceLifestageCheck(otherPawn, true))
+        if (!SpeciesHelper.RomanceLifestageAgeCheck(pawn, true) || !SpeciesHelper.RomanceLifestageAgeCheck(otherPawn, true))
         {
             // No romance factor for children, no exceptions
             return 0f;

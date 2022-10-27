@@ -76,4 +76,10 @@ public static class ThoughtDefOfPsychology
     public static ThoughtDef IRejectedTheirProposalMood;
     public static ThoughtDef IDivorcedThemMood;
 
+    /* Casual lovin */
+    //public static ThoughtDef FailedHookupAttemptOnMe;
+    //public static ThoughtDef RebuffedMyHookupAttempt;
+    //[MayRequireIdeology]
+    //public static ThoughtDef GotLovin_Horrible;
+
 }

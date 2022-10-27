@@ -23,7 +23,7 @@ public static class HarmonyInitialize
         }
         catch (Exception ex)
         {
-            Log.Warning("InteractionWorker_RomanceAttempt.RandomSelectionWeight unpatch, " + ex);
+            Log.Error("InteractionWorker_RomanceAttempt.RandomSelectionWeight unpatch, " + ex);
         }
 
         try
@@ -32,7 +32,7 @@ public static class HarmonyInitialize
         }
         catch (Exception ex)
         {
-            Log.Warning("InteractionWorker_RomanceAttempt.SuccessChance unpatch, " + ex);
+            Log.Error("InteractionWorker_RomanceAttempt.SuccessChance unpatch, " + ex);
         }
 
         try
@@ -41,7 +41,7 @@ public static class HarmonyInitialize
         }
         catch (Exception ex)
         {
-            Log.Warning("InteractionWorker_RomanceAttempt.BreakLoverAndFianceRelations unpatch, " + ex);
+            Log.Error("InteractionWorker_RomanceAttempt.BreakLoverAndFianceRelations unpatch, " + ex);
         }
 
         try
@@ -50,7 +50,7 @@ public static class HarmonyInitialize
         }
         catch (Exception ex)
         {
-            Log.Warning("LovePartnerRelationUtility.LovePartnerRelationGenerationChance unpatch, " + ex);
+            Log.Error("LovePartnerRelationUtility.LovePartnerRelationGenerationChance unpatch, " + ex);
         }
 
         try
@@ -59,7 +59,7 @@ public static class HarmonyInitialize
         }
         catch (Exception ex)
         {
-            Log.Warning("LovePartnerRelationUtility.GetLovinMtbHours unpatch, " + ex);
+            Log.Error("LovePartnerRelationUtility.GetLovinMtbHours unpatch, " + ex);
         }
 
         try
@@ -68,7 +68,7 @@ public static class HarmonyInitialize
         }
         catch (Exception ex)
         {
-            Log.Warning("Pawn_IdeoTracker.IdeoTrackerTick unpatch, " + ex);
+            Log.Error("Pawn_IdeoTracker.IdeoTrackerTick unpatch, " + ex);
         }
 
         try
@@ -77,7 +77,7 @@ public static class HarmonyInitialize
         }
         catch (Exception ex)
         {
-            Log.Warning("Pawn_RelationsTracker.SecondaryLovinChanceFactor unpatch, exception = " + ex);
+            Log.Error("Pawn_RelationsTracker.SecondaryLovinChanceFactor unpatch, exception = " + ex);
         }
 
         harmonyInstance.PatchAll();
@@ -91,7 +91,7 @@ public static class HarmonyInitialize
         //    ManualPatches.IdeoPatches(harmonyInstance);
         //    //Log.Message("Psychology: implemented all ideology patches");
         //}
-        //Log.Message("Psychology: implemented all vanilla patches");
+        Log.Message("Psychology: implemented all vanilla patches");
     }
 }
 

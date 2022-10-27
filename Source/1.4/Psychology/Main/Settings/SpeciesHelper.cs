@@ -64,11 +64,6 @@ public class SpeciesHelper
 
     static SpeciesHelper()
     {
-        Initialize();
-    }
-
-    public static void Initialize()
-    {
         zombieThinkTree = DefDatabase<ThinkTreeDef>.GetNamedSilentFail("Zombie");
         zombieNotNull = zombieThinkTree != null;
         foreach (ThingDef t in DefDatabase<ThingDef>.AllDefs)
@@ -77,18 +72,18 @@ public class SpeciesHelper
             {
                 continue;
             }
-            if (t.defName != "Human")
-            {
-                continue;
-            }
+            //if (t.defName != "Human")
+            //{
+            //    continue;
+            //}
             if (registeredSpecies.Add(t))
             {
-                //Log.Message("SpeciesHelper(), registered = " + t);
+                Log.Message("Psychology, registered species: " + t);
             }
         }
+        SettingsWindowUtility.SaveBackupOfSettings();
         SettingsWindowUtility.Initialize();
     }
-
 
     // Things that need to be done by these methods:
     // - Check intelligence
@@ -137,6 +132,8 @@ public class SpeciesHelper
                 {
                     AddCompPsychologyToHumanlikeDef(thingDef);
                 }
+                SettingsWindowUtility.SaveBackupOfSettings();
+                SettingsWindowUtility.Initialize();
                 //Log.Message("CheckIntelligenceAndAddEverythingToHumanlikeDef, registered = " + thingDef);
             }
         }
@@ -152,22 +149,22 @@ public class SpeciesHelper
     }
 
     // To be used on game loaded
-    public static void RegisterHumanlikeSpeciesLoadedGame()
-    {
-        ThingDef pawnDef;
-        foreach (Pawn pawn in PawnsFinder.All_AliveOrDead)
-        {
-            pawnDef = pawn?.def;
-            if (pawnDef == null)
-            {
-                continue;
-            }
-            if (CheckIntelligenceAndAddEverythingToSpeciesDef(pawnDef, checkIntelligence: true, register: true, allowAddComp: true))
-            {
-                PsycheHelper.PsychologyEnabled(pawn);
-            }
-        }
-    }
+    //public static void RegisterHumanlikeSpeciesLoadedGame()
+    //{
+    //    ThingDef pawnDef;
+    //    foreach (Pawn pawn in PawnsFinder.All_AliveOrDead)
+    //    {
+    //        pawnDef = pawn?.def;
+    //        if (pawnDef == null)
+    //        {
+    //            continue;
+    //        }
+    //        if (CheckIntelligenceAndAddEverythingToSpeciesDef(pawnDef, checkIntelligence: true, register: true, allowAddComp: true))
+    //        {
+    //            PsycheHelper.PsychologyEnabled(pawn);
+    //        }
+    //    }
+    //}
 
     // To be used after game (save file) is loaded
     public static SpeciesSettings GetOrMakeSpeciesSettingsFromThingDef(ThingDef pawnDef)
@@ -178,7 +175,7 @@ public class SpeciesHelper
             PsychologySettings.speciesDict[pawnDef.defName] = settings;
             //Log.Message("GetOrMakeSpeciesSettingsFromThingDef, added to PsychologySettings.speciesDict, defName = " + pawnDef.defName);
         }
-        if (registeredSpecies.Add(pawnDef) == true)
+        if (registeredSpecies.Add(pawnDef))
         {
             AddEverythingExceptCompPsychology(pawnDef);
             if (IsHumanlikeIntelligence(pawnDef) == true)
@@ -186,6 +183,7 @@ public class SpeciesHelper
                 AddCompPsychologyToHumanlikeDef(pawnDef);
             }
             //Log.Message("SpeciesHelper.GetOrMakeSpeciesSettingsFromThingDef, registered = " + pawnDef);
+            SettingsWindowUtility.SaveBackupOfSettings();
             SettingsWindowUtility.Initialize();
         }
         return settings;
@@ -312,19 +310,59 @@ public class SpeciesHelper
         }
         if (def.race?.lifeStageAges != null)
         {
-            if (def.race.lifeStageAges.Exists(x => x.def.defName.Contains("Adult") && x?.minAge != null))
+            //if (def.race.lifeStageAges.Exists(x => x.def.defName.Contains("Adult") && x?.minAge != null))
+            //{
+            //    float adultAge = (def.race.lifeStageAges.First(x => x.def.defName.Contains("Adult"))).minAge;
+            //    if (def.race.lifeStageAges.Exists(x => x.def.defName.Contains("Teenager") && x?.minAge != null))
+            //    {
+            //        float teenAge = (def.race.lifeStageAges.First(x => x.def.defName.Contains("Teenager"))).minAge;
+            //        settings.minDatingAge = teenAge + (adultAge - teenAge) * (14f - 13f) / (18f - 13f);
+            //        settings.minLovinAge = teenAge + (adultAge - teenAge) * (16f - 13f) / (18f - 13f);
+            //    }
+            //    else
+            //    {
+            //        settings.minDatingAge = adultAge * 14f / 18f;
+            //        settings.minLovinAge = adultAge * 16f / 18f;
+            //    }
+            //}
+            //else
+            //{
+            //    settings.minDatingAge = -1f;
+            //    settings.minLovinAge = -1f;
+            //}
+
+            bool foundTeen = false;
+            bool foundAdult = false;
+            float ageTeen = -1f;
+            float ageAdult = -1f;
+            foreach (LifeStageAge lifeStageAge in def.race.lifeStageAges)
             {
-                float adultAge = (def.race.lifeStageAges.First(x => x.def.defName.Contains("Adult"))).minAge;
-                if (def.race.lifeStageAges.Exists(x => x.def.defName.Contains("Teenager") && x?.minAge != null))
+                if (lifeStageAge?.def?.defName == null || lifeStageAge?.minAge == null)
                 {
-                    float teenAge = (def.race.lifeStageAges.First(x => x.def.defName.Contains("Teenager"))).minAge;
-                    settings.minDatingAge = teenAge + (adultAge - teenAge) * (14f - 13f) / (18f - 13f);
-                    settings.minLovinAge = teenAge + (adultAge - teenAge) * (16f - 13f) / (18f - 13f);
+                    continue;
+                }
+                if (lifeStageAge.def.defName.Contains("Teenage"))
+                {
+                    ageTeen = Mathf.Max(ageTeen, lifeStageAge.minAge);
+                    foundTeen = true;
+                }
+                if (lifeStageAge.def.defName.Contains("Adult"))
+                {
+                    ageAdult = Mathf.Max(ageAdult, lifeStageAge.minAge);
+                    foundAdult = true;
+                }
+            }
+            if (foundAdult)
+            {
+                if (foundTeen)
+                {
+                    settings.minDatingAge = ageTeen + (ageAdult - ageTeen) * (14f - 13f) / (18f - 13f);
+                    settings.minLovinAge = ageTeen + (ageAdult - ageTeen) * (16f - 13f) / (18f - 13f);
                 }
                 else
                 {
-                    settings.minDatingAge = adultAge * 14f / 18f;
-                    settings.minLovinAge = adultAge * 16f / 18f;
+                    settings.minDatingAge = ageAdult * 14f / 18f;
+                    settings.minLovinAge = ageAdult * 16f / 18f;
                 }
             }
             else
@@ -336,41 +374,95 @@ public class SpeciesHelper
         return settings;
     }
 
-    public static float MinLifestageAge(ThingDef def, bool isTeen)
+    public static bool MinLifestageAge(ThingDef def, bool isTeen, out float age)
     {
-        if (def?.race?.lifeStageAges != null)
+        age = -1f;
+        if (def?.race?.lifeStageAges == null)
         {
-            if (def.race.lifeStageAges.Exists(x => x?.minAge != null && x.def.defName.Contains("Adult")))
+            return false;
+        }
+        bool foundTeen = false;
+
+        if (isTeen)
+        {
+            foreach (LifeStageAge lifeStageAge in def.race.lifeStageAges)
             {
-                if (isTeen && def.race.lifeStageAges.Exists(x => x?.minAge != null && x.def.defName.Contains("Teenager")))
+                if (lifeStageAge?.minAge != null && lifeStageAge.def.defName.Contains("Teenage"))
                 {
-                    return def.race.lifeStageAges.First(x => x.def.defName.Contains("Teenager")).minAge;
+                    age = Mathf.Max(age, lifeStageAge.minAge) * 12f / 13f;
+                    foundTeen = true;
                 }
-                return def.race.lifeStageAges.First(x => x.def.defName.Contains("Adult")).minAge;
+            }
+            if (foundTeen)
+            {
+                return true;
             }
         }
-        return -1f;
+        if (def.race.lifeStageAges.Exists(x => x?.minAge != null && x.def.defName.Contains("Adult")))
+        {
+            age = def.race.lifeStageAges.First(x => x?.minAge != null && x.def.defName.Contains("Adult")).minAge * 15f / 18f;
+            return true;
+        }
+        return false;
     }
 
-    public static bool RomanceLifestageCheck(Pawn pawn, bool isDating)
+
+    /// <summary>
+    /// Uses lifestage info to determine whether <paramref name="pawn"/> can participate in dating if <paramref name="isDating"/> is true, or lovin if false.
+    /// </summary>
+    /// <param name="pawn">The pawn in question</param>
+    /// <param name="isDating">Checks dating if true, and lovin if false.</param>
+    /// <returns>True or False, with True meaning that the <paramref name="pawn"/> can participate in dating/lovin.</returns>
+    public static bool RomanceLifestageAgeCheck(Pawn pawn, bool isDating)
     {
         if (!PsycheHelper.PsychologyEnabled(pawn))
         {
             return false;
         }
         // Allow teenagers to date but not do lovin
-        float minLifestageAge = MinLifestageAge(pawn.def, isDating);
-        return pawn.ageTracker != null && pawn.ageTracker.AgeBiologicalYearsFloat > minLifestageAge && minLifestageAge != -1f;
+        if (!MinLifestageAge(pawn.def, isDating, out float minLifestageAge))
+        {
+            Log.Message("RomanceLifestageAgeCheck, !MinLifestageAge, pawn: " + pawn + ", isDating: " + isDating + ", minLifestageAge: " + minLifestageAge);
+            return false;
+        }
+        if (pawn?.ageTracker?.AgeBiologicalYearsFloat is float bioAge && bioAge < minLifestageAge)
+        {
+            Log.Message("RomanceLifestageAgeCheck, ageBio < minLifestageAge, pawn: " + pawn + ", ageBio: " + pawn.ageTracker.AgeBiologicalYearsFloat + ", minLifestageAge: " + minLifestageAge);
+            return false;
+        }
+        if (pawn?.ageTracker?.CurLifeStage is LifeStageDef lifeStageDef && lifeStageDef == LifeStageDefOf.HumanlikeAdult)
+        {
+            return true;
+        }
+        if (!isDating && pawn?.ageTracker?.Adult != true)
+        {
+            return false;
+        }
+        return true;
     }
 
-    public static bool RomanceSettingsCheck(Pawn pawn, bool isDating)
+    /// <summary>
+    /// Uses settings info to determine whether <paramref name="pawn"/> can participate in dating if <paramref name="isDating"/> is true, or lovin if false.
+    /// </summary>
+    /// <param name="pawn">The pawn in question</param>
+    /// <param name="isDating">Checks dating if true, and lovin if false.</param>
+    /// <returns>True or False, with True meaning that the <paramref name="pawn"/> can participate in dating/lovin.</returns>
+    public static bool RomanceSettingsAgeCheck(Pawn pawn, bool isDating)
     {
+        if (!PsycheHelper.PsychologyEnabled(pawn))
+        {
+            return false;
+        }
         SpeciesSettings settings = GetOrMakeSpeciesSettingsFromThingDef(pawn.def);
         if (!settings.enablePsyche)
         {
             return false;
         }
         float minSettingsAge = isDating ? settings.minDatingAge : settings.minLovinAge;
+        if (minSettingsAge < 0f)
+        {
+            return false;
+        }
         if (minSettingsAge == 0f)
         {
             return true;
@@ -378,6 +470,16 @@ public class SpeciesHelper
         return pawn.ageTracker != null && minSettingsAge < pawn.ageTracker.AgeBiologicalYearsFloat && 0f < minSettingsAge;
     }
 
+    /// <summary>
+    /// Uses both lifestage and settings info to determine whether <paramref name="pawn"/> can participate in dating if <paramref name="isDating"/> is true, or lovin if false.
+    /// </summary>
+    /// <param name="pawn">The pawn in question</param>
+    /// <param name="isDating">Checks dating if true, and lovin if false.</param>
+    /// <returns>True or False, with True meaning that the <paramref name="pawn"/> can participate in dating/lovin.</returns>
+    public static bool RomanceCombinedAgeCheck(Pawn pawn, bool isDating)
+    {
+        return RomanceLifestageAgeCheck(pawn, isDating) && RomanceSettingsAgeCheck(pawn, isDating);
+    }
 
     //public static SpeciesSettings CopySpeciesSettingsFrom(SpeciesSettings settingsToCopy)
     //{
@@ -392,8 +494,8 @@ public class SpeciesHelper
 {
     public static void HeuristicSettings(ref SpeciesSettings settings, ThingDef def)
     {
-        AlienRace.ThingDef_AlienRace alienDef = def as AlienRace.ThingDef_AlienRace;
-        if (alienDef != null)
+        //AlienRace.ThingDef_AlienRace alienDef = def as AlienRace.ThingDef_AlienRace;
+        if (def is AlienRace.ThingDef_AlienRace alienDef)
         {
             if (alienDef?.alienRace?.compatibility?.IsSentient != null)
             {

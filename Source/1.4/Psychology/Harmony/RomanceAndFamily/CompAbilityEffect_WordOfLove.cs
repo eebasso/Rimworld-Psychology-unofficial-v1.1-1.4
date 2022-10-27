@@ -26,7 +26,7 @@ public static class CompAbilityEffect_WordOfLove_KinseyEnabledPatches
         {
             return;
         }
-        if (!SpeciesHelper.RomanceLifestageCheck(pawn, true) || !SpeciesHelper.RomanceLifestageCheck(pawn2, true))
+        if (!SpeciesHelper.RomanceLifestageAgeCheck(pawn, true) || !SpeciesHelper.RomanceLifestageAgeCheck(pawn2, true))
         {
             // No underage dating
             __result = false;
@@ -122,7 +122,7 @@ public static class CompAbilityEffect_WordOfLove_KinseyEnabledPatches
         {
             return false;
         }
-        return PsycheHelper.Comp(pawn).Sexuality.AdjustedSexDrive < 0.1f;
+        return PsycheHelper.Comp(pawn).Sexuality.IsAsexual;
     }
 
     public static bool BisexualCheckKinseyEnabled(Pawn pawn)

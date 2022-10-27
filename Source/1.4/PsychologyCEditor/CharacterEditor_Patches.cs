@@ -32,9 +32,7 @@ public class CharacterEditor_Patches
         harmonyMethod = new HarmonyMethod(typeof(CharacterEditor_Patches), nameof(CharacterEditor_Patches.DialogPsychology_DoWindowContentsPrefix));
         harmonyInstance.Patch(originalInfo, prefix: harmonyMethod);
 
-        //harmonyInstance.PatchAll();
-        //Log.Message("Psychology: completed patches for compatibility with Character Editor.");
-        //Log.Message("Psychology: completed compability patches for Character Editor");
+        Log.Message("Psychology: completed compability patches for Character Editor");
     }
 
     private static CEPawnGetter CreateCEPawnGetter()

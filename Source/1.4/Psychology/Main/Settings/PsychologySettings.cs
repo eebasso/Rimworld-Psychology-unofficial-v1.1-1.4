@@ -108,6 +108,18 @@ public class PsychologySettings : ModSettings
     public const bool useAntonymsDefault = true; // v1.3
     public static bool useAntonyms = true; // v1.3
 
+    // Hookup settings
+    public const float hookupRateMultiplierDefault = 1f;
+    public static float hookupRateMultiplier = 1f;
+
+    public const float minOpinionForHookupDefault = 5f;
+    public static float minOpinionForHookup = 5f;
+
+    public const float hookupCheatChanceDefault = 0.05f;
+    public static float hookupCheatChance = 0.05f;
+
+
+
     /* DEPRECATED SETTINGS */
     private const bool enableAnxietyDefault = true; // v1.1
     private static bool enableAnxiety = true; // v1.1
@@ -146,7 +158,6 @@ public class PsychologySettings : ModSettings
         /* Deprecated settings. Set each to default and use forceSave = false to essentially delete them from savefile */
         Scribe_Values.Look(ref enableAnxiety, "Psychology_EnableAnxiety", enableAnxietyDefault);
         enableAnxiety = enableAnxietyDefault;
-
         //Log.Message("PsychologySettings, ExposeData end");
     }
 

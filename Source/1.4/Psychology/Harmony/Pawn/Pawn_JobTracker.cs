@@ -17,20 +17,15 @@ public static class Pawn_JobTracker_EndCurrentJobPatch
     public static bool HeavySleeperTrait(Pawn_JobTracker __instance, Pawn ___pawn)
     {
         //Pawn pawn = __instance.pawn;
-        Pawn pawn = ___pawn;
-        if (__instance.curDriver == null)
+        if (__instance?.curDriver?.asleep != true)
         {
             return true;
         }
-        if (__instance.curDriver.asleep != true)
+        if (___pawn?.story?.traits?.HasTrait(TraitDefOfPsychology.HeavySleeper) != true)
         {
             return true;
         }
-        if (!pawn.story.traits.HasTrait(TraitDefOfPsychology.HeavySleeper))
-        {
-            return true;
-        }
-        if (Traverse.Create(pawn.needs.rest).Field("lastRestTick").GetValue<int>() < Find.TickManager.TicksGame - 200)
+        if (Traverse.Create(___pawn.needs.rest).Field("lastRestTick").GetValue<int>() < Find.TickManager.TicksGame - 200)
         {
             return true;
         }

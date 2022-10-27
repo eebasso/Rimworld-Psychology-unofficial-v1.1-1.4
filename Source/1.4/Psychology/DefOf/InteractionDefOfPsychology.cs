@@ -13,4 +13,6 @@ public static class InteractionDefOfPsychology
     //public static InteractionDef TourFinished;
     public static InteractionDef Indoctrinate;
 
+    // Hookups
+    //public static InteractionDef TriedHookupWith;
 }

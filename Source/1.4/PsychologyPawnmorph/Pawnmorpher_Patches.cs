@@ -19,7 +19,7 @@ public class PawnmorpherPatches{
             }
             SpeciesHelper.AddEverythingExceptCompPsychology(pawnDef);
         }
-        //Log.Message("Psychology: completed patches for compatibility with Pawnmorpher.");
+        Log.Message("Psychology: completed patches for compatibility with Pawnmorpher.");
     }
 }
 

@@ -21,7 +21,7 @@ public class PsychologyGameComponent : GameComponent
     public Dictionary<int, Pair<Pawn, Hediff>> Mayors = new Dictionary<int, Pair<Pawn, Hediff>>();
     public static int constituentTick = 156;
     public static int electionTick = 823;
-    public static int certaintyTick = 37;
+    public static int certaintyTick = 12;
     public const int constituentTicksPerInterval = 2 * GenDate.TicksPerHour;
     public const int electionTicksPerInterval = 7 * GenDate.TicksPerHour;
     // ToDo: add cooldown for mayors of settlement, perhaps make it a setting
@@ -42,7 +42,7 @@ public class PsychologyGameComponent : GameComponent
     public override void LoadedGame()
     {
         //Log.Message("Psychology: loading game");
-        SpeciesHelper.RegisterHumanlikeSpeciesLoadedGame(); //ToDo: figure out why this causes crash
+        //SpeciesHelper.RegisterHumanlikeSpeciesLoadedGame(); //ToDo: figure out why this causes crash
         BuildMayorDictionary();
         ImplementSexualOrientation();
         visitMayorChanceFactor = 2f * constituentTicksPerInterval / (GenDate.TicksPerHour * PsychologySettings.visitMayorMtbHours);
@@ -76,7 +76,7 @@ public class PsychologyGameComponent : GameComponent
         float certaintyChange;
         int idnumber;
         idnumber = pawn.thingIDNumber;
-        if (!CachedCertaintyChangePerDayDict.TryGetValue(idnumber, out certaintyChange) || Rand.ChanceSeeded(0.01f, idnumber + certaintyTick))
+        if (!CachedCertaintyChangePerDayDict.TryGetValue(idnumber, out certaintyChange) || (idnumber + certaintyTick) % 100 == 37)
         {
             certaintyChange = PsycheHelper.Comp(pawn).Psyche.CalculateCertaintyChangePerDay(pawn.Ideo, addToDicts);
             CachedCertaintyChangePerDayDict[idnumber] = certaintyChange;
@@ -193,30 +193,30 @@ public class PsychologyGameComponent : GameComponent
                 PsycheHelper.CorrectTraitsForPawnKinseyEnabled(pawn);
             }
         }
-        //else
-        //{
-        //    foreach (Pawn pawn in PawnsFinder.All_AliveOrDead)
-        //    {
-        //        PsycheHelper.CorrectTraitsForPawnKinseyDisabled(pawn);
-        //    }
-        //}
-    }
-
-    public virtual void RandomizeRatingsForAllPawns()
-    {
-        foreach (Pawn pawn in PawnsFinder.All_AliveOrDead)
+        else
         {
-            if (PsycheHelper.TryGetPawnSeed(pawn) != true)
+            foreach (Pawn pawn in PawnsFinder.All_AliveOrDead)
             {
-                continue;
+                PsycheHelper.CorrectTraitsForPawnKinseyDisabled(pawn);
             }
-            if (PsycheHelper.PsychologyEnabled(pawn) != true)
-            {
-                continue;
-            }
-            PsycheHelper.Comp(pawn).Psyche.RandomizeRatings();
         }
     }
+
+    //public virtual void RandomizeRatingsForAllPawns()
+    //{
+    //    foreach (Pawn pawn in PawnsFinder.All_AliveOrDead)
+    //    {
+    //        if (PsycheHelper.TryGetPawnSeed(pawn) != true)
+    //        {
+    //            continue;
+    //        }
+    //        if (PsycheHelper.PsychologyEnabled(pawn) != true)
+    //        {
+    //            continue;
+    //        }
+    //        PsycheHelper.Comp(pawn).Psyche.RandomizeRatings();
+    //    }
+    //}
 
     public virtual void ConstituentTick()
     {

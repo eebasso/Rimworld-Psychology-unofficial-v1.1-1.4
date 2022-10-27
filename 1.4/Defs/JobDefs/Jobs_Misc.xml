@@ -24,5 +24,23 @@
     <suspendable>false</suspendable>
     <allowOpportunisticPrefix>true</allowOpportunisticPrefix>
   </JobDef>
+
+  <!-- Hookups -->
+  <!--<JobDef>
+    <defName>LeadHookup</defName>
+    <driverClass>Psychology.JobDriver_LeadHookup</driverClass>
+    <reportString>attempting hookup.</reportString>
+    <joyDuration>4000</joyDuration>
+    <joyMaxParticipants>1</joyMaxParticipants>
+    <joyKind>Lewd</joyKind>
+  </JobDef>
+  <JobDef>
+    <defName>DoLovinCasual</defName>
+    <driverClass>Psychology.JobDriver_DoLovinCasual</driverClass>
+    <reportString>lovin'.</reportString>
+    <joySkill>Social</joySkill>
+    <joyXpPerTick>0.004</joyXpPerTick>
+    <joyKind>Lewd</joyKind>
+  </JobDef>-->
   
 </Defs>

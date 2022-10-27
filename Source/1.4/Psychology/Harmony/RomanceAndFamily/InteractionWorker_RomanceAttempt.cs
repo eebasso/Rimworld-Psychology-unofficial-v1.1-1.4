@@ -21,18 +21,10 @@ public static class InteractionWorker_RomanceAttempt_SelectionWeightPatch
     //[HarmonyPriority(Priority.Last)]
     //[HarmonyPostfix]
     [HarmonyPrefix]
-    public static bool RandomSelectionWeight(ref float __result, Pawn initiator, Pawn recipient)
+    public static bool RandomSelectionWeightPrefix(ref float __result, Pawn initiator, Pawn recipient)
     {
         if (!PsycheHelper.PsychologyEnabled(initiator) || !PsycheHelper.PsychologyEnabled(recipient))
         {
-            //try
-            //{
-            //    //Log.Message("InteractionWorker_RomanceAttempt.RandomSelectionWeight, initiator = " + initiator.LabelShort + ", recipient = " + recipient.LabelShort + ", Psyche not enabled");
-            //}
-            //catch
-            //{
-            //    Log.Warning("InteractionWorker_RomanceAttempt.RandomSelectionWeight, PsychologyEnabled != true");
-            //}
             __result = 0f;
             return false;
         }
@@ -53,9 +45,9 @@ public static class InteractionWorker_RomanceAttempt_SelectionWeightPatch
             return false;
         }
 
-        if (!SpeciesHelper.RomanceLifestageCheck(initiator, true) || !SpeciesHelper.RomanceLifestageCheck(recipient, true))
+        if (!SpeciesHelper.RomanceLifestageAgeCheck(initiator, true) || !SpeciesHelper.RomanceLifestageAgeCheck(recipient, true))
         {
-            // No underage dating
+            // No dating for non-teens, no exceptions
             __result = 0f;
             return false;
         }
@@ -190,6 +182,20 @@ public static class InteractionWorker_RomanceAttempt_SelectionWeightPatch
 
         return false;
     }
+
+    [HarmonyPostfix]
+    [HarmonyPriority(Priority.Last)]
+    public static void RandomSelectionWeightPostfix(ref float __result, Pawn initiator, Pawn recipient)
+    {
+        // Just to be extra sure, add a postfix lifestage check
+        if (!SpeciesHelper.RomanceLifestageAgeCheck(initiator, true) || !SpeciesHelper.RomanceLifestageAgeCheck(recipient, true))
+        {
+            // No dating for non-teens, no exceptions
+            __result = 0f;
+        }
+    }
+
+
 }
 
 [HarmonyPatch(typeof(InteractionWorker_RomanceAttempt), nameof(InteractionWorker_RomanceAttempt.SuccessChance))]
@@ -207,13 +213,12 @@ public static class InteractionWorker_RomanceAttempt_SuccessChancePatch
             __result = 0f;
             return false;
         }
-        if (!SpeciesHelper.RomanceLifestageCheck(initiator, true) || !SpeciesHelper.RomanceLifestageCheck(recipient, true))
+        if (!SpeciesHelper.RomanceLifestageAgeCheck(initiator, true) || !SpeciesHelper.RomanceLifestageAgeCheck(recipient, true))
         {
             // No underage dating
             __result = 0f;
             return false;
         }
-
         bool recipientCodependent = recipient.story.traits.HasTrait(TraitDefOfPsychology.Codependent);
         if (recipientCodependent)
         {

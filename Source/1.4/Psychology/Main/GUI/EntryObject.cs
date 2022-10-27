@@ -352,14 +352,24 @@ public class EntryFloat : EntryObject.EntryNumeric
         valFloat = (float)Math.Round(rawValue, roundToDigit);
     }
 
-    public void HorizontalSlider(Rect rect, float min = 0, float max = 100)
+    public bool Slider(Rect rect, float min = 0, float max = 100, bool vertical = false, int roundToDigit = 1)
     {
         float valFloatClamped = Mathf.Clamp(valFloat, min, max);
-        float sliderFloat = Widgets.HorizontalSlider(rect, valFloatClamped, min, max, false);
+        if (roundToDigit >= 0)
+        {
+            valFloatClamped = (float)Math.Round(valFloatClamped, roundToDigit);
+        }
+        float sliderFloat = vertical ? GUI.VerticalSlider(rect, valFloatClamped, max, min) : Widgets.HorizontalSlider(rect, valFloatClamped, min, max, false);
+        if (roundToDigit >= 0)
+        {
+            sliderFloat = (float)Math.Round(sliderFloat, roundToDigit);
+        }
         if (sliderFloat != valFloatClamped)
         {
             UpdateValueAndBuffer(sliderFloat);
+            return true;
         }
+        return false;
     }
 }
 

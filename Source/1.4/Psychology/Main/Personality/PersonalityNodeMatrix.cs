@@ -229,7 +229,7 @@ public class PersonalityNodeMatrix
         //stopwatch.Stop();
         //TimeSpan ts = stopwatch.Elapsed;
         //Log.Message("Calculation time in seconds = " + String.Format("{0:00}.{1:000}", ts.Seconds, ts.Milliseconds));
-        //Log.Message("Psychology: calculated personality correlation matrix");
+        Log.Message("Psychology: calculated personality correlation matrix");
 
         PsycheHelper.InitializeDictionariesForPersonalityNodeDefs();
 
