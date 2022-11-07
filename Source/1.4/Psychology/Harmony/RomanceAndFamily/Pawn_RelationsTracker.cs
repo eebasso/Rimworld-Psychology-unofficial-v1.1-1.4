@@ -128,7 +128,7 @@ public static class Pawn_RelationsTracker_LovinChancePatch
 
     public static float CalculateAgeFactor(Pawn pawn, Pawn otherPawn)
     {
-        if (!SpeciesHelper.RomanceLifestageAgeCheck(pawn, true) || !SpeciesHelper.RomanceLifestageAgeCheck(otherPawn, true))
+        if (!SpeciesHelper.RomanceEnabled(pawn, true) || !SpeciesHelper.RomanceEnabled(otherPawn, true))
         {
             // No romance factor for children, no exceptions
             return 0f;
@@ -161,12 +161,12 @@ public static class Pawn_RelationsTracker_LovinChancePatch
             // Lechers are gross and will hit on underage pawns
             return 0f;
         }
-        float scaledAge2 = PsycheHelper.DatingAgeToVanilla(age2, minAge2);
+        float scaledAge2 = PsycheHelper.DatingBioAgeToVanilla(age2, minAge2);
         if (minAge1 == 0f)
         {
             return pawnLecher ? 1f : Mathf.InverseLerp(14f, 18f, scaledAge2);
         }
-        float scaledAge1 = PsycheHelper.DatingAgeToVanilla(age1, minAge1);
+        float scaledAge1 = PsycheHelper.DatingBioAgeToVanilla(age1, minAge1);
         float ageFactor = pawnLecher ? 1f : Mathf.InverseLerp(14f, Mathf.Clamp(0.5f * scaledAge1 + 7f, 14f, 18f), scaledAge2);
         if (settings1.enableAgeGap && settings2.enableAgeGap)
         {

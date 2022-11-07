@@ -46,9 +46,9 @@ public static class PawnRelationWorker_Sibling_GenerateParentParams_Patch
         float num3 = midChronologicalAge - chrAgeMax;
 
         // Convert from hardcoded vanilla values
-        num = PsycheHelper.LovinAgeFromVanilla(num, minLovingAge);
-        num2 = PsycheHelper.LovinAgeFromVanilla(num2, minLovingAge);
-        num3 = PsycheHelper.LovinAgeFromVanilla(num3, minLovingAge);
+        num = PsycheHelper.LovinBioAgeFromVanilla(num, minLovingAge);
+        num2 = PsycheHelper.LovinBioAgeFromVanilla(num2, minLovingAge);
+        num3 = PsycheHelper.LovinBioAgeFromVanilla(num3, minLovingAge);
 
         // Recompute
         minChronologicalAge = chrAgeMax + num;

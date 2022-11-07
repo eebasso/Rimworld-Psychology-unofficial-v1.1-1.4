@@ -15,7 +15,7 @@ using System.Security.Cryptography;
 namespace Psychology.Harmony;
 
 [StaticConstructorOnStartup]
-public static class BreakupHelperMethods
+public static class RomanceHelperMethods
 {
     public static ThoughtDef BrokeUpWithMeMoodDef = DefDatabase<ThoughtDef>.GetNamed("BrokeUpWithMeMood");
     public static ThoughtDef DivorcedMeMoodDef = DefDatabase<ThoughtDef>.GetNamed("DivorcedMeMood");
@@ -36,7 +36,7 @@ public static class BreakupHelperMethods
     public static List<ThoughtDef> MoodThoughtDefs = new List<ThoughtDef> { BrokeUpWithMeMoodDef, DivorcedMeMoodDef, ThoughtDefOf.RejectedMyProposalMood, CheatedOnMeMoodDef, ThoughtDefOfPsychology.IBrokeUpWithThemMood, ThoughtDefOfPsychology.IDivorcedThemMood, ThoughtDefOfPsychology.IRejectedTheirProposalMood };
     public static Dictionary<ThoughtDef, Pair<float, float>> MinMaxMoodDict = new Dictionary<ThoughtDef, Pair<float, float>>();
 
-    static BreakupHelperMethods()
+    static RomanceHelperMethods()
     {
         OpinionThoughtDefs = (from kvp in PsychologyMethodNameDict
                               select kvp.Key).ToList();
@@ -192,146 +192,13 @@ public static class BreakupHelperMethods
             {
                 yield return clist[listOtherPawnIndexInClist[matchNum]];
                 ThoughtDef thoughtDef = OpinionThoughtDefs[listThoughtDefIndexInOpinionThoughtDefs[matchNum]];
-                yield return CodeInstruction.Call(typeof(BreakupHelperMethods), PsychologyMethodNameDict[thoughtDef][listGainVsRemoveBit[matchNum]]);
+                yield return CodeInstruction.Call(typeof(RomanceHelperMethods), PsychologyMethodNameDict[thoughtDef][listGainVsRemoveBit[matchNum]]);
                 i = listTryGainOrRemoveIndexInClist[matchNum];
 
-                //Log.Message("InterdictTryGainAndRemoveMemories, matchNum: " + matchNum + (listGainVsRemoveBit[matchNum] == 0 ? ", TryGain" : ", Remove") + " ThoughtDef: " + OpinionThoughtDefs[listThoughtDefIndexInOpinionThoughtDefs[matchNum]] + ", implement " + PsychologyMethodNameDict[thoughtDef] +
-                //            "\nindexOfPawnInClist: " + listPawnIndexInClist[matchNum] +
-                //            "\nindexOfMemoriesInClist: " + listMemoriesIndexInClist[matchNum] +
-                //            "\nindexOfThoughtDefInClist: " + listThoughtDefIndexInClist[matchNum] +
-                //            "\nindexOfOtherPawnInClist: " + listOtherPawnIndexInClist[matchNum] +
-                //            "\nindexOfTryGainOrRemoveMemoriesInClist: " + listTryGainOrRemoveIndexInClist[matchNum] +
-                //            "\nindexOfThoughtDefInOpinionThoughtDefs: " + listThoughtDefIndexInOpinionThoughtDefs[matchNum]
-                //            );
+               
             }
         }
-        //Log.Message("InterdictTryGainAndRemoveMemories, end");
-
-
-        //    switch (searchMode)
-        //    {
-        //        case 0:
-
-        //        //if (clist[i].LoadsField(fieldInfoMemories))
-        //        //{
-        //        //    searchMode = 1;
-        //        //    indexOfMemoriesInClist = i;
-        //        //}
-        //        //break;
-        //        case 1:
-        //            foreach (Pair<int, FieldInfo> pair in fieldInfos)
-        //            {
-        //                if (clist[i].LoadsField(pair.Second))
-        //                {
-        //                    searchMode = 2;
-        //                    indexOfThoughtDefInClist = i;
-        //                    indexOfThoughtDefInOpinionThoughtDefs = pair.First;
-        //                    continue;
-        //                }
-        //            }
-        //            break;
-        //        default:
-        //            gainVsRemoveBit = clist[i].Calls(methodInfoTryGainMemory) ? 0 : clist[i].Calls(methodInfoRemoveMemories) ? 1 : -1;
-        //            if (gainVsRemoveBit != -1)
-        //            {
-        //                searchMode = 0;
-        //                //listPawnCode.Add(clist[indexOfMemoriesInClist - 4]);
-        //                listMemoriesIndexInClist.Add(indexOfMemoriesInClist);
-        //                listThoughtDefIndexInClist.Add(indexOfThoughtDefInClist);
-        //                listThoughtDefIndexInOpinionThoughtDefs.Add(indexOfThoughtDefInOpinionThoughtDefs);
-        //                //listOtherPawnCode.Add(clist[indexOfThoughtDefInClist + 1]);
-        //                listTryGainOrRemoveMemoriesIndexInClist.Add(i);
-        //                listGainVsRemoveBit.Add(gainVsRemoveBit);
-        //                success = true;
-        //                //Log.Message("InterdictTryGainAndRemoveMemories, matchNum: " + (listMemoriesIndexInClist.Count() - 1) + (gainVsRemoveBit == 0 ? ", TryGain" : ", Remove") + " ThoughtDef: " + OpinionThoughtDefs[indexOfThoughtDefInOpinionThoughtDefs] +
-        //                    "\nindexOfPawnInClist: " + (indexOfMemoriesInClist - 4) +
-        //                    "\nindexOfMemoriesInClist: " + indexOfMemoriesInClist +
-        //                    "\nindexOfThoughtDefInClist: " + indexOfThoughtDefInClist +
-        //                    "\nindexOfOtherPawnInClist: " + (indexOfThoughtDefInClist + 1) +
-        //                    "\nindexOfTryGainOrRemoveMemoriesInClist: " + i +
-        //                    "\nindexOfThoughtDefInOpinionThoughtDefs: " + indexOfThoughtDefInOpinionThoughtDefs
-        //                    );
-        //            }
-        //            break;
-        //    }
-        //}
-
-        //Log.Message("InterdictTryGainAndRemoveMemories, verify each match");
-        //for (int matchNum = 0; matchNum < listTryGainOrRemoveIndexInClist.Count(); matchNum++)
-        //{
-        //    success = false;
-        //    searchMode = 0;
-        //    for (int k = listTryGainOrRemoveIndexInClist[matchNum]; k >= 0; k--)
-        //    {
-        //        //if (searchMode == 0)
-        //        //{
-        //        //    //Log.Message("InterdictTryGainAndRemoveMemories, clist[k]: " + clist[k] + ", clist[k]?.operand: " + clist[k]?.operand + ", clist[k]?.operand is Pawn" + (clist[k]?.operand is Pawn) + ", typeof(Pawn).IsInstanceOfType(clist[k]?.operand): " + typeof(Pawn).IsInstanceOfType(clist[k]?.operand));
-        //        //    if (typeof(Pawn).IsInstanceOfType(clist[k]?.operand))
-        //        //    {
-        //        //        searchMode++;
-        //        //        listOtherPawnIndexInClist.Add(k);
-        //        //        //Log.Message("InterdictTryGainAndRemoveMemories, found otherPawn");
-        //        //    }
-        //        //    continue;
-        //        //}
-        //        if (searchMode == 0)
-        //        {
-        //            foreach (Pair<int, FieldInfo> pair in fieldInfos)
-        //            {
-        //                if (clist[k].LoadsField(pair.Second))
-        //                {
-        //                    searchMode++;
-        //                    listOtherPawnIndexInClist.Add(k + 1);
-        //                    listThoughtDefIndexInClist.Add(k);
-        //                    listThoughtDefIndexInOpinionThoughtDefs.Add(pair.First);
-        //                    //Log.Message("InterdictTryGainAndRemoveMemories, found ThoughtDef");
-        //                    break;
-        //                }
-        //            }
-        //            continue;
-        //        }
-        //        if (searchMode == 1)
-        //        {
-        //            if (clist[k].LoadsField(fieldInfoMemories))
-        //            {
-        //                success = true;
-        //                listMemoriesIndexInClist.Add(k);
-        //                listPawnIndexInClist.Add(k - 4);
-        //                //Log.Message("InterdictTryGainAndRemoveMemories, found memories");
-        //                break;
-        //            }
-        //            continue;
-        //        }
-        //        //if (searchMode == 3)
-        //        //{
-        //        //    if (clist[k]?.operand is Pawn)
-        //        //    {
-        //        //        success = true;
-        //        //        listPawnIndexInClist.Add(k);
-        //        //        //Log.Message("InterdictTryGainAndRemoveMemories, found pawn");
-        //        //        break;
-        //        //    }
-        //        //    continue;
-        //        //}
-        //    }
-        //    if (success != true)
-        //    {
-        //        Log.Error("InterdictTryGainThoughtAndRemoveMemories failed, stuck at searchMode = " + searchMode);
-        //        foreach (CodeInstruction c in codes)
-        //        {
-        //            yield return c;
-        //        }
-        //        yield break;
-        //    }
-        //    //Log.Message("InterdictTryGainAndRemoveMemories, matchNum: " + matchNum + (listGainVsRemoveBit[matchNum] == 0 ? ", TryGain" : ", Remove") + " ThoughtDef: " + OpinionThoughtDefs[listThoughtDefIndexInOpinionThoughtDefs[matchNum]] +
-        //                    "\nindexOfPawnInClist: " + listPawnIndexInClist[matchNum] +
-        //                    "\nindexOfMemoriesInClist: " + listMemoriesIndexInClist[matchNum] +
-        //                    "\nindexOfThoughtDefInClist: " + listThoughtDefIndexInClist[matchNum] +
-        //                    "\nindexOfOtherPawnInClist: " + listOtherPawnIndexInClist[matchNum] +
-        //                    "\nindexOfTryGainOrRemoveMemoriesInClist: " + listTryGainOrRemoveIndexInClist[matchNum] +
-        //                    "\nindexOfThoughtDefInOpinionThoughtDefs: " + listThoughtDefIndexInOpinionThoughtDefs[matchNum]
-        //                    );
-        //}
+       
     }
 
     /* Gain memories */
@@ -473,59 +340,6 @@ public static class BreakupHelperMethods
         pawn.needs.mood.thoughts.memories.RemoveMemoriesOfDefWhereOtherPawnIs(ThoughtDefOf.IRejectedTheirProposal, otherPawn);
         pawn.needs.mood.thoughts.memories.RemoveMemoriesOfDefWhereOtherPawnIs(ThoughtDefOfPsychology.IRejectedTheirProposalMood, otherPawn);
     }
-
-    //public static float AdjustedOpinionOffset(Pawn pawn, Pawn otherPawn, float opinionOffset)
-    //{
-    //    opinionOffset *= PsycheHelper.Comp(pawn).Psyche.GetPersonalityRating(PersonalityNodeDefOf.Romantic) * Mathf.InverseLerp(5f, 100f, pawn.relations.OpinionOf(otherPawn));
-    //    return Mathf.Ceil(opinionOffset);
-    //}
-
-    //public static void AddExLover(Pawn lover, Pawn ex)
-    //{
-    //  lover.relations.AddDirectRelation(PawnRelationDefOf.ExLover, ex);
-    //}
-
-    //public static void AddBrokeUpMood(Pawn lover, Pawn ex)
-    //{
-    //    //Log.Message("AddBrokeUpMood for lover = " + lover + ", and ex = " + ex);
-    //    ThoughtDef brokeUpMoodDef = new ThoughtDef();
-    //    brokeUpMoodDef.defName = "BrokeUpWithMeMood" + lover.LabelShort + Find.TickManager.TicksGame;
-    //    brokeUpMoodDef.durationDays = 25f;
-    //    brokeUpMoodDef.thoughtClass = typeof(Thought_MemoryDynamic);
-    //    brokeUpMoodDef.stackedEffectMultiplier = 1f;
-    //    brokeUpMoodDef.stackLimit = 999;
-    //    ThoughtStage brokeUpStage = new ThoughtStage();
-    //    brokeUpStage.label = "Broke up with {0}";
-    //    int absoluteMoodEffect = Mathf.CeilToInt(20f * Mathf.InverseLerp(0.25f, 0.75f, PsycheHelper.Comp(lover).Psyche.GetPersonalityRating(PersonalityNodeDefOf.Romantic)) * Mathf.InverseLerp(-20f, 100f, lover.relations.OpinionOf(ex)));
-
-    //    if (absoluteMoodEffect < 5f)
-    //    {
-    //        brokeUpStage.description = "My lover and I parted ways amicably, but it's still a little sad.";
-    //    }
-    //    else
-    //    {
-    //        brokeUpStage.description = "I'm going through a bad break-up right now.";
-    //    }
-    //    brokeUpMoodDef.stages.Add(brokeUpStage);
-    //    brokeUpStage.baseMoodEffect = -absoluteMoodEffect;
-    //    if (lover.story.traits.HasTrait(TraitDefOf.Psychopath) != true)
-    //    {
-    //        lover.needs.mood.thoughts.memories.TryGainMemory(brokeUpMoodDef, ex);
-    //    }
-    //}
-
-    //public static void AddBrokeUpOpinion(Pawn lover, Pawn ex)
-    //{
-    //    ThoughtDef brokeUpDef = new ThoughtDef();
-    //    brokeUpDef.defName = "BrokeUpWithMe" + lover.LabelShort + Find.TickManager.TicksGame;
-    //    brokeUpDef.durationDays = 40f;
-    //    brokeUpDef.thoughtClass = typeof(Thought_MemorySocialDynamic);
-    //    ThoughtStage brokeUpStage = new ThoughtStage();
-    //    brokeUpStage.label = "broke up with me";
-    //    brokeUpStage.baseOpinionOffset = Mathf.RoundToInt(-50f * PsycheHelper.Comp(lover).Psyche.GetPersonalityRating(PersonalityNodeDefOf.Romantic) * Mathf.InverseLerp(5f, 100f, lover.relations.OpinionOf(ex)));
-    //    brokeUpDef.stages.Add(brokeUpStage);
-    //    lover.needs.mood.thoughts.memories.TryGainMemory(brokeUpDef, ex);
-    //}
 
 }
 

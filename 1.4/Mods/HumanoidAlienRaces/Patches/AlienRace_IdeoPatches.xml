@@ -1,0 +1,467 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Patch>
+	<Operation Class="PatchOperationAdd" MayRequire="ludeon.rimworld.ideology">
+		<xpath>Defs/PersonalityNodeDef[defName="Experimental"]/memeCertaintyModifiers</xpath>
+		<value>
+			<li>
+				<meme>HAR_Xenophilia</meme>
+				<modifier>2</modifier>
+			</li>
+			<li>
+				<meme>HAR_Xenophobia</meme>
+				<modifier>-2</modifier>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd" MayRequire="ludeon.rimworld.ideology">
+		<xpath>Defs/PersonalityNodeDef[defName="Cultured"]/memeCertaintyModifiers</xpath>
+		<value>
+			<li>
+				<meme>HAR_Xenophilia</meme>
+				<modifier>0.5</modifier>
+			</li>
+			<li>
+				<meme>HAR_Xenophobia</meme>
+				<modifier>-0.5</modifier>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd" MayRequire="ludeon.rimworld.ideology">
+		<xpath>Defs/PersonalityNodeDef[defName="Compassionate"]/memeCertaintyModifiers</xpath>
+		<value>
+			<li>
+				<meme>HAR_Xenophilia</meme>
+				<modifier>2</modifier>
+			</li>
+			<li>
+				<meme>HAR_Xenophobia</meme>
+				<modifier>-2</modifier>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd" MayRequire="ludeon.rimworld.ideology">
+		<xpath>Defs/PersonalityNodeDef[defName="Aggressive"]/memeCertaintyModifiers</xpath>
+		<value>
+			<li>
+				<meme>HAR_Xenophilia</meme>
+				<modifier>-0.5</modifier>
+			</li>
+			<li>
+				<meme>HAR_Xenophobia</meme>
+				<modifier>0.5</modifier>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd" MayRequire="ludeon.rimworld.ideology">
+		<xpath>Defs/PersonalityNodeDef[defName="Competitive"]/memeCertaintyModifiers</xpath>
+		<value>
+			<li>
+				<meme>HAR_Xenophilia</meme>
+				<modifier>-0.5</modifier>
+			</li>
+			<li>
+				<meme>HAR_Xenophobia</meme>
+				<modifier>0.5</modifier>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd" MayRequire="ludeon.rimworld.ideology">
+		<xpath>Defs/PersonalityNodeDef[defName="Trusting"]/memeCertaintyModifiers</xpath>
+		<value>
+			<li>
+				<meme>HAR_Xenophilia</meme>
+				<modifier>0.5</modifier>
+			</li>
+			<li>
+				<meme>HAR_Xenophobia</meme>
+				<modifier>-0.5</modifier>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd" MayRequire="ludeon.rimworld.ideology">
+		<xpath>Defs/PersonalityNodeDef[defName="Judgmental"]/memeCertaintyModifiers</xpath>
+		<value>
+			<li>
+				<meme>HAR_Xenophilia</meme>
+				<modifier>-1</modifier>
+			</li>
+			<li>
+				<meme>HAR_Xenophobia</meme>
+				<modifier>1</modifier>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd" MayRequire="ludeon.rimworld.ideology">
+		<xpath>Defs/PersonalityNodeDef[defName="Optimistic"]/memeCertaintyModifiers</xpath>
+		<value>
+			<li>
+				<meme>HAR_Xenophilia</meme>
+				<modifier>0.7</modifier>
+			</li>
+			<li>
+				<meme>HAR_Xenophobia</meme>
+				<modifier>-0.7</modifier>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd" MayRequire="ludeon.rimworld.ideology">
+		<xpath>Defs/PersonalityNodeDef[defName="Moralistic"]/preceptCertaintyModifiers</xpath>
+		<value>
+			<li>
+				<precept>HAR_EatingAliens_Abhorrent</precept>
+				<modifier>0.25</modifier>
+			</li>
+			<li>
+				<precept>HAR_EatingAliens_Disapproved</precept>
+				<modifier>0.1</modifier>
+			</li>
+			<li>
+				<precept>HAR_EatingAliens_Acceptable</precept>
+				<modifier>-0.75</modifier>
+			</li>
+			<li>
+				<precept>HAR_EatingAliens_Preferred</precept>
+				<modifier>-1.5</modifier>
+			</li>
+			<li>
+				<precept>HAR_EatingAliens_RequiredStrong</precept>
+				<modifier>-3</modifier>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd" MayRequire="ludeon.rimworld.ideology">
+		<xpath>Defs/PersonalityNodeDef[defName="Experimental"]/preceptCertaintyModifiers</xpath>
+		<value>
+			<li>
+				<precept>HAR_AlienDating_Prohibited</precept>
+				<modifier>-2</modifier>
+			</li>
+			<li>
+				<precept>HAR_AlienDating_Horrible</precept>
+				<modifier>-1</modifier>
+			</li>
+			<li>
+				<precept>HAR_AlienDating_Acceptable</precept>
+				<modifier>0.5</modifier>
+			</li>
+			<li>
+				<precept>HAR_AlienDating_Preferred</precept>
+				<modifier>0.75</modifier>
+			</li>
+			<li>
+				<precept>HAR_AlienDating_Honorable</precept>
+				<modifier>1</modifier>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd" MayRequire="ludeon.rimworld.ideology">
+		<xpath>Defs/PersonalityNodeDef[defName="Pure"]/preceptCertaintyModifiers</xpath>
+		<value>
+			<li>
+				<precept>HAR_AlienDating_Prohibited</precept>
+				<modifier>0.3</modifier>
+			</li>
+			<li>
+				<precept>HAR_AlienDating_Horrible</precept>
+				<modifier>0.2</modifier>
+			</li>
+			<li>
+				<precept>HAR_AlienDating_Acceptable</precept>
+				<modifier>0.1</modifier>
+			</li>
+			<li>
+				<precept>HAR_AlienDating_Preferred</precept>
+				<modifier>-0.1</modifier>
+			</li>
+			<li>
+				<precept>HAR_AlienDating_Honorable</precept>
+				<modifier>-0.2</modifier>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd" MayRequire="ludeon.rimworld.ideology">
+		<xpath>Defs/PersonalityNodeDef[defName="Adventurous"]/preceptCertaintyModifiers</xpath>
+		<value>
+			<li>
+				<precept>HAR_AlienDating_Prohibited</precept>
+				<modifier>-2</modifier>
+			</li>
+			<li>
+				<precept>HAR_AlienDating_Horrible</precept>
+				<modifier>-1</modifier>
+			</li>
+			<li>
+				<precept>HAR_AlienDating_Acceptable</precept>
+				<modifier>0.5</modifier>
+			</li>
+			<li>
+				<precept>HAR_AlienDating_Preferred</precept>
+				<modifier>0.6</modifier>
+			</li>
+			<li>
+				<precept>HAR_AlienDating_Honorable</precept>
+				<modifier>0.7</modifier>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd" MayRequire="ludeon.rimworld.ideology">
+		<xpath>Defs/PersonalityNodeDef[defName="Romantic"]/preceptCertaintyModifiers</xpath>
+		<value>
+			<li>
+				<precept>HAR_AlienDating_Prohibited</precept>
+				<modifier>-2</modifier>
+			</li>
+			<li>
+				<precept>HAR_AlienDating_Horrible</precept>
+				<modifier>-1</modifier>
+			</li>
+			<li>
+				<precept>HAR_AlienDating_Acceptable</precept>
+				<modifier>0.5</modifier>
+			</li>
+			<li>
+				<precept>HAR_AlienDating_Preferred</precept>
+				<modifier>0.5</modifier>
+			</li>
+			<li>
+				<precept>HAR_AlienDating_Honorable</precept>
+				<modifier>0.5</modifier>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd" MayRequire="ludeon.rimworld.ideology">
+		<xpath>Defs/PersonalityNodeDef[defName="Judgmental"]/preceptCertaintyModifiers</xpath>
+		<value>
+			<li>
+				<precept>HAR_AlienDating_Prohibited</precept>
+				<modifier>0.67</modifier>
+			</li>
+			<li>
+				<precept>HAR_AlienDating_Horrible</precept>
+				<modifier>0.33</modifier>
+			</li>
+			<li>
+				<precept>HAR_AlienDating_Acceptable</precept>
+				<modifier>-0.1</modifier>
+			</li>
+			<li>
+				<precept>HAR_AlienDating_Preferred</precept>
+				<modifier>-0.2</modifier>
+			</li>
+			<li>
+				<precept>HAR_AlienDating_Honorable</precept>
+				<modifier>-0.3</modifier>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd" MayRequire="ludeon.rimworld.ideology">
+		<xpath>Defs/PersonalityNodeDef[defName="Experimental"]/preceptCertaintyModifiers</xpath>
+		<value>
+			<li>
+				<precept>HAR_AlienRaces_Abhorrent</precept>
+				<modifier>-0.75</modifier>
+			</li>
+			<li>
+				<precept>HAR_AlienRaces_Horrible</precept>
+				<modifier>-0.5</modifier>
+			</li>
+			<li>
+				<precept>HAR_AlienRaces_Respected</precept>
+				<modifier>0.33</modifier>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd" MayRequire="ludeon.rimworld.ideology">
+		<xpath>Defs/PersonalityNodeDef[defName="Cultured"]/preceptCertaintyModifiers</xpath>
+		<value>
+			<li>
+				<precept>HAR_AlienRaces_Abhorrent</precept>
+				<modifier>-1</modifier>
+			</li>
+			<li>
+				<precept>HAR_AlienRaces_Horrible</precept>
+				<modifier>-0.67</modifier>
+			</li>
+			<li>
+				<precept>HAR_AlienRaces_Respected</precept>
+				<modifier>0.5</modifier>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd" MayRequire="ludeon.rimworld.ideology">
+		<xpath>Defs/PersonalityNodeDef[defName="Empathetic"]/preceptCertaintyModifiers</xpath>
+		<value>
+			<li>
+				<precept>HAR_AlienRaces_Abhorrent</precept>
+				<modifier>-1</modifier>
+			</li>
+			<li>
+				<precept>HAR_AlienRaces_Horrible</precept>
+				<modifier>-0.67</modifier>
+			</li>
+			<li>
+				<precept>HAR_AlienRaces_Respected</precept>
+				<modifier>0.5</modifier>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd" MayRequire="ludeon.rimworld.ideology">
+		<xpath>Defs/PersonalityNodeDef[defName="Friendly"]/preceptCertaintyModifiers</xpath>
+		<value>
+			<li>
+				<precept>HAR_AlienRaces_Abhorrent</precept>
+				<modifier>-2</modifier>
+			</li>
+			<li>
+				<precept>HAR_AlienRaces_Horrible</precept>
+				<modifier>-1</modifier>
+			</li>
+			<li>
+				<precept>HAR_AlienRaces_Respected</precept>
+				<modifier>0.5</modifier>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd" MayRequire="ludeon.rimworld.ideology">
+		<xpath>Defs/PersonalityNodeDef[defName="Aggressive"]/preceptCertaintyModifiers</xpath>
+		<value>
+			<li>
+				<precept>HAR_AlienRaces_Abhorrent</precept>
+				<modifier>0.5</modifier>
+			</li>
+			<li>
+				<precept>HAR_AlienRaces_Horrible</precept>
+				<modifier>0.5</modifier>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd" MayRequire="ludeon.rimworld.ideology">
+		<xpath>Defs/PersonalityNodeDef[defName="Judgmental"]/preceptCertaintyModifiers</xpath>
+		<value>
+			<li>
+				<precept>HAR_AlienRaces_Abhorrent</precept>
+				<modifier>0.75</modifier>
+			</li>
+			<li>
+				<precept>HAR_AlienRaces_Horrible</precept>
+				<modifier>0.5</modifier>
+			</li>
+		  <li>
+				<precept>HAR_AlienRaces_Respected</precept>
+				<modifier>-0.5</modifier>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd" MayRequire="ludeon.rimworld.ideology">
+		<xpath>Defs/PersonalityNodeDef[defName="Compassionate"]/preceptCertaintyModifiers</xpath>
+		<value>
+			<li>
+				<precept>HAR_AlienSlavery_Abhorrent</precept>
+				<modifier>0.5</modifier>
+			</li>
+			<li>
+				<precept>HAR_AlienSlavery_Horrible</precept>
+				<modifier>0.33</modifier>
+			</li>
+		  <li>
+				<precept>HAR_AlienSlavery_Disapproved</precept>
+				<modifier>0.25</modifier>
+			</li>
+			<li>
+				<precept>HAR_AlienSlavery_Acceptable</precept>
+				<modifier>-1</modifier>
+			</li>
+			<li>
+				<precept>HAR_AlienSlavery_Honorable</precept>
+				<modifier>-2</modifier>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd" MayRequire="ludeon.rimworld.ideology">
+		<xpath>Defs/PersonalityNodeDef[defName="Empathetic"]/preceptCertaintyModifiers</xpath>
+		<value>
+			<li>
+				<precept>HAR_AlienSlavery_Abhorrent</precept>
+				<modifier>0.5</modifier>
+			</li>
+			<li>
+				<precept>HAR_AlienSlavery_Horrible</precept>
+				<modifier>0.33</modifier>
+			</li>
+		  <li>
+				<precept>HAR_AlienSlavery_Disapproved</precept>
+				<modifier>0.25</modifier>
+			</li>
+			<li>
+				<precept>HAR_AlienSlavery_Acceptable</precept>
+				<modifier>-1</modifier>
+			</li>
+			<li>
+				<precept>HAR_AlienSlavery_Honorable</precept>
+				<modifier>-2</modifier>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd" MayRequire="ludeon.rimworld.ideology">
+		<xpath>Defs/PersonalityNodeDef[defName="Moralistic"]/preceptCertaintyModifiers</xpath>
+		<value>
+			<li>
+				<precept>HAR_AlienSlavery_Abhorrent</precept>
+				<modifier>0.5</modifier>
+			</li>
+			<li>
+				<precept>HAR_AlienSlavery_Horrible</precept>
+				<modifier>0.33</modifier>
+			</li>
+		  <li>
+				<precept>HAR_AlienSlavery_Disapproved</precept>
+				<modifier>0.25</modifier>
+			</li>
+			<li>
+				<precept>HAR_AlienSlavery_Acceptable</precept>
+				<modifier>-1.5</modifier>
+			</li>
+			<li>
+				<precept>HAR_AlienSlavery_Honorable</precept>
+				<modifier>-3</modifier>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd" MayRequire="ludeon.rimworld.ideology">
+		<xpath>Defs/PersonalityNodeDef[defName="Aggressive"]/preceptCertaintyModifiers</xpath>
+		<value>
+			<li>
+				<precept>HAR_AlienSlavery_Acceptable</precept>
+				<modifier>0.5</modifier>
+			</li>
+			<li>
+				<precept>HAR_AlienSlavery_Honorable</precept>
+				<modifier>1</modifier>
+			</li>
+		</value>
+	</Operation>
+
+</Patch>

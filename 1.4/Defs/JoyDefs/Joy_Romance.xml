@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  
+  <JoyGiverDef>
+    <defName>TryHookup</defName>
+    <giverClass>Psychology.JoyGiver_CasualHookup</giverClass>
+    <baseChance>5.0</baseChance>
+    <jobDef>LeadHookup</jobDef>
+    <joyKind>Lewd</joyKind>
+  </JoyGiverDef>
+    
+  <JoyKindDef>
+    <defName>Lewd</defName>
+    <label>romantic fun</label>
+    <needsThing>false</needsThing>
+  </JoyKindDef>
+  
+</Defs>

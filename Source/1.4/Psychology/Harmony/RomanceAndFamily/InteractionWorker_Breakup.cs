@@ -73,7 +73,7 @@ public static class InteractionWorker_Breakup_Interacted_Patch
     [HarmonyTranspiler]
     public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> codes)
     {
-        return BreakupHelperMethods.InterdictTryGainAndRemoveMemories(codes);
+        return RomanceHelperMethods.InterdictTryGainAndRemoveMemories(codes);
     }
     //[HarmonyTranspiler]
     //public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> codes)

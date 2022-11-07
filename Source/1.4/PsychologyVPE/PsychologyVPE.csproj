@@ -111,7 +111,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Psychology\Psychology1_4.csproj">
       <Project>{83960198-EE67-473E-AE85-3138BE23A47E}</Project>
-      <Name>Psychology</Name>
+      <Name>Psychology1_4</Name>
       <Private>False</Private>
     </ProjectReference>
   </ItemGroup>

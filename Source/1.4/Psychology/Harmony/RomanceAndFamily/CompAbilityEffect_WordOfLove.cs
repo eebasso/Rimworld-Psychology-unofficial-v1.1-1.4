@@ -26,7 +26,7 @@ public static class CompAbilityEffect_WordOfLove_KinseyEnabledPatches
         {
             return;
         }
-        if (!SpeciesHelper.RomanceLifestageAgeCheck(pawn, true) || !SpeciesHelper.RomanceLifestageAgeCheck(pawn2, true))
+        if (!SpeciesHelper.RomanceEnabled(pawn, true) || !SpeciesHelper.RomanceEnabled(pawn2, true))
         {
             // No underage dating
             __result = false;

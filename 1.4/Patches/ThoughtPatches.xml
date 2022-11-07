@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Patch>
 
+	<Operation Class ="Psychology.PatchOperationConversationDurationDays">
+		<xpath>Defs/ThoughtDef[defName="DynamicSocial"]/durationDays/text()</xpath>
+  </Operation>
+
 	<!-- KnowGuestExecuted -->
 	<Operation Class="Psychology.PatchOperationAddOrCreate">
 		<xpath>Defs/ThoughtDef[defName="KnowGuestExecuted"]/nullifyingTraits</xpath>

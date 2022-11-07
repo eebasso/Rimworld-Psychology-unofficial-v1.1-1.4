@@ -280,7 +280,7 @@ public class Pawnmorph_Patches_MergedPawnUtilities_TransferToMergedPawn
 
         // Psyche
         float mergedRating;
-        foreach (PersonalityNodeDef nodeDef in PersonalityNodeMatrix.defList)
+        foreach (PersonalityNodeDef nodeDef in PersonalityNodeMatrix.DefList)
         {
             mergedRating = 0f;
             foreach (CompPsychology originalComp in originalCompList)

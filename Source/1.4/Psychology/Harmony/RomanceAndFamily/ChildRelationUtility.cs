@@ -165,9 +165,9 @@ public static class ChildRelationUtility_GetParentAgeFactor_Patch
             __result = minLovinAge + childChrAge < parentChrAge ? 1f : 0f;
             return false;
         }
-        minAgeToHaveChildren = PsycheHelper.LovinAgeToVanilla(minAgeToHaveChildren, minLovinAge);
-        usualAgeToHaveChildren = PsycheHelper.LovinAgeToVanilla(usualAgeToHaveChildren, minLovinAge);
-        maxAgeToHaveChildren = PsycheHelper.LovinAgeToVanilla(maxAgeToHaveChildren, minLovinAge);
+        minAgeToHaveChildren = PsycheHelper.LovinBioAgeToVanilla(minAgeToHaveChildren, minLovinAge);
+        usualAgeToHaveChildren = PsycheHelper.LovinBioAgeToVanilla(usualAgeToHaveChildren, minLovinAge);
+        maxAgeToHaveChildren = PsycheHelper.LovinBioAgeToVanilla(maxAgeToHaveChildren, minLovinAge);
         return true;
     }
 }

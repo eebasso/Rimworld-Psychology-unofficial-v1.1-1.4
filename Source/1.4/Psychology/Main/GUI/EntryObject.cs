@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime;
 using System.Collections.Generic;
 using System.Reflection.Emit;
 using System.Security.Cryptography.X509Certificates;
@@ -6,374 +7,460 @@ using RimWorld;
 using UnityEngine;
 using Verse;
 using Verse.Noise;
+using HarmonyLib;
+using System.Reflection;
 
 namespace Psychology;
 
-public abstract class EntryObject
+public abstract class EntryObject<T, T2>
 {
-    public string controlName;
-    public int ticker = 0;
+  private string controlName;
+  public int ticker = 0;
+  private static int instanceCounter;
 
-    private static int instanceCounter;
-    internal string buffer = "";
-    internal bool openFlag = false;
-    public static readonly List<KeyCode> keyCodesToClose = new List<KeyCode> { KeyCode.Escape, KeyCode.KeypadEnter, KeyCode.Return };
-    internal bool pressedClosedKey = false;
-    internal bool alwaysOpen;
+  internal string buffer = "";
+  internal bool openFlag = false;
+  public static readonly List<KeyCode> keyCodesToUnfocus = new List<KeyCode> { KeyCode.Escape, KeyCode.KeypadEnter, KeyCode.Return };
+  internal bool pressedClosedKey = false;
+  internal bool alwaysOpen;
+  internal T val;
+  internal T2 instance;
+  internal string fieldName;
+  internal FieldInfo Field => AccessTools.Field(typeof(T2), nameof(fieldName));
 
-    public bool Open
+  public T Value
+  {
+    get
     {
-        get
-        {
-            if (alwaysOpen)
-            {
-                return true;
-            }
-            return ticker > 0;
-        }
-        set
-        {
-            if (alwaysOpen)
-            {
-                ticker = 5;
-                return;
-            }
-            ticker = value ? 5 : 0;
-        }
+      return fieldName.NullOrEmpty() ? val : Field != null ? (T)Field.GetValue(instance) : default(T);
     }
-
-    public bool CurrentlyFocused => GUI.GetNameOfFocusedControl() == controlName;
-
-    public virtual void Unfocus()
+    set
     {
-        if (CurrentlyFocused)
-        {
-            //Log.Message("Unfocus");
-            UI.UnfocusCurrentControl();
-        }
+      if (fieldName.NullOrEmpty())
+      {
+        val = value;
+        return;
+      }
+      if (Field != null)
+      {
+        Field.SetValue(instance, value);
+      }
+      else
+      {
+        Log.Error("Psychology.EntryObject: FieldInfo is null");
+      }
     }
+  }
 
-    public void Focus()
+  public bool Active
+  {
+    get
     {
-        GUI.FocusControl(controlName);
+      return ticker > 0;
     }
-
-    internal virtual void Initialize(string customControlName = null, bool initialOpen = false, bool keepOpen = false)
+    set
     {
-        alwaysOpen = keepOpen;
-        Open = initialOpen;
-        controlName = customControlName == null ? $"EntryObject_{instanceCounter++}" : customControlName;
+      ticker = value ? 5 : 0;
     }
+  }
 
-    internal void ControlBoxIntro(Rect rect)
+  public bool CurrentlyFocused => GUI.GetNameOfFocusedControl() == controlName;
+
+  internal abstract void TryParseBuffer(bool useBounds, T min, T max);
+
+  internal virtual void Initialize(T2 instance, string fieldName, bool alwaysOpen = false, string controlName = null)
+  {
+    this.alwaysOpen = alwaysOpen;
+    //this.Open = initialOpen;
+    this.controlName = controlName.NullOrEmpty() ? $"EntryObject_{instanceCounter++}" : controlName;
+    UpdateInstanceAndField(instance, fieldName);
+  }
+
+  public virtual void UpdateValueAndBuffer(T value)
+  {
+    Value = value;
+    SetBufferToValue();
+  }
+
+  public virtual void UpdateInstanceAndField(T2 instance, string fieldName)
+  {
+    this.instance = instance;
+    this.fieldName = fieldName;
+    SetBufferToValue();
+  }
+
+  internal virtual void SetBufferToValue() => buffer = Value.ToString();
+
+  public void Focus() => GUI.FocusControl(controlName);
+
+  public virtual void Unfocus()
+  {
+    if (CurrentlyFocused)
     {
-        //Log.Message("ControlBoxIntro, start");
-        if (CurrentlyFocused && Event.current.type == EventType.KeyDown && keyCodesToClose.Contains(Event.current.keyCode))
-        {
-            Open = false;
-            pressedClosedKey = true;
-            Unfocus();
-            Event.current.Use();
-        }
-        if (Mouse.IsOver(rect))
-        {
-            //Log.Message("ControlBoxIntro, Mouse.IsOver");
-            if (!pressedClosedKey)
-            {
-                Open = true;
-            }
-        }
-        else
-        {
-            //Log.Message("ControlBoxIntro, !Mouse.IsOver");
-            pressedClosedKey = false;
-            if (OriginalEventUtility.EventType == EventType.MouseDown)
-            {
-                //Log.Message("MouseDown");
-                Open = false;
-                Unfocus();
-            }
-        }
+      UI.UnfocusCurrentControl();
     }
+  }
 
-    public abstract class EntryNumeric : EntryObject
+  internal virtual bool ControlBoxIntro(Rect rect, T min = default(T), T max = default(T))
+  {
+    bool result;
+    if (CurrentlyFocused && Event.current.type == EventType.KeyDown && keyCodesToUnfocus.Contains(Event.current.keyCode))
     {
-        internal override void Initialize(string customControlName = null, bool initialOpen = false, bool alwaysOpen = false)
-        {
-            SetBufferToValue();
-            base.Initialize(customControlName, initialOpen, alwaysOpen);
-        }
-
-        public override void Unfocus()
-        {
-            base.Unfocus();
-            SetBufferToValue();
-        }
-
-        private bool NumbericControlBoxIntro(Rect rect, float min, float max)
-        {
-            //Log.Message("NumbericControlBoxIntro, start");
-            ControlBoxIntro(rect);
-            if (!Open)
-            {
-                if (openFlag)
-                {
-                    openFlag = false;
-                    TryParseBuffer();
-                    ClampValue(min, max);
-                }
-                SetBufferToValue();
-                return false;
-            }
-            ticker--;
-            return true;
-        }
-
-        public void NumericTextField(Rect rect, float min, float max, bool useArrows = false, bool useCycle = false)
-        {
-            NumericTextField(rect.x, rect.y, rect.width, rect.height, min, max, useArrows, useCycle);
-        }
-
-        public void NumericTextField(float x, float y, float w, float h, float min, float max, bool useArrows = true, bool useCycle = false)
-        {
-            //Log.Message("NumericTextField, start");
-            Rect rectTotal = new Rect(x, y, w + (useArrows ? 40f : 0f), h);
-            bool controlBoxIntro = NumbericControlBoxIntro(rectTotal, min, max);
-            if (!controlBoxIntro && !alwaysOpen)
-            {
-                return;
-            }
-            Rect rectField = new Rect(x + (useArrows ? 20f : 0f), y, w, h);
-            if (useArrows)
-            {
-                Rect rectBack = new Rect(x, y, 25f, h);
-                Rect rectForw = new Rect(x + w + 15f, y, 25f, h);
-                if (Widgets.ButtonImage(rectBack, ContentFinder<Texture2D>.Get("bbackward", true), true))
-                {
-                    //Log.Message("NumericTextField, back button pressed");
-                    BackwardButtonAction(min, max, useCycle);
-                }
-                if (Widgets.ButtonImage(rectForw, ContentFinder<Texture2D>.Get("bforward", true), true))
-                {
-                    //Log.Message("NumericTextField, back button pressed");
-                    ForwardButtonAction(min, max, useCycle);
-                }
-            }
-            EntryObjectTextField(rectField, min, max);
-        }
-
-        private void EntryObjectTextField(Rect rectTextField, float min, float max)
-        {
-            if (!openFlag)
-            {
-                openFlag = true;
-                ClampValue(min, max);
-                SetBufferToValue();
-            }
-            //string controlName = "TextFieldInt" + "_x_" + rect.x.ToString("F0") + "_y_" + rect.y.ToString("F0");
-            GUI.SetNextControlName(controlName);
-            buffer = Widgets.TextField(rectTextField, buffer);
-            if (CurrentlyFocused)
-            {
-                Open = true;
-                //ticker = maxTicker;
-            }
-            TryParseBuffer();
-            ClampValue(min, max);
-            //if (justOpened)
-            //{
-            //  Focus();
-            //}
-        }
-
-        public abstract void SetBufferToValue();
-
-        public abstract void ClampValue(float min, float max);
-
-        public abstract void TryParseBuffer();
-
-        public abstract void BackwardButtonAction(float min, float max, bool useCycle);
-
-        public abstract void ForwardButtonAction(float min, float max, bool useCycle);
+      Active = false;
+      pressedClosedKey = true;
+      Unfocus();
+      Event.current.Use();
     }
-}
-
-public class EntryInt : EntryObject.EntryNumeric
-{
-    public int valInt;
-
-    public EntryInt(int initialVal = 0, string customControlName = null, bool initialOpen = false, bool keepOpen = false)
+    if (Mouse.IsOver(rect))
     {
-        valInt = initialVal;
-        Initialize(customControlName, initialOpen, keepOpen);
+      if (!pressedClosedKey)
+      {
+        Active = true;
+      }
+      else if (OriginalEventUtility.EventType == EventType.MouseDown)
+      {
+        pressedClosedKey = false;
+        Active = true;
+      }
     }
-
-    public override void SetBufferToValue()
+    else
     {
-        buffer = valInt.ToString();
+      pressedClosedKey = false;
+      if (OriginalEventUtility.EventType == EventType.MouseDown)
+      {
+        Active = false;
+        Unfocus();
+      }
     }
-
-    public override void ClampValue(float min, float max)
+    if (Active)
     {
-        valInt = (int)Mathf.Clamp(valInt, min, max);
-    }
-
-    public override void TryParseBuffer()
-    {
-        if (float.TryParse(buffer, out float parsedFloat))
-        {
-            valInt = Mathf.RoundToInt(parsedFloat);
-        }
-        else if (int.TryParse(buffer, out int parsedInt))
-        {
-            valInt = parsedInt;
-        }
-    }
-
-    public override void BackwardButtonAction(float min, float max, bool useCycle)
-    {
-        valInt--;
-        if (valInt < min)
-        {
-            valInt = useCycle ? (int)max : (int)min;
-        }
+      ticker--;
+      if (!openFlag)
+      {
+        openFlag = true;
         SetBufferToValue();
+      }
+      result = true;
     }
-
-    public override void ForwardButtonAction(float min, float max, bool useCycle)
+    else
     {
-        valInt++;
-        if (valInt > max)
-        {
-            valInt = useCycle ? (int)min : (int)max;
-        }
-        SetBufferToValue();
+      if (openFlag)
+      {
+        openFlag = false;
+        TryParseBuffer(true, min, max);
+      }
+      SetBufferToValue();
+      result = alwaysOpen;
     }
+    return result;
+  }
 
-    //public static EntryInt GetEntryForScenPart(ScenPart part, int intialialValue)
+  internal void EntryObjectTextField(Rect rectTextField, T min = default(T), T max = default(T))
+  {
+    //if (!openFlag)
     //{
-    //  if (!ScenPartDict.TryGetValue(part, out EntryInt entryInt))
-    //  {
-    //    //Log.Message("GetEntryForScenPart, initializing " + part);
-    //    entryInt = new EntryInt(intialialValue);
-    //    ScenPartDict[part] = entryInt;
-    //  }
-    //  return entryInt;
+    //  openFlag = true;
+    //  SetBufferToValue();
     //}
-
-    public void UpdateValueAndBuffer(int updatedVal)
+    GUI.SetNextControlName(controlName);
+    buffer = Widgets.TextField(rectTextField, buffer);
+    TryParseBuffer(true, min, max);
+    if (CurrentlyFocused)
     {
-        valInt = updatedVal;
-        SetBufferToValue();
+      Active = true;
     }
-
-    public void HorizontalSlider(Rect rect, int min = 0, int max = 100, bool middleAlignment = false, string label = null, string leftAlignedLabel = null, string rightAlignedLabel = null, float roundTo = -1f)
-    {
-        int valIntClamped = Mathf.Clamp(valInt, min, max);
-        int sliderInt = (int)Widgets.HorizontalSlider(rect, valIntClamped, min, max, middleAlignment, label, leftAlignedLabel, rightAlignedLabel, roundTo);
-        if (sliderInt != valIntClamped)
-        {
-            UpdateValueAndBuffer(sliderInt);
-        }
-    }
+  }
 }
 
-public class EntryFloat : EntryObject.EntryNumeric
+public abstract class EntryNumeric<T, T2> : EntryObject<T, T2> where T : IConvertible
 {
-    public float valFloat;
-    public int roundToDigit;
-    private string format;
+  public void NumericTextField(Rect rect, T min, T max, bool useArrows = true, bool useCycle = false)
+  {
+    NumericTextField(rect.x, rect.y, rect.width, rect.height, min, max, useArrows, useCycle);
+  }
 
-    public EntryFloat(float initialVal = 0f, string customControlName = null, bool initialOpen = false, bool alwaysOpen = false, int roundToDigit = -1)
+  public void NumericTextField(float x, float y, float w, float h, T min, T max, bool useArrows = true, bool useCycle = false)
+  {
+    //Log.Message("NumericTextField, start");
+    //Rect rectTotal = new Rect(x, y, w + (useArrows ? 40f : 0f), h);
+    Rect rectTotal = new Rect(x - (useArrows ? 20f : 0f), y, w + (useArrows ? 40f : 0f), h);
+    bool controlBoxIntro = ControlBoxIntro(rectTotal, min, max);
+    if (!controlBoxIntro && !alwaysOpen)
     {
-        this.roundToDigit = roundToDigit;
-        SetValueRounded(initialVal);
-        Initialize(customControlName, initialOpen, alwaysOpen);
-        format = "0.";
-        for (int i = 0; i < roundToDigit; i++)
-        {
-            format += "0";
-        }
-        //Log.Message("EntryFloat, roundToDigit = " + this.roundToDigit);
+      return;
     }
+    //Rect rectField = new Rect(x + (useArrows ? 20f : 0f), y, w, h);
+    Rect rectField = new Rect(x, y, w, h);
+    if (useArrows)
+    {
+      //Rect rectBack = new Rect(x, y, 25f, h);
+      //Rect rectForw = new Rect(x + w + 15f, y, 25f, h);
+      Rect rectBack = new Rect(x - 20f, y, 25f, h);
+      Rect rectForw = new Rect(x + w - 5f, y, 25f, h);
+      if (Widgets.ButtonImage(rectBack, ContentFinder<Texture2D>.Get("bbackward", true), true))
+      {
+        BackwardButtonAction(min, max, useCycle);
+      }
+      if (Widgets.ButtonImage(rectForw, ContentFinder<Texture2D>.Get("bforward", true), true))
+      {
+        ForwardButtonAction(min, max, useCycle);
+      }
+    }
+    EntryObjectTextField(rectField, min, max);
+  }
 
-    public override void SetBufferToValue()
+  public bool Slider(Rect rect, T min, T max, bool vertical = false, int roundToDigit = -1)
+  {
+    float minSlider = FloatFromType(min);
+    float maxSlider = FloatFromType(max);
+    //Log.Message("Value: " + Value);
+    float clampedValue = Mathf.Clamp(FloatFromType(Value), minSlider, maxSlider);
+    //Log.Message("clampedValue: " + clampedValue);
+    clampedValue = Round(clampedValue, roundToDigit);
+    //Log.Message("clampedValue rounded: " + clampedValue);
+    float sliderValue = vertical ? GUI.VerticalSlider(rect, clampedValue, maxSlider, minSlider) : Widgets.HorizontalSlider(rect, clampedValue, minSlider, maxSlider);
+    //Log.Message("sliderValue: " + sliderValue);
+    sliderValue = Round(sliderValue, roundToDigit);
+    //Log.Message("sliderValue rounded: " + sliderValue);
+    //if (roundTo > 0f)
+    //{
+    //  sliderValue = (float)Math.Round(clampedValue / roundTo) * roundTo;
+    //}
+    if (!TypeFromFloat(sliderValue).Equals(TypeFromFloat(clampedValue)))
     {
-        SetValueRounded(valFloat);
-        buffer = roundToDigit < 0 ? valFloat.ToString() : valFloat.ToString(format);
+      //Log.Message("UpdateValueAndBuffer");
+      UpdateValueAndBuffer(TypeFromFloat(sliderValue));
+      return true;
     }
+    return false;
+  }
 
-    public override void ClampValue(float min, float max)
-    {
-        SetValueRounded(Mathf.Clamp(valFloat, min, max));
-    }
+  //internal static int SigDigits(float roundTo) => Mathf.CeilToInt(-Mathf.Log10(roundTo));
 
-    public override void TryParseBuffer()
-    {
-        if (float.TryParse(buffer, out float parsedFloat))
-        {
-            SetValueRounded(parsedFloat);
-        }
-    }
+  internal static float Round(float value, int roundToDigits)
+  {
+    return (float)Math.Round(value, roundToDigits);
+    //if (roundTo < 0f)
+    //{
+    //  return value;
+    //}
+    //int digits = SigDigits(roundTo);
 
-    public override void BackwardButtonAction(float min, float max, bool useCycle)
-    {
-        valFloat = valFloat - 1f;
-        if (useCycle && valFloat < min)
-        {
-            valFloat = max;
-        }
-        SetBufferToValue();
-    }
+    //return roundTo > 0f ? (float)(Math.Round(value / roundTo, 1) * roundTo) : value;
+  }
 
-    public override void ForwardButtonAction(float min, float max, bool useCycle)
-    {
-        valFloat = valFloat + 1f;
-        if (useCycle && valFloat > max)
-        {
-            valFloat = min;
-        }
-        SetBufferToValue();
-    }
+  internal abstract void BackwardButtonAction(T min, T max, bool useCycle);
+  internal abstract void ForwardButtonAction(T min, T max, bool useCycle);
+  internal abstract float FloatFromType(T value);
+  internal abstract T TypeFromFloat(float floatVal);
 
-    public void UpdateValueAndBuffer(float updatedVal)
-    {
-        SetValueRounded(updatedVal);
-        SetBufferToValue();
-    }
-
-    public void SetValueRounded(float rawValue)
-    {
-        if (roundToDigit < 0)
-        {
-            valFloat = rawValue;
-            return;
-        }
-        valFloat = (float)Math.Round(rawValue, roundToDigit);
-    }
-
-    public bool Slider(Rect rect, float min = 0, float max = 100, bool vertical = false, int roundToDigit = 1)
-    {
-        float valFloatClamped = Mathf.Clamp(valFloat, min, max);
-        if (roundToDigit >= 0)
-        {
-            valFloatClamped = (float)Math.Round(valFloatClamped, roundToDigit);
-        }
-        float sliderFloat = vertical ? GUI.VerticalSlider(rect, valFloatClamped, max, min) : Widgets.HorizontalSlider(rect, valFloatClamped, min, max, false);
-        if (roundToDigit >= 0)
-        {
-            sliderFloat = (float)Math.Round(sliderFloat, roundToDigit);
-        }
-        if (sliderFloat != valFloatClamped)
-        {
-            UpdateValueAndBuffer(sliderFloat);
-            return true;
-        }
-        return false;
-    }
 }
 
-public class EntryString
+public class EntryInt : EntryInt<object>
 {
+  public EntryInt(int initialValue = 0, bool alwaysOpen = false, string controlName = null)
+  {
+    InitEntryInt(initialValue, alwaysOpen, controlName);
+  }
+}
 
+public class EntryInt<T2> : EntryNumeric<int, T2>
+{
+  internal EntryInt() { return; }
+
+  public EntryInt(T2 instance, string fieldName, bool keepOpen = false, string controlName = null)
+  {
+    Initialize(instance, fieldName, keepOpen, controlName);
+  }
+
+  internal void InitEntryInt(int initialValue = 0, bool alwaysOpen = false, string controlName = null)
+  {
+    Initialize(default(T2), null, alwaysOpen, controlName);
+    Value = initialValue;
+  }
+
+  internal override void TryParseBuffer(bool useBounds = true, int min = 0, int max = 100)
+  {
+    if (float.TryParse(buffer, out float parsedFloat))
+    {
+      Value = Mathf.RoundToInt(parsedFloat);
+    }
+    else if (int.TryParse(buffer, out int parsedInt))
+    {
+      Value = parsedInt;
+    }
+    if (useBounds)
+    {
+      Value = Mathf.Clamp(Value, min, max);
+    }
+  }
+
+  internal override void BackwardButtonAction(int min, int max, bool useCycle)
+  {
+    Value = Value - 1;
+    if (Value < min)
+    {
+      Value = useCycle ? max : min;
+    }
+    SetBufferToValue();
+  }
+
+  internal override void ForwardButtonAction(int min, int max, bool useCycle)
+  {
+    Value = Value + 1;
+    if (Value > max)
+    {
+      Value = useCycle ? min : max;
+    }
+    SetBufferToValue();
+  }
+
+  internal override float FloatFromType(int value)
+  {
+    return (float)value;
+  }
+
+  internal override int TypeFromFloat(float floatVal)
+  {
+    return (int)floatVal;
+  }
+
+}
+
+public class EntryFloat : EntryFloat<object>
+{
+  public EntryFloat(float initialValue = 0f, bool alwaysOpen = false, string controlName = null, int roundToDigits = -1)
+  {
+    InitEntryFloat(null, null, alwaysOpen, controlName, roundToDigits);
+    Value = initialValue;
+  }
+}
+
+public class EntryFloat<T2> : EntryNumeric<float, T2>
+{
+  public int roundToDigits;
+  private string format;
+
+  internal EntryFloat() { return; }
+
+  public EntryFloat(T2 instance, string fieldName, bool alwaysOpen = false, string controlName = null, int roundToDigits = -1)
+  {
+    InitEntryFloat(instance, fieldName, alwaysOpen, controlName, roundToDigits);
+  }
+
+  internal void InitEntryFloat(T2 instance, string fieldName, bool alwaysOpen = false, string controlName = null, int roundToDigits = -1)
+  {
+    this.roundToDigits = roundToDigits;
+    Initialize(instance, fieldName, alwaysOpen, controlName);
+    if (roundToDigits == 0)
+    {
+      format = "F";
+    }
+    else if (roundToDigits > 0)
+    {
+      format = "F" + roundToDigits.ToString();
+    }
+    //if (roundTo > 0f)
+    //{
+    //  int digits = Mathf.CeilToInt(-Mathf.Log10(roundTo));
+    //  for (int i = 0; i < digits; i++)
+    //  {
+    //    format += "0";
+    //  }
+    //}
+  }
+
+  internal override void SetBufferToValue() => buffer = roundToDigits < 0 ? Value.ToString() : Value.ToString(format);
+
+  internal override void TryParseBuffer(bool useBounds, float min, float max)
+  {
+    if (float.TryParse(buffer, out float parsedFloat))
+    {
+      SetValueRounded(parsedFloat);
+    }
+    if (useBounds)
+    {
+      Value = Mathf.Clamp(Value, min, max);
+    }
+  }
+
+  internal override void BackwardButtonAction(float min, float max, bool useCycle)
+  {
+    Value = Value - 1f;
+    if (useCycle && Value < min)
+    {
+      Value = max;
+    }
+    SetBufferToValue();
+  }
+
+  internal override void ForwardButtonAction(float min, float max, bool useCycle)
+  {
+    Value = Value + 1f;
+    if (useCycle && Value > max)
+    {
+      Value = min;
+    }
+    SetBufferToValue();
+  }
+
+  public override void UpdateValueAndBuffer(float updatedVal)
+  {
+    SetValueRounded(updatedVal);
+    SetBufferToValue();
+  }
+
+  //internal void SetValueRounded(float rawValue)
+  //{
+  //  Value = roundToDigits > 0f ? (float)Math.Round(rawValue / roundToDigits) * roundToDigits : rawValue;
+  //}
+
+  internal void SetValueRounded(float rawValue)
+  {
+    Value = roundToDigits < 0 ? rawValue : (float)Math.Round(rawValue, roundToDigits);
+  }
+
+  internal override float TypeFromFloat(float floatVal) => floatVal;
+  internal override float FloatFromType(float value) => value;
+
+
+}
+
+public class EntryString : EntryString<object>
+{
+  public EntryString(string initialText = "", bool alwaysOpen = false, string controlName = null)
+  {
+    Initialize(null, null, alwaysOpen, controlName);
+    Value = initialText;
+  }
+}
+
+public class EntryString<T2> : EntryObject<string, T2>
+{
+  internal EntryString() { return; }
+
+  public EntryString(T2 instance, string fieldName, bool alwaysOpen = false, string controlName = null)
+  {
+    Initialize(instance, fieldName, alwaysOpen, controlName);
+  }
+
+  internal override void TryParseBuffer(bool useBounds, string min, string max)
+  {
+    Value = buffer.NullOrEmpty() ? " " : buffer;
+  }
+
+  public void TextField(float x, float y, float w, float h)
+  {
+    TextField(new Rect(x, y, w, h));
+  }
+
+  public void TextField(Rect rect)
+  {
+    bool controlBoxIntro = ControlBoxIntro(rect);
+    if (!controlBoxIntro && !alwaysOpen)
+    {
+      return;
+    }
+    EntryObjectTextField(rect);
+  }
 }

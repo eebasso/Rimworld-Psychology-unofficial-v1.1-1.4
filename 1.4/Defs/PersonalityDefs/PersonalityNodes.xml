@@ -2727,15 +2727,15 @@
 			</li>
 			<li>
 				<precept>Cannibalism_Acceptable</precept>
-				<modifier>-0.5</modifier>
+				<modifier>-0.75</modifier>
 			</li>
 			<li>
 				<precept>Cannibalism_Preferred</precept>
-				<modifier>-1</modifier>
+				<modifier>-1.5</modifier>
 			</li>
 			<li>
 				<precept>Cannibalism_RequiredStrong</precept>
-				<modifier>-1.5</modifier>
+				<modifier>-3</modifier>
 			</li>
 			<li>
 				<precept>Execution_HorribleIfInnocent</precept>
@@ -3437,7 +3437,7 @@
 			<li>0</li>
 			<li>0.6</li>
 			<li>0</li>
-			<li>0.8</li>
+			<li>1.2</li>
 		</bigFiveModifiers>
 		<tenAspects>
 			<li>
@@ -3590,7 +3590,7 @@
 			<li>-0.5</li>
 			<li>0</li>
 			<li>0</li>
-			<li>-0.87</li>
+			<li>-1.2</li>
 		</bigFiveModifiers>
 		<tenAspects>
 			<li>
@@ -3722,12 +3722,12 @@
 			<li>0</li>
 			<li>0</li>
 			<li>0</li>
-			<li>1</li>
+			<li>0.7</li>
 		</bigFiveModifiers>
 		<tenAspects>
 			<li>
 				<aspect>Volatility</aspect>
-				<weight>1</weight>
+				<weight>0.7</weight>
 			</li>
 		</tenAspects>
 		<memeCertaintyModifiers>

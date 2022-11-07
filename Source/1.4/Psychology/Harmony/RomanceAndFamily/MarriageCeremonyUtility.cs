@@ -16,7 +16,7 @@ public static class MarriageCeremonyUtility_MarriedPatch
     [HarmonyTranspiler]
     public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> codes)
     {
-        return BreakupHelperMethods.InterdictTryGainAndRemoveMemories(codes);
+        return RomanceHelperMethods.InterdictTryGainAndRemoveMemories(codes);
     }
 }
 
