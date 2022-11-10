@@ -61,8 +61,8 @@ public class PsychologySettings : ModSettings
   public const bool enableDateLettersDefault = true;
   public static bool enableDateLetters = true;
 
-  public const float mentalBreakAnxietyChanceDefault = 0.2f;
-  public static float mentalBreakAnxietyChance = 0.2f;
+  public const float mentalBreakAnxietyChanceDefault = 0.05f;
+  public static float mentalBreakAnxietyChance = 0.05f;
 
   public const float imprisonedDebuffDefault = 40f; // v1.1
   public static float imprisonedDebuff = 40f; // v1.1
@@ -70,11 +70,11 @@ public class PsychologySettings : ModSettings
   public const float conversationDurationDefault = 60f;
   public static float conversationDuration = 60f;
 
-  public const float convoOpinionMultiplierDefault = 1f;
-  public static float convoOpinionMultiplier = 1f;
+  //public const float convoOpinionMultiplierDefault = 1f;
+  //public static float convoOpinionMultiplier = 1f;
 
-  public const float convoMeanHoursDefault = 1f;
-  public static float convoMeanHours = 1f;
+  public const float convoMeanHoursDefault = 1.3f;
+  public static float convoMeanHours = 1.3f;
 
   public const float convoTimeScaleHoursDefault = 1f;
   public static float convoTimeScaleHours = 1f;
@@ -151,7 +151,7 @@ public class PsychologySettings : ModSettings
     ScribeValueAndAddToNameList(nameof(mentalBreakAnxietyChance));
     ScribeValueAndAddToNameList(nameof(imprisonedDebuff));
     ScribeValueAndAddToNameList(nameof(conversationDuration));
-    ScribeValueAndAddToNameList(nameof(convoOpinionMultiplier));
+    //ScribeValueAndAddToNameList(nameof(convoOpinionMultiplier));
     ScribeValueAndAddToNameList(nameof(convoMaxOpinionChange));
     ScribeValueAndAddToNameList(nameof(convoMeanHours));
     ScribeValueAndAddToNameList(nameof(convoTimeScaleHours));

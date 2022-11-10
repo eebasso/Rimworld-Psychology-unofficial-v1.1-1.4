@@ -304,8 +304,9 @@ public class Hediff_Conversation : HediffWithComps
 
     // Added time minimum to baseline to opinionMod because conversations often end very quickly
     float y = yr * r + y0x * Func(x) + y0t * Func(t) + y1 * Func(x) * Func(t) + y2 * Func(x * (1f + t));
-    y *= PsychologySettings.convoOpinionMultiplier;
-    y = Mathf.Min(y, PsychologySettings.convoMaxOpinionChange);
+    //y *= PsychologySettings.convoOpinionMultiplier;
+    //y = Mathf.Min(y, PsychologySettings.convoMaxOpinionChange);
+    y *= PsychologySettings.convoMaxOpinionChange / (yr + y0x + y0t + y1 + y2);
 
     // In low-population colonies, pawns will put aside their differences.
     opinionMod = opinionModRawPositive ? Mathf.Ceil(y) : -Mathf.Ceil(y * PopulationModifier);

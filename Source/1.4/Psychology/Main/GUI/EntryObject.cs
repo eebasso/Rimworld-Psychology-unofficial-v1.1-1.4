@@ -17,51 +17,48 @@ public abstract class EntryObject<T, T2>
   private string controlName;
   public int ticker = 0;
   private static int instanceCounter;
-
   internal string buffer = "";
-  internal bool openFlag = false;
+  internal bool activeFlag = false;
   public static readonly List<KeyCode> keyCodesToUnfocus = new List<KeyCode> { KeyCode.Escape, KeyCode.KeypadEnter, KeyCode.Return };
   internal bool pressedClosedKey = false;
   internal bool alwaysOpen;
-  internal T val;
+  internal T val = default(T);
   internal T2 instance;
   internal string fieldName;
-  internal FieldInfo Field => AccessTools.Field(typeof(T2), nameof(fieldName));
 
-  public T Value
+  internal FieldInfo Field
   {
     get
     {
-      return fieldName.NullOrEmpty() ? val : Field != null ? (T)Field.GetValue(instance) : default(T);
+      FieldInfo result = AccessTools.Field(typeof(T2), fieldName);
+      if (result == null)
+      {
+        Log.Error("Psychology.EntryObject: FieldInfo is null, fieldName: " + fieldName);
+      }
+      return result;
     }
+  }
+
+  public T Value
+  {
+    get => fieldName.NullOrEmpty() ? val : Field != null ? (T)Field.GetValue(instance) : default(T);
     set
     {
       if (fieldName.NullOrEmpty())
       {
         val = value;
-        return;
       }
-      if (Field != null)
+      else if (Field != null)
       {
         Field.SetValue(instance, value);
-      }
-      else
-      {
-        Log.Error("Psychology.EntryObject: FieldInfo is null");
       }
     }
   }
 
   public bool Active
   {
-    get
-    {
-      return ticker > 0;
-    }
-    set
-    {
-      ticker = value ? 5 : 0;
-    }
+    get => ticker > 0;
+    set => ticker = value ? 5 : 0;
   }
 
   public bool CurrentlyFocused => GUI.GetNameOfFocusedControl() == controlName;
@@ -72,7 +69,7 @@ public abstract class EntryObject<T, T2>
   {
     this.alwaysOpen = alwaysOpen;
     //this.Open = initialOpen;
-    this.controlName = controlName.NullOrEmpty() ? $"EntryObject_{instanceCounter++}" : controlName;
+    this.controlName = !controlName.NullOrEmpty() ? controlName : $"EntryObject_{instanceCounter++}" + (fieldName.NullOrEmpty() ? "" : "_" + fieldName);
     UpdateInstanceAndField(instance, fieldName);
   }
 
@@ -109,6 +106,7 @@ public abstract class EntryObject<T, T2>
       Active = false;
       pressedClosedKey = true;
       Unfocus();
+      SetBufferToValue();
       Event.current.Use();
     }
     if (Mouse.IsOver(rect))
@@ -126,31 +124,33 @@ public abstract class EntryObject<T, T2>
     else
     {
       pressedClosedKey = false;
-      if (OriginalEventUtility.EventType == EventType.MouseDown)
+      if (CurrentlyFocused && OriginalEventUtility.EventType == EventType.MouseDown)
       {
         Active = false;
         Unfocus();
+        SetBufferToValue();
       }
     }
     if (Active)
     {
-      ticker--;
-      if (!openFlag)
-      {
-        openFlag = true;
-        SetBufferToValue();
-      }
       result = true;
+      ticker--;
+      //if (!activeFlag)
+      //{
+      //  activeFlag = true;
+      //  SetBufferToValue();
+      //}
     }
     else
     {
-      if (openFlag)
-      {
-        openFlag = false;
-        TryParseBuffer(true, min, max);
-      }
-      SetBufferToValue();
       result = alwaysOpen;
+      //if (activeFlag)
+      //{
+      //  activeFlag = false;
+      //  SetBufferToValue();
+      //  //TryParseBuffer(true, min, max);
+      //}
+      //SetBufferToValue();
     }
     return result;
   }
@@ -168,6 +168,10 @@ public abstract class EntryObject<T, T2>
     if (CurrentlyFocused)
     {
       Active = true;
+    }
+    else
+    {
+      SetBufferToValue();
     }
   }
 }
@@ -332,7 +336,7 @@ public class EntryFloat : EntryFloat<object>
   public EntryFloat(float initialValue = 0f, bool alwaysOpen = false, string controlName = null, int roundToDigits = -1)
   {
     InitEntryFloat(null, null, alwaysOpen, controlName, roundToDigits);
-    Value = initialValue;
+    UpdateValueAndBuffer(initialValue);
   }
 }
 

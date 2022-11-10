@@ -950,8 +950,8 @@ public class PsycheCardUtility
     {
       return "";
     }
-    //List<Pair<string, float>> psychologyList = new List<Pair<string, float>>();
     Dictionary<string, float> psychologyDict = new Dictionary<string, float>();
+
     CompPsychology comp = PsycheHelper.Comp(pawn);
     Pawn_SexualityTracker sexuality = comp.Sexuality;
     Pawn_PsycheTracker psyche = comp.Psyche;
@@ -959,6 +959,7 @@ public class PsycheCardUtility
     psychologyDict[nameof(sexuality.kinseyRating)] = sexuality.kinseyRating;
     psychologyDict[nameof(sexuality.sexDrive)] = sexuality.sexDrive;
     psychologyDict[nameof(sexuality.romanticDrive)] = sexuality.romanticDrive;
+
     foreach (PersonalityNode node in comp.Psyche.PersonalityNodes)
     {
       psychologyDict[node.def.defName] = node.rawRating;
@@ -978,16 +979,8 @@ public class PsycheCardUtility
       return;
     }
 
-
-    List<Pair<string, float>> psychologyList = new List<Pair<string, float>>();
-    CompPsychology comp = PsycheHelper.Comp(pawn);
-    Pawn_SexualityTracker sexuality = comp.Sexuality;
-    Pawn_PsycheTracker psyche = comp.Psyche;
-
     Dictionary<string, float> psychologyDict = new Dictionary<string, float>();
-
     string[] array = psychologyDataAsString.Split('|');
-
     float parsedFloat;
     foreach (string entry in array)
     {
@@ -1001,6 +994,11 @@ public class PsycheCardUtility
         psychologyDict[pair[0]] = parsedFloat;
       }
     }
+
+    CompPsychology comp = PsycheHelper.Comp(pawn);
+    Pawn_SexualityTracker sexuality = comp.Sexuality;
+    Pawn_PsycheTracker psyche = comp.Psyche;
+
     if (psychologyDict.TryGetValue(nameof(sexuality.kinseyRating), out parsedFloat))
     {
       sexuality.kinseyRating = Mathf.RoundToInt(parsedFloat);

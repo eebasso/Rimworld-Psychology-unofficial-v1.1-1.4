@@ -503,6 +503,7 @@ public static class PersonalityNodeMatrix
         m++;
       }
 
+
       // If m == l, d[l] is an eigenvalue,
       // otherwise, iterate.
       if (m > l)
@@ -510,6 +511,12 @@ public static class PersonalityNodeMatrix
         var iter = 0;
         do
         {
+          if (order - 1 <= l)
+          {
+            Log.Error("PersonalityNodeMatrix.SymmetricDiagonalize: order - 1 <= l: order = " + order + ", l = " + l + ", m = " + m);
+            break;
+          }
+
           iter = iter + 1; // (Could check iteration count here.)
 
           // Compute implicit shift

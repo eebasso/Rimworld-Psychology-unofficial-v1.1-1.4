@@ -23,23 +23,29 @@ namespace Psychology;
 
 public class PsychologyMod : Mod
 {
-    public static PsychologySettings settings;
-    public static int lastDrawFrame = Time.frameCount;
-    public override string SettingsCategory() => "Psychology";
-    
-    public PsychologyMod(ModContentPack content) : base(content)
-    {
-        settings = this.GetSettings<PsychologySettings>();
-    }
+  public static PsychologySettings settings;
+  public static int lastDrawFrame;
+  public static bool initializeLastDrawFrame = true;
 
-    public override void DoSettingsWindowContents(Rect inRect)
+  public override string SettingsCategory() => "Psychology";
+
+  public PsychologyMod(ModContentPack content) : base(content)
+  {
+    settings = this.GetSettings<PsychologySettings>();
+  }
+
+  public override void DoSettingsWindowContents(Rect inRect)
+  {
+    if (initializeLastDrawFrame)
     {
-        if (Time.frameCount - lastDrawFrame > 5)
-        {
-            //Log.Message("DoSettingsWindowContents, SpeciesHelper.Initialize()");
-            SettingsWindowUtility.Initialize();
-        }
-        SettingsWindowUtility.DrawSettingsWindow(inRect);
-        lastDrawFrame = Time.frameCount;
+      lastDrawFrame = Time.frameCount - 10;
     }
+    if (Time.frameCount - lastDrawFrame > 5)
+    {
+      //Log.Message("DoSettingsWindowContents, SpeciesHelper.Initialize()");
+      SettingsWindowUtility.Initialize();
+    }
+    SettingsWindowUtility.DrawSettingsWindow(inRect);
+    lastDrawFrame = Time.frameCount;
+  }
 }

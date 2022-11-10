@@ -436,10 +436,11 @@ public static class SettingsWindowUtility{
       conversationsOpen = !conversationsOpen;
     }
     ShiftRectsDown(RowHeight);
+
     if (conversationsOpen)
     {
       FloatEntry(nameof(PsychologySettings.conversationDuration), 15f, 180f);
-      FloatEntry(nameof(PsychologySettings.convoOpinionMultiplier), 0f, 3f);
+      //FloatEntry(nameof(PsychologySettings.convoOpinionMultiplier), 0f, 3f);
       FloatEntry(nameof(PsychologySettings.convoMaxOpinionChange), 5f, 200f);
       FloatEntry(nameof(PsychologySettings.convoMeanHours), 0.1f, 10f);
       FloatEntry(nameof(PsychologySettings.convoTimeScaleHours), 0.1f, 10f);
@@ -453,16 +454,12 @@ public static class SettingsWindowUtility{
       opinionChangesOpen = !opinionChangesOpen;
     }
     ShiftRectsDown(RowHeight);
+
     if (opinionChangesOpen)
     {
       FloatEntry(nameof(PsychologySettings.traitOpinionMultiplier), 0f, 2f);
       FloatEntry(nameof(PsychologySettings.imprisonedDebuff), 0f, 100f);
-      
     }
-
-
-
-    ShiftRectsDown(RowHeight);
 
     if (Widgets.ButtonText(buttonRect, "Other settings"))
     {
@@ -554,7 +551,7 @@ public static class SettingsWindowUtility{
       if (UIAssets.ButtonLabel(labelRect, label))
       {
         List<FloatMenuOption> list = new List<FloatMenuOption>();
-        list.Add(new FloatMenuOption("Reset".Translate(), delegate
+        list.Add(new FloatMenuOption("Default".Translate(), delegate
         {
           PsychologySettings.speciesDict[defName] = SpeciesHelper.DefaultSettingsForSpeciesDef(def);
           speciesMinDatingEntry[defName].UpdateValueAndBuffer(PsychologySettings.speciesDict[defName].minDatingAge);
@@ -705,7 +702,7 @@ public static class SettingsWindowUtility{
     if (UIAssets.ButtonLabel(titleRect, TitleDict[boolSettingName], false))
     {
       List<FloatMenuOption> list = new List<FloatMenuOption>();
-      list.Add(new FloatMenuOption("Reset".Translate(), delegate
+      list.Add(new FloatMenuOption("Default".Translate(), delegate
       {
         PsychologySettings.ResetSettingToDefault(boolSettingName);
       }));
@@ -749,7 +746,7 @@ public static class SettingsWindowUtility{
     if (UIAssets.ButtonLabel(titleRect, TitleDict[floatSettingName], false))
     {
       List<FloatMenuOption> list = new List<FloatMenuOption>();
-      list.Add(new FloatMenuOption("Reset".Translate(), delegate
+      list.Add(new FloatMenuOption("Default".Translate(), delegate
       {
         FieldInfo fieldInfoDefault = AccessTools.Field(typeof(PsychologySettings), floatSettingName + "Default");
         PsychologySettings.ResetSettingToDefault(floatSettingName);
@@ -807,7 +804,7 @@ public static class SettingsWindowUtility{
     int roundToDigit = 1;
     EntryFloat entry = kinseyWeightCustomEntry[i];
     float val0 = entry.Value;
-    entry.NumericTextField(numberRect, 0f, 100f, false, false);
+    entry.NumericTextField(numberRect, 0f, 100f, false);
     bool textFieldChanged = val0 != entry.Value;
 
     //float roundedVal = (float)Math.Round(entry.Value, roundToDigit);
