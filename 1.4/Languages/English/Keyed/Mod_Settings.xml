@@ -7,8 +7,6 @@
 	<EnableEmpathyTitle>Enable empathy changes</EnableEmpathyTitle>
 	<EnableEmpathyTooltip>Turn this off to restore colonists' reactions to bad things happening to other people to normal. This will increase difficulty; Bleeding Heart pawns will be unaffected. Restart the game after disabling this.</EnableEmpathyTooltip>
 	
-
-	
 	<KinseyFormulaTitle>Kinsey scale formula</KinseyFormulaTitle>
 	<KinseyFormulaTooltip>This setting determines what formula is used to set the Kinsey rating of generated pawns. Weights do not have to sum to 100.</KinseyFormulaTooltip>
 	<KinseyMode_Realistic>Default</KinseyMode_Realistic>
@@ -28,8 +26,20 @@
 	<ConversationDurationTitle>Conversation memory duration</ConversationDurationTitle>
 	<ConversationDurationTooltip>Set how long people will remember conversations for. The default is 60 days, i.e. one year. The minimum is 15 day, one quadrum, and the maximum is 180 days, three years. Setting it lower will make colonists' interactions with each other more ephemeral, and setting it higher will make them more lasting. Requires restart.</ConversationDurationTooltip>
 
-	<ConvoOpinionMultiplierTitle>Conversation opinion multiplier</ConvoOpinionMultiplierTitle>
-	<ConvoOpinionMultiplierTooltip>This multiplier controls how large the opinion changes will be from conversations.</ConvoOpinionMultiplierTooltip>
+	<ConvoOpinionMultiplierTitle>Max opinion change from conversations</ConvoOpinionMultiplierTitle>
+	<ConvoOpinionMultiplierTooltip>This maximum controls the scale of opinion changes from conversations.</ConvoOpinionMultiplierTooltip>
+
+	<!--<ConvoOpinionMultiplierTitle>Conversation opinion multiplier</ConvoOpinionMultiplierTitle>
+	<ConvoOpinionMultiplierTooltip>This multiplier controls how large the opinion changes will be from conversations.</ConvoOpinionMultiplierTooltip>-->
+
+	<ConvoMeanTimeHoursTitle>Expected discussion time</ConvoMeanTimeHoursTitle>
+	<ConvoMeanTimeHoursTooltip>Set the average time in hours that a conversation will last.</ConvoMeanTimeHoursTooltip>
+
+	<ConvoTimeScaleHoursTitle>Time scale of conversations</ConvoTimeScaleHoursTitle>
+	<ConvoTimeScaleHoursTooltip>Set the time scale in hours by which conversation opinions will change as a function of time.</ConvoTimeScaleHoursTooltip>
+
+	<ConvoPersonalityEffectMultiplierTitle>Personality effects on conversations</ConvoPersonalityEffectMultiplierTitle>
+	<ConvoPersonalityEffectMultiplierTooltip>This multiplier controls how much personality traits such as Friendly, Polite or Cool will affect the change in opinion.</ConvoPersonalityEffectMultiplierTooltip>
 	
 	<EnableDateLettersTitle>Send date letters</EnableDateLettersTitle>
 	<EnableDateLettersTooltip>Turn this off to disable receiving letters when your colonists plan a date together.</EnableDateLettersTooltip>
@@ -56,7 +66,7 @@
 	<VisitMayorMtbHoursTooltip>This controls the expected time in hours between constituents meeting with their mayor. Lower values will increase the frequency of visits.</VisitMayorMtbHoursTooltip>
 
 	<MentalBreakAnxietyChanceTitle>Mental break anxiety chance</MentalBreakAnxietyChanceTitle>
-	<MentalBreakAnxietyChanceTooltip>This sets the mean chance a pawn will develop anxiety after having a major mental break. For minor breaks, the chance is halved and for extreme breaks the chance is doubled. The chance will also depend on colonist's psyche. Note that you might still see it as random disease due to aging.</MentalBreakAnxietyChanceTooltip>
+	<MentalBreakAnxietyChanceTooltip>This sets the mean chance a pawn will develop anxiety after having a major mental break. For minor breaks, the chance is halved and for extreme breaks the chance is doubled. The chance will also depend on colonist's psyche. Note that you might still see it as random disease due to aging. Requires restart for full effect.</MentalBreakAnxietyChanceTooltip>
 
 	<!--<BeatyOverrideEnabledTitle>Disable opinion changes from beauty traits</BeatyOverrideEnabledTitle>
 	<BeatyOverrideEnabledToolip>Disables opinion changes from traits such as: Pretty, Beautiful, Ugly, etc. Note that Psychology's changes to those traits would still work even if you disable this option. Its recommended to keep this option enabled.</BeatyOverrideEnabledToolip>-->

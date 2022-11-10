@@ -70,8 +70,10 @@ public class PsychologySettings : ModSettings
   public const float conversationDurationDefault = 60f;
   public static float conversationDuration = 60f;
 
-  //public const float convoOpinionMultiplierDefault = 1f;
-  //public static float convoOpinionMultiplier = 1f;
+
+
+  public const float convoMaxOpinionChangeDefault = 40f;
+  public static float convoMaxOpinionChange = 40f;
 
   public const float convoMeanHoursDefault = 1.3f;
   public static float convoMeanHours = 1.3f;
@@ -81,9 +83,6 @@ public class PsychologySettings : ModSettings
 
   public const float convoPersonalityEffectMultiplierDefault = 1f;
   public static float convoPersonalityEffectMultiplier = 1f;
-
-  public const float convoMaxOpinionChangeDefault = 40f;
-  public static float convoMaxOpinionChange = 40f;
 
   public const float romanceChanceMultiplierDefault = 1f; // v1.1
   public static float romanceChanceMultiplier = 1f; // v1.1
@@ -131,11 +130,12 @@ public class PsychologySettings : ModSettings
   public const float hookupCheatChanceDefault = 0.05f;
   public static float hookupCheatChance = 0.05f;
 
-
-
   /* DEPRECATED SETTINGS */
   private const bool enableAnxietyDefault = true; // v1.1
   private static bool enableAnxiety = true; // v1.1
+
+  public const float convoOpinionMultiplierDefault = 1f;
+  public static float convoOpinionMultiplier = 1f;
 
   public override void ExposeData()
   {
@@ -175,6 +175,9 @@ public class PsychologySettings : ModSettings
     /* Deprecated settings. Set each to default and use forceSave = false to essentially delete them from savefile */
     Scribe_Values.Look(ref enableAnxiety, "Psychology_EnableAnxiety", enableAnxietyDefault);
     enableAnxiety = enableAnxietyDefault;
+    Scribe_Values.Look(ref convoOpinionMultiplier, "Psychology_ConvoOpinionMultiplier", convoOpinionMultiplierDefault);
+    enableAnxiety = enableAnxietyDefault;
+
     //Log.Message("PsychologySettings, ExposeData end");
   }
 
