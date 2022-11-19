@@ -13,10 +13,10 @@
 	<KinseyMode_Invisible>Центрирование</KinseyMode_Invisible>
 	<KinseyMode_Gaypocalypse>Инверсия</KinseyMode_Gaypocalypse>
 	<KinseyMode_Uniform>Равное распределение</KinseyMode_Uniform>
-	<KinseyMode_Custom>Custom</KinseyMode_Custom>
+	<KinseyMode_Custom>Пользовательский режим</KinseyMode_Custom>
 
-	<KWTitle>Kinsey {0}</KWTitle>
-	<KWTooltip>When custom mode is enabled, this sets the relative weight for {0} on the Kinsey scale for generated pawns.</KWTooltip>
+	<KWTitle>Кинси - {0}</KWTitle>
+	<KWTooltip>Когда пользовательский режим включен, устанавливается относительный вес для {0} по шкале Кинси для сгенерированных персонажей.</KWTooltip>
 
 	<EnableIndividualityTitle>Включить индивидуальность в одежде</EnableIndividualityTitle>
 	<EnableIndividualityTooltip>Отключите это, чтобы ваши поселенцы не получали негативных мыслей от полностью совпадающей одежды. Этот параметр добавляет дополнительную сложность, поэтому необязателен, хоть и рекомендован.</EnableIndividualityTooltip>
@@ -33,22 +33,22 @@
 	<BenchmarkingTitle>Включить тест производительности</BenchmarkingTitle>
 	<BenchmarkingTooltip>Включите это, чтобы получать периодические отчёты о производительности мода в консоли. Вы можете копировать эти отчёты и отправлять их разработчикам для улучшения оптимизации мода. ВНИМАНИЕ: тест производительности сам по себе может негативно повлиять на производительность.\n\nИзменение данного параметра перезапустит игру.</BenchmarkingTooltip>
 
-	<ImprisonedDebuffTitle>Prisoner recruitment penalty</ImprisonedDebuffTitle>
-	<ImprisonedDebuffTooltip>Enable/disable negative opinion penalty for recruited prisoners (-40 Faction imprisoned me).</ImprisonedDebuffTooltip>
+	<ImprisonedDebuffTitle>Штраф к вербовке пленников</ImprisonedDebuffTitle>
+	<ImprisonedDebuffTooltip>Включить/выключить штраф к мнению при вербовке пленников (-40 фракция взяла меня в плен)</ImprisonedDebuffTooltip>
 
-	<RomanceChanceMultiplierTitle>Romance chance multiplier</RomanceChanceMultiplierTitle>
-	<RomanceChanceMultiplierTooltip>Romance chance will be multiplied by this value. Setting to 0 should eliminate romance entirely.</RomanceChanceMultiplierTooltip>
+	<RomanceChanceMultiplierTitle>Множитель шанса начала отношений</RomanceChanceMultiplierTitle>
+	<RomanceChanceMultiplierTooltip>Шанс начала отношений будет умножен на эту величину. Если установить 0, романтические отношения будут невозможны.</RomanceChanceMultiplierTooltip>
 
-	<RomanceOpinionThresholdTitle>Minimum romance opinion</RomanceOpinionThresholdTitle>
-	<RomanceOpinionThresholdTooltip>Minimum opinion one colonist must have of another in order to be romanced.</RomanceOpinionThresholdTooltip>
+	<RomanceOpinionThresholdTitle>Порог для начала отношений</RomanceOpinionThresholdTitle>
+	<RomanceOpinionThresholdTooltip>Порог мнения о поселенце, необходимый для начала романтических отношений.</RomanceOpinionThresholdTooltip>
 
-	<MayorAgeTitle>Mayor age</MayorAgeTitle>
-	<MayorAgeTooltip>Age required for someone to be able to become a mayor.</MayorAgeTooltip>
+	<MayorAgeTitle>Возраст мэра</MayorAgeTitle>
+	<MayorAgeTooltip>Минимальный возраст для того, чтобы поселенец мог претендовать на пост мэра.</MayorAgeTooltip>
 
-	<AllowAnxietyTitle>Allow post mental break anxiety</AllowAnxietyTitle>
-	<AllowAnxietyTooltip>Allow colonists to get anxiety after mental breaks (chance depends on colonist's psyche and mental breaks severity). Note that you might still see it as random disease.</AllowAnxietyTooltip>
+	<AllowAnxietyTitle>Тревожность после срыва</AllowAnxietyTitle>
+	<AllowAnxietyTooltip>Позволить появление тревожности у поселенцев после срыва (шанс зависит от психики поселенца и серьёзности срыва). Учтите, что появление тревожности может показаться случайным.</AllowAnxietyTooltip>
 
-	<BeatyOverrideEnabledTitle>Disable opinion changes from beauty traits</BeatyOverrideEnabledTitle>
-	<BeatyOverrideEnabledToolip>Disables opinion changes from traits such as: Pretty, Beautiful, Ugly, etc. Note that Psychology's changes to those traits would still work even if you disable this option. Its recommended to keep this option enabled.</BeatyOverrideEnabledToolip>
+	<BeatyOverrideEnabledTitle>Мнение от внешности Psychology</BeatyOverrideEnabledTitle>
+	<BeatyOverrideEnabledToolip>При выборе отключает бонусы к мнению о поселенцах от черт «невероятная красота», «красота», «уродство» и т.д. Учтите, что изменение этих характеристик модом Psychology всё ещё будет присутствовать, даже если эта опция отключена. Рекомендовано включить эту опцию.</BeatyOverrideEnabledToolip>
   
 </LanguageData>
