@@ -2,7 +2,7 @@
 <LanguageData>
 
 	<!-- WITab title -->
-	<TabPsyche>Психика</TabPsyche>
+	<TabPsyche>Психология</TabPsyche>
 
 	<!-- Sexuality disabled warning -->
 	<SexualityDisabledWarning>Система сексуальности Psychology отключена конфликтующими модами. Пожалуйста, отключите все моды, меняющие механику отношений и сексуальности.</SexualityDisabledWarning>

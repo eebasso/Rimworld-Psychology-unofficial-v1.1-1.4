@@ -50,5 +50,39 @@
 
 	<BeatyOverrideEnabledTitle>Мнение от внешности Psychology</BeatyOverrideEnabledTitle>
 	<BeatyOverrideEnabledToolip>При выборе отключает бонусы к мнению о поселенцах от черт «невероятная красота», «красота», «уродство» и т.д. Учтите, что изменение этих характеристик модом Psychology всё ещё будет присутствовать, даже если эта опция отключена. Рекомендовано включить эту опцию.</BeatyOverrideEnabledToolip>
-  
+	
+	<MentalBreakAnxietyChanceTitle>Шанс появления тревожности после срыва</MentalBreakAnxietyChanceTitle>
+	<MentalBreakAnxietyChanceTooltip>Устанавливает шанс развития тревожности после нервного срыва. Для незначительных срывов шанс в два раза меньше, для серьёзных — в два раза больше. Шанс также зависит от психики поселенца. Важно помнить, что развитие тревожности может показаться случайным и вызванным старением, а не последствиями нервного срыва. Для правильной работы требуется перезагрузка игры.</MentalBreakAnxietyChanceTooltip>
+	
+	<TraitOpinionMultiplierTitle>Множитель бонуса к мнению от черт</TraitOpinionMultiplierTitle>
+	<TraitOpinionMultiplierTooltip>Настроить влияние на отношения между поселенцами от следующих черт: невероятная красота, красота, уродство, невероятное уродство и т.д. Чтобы отключить полностью — установите на ноль. Требуется перезагрузка игры.</TraitOpinionMultiplierTooltip>
+	
+	<PersonalityExtremenessTitle>Архетипичность</PersonalityExtremenessTitle>
+	<PersonalityExtremenessTooltip>Укажите, насколько личности персонаженй будут соответствовать архетипам «большой пятёрки».</PersonalityExtremenessTooltip>
+	
+	<IdeoPsycheMultiplierTitle>Множитель связи с идеологией</IdeoPsycheMultiplierTitle>
+	<IdeoPsycheMultiplierTooltip>Укажите, насколько сильно идеолигия и личности персонажей будут между собой взаимодействовать. Чтобы отключить полностью — установите на ноль.</IdeoPsycheMultiplierTooltip>
+	
+	<DisplayOptionsTitle>Настройки вкладки «психология»</DisplayOptionsTitle>
+	<DisplayOptionsTooltip>Настройки вкладки «психология»</DisplayOptionsTooltip>
+	<UseColorsTooltip>Включите разноцветные названия черт личности.</UseColorsTooltip>
+	<ListAlphabeticalTooltip>Использовать алфавитный порядок отображения черт.</ListAlphabeticalTooltip>
+	<UseAntonymsTooltip>Использовать противоположности черт.</UseAntonymsTooltip>
+	
+	<SpeciesSettingsTitle>Виды</SpeciesSettingsTitle>
+	<SpeciesSettingsTooltip>Изменить настройки для каждого отельного вида.</SpeciesSettingsTooltip>
+	
+	<EnablePsycheTitle>Психология</EnablePsycheTitle>
+	<EnablePsycheTooltip>Включить или отключить психологию. Для примитивных видов зомби или простых роботов рекомендуется не включать. Романтические отношения и глубокие разговоры для таких рас будут недоступны в любом случае.</EnablePsycheTooltip>
+	
+	<EnableAgeGapTitle>Разница в возрасте</EnableAgeGapTitle>
+	<EnableAgeGapTooltip>Выключите, если не хотите, чтобы персонажи других видов воздерживались от романтических отношений с представителями этого вида из-за большой разницы в возрасте. Рекомендуется включить для человекоподобных роботов/андроидов и эльфоподобных видов, не стареющих после достижения стадии взрослого.</EnableAgeGapTooltip>
+	
+	<dating>встречаться</dating>
+	<lovin>вступать в близость</lovin>
+	<MinRomanceAgeTooltip>Минимальный возраст, для того, чтобы {0} с представителями этого вида. При значении больше нуля, возраст в формулах для вышеуказанных действий увеличивается на это значение относительно {1}. Нулевой значение позволяет {0} в любом возрасте и без оглядки на разницу в нём. Рекомендовано для видов без этапа детства, таких как человекоподобных роботов или андроидов. Минусовое значение исключает возможность {0} с представителями этого вида.</MinRomanceAgeTooltip>
+	
+	<MinDatingAgeTitle>Свидания</MinDatingAgeTitle>
+	<MinLovinAgeTitle>Близость</MinLovinAgeTitle>
+	
 </LanguageData>
