@@ -24,10 +24,10 @@
 
 	<!-- Romance drive display and tooltip -->
 	<RomanticDrive0>Аромантичность</RomanticDrive0>
-	<RomanticDrive1>Низкое ром. влечение</RomanticDrive1>
-	<RomanticDrive2>Обычное ром. влечение</RomanticDrive2>
-	<RomanticDrive3>Повышенное ром. влечение</RomanticDrive3>
-	<RomanticDrive4>Высокое ром. влечение</RomanticDrive4>
+	<RomanticDrive1>Низкое романтическое влечение</RomanticDrive1>
+	<RomanticDrive2>Обычное романтическое влечение</RomanticDrive2>
+	<RomanticDrive3>Повышенное романтическое влечение</RomanticDrive3>
+	<RomanticDrive4>Высокое романтическое влечение</RomanticDrive4>
 	<RomanticDriveDescription0>Романтическое влечение</RomanticDriveDescription0>
 	<RomanticDriveDescription>{0} — стремление человека к участию в романтических отношениях.</RomanticDriveDescription>
 	<AromanticDescription>У этого персонажа очень низкое романтическое влечение. Этот персонаж может и будет вступать в сексуальную связь с другими поселенцами, но вряд ли будет стремиться к романтическим отношениям или принимать предложения подобного рода.</AromanticDescription>
