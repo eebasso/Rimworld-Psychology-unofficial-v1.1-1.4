@@ -55,12 +55,12 @@
 	<PsycheSlightly>Мизерная</PsycheSlightly>
 	<PsycheLess>Слабая</PsycheLess>
 	<PsycheSomewhat>Некоторая</PsycheSomewhat>
-	<PsycheMore>Умеренная</PsycheMore>
+	<PsycheMore>Типичная</PsycheMore>
 	<PsycheVery>Сильная</PsycheVery>
 	<PsycheExtremely>Небывалая</PsycheExtremely>
 
 	<!-- Conversation Tooltip -->
-	<ConversationTooltip>Люди будут говорить о {0}, и {1} чтобы обсудить это между собой.</ConversationTooltip>
+	<ConversationTooltip>Люди будут говорить {0}, и {1} в беседах между собой.</ConversationTooltip>
 	<PsycheComma>, </PsycheComma>
 	<AntonymColon> Противоположность: {0}</AntonymColon>
 
