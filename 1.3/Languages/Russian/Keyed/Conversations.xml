@@ -2,48 +2,48 @@
 <LanguageData>
 
 	<NumberOfShortTalks>10</NumberOfShortTalks>
-	<ShortTalk1>{INITIATOR_labelShort} {INITIATOR_gender ? перекинулся : перекинулась} парой слов с {RECIPIENT_labelShort} о {0}.</ShortTalk1>
-	<ShortTalk2>{INITIATOR_labelShort} {INITIATOR_gender ? поболтал : поболтала} немного с {RECIPIENT_labelShort} о {0}.</ShortTalk2>
-	<ShortTalk3>{INITIATOR_labelShort} {INITIATOR_gender ? поговорил : поговорила} немного с {RECIPIENT_labelShort} о {0}.</ShortTalk3>
-	<ShortTalk4>{INITIATOR_labelShort} оживлённо {INITIATOR_gender ? обсудил : обсудила} пару вопросов о {0} с {RECIPIENT_labelShort}.</ShortTalk4>
-	<ShortTalk5>{INITIATOR_labelShort} мельком {INITIATOR_gender ? обсудил : обсудила} пару вопросов о {0} с {RECIPIENT_labelShort}.</ShortTalk5>
-	<ShortTalk6>{INITIATOR_labelShort} {INITIATOR_gender ? поговорил : поговорила} о {0} с {RECIPIENT_labelShort} проходя мимо.</ShortTalk6>
-	<ShortTalk7>{INITIATOR_labelShort} лаконично {INITIATOR_gender ? высказался : высказалась} {RECIPIENT_labelShort} о {0}.</ShortTalk7>
-	<ShortTalk8>{INITIATOR_labelShort} на ходу {INITIATOR_gender ? посовещался : посовещалась} о {0} с {RECIPIENT_labelShort}.</ShortTalk8>
-	<ShortTalk9>{INITIATOR_labelShort} {INITIATOR_gender ? обменялся : обменялась} парой слов с {RECIPIENT_labelShort} о {0} проходя мимо.</ShortTalk9>
-	<ShortTalk10>{INITIATOR_labelShort} {INITIATOR_gender ? переметнулся : переметнулась} парой слов с {RECIPIENT_labelShort} о {0}.</ShortTalk10>
+	<ShortTalk1>{INITIATOR_labelShort} {INITIATOR_gender ? перекинулся : перекинулась} парой слов с {RECIPIENT_labelShort} {0}.</ShortTalk1>
+	<ShortTalk2>{INITIATOR_labelShort} {INITIATOR_gender ? поболтал : поболтала} немного с {RECIPIENT_labelShort} {0}.</ShortTalk2>
+	<ShortTalk3>{INITIATOR_labelShort} {INITIATOR_gender ? поговорил : поговорила} немного с {RECIPIENT_labelShort} {0}.</ShortTalk3>
+	<ShortTalk4>{INITIATOR_labelShort} оживлённо {INITIATOR_gender ? обсудил : обсудила} пару вопросов {0} с {RECIPIENT_labelShort}.</ShortTalk4>
+	<ShortTalk5>{INITIATOR_labelShort} мельком {INITIATOR_gender ? обсудил : обсудила} пару вопросов {0} с {RECIPIENT_labelShort}.</ShortTalk5>
+	<ShortTalk6>{INITIATOR_labelShort} {INITIATOR_gender ? поговорил : поговорила} {0} с {RECIPIENT_labelShort} проходя мимо.</ShortTalk6>
+	<ShortTalk7>{INITIATOR_labelShort} лаконично {INITIATOR_gender ? высказался : высказалась} {RECIPIENT_labelShort} {0}.</ShortTalk7>
+	<ShortTalk8>{INITIATOR_labelShort} на ходу {INITIATOR_gender ? посовещался : посовещалась} {0} с {RECIPIENT_labelShort}.</ShortTalk8>
+	<ShortTalk9>{INITIATOR_labelShort} {INITIATOR_gender ? обменялся : обменялась} парой слов с {RECIPIENT_labelShort} {0} проходя мимо.</ShortTalk9>
+	<ShortTalk10>{INITIATOR_labelShort} {INITIATOR_gender ? переметнулся : переметнулась} парой слов с {RECIPIENT_labelShort} {0}.</ShortTalk10>
 	
 	<NumberOfNormalTalks>12</NumberOfNormalTalks>
-	<NormalTalk1>{INITIATOR_labelShort} {INITIATOR_gender ? поговорил : поговорила} о {0} с {RECIPIENT_labelShort}.</NormalTalk1>
-	<NormalTalk2>{INITIATOR_labelShort} {INITIATOR_gender ? побеседовал : побеседовала} о {0} с {RECIPIENT_labelShort}.</NormalTalk2>
-	<NormalTalk3>{INITIATOR_labelShort} {INITIATOR_gender ? обсудил : обсудила} пару вопросов о {0} с {RECIPIENT_labelShort}.</NormalTalk3>
-	<NormalTalk4>{INITIATOR_labelShort} {INITIATOR_gender ? высказал : высказала} {RECIPIENT_labelShort} своё мнение о {0}.</NormalTalk4>
-	<NormalTalk5>{INITIATOR_labelShort} {INITIATOR_gender ? поболтал : поболтала} с {RECIPIENT_labelShort} о {0}.</NormalTalk5>
-	<NormalTalk6>{INITIATOR_labelShort} {INITIATOR_gender ? пообщался : пообщалась} с {RECIPIENT_labelShort} о {0}.</NormalTalk6>
-	<NormalTalk7>{INITIATOR_labelShort} {INITIATOR_gender ? подискутировал : подискутировала} с {RECIPIENT_labelShort} о {0}.</NormalTalk7>
-	<NormalTalk8>{INITIATOR_labelShort} {INITIATOR_gender ? узнал : узнала} мнение {RECIPIENT_labelShort} о {0}.</NormalTalk8>
-	<NormalTalk9>{INITIATOR_labelShort} {INITIATOR_gender ? поделился : поделилась} мыслями о {0} {RECIPIENT_labelShort}.</NormalTalk9>
-	<NormalTalk10>{INITIATOR_labelShort} {INITIATOR_gender ? разузнал : разузнала} мнение {RECIPIENT_labelShort} о {0}.</NormalTalk10>
-	<NormalTalk11>{INITIATOR_labelShort} {INITIATOR_gender ? поспорил : поспорила} о {0} с {RECIPIENT_labelShort}.</NormalTalk11>
-	<NormalTalk12>{INITIATOR_labelShort} {INITIATOR_gender ? посоветовался : посоветовалась} с {RECIPIENT_labelShort} о {0}.</NormalTalk12>
+	<NormalTalk1>{INITIATOR_labelShort} {INITIATOR_gender ? поговорил : поговорила} {0} с {RECIPIENT_labelShort}.</NormalTalk1>
+	<NormalTalk2>{INITIATOR_labelShort} {INITIATOR_gender ? побеседовал : побеседовала} {0} с {RECIPIENT_labelShort}.</NormalTalk2>
+	<NormalTalk3>{INITIATOR_labelShort} {INITIATOR_gender ? обсудил : обсудила} пару вопросов {0} с {RECIPIENT_labelShort}.</NormalTalk3>
+	<NormalTalk4>{INITIATOR_labelShort} {INITIATOR_gender ? высказал : высказала} {RECIPIENT_labelShort} своё мнение {0}.</NormalTalk4>
+	<NormalTalk5>{INITIATOR_labelShort} {INITIATOR_gender ? поболтал : поболтала} с {RECIPIENT_labelShort} {0}.</NormalTalk5>
+	<NormalTalk6>{INITIATOR_labelShort} {INITIATOR_gender ? пообщался : пообщалась} с {RECIPIENT_labelShort} {0}.</NormalTalk6>
+	<NormalTalk7>{INITIATOR_labelShort} {INITIATOR_gender ? подискутировал : подискутировала} с {RECIPIENT_labelShort} {0}.</NormalTalk7>
+	<NormalTalk8>{INITIATOR_labelShort} {INITIATOR_gender ? узнал : узнала} мнение {RECIPIENT_labelShort} {0}.</NormalTalk8>
+	<NormalTalk9>{INITIATOR_labelShort} {INITIATOR_gender ? поделился : поделилась} мыслями {0} {RECIPIENT_labelShort}.</NormalTalk9>
+	<NormalTalk10>{INITIATOR_labelShort} {INITIATOR_gender ? разузнал : разузнала} мнение {RECIPIENT_labelShort} {0}.</NormalTalk10>
+	<NormalTalk11>{INITIATOR_labelShort} {INITIATOR_gender ? поспорил : поспорила} {0} с {RECIPIENT_labelShort}.</NormalTalk11>
+	<NormalTalk12>{INITIATOR_labelShort} {INITIATOR_gender ? посоветовался : посоветовалась} с {RECIPIENT_labelShort} {0}.</NormalTalk12>
 	
 	<NumberOfLongTalks>8</NumberOfLongTalks>
-	<LongTalk1>{INITIATOR_labelShort} долго {INITIATOR_gender ? обсуждал : обсуждала} вопросы о {0} с {RECIPIENT_labelShort}.</LongTalk1>
-	<LongTalk2>{INITIATOR_labelShort} долго {INITIATOR_gender ? беседовал : беседовала} о {0} с {RECIPIENT_labelShort}.</LongTalk2>
-	<LongTalk3>{INITIATOR_labelShort} долго {INITIATOR_gender ? беседовал : беседовала} с {RECIPIENT_labelShort} о {0} .</LongTalk3>
-	<LongTalk4>{INITIATOR_labelShort} основательно {INITIATOR_gender ? обсудил : обсудила} вопросы о {0} с {RECIPIENT_labelShort}.</LongTalk4>
-	<LongTalk5>{INITIATOR_labelShort} долго {INITIATOR_gender ? советовался : советовалась} с {RECIPIENT_labelShort} о {0}.</LongTalk5>
-	<LongTalk6>{INITIATOR_labelShort} много {INITIATOR_gender ? узнал : узнала} о том, что {RECIPIENT_labelShort} думает о {0}.</LongTalk6>
-	<LongTalk7>{INITIATOR_labelShort} {INITIATOR_gender ? поделился : поделилась} с {RECIPIENT_labelShort} глубокими размышлениями о {0}.</LongTalk7>
-	<LongTalk8>{INITIATOR_labelShort} длительно {INITIATOR_gender ? дискутировал : дискутировала} о {0} с  {RECIPIENT_labelShort}.</LongTalk8>
+	<LongTalk1>{INITIATOR_labelShort} долго {INITIATOR_gender ? обсуждал : обсуждала} вопросы {0} с {RECIPIENT_labelShort}.</LongTalk1>
+	<LongTalk2>{INITIATOR_labelShort} долго {INITIATOR_gender ? беседовал : беседовала} {0} с {RECIPIENT_labelShort}.</LongTalk2>
+	<LongTalk3>{INITIATOR_labelShort} долго {INITIATOR_gender ? беседовал : беседовала} с {RECIPIENT_labelShort} {0} .</LongTalk3>
+	<LongTalk4>{INITIATOR_labelShort} основательно {INITIATOR_gender ? обсудил : обсудила} вопросы {0} с {RECIPIENT_labelShort}.</LongTalk4>
+	<LongTalk5>{INITIATOR_labelShort} долго {INITIATOR_gender ? советовался : советовалась} с {RECIPIENT_labelShort} {0}.</LongTalk5>
+	<LongTalk6>{INITIATOR_labelShort} много {INITIATOR_gender ? узнал : узнала} том, что {RECIPIENT_labelShort} думает {0}.</LongTalk6>
+	<LongTalk7>{INITIATOR_labelShort} {INITIATOR_gender ? поделился : поделилась} с {RECIPIENT_labelShort} глубокими размышлениями {0}.</LongTalk7>
+	<LongTalk8>{INITIATOR_labelShort} длительно {INITIATOR_gender ? дискутировал : дискутировала} {0} с {RECIPIENT_labelShort}.</LongTalk8>
 
 	<NumberOfEpicTalks>6</NumberOfEpicTalks>
-	<EpicTalk1>{INITIATOR_labelShort} очень продолжительно {INITIATOR_gender ? обсуждал : обсуждала} вопросы о {0} с {1_nameDef}.</EpicTalk1>
-	<EpicTalk2>{INITIATOR_labelShort} бесконечно долго {INITIATOR_gender ? говорил : говорила} с {RECIPIENT_labelShort} о {0}.</EpicTalk2>
-	<EpicTalk3>{INITIATOR_labelShort} крайне долго {INITIATOR_gender ? беседовал : беседовала} с {RECIPIENT_labelShort} о {0}.</EpicTalk3>
-	<EpicTalk4>{INITIATOR_labelShort} очень долго {INITIATOR_gender ? спорил : спорила} с {RECIPIENT_labelShort} о {0}.</EpicTalk4>
-	<EpicTalk5>{INITIATOR_labelShort} ужасно долго {INITIATOR_gender ? трепался : трепалась} с {RECIPIENT_labelShort} о {0}.</EpicTalk5>
-	<EpicTalk6>{INITIATOR_labelShort} очень продолжительно {INITIATOR_gender ? дискутировал : дискутировала} о {0} с {RECIPIENT_labelShort}.</EpicTalk6>
+	<EpicTalk1>{INITIATOR_labelShort} очень продолжительно {INITIATOR_gender ? обсуждал : обсуждала} вопросы {0} с {1_nameDef}.</EpicTalk1>
+	<EpicTalk2>{INITIATOR_labelShort} бесконечно долго {INITIATOR_gender ? говорил : говорила} с {RECIPIENT_labelShort} {0}.</EpicTalk2>
+	<EpicTalk3>{INITIATOR_labelShort} крайне долго {INITIATOR_gender ? беседовал : беседовала} с {RECIPIENT_labelShort} {0}.</EpicTalk3>
+	<EpicTalk4>{INITIATOR_labelShort} очень долго {INITIATOR_gender ? спорил : спорила} с {RECIPIENT_labelShort} {0}.</EpicTalk4>
+	<EpicTalk5>{INITIATOR_labelShort} ужасно долго {INITIATOR_gender ? трепался : трепалась} с {RECIPIENT_labelShort} {0}.</EpicTalk5>
+	<EpicTalk6>{INITIATOR_labelShort} очень продолжительно {INITIATOR_gender ? дискутировал : дискутировала} {0} с {RECIPIENT_labelShort}.</EpicTalk6>
 	
 	<ConversationAnd>, и </ConversationAnd>
 	

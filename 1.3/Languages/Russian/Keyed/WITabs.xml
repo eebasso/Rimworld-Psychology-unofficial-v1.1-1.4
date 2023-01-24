@@ -2,7 +2,7 @@
 <LanguageData>
 
 	<!-- WITab title -->
-	<TabPsyche>психика</TabPsyche>
+	<TabPsyche>Психология</TabPsyche>
 
 	<!-- Sexuality disabled warning -->
 	<SexualityDisabledWarning>Система сексуальности Psychology отключена конфликтующими модами. Пожалуйста, отключите все моды, меняющие механику отношений и сексуальности.</SexualityDisabledWarning>
@@ -10,37 +10,37 @@
 	<!-- Kinsey display and tooltip-->
 	<KinseyRating>Рейтинг Кинси:</KinseyRating>
 	<KinseyDescription0>Шкала Кинси</KinseyDescription0>
-	<KinseyDescription>{0} попытка измерить сексуальную ориентацию людей по шкале от нуля (исключительно гетеросексуальная ориентация) до 6 (исключительно гомосексуальная ориентация).\n\nKinsey chose seven categories for the sake of simplicity, and wrote that "it should be recognized that the reality includes individuals of every intermediate type, lying in a continuum between the two extremes and between each and every category on the scale."</KinseyDescription>
+	<KinseyDescription>{0} попытка измерить сексуальную ориентацию людей по шкале от нуля (исключительно гетеросексуальная ориентация) до 6 (исключительно гомосексуальная ориентация).\n\nКинси выбрал семиточечную шкалу ради простоты и писал в своих работах: «следует признать, что реальность включает в себя индивидов каждого промежуточного типа, лежащих в континууме между двумя крайностями и между каждой категорией на шкале».</KinseyDescription>
 
 	<!-- Sex drive display and tooltip text -->
 	<SexDrive0>Асексуальность</SexDrive0>
-	<SexDrive1>Low sex drive</SexDrive1>
-	<SexDrive2>Medium sex drive</SexDrive2>
-	<SexDrive3>High sex drive</SexDrive3>
-	<SexDrive4>Extreme sex drive</SexDrive4>
-	<SexDriveDescription0>Sex drive</SexDriveDescription0>
-	<SexDriveDescription>{0}, also known as libido, describes a person's overall desire for sexual activity.</SexDriveDescription>
+	<SexDrive1>Низкое либидо</SexDrive1>
+	<SexDrive2>Обычное либидо</SexDrive2>
+	<SexDrive3>Повышенное либидо</SexDrive3>
+	<SexDrive4>Высокое либидо</SexDrive4>
+	<SexDriveDescription0>Сексуальное влечение</SexDriveDescription0>
+	<SexDriveDescription>{0}, также известное как либидо, стремление человека участвовать в сексуальных отношениях.</SexDriveDescription>
 	<AsexualDescription>У этого персонажа очень низкое половое влечение. Этот персонаж почти не испытывает потребностей сексуального характера и вряд ли вступит в какие-либо половые отношения.</AsexualDescription>
 
 	<!-- Romance drive display and tooltip -->
 	<RomanticDrive0>Аромантичность</RomanticDrive0>
-	<RomanticDrive1>Low romantic drive</RomanticDrive1>
-	<RomanticDrive2>Medium romantic drive</RomanticDrive2>
-	<RomanticDrive3>High romantic drive</RomanticDrive3>
-	<RomanticDrive4>Extreme romantic drive</RomanticDrive4>
-	<RomanticDriveDescription0>Romantic drive</RomanticDriveDescription0>
-	<RomanticDriveDescription>{0} describes a person's overall desire for romantic relationships.</RomanticDriveDescription>
+	<RomanticDrive1>Низкое романтическое влечение</RomanticDrive1>
+	<RomanticDrive2>Обычное романтическое влечение</RomanticDrive2>
+	<RomanticDrive3>Повышенное романтическое влечение</RomanticDrive3>
+	<RomanticDrive4>Высокое романтическое влечение</RomanticDrive4>
+	<RomanticDriveDescription0>Романтическое влечение</RomanticDriveDescription0>
+	<RomanticDriveDescription>{0} — стремление человека к участию в романтических отношениях.</RomanticDriveDescription>
 	<AromanticDescription>У этого персонажа очень низкое романтическое влечение. Этот персонаж может и будет вступать в сексуальную связь с другими поселенцами, но вряд ли будет стремиться к романтическим отношениям или принимать предложения подобного рода.</AromanticDescription>
 
 	<!-- Display options -->
-	<OptionsText4>Word cloud</OptionsText4>
-	<OptionsText3>List least</OptionsText3>
-	<OptionsText2>List more</OptionsText2>
-	<OptionsText1>List most</OptionsText1>
-	<OptionsText0>List all</OptionsText0>
-	<UseColors>Colorize traits</UseColors>
-	<ListAlphabetical>List alphabetical</ListAlphabetical>
-	<UseAntonyms>Use antonyms</UseAntonyms>
+	<OptionsText4>Облако черт</OptionsText4>
+	<OptionsText3>Минимум</OptionsText3>
+	<OptionsText2>Больше</OptionsText2>
+	<OptionsText1>Ещё больше</OptionsText1>
+	<OptionsText0>Показать всё</OptionsText0>
+	<UseColors>Разноцветный текст</UseColors>
+	<ListAlphabetical>Упорядочить А-Я↓</ListAlphabetical>
+	<UseAntonyms>Показать противоположности</UseAntonyms>
 
 	<!-- Dev edit text -->
 	<EditPsyche>Редактировать</EditPsyche>
@@ -54,34 +54,34 @@
 	<PsycheNot>Не типична</PsycheNot>
 	<PsycheSlightly>Мизерная</PsycheSlightly>
 	<PsycheLess>Слабая</PsycheLess>
-	<PsycheSomewhat>Somewhat</PsycheSomewhat>
-	<PsycheMore>Умеренная</PsycheMore>
+	<PsycheSomewhat>Некоторая</PsycheSomewhat>
+	<PsycheMore>Типичная</PsycheMore>
 	<PsycheVery>Сильная</PsycheVery>
 	<PsycheExtremely>Небывалая</PsycheExtremely>
 
 	<!-- Conversation Tooltip -->
-	<ConversationTooltip>Люди будут говорить о {0}, и {1} чтобы обсудить это между собой.</ConversationTooltip>
+	<ConversationTooltip>Люди будут говорить {0}, и {1} в беседах между собой.</ConversationTooltip>
 	<PsycheComma>, </PsycheComma>
-	<AntonymColon> Antonym: {0}.</AntonymColon>
+	<AntonymColon> Противоположность: {0}</AntonymColon>
 
 	<!-- Big Five descriptions -->
-	<FiveFactorModelTitle>Big Five Summary</FiveFactorModelTitle>
-	<FiveFactorDescription0>five-factor model</FiveFactorDescription0>
-	<FiveFactorDescription>The {0} (Big Five) was developed in the late 20th century based on the lexical hypothesis, which suggested that the fundamental traits of personality are encoded in language.\n\nFive factors have consistently emerged from analyses conducted on numerous data sets of descriptive trait terms from multiple languages, including English, Chinese, and German.\n\nTwin and adoption studies have revealed a substantial genetic component, and individuals' relative standings have also been shown to be fairly stable across the adult life span.\n\nSource: Britannica</FiveFactorDescription>
-	<BigFiveO>O</BigFiveO>
-	<BigFiveODescription0>Openness to experience</BigFiveODescription0>
-	<BigFiveODescription>{0} is the willingness to embrace novel ideas, values, actions, feelings, fantasy, and aesthetics.</BigFiveODescription>
-	<BigFiveC>C</BigFiveC>
-	<BigFiveCDescription0>Conscientiousness</BigFiveCDescription0>
-	<BigFiveCDescription>{0} is the propensity for diligence, efficiency, organization, planning, duty, and self-discipline.</BigFiveCDescription>
+	<FiveFactorModelTitle>Большая пятёрка</FiveFactorModelTitle>
+	<FiveFactorDescription0>Модель пяти черт</FiveFactorDescription0>
+	<FiveFactorDescription>{0} была разработана во второй половине двадцатого века. Её основой послужила гипотеза, предполагавшая отражение в языке основных черт личности.\n\nВ бесчисленных выборках данных исследований основных черт личности человека, проводимых на разных языках (таких как английский, китайский и немецкий), постоянно пересекались 5 основных.\n\nДальнейшие исследования на близнецах и при участии усыновлённых/удочерённых детей показали, что эти черты достаточно стойкие на протяжении всей взрослой жизни человека и что их генетическое влияние значительно.\n\nИсточник: Британская энциклопедия</FiveFactorDescription>
+	<BigFiveO>О</BigFiveO>
+	<BigFiveODescription0>Открытость</BigFiveODescription0>
+	<BigFiveODescription>{0} показывает, насколько человек открыт новым ощущениям и опыту, чужим ценностям и культуре.</BigFiveODescription>
+	<BigFiveC>Дс</BigFiveC>
+	<BigFiveCDescription0>Добросовестность</BigFiveCDescription0>
+	<BigFiveCDescription>{0} отражает уровень мотивации, дисциплины, продуктивности и ответственности.</BigFiveCDescription>
 	<BigFiveE>E</BigFiveE>
-	<BigFiveEDescription0>Extroversion</BigFiveEDescription0>
-	<BigFiveEDescription>{0} is the outward pursuit of gratification, and manifests as outgoing, talkative, energetic, upbeat, assertive, and gregarious behavior.</BigFiveEDescription>
-	<BigFiveA>A</BigFiveA>
-	<BigFiveADescription0>Agreeableness</BigFiveADescription0>
-	<BigFiveADescription>{0} is the capacity for kindness, sympathy, cooperation, warmth, politeness, and compassion.</BigFiveADescription>
-	<BigFiveN>N</BigFiveN>
-	<BigFiveNDescription0>Neuroticism</BigFiveNDescription0>
-	<BigFiveNDescription>{0} is the tendency towards negative emotions such as anxiety, fear, anger, envy, guilt, and sadness.</BigFiveNDescription>
+	<BigFiveEDescription0>Экстраверсия</BigFiveEDescription0>
+	<BigFiveEDescription>{0} — это стремление к общению, склонность к коммуникабельности, энергичности, инициативности, независимости и жизнерадостности.</BigFiveEDescription>
+	<BigFiveA>Дж</BigFiveA>
+	<BigFiveADescription0>Доброжелательность</BigFiveADescription0>
+	<BigFiveADescription>{0} отражает способность к эмпатии, стремление к сотрудничеству, чуткость и добродушие к окружаемым.</BigFiveADescription>
+	<BigFiveN>Н</BigFiveN>
+	<BigFiveNDescription0>Невротизм</BigFiveNDescription0>
+	<BigFiveNDescription>{0} показывает склонность к негативным эмоциональным переживаниям: страху, тревожности, злости, зависти и унынию.</BigFiveNDescription>
 
 </LanguageData>
