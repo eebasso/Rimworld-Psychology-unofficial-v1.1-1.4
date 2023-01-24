@@ -54,7 +54,7 @@
 	<EditPsyche>Edit</EditPsyche>
 	<PsycheEditor>Modifying the psyche of {0}:</PsycheEditor>
 	<PsycheEditorNewColonist>Modifying colonist's psyche:</PsycheEditorNewColonist>
-	<PersonalityNodeWarning>You are editing the raw values of a pawn's personality. The actual stats will be adjusted by other factors.</PersonalityNodeWarning>
+	<PersonalityNodeWarning>You are editing the raw values of a pawn's personality. The actual stats will be adjusted by other factors such as traits, backstory, and correlations between different personality nodes.</PersonalityNodeWarning>
 	<SexDrive>Sex drive:</SexDrive>
 	<RomanticDrive>Romantic drive:</RomanticDrive>
 	<PsycheResetTooltip>Reset this pawn's psyche to default based on their unique HashCode ID.</PsycheResetTooltip>

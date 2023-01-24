@@ -1262,6 +1262,10 @@
 		</memeCertaintyModifiers>
 		<preceptCertaintyModifiers>
 			<li>
+				<precept>MarriageName_UsuallyMans</precept>
+				<modifier>-0.4</modifier>
+			</li>
+			<li>
 				<precept>MarriageName_AlwaysMans</precept>
 				<modifier>-0.5</modifier>
 			</li>
@@ -2106,10 +2110,10 @@
 				<node>Extroverted</node>
 				<modifier>0.5</modifier>
 			</li>
-			<li>
+			<!--<li>
 				<node>Upbeat</node>
 				<modifier>0.3</modifier>
-			</li>
+			</li>-->
 			<li>
 				<node>LaidBack</node>
 				<modifier>0.85</modifier>
@@ -2301,6 +2305,12 @@
 				<weight>1</weight>
 			</li>
 		</tenAspects>
+		<memeCertaintyModifiers>
+			<li>
+				<meme>Raider</meme>
+				<modifier>-2</modifier>
+      </li>
+    </memeCertaintyModifiers>
 		<preceptCertaintyModifiers>
 			<li>
 				<precept>Execution_Abhorrent</precept>
@@ -3749,10 +3759,10 @@
 				<precept>IdeoDiversity_Disapproved</precept>
 				<modifier>0.5</modifier>
 			</li>
-			<li>
+			<!--<li>
 				<precept>IdeoDiversity_Standard</precept>
 				<modifier>0</modifier>
-			</li>
+			</li>-->
 			<li>
 				<precept>IdeoDiversity_Approved</precept>
 				<modifier>-0.5</modifier>

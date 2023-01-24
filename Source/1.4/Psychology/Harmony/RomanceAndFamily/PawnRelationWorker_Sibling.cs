@@ -85,13 +85,13 @@ public static class PawnRelationWorker_Sibling_ManualPatches
 {
     public static IEnumerable<CodeInstruction> CreateRelation_Transpiler(IEnumerable<CodeInstruction> codes)
     {
-        //Log.Message("CreateRelations_Transpiler, start");
+        ////Log.Message("CreateRelations_Transpiler, start");
         List<CodeInstruction> clist = codes.ToList();
         int max = clist.Count();
         bool bool1;
         bool bool2;
 
-        //Log.Message("CreateRelations_Transpiler, start while");
+        ////Log.Message("CreateRelations_Transpiler, start while");
         for (int i = 0; i < max; i++)
         {
             yield return clist[i];
@@ -105,12 +105,12 @@ public static class PawnRelationWorker_Sibling_ManualPatches
             {
                 continue;
             }
-            //Log.Message("bools satisfied");
+            ////Log.Message("bools satisfied");
             yield return CodeInstruction.Call(typeof(PawnRelationWorker_Sibling_ManualPatches), nameof(DivorceBasedOnSexuality), new Type[] { typeof(Pawn) });
-            //Log.Message("call satisfied");
+            ////Log.Message("call satisfied");
             i += 4;
         }
-        //Log.Message("CreateRelations_Transpiler, end");
+        ////Log.Message("CreateRelations_Transpiler, end");
     }
 
     public static bool DivorceBasedOnSexuality(Pawn parent)
@@ -137,7 +137,7 @@ public static class PawnRelationWorker_Sibling_ManualPatches
         int kinsey = PsycheHelper.Comp(parent).Sexuality.kinseyRating;
         //flag = kinsey > 4;
         flag = kinsey > 5;
-        //Log.Message("DivorceBasedOnSexuality fired, flag = " + flag);
+        ////Log.Message("DivorceBasedOnSexuality fired, flag = " + flag);
         return flag;
     }
 }

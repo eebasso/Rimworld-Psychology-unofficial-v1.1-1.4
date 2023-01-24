@@ -459,12 +459,12 @@
 	</MentalStateDef>
 
 	<!-- Panic attack -->
-	<MentalBreakDef>
+	<!--<MentalBreakDef>
 		<defName>PanicAttack</defName>
 		<mentalState>PanicAttack</mentalState>
 		<baseCommonality>1</baseCommonality>
 		<intensity>Major</intensity>
-	</MentalBreakDef>
+	</MentalBreakDef>-->
 	<MentalStateDef ParentName="BaseMentalState">
 		<defName>PanicAttack</defName>
 		<stateClass>Psychology.MentalState_PanicAttack</stateClass>
@@ -476,15 +476,14 @@
 		<beginLetterLabel>panic attack</beginLetterLabel>
 		<beginLetter>{0} is having a panic attack.</beginLetter>
 		<beginLetterDef>NegativeEvent</beginLetterDef>
-		<minTicksBeforeRecovery>2000</minTicksBeforeRecovery>
-		<recoveryMtbDays>0.1</recoveryMtbDays>
-		<maxTicksBeforeRecovery>10000</maxTicksBeforeRecovery>
-		<recoveryMessage>{0}'s panic attack has stopped.</recoveryMessage>
+		<minTicksBeforeRecovery>5000</minTicksBeforeRecovery>
+		<recoveryMtbDays>0.167</recoveryMtbDays>
+		<maxTicksBeforeRecovery>15000</maxTicksBeforeRecovery>
+		<recoveryMessage>{0}'s panic attack has come to an end.</recoveryMessage>
 		<baseInspectLine>Mental state: Panic attack</baseInspectLine>
 		<!--<tale>MentalStatePanicAttack</tale>-->
 		<recoverFromSleep>false</recoverFromSleep>
 		<inCaravanCanDo>false</inCaravanCanDo>
-		<!--<moodRecoveryThought>Catharsis</moodRecoveryThought>-->
 	</MentalStateDef>
 
 </Defs>

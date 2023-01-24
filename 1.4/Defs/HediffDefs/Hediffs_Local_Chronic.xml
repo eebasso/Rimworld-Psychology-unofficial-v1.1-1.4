@@ -82,7 +82,7 @@
 				<mentalStateGivers>
 					<li>
 						<mentalState>PanicAttack</mentalState>
-						<mtbDays>5</mtbDays>
+						<mtbDays>6.8</mtbDays>
           </li>
         </mentalStateGivers>
 			</li>
@@ -102,7 +102,7 @@
 				<mentalStateGivers>
 					<li>
 						<mentalState>PanicAttack</mentalState>
-						<mtbDays>4</mtbDays>
+						<mtbDays>4.2</mtbDays>
           </li>
         </mentalStateGivers>
 			</li>
@@ -122,7 +122,7 @@
 				<mentalStateGivers>
 					<li>
 						<mentalState>PanicAttack</mentalState>
-						<mtbDays>3</mtbDays>
+						<mtbDays>2.6</mtbDays>
           </li>
         </mentalStateGivers>
 			</li>
@@ -142,7 +142,7 @@
 				<mentalStateGivers>
 					<li>
 						<mentalState>PanicAttack</mentalState>
-						<mtbDays>2</mtbDays>
+						<mtbDays>1.6</mtbDays>
           </li>
         </mentalStateGivers>
 			</li>
@@ -174,10 +174,10 @@
 			</li>
 			<li Class="HediffCompProperties_Immunizable">
 				<severityPerDayNotImmune>0.0002</severityPerDayNotImmune>
-				<severityPerDayNotImmuneRandomFactor>
+				<!--<severityPerDayNotImmuneRandomFactor>
 					<min>0.4</min>
 					<max>4</max>
-				</severityPerDayNotImmuneRandomFactor>
+				</severityPerDayNotImmuneRandomFactor>-->
 			</li>
 		</comps>
 	</HediffDef>

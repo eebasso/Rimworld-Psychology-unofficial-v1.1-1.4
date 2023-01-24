@@ -138,7 +138,7 @@ public class Hediff_Conversation : HediffWithComps
       Log.Warning("Hediff_Conversation.PostRemoved(), psychology not enabled or pawn dead");
       return;
     }
-    //Log.Message("Hediff_Conversation.PostRemoved(), pawn = " + pawn.LabelShort + " otherPawn = " + otherPawn.LabelShort + ", step 0");
+    ////Log.Message("Hediff_Conversation.PostRemoved(), pawn = " + pawn.LabelShort + " otherPawn = " + otherPawn.LabelShort + ", step 0");
     Hediff_Conversation otherConvo = otherPawn.health.hediffSet.hediffs.Find(h => h is Hediff_Conversation && ((Hediff_Conversation)h).otherPawn == this.pawn) as Hediff_Conversation;
     if (otherConvo != null)
     {
@@ -166,7 +166,7 @@ public class Hediff_Conversation : HediffWithComps
       int numEpicTalks = int.Parse("NumberOfEpicTalks".Translate());
       talkDesc = "EpicTalk" + Rand.RangeInclusive(1, numEpicTalks);
     }
-    //Log.Message("Hediff_Conversation.PostRemoved(), pawn = " + pawn.LabelShort + " otherPawn = " + otherPawn.LabelShort + ", step 1");
+    ////Log.Message("Hediff_Conversation.PostRemoved(), pawn = " + pawn.LabelShort + " otherPawn = " + otherPawn.LabelShort + ", step 1");
     float opinionMod;
     ThoughtDef def = CreateSocialThought(out opinionMod);
     bool mattered = TryGainThought(def, Mathf.RoundToInt(opinionMod));
@@ -194,7 +194,7 @@ public class Hediff_Conversation : HediffWithComps
     }
     if (this.waveGoodbye && this.pawn.Map != null)
     {
-      //Log.Message("Hediff_Conversation.PostRemoved(), pawn = " + pawn.LabelShort + " otherPawn = " + otherPawn.LabelShort + ", step 2");
+      ////Log.Message("Hediff_Conversation.PostRemoved(), pawn = " + pawn.LabelShort + " otherPawn = " + otherPawn.LabelShort + ", step 2");
       RulePack goodbyeText = new RulePack();
       FieldInfo RuleStrings = typeof(RulePack).GetField("rulesStrings", BindingFlags.Instance | BindingFlags.NonPublic);
       List<string> text = new List<string>(1);
@@ -207,7 +207,7 @@ public class Hediff_Conversation : HediffWithComps
       Find.PlayLog.Add(log);
       convoLog = log;
       MoteMaker.MakeInteractionBubble(this.pawn, this.otherPawn, InteractionDefOf.Chitchat.interactionMote, InteractionDefOf.Chitchat.GetSymbol()); // 1.3
-                                                                                                                                                    //Log.Message("Hediff_Conversation.PostRemoved(), pawn = " + pawn.LabelShort + " otherPawn = " + otherPawn.LabelShort + ", step 3");
+                                                                                                                                                    ////Log.Message("Hediff_Conversation.PostRemoved(), pawn = " + pawn.LabelShort + " otherPawn = " + otherPawn.LabelShort + ", step 3");
     }
   }
 
@@ -230,7 +230,7 @@ public class Hediff_Conversation : HediffWithComps
     float controversiality = topic.controversiality;
     // Baseline opinion modifier ranges from -1 to +1. It's expected value should be positive for low controversiality (less than 1), and negative otherwise
     float opinionModRaw = PsycheHelper.SaddleShapeFunction(opin1, opin2, 1f - 0.5f * controversiality, 4f * controversiality * controversiality);
-    //Log.Message(pawn.LabelShort + " and " + otherPawn.LabelShort + " opinionModRaw = " + opinionModRaw.ToString());
+    ////Log.Message(pawn.LabelShort + " and " + otherPawn.LabelShort + " opinionModRaw = " + opinionModRaw.ToString());
 
     Pawn_PsycheTracker pawnPT = PsycheHelper.Comp(pawn).Psyche;
     float pawnJudgmental = -0.5f + pawnPT.GetPersonalityRating(PersonalityNodeDefOf.Judgmental);

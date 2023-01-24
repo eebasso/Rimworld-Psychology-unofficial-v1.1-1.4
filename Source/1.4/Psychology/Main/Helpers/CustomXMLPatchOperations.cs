@@ -21,40 +21,40 @@ public class PatchOperationAddOrCreate : PatchOperationPathed
     XmlNode valueNode = value.node;
     string xpathUpOneLevel = xpath.Substring(0, xpath.LastIndexOf('/'));
     string lastNodeLabel = xpath.Split('/').Last();
-    //Log.Message("xpath = " + xpath);
-    //Log.Message("xpathUpOneLevel = " + xpathUpOneLevel);
-    //Log.Message("lastNodeLabel = " + lastNodeLabel);
+    ////Log.Message("xpath = " + xpath);
+    ////Log.Message("xpathUpOneLevel = " + xpathUpOneLevel);
+    ////Log.Message("lastNodeLabel = " + lastNodeLabel);
     if (xml.SelectSingleNode(xpath) != null)
     {
-      //Log.Message("xml.SelectSingleNode(xpath) != null");
+      ////Log.Message("xml.SelectSingleNode(xpath) != null");
       foreach (object item in xml.SelectNodes(xpath))
       {
-        //Log.Message("Select item in xml.SelectNodes(xpath)");
+        ////Log.Message("Select item in xml.SelectNodes(xpath)");
         result = true;
         XmlNode xmlNode = item as XmlNode;
         foreach (XmlNode childNode in valueNode.ChildNodes)
         {
-          //Log.Message("XmlNode childNode in valueNode.ChildNodes");
+          ////Log.Message("XmlNode childNode in valueNode.ChildNodes");
           xmlNode.AppendChild(xmlNode.OwnerDocument.ImportNode(childNode, deep: true));
         }
       }
       return result;
     }
-    //Log.Message("xml.SelectSingleNode(xpath) == null");
+    ////Log.Message("xml.SelectSingleNode(xpath) == null");
     foreach (object item in xml.SelectNodes(xpathUpOneLevel))
     {
-      //Log.Message("Select item in xml.SelectNodes(xpathUpOneLevel)");
+      ////Log.Message("Select item in xml.SelectNodes(xpathUpOneLevel)");
       XmlNode xmlNode = item as XmlNode;
       XmlNode xmlNode2 = xmlNode[lastNodeLabel];
       if (xmlNode2 == null)
       {
-        //Log.Message("xmlNode2 == null");
+        ////Log.Message("xmlNode2 == null");
         xmlNode2 = xmlNode.OwnerDocument.CreateElement(lastNodeLabel);
         xmlNode.AppendChild(xmlNode2);
       }
       foreach (XmlNode childNode in valueNode.ChildNodes)
       {
-        //Log.Message("XmlNode childNode in valueNode.ChildNodes");
+        ////Log.Message("XmlNode childNode in valueNode.ChildNodes");
         xmlNode2.AppendChild(xmlNode.OwnerDocument.ImportNode(childNode, deep: true));
       }
       result = true;
@@ -101,13 +101,13 @@ public class PatchOperationImprisonedMe : PatchOperationPathed
     bool result = false;
     foreach (XmlNode xmlNode in xml.SelectNodes(xpath).Cast<XmlNode>().ToArray())
     {
-      //Log.Message("Foreach xmlNode");
+      ////Log.Message("Foreach xmlNode");
       if (xmlNode.Value != null && xmlNode.NodeType == XmlNodeType.Text)
       {
-        //Log.Message("xmlNode.Value != null: " + xmlNode.Value);
+        ////Log.Message("xmlNode.Value != null: " + xmlNode.Value);
         result = true;
         xmlNode.Value = (-PsychologySettings.imprisonedDebuff).ToString();
-        //Log.Message("xmlNode.Value set to new modifier");
+        ////Log.Message("xmlNode.Value set to new modifier");
       }
     }
     if (result != true)
@@ -128,12 +128,12 @@ public class PatchOperationRapportBuilt : PatchOperationPathed
     {
       if (xmlNode.Value != null && xmlNode.NodeType == XmlNodeType.Text)
       {
-        //Log.Message("xmlNode.Value != null: " + xmlNode.Value);
+        ////Log.Message("xmlNode.Value != null: " + xmlNode.Value);
         result = true;
         float oldValue = ParseHelper.FromString<int>(xmlNode.Value);
         float newValue = Mathf.Lerp(oldValue, 0f, PsychologySettings.imprisonedDebuff / PsychologySettings.imprisonedDebuffDefault);
         xmlNode.Value = newValue.ToString();
-        //Log.Message("xmlNode.Value set to new modifier");
+        ////Log.Message("xmlNode.Value set to new modifier");
       }
     }
     return result;
@@ -164,7 +164,7 @@ public class PatchOperationReplaceEmpathyEnabled : PatchOperationReplace
   }
 }
 
-public class PatchOperationAttirbuteAddEmpathyEnabled : PatchOperationAttributeAdd
+public class PatchOperationAttributeAddEmpathyEnabled : PatchOperationAttributeAdd
 {
   protected override bool ApplyWorker(XmlDocument xml)
   {

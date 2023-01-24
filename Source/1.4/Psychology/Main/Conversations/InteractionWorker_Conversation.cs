@@ -17,12 +17,12 @@ public class InteractionWorker_Conversation : InteractionWorker
     {
         if (!PsycheHelper.PsychologyEnabled(initiator) || !PsycheHelper.PsychologyEnabled(recipient))
         {
-            //Log.Message("InteractionWorker_Conversation.RandomSelectionWeight, not enabled for initiator " + initiator.LabelShort + ", recipient " + recipient.LabelShort);
+            ////Log.Message("InteractionWorker_Conversation.RandomSelectionWeight, not enabled for initiator " + initiator.LabelShort + ", recipient " + recipient.LabelShort);
             return 0f;
         }
         if (!initiator.health.capacities.CapableOf(PawnCapacityDefOf.Talking) || !recipient.health.capacities.CapableOf(PawnCapacityDefOf.Talking))
         {
-            //Log.Message("InteractionWorker_Conversation.RandomSelectionWeight, initiator " + initiator.LabelShort + ", recipient " + recipient.LabelShort + ", not talking");
+            ////Log.Message("InteractionWorker_Conversation.RandomSelectionWeight, initiator " + initiator.LabelShort + ", recipient " + recipient.LabelShort + ", not talking");
             return 0f;
         }
         //float baseChance = 0.45f;
@@ -55,7 +55,7 @@ public class InteractionWorker_Conversation : InteractionWorker
         //float multiplicativeFactor = chanceFactor > 0 ? Mathf.Sqrt(1f + 2f * chanceFactor) : 1f / (1f - chanceFactor);
         return 0.35f * multiplicativeFactor;
         //float successChance = 1f / (1f + Mathf.Pow(16f, -chanceFactor));
-        //Log.Message("InteractionWorker_Conversation.RandomSelectionWeight, initiator " + initiator.LabelShort + ", recipient " + recipient.LabelShort + ", successChance " + successChance);
+        ////Log.Message("InteractionWorker_Conversation.RandomSelectionWeight, initiator " + initiator.LabelShort + ", recipient " + recipient.LabelShort + ", successChance " + successChance);
         //return successChance;
     }
 

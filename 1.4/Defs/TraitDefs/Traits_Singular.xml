@@ -26,9 +26,9 @@
       <li>
         <label>insomniac</label>
         <description>[PAWN_nameDef] finds it difficult to sleep because of [PAWN_possessive] condition. [PAWN_pronoun] will prioritize sleep less, wake up sooner, and get less rest from sleeping.</description>
-        <statOffsets>
+       <!--<statOffsets>
           <RestRateMultiplier>1.50</RestRateMultiplier>
-        </statOffsets>
+        </statOffsets>-->
       </li>
     </degreeDatas>
     <conflictingTraits>

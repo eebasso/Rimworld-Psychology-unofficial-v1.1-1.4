@@ -36,40 +36,28 @@ public class Pawn_PsycheTracker : IExposable
   //public Dictionary<PersonalityNodeDef, float> RawRatingDict = new Dictionary<PersonalityNodeDef, float>();
   //public Dictionary<PersonalityNodeDef, float> AdjustedRatingDict = new Dictionary<PersonalityNodeDef, float>();
 
-  public HashSet<PersonalityNode> PersonalityNodes
-  {
-    get
-    {
-      return nodes;
-    }
-    set
-    {
-      nodes = value;
-    }
-  }
+  public HashSet<PersonalityNode> PersonalityNodes => nodes;
+  //{
+  //  get
+  //  {
+  //    return nodes;
+  //  }
+  //  set
+  //  {
+  //    nodes = value;
+  //  }
+  //}
 
   public Dictionary<string, bool> OpinionCacheDirty
   {
-    get
-    {
-      return recalcCachedOpinions;
-    }
-    set
-    {
-      recalcCachedOpinions = value;
-    }
+    get => recalcCachedOpinions;
+    set => recalcCachedOpinions = value;
   }
 
   public Dictionary<Pair<string, string>, bool> DisagreementCacheDirty
   {
-    get
-    {
-      return recalcNodeDisagreement;
-    }
-    set
-    {
-      recalcNodeDisagreement = value;
-    }
+    get => recalcNodeDisagreement;
+    set => recalcNodeDisagreement = value;
   }
 
   public Pawn_PsycheTracker(Pawn p)
@@ -84,8 +72,7 @@ public class Pawn_PsycheTracker : IExposable
     PsycheHelper.Look(ref this.nodes, "nodes", LookMode.Deep, new object[] { this.pawn });
     foreach (PersonalityNode n in this.nodes)
     {
-      nodeDict[n.def] = n;
-      //RawRatingDict[n.def] = n.rawRating;
+      this.nodeDict[n.def] = n;
     }
   }
 
@@ -94,12 +81,12 @@ public class Pawn_PsycheTracker : IExposable
     this.nodes = new HashSet<PersonalityNode>();
     foreach (PersonalityNodeDef def in PersonalityNodeMatrix.DefList)
     {
-      nodes.Add(PersonalityNodeMaker.MakeNode(def, this.pawn));
+      this.nodes.Add(PersonalityNodeMaker.MakeNode(def, this.pawn));
     }
     RandomizeRatings(inputSeed);
     foreach (PersonalityNode n in this.nodes)
     {
-      nodeDict[n.def] = n;
+      this.nodeDict[n.def] = n;
     }
   }
 
@@ -128,10 +115,7 @@ public class Pawn_PsycheTracker : IExposable
     //return AdjustedRatingDict[def];
   }
 
-  public PersonalityNode GetPersonalityNodeOfDef(PersonalityNodeDef def)
-  {
-    return nodeDict[def];
-  }
+  public PersonalityNode GetPersonalityNodeOfDef(PersonalityNodeDef def) => nodeDict[def];
 
   public float GetConversationTopicWeight(PersonalityNodeDef def, Pawn otherPawn)
   {
@@ -242,8 +226,8 @@ public class Pawn_PsycheTracker : IExposable
     //{
     //    text += " | {" + index + ", " + PsycheHelper.CircumstanceTimings[index] + "}";
     //}
-    //Log.Message(text);
-    //Log.Message("AdjustForCircumstance, average timings in ms: " + PsycheHelper.CircumstanceTimings.Sum() / PsycheHelper.CircumstanceCount + " for count = " + PsycheHelper.CircumstanceCount);
+    ////Log.Message(text);
+    ////Log.Message("AdjustForCircumstance, average timings in ms: " + PsycheHelper.CircumstanceTimings.Sum() / PsycheHelper.CircumstanceCount + " for count = " + PsycheHelper.CircumstanceCount);
   }
 
   public void AdjustForCircumstance(float[] ratings, bool applyTwice, Gender gender, List<Trait> traits, List<SkillRecord> skills, List<WorkTypeDef> incapables)
@@ -464,19 +448,26 @@ public class Pawn_PsycheTracker : IExposable
     this.upbringing = trackerToCopy.upbringing;
     this.lastDateTick = trackerToCopy.lastDateTick;
 
-    this.nodes = new HashSet<PersonalityNode>();
-    foreach (PersonalityNodeDef def in PersonalityNodeMatrix.DefList)
+    //this.nodes = new HashSet<PersonalityNode>();
+    //foreach (PersonalityNodeDef def in PersonalityNodeMatrix.DefList)
+    //{
+    //  PersonalityNode n = PersonalityNodeMaker.MakeNode(def, this.pawn);
+    //  this.nodes.Add(n);
+    //  this.nodeDict[n.def] = n;
+    //}
+    //foreach (PersonalityNode n in this.nodes)
+    //{
+      
+    //}
+
+    foreach (PersonalityNode otherNode in trackerToCopy.nodes)
     {
-      this.nodes.Add(PersonalityNodeMaker.MakeNode(def, this.pawn));
+      if (this.nodeDict.TryGetValue(otherNode.def, out PersonalityNode node))
+      {
+        node.rawRating = otherNode.rawRating;
+      }
     }
-    foreach (PersonalityNode node in this.nodes)
-    {
-      node.rawRating = trackerToCopy.GetPersonalityNodeOfDef(node.def).rawRating;
-    }
-    foreach (PersonalityNode n in this.nodes)
-    {
-      this.nodeDict[n.def] = n;
-    }
+
     foreach (KeyValuePair<string, float> kvp in trackerToCopy.cachedOpinions)
     {
       this.cachedOpinions[kvp.Key] = kvp.Value;
@@ -513,17 +504,17 @@ public class Pawn_PsycheTracker : IExposable
 
   public float CalculateCertaintyChangePerDay(Ideo ideo, bool addToDicts = true)
   {
-    //Log.Message("CalculateCertaintyChangePerDay, start");
+    ////Log.Message("CalculateCertaintyChangePerDay, start");
     CalculateAdjustedRatings();
     if (addToDicts)
     {
-      //Log.Message("CalculateCertaintyChangePerDay, clearing dictionaries");
+      ////Log.Message("CalculateCertaintyChangePerDay, clearing dictionaries");
       dailyCertaintyFromMemesAndNodes.Clear();
       dailyCertaintyFromPerceptsAndNodes.Clear();
     }
     if (ideo == null)
     {
-      //Log.Message("ideo is null for pawn " + pawn);
+      ////Log.Message("ideo is null for pawn " + pawn);
       return 0f;
     }
     //CalculateAdjustedRatings();
@@ -536,14 +527,14 @@ public class Pawn_PsycheTracker : IExposable
     foreach (KeyValuePair<MemeDef, Dictionary<PersonalityNodeDef, float>> kvp0 in PersonalityNodeIdeoUtility.memesAffectedByNodes)
     {
       memeDef = kvp0.Key;
-      //Log.Message("CalculateCertaintyChangePerDay, iterating over memesAffectedByNodes, meme def = " + memeDef.LabelCap);
+      ////Log.Message("CalculateCertaintyChangePerDay, iterating over memesAffectedByNodes, meme def = " + memeDef.LabelCap);
       if (ideo.HasMeme(memeDef) != true)
       {
         continue;
       }
       if (addToDicts && dailyCertaintyFromMemesAndNodes.ContainsKey(memeDef) != true)
       {
-        //Log.Message("CalculateCertaintyChangePerDay, created new dictionary for meme def " + memeDef.LabelCap);
+        ////Log.Message("CalculateCertaintyChangePerDay, created new dictionary for meme def " + memeDef.LabelCap);
         dailyCertaintyFromMemesAndNodes[memeDef] = new Dictionary<PersonalityNodeDef, float>();
       }
       foreach (KeyValuePair<PersonalityNodeDef, float> kvp1 in kvp0.Value)
@@ -552,10 +543,10 @@ public class Pawn_PsycheTracker : IExposable
         rating = GetPersonalityRating(nodeDef);
         adjustment = PsycheHelper.DailyCertaintyChangeScale * (2f * rating - 1f) * kvp1.Value;
         certaintyChange += adjustment;
-        //Log.Message("CalculateCertaintyChangePerDay, meme def " + memeDef.LabelCap + ", and node def = " + nodeDef.LabelCap);
+        ////Log.Message("CalculateCertaintyChangePerDay, meme def " + memeDef.LabelCap + ", and node def = " + nodeDef.LabelCap);
         if (addToDicts)
         {
-          //Log.Message("CalculateCertaintyChangePerDay, added memeDef: " + memeDef.LabelCap + ", with nodeDef: " + nodeDef + ", and adjustment: " + adjustment);
+          ////Log.Message("CalculateCertaintyChangePerDay, added memeDef: " + memeDef.LabelCap + ", with nodeDef: " + nodeDef + ", and adjustment: " + adjustment);
           dailyCertaintyFromMemesAndNodes[memeDef][nodeDef] = adjustment;
         }
       }
@@ -587,7 +578,7 @@ public class Pawn_PsycheTracker : IExposable
     {
       foreach (KeyValuePair<PersonalityNodeDef, float> kvp1 in kvp0.Value)
       {
-        //Log.Message("CalculateCertaintyChangePerDay, memeDef: " + kvp0.Key.LabelCap + ", with nodeDef: " + kvp1.Key + ", and adjustment: " + kvp1.Value);
+        ////Log.Message("CalculateCertaintyChangePerDay, memeDef: " + kvp0.Key.LabelCap + ", with nodeDef: " + kvp1.Key + ", and adjustment: " + kvp1.Value);
       }
     }
     return certaintyChange;

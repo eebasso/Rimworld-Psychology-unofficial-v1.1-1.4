@@ -22,7 +22,7 @@ namespace Psychology.Harmony;
         }
         if (count == 2)
         {
-            //Log.Message("Psychology: SkillRecord.Learn patch successful");
+            ////Log.Message("Psychology: SkillRecord.Learn patch successful");
             yield break;
         }
         Log.Error("Psychology: SkillRecord.Learn patch unsuccessful");
@@ -30,7 +30,7 @@ namespace Psychology.Harmony;
 
     public static void RecalcAdjustedRatings(Pawn pawn)
     {
-        //Log.Message("SkillRecord_Learn_Patch, AdjustRatings fired for pawn " + pawn);
+        ////Log.Message("SkillRecord_Learn_Patch, AdjustRatings fired for pawn " + pawn);
         if (PsycheHelper.PsychologyEnabled(pawn) != true)
         {
             return;

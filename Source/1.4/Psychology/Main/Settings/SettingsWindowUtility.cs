@@ -59,7 +59,7 @@ public static class SettingsWindowUtility{
   public static List<EntryFloat> kinseyWeightCustomEntry;
 
   public static List<string> SpeciesTitleList = new List<string> { "SpeciesSettingsTitle".Translate(), "EnablePsycheTitle".Translate(), "EnableAgeGapTitle".Translate(), "MinDatingAgeTitle".Translate(), "MinLovinAgeTitle".Translate() };
-  public static List<string> SpeciesTooltipList = new List<string> { "SpeciesSettingsTooltip".Translate(), "EnablePsycheTooltip".Translate(), "EnableAgeGapTooltip".Translate(), "MinDatingAgeTooltip".Translate("dating".Translate(), 14), "MinLovinAgeTooltip".Translate("lovin".Translate(), 16) };
+  public static List<string> SpeciesTooltipList = new List<string> { "SpeciesSettingsTooltip".Translate(), "EnablePsycheTooltip".Translate(), "EnableAgeGapTooltip".Translate(), "MinRomanceAgeTooltip".Translate("dating".Translate(), "14"), "MinRomanceAgeTooltip".Translate("lovin".Translate(), "16") };
 
   //public static Dictionary<string, SpeciesSettings> speciesDictCached = new Dictionary<string, SpeciesSettings>();
   public static Dictionary<string, EntryFloat> speciesMinDatingEntry = new Dictionary<string, EntryFloat>();
@@ -106,55 +106,55 @@ public static class SettingsWindowUtility{
   public static bool romanceOpen = false;
   public static bool electionsOpen = false;
   public static bool conversationsOpen = false;
-  public static bool opinionChangesOpen = false;
+  public static bool thoughtsOpen = false;
   public static bool otherSettingsOpen = false;
 
   public static void SaveBackupOfSettings()
   {
-    //Log.Message("SaveBackupOfSettings, start");
+    ////Log.Message("SaveBackupOfSettings, start");
     foreach (string boolSettingName in PsychologySettings.BoolSettingNameList)
     {
       BoolBackupDict[boolSettingName] = (bool)PsychologySettings.GetSettingFromName(boolSettingName);
     }
-    //Log.Message("SaveBackupOfSettings, step 1");
+    ////Log.Message("SaveBackupOfSettings, step 1");
     foreach (string floatSettingName in PsychologySettings.FloatSettingNameList)
     {
       FloatBackupDict[floatSettingName] = (float)PsychologySettings.GetSettingFromName(floatSettingName);
       //FloatEntryDict[floatSettingName] = new EntryFloat(FloatBackupDict[floatSettingName], null, true, true, -1);
       FloatEntryDict[floatSettingName] = new EntryFloat<PsychologySettings>(null, floatSettingName, alwaysOpen: true);
     }
-    //Log.Message("SaveBackupOfSettings, step 2");
+    ////Log.Message("SaveBackupOfSettings, step 2");
     kinseyFormulaBackup = PsychologySettings.kinseyFormula;
-    //Log.Message("SaveBackupOfSettings, step 3");
+    ////Log.Message("SaveBackupOfSettings, step 3");
     kinseyWeightCustomBackup = PsychologySettings.kinseyWeightCustom.ListFullCopy();
-    //Log.Message("SaveBackupOfSettings, step 4");
+    ////Log.Message("SaveBackupOfSettings, step 4");
     kinseyWeightCustomEntry = new List<EntryFloat>();
-    //Log.Message("SaveBackupOfSettings, step 5");
+    ////Log.Message("SaveBackupOfSettings, step 5");
     for (int k = 0; k < 7; k++)
     {
       kinseyWeightCustomEntry.Add(new EntryFloat(kinseyWeightCustomBackup[k], alwaysOpen: true));
     }
-    //Log.Message("SaveBackupOfSettings, step 6");
+    ////Log.Message("SaveBackupOfSettings, step 6");
     speciesDictBackup = new Dictionary<string, SpeciesSettings>();
-    //Log.Message("SaveBackupOfSettings, step 7");
+    ////Log.Message("SaveBackupOfSettings, step 7");
     foreach (ThingDef def in SpeciesHelper.registeredSpecies)
     {
       speciesDictBackup[def.defName] = new SpeciesSettings(SpeciesHelper.GetOrMakeSpeciesSettingsFromThingDef(def));
       speciesMinDatingEntry[def.defName] = new EntryFloat(speciesDictBackup[def.defName].minDatingAge, alwaysOpen: true);
       speciesMinLovinEntry[def.defName] = new EntryFloat(speciesDictBackup[def.defName].minLovinAge, alwaysOpen: true);
     }
-    //Log.Message("SaveBackupOfSettings, end");
+    ////Log.Message("SaveBackupOfSettings, end");
   }
 
   // Initialize after SpeciesHelper
   public static void Initialize()
   {
     //SetAllCachedToSettings();
-    //Log.Message("SettingsWindowUtility.Initialize()");
+    ////Log.Message("SettingsWindowUtility.Initialize()");
     Text.Font = GameFont.Small;
     float leftColumnViewHeight = KinseyCustomEntryHeight;
     TitleWidth = 0f;
-    foreach (string settingName in PsychologySettings.CombinedSettingNameList)
+    foreach (string settingName in PsychologySettings.ValueTypeSettingNameList)
     {
       string title = (settingName.CapitalizeFirst() + "Title").Translate();
       string tooltip = (settingName.CapitalizeFirst() + "Tooltip").Translate();
@@ -328,31 +328,31 @@ public static class SettingsWindowUtility{
             PsychologySettings.kinseyFormula = KinseyMode.Realistic;
             SetWeightsBasedOnKinseyMode();
             // ToDo: Add these as translations
-            //Log.Message("Set to Realistic");
+            ////Log.Message("Set to Realistic");
           }));
           list.Add(new FloatMenuOption(KinseyFormulaTitleDict[KinseyMode.Uniform], delegate
           {
             PsychologySettings.kinseyFormula = KinseyMode.Uniform;
             SetWeightsBasedOnKinseyMode();
-            //Log.Message("Set to Uniform");
+            ////Log.Message("Set to Uniform");
           }));
           list.Add(new FloatMenuOption(KinseyFormulaTitleDict[KinseyMode.Invisible], delegate
           {
             PsychologySettings.kinseyFormula = KinseyMode.Invisible;
             SetWeightsBasedOnKinseyMode();
-            //Log.Message("Set to Invisible");
+            ////Log.Message("Set to Invisible");
           }));
           list.Add(new FloatMenuOption(KinseyFormulaTitleDict[KinseyMode.Gaypocalypse], delegate
           {
             PsychologySettings.kinseyFormula = KinseyMode.Gaypocalypse;
             SetWeightsBasedOnKinseyMode();
-            //Log.Message("Set to Gaypocalypse");
+            ////Log.Message("Set to Gaypocalypse");
           }));
           list.Add(new FloatMenuOption(KinseyFormulaTitleDict[KinseyMode.Custom], delegate
           {
             PsychologySettings.kinseyFormula = KinseyMode.Custom;
             SetWeightsBasedOnKinseyMode();
-            //Log.Message("Set to Custom");
+            ////Log.Message("Set to Custom");
           }));
           Find.WindowStack.Add(new FloatMenu(list));
         }
@@ -366,31 +366,31 @@ public static class SettingsWindowUtility{
         //        kinseyFormulaCached = KinseyMode.Realistic;
         //        SetCacheAndBufferBasedOnKinseyMode();
         //        // ToDo: Add these as translations
-        //        //Log.Message("Set to Realistic");
+        //        ////Log.Message("Set to Realistic");
         //    }));
         //    list.Add(new FloatMenuOption(KinseyFormulaTitleDict[KinseyMode.Uniform], delegate
         //    {
         //        kinseyFormulaCached = KinseyMode.Uniform;
         //        SetCacheAndBufferBasedOnKinseyMode();
-        //        //Log.Message("Set to Uniform");
+        //        ////Log.Message("Set to Uniform");
         //    }));
         //    list.Add(new FloatMenuOption(KinseyFormulaTitleDict[KinseyMode.Invisible], delegate
         //    {
         //        kinseyFormulaCached = KinseyMode.Invisible;
         //        SetCacheAndBufferBasedOnKinseyMode();
-        //        //Log.Message("Set to Invisible");
+        //        ////Log.Message("Set to Invisible");
         //    }));
         //    list.Add(new FloatMenuOption(KinseyFormulaTitleDict[KinseyMode.Gaypocalypse], delegate
         //    {
         //        kinseyFormulaCached = KinseyMode.Gaypocalypse;
         //        SetCacheAndBufferBasedOnKinseyMode();
-        //        //Log.Message("Set to Gaypocalypse");
+        //        ////Log.Message("Set to Gaypocalypse");
         //    }));
         //    list.Add(new FloatMenuOption(KinseyFormulaTitleDict[KinseyMode.Custom], delegate
         //    {
         //        kinseyFormulaCached = KinseyMode.Custom;
         //        SetCacheAndBufferBasedOnKinseyMode();
-        //        //Log.Message("Set to Custom");
+        //        ////Log.Message("Set to Custom");
         //    }));
         //    Find.WindowStack.Add(new FloatMenu(list));
         //}
@@ -410,9 +410,16 @@ public static class SettingsWindowUtility{
         }
         ShiftRectsDown(customWeightEntryRect.height);
       }
+
       CheckboxEntry(nameof(PsychologySettings.enableDateLetters));
       FloatEntry(nameof(PsychologySettings.romanceChanceMultiplier), 0f, 1E+09f);
       FloatEntry(nameof(PsychologySettings.romanceOpinionThreshold), -99f, 99f);
+
+      FloatEntry(nameof(PsychologySettings.hookupRateMultiplier), 0f, 10f);
+      FloatEntry(nameof(PsychologySettings.minOpinionForHookup), -99f, 99f);
+      FloatEntry(nameof(PsychologySettings.hookupCheatMultiplier), 0f, 10f);
+
+
     }
 
     if (Widgets.ButtonText(buttonRect, "Elections"))
@@ -449,14 +456,16 @@ public static class SettingsWindowUtility{
 
 
 
-    if (Widgets.ButtonText(buttonRect, "Opinion changes"))
+    if (Widgets.ButtonText(buttonRect, "Thoughts"))
     {
-      opinionChangesOpen = !opinionChangesOpen;
+      thoughtsOpen = !thoughtsOpen;
     }
     ShiftRectsDown(RowHeight);
 
-    if (opinionChangesOpen)
+    if (thoughtsOpen)
     {
+      CheckboxEntry(nameof(PsychologySettings.enableEmpathy));
+      CheckboxEntry(nameof(PsychologySettings.enableIndividuality));
       FloatEntry(nameof(PsychologySettings.traitOpinionMultiplier), 0f, 2f);
       FloatEntry(nameof(PsychologySettings.imprisonedDebuff), 0f, 100f);
     }
@@ -468,15 +477,21 @@ public static class SettingsWindowUtility{
     ShiftRectsDown(RowHeight);
     if (otherSettingsOpen)
     {
-      CheckboxEntry(nameof(PsychologySettings.enableEmpathy));
-      CheckboxEntry(nameof(PsychologySettings.enableIndividuality));
-      FloatEntry(nameof(PsychologySettings.mentalBreakAnxietyChance), 0f, 2f);
+
+      CheckboxEntry(nameof(PsychologySettings.enableAnxiety));
+      if (PsychologySettings.enableAnxiety)
+      {
+        FloatEntry(nameof(PsychologySettings.mentalBreakAnxietyChance), 0f, 2f);
+      }
       FloatEntry(nameof(PsychologySettings.personalityExtremeness), 0f, 1f);
-      FloatEntry(nameof(PsychologySettings.ideoPsycheMultiplier), 0f, 10f);
+      if (ModsConfig.IdeologyActive)
+      {
+        FloatEntry(nameof(PsychologySettings.ideoPsycheMultiplier), 0f, 10f);
+      }
     }
 
-    //Log.Message("SettingsWindowUtility.DrawSettingsWindow step 3");
-    //Log.Message("SpeciesHelper.humanlikeDefs.Count() = " + SpeciesHelper.humanlikeDefs.Count());
+    ////Log.Message("SettingsWindowUtility.DrawSettingsWindow step 3");
+    ////Log.Message("SpeciesHelper.humanlikeDefs.Count() = " + SpeciesHelper.humanlikeDefs.Count());
 
     Widgets.EndScrollView();
 
@@ -704,14 +719,21 @@ public static class SettingsWindowUtility{
       List<FloatMenuOption> list = new List<FloatMenuOption>();
       list.Add(new FloatMenuOption("Default".Translate(), delegate
       {
-        PsychologySettings.ResetSettingToDefault(boolSettingName);
+        PsychologySettings.ResetValueTypeSettingToDefault(boolSettingName);
       }));
       Find.WindowStack.Add(new FloatMenu(list));
     }
 
-    bool b = (bool)PsychologySettings.GetSettingFromName(boolSettingName);
-    Widgets.Checkbox(entryRect.x, entryRect.center.y - 0.5f * CheckboxSize, ref b);
-    PsychologySettings.SetSettingFromName(boolSettingName, b);
+    if (PsychologySettings.GetSettingFromName(boolSettingName) is bool b)
+    {
+      Widgets.Checkbox(entryRect.x, entryRect.center.y - 0.5f * CheckboxSize, ref b);
+      PsychologySettings.SetSettingFromName(boolSettingName, b);
+    }
+    else
+    {
+      string errorText = boolSettingName + " is not a valid bool setting name";
+      Log.ErrorOnce(errorText, errorText.GetHashCode());
+    }
 
     ShiftRectsDown(RowHeight);
   }
@@ -749,7 +771,7 @@ public static class SettingsWindowUtility{
       list.Add(new FloatMenuOption("Default".Translate(), delegate
       {
         FieldInfo fieldInfoDefault = AccessTools.Field(typeof(PsychologySettings), floatSettingName + "Default");
-        PsychologySettings.ResetSettingToDefault(floatSettingName);
+        PsychologySettings.ResetValueTypeSettingToDefault(floatSettingName);
         entryFloat.UpdateValueAndBuffer((float)fieldInfoDefault.GetValue(null));
       }));
       Find.WindowStack.Add(new FloatMenu(list));
@@ -801,7 +823,6 @@ public static class SettingsWindowUtility{
     //    kinseyFormulaCached = KinseyMode.Custom;
     //}
 
-    int roundToDigit = 1;
     EntryFloat entry = kinseyWeightCustomEntry[i];
     float val0 = entry.Value;
     entry.NumericTextField(numberRect, 0f, 100f, false);
@@ -810,8 +831,7 @@ public static class SettingsWindowUtility{
     //float roundedVal = (float)Math.Round(entry.Value, roundToDigit);
     //entry.Slider(SliderRect, 0f, 100f, true, roundToDigit);
     //bool sliderChanged = roundedVal != (float)Math.Round(entry.Value, roundToDigit);    
-    bool sliderChanged = entry.Slider(SliderRect, 0f, 100f, true, roundToDigit);
-
+    bool sliderChanged = entry.Slider(SliderRect, 0f, 100f, vertical: true, roundToDigit: 1);
 
     if (textFieldChanged || sliderChanged)
     {
@@ -874,23 +894,18 @@ public static class SettingsWindowUtility{
 
   public static void SetAllCachedToSettings()
   {
-    foreach (string floatSettingName in PsychologySettings.FloatSettingNameList)
+    foreach (string settingName in PsychologySettings.FloatSettingNameList)
     {
-      if (PsychologySettings.GetSettingFromName(floatSettingName) is float floatValue)
+      if (PsychologySettings.GetSettingFromName(settingName) is float floatValue)
       {
-        if (!FloatEntryDict.ContainsKey(floatSettingName))
+        if (!FloatEntryDict.ContainsKey(settingName))
         {
-          FloatEntryDict[floatSettingName] = new EntryFloat<PsychologySettings>(null, floatSettingName, alwaysOpen: true);
+          FloatEntryDict[settingName] = new EntryFloat<PsychologySettings>(null, settingName, alwaysOpen: true);
         }
-        //else
-        //{
-        //  FloatEntryDict[floatSettingName].UpdateValueAndBuffer(floatValue);
-        //}
+        FloatEntryDict[settingName].UpdateValueAndBuffer(floatValue);
+        continue;
       }
-      else
-      {
-        Log.Warning("SetAllCachedToSettings, " + floatSettingName + " not a valid bool setting name");
-      }
+      Log.Warning("SetAllCachedToSettings, " + settingName + " not a valid value type setting name");
     }
     SetWeightsBasedOnKinseyMode();
 
@@ -927,7 +942,7 @@ public static class SettingsWindowUtility{
   //        if (PsychologySettings.GetSettingFromName(boolSettingName) is bool boolValue)
   //        {
   //            BoolCachedDict[boolSettingName] = boolValue;
-  //            //Log.Message("Set cache of " + boolSettingName + " to a value of " + boolValue);
+  //            ////Log.Message("Set cache of " + boolSettingName + " to a value of " + boolValue);
   //        }
   //        else
   //        {
@@ -949,7 +964,7 @@ public static class SettingsWindowUtility{
   //            }
   //            //FloatCachedDict[floatSettingName] = floatValue;
   //            //FloatBufferDict[floatSettingName] = floatValue.ToString();
-  //            //Log.Message("Set cache of " + floatSettingName + " to a value of " + floatValue);
+  //            ////Log.Message("Set cache of " + floatSettingName + " to a value of " + floatValue);
   //        }
   //        else
   //        {

@@ -1,6 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Defs>
 
+	<!--<ThoughtDef>
+		<defName>MayorComplaint</defName>
+		<label>MayorComplaint</label>
+		<durationDays>1</durationDays>
+		<stackedEffectMultiplier>1</stackedEffectMultiplier>
+		<stackLimit>999</stackLimit>
+		<stages>
+
+    </stages>
+  </ThoughtDef>-->
+
 	<ThoughtDef>
     <defName>RebuffedMyHookupAttempt</defName>
     <thoughtClass>Thought_MemorySocial</thoughtClass>
@@ -262,7 +273,7 @@
 		<stages>
 			<li>
 				<label>rejected my proposal</label>
-				<baseOpinionOffset>23</baseOpinionOffset>
+				<baseOpinionOffset>20</baseOpinionOffset>
 			</li>
 		</stages>
 		<thoughtToMake>RejectedMyProposalCodependentMood</thoughtToMake>

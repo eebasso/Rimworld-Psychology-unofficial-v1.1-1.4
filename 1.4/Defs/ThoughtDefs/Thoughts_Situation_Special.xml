@@ -33,6 +33,7 @@
   <ThoughtDef>
     <defName>PanicAttack</defName>
     <!--<workerClass>Psychology.ThoughtWorker_PanicAttack</workerClass>-->
+    <durationDays>0.5</durationDays>
     <stages>
       <li>
         <label>having a panic attack</label>

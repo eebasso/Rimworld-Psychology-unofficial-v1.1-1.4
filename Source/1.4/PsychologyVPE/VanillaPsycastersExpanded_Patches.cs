@@ -9,7 +9,7 @@ public class VanillaPsycastersExpanded_Patches
     {
         HarmonyLib.Harmony harmonyInstance = new HarmonyLib.Harmony("Community.Psychology.UnofficialUpdate.VanillaPsycastsExpanded");
         harmonyInstance.PatchAll();
-        Log.Message("Psychology: completed patches for compatibility with Vanilla Psycasters Expanded");
+        //Log.Message("Psychology: completed patches for compatibility with Vanilla Psycasters Expanded");
     }
 }
 

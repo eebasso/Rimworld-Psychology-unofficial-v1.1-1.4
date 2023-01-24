@@ -17,7 +17,7 @@ public static class ChildRelationUtility_ManualPatches
     //[HarmonyTranspiler]
     public static IEnumerable<CodeInstruction> ChanceOfBecomingChildOf_Transpiler(IEnumerable<CodeInstruction> codes)
     {
-        //Log.Message("ChanceOfBecomingChildOf_Transpiler, start");
+        ////Log.Message("ChanceOfBecomingChildOf_Transpiler, start");
         List<CodeInstruction> clist = codes.ToList();
         //List<OpCode> opcodesBreakTrueList = new List<OpCode> { OpCodes.Brtrue, OpCodes.Brtrue_S };
         List<OpCode> opcodesBreakFalseList = new List<OpCode> { OpCodes.Brfalse, OpCodes.Brfalse_S };
@@ -35,7 +35,7 @@ public static class ChildRelationUtility_ManualPatches
             {
                 if (opcodesBreakFalseList.Contains(clist[i].opcode))
                 {
-                    //Log.Message("Found break");
+                    ////Log.Message("Found break");
                     searchingForBreak = false;
                     searchingForMultiplier = true;
                 }
@@ -45,7 +45,7 @@ public static class ChildRelationUtility_ManualPatches
             {
                 if (clist[i].opcode == OpCodes.Ldc_R4)
                 {
-                    //Log.Message("Found multiplier");
+                    ////Log.Message("Found multiplier");
                     searchingForMultiplier = false;
                     // Load pawn
                     yield return clist[pawnLoadIndex];
@@ -64,7 +64,7 @@ public static class ChildRelationUtility_ManualPatches
             {
                 continue;
             }
-            //Log.Message("Found HasTrait(Gay)");
+            ////Log.Message("Found HasTrait(Gay)");
             searchingForBreak = true;
             yield return CodeInstruction.Call(typeof(ChildRelationUtility_ManualPatches), nameof(HasTraitGayKinseyEnabled));
             pawnLoadIndex = i;
@@ -72,7 +72,7 @@ public static class ChildRelationUtility_ManualPatches
             i += 4;   
         }
 
-        //Log.Message("ChanceOfBecomingChildOf_Transpiler, end");
+        ////Log.Message("ChanceOfBecomingChildOf_Transpiler, end");
         if (success < 2 || searchingForBreak || searchingForMultiplier)
         {
             Log.Error("ChildRelationUtility.ChanceOfBecomingChildOf not patched properly, success < 2: " + (success < 2) + ", searchingForBreak: " + searchingForBreak + ", searchingForMultiplier: " + searchingForMultiplier);
@@ -116,7 +116,7 @@ public static class ChildRelationUtility_ManualPatches
             Log.Error("ChanceOfBecomingChildOf.KinseyEnabledMultiplier, using old multiplier because PsychologyEnabled(parent) != true");
             return oldMultiplier;
         }
-        //Log.Message("ChanceOfBecomingChildOf, KinseyEnabledMultiplier successfully fired");
+        ////Log.Message("ChanceOfBecomingChildOf, KinseyEnabledMultiplier successfully fired");
         return Mathf.InverseLerp(6f, 0f, PsycheHelper.Comp(parent).Sexuality.kinseyRating);
     }
 

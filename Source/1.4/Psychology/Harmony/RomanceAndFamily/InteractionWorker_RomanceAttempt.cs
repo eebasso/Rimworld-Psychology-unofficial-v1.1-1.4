@@ -18,38 +18,34 @@ namespace Psychology.Harmony;
 public static class InteractionWorker_RomanceAttempt_SelectionWeightPatch
 {
   // Prefix or postfix?
-  //[HarmonyPriority(Priority.Last)]
-  //[HarmonyPostfix]
-  [HarmonyPrefix]
-  public static bool RandomSelectionWeightPrefix(ref float __result, Pawn initiator, Pawn recipient)
+  [HarmonyPriority(Priority.Last)]
+  [HarmonyPostfix]
+  public static void RandomSelectionWeightPrefix(ref float __result, Pawn initiator, Pawn recipient)
   {
-    if (!PsycheHelper.PsychologyEnabled(initiator) || !PsycheHelper.PsychologyEnabled(recipient))
+    if (!SpeciesHelper.RomanceEnabled(initiator, true) || !SpeciesHelper.RomanceEnabled(recipient, true))
     {
+      // No dating for non-teens, no exceptions
       __result = 0f;
-      return false;
+      return;
+      //return false;
     }
 
     // From vanilla, no romance in these cases
     if (TutorSystem.TutorialMode || LovePartnerRelationUtility.LovePartnerRelationExists(initiator, recipient))
     {
-      //Log.Message("InteractionWorker_RomanceAttempt.RandomSelectionWeight, initiator = " + initiator.LabelShort + ", recipient = " + recipient.LabelShort + ", already lovers");
+      ////Log.Message("InteractionWorker_RomanceAttempt.RandomSelectionWeight, initiator = " + initiator.LabelShort + ", recipient = " + recipient.LabelShort + ", already lovers");
       __result = 0f;
-      return false;
+      return;
+      //return false;
     }
 
     // Codependents won't romance anyone if they are in a relationship
     if (LovePartnerRelationUtility.HasAnyLovePartner(initiator) && initiator.story.traits.HasTrait(TraitDefOfPsychology.Codependent))
     {
-      //Log.Message("InteractionWorker_RomanceAttempt.RandomSelectionWeight, initiator = " + initiator.LabelShort + ", recipient = " + recipient.LabelShort + ", codependent");
+      ////Log.Message("InteractionWorker_RomanceAttempt.RandomSelectionWeight, initiator = " + initiator.LabelShort + ", recipient = " + recipient.LabelShort + ", codependent");
       __result = 0f;
-      return false;
-    }
-
-    if (!SpeciesHelper.RomanceEnabled(initiator, true) || !SpeciesHelper.RomanceEnabled(recipient, true))
-    {
-      // No dating for non-teens, no exceptions
-      __result = 0f;
-      return false;
+      return;
+      //return false;
     }
 
     //Don't hit on people in mental breaks... unless you're really freaky.
@@ -59,9 +55,10 @@ public static class InteractionWorker_RomanceAttempt_SelectionWeightPatch
 
     if (recipient.InMentalState && initiatorExperimental < 0.8f && !initiatorLecher)
     {
-      //Log.Message("InteractionWorker_RomanceAttempt.RandomSelectionWeight, initiator = " + initiator.LabelShort + ", recipient = " + recipient.LabelShort + ", mental state");
+      ////Log.Message("InteractionWorker_RomanceAttempt.RandomSelectionWeight, initiator = " + initiator.LabelShort + ", recipient = " + recipient.LabelShort + ", mental state");
       __result = 0f;
-      return false;
+      return;
+      //return false;
     }
     /* ROMANCE CHANCE FACTOR INCLUDES THE FOLLOWING: */
     /* - SEXUAL PREFERENCE FACTOR */
@@ -72,12 +69,13 @@ public static class InteractionWorker_RomanceAttempt_SelectionWeightPatch
     /* - PSYCHIC LOVE SPELL FACTOR */
 
     float romChance = initiator.relations.SecondaryRomanceChanceFactor(recipient);
-    //Log.Message("InteractionWorker_RomanceAttempt.RandomSelectionWeight, initiator = " + initiator.LabelShort + ", recipient = " + recipient.LabelShort + ", SecondaryRomanceChanceFactor = " + romChance);
+    ////Log.Message("InteractionWorker_RomanceAttempt.RandomSelectionWeight, initiator = " + initiator.LabelShort + ", recipient = " + recipient.LabelShort + ", SecondaryRomanceChanceFactor = " + romChance);
     if (romChance < 0.15f)
     {
-      //Log.Message("InteractionWorker_RomanceAttempt.RandomSelectionWeight, initiator = " + initiator.LabelShort + ", recipient = " + recipient.LabelShort + ", romChance < 0.15");
+      ////Log.Message("InteractionWorker_RomanceAttempt.RandomSelectionWeight, initiator = " + initiator.LabelShort + ", recipient = " + recipient.LabelShort + ", romChance < 0.15");
       __result = 0f;
-      return false;
+      return;
+      //return false;
     }
     //float romChanceMult = Mathf.InverseLerp(0.15f, 1f, romChance);
     float romChanceMult = (romChance - 0.15f) / 0.85f;
@@ -102,9 +100,10 @@ public static class InteractionWorker_RomanceAttempt_SelectionWeightPatch
       //if (Mathf.Max(initiatorOpinion, recipientOpinion) < PsychologySettings.romanceOpinionThreshold)
       if (initiatorOpinion < PsychologySettings.romanceOpinionThreshold)
       {
-        //Log.Message("InteractionWorker_RomanceAttempt.RandomSelectionWeight, initiator = " + initiator.LabelShort + ", recipient = " + recipient.LabelShort + ", initiator opinion too low");
+        ////Log.Message("InteractionWorker_RomanceAttempt.RandomSelectionWeight, initiator = " + initiator.LabelShort + ", recipient = " + recipient.LabelShort + ", initiator opinion too low");
         __result = 0f;
-        return false;
+        return;
+        //return false;
       }
       // Romantic pawns are more responsive to their opinion of the recipient
       float x = Mathf.InverseLerp(PsychologySettings.romanceOpinionThreshold, 100f, initiatorOpinion);
@@ -141,15 +140,15 @@ public static class InteractionWorker_RomanceAttempt_SelectionWeightPatch
       }
     }
 
-
     /* INITIATOR KNOWN SEXUALITY FACTOR */
     float knownSexFactor;
     float straightWomanFactor;
     if (PsychologySettings.enableKinsey)
     {
       //People who have hit on someone in the past and been rejected because of their sexuality will rarely attempt to hit on them again.
-      knownSexFactor = (PsycheHelper.Comp(initiator).Sexuality.IncompatibleSexualityKnown(recipient) && !initiatorLecher) ? 0.05f : 1f;
+      knownSexFactor = PsycheHelper.Comp(initiator).Sexuality.IncompatibleSexualityKnown(recipient) && !initiatorLecher ? 0.05f : 1f;
       // Not sure whether to keep this mechanic...
+      // ToDo: make this a setting
       float kinseyFactor = PsycheHelper.Comp(initiator).Sexuality.kinseyRating / 6f;
       straightWomanFactor = initiator.gender == Gender.Female ? Mathf.Lerp(0.15f, 1f, kinseyFactor) : 1f;
     }
@@ -157,14 +156,18 @@ public static class InteractionWorker_RomanceAttempt_SelectionWeightPatch
     {
       bool initiatorIsGay = initiator.story.traits.HasTrait(TraitDefOf.Gay);
       bool recipientIsGay = recipient.story.traits.HasTrait(TraitDefOf.Gay);
+      bool initiatorIsBisexual = initiator.story.traits.HasTrait(TraitDefOf.Bisexual);
+      bool recipientIsBisexual = recipient.story.traits.HasTrait(TraitDefOf.Bisexual);
+
       if (initiator.gender == recipient.gender)
       {
-        knownSexFactor = (!initiatorIsGay || !recipientIsGay) ? 0.15f : 1f;
+        knownSexFactor = (initiatorIsGay || initiatorIsBisexual) && (recipientIsGay || recipientIsBisexual) ? 1f : 0.15f;
       }
       else
       {
-        knownSexFactor = (initiatorIsGay || recipientIsGay) ? 0.15f : 1f;
+        knownSexFactor = (!initiatorIsGay || initiatorIsBisexual) && (!recipientIsGay || recipientIsBisexual) ? 1f : 0.15f;
       }
+      // ToDo: make this a setting
       straightWomanFactor = initiatorIsGay ? 1f : initiator.gender == Gender.Female ? 0.15f : 1f;
     }
 
@@ -178,9 +181,9 @@ public static class InteractionWorker_RomanceAttempt_SelectionWeightPatch
     //float adjResult = __result < chanceCutOff ? __result : chanceCutOff + confidenceFactor * (__result - chanceCutOff);
     //__result = adjResult;
 
-    //Log.Message("InteractionWorker_RomanceAttempt.RandomSelectionWeight, initiator = " + initiator.LabelShort + ", recipient = " + recipient.LabelShort + ", romChanceMult = " + romChanceMult + ", initiatorOpinMult = " + initiatorOpinMult + ", existingPartnerMult = " + existingPartnerMult + ", knownSexFactor = " + knownSexFactor + ", straightWomanFactor = " + straightWomanFactor + ", result = " + __result);
+    ////Log.Message("InteractionWorker_RomanceAttempt.RandomSelectionWeight, initiator = " + initiator.LabelShort + ", recipient = " + recipient.LabelShort + ", romChanceMult = " + romChanceMult + ", initiatorOpinMult = " + initiatorOpinMult + ", existingPartnerMult = " + existingPartnerMult + ", knownSexFactor = " + knownSexFactor + ", straightWomanFactor = " + straightWomanFactor + ", result = " + __result);
 
-    return false;
+    //return false;
   }
 
   [HarmonyPostfix]
@@ -382,7 +385,7 @@ public static class InteractionWorker_RomanceAttempt_SuccessChancePatch
   //    // Always prevent 100% chance, not sure whether to do this
   //    __result = 1f - Mathf.Exp(-__result);
 
-  //    //Log.Message("InteractionWorker_RomanceAttempt.SuccessChance initiator = " + initiator.LabelShort + ", recipient = " + recipient.LabelShort + ", romChanceFactor = " + romChanceFactor + ", recipientOpinionFactor = " + recipientOpinionFactor + ", existingLovePartnerMult = " + existingLovePartnerMult + ", successChance = " + __result);
+  //    ////Log.Message("InteractionWorker_RomanceAttempt.SuccessChance initiator = " + initiator.LabelShort + ", recipient = " + recipient.LabelShort + ", romChanceFactor = " + romChanceFactor + ", recipientOpinionFactor = " + recipientOpinionFactor + ", existingLovePartnerMult = " + existingLovePartnerMult + ", successChance = " + __result);
 
   //    return false;
   //}
@@ -394,15 +397,7 @@ public static class InteractionWorker_RomanceAttempt_OpinionFactor_Patches
   [HarmonyTranspiler]
   public static IEnumerable<CodeInstruction> OpinionFactorTranspiler(IEnumerable<CodeInstruction> codes)
   {
-    foreach (CodeInstruction c in codes)
-    {
-      if (c.OperandIs(5f))
-      {
-        yield return CodeInstruction.LoadField(typeof(PsychologySettings), nameof(PsychologySettings.romanceOpinionThreshold));
-        continue;
-      }
-      yield return c;
-    }
+    return RomancePatchUtility.ChangeMinRomanceOpinion(codes);
   }
 
   [HarmonyPostfix]

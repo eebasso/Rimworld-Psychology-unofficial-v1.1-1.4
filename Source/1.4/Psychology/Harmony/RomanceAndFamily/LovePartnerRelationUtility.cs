@@ -17,16 +17,6 @@ public static class LovePartnerRelationUtility_GenerationChancePatch
   [HarmonyPrefix]
   public static bool LovePartnerRelationGenerationChance(ref float __result, Pawn generated, Pawn other, PawnGenerationRequest request, bool ex)
   {
-    //if (!SpeciesHelper.RomanceLifestageAgeCheck(generated, true) || !SpeciesHelper.RomanceLifestageAgeCheck(other, true))
-    //{
-    //    __result = 0f;
-    //    return false;
-    //}
-    //if (!SpeciesHelper.RomanceSettingsAgeCheck(generated, true) || !SpeciesHelper.RomanceSettingsAgeCheck(other, true))
-    //{
-    //    __result = 0f;
-    //    return false;
-    //}
     if (!SpeciesHelper.RomanceEnabled(generated, true) || !SpeciesHelper.RomanceEnabled(other, true))
     {
       __result = 0f;
@@ -215,48 +205,46 @@ public static class LovePartnerRelationUtility_PolygamousSpousePatch
   }
 }
 
-[HarmonyPatch(typeof(LovePartnerRelationUtility), nameof(LovePartnerRelationUtility.GetLovinMtbHours))]
-public static class LovePartnerRelationUtility_GetLovinMtbHours
-{
-  [HarmonyTranspiler]
-  public static IEnumerable<CodeInstruction> GetLovinMtbHoursTranspiler(IEnumerable<CodeInstruction> codes)
-  {
-    Log.Message("GetLovinMtbHoursTranspiler, start");
-    foreach (CodeInstruction c in codes)
-    {
-      if (c.operand is float val && val == 12f)
-      {
-        Log.Message("GetLovinMtbHoursTranspiler, found code");
-        c.opcode = OpCodes.Ldarg_0;
-        c.operand = null;
-        yield return c;
-        yield return new CodeInstruction(OpCodes.Ldarg_1);
-        Log.Message("GetLovinMtbHoursTranspiler, start invoke");
-        yield return CodeInstruction.Call(typeof(RomanceUtility), nameof(RomanceUtility.NewLovinMTBHoursScale), new Type[] { typeof(Pawn), typeof(Pawn) });
-        Log.Message("GetLovinMtbHoursTranspiler, done invoke");
-      }
-      else
-      {
-        yield return c;
-      }
-    }
-    Log.Message("GetLovinMtbHoursTranspiler, end");
-  }
-}
-
 [HarmonyPatch(typeof(LovePartnerRelationUtility), "LovinMtbSinglePawnFactor")]
 public static class LovePartnerRelationUtility_LovinMtbSinglePawnFactor_Patch
 {
   [HarmonyPostfix]
   public static void LovinMtbSinglePawnFactorPostfix(ref float __result, Pawn pawn)
   {
-    if (__result < 0f)
-    {
-      return;
-    }
-    __result = RomanceUtility.LovinMtbSinglePawnFactorPsychology(pawn, out float yMean);
+    float mtbHours = SexualityHelper.LovinMtbHoursPsychology(pawn);
+    // The factor of 12f here cancels out the 12f appearing in LovePartnerRelationUtility.GetLovinMtbHours
+    __result = mtbHours < 0f ? -1f : Mathf.Sqrt(0.5f * mtbHours / 12f);
   }
 }
+
+//[HarmonyPatch(typeof(LovePartnerRelationUtility), nameof(LovePartnerRelationUtility.GetLovinMtbHours))]
+//public static class LovePartnerRelationUtility_GetLovinMtbHours
+//{
+//  [HarmonyTranspiler]
+//  public static IEnumerable<CodeInstruction> GetLovinMtbHoursTranspiler(IEnumerable<CodeInstruction> codes)
+//  {
+//    //Log.Message("GetLovinMtbHoursTranspiler, start");
+//    foreach (CodeInstruction c in codes)
+//    {
+//      if (c.OperandIs(12f))
+//      {
+//        //Log.Message("GetLovinMtbHoursTranspiler, found code");
+//        c.opcode = OpCodes.Ldarg_0;
+//        c.operand = null;
+//        yield return c;
+//        yield return new CodeInstruction(OpCodes.Ldarg_1);
+//        //Log.Message("GetLovinMtbHoursTranspiler, start invoke");
+//        yield return CodeInstruction.Call(typeof(PsychologyRomancePatchUtility), nameof(PsychologyRomancePatchUtility.NewLovinMtbHoursScale), new Type[] { typeof(Pawn), typeof(Pawn) });
+//        //Log.Message("GetLovinMtbHoursTranspiler, done invoke");
+//      }
+//      else
+//      {
+//        yield return c;
+//      }
+//    }
+//    //Log.Message("GetLovinMtbHoursTranspiler, end");
+//  }
+//}
 
 //[HarmonyPrefix]
 //public static bool GetLovinMtbHoursPrefix(ref float __result, Pawn pawn, Pawn partner)
@@ -268,7 +256,7 @@ public static class LovePartnerRelationUtility_LovinMtbSinglePawnFactor_Patch
 //    }
 //    if (!SpeciesHelper.RomanceCombinedAgeCheck(pawn, false) || !SpeciesHelper.RomanceCombinedAgeCheck(partner, false))
 //    {
-//        //Log.Message("GetLovinMtbHours, RomanceLifestageCheck != true");
+//        ////Log.Message("GetLovinMtbHours, RomanceLifestageCheck != true");
 //        // No underage lovin
 //        __result = -1f;
 //        return false;
@@ -283,7 +271,7 @@ public static class LovePartnerRelationUtility_LovinMtbSinglePawnFactor_Patch
 //        //long AgeBiologicalTicks2 = partner.ageTracker.AgeBiologicalTicks;
 //        //long TicksToAdulthood2 = AdultMinAgeTicks2 - AgeBiologicalTicks2;
 //        //bool Adult2 = TicksToAdulthood2 <= 0f;
-//        //Log.Message("GetLovinMtbHours, pawn: " + pawn + ", AdultMinAgeTicks: " + AdultMinAgeTicks + ", AgeBiologicalTicks: " + AgeBiologicalTicks + ", TicksToAdulthood: " + TicksToAdulthood + ", Adult: " + Adult + "\nGetLovinMtbHours, pawn2: " + partner + ", AdultMinAgeTicks2: " + AdultMinAgeTicks2 + ", AgeBiologicalTicks2: " + AgeBiologicalTicks2 + ", TicksToAdulthood2: " + TicksToAdulthood2 + ", Adult2: " + Adult2);
+//        ////Log.Message("GetLovinMtbHours, pawn: " + pawn + ", AdultMinAgeTicks: " + AdultMinAgeTicks + ", AgeBiologicalTicks: " + AgeBiologicalTicks + ", TicksToAdulthood: " + TicksToAdulthood + ", Adult: " + Adult + "\nGetLovinMtbHours, pawn2: " + partner + ", AdultMinAgeTicks2: " + AdultMinAgeTicks2 + ", AgeBiologicalTicks2: " + AgeBiologicalTicks2 + ", TicksToAdulthood2: " + TicksToAdulthood2 + ", Adult2: " + Adult2);
 
 //        // No underage lovin
 //        __result = -1f;
@@ -313,26 +301,26 @@ public static class LovePartnerRelationUtility_LovinMtbSinglePawnFactor_Patch
 //    }
 //    if (pawn.needs.food.Starving || partner.needs.food.Starving)
 //    {
-//        Log.Message("GetLovinMtbHours, pawn.needs.food.Starving == true");
+//        //Log.Message("GetLovinMtbHours, pawn.needs.food.Starving == true");
 //        __result = -1f;
 //        return false;
 //    }
 //    if (pawn.health.hediffSet.BleedRateTotal > 0f || partner.health.hediffSet.BleedRateTotal > 0f)
 //    {
-//        Log.Message("GetLovinMtbHours, BleedRateTotal > 0f");
+//        //Log.Message("GetLovinMtbHours, BleedRateTotal > 0f");
 //        __result = -1f;
 //        return false;
 //    }
 //    if (!pawn?.ageTracker?.Adult != true || !partner?.ageTracker?.Adult != true)
 //    {
-//        Log.Message("GetLovinMtbHours, pawn?.ageTracker?.Adult != true");
+//        //Log.Message("GetLovinMtbHours, pawn?.ageTracker?.Adult != true");
 //        // No underage lovin
 //        __result = -1f;
 //        return false;
 //    }
 //    if (!SpeciesHelper.RomanceLifestageCheck(pawn, false) || !SpeciesHelper.RomanceLifestageCheck(partner, false))
 //    {
-//        Log.Message("GetLovinMtbHours, RomanceLifestageCheck != true");
+//        //Log.Message("GetLovinMtbHours, RomanceLifestageCheck != true");
 //        // No underage lovin
 //        __result = -1f;
 //        return false;
@@ -356,7 +344,7 @@ public static class LovePartnerRelationUtility_LovinMtbSinglePawnFactor_Patch
 //    float partnerSexDrive = PsycheHelper.Comp(partner).Sexuality.AdjustedSexDrive;
 //    if (pawnSexDrive < 0.1f || partnerSexDrive < 0.1f)
 //    {
-//        Log.Message("GetLovinMtbHours, sex drive too low");
+//        //Log.Message("GetLovinMtbHours, sex drive too low");
 //        // Asexual pawns avoid lovin
 //        __result = -1f;
 //        return false;

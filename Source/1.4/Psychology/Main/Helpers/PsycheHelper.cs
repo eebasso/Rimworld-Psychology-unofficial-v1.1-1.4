@@ -16,12 +16,12 @@ public static class PsycheHelper
 {
   public static PsychologyGameComponent GameComp => Current.Game.GetComponent<PsychologyGameComponent>();
   public static readonly Dictionary<KinseyMode, float[]> KinseyModeWeightDict = new Dictionary<KinseyMode, float[]>()
-    {
-        { KinseyMode.Realistic    , new float[] { 62.4949f, 11.3289f,  9.2658f,  6.8466f,  4.5220f,  2.7806f,  2.7612f } },
-        { KinseyMode.Invisible    , new float[] {  7.0701f, 11.8092f, 19.5541f, 23.1332f, 19.5541f, 11.8092f,  7.0701f } },
-        { KinseyMode.Uniform      , new float[] { 14.2857f, 14.2857f, 14.2857f, 14.2857f, 14.2857f, 14.2857f, 14.2857f } },
-        { KinseyMode.Gaypocalypse , new float[] {  2.7612f,  2.7806f,  4.5220f,  6.8466f,  9.2658f, 11.3289f, 62.4949f } },
-    };
+  {
+    { KinseyMode.Realistic    , new float[] { 62.4949f, 11.3289f,  9.2658f,  6.8466f,  4.5220f,  2.7806f,  2.7612f } },
+    { KinseyMode.Invisible    , new float[] {  7.0701f, 11.8092f, 19.5541f, 23.1332f, 19.5541f, 11.8092f,  7.0701f } },
+    { KinseyMode.Uniform      , new float[] { 14.2857f, 14.2857f, 14.2857f, 14.2857f, 14.2857f, 14.2857f, 14.2857f } },
+    { KinseyMode.Gaypocalypse , new float[] {  2.7612f,  2.7806f,  4.5220f,  6.8466f,  9.2658f, 11.3289f, 62.4949f } },
+  };
 
   public static HashSet<string> TraitDefNamesThatAffectPsyche = new HashSet<string>();
 
@@ -46,25 +46,27 @@ public static class PsycheHelper
   {
     //Stopwatch stopwatch = new Stopwatch();
     //stopwatch.Start();
-    if (HasLatentPsyche(pawn) != true)
+    if (!HasLatentPsyche(pawn))
     {
-      //Log.Message("PsychologyEnabled, HasLatentPsyche != true, pawn = " + pawn.Label + ", species label = " + pawn.def.label);
+      Log.Message("PsychologyEnabled, HasLatentPsyche != true, pawn = " + pawn.Label + ", species label = " + pawn.def.label);
       return false;
     }
-    if (SpeciesSettingsEnablePsyche(pawn) != true)
+    if (!SpeciesSettingsEnablePsyche(pawn))
     {
+      Log.Message("PsychologyEnabled, SpeciesSettingsEnablePsyche != true");
       return false;
     }
-    if (IsSapient(pawn) != true)
+    if (!IsSapient(pawn))
     {
-      //Log.Message("PsychologyEnabled, IsSapient != true, pawn = " + pawn.Label + ", species label = " + pawn.def.label);
+      Log.Message("PsychologyEnabled, IsSapient != true, pawn = " + pawn.Label + ", species label = " + pawn.def.label);
       return false;
     }
     //stopwatch.Stop();
     //TimeSpan ts = stopwatch.Elapsed;
     //countPsychologyEnabled++;
     //msPsychologyEnabled += (float)ts.TotalMilliseconds;
-    //Log.Message("PsychologyEnabled, total time: " + msPsychologyEnabled + " ms, average time: " + msPsychologyEnabled / countPsychologyEnabled + " ms");
+    ////Log.Message("PsychologyEnabled, total time: " + msPsychologyEnabled + " ms, average time: " + msPsychologyEnabled / countPsychologyEnabled + " ms");
+    Log.Message("PsychologyEnabled, return true");
     return true;
   }
 
@@ -72,29 +74,29 @@ public static class PsycheHelper
   {
     if (pawn == null)
     {
-      //Log.Warning("PsychologyEnabled, pawn == null");
+      Log.Warning("HasLatentPsyche, pawn == null");
       return false;
     }
-    //Log.Message("PsychologyEnabled, pawn != null");
+    Log.Message("HasLatentPsyche, pawn != null");
     comp = Comp(pawn);
     if (comp == null)
     {
-      if (SpeciesHelper.CheckIntelligenceAndAddEverythingToSpeciesDef(pawn.def) != true)
+      if (!SpeciesHelper.CheckIntelligenceAndAddEverythingToSpeciesDef(pawn.def))
       {
-        //Log.Message("PsychologyEnabled, Comp(pawn) == null, pawn = " + pawn + ", species = " + pawn.def);
+        Log.Message("HasLatentPsyche, Comp(pawn) == null, pawn = " + pawn + ", species = " + pawn.def);
         return false;
       }
       comp = Comp(pawn);
       if (comp == null)
       {
-        Log.Error("PsychologyEnabled, comp == null after CheckIntelligenceAndAddEverythingToHumanlikeDef == true");
+        Log.Error("HasLatentPsyche, comp == null after CheckIntelligenceAndAddEverythingToHumanlikeDef == true");
         return false;
       }
     }
-    //Log.Message("PsychologyEnabled, Comp(pawn) != null");
-    if (comp.IsPsychologyPawn != true)
+    Log.Message("HasLatentPsyche, Comp(pawn) != null");
+    if (!comp.IsPsychologyPawn)
     {
-      //Log.Message("PsychologyEnabled, IsPsychologyPawn != true, pawn = " + pawn + ", species = " + pawn.def);
+      Log.Message("HasLatentPsyche, IsPsychologyPawn != true, pawn = " + pawn + ", species = " + pawn.def);
       return false;
     }
     return true;
@@ -103,13 +105,13 @@ public static class PsycheHelper
   public static bool SpeciesSettingsEnablePsyche(Pawn pawn)
   {
     settings = SpeciesHelper.GetOrMakeSpeciesSettingsFromThingDef(pawn.def);
-    return settings.enablePsyche == true;
+    return settings.enablePsyche;
     //if (settings.enablePsyche != true)
     //{
-    //  //Log.Message("PsychologyEnabled, settings.enablePsyche != true, " + pawn + ", species = " + pawn.def);
+    //  //L//Log.Message"PsychologyEnabled, settings.enablePsyche != true, " + pawn + ", species = " + pawn.def);
     //  return false;
     //}
-    ////Log.Message("PsychologyEnabled, settings.enablePsyche == true");
+    ////L//Log.Message"PsychologyEnabled, settings.enablePsyche == true");
     //return true;
   }
 
@@ -211,25 +213,13 @@ public static class PsycheHelper
     }
   }
 
-  public static float DatingBioAgeToVanilla(float bioAge, float minDatingAge)
-  {
-    return bioAge * 14f / minDatingAge;
-  }
+  public static float DatingBioAgeToVanilla(float bioAge, float minDatingAge) => bioAge * 14f / minDatingAge;
 
-  public static float LovinBioAgeToVanilla(float bioAge, float minLovinAge)
-  {
-    return bioAge * 16f / minLovinAge;
-  }
+  public static float LovinBioAgeToVanilla(float bioAge, float minLovinAge) => bioAge * 16f / minLovinAge;
 
-  public static float DatingBioAgeFromVanilla(float vanillaAge, float minDatingAge)
-  {
-    return vanillaAge * minDatingAge / 14f;
-  }
+  public static float DatingBioAgeFromVanilla(float vanillaAge, float minDatingAge) => vanillaAge * minDatingAge / 14f;
 
-  public static float LovinBioAgeFromVanilla(float vanillaAge, float minLovinAge)
-  {
-    return vanillaAge * minLovinAge / 16f;
-  }
+  public static float LovinBioAgeFromVanilla(float vanillaAge, float minLovinAge) => vanillaAge * minLovinAge / 16f;
 
   public static float RandGaussianSeeded(int specialSeed1, int specialSeed2, float centerX = 0f, float widthFactor = 1f)
   {
@@ -238,19 +228,41 @@ public static class PsycheHelper
     return Mathf.Sqrt(-2f * Mathf.Log(value)) * Mathf.Sin((float)Math.PI * 2f * value2) * widthFactor + centerX;
   }
 
-  // This saddle shaped function is used to calculate the opinion modifier due to differences in personality rating on a given convo topic
-  // The inputs x, y are the ratings and should range between 0 and 1.
-  // The gamma parameter controls how fast agreement drops off as a function of the difference between x and y
-  // The f0 parameter controls the value of the function when x = y = 1/2
-  // This function is invariant under both x,y -> y,x and x,y -> 1-x,1-y transformations
-  // This function reaches its maximum of +1 when x and y are both 0 or 1 (complete agreement on a topic)
-  // This function reaches its minimum of -1 when x=0 and y=1 or vice versa (complete disagreement on a topic)
-  public static float SaddleShapeFunction(float x, float y, float f0 = 0.5f, float gamma = 4f)
+  public static float RandGaussianSeeded(int specialSeed, float centerX = 0f, float widthFactor = 1f)
   {
-    return (f0 - (1f + f0 + gamma) * Mathf.Pow(x - y, 2) + (1f - f0) * Mathf.Pow(x + y - 1f, 2)) / (1f + gamma * Mathf.Pow(x - y, 2));
+    float value = Rand.ValueSeeded(specialSeed);
+    return NormalCDFInv(value) * widthFactor + centerX;
   }
 
-  public static float NormalCDF(float x0)
+  /// <summary>
+  /// This saddle shaped function is used to calculate the opinion modifier due to differences in personality rating on a given conversation topic.
+  /// It reaches its maximum of +1 when <paramref name="x"/> = <paramref name="y"/> = 0 or 1 (complete agreement on a topic), and its minimum of -1 when <paramref name="x"/> = 0 and <paramref name="y"/> = 1 or vice versa (complete disagreement on a topic).
+  /// This function is invariant under both {<paramref name="x"/>, <paramref name="y"/>} --> {<paramref name="y"/>, <paramref name="x"/>} and {<paramref name="x"/>, <paramref name="y"/>} --> {1 - <paramref name="x"/>, 1 - <paramref name="y"/>} transformations.
+  /// The inputs <paramref name="x"/> and <paramref name="y"/> are the ratings ranging between 0 and 1, while <paramref name="f0"/> sets the value of the function when <paramref name="x"/> = <paramref name="y"/> = 1/2 and <paramref name="gamma"/> controls how fast agreement drops off as a function of the difference between <paramref name="x"/> and <paramref name="y"/>.
+  /// </summary>
+  /// <param name="x">A rating between 0 and 1.</param>
+  /// <param name="y">A rating between 0 and 1.</param>
+  /// <param name="f0">Sets the value of the function when <paramref name="x"/> = <paramref name="y"/> = 1/2. Should range between 0 and 1.</param>
+  /// <param name="gamma">Controls how fast agreement drops off as a function of the difference between <paramref name="x"/> and <paramref name="y"/>. Should be non-negative.</param>
+  /// <returns>Number between -1 and +1 representing the degree of agreement (or disagreement if negative) between <paramref name="x"/> and <paramref name="y"/>.</returns>
+  public static float SaddleShapeFunction(float x, float y, float f0 = 0.5f, float gamma = 4f)
+  {
+    float a = 1f + f0 + gamma;
+    float b = 1f - f0;
+    float diff = x - y;
+    float diff2 = diff * diff;
+    float sum = x + y - 1f;
+    float sum2 = sum * sum;
+    return (f0 - a * diff2 + b * sum2) / (1f + gamma * diff2);
+    //return (f0 - (1f + f0 + gamma) * Mathf.Pow(x - y, 2) + (1f - f0) * Mathf.Pow(x + y - 1f, 2)) / (1f + gamma * Mathf.Pow(x - y, 2));
+  }
+
+  /// <summary>
+  /// Converts <paramref name="normalVariable"/>, a normally distributed variable with a mean of 0 and a variance of 1, to a uniformly distributed rating between 0 and 1.
+  /// </summary>
+  /// <param name="normalVariable">A normally distributed variable with mean of 0 and a variance of 1. Ranges from negative to positive infinity.</param>
+  /// <returns>A uniformly distributed rating ranging between 0 and 1.</returns>
+  public static float NormalCDF(float normalVariable)
   {
     // constants
     double a1 = 0.127414796;
@@ -260,35 +272,50 @@ public static class PsycheHelper
     double a5 = 0.530702716;
     double p = 0.231641888;
     // Save the sign of x
-    bool sign = x0 > 0;
-    double x = Math.Abs(x0);
+    bool sign = normalVariable > 0;
+    double x = Math.Abs((double)normalVariable);
     // A&S formula 7.1.26
     double t = 1f / (1f + p * x);
     double z = (((((a5 * t + a4) * t) + a3) * t + a2) * t + a1) * t * Math.Exp(-0.5f * x * x);
     return (float)(sign ? 1 - z : z);
   }
 
-  public static float NormalCDFInv(float p)
+
+
+
+
+
+  /// <summary>
+  /// Converts <paramref name="ratingBetween0and1"/>, a uniformly distributed rating between 0 and 1, to a normally distributed variable with a mean of 0 and variance of 1.
+  /// </summary>
+  /// <param name="ratingBetween0and1">A uniformly distributed rating between 0 and 1.</param>
+  /// <param name="minRating">Minimum clamped value of <paramref name="ratingBetween0and1"/>, used to avoid divergenece.</param>
+  /// <param name="maxRating">Maximum clamped value of <paramref name="ratingBetween0and1"/>, used to avoid divergencce.</param>
+  /// <returns>A normally distributed variable with mean of 0 and a variance of 1. The minimum and maximum possible values are affected by <paramref name="minRating"/> and <paramref name="maxRating"/>, respecitvely.</returns>
+  public static float NormalCDFInv(float ratingBetween0and1, float minRating = 0.0001f, float maxRating = 0.9999f)
   {
-    p = Mathf.Clamp(p, 0.0001f, 0.9999f);
-    if (p < 0.5f)
+    ratingBetween0and1 = Mathf.Clamp(ratingBetween0and1, minRating, maxRating);
+    if (ratingBetween0and1 < 0.5f)
     {
-      return -RationalApproximation(Mathf.Sqrt(-2f * Mathf.Log(p)));
+      return -RationalApproximation(Math.Sqrt(-2 * Math.Log(ratingBetween0and1)));
     }
     else
     {
-      return RationalApproximation(Mathf.Sqrt(-2f * Mathf.Log(1f - p)));
+      return RationalApproximation(Math.Sqrt(-2 * Math.Log(1 - ratingBetween0and1)));
     }
   }
 
-  public static float RationalApproximation(float t0)
+  /// <summary>
+  /// Abramowitz and Stegun formula 26.2.23. The absolute value of the error should be less than 4.5 e-4.
+  /// </summary>
+  /// <param name="t"></param>
+  /// <returns></returns>
+  public static float RationalApproximation(double t)
   {
-    double t = (double)t0;
-    // Abramowitz and Stegun formula 26.2.23.
-    // The absolute value of the error should be less than 4.5 e-4.
+    //double t = (double)t0;
     double[] c = { 2.515517, 0.802853, 0.010328 };
     double[] d = { 1.432788, 0.189269, 0.001308 };
-    double result =  t - ((c[2] * t + c[1]) * t + c[0]) / (((d[2] * t + d[1]) * t + d[0]) * t + 1f);
+    double result = t - ((c[2] * t + c[1]) * t + c[0]) / (((d[2] * t + d[1]) * t + d[0]) * t + 1f);
     return (float)result;
   }
 
@@ -411,57 +438,6 @@ public static class PsycheHelper
   public static bool TryGetPawnSeed(Pawn pawn)
   {
     return true;
-    //bool success = true;
-    //int thingIDSeed;
-    //int worldIDSeed;
-    ////int childhoodSeed;
-    //List<string> exceptions = new List<string>();
-    //try
-    //{
-    //    thingIDSeed = pawn.thingIDNumber;
-    //}
-    //catch (Exception ex)
-    //{
-    //    exceptions.Add("thingIDSeed: " + ex);
-    //    thingIDSeed = Mathf.CeilToInt(1e7f * Rand.Value);
-    //    success = false;
-    //}
-    //try
-    //{
-    //    worldIDSeed = Find.World.info.Seed;
-    //}
-    //catch (Exception ex)
-    //{
-    //    exceptions.Add("worldIDSeed: " + ex);
-    //    worldIDSeed = Mathf.CeilToInt(1e7f * Rand.Value);
-    //    success = false;
-    //}
-    //try
-    //{
-    //    childhoodSeed = GenText.StableStringHash(pawn.story.Childhood.untranslatedTitle);
-    //}
-    //catch (Exception ex)
-    //{
-    //    exceptions.Add("childhoodSeed: " + ex);
-    //    childhoodSeed = 23;
-    //    //success = false;
-    //}
-    //try
-    //{
-    //    firstNameSeed = GenText.StableStringHash((pawn.Name as NameTriple).First);
-    //}
-    //catch (Exception ex)
-    //{
-    //    exceptions.Add("(pawn.Name as NameTriple).First: " + ex);
-    //    firstNameSeed = Mathf.CeilToInt(1e7f * Rand.Value);
-    //    success = false;
-    //}
-    //seed = Gen.HashCombineInt(thingIDSeed, worldIDSeed);
-    //if (success != true)
-    //{
-    //    Log.Warning("TryGetPawnSeed errors: " + string.Join(" | ", exceptions));
-    //}
-    //return success;
   }
 
   public static void TryGainMemoryReplacedPartBleedingHeart(Pawn pawn, Pawn billDoer)
@@ -501,6 +477,31 @@ public static class PsycheHelper
   {
     return (u + v) / (1f + u * v);
   }
+
+  public static float DaysShifted(Pawn pawn)
+  {
+    int daysPassed = GenLocalDate.DayOfYear(pawn) + GenDate.DaysPerYear * GenLocalDate.Year(pawn);
+    // Shift local hour to reset at noon
+    float hoursPastNoon = GenLocalDate.HourFloat(pawn) - 12f;
+    return (float)daysPassed + hoursPastNoon / GenDate.HoursPerDay;
+  }
+
+  public static int InsomniacSeed(Pawn pawn, float days) => 5 * PawnSeed(pawn) + Mathf.FloorToInt(DaysShifted(pawn) / days);
+
+  public static float InsomniacRandRangeValueSeeded(Pawn pawn, float valueMildSymptoms = 0, float valueSevereSymptoms = 1, float days = 3f)
+  {
+    return valueMildSymptoms + (valueSevereSymptoms - valueMildSymptoms) * Rand.ValueSeeded(InsomniacSeed(pawn, days));
+  }
+
+  public static bool InsomniacCanFallAsleep(Pawn pawn)
+  {
+    float chanceToSleepPerInterval = InsomniacRandRangeValueSeeded(pawn, 1f, 0f);
+    float checkIntervalInHours = InsomniacRandRangeValueSeeded(pawn, 2f, 4f, 0.25f);
+    int checkIntervalSeed = InsomniacSeed(pawn, checkIntervalInHours / GenDate.HoursPerDay);
+    return Rand.ChanceSeeded(chanceToSleepPerInterval, checkIntervalSeed);
+  }
+
+
 
 
 }

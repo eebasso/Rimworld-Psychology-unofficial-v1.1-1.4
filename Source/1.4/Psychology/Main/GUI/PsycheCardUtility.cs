@@ -230,7 +230,7 @@ public class PsycheCardUtility
     //Color32[] colorArray = TestTexture.GetPixels32();
     //for (int i = 0; i < colorArray.Count(); i++)
     //{
-    //    //Log.Message("Setting to cyan");
+    //    ////Log.Message("Setting to cyan");
     //    colorArray[i] = Color.cyan;
     //}
     //TestTexture.SetPixels32(colorArray);
@@ -384,7 +384,7 @@ public class PsycheCardUtility
 
     if (PsychologySettings.displayOption == 4)
     {
-      //Log.Message("Draw word cloud");
+      ////Log.Message("Draw word cloud");
       GUI.color = UIAssets.LineColor;
       Widgets.DrawLineVertical(forbiddenRect.x, forbiddenRect.y, forbiddenRect.height);
       Widgets.DrawLineHorizontal(forbiddenRect.x, forbiddenRect.yMax, forbiddenRect.width);
@@ -413,7 +413,7 @@ public class PsycheCardUtility
       PersonalityTraitList(personalityRect, pawn);
     }
 
-    //Log.Message("Checking PsychologyEnabled for pawn = " + pawn.Label);
+    ////Log.Message("Checking PsychologyEnabled for pawn = " + pawn.Label);
     if (PsycheHelper.PsychologyEnabled(pawn) != true)
     {
       Widgets.DrawHighlight(totalRect);
@@ -464,20 +464,19 @@ public class PsycheCardUtility
       {
         for (int p = 0; p < 5; p++)
         {
-          UIAssets.DrawLine(pentaPoints[p], pentaPoints[(p + 1) % 5], Color.white, 0.5f);
-
+          UIAssets.DrawLine(pentaPoints[p], pentaPoints[(p + 1) % 5], 0.5f, Color.white);
         }
       }
       else
       {
         for (int p = 0; p < 5; p++)
         {
-          UIAssets.DrawLine(pentaPoints[p], pentaPoints[(p + 1) % 5], Color.white, 0.5f);
-          UIAssets.DrawLine(pentaCenter, pentaPoints[p], Color.white, 0.5f);
-          //Log.Message("Check devmode");
+          UIAssets.DrawLine(pentaPoints[p], pentaPoints[(p + 1) % 5], 0.5f, Color.white);
+          UIAssets.DrawLine(pentaCenter, pentaPoints[p], 0.5f, Color.white);
+          ////Log.Message("Check devmode");
           //if (Prefs.DevMode)
           //{
-          //    //Log.Message("Call DrawSlider");
+          //    ////Log.Message("Call DrawSlider");
           //    float sliderVal = BigFiveManualSliders[p]; 
           //    UIAssets.DrawSlider(pentaCenter, pentaPoints[p], 15f, ref sliderVal);
           //    BigFiveManualSliders[p] = sliderVal;
@@ -529,7 +528,7 @@ public class PsycheCardUtility
       verticies.Add(RadialProjectionFromCenter(pentaCenter, HighlightRadius, 72f * p));
       verticies.Add(RadialProjectionFromCenter(pentaCenter, SideScaling * HighlightRadius, 72f * (p + 0.5f)));
       List<int[]> triangles = new List<int[]> { };
-      //Log.Message("verticies = " + verticies.ToString());
+      ////Log.Message("verticies = " + verticies.ToString());
       PolygonUtility.DrawPolygonHighlightIfMouseover(verticies, triangles);
 
       Color bigFiveTitleColor = PsychologySettings.useColors ? BigFiveColors[p] : ColoredText.TipSectionTitleColor;
@@ -559,30 +558,30 @@ public class PsycheCardUtility
     List<string> nodeTextList = new List<string>();
     //var arlist = from PersonalityNodeDef def in PersonalityNodeParentMatrix.defList
     //             select PsycheHelper.Comp(pawn).Psyche.GetPersonalityRating(def);
-    //Log.Message("PersonalityTraitList: Adjusted ratings for " + pawn.LabelShort + ": " + string.Join(", ", arlist));
+    ////Log.Message("PersonalityTraitList: Adjusted ratings for " + pawn.LabelShort + ": " + string.Join(", ", arlist));
     //var arlist2 = from PersonalityNode node in PsycheHelper.Comp(pawn).Psyche.PersonalityNodes
     //              select node.AdjustedRating;
-    //Log.Message("PersonalityTraitList: Adjusted ratings for " + pawn.LabelShort + ": " + string.Join(", ", arlist2));
+    ////Log.Message("PersonalityTraitList: Adjusted ratings for " + pawn.LabelShort + ": " + string.Join(", ", arlist2));
     foreach (PersonalityNode node in PsycheHelper.Comp(pawn).Psyche.PersonalityNodes)
     {
-      //Log.Message("PersonalityTraitList: Step 2a");
+      ////Log.Message("PersonalityTraitList: Step 2a");
       float displacement = 2f * node.AdjustedRating - 1f;
-      //Log.Message("Displacement = " + displacement);
+      ////Log.Message("Displacement = " + displacement);
       string nodeText = ColorizedNodeText(node.def, displacement);
       float yAxis = PsychologySettings.useAntonyms ? Mathf.Abs(displacement) : displacement;
       int category = Mathf.RoundToInt(3f + 3f * yAxis * Mathf.Sqrt(Mathf.Abs(yAxis)));
-      //Log.Message("Category = " + category);
+      ////Log.Message("Category = " + category);
       if (Mathf.Abs(category - 3) >= PsychologySettings.displayOption)
       {
-        //Log.Message("PersonalityTraitList: Step 2c");
+        ////Log.Message("PersonalityTraitList: Step 2c");
         string categoryText = ("Psyche" + NodeDescriptions[category]).Translate();
-        //Log.Message("PersonalityTraitList: Step 2d");
+        ////Log.Message("PersonalityTraitList: Step 2d");
         LabelNodeList.Add(new Tuple<string, PersonalityNode, string>(nodeText, node, categoryText.Colorize(CategoryColors[category])));
-        //Log.Message("PersonalityTraitList: Step 2e");
+        ////Log.Message("PersonalityTraitList: Step 2e");
         nodeTextList.Add(PsychologySettings.useAntonyms && displacement < 0f ? node.def.antonymLabel : node.def.label);
       }
     }
-    //Log.Message("PersonalityTraitList: Step 3");
+    ////Log.Message("PersonalityTraitList: Step 3");
     if (PsychologySettings.listAlphabetical)
     {
       LabelNodeList = LabelNodeList.OrderBy(tup => nodeTextList[LabelNodeList.IndexOf(tup)]).ToList();
@@ -595,14 +594,14 @@ public class PsycheCardUtility
     {
       LabelNodeList = LabelNodeList.OrderBy(tup => -tup.Item2.AdjustedRating).ToList();
     }
-    //Log.Message("PersonalityTraitList: Step 4");
+    ////Log.Message("PersonalityTraitList: Step 4");
     DrawTraitList(personalityRect);
-    //Log.Message("PersonalityTraitList: Step 5");
+    ////Log.Message("PersonalityTraitList: Step 5");
   }
 
   public static void DrawTraitList(Rect personalityRect)
   {
-    //Log.Message("Start DrawTraitList");
+    ////Log.Message("Start DrawTraitList");
     Text.Font = GameFont.Small;
     GUIStyle style = Text.fontStyles[1];
     TextAnchor oldAnchor = Text.Anchor;
@@ -643,14 +642,14 @@ public class PsycheCardUtility
 
     Widgets.EndScrollView();
 
-    //Log.Message("End DrawTraitList");
+    ////Log.Message("End DrawTraitList");
   }
 
   public static void PersonalityWordCloud(Rect totalRect, Vector2 cloudCenter, Rect forbiddenRect, Pawn pawn)//, Rect editPsycheRect)
   {
     //if (Ticker % 100 == 0)
     //{
-    //    //Log.Message("Ticker = " + Ticker);
+    //    ////Log.Message("Ticker = " + Ticker);
     //}
     //if (Ticker > 0 && pawn == PawnCached && PsychologySettings.displayOption == PsychologySettings.displayOptionCached && PsychologySettings.useColors == PsychologySettings.useColorsCached && CloudTextRects.Any())
     if (UseCachedBool)
@@ -790,43 +789,51 @@ public class PsycheCardUtility
   public static void DrawHighlightAndTooltip(Rect highlightRect, PersonalityNode node, int i)
   {
     Widgets.DrawHighlightIfMouseover(highlightRect);
-    TooltipHandler.TipRegion(highlightRect, delegate
-    {
-      string nodeName = node.def.descriptionLabel;
-      string antonymLabel = node.def.antonymLabel;
-      if (PsychologySettings.useColors)
-      {
-        Color nodeColor = HSVtoColor(node.def.nodeHSV);
-        Color antoColor = HSVtoColor(node.def.antonymHSV);
-        nodeName = nodeName == "Creative" ? CreativeRainbow : nodeName.Colorize(nodeColor);
-        antonymLabel = antonymLabel.Colorize(antoColor);
-        //nodeName = nodeColor == Color.white ? "<b>" + nodeName + "</b>" : nodeName;
-        //antonymLabel = antoColor == Color.white ? "<b>" + antonymLabel + "</b>" : antonymLabel;
-        //nodeName = "<b>" + nodeName + "</b>";
-        //antonymLabel = "<b>" + antonymLabel + "</b>";
-      }
-      else
-      {
-        nodeName = nodeName.Colorize(ColoredText.TipSectionTitleColor);
-        antonymLabel = antonymLabel.Colorize(ColoredText.TipSectionTitleColor);
-      }
-      string tooltipString = node.def.description.ReplaceFirst("{0}", nodeName) + ((string)"AntonymColon".Translate()).ReplaceFirst("{0}", antonymLabel);
+    TooltipHandler.TipRegion(highlightRect, () => PersonalityNodeTooltip(node, useColors: PsychologySettings.useColors, showConvoTopics: true, showRatingNumbers: ShowNumbersBool), 613261 + 612 * i);
+  }
 
+  public static string PersonalityNodeTooltip(PersonalityNode node, bool showConvoTopics, bool useColors, bool showRatingNumbers)
+  {
+    string nodeName = node.def.descriptionLabel;
+    string antonymLabel = node.def.antonymLabel;
+    if (useColors)
+    {
+      Color nodeColor = HSVtoColor(node.def.nodeHSV);
+      Color antoColor = HSVtoColor(node.def.antonymHSV);
+      nodeName = nodeName == "Creative" ? CreativeRainbow : nodeName.Colorize(nodeColor);
+      antonymLabel = antonymLabel.Colorize(antoColor);
+      //nodeName = nodeColor == Color.white ? "<b>" + nodeName + "</b>" : nodeName;
+      //antonymLabel = antoColor == Color.white ? "<b>" + antonymLabel + "</b>" : antonymLabel;
+      //nodeName = "<b>" + nodeName + "</b>";
+      //antonymLabel = "<b>" + antonymLabel + "</b>";
+    }
+    else
+    {
+      nodeName = nodeName.Colorize(ColoredText.TipSectionTitleColor);
+      antonymLabel = antonymLabel.Colorize(ColoredText.TipSectionTitleColor);
+    }
+    string tooltipString = node.def.description.ReplaceFirst("{0}", nodeName) + ((string)"AntonymColon".Translate()).ReplaceFirst("{0}", antonymLabel);
+
+    if (showConvoTopics)
+    {
       List<string> convoTopics = node.def.conversationTopics;
       if (convoTopics != null)
       {
         string convoString = "\n\n" + "ConversationTooltip".Translate(string.Join("PsycheComma".Translate(), convoTopics.Take(convoTopics.Count - 1).ToArray()), convoTopics.Last());
         tooltipString += convoString;
       }
-      if (ShowNumbersBool)
-      {
-        string rawRating = node.rawRating.ToString(RatingFormat, CultureInfo.InvariantCulture).Colorize(UIAssets.RatingColor);
-        string adjRating = node.AdjustedRating.ToString(RatingFormat, CultureInfo.InvariantCulture).Colorize(UIAssets.RatingColor);
-        tooltipString += "\n\nRaw: " + rawRating + "  Adjusted: " + adjRating;
-      }
-      return tooltipString;
-    }, 613261 + 612 * i);
+    }
+    
+    if (showRatingNumbers)
+    {
+      string rawRating = node.rawRating.ToString(RatingFormat, CultureInfo.InvariantCulture).Colorize(UIAssets.RatingColor);
+      string adjRating = node.AdjustedRating.ToString(RatingFormat, CultureInfo.InvariantCulture).Colorize(UIAssets.RatingColor);
+      tooltipString += "\n\nRaw: " + rawRating + "  Adjusted: " + adjRating;
+    }
+    return tooltipString;
   }
+
+
 
   public static Color HSVtoColor(Vector3 HSV)
   {
@@ -942,8 +949,14 @@ public class PsycheCardUtility
     UseColorsCached = PsychologySettings.useColors;
     UseAntonymsCached = PsychologySettings.useAntonyms;
     ListAlphabeticalCached = PsychologySettings.listAlphabetical;
+    PsychologyMod.settings.Write();
   }
 
+  /// <summary>
+  /// Character Editor compatiblity: returns a string that encodes the Psychology data of <paramref name="pawn"/>.
+  /// </summary>
+  /// <param name="pawn"></param>
+  /// <returns></returns>
   public static string GetPsychology(Pawn pawn)
   {
     if (!PsycheHelper.PsychologyEnabled(pawn))
@@ -971,6 +984,12 @@ public class PsycheCardUtility
     }
     return string.Join("|", psychologyList);
   }
+
+  /// <summary>
+  /// Character Editor compatiblity: sets Psychology of <paramref name="pawn"/> based on the data encoded in the string <paramref name="psychologyDataAsString"/>.
+  /// </summary>
+  /// <param name="pawn"></param>
+  /// <param name="psychologyDataAsString"></param>
 
   public static void SetPsychology(Pawn pawn, string psychologyDataAsString)
   {

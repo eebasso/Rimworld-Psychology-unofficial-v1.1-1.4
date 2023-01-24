@@ -10,223 +10,14 @@ using System.Reflection.Emit;
 
 namespace Psychology
 {
-  public static class RomanceUtility
+  public static class HookupUtility
   {
     public static readonly HashSet<JobDef> jobDefsThatPreventHookups = new HashSet<JobDef> { JobDefOf.LayDown, JobDefOf.BeatFire, JobDefOf.Arrest, JobDefOf.Capture, JobDefOf.EscortPrisonerToBed, JobDefOf.ExtinguishSelf, JobDefOf.FleeAndCower, JobDefOf.MarryAdjacentPawn, JobDefOf.PrisonerExecution, JobDefOf.ReleasePrisoner, JobDefOf.Rescue, JobDefOf.SocialFight, JobDefOf.SpectateCeremony, JobDefOf.TakeToBedToOperate, JobDefOf.TakeWoundedPrisonerToBed, JobDefOf.UseCommsConsole, JobDefOf.Vomit, JobDefOf.Wait_Downed, JobDefOfPsychology.DoLovinCasual, JobDefOf.Lovin, JobDefOf.EnterTransporter, JobDefOf.GiveSpeech, JobDefOf.BestowingCeremony, JobDefOf.PrepareSkylantern, JobDefOf.Deathrest, JobDefOf.Breastfeed, JobDefOfPsychology.Abuse, JobDefOfPsychology.BreakHunt };
-
-    public static SimpleCurve VanillaLovinMTBHoursAgeCurve => (SimpleCurve)AccessTools.Field(typeof(JobDriver_Lovin), "LovinIntervalHoursFromAgeCurve").GetValue(null);
 
     //pawn.CurJob.def != JobDefOfPsychology.JobDateLead &&
     //pawn.CurJob.def != JobDefOfPsychology.JobDateFollow &&
     //pawn.CurJob.def != JobDefOfPsychology.JobHangoutLead &&
     //pawn.CurJob.def != JobDefOfPsychology.JobHangoutFollow &&
-
-    public static IEnumerable<CodeInstruction> InterdictRomanceAges(IEnumerable<CodeInstruction> codes, OpCode opCodePawn)
-    {
-      Log.Message("InterdictRomanceAges, start");
-      foreach (CodeInstruction c in codes)
-      {
-        if (c.operand is float f && f == 16f)
-        {
-          Log.Message("InterdictRomanceAges, load opCodePawn");
-          yield return new CodeInstruction(opCodePawn);
-          Log.Message("InterdictRomanceAges, load Ldc_I4_0");
-          yield return new CodeInstruction(OpCodes.Ldc_I4_0);
-          Log.Message("InterdictRomanceAges, call SpeciesSettingsMinRomanceAge");
-          yield return CodeInstruction.Call(typeof(RomanceUtility), nameof(RomanceUtility.SpeciesSettingsMinRomanceAge));
-        }
-        else
-        {
-          yield return c;
-        }
-      }
-      Log.Message("InterdictRomanceAges, end");
-    }
-
-    public static float SpeciesSettingsMinRomanceAge(Pawn pawn, bool isDating)
-    {
-      float bioAge = pawn.ageTracker.AgeBiologicalYearsFloat;
-      if (!PsycheHelper.PsychologyEnabled(pawn))
-      {
-        return bioAge + 1f;
-      }
-      SpeciesSettings settings = SpeciesHelper.GetOrMakeSpeciesSettingsFromThingDef(pawn.def);
-      float romanceAge = isDating ? settings.minDatingAge : settings.minLovinAge;
-      return romanceAge < 0f ? bioAge + 1f : romanceAge;
-    }
-
-    public static float NewLovinMTBHoursScale(Pawn pawn, Pawn partner)
-    {
-      LovinMtbSinglePawnFactorPsychology(pawn, out float yMean1);
-      LovinMtbSinglePawnFactorPsychology(partner, out float yMean2);
-      return 0.5f * Mathf.Sqrt(yMean1 * yMean2) / 12f;
-    }
-
-    public static float LovinMtbSinglePawnFactorPsychology(Pawn pawn, out float yMean)
-    {
-      yMean = 0f;
-      if (!PsycheHelper.PsychologyEnabled(pawn))
-      {
-        return -1f;
-      }
-
-      if (!SpeciesHelper.RomanceEnabled(pawn, false))
-      {
-        return -1f;
-      }
-      if (pawn?.ageTracker?.Adult != true)
-      {
-        //long AdultMinAgeTicks = pawn.ageTracker.AdultMinAgeTicks;
-        //long AgeBiologicalTicks = pawn.ageTracker.AgeBiologicalTicks;
-        //long TicksToAdulthood = AdultMinAgeTicks - AgeBiologicalTicks;
-        //bool Adult = TicksToAdulthood <= 0f;
-        //long AdultMinAgeTicks2 = partner.ageTracker.AdultMinAgeTicks;
-        //long AgeBiologicalTicks2 = partner.ageTracker.AgeBiologicalTicks;
-        //long TicksToAdulthood2 = AdultMinAgeTicks2 - AgeBiologicalTicks2;
-        //bool Adult2 = TicksToAdulthood2 <= 0f;
-        //Log.Message("GetLovinMtbHours, pawn: " + pawn + ", AdultMinAgeTicks: " + AdultMinAgeTicks + ", AgeBiologicalTicks: " + AgeBiologicalTicks + ", TicksToAdulthood: " + TicksToAdulthood + ", Adult: " + Adult + "\nGetLovinMtbHours, pawn2: " + partner + ", AdultMinAgeTicks2: " + AdultMinAgeTicks2 + ", AgeBiologicalTicks2: " + AgeBiologicalTicks2 + ", TicksToAdulthood2: " + TicksToAdulthood2 + ", Adult2: " + Adult2);
-
-        // No underage lovin
-        return -1f;
-      }
-
-      float num = 1f;
-      num /= 1f - pawn.health.hediffSet.PainTotal;
-      float level = pawn.health.capacities.GetLevel(PawnCapacityDefOf.Consciousness);
-      if (level < 0.5f)
-      {
-        num /= 2f * level;
-      }
-
-      if (ModsConfig.BiotechActive && pawn.genes != null)
-      {
-        foreach (Gene gene in pawn.genes.GenesListForReading)
-        {
-          num *= gene.def.lovinMTBFactor;
-        }
-      }
-
-      float ageFactor = LovinMtbHoursAgeFactorAndMean(pawn, out yMean);
-      if (ageFactor < 0f)
-      {
-        return -1f;
-      }
-      num *= ageFactor;
-
-      return num;
-    }
-
-    public static float LovinMtbHoursAgeFactorAndMean(Pawn pawn, out float yMean)
-    {
-      yMean = 0f;
-      if (!PsycheHelper.PsychologyEnabled(pawn))
-      {
-        return -1f;
-      }
-
-      SpeciesSettings settings = SpeciesHelper.GetOrMakeSpeciesSettingsFromThingDef(pawn.def);
-      if (settings.minLovinAge < 0f)
-      {
-        return -1f;
-      }
-
-      float lovinMTBHoursAgeFactor = 1f;
-      if (settings.minLovinAge == 0f)
-      {
-        if (PsychologySettings.enableKinsey)
-        {
-          lovinMTBHoursAgeFactor /= Mathf.Pow(PsycheHelper.Comp(pawn).Sexuality.AdjustedSexDrive / 0.8f, 2f);
-        }
-        return lovinMTBHoursAgeFactor;
-      }
-
-      float ageCurveFactor = 1f;
-      SimpleCurve rescaledCurve = GetRescaledCurve(pawn, out yMean, out bool useVanilla);
-      float bioAge = pawn.ageTracker.AgeBiologicalYearsFloat;
-      if (useVanilla)
-      {
-        float rescaledAge = PsycheHelper.LovinBioAgeToVanilla(bioAge, settings.minLovinAge);
-        ageCurveFactor = rescaledCurve.Evaluate(bioAge);
-      }
-      else
-      {
-        ageCurveFactor = rescaledCurve.Evaluate(bioAge);
-      }
-
-
-      if (PsychologySettings.enableKinsey)
-      {
-        lovinMTBHoursAgeFactor *= Mathf.Sqrt(ageCurveFactor);
-        lovinMTBHoursAgeFactor /= Mathf.Pow(PsycheHelper.Comp(pawn).Sexuality.AdjustedSexDrive / 0.8f, 1f);
-      }
-      else
-      {
-        lovinMTBHoursAgeFactor *= ageCurveFactor;
-      }
-
-      return lovinMTBHoursAgeFactor;
-    }
-
-    public static SimpleCurve GetRescaledCurve(Pawn pawn, out float yMean, out bool useVanilla)
-    {
-      SimpleCurve curve = GetCorrectAgeCurve(pawn, out useVanilla);
-      RescaleCurve(curve, out yMean);
-      return curve;
-    }
-
-    public static SimpleCurve GetCorrectAgeCurve(Pawn pawn, out bool useVanilla)
-    {
-      SimpleCurve curve = AlienRaceAgeCurveHook(pawn);
-      useVanilla = curve == null;
-      if (useVanilla)
-      {
-        curve = VanillaLovinMTBHoursAgeCurve;
-      }
-      return curve;
-    }
-
-    public static void RescaleCurve(SimpleCurve curve, out float yMean)
-    {
-      List<CurvePoint> oldCurvePointList = curve.Points;
-      List<CurvePoint> newCurvePointList = new List<CurvePoint>();
-      yMean = CalculateMeanOfCurve(oldCurvePointList);
-      if (yMean == 0f)
-      {
-        return;
-      }
-      for (int i = 0; i < oldCurvePointList.Count() - 1; i++)
-      {
-        newCurvePointList.Add(new CurvePoint(oldCurvePointList[i].x, oldCurvePointList[i].y / yMean));
-      }
-      curve = new SimpleCurve(newCurvePointList);
-    }
-
-    public static float CalculateMeanOfCurve(List<CurvePoint> curvePoints)
-    {
-      if (curvePoints.NullOrEmpty())
-      {
-        Log.Warning("CalculateMeanOfCurve, curvePoints were null or empty");
-        return 0f;
-      }
-      float dx;
-      float xrange = 0f;
-      float area = 0f;
-      for (int i = 0; i < curvePoints.Count() - 2; i++)
-      {
-        dx = curvePoints[i + 1].x - curvePoints[i].x;
-        xrange += dx;
-        area += 0.5f * (curvePoints[i + 1].y + curvePoints[i].y) * dx;
-      }
-      float yMean = xrange > 0f ? area / xrange : curvePoints[0].y;
-      return yMean;
-    }
-
-    public static SimpleCurve AlienRaceAgeCurveHook(Pawn pawn)
-    {
-      return null;
-    }
-
-
 
     /// <summary>
     /// Builds a list of up to five other pawns that <paramref name="pawn"/> finds suitable for the given activity. Looks at romance chance factor for hookups and opinion for dates.
@@ -366,58 +157,61 @@ namespace Psychology
     public static bool WillPawnContinue(Pawn pawn, Pawn target, out Pawn cheatOn)
     {
       cheatOn = null;
-      if (IsThisCheating(pawn, target, out List<Pawn> cheatedOnList))
+      if (IsThisCheating(pawn, target, out List<Pawn> cheatedOnList) && !cheatedOnList.NullOrEmpty())
       {
-        if (!cheatedOnList.NullOrEmpty())
+        //At this point, both the pawn and a non-zero number of partners consider this cheating
+        //If they are faithful, don't do it
+        //if (pawn.story.traits.HasTrait(RomanceDefOf.Faithful))
+        //{
+        //    return false;
+        //}
+        if (pawn.story.traits.HasTrait(TraitDefOfPsychology.Codependent))
         {
-          //At this point, both the pawn and a non-zero number of partners consider this cheating
-          //If they are faithful, don't do it
-          //if (pawn.story.traits.HasTrait(RomanceDefOf.Faithful))
-          //{
-          //    return false;
-          //}
-          if (pawn.story.traits.HasTrait(TraitDefOfPsychology.Codependent))
+          return false;
+        }
+        //Don't allow if user has turned cheating off
+        if (PsychologySettings.hookupCheatMultiplier == 0f)
+        {
+          return false;
+        }
+        //This should find the person they would feel the worst about cheating on
+        //With the philanderer map differences, I think this is the best way
+
+        int opinion = -100;
+        List<Pawn> cheatOnTiedList = new List<Pawn>();
+
+        foreach (Pawn p in cheatedOnList)
+        {
+          int tempOpinion = pawn.relations.OpinionOf(p);
+          if (tempOpinion > opinion)
           {
-            return false;
+            opinion = tempOpinion;
+            cheatOn = p;
+            cheatOnTiedList.Clear();
+            cheatOnTiedList.AddDistinct(p);
           }
-          //Don't allow if user has turned cheating off
-          if (PsychologySettings.hookupCheatChance == 0f)
+          else if (tempOpinion == opinion)
           {
-            return false;
+            cheatOnTiedList.AddDistinct(p);
           }
-          //This should find the person they would feel the worst about cheating on
-          //With the philanderer map differences, I think this is the best way
-          float opinionFactor = 99999f;
-          foreach (Pawn p in cheatedOnList)
-          {
-            float opinion = pawn.relations.OpinionOf(p);
-            float tempOpinionFactor;
-            //if (pawn.story.traits.HasTrait(RomanceDefOf.Philanderer))
-            //{
-            //    tempOpinionFactor = pawn.Map == p.Map
-            //        ? Mathf.InverseLerp(70f, 15f, opinion)
-            //        : Mathf.InverseLerp(100f, 50f, opinion);
-            //}
-            if (pawn.story.traits.HasTrait(TraitDefOfPsychology.Lecher))
-            {
-              tempOpinionFactor = pawn.Map == p.Map
-                  ? Mathf.InverseLerp(70f, 15f, opinion)
-                  : Mathf.InverseLerp(100f, 50f, opinion);
-            }
-            else
-            {
-              tempOpinionFactor = Mathf.InverseLerp(30f, -80f, opinion);
-            }
-            if (tempOpinionFactor < opinionFactor)
-            {
-              opinionFactor = tempOpinionFactor;
-              cheatOn = p;
-            }
-          }
-          if (Rand.Range(0f, 1f) * (PsychologySettings.hookupCheatChance / 100f) < opinionFactor)
-          {
-            return false;
-          }
+        }
+        if (!cheatOnTiedList.NullOrEmpty())
+        {
+          cheatOn = cheatOnTiedList.RandomElement();
+        }
+
+        float opinionFactor;
+        if (pawn.story.traits.HasTrait(TraitDefOfPsychology.Lecher))
+        {
+          opinionFactor = pawn?.Map == cheatOn?.Map ? Mathf.InverseLerp(70f, 15f, opinion) : Mathf.InverseLerp(100f, 50f, opinion);
+        }
+        else
+        {
+          opinionFactor = Mathf.InverseLerp(30f, -80f, opinion);
+        }
+        if (Rand.Chance(opinionFactor * PsychologySettings.hookupCheatMultiplier))
+        {
+          return false;
         }
         //Pawn thinks they are cheating, even though no partners will be upset
         //This can happen with the no spouses mod, which is a bit weird
@@ -434,7 +228,7 @@ namespace Psychology
     /// <returns>True or False</returns>
     public static bool IsHookupAppealing(Pawn target, Pawn asker)
     {
-      if (!PsycheHelper.PsychologyEnabled(target) || !PsycheHelper.PsychologyEnabled(asker))
+      if (!SpeciesHelper.RomanceEnabled(target, false) || !SpeciesHelper.RomanceEnabled(asker, false))
       {
         return false;
       }

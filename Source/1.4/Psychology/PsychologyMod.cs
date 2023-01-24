@@ -36,14 +36,11 @@ public class PsychologyMod : Mod
 
   public override void DoSettingsWindowContents(Rect inRect)
   {
-    if (initializeLastDrawFrame)
-    {
-      lastDrawFrame = Time.frameCount - 10;
-    }
-    if (Time.frameCount - lastDrawFrame > 5)
+    if (Time.frameCount - lastDrawFrame > 5 || initializeLastDrawFrame)
     {
       //Log.Message("DoSettingsWindowContents, SpeciesHelper.Initialize()");
       SettingsWindowUtility.Initialize();
+      initializeLastDrawFrame = false;
     }
     SettingsWindowUtility.DrawSettingsWindow(inRect);
     lastDrawFrame = Time.frameCount;

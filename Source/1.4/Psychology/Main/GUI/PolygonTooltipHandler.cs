@@ -60,14 +60,14 @@ namespace Psychology
             {
                 if (!activeTips.ContainsKey(tip.uniqueId))
                 {
-                    //Log.Message("TipRegion: past 2nd if conditions");
+                    ////Log.Message("TipRegion: past 2nd if conditions");
                     ActiveTip value = new ActiveTip(tip);
                     activeTips.Add(tip.uniqueId, value);
                     activeTips[tip.uniqueId].firstTriggerTime = Time.realtimeSinceStartup;
                     activeTips[tip.uniqueId].lastTriggerFrame = 1;
                     activeTips[tip.uniqueId].signal.text = tip.text;
                     activeTips[tip.uniqueId].signal.textGetter = tip.textGetter;
-                    //Log.Message("TipRegion: end of 2nd if");
+                    ////Log.Message("TipRegion: end of 2nd if");
                 }
             }
             else if (activeTips.ContainsKey(tip.uniqueId))
@@ -87,7 +87,7 @@ namespace Psychology
 
         private static void DrawActiveTips()
         {
-            //Log.Message("Start DrawActiveTips()");
+            ////Log.Message("Start DrawActiveTips()");
             if (activeTips.Count == 0)
             {
                 return;
@@ -115,11 +115,11 @@ namespace Psychology
 
         private static void CleanActiveTooltips()
         {
-            //Log.Message("Start CleanActiveTooltips() for frame = " + frame);
+            ////Log.Message("Start CleanActiveTooltips() for frame = " + frame);
             dyingTips.Clear();
             foreach (KeyValuePair<int, ActiveTip> activeTip in activeTips)
             {
-                //Log.Message("frame = " + frame + ", activeTip.Value.lastTriggerFrame = " + activeTip.Value.lastTriggerFrame);
+                ////Log.Message("frame = " + frame + ", activeTip.Value.lastTriggerFrame = " + activeTip.Value.lastTriggerFrame);
                 if (activeTip.Value.lastTriggerFrame == 0)
                 {
                     dyingTips.Add(activeTip.Key);
@@ -133,7 +133,7 @@ namespace Psychology
 
         private static Vector2 CalculateInitialTipPosition(List<ActiveTip> drawingTips)
         {
-            //Log.Message("Start CalculateInitialTipPosition(List < ActiveTip > drawingTips)");
+            ////Log.Message("Start CalculateInitialTipPosition(List < ActiveTip > drawingTips)");
             float num = 0f;
             float num2 = 0f;
             for (int i = 0; i < drawingTips.Count; i++)
@@ -151,7 +151,7 @@ namespace Psychology
 
         private static int CompareTooltipsByPriority(ActiveTip A, ActiveTip B)
         {
-            //Log.Message("Start CompareTooltipsByPriority(ActiveTip A, ActiveTip B)");
+            ////Log.Message("Start CompareTooltipsByPriority(ActiveTip A, ActiveTip B)");
             int num = 0 - A.signal.priority;
             int value = 0 - B.signal.priority;
             return num.CompareTo(value);

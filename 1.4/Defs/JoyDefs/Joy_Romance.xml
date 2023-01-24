@@ -4,7 +4,8 @@
   <JoyGiverDef>
     <defName>TryHookup</defName>
     <giverClass>Psychology.JoyGiver_CasualHookup</giverClass>
-    <baseChance>5.0</baseChance>
+    <!--<baseChance>5</baseChance>-->
+    <baseChance>1</baseChance>
     <jobDef>LeadHookup</jobDef>
     <joyKind>Lewd</joyKind>
   </JoyGiverDef>

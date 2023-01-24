@@ -50,10 +50,15 @@ public static class EditPsycheUtility
   public static float SliderWidth = 200f;
   //public static float SliderHeight = 0f;
   //public static float SliderBarWidth = PsycheCardUtility.SliderWidth;
-  public static float SliderShiftDown = 2.5f;
+  public static float SliderShiftDown = 0f;
   public static float HighlightPadding = PsycheCardUtility.HighlightPadding;
   public static float BoundaryPadding = PsycheCardUtility.BoundaryPadding;
   public static float EditMargin = PsycheCardUtility.BoundaryPadding + PsycheCardUtility.HighlightPadding;
+
+  //public const float yCompression = 0.9f;
+  //public const float highlightShift = 0.063f;
+  public const float yCompression = 1f;
+  public const float highlightShift = 0f;
 
   static EditPsycheUtility()
   {
@@ -141,8 +146,7 @@ public static class EditPsycheUtility
     Text.Font = GameFont.Small;
     GUIStyle style = Text.fontStyles[1];
     TextAnchor oldAnchor = Text.Anchor;
-    float yCompression = 0.9f;
-    float highlightShift = 0.063f;
+
 
     totalRect.width = CalculateEditWidth(pawn);
     //ScrollHeight = totalRect.height - (BoundaryPadding + TitleHeight + WarningHeight + 3f * yCompression * SexualityHeight + 2f * BoundaryPadding + 0f + 2f * BoundaryPadding + ButtonHeight + BoundaryPadding);
@@ -175,12 +179,17 @@ public static class EditPsycheUtility
     {
       Rect sexualityLabelRect = new Rect(mainRect.x, mainRect.y, SexualityWidth, SexualityHeight);
       Rect sexualitySliderRect = new Rect(sexualityLabelRect.xMax + BoundaryPadding, sexualityLabelRect.y + SliderShiftDown, SliderWidth, SexualityHeight);
+      //Rect sexualityHighlightRect = new Rect(mainRect.x, mainRect.y, sexualitySliderRect.xMax - mainRect.x, SexualityHeight);
+      //Rect sexualityTooltipRect = sexualityHighlightRect;
+
       Rect sexualityTooltipRect = sexualityLabelRect;
       sexualityTooltipRect.xMin -= HighlightPadding;
       sexualityTooltipRect.height *= yCompression;
       sexualityTooltipRect.y += highlightShift * SexualityHeight;
+
       Rect sexualityHighlightRect = sexualityTooltipRect;
       sexualityHighlightRect.xMax = sexualitySliderRect.xMax + HighlightPadding;
+
       Text.Font = GameFont.Tiny;
       for (int k = 0; k < 7; k++)
       {
@@ -200,12 +209,12 @@ public static class EditPsycheUtility
       Widgets.Label(sexualityLabelRect, RomDriveText);
       Text.Anchor = oldAnchor;
 
-      
-      st.kinseyRating = Mathf.RoundToInt(Widgets.HorizontalSlider(sexualitySliderRect, st.kinseyRating, 0f, 6f, true));
+
+      st.kinseyRating = Mathf.RoundToInt(Widgets.HorizontalSlider_NewTemp(sexualitySliderRect, st.kinseyRating, 0f, 6f, middleAlignment: true));
       sexualitySliderRect.y += sexualityHighlightRect.height;
-      st.sexDrive = Widgets.HorizontalSlider(sexualitySliderRect, st.sexDrive, 0f, 1f, true);
+      st.sexDrive = Widgets.HorizontalSlider_NewTemp(sexualitySliderRect, st.sexDrive, 0f, 1f, middleAlignment: true);
       sexualitySliderRect.y += sexualityHighlightRect.height;
-      st.romanticDrive = Widgets.HorizontalSlider(sexualitySliderRect, st.romanticDrive, 0f, 1f, true);
+      st.romanticDrive = Widgets.HorizontalSlider_NewTemp(sexualitySliderRect, st.romanticDrive, 0f, 1f, middleAlignment: true);
 
       TooltipHandler.TipRegion(sexualityTooltipRect, delegate
       {
@@ -243,23 +252,30 @@ public static class EditPsycheUtility
 
     Rect labelRect = new Rect(HighlightPadding, 0f, NodeWidth, NodeHeight);
     Rect sliderRect = new Rect(labelRect.xMax + BoundaryPadding, SliderShiftDown, SliderWidth, NodeHeight);
-    Rect tooltipRect = labelRect;
-    tooltipRect.xMin = 0f;
-    tooltipRect.height *= yCompression;
-    tooltipRect.y += highlightShift * NodeHeight;
-    Rect highlightRect = tooltipRect;
-    highlightRect.xMax = viewRect.xMax;
+    //Rect tooltipRect = labelRect;
+    //tooltipRect.xMin = 0f;
+    //tooltipRect.height *= yCompression;
+    //tooltipRect.y += highlightShift * NodeHeight;
+    //Rect highlightRect = tooltipRect;
+    //highlightRect.xMax = viewRect.xMax;
+    Rect highlightRect = new Rect(0f, 0f, viewRect.xMax, NodeHeight);
+    Rect tooltipRect = highlightRect;
+
     Widgets.BeginScrollView(scrollRect, ref NodeScrollPosition, viewRect);
-    
+
     for (int i = 0; i < SortedLabelNodeDefList.Count; i++)
     {
-      string label = SortedLabelNodeDefList[i].First;
+      //string label = SortedLabelNodeDefList[i].First;
       PersonalityNodeDef def = SortedLabelNodeDefList[i].Second;
+      PersonalityNode node = PsycheHelper.Comp(pawn).Psyche.nodeDict[def];
+
       Text.Anchor = TextAnchor.MiddleLeft;
-      Widgets.Label(labelRect, label);
+      //Widgets.Label(labelRect, label);
+      Widgets.Label(labelRect, PsycheCardUtility.ColorizedNodeText(def, 1f));
       Text.Anchor = oldAnchor;
-      TooltipHandler.TipRegion(tooltipRect, () => Descriptions[label], 436532 + i);
-      pt.nodeDict[def].rawRating = Widgets.HorizontalSlider(sliderRect, pt.nodeDict[def].rawRating, 0f, 1f, true);
+      TooltipHandler.TipRegion(tooltipRect, () => PsycheCardUtility.PersonalityNodeTooltip(node, useColors: PsychologySettings.useColors, showConvoTopics: false, showRatingNumbers: true), 436532 + i);
+      //pt.nodeDict[def].rawRating = Widgets.HorizontalSlider_NewTemp(sliderRect, pt.nodeDict[def].rawRating, 0f, 1f, middleAlignment: true);
+      pt.nodeDict[def].rawRating = UIAssets.HorizontalSlider(sliderRect, pt.nodeDict[def].rawRating, 0f, 1f);
       Widgets.DrawHighlightIfMouseover(highlightRect);
       labelRect.y += highlightRect.height;
       sliderRect.y += highlightRect.height;
@@ -314,10 +330,11 @@ public static class EditPsycheUtility
 
     if (Widgets.ButtonText(randomRect, RandomButtonText, true, true, true))
     {
-      pt.RandomizeRatings(Mathf.CeilToInt(1e+7f * Rand.Value));
+      int randomSeed = Mathf.CeilToInt(1e+7f * Rand.Value);
+      pt.RandomizeRatings(inputSeed: randomSeed);
       if (PsychologySettings.enableKinsey)
       {
-        st.GenerateSexuality(Mathf.CeilToInt(1e+7f * Rand.Value));
+        st.GenerateSexuality(inputSeed: randomSeed);
       }
       //for (int i = 0; i < CachedList.Count; i++)
       //{

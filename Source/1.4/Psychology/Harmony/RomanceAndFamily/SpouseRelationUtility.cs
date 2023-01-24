@@ -17,7 +17,7 @@ public static class SpouseRelationUtility_RemoveGotMarriedThoughts_Patch
     [HarmonyTranspiler]
     public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> codes)
     {
-        //Log.Message("SpouseRelationUtility_RemoveGotMarriedThoughts_Patch.Transpiler, start");
+        ////Log.Message("SpouseRelationUtility_RemoveGotMarriedThoughts_Patch.Transpiler, start");
         return RomanceHelperMethods.InterdictTryGainAndRemoveMemories(codes);
     }
 }

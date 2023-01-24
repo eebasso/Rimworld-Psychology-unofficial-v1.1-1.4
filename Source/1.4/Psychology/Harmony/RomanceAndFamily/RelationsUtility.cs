@@ -18,9 +18,9 @@ namespace Psychology.Harmony;
 public static class RelationsUtility_RomanceEligible_Patches
 {
   [HarmonyTranspiler]
-  public static IEnumerable<CodeInstruction> RomanceEligiblePair_Transpiler(IEnumerable<CodeInstruction> codes)
+  public static IEnumerable<CodeInstruction> RomanceEligible_Transpiler(IEnumerable<CodeInstruction> codes)
   {
-    return RomanceUtility.InterdictRomanceAges(codes, OpCodes.Ldarg_0);
+    return RomancePatchUtility.InterdictMinRomanceAgeChecks(codes);
   }
 }
 
@@ -30,13 +30,13 @@ public static class RelationsUtility_RomanceEligiblePair_Patches
   [HarmonyTranspiler]
   public static IEnumerable<CodeInstruction> RomanceEligiblePair_Transpiler(IEnumerable<CodeInstruction> codes)
   {
-    return RomanceUtility.InterdictRomanceAges(codes, OpCodes.Ldarg_1);
+    return RomancePatchUtility.ChangeMinRomanceOpinion(RomancePatchUtility.InterdictMinRomanceAgeChecks(codes));
   }
 }
 
 public static class RelationsUtility_KinseyEnabledPatches
 {
-  public static bool AttractedToGender_KinseyEnabled_Prefix(ref bool __result, Pawn pawn, Gender gender)
+  public static bool AttractedToGender_KinseyEnabledPrefix(ref bool __result, Pawn pawn, Gender gender)
   {
     if (!PsycheHelper.PsychologyEnabled(pawn))
     {

@@ -25,7 +25,7 @@ public static class EdBPrepareCarefully_Patches
         harmonyMethod = new HarmonyMethod(typeof(EdBPrepareCarefully_Patches).GetMethod(nameof(EdBPrepareCarefully_Patches.PanelBackstory_DrawTranspiler)));
         harmonyInstance.Patch(originalInfo, transpiler: harmonyMethod);
 
-        Log.Message("Psychology: completed patches for compatibility with Prepare Carefully.");
+        //Log.Message("Psychology: completed patches for compatibility with Prepare Carefully.");
     }
 
     public static IEnumerable<CodeInstruction> PanelBackstory_DrawTranspiler(IEnumerable<CodeInstruction> codes)
@@ -91,24 +91,24 @@ public static class EdBPrepareCarefully_Patches
         {
             return;
         }
-        //Log.Message("PsycheButton: Step 1");
+        ////Log.Message("PsycheButton: Step 1");
         Rect buttonRect = new Rect(240f, y + 5f, 28f, 28f);
-        //Log.Message("PsycheButton: Step 2");
+        ////Log.Message("PsycheButton: Step 2");
         Color oldColor = GUI.color;
-        //Log.Message("PsycheButton: Step 3");
+        ////Log.Message("PsycheButton: Step 3");
         GUI.color = buttonRect.Contains(Event.current.mousePosition) ? UIAssets.ButtonLightColor : UIAssets.ButtonDarkColor;
-        //Log.Message("PsycheButton: Step 4");
+        ////Log.Message("PsycheButton: Step 4");
         GUI.DrawTexture(buttonRect, UIAssets.PsycheButton);
-        //Log.Message("PsycheButton: Step 5");
+        ////Log.Message("PsycheButton: Step 5");
         GUI.color = oldColor;
-        //Log.Message("PsycheButton: Step 6a");
+        ////Log.Message("PsycheButton: Step 6a");
         if (Widgets.ButtonInvisible(buttonRect, false))
         {
-            //Log.Message("PsycheButton: Step 6b");
+            ////Log.Message("PsycheButton: Step 6b");
             SoundDefOf.Tick_Low.PlayOneShotOnCamera(null);
-            //Log.Message("PsycheButton: Step 6c");
+            ////Log.Message("PsycheButton: Step 6c");
             Find.WindowStack.Add(new Dialog_ViewPsyche(pawn, true));
         }
-        //Log.Message("PsycheButton: Step 7");
+        ////Log.Message("PsycheButton: Step 7");
     }
 }

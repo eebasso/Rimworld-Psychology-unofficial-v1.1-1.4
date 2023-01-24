@@ -100,7 +100,7 @@ public class CompAbilityEffect_Indoctrinate : CompAbilityEffect
 
     public override string ExtraLabelMouseAttachment(LocalTargetInfo target)
     {
-        //Log.Message("ExtraLabelMouseAttachment, start");
+        ////Log.Message("ExtraLabelMouseAttachment, start");
         if (target == null || !Valid(target))
         {
             return null;
@@ -108,12 +108,12 @@ public class CompAbilityEffect_Indoctrinate : CompAbilityEffect
         Pawn recipient = target.Pawn;
         Pawn initiator = parent.pawn;
 
-        //Log.Message("ExtraLabelMouseAttachment, step 1");
+        ////Log.Message("ExtraLabelMouseAttachment, step 1");
         Pawn_PsycheTracker dummieTracker = new Pawn_PsycheTracker(recipient);
         dummieTracker.Initialize();
         dummieTracker.DeepCopyFromOtherTracker(PsycheHelper.Comp(recipient).Psyche);
         ApplyAbilityOutcomes(dummieTracker, initiator, recipient, out float oldDailyChange, out float newDailyChange);
-        //Log.Message("ExtraLabelMouseAttachment, step 2, old daily = " + oldDailyChange + ",  new daily = " + newDailyChange);
+        ////Log.Message("ExtraLabelMouseAttachment, step 2, old daily = " + oldDailyChange + ",  new daily = " + newDailyChange);
 
         string oldPercent = (oldDailyChange > 0f ? "+" : "") + oldDailyChange.ToStringPercent();
         string newPercent = (newDailyChange > 0f ? "+" : "") + newDailyChange.ToStringPercent();

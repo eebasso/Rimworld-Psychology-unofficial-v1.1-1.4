@@ -23,11 +23,11 @@ public class AlienRace_Patches
         HarmonyLib.Harmony harmonyInstance = new HarmonyLib.Harmony("Community.Psychology.UnofficialUpdate.AlienRace");
 
         originalInfo = AccessTools.Method(typeof(SpeciesHelper), nameof(SpeciesHelper.AlienRaceHeuristicSettingsHook));
-        harmonyMethod = new HarmonyMethod(typeof(AlienRace_Patches), nameof(AlienRace_Patches.AlienRaceHeuristicSettingsPostfix));
+        harmonyMethod = new HarmonyMethod(typeof(AlienRace_Patches), nameof(AlienRaceHeuristicSettingsPostfix));
         harmonyInstance.Patch(originalInfo, postfix: harmonyMethod);
 
-        originalInfo = AccessTools.Method(typeof(RomanceUtility), nameof(RomanceUtility.AlienRaceAgeCurveHook));
-        harmonyMethod = new HarmonyMethod(typeof(AlienRace_Patches), nameof(AlienRace_Patches.AlienRaceAgeCurvePostfix));
+        originalInfo = AccessTools.Method(typeof(SexualityHelper), nameof(SexualityHelper.AlienRaceLovinIntervalHoursFromAgeCurveHook));
+        harmonyMethod = new HarmonyMethod(typeof(AlienRace_Patches), nameof(AlienRaceAgeCurvePostfix));
         harmonyInstance.Patch(originalInfo, postfix: harmonyMethod);
     }
 
@@ -54,10 +54,6 @@ public class AlienRace_Patches
         if (pawn?.def is AlienRace.ThingDef_AlienRace alienDef && alienDef?.alienRace?.generalSettings?.lovinIntervalHoursFromAge is SimpleCurve curve)
         {
             __result = curve;
-        }
-        else
-        {
-            __result = null;
         }
     }
 

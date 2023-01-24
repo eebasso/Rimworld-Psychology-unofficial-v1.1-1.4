@@ -9,38 +9,34 @@ namespace Psychology.Harmony;
 [HarmonyPatch(typeof(Pawn_IdeoTracker), nameof(Pawn_IdeoTracker.CertaintyChangePerDay), MethodType.Getter)]
 public static class Pawn_IdeoTracker_CertaintyChangePerDay_Patch
 {
-    [HarmonyPostfix]
-    public static void CertaintyChangePerDay(ref float __result, Pawn ___pawn)
+  [HarmonyPostfix]
+  public static void CertaintyChangePerDay(ref float __result, Pawn ___pawn)
+  {
+    if (PsycheHelper.PsychologyEnabled(___pawn))
     {
-        if (!PsycheHelper.PsychologyEnabled(___pawn))
-        {
-            return;
-        }
-        __result += Current.Game.GetComponent<PsychologyGameComponent>().CertaintyChange(___pawn, true);
+      __result += Current.Game.GetComponent<PsychologyGameComponent>().CertaintyChange(___pawn, true);
     }
+  }
 }
 
 [HarmonyPatch(typeof(Pawn_IdeoTracker), nameof(Pawn_IdeoTracker.IdeoTrackerTick))]
 public static class Pawn_IdeoTracker_IdeoTrackerTick_Patches
 {
-    [HarmonyPrefix]
-    public static bool Prefix()
-    {
-        return GenTicks.TicksGame % 250 == 137;
-    }
+  [HarmonyPrefix]
+  public static bool Prefix() => GenTicks.TicksGame % 250 == 137;
 
-    [HarmonyTranspiler]
-    public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> codes)
+  [HarmonyTranspiler]
+  public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> codes)
+  {
+    foreach (CodeInstruction c in codes)
     {
-        foreach (CodeInstruction c in codes)
-        {
-            if (c.operand is float floatValue && floatValue == 60000f)
-            {
-                c.operand = 240f;
-            }
-            yield return c;
-        }
+      if (c.operand is float floatValue && floatValue == 60000f)
+      {
+        c.operand = 240f;
+      }
+      yield return c;
     }
+  }
 }
 
 //[HarmonyPatch(typeof(Pawn_IdeoTracker), nameof(Pawn_IdeoTracker.IdeoTrackerTick))]

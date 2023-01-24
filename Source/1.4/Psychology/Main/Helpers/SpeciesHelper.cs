@@ -56,7 +56,7 @@ public class SpeciesHelper
   //        }
   //        if (registeredSpecies.Add(t))
   //        {
-  //            //Log.Message("SpeciesHelper(), registered = " + t);
+  //            ////Log.Message("SpeciesHelper(), registered = " + t);
   //        }
   //    }
   //    SettingsWindowUtility.Initialize();
@@ -68,18 +68,19 @@ public class SpeciesHelper
     zombieNotNull = zombieThinkTree != null;
     foreach (ThingDef t in DefDatabase<ThingDef>.AllDefs)
     {
-      if (CheckIntelligenceAndAddEverythingToSpeciesDef(t, checkIntelligence: true, register: false, allowAddComp: true) != true)
-      {
-        continue;
-      }
-      //if (t.defName != "Human")
+      CheckIntelligenceAndAddEverythingToSpeciesDef(t, checkIntelligence: true, register: false, allowAddComp: true);
+      //if (CheckIntelligenceAndAddEverythingToSpeciesDef(t, checkIntelligence: true, register: false, allowAddComp: true) != true)
       //{
-      //    continue;
+      //  continue;
       //}
-      if (registeredSpecies.Add(t))
-      {
-        Log.Message("Psychology, registered species: " + t);
-      }
+      ////if (t.defName != "Human")
+      ////{
+      ////    continue;
+      ////}
+      //if (registeredSpecies.Add(t))
+      //{
+      //  //Log.Message("Psychology, registered species: " + t);
+      //}
     }
     SettingsWindowUtility.SaveBackupOfSettings();
     SettingsWindowUtility.Initialize();
@@ -95,16 +96,17 @@ public class SpeciesHelper
   // - If we register a thingdef, we want to create settings for it
   public static bool IsHumanlikeIntelligence(ThingDef thingDef)
   {
-    Intelligence? intelligence = thingDef?.race?.intelligence;
-    if (intelligence == null)
-    {
-      return false;
-    }
-    if ((int)intelligence < (int)Intelligence.Humanlike)
-    {
-      return false;
-    }
-    return true;
+    return thingDef?.race?.intelligence < Intelligence.Humanlike;
+    //Intelligence? intelligence = thingDef?.race?.intelligence;
+    //if (intelligence == null)
+    //{
+    //  return false;
+    //}
+    //if ((int)intelligence < (int)Intelligence.Humanlike)
+    //{
+    //  return false;
+    //}
+    //return true;
   }
 
   public static bool CheckIntelligenceAndAddEverythingToSpeciesDef(ThingDef thingDef, bool checkIntelligence = true, bool register = true, bool allowAddComp = true)
@@ -113,38 +115,17 @@ public class SpeciesHelper
     {
       return false;
     }
-    if (checkIntelligence && IsHumanlikeIntelligence(thingDef) != true)
+    if (checkIntelligence && !IsHumanlikeIntelligence(thingDef))
     {
       return false;
     }
     string defName = thingDef.defName;
-    if (PsychologySettings.speciesDict.ContainsKey(defName) != true)
+    if (!PsychologySettings.speciesDict.ContainsKey(defName))
     {
       PsychologySettings.speciesDict[defName] = DefaultSettingsForSpeciesDef(thingDef);
-      //Log.Message("CheckIntelligenceAndAddEverythingToHumanlikeDef, PsychologySettings.speciesDict, added defName = " + defName);
+      ////Log.Message("CheckIntelligenceAndAddEverythingToHumanlikeDef, PsychologySettings.speciesDict, added defName = " + defName);
     }
-    if (register)
-    {
-      if (registeredSpecies.Add(thingDef))
-      {
-        AddEverythingExceptCompPsychology(thingDef);
-        if (allowAddComp)
-        {
-          AddCompPsychologyToHumanlikeDef(thingDef);
-        }
-        SettingsWindowUtility.SaveBackupOfSettings();
-        SettingsWindowUtility.Initialize();
-        //Log.Message("CheckIntelligenceAndAddEverythingToHumanlikeDef, registered = " + thingDef);
-      }
-    }
-    else
-    {
-      AddEverythingExceptCompPsychology(thingDef);
-      if (allowAddComp)
-      {
-        AddCompPsychologyToHumanlikeDef(thingDef);
-      }
-    }
+    RegisterAndAddCompsToSpeciesDef(thingDef, register: register, addCompPsychology: allowAddComp);
     return true;
   }
 
@@ -169,24 +150,29 @@ public class SpeciesHelper
   // To be used after game (save file) is loaded
   public static SpeciesSettings GetOrMakeSpeciesSettingsFromThingDef(ThingDef pawnDef)
   {
-    if (PsychologySettings.speciesDict.TryGetValue(pawnDef.defName, out SpeciesSettings settings) != true)
+    if (!PsychologySettings.speciesDict.TryGetValue(pawnDef.defName, out SpeciesSettings settings))
     {
       settings = DefaultSettingsForSpeciesDef(pawnDef);
       PsychologySettings.speciesDict[pawnDef.defName] = settings;
-      //Log.Message("GetOrMakeSpeciesSettingsFromThingDef, added to PsychologySettings.speciesDict, defName = " + pawnDef.defName);
+      ////Log.Message("GetOrMakeSpeciesSettingsFromThingDef, added to PsychologySettings.speciesDict, defName = " + pawnDef.defName);
     }
-    if (registeredSpecies.Add(pawnDef))
-    {
-      AddEverythingExceptCompPsychology(pawnDef);
-      if (IsHumanlikeIntelligence(pawnDef) == true)
-      {
-        AddCompPsychologyToHumanlikeDef(pawnDef);
-      }
-      //Log.Message("SpeciesHelper.GetOrMakeSpeciesSettingsFromThingDef, registered = " + pawnDef);
-      SettingsWindowUtility.SaveBackupOfSettings();
-      SettingsWindowUtility.Initialize();
-    }
+    RegisterAndAddCompsToSpeciesDef(pawnDef, register: true, addCompPsychology: IsHumanlikeIntelligence(pawnDef));
     return settings;
+  }
+
+  public static void RegisterAndAddCompsToSpeciesDef(ThingDef thingDef, bool register, bool addCompPsychology)
+  {
+    if (register && !registeredSpecies.Add(thingDef))
+    {
+      return;
+    }
+    AddEverythingExceptCompPsychology(thingDef);
+    if (addCompPsychology)
+    {
+      AddCompPsychologyToHumanlikeDef(thingDef);
+    }
+    SettingsWindowUtility.SaveBackupOfSettings();
+    SettingsWindowUtility.Initialize();
   }
 
   public static void AddCompPsychologyToHumanlikeDef(ThingDef humanlikeDef)
@@ -205,14 +191,17 @@ public class SpeciesHelper
     {
       pawnDef.recipes = new List<RecipeDef>(6);
     }
-    pawnDef.recipes.AddDistinct(RecipeDefOfPsychology.CureAnxiety);
+    if (PsychologySettings.enableAnxiety)
+    {
+      pawnDef.recipes.AddDistinct(RecipeDefOfPsychology.CureAnxiety);
+    }
     pawnDef.recipes.AddDistinct(RecipeDefOfPsychology.TreatChemicalInterest);
     pawnDef.recipes.AddDistinct(RecipeDefOfPsychology.TreatChemicalFascination);
     pawnDef.recipes.AddDistinct(RecipeDefOfPsychology.TreatDepression);
     pawnDef.recipes.AddDistinct(RecipeDefOfPsychology.TreatInsomnia);
     pawnDef.recipes.AddDistinct(RecipeDefOfPsychology.TreatPyromania);
 
-    if (!pawnDef.race.hediffGiverSets.NullOrEmpty())
+    if (!pawnDef.race.hediffGiverSets.NullOrEmpty() && PsychologySettings.enableAnxiety)
     {
       if (pawnDef.race.hediffGiverSets.Contains(DefDatabase<HediffGiverSetDef>.GetNamed("OrganicStandard")))
       {
@@ -223,7 +212,7 @@ public class SpeciesHelper
 
   public static void AddInspectorTabToDefAndCorpseDef(ThingDef t)
   {
-    //Log.Message("AddInspectorTabToDefAndCorpseDef to thingdef = " + t.defName);
+    ////Log.Message("AddInspectorTabToDefAndCorpseDef to thingdef = " + t.defName);
     if (t.inspectorTabsResolved == null)
     {
       t.inspectorTabsResolved = new List<InspectTabBase>(1);
@@ -389,7 +378,7 @@ public class SpeciesHelper
       {
         if (lifeStageAge?.minAge != null && lifeStageAge.def.defName.Contains("Teenage"))
         {
-          age = Mathf.Max(age, lifeStageAge.minAge) * 12f / 13f;
+          age = Mathf.Max(age, lifeStageAge.minAge) * 13f / 13f;
           foundTeen = true;
         }
       }
@@ -407,7 +396,7 @@ public class SpeciesHelper
   }
 
   /// <summary>
-  /// Uses both lifestage and settings info to determine whether <paramref name="pawn"/> can participate in dating if <paramref name="isDating"/> is true, or lovin if false.
+  /// Uses both lifestage and settings info to determine whether <paramref name="pawn"/> can participate in romantic behavior. This checks dating if <paramref name="isDating"/> is true and lovin if false.
   /// </summary>
   /// <param name="pawn">The pawn in question</param>
   /// <param name="isDating">Checks dating if true, and lovin if false.</param>
@@ -418,7 +407,7 @@ public class SpeciesHelper
   }
 
   /// <summary>
-  /// Uses lifestage info to determine whether <paramref name="pawn"/> can participate in dating if <paramref name="isDating"/> is true, or lovin if false.
+  /// Uses lifestage info to determine whether <paramref name="pawn"/> can participate in romantic behavior. This checks dating if <paramref name="isDating"/> is true and lovin if false.
   /// </summary>
   /// <param name="pawn">The pawn in question</param>
   /// <param name="isDating">Checks dating if true, and lovin if false.</param>
@@ -436,19 +425,23 @@ public class SpeciesHelper
     // Allow teenagers to date but not do lovin
     if (!MinLifestageAge(pawn.def, isDating, out float minLifestageAge))
     {
-      Log.Message("RomanceLifestageAgeCheck, !MinLifestageAge, pawn: " + pawn + ", isDating: " + isDating + ", minLifestageAge: " + minLifestageAge);
+      //Log.Message("RomanceLifestageAgeCheck, !MinLifestageAge, pawn: " + pawn + ", isDating: " + isDating + ", minLifestageAge: " + minLifestageAge);
       return false;
     }
-    if (pawn?.ageTracker?.AgeBiologicalYearsFloat is float bioAge && bioAge < minLifestageAge)
+    Pawn_AgeTracker tracker = pawn?.ageTracker;
+    if (tracker == null)
     {
-      Log.Message("RomanceLifestageAgeCheck, ageBio < minLifestageAge, pawn: " + pawn + ", ageBio: " + pawn.ageTracker.AgeBiologicalYearsFloat + ", minLifestageAge: " + minLifestageAge);
       return false;
     }
-    if (pawn?.ageTracker?.CurLifeStage is LifeStageDef lifeStageDef && lifeStageDef == LifeStageDefOf.HumanlikeAdult)
+    if (tracker.AgeBiologicalYearsFloat < minLifestageAge)
+    {
+      return false;
+    }
+    if (tracker.CurLifeStage == LifeStageDefOf.HumanlikeAdult)
     {
       return true;
     }
-    if (!isDating && pawn?.ageTracker?.Adult != true)
+    if (!isDating && !tracker.Adult)
     {
       return false;
     }
@@ -456,7 +449,7 @@ public class SpeciesHelper
   }
 
   /// <summary>
-  /// Uses settings info to determine whether <paramref name="pawn"/> can participate in dating if <paramref name="isDating"/> is true, or lovin if false.
+  /// Uses settings info to determine whether <paramref name="pawn"/> can participate in romantic behavior. This checks dating if <paramref name="isDating"/> is true and lovin if false.
   /// </summary>
   /// <param name="pawn">The pawn in question</param>
   /// <param name="isDating">Checks dating if true, and lovin if false.</param>
@@ -481,10 +474,8 @@ public class SpeciesHelper
     {
       return true;
     }
-    return pawn.ageTracker != null && minSettingsAge < pawn.ageTracker.AgeBiologicalYearsFloat && 0f < minSettingsAge;
+    return pawn.ageTracker != null && minSettingsAge < pawn.ageTracker.AgeBiologicalYearsFloat;
   }
-
-
 
   public static void AlienRaceHeuristicSettingsHook(SpeciesSettings settings, ThingDef def)
   {

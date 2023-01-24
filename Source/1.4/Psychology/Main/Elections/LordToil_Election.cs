@@ -65,7 +65,7 @@ namespace Psychology
                     {
                         voteString.Append("\n" + v.First.LabelShort + " with weight " + v.Second);
                     }
-                    //Log.Message(voteString.ToString());
+                    ////Log.Message(voteString.ToString());
                 }
                 //election.votes.Add(orderedPossibleVotes.First().First.LabelShort);
                 election.votes.Add(possibleVotes.RandomElementByWeight(pv => Mathf.Max(pv.Second, 0.0000001f)).First.LabelShort);

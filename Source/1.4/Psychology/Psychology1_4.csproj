@@ -147,7 +147,7 @@
     <Compile Include="Main\ThoughtWorkers\ThoughtWorker_SurvivedTogether.cs" />
     <Compile Include="Main\ThoughtWorkers\ThoughtWorker_Sedentary.cs" />
     <Compile Include="Main\Thought\Thought_MemoryDynamic.cs" />
-    <Compile Include="Main\Pawn_PsycheTracker.cs" />
+    <Compile Include="Main\CompPsychology\Pawn_PsycheTracker.cs" />
     <Compile Include="Main\Personality\PersonalityNode.cs" />
     <Compile Include="Main\Personality\PersonalityNodeMaker.cs" />
     <Compile Include="Main\Personality\PersonalityNodeParent.cs" />
@@ -185,13 +185,12 @@
     <Compile Include="Main\Medical\Treatments\Recipe_Treatment.cs" />
     <Compile Include="DefOf\StatDefOfPsychology.cs" />
     <Compile Include="DefOf\JobDefOfPsychology.cs" />
-    <Compile Include="Main\Pawn_SexualityTracker.cs" />
+    <Compile Include="Main\CompPsychology\Pawn_SexualityTracker.cs" />
     <Compile Include="DefOf\HediffDefOfPsychology.cs" />
     <Compile Include="Main\ThoughtWorkers\ThoughtWorker_Individuality.cs" />
     <Compile Include="Main\ThoughtWorkers\ThoughtWorker_PanicAttack.cs" />
     <Compile Include="Main\ThoughtWorkers\ThoughtWorker_Polygamous.cs" />
     <Compile Include="Main\InteractionWorkers\InteractionWorker_PrudeSeen.cs" />
-    <Compile Include="Main\PsycheHelper.cs" />
     <Compile Include="Main\ThoughtWorkers\ThoughtWorker_Light.cs" />
     <Compile Include="Main\ThoughtWorkers\ThoughtWorker_Pluviophile.cs" />
     <Compile Include="Main\ThoughtWorkers\ThoughtWorker_Outdoorsy.cs" />
@@ -201,7 +200,6 @@
     <Compile Include="Main\Medical\Hediff_Anxiety.cs" />
     <Compile Include="Main\ThoughtWorkers\ThoughtWorker_RandomMoodBipolar.cs" />
     <Compile Include="DefOf\TraitDefOfPsychology.cs" />
-    <Compile Include="Main\CustomXMLPatchOperations.cs" />
     <Compile Include="Main\Personality\PersonalityNodeMatrix.cs" />
     <Compile Include="Main\Personality\PersonalityNodeTenAspects.cs" />
     <Compile Include="Harmony\Misc\Dialog_FormCaravan.cs" />
@@ -220,7 +218,6 @@
     <Compile Include="Harmony\RomanceAndFamily\ChildRelationUtility.cs" />
     <Compile Include="Harmony\RomanceAndFamily\InteractionWorker_MarriageProposal.cs" />
     <Compile Include="Harmony\RomanceAndFamily\InteractionWorker_Breakup.cs" />
-    <Compile Include="Harmony\RomanceAndFamily\JobGiver_DoLovin.cs" />
     <Compile Include="Harmony\RomanceAndFamily\LovePartnerRelationUtility.cs" />
     <Compile Include="Harmony\RomanceAndFamily\InteractionWorker_RomanceAttempt.cs" />
     <Compile Include="Harmony\RomanceAndFamily\CompAbilityEffect_WordOfLove.cs" />
@@ -242,9 +239,6 @@
     <Compile Include="Harmony\Thoughts\Need_Outdoors.cs" />
     <Compile Include="Harmony\Thoughts\ThoughtWorker_CreepyBreathing.cs" />
     <Compile Include="Harmony\Thoughts\ThoughtUtility.cs" />
-    <Compile Include="Harmony\Performance\PerformancePatches.cs" />
-    <Compile Include="Harmony\Performance\Attribute.cs" />
-    <Compile Include="Harmony\Performance\PerformanceSetup.cs" />
     <Compile Include="Harmony\Interaction\InteractionWorker_DeepTalk.cs" />
     <Compile Include="Harmony\Interaction\NegativeInteractionUtility.cs" />
     <Compile Include="Harmony\Interaction\InteractionWorker_RecruitAttempt.cs" />
@@ -265,8 +259,8 @@
     <Compile Include="PsychologyMod.cs" />
     <Compile Include="Main\Settings\PsychologySettings.cs" />
     <Compile Include="PsychologyGameComponent.cs" />
-    <Compile Include="Main\Comp\CompProperties_Psychology.cs" />
-    <Compile Include="Main\Comp\CompPsychology.cs" />
+    <Compile Include="Main\CompPsychology\CompProperties_Psychology.cs" />
+    <Compile Include="Main\CompPsychology\CompPsychology.cs" />
     <Compile Include="Main\GUI\EditPsycheUtility.cs" />
     <Compile Include="Main\GUI\Dialog_EditPsyche.cs" />
     <Compile Include="Main\GUI\Dialog_ViewPsyche.cs" />
@@ -275,10 +269,7 @@
     <Compile Include="Main\GUI\PolygonUtility.cs" />
     <Compile Include="Main\GUI\PsycheCardUtility.cs" />
     <Compile Include="Main\GUI\UIAssets.cs" />
-    <Compile Include="Main\GUI\SettingsWindowUtility.cs" />
-    <Compile Include="Main\Settings\SpeciesHelper.cs" />
-    <Compile Include="Main\GUI\Dialog_UpdateIntro.cs" />
-    <Compile Include="Main\GUI\Dialog_UpdateYesNo.cs" />
+    <Compile Include="Main\Settings\SettingsWindowUtility.cs" />
     <Compile Include="Harmony\HarmonyInitialize.cs" />
     <Compile Include="Harmony\Pawn\PawnGenerator.cs" />
     <Compile Include="Harmony\Misc\SkillRecord.cs" />
@@ -288,7 +279,6 @@
     <Compile Include="Harmony\OtherUtilities\SocialCardUtility.cs" />
     <Compile Include="Harmony\RomanceAndFamily\SpouseRelationUtility.cs" />
     <Compile Include="Harmony\RomanceAndFamily\MemoryThoughtHandler.cs" />
-    <Compile Include="Harmony\RomanceAndFamily\ThoughtMaker.cs" />
     <Compile Include="Harmony\RomanceAndFamily\MarriageCeremonyUtility.cs" />
     <Compile Include="Main\ThoughtWorkers\ThoughtWorker_AlwaysActivePsychology.cs" />
     <Compile Include="Harmony\Misc\CombAbilityEffect_Counsel.cs" />
@@ -300,20 +290,25 @@
     <Compile Include="Main\MentalStates\MentalState_PanicAttack.cs" />
     <Compile Include="DefOf\MentalStateDefOfPsychology.cs" />
     <Compile Include="Harmony\RomanceAndFamily\BreakupHelperMethods.cs" />
-    <Compile Include="Main\Settings\Parameter.cs" />
     <Compile Include="Main\Translation\TranslationUtility.cs" />
     <Compile Include="Main\Translation\Label.cs" />
-    <Compile Include="Main\GUI\EntryObject.cs" />
+    <Compile Include="Main\Settings\EntryObject.cs" />
     <Compile Include="Main\LovinCasual\JobDriver_DoLovinCasual.cs" />
-    <Compile Include="Main\LovinCasual\RomanceUtilities.cs" />
+    <Compile Include="Main\LovinCasual\HookupUtility.cs" />
     <Compile Include="DefOf\PreceptDefOfPsychology.cs" />
-    <Compile Include="Main\LovinCasual\HookupSettingsUtilities.cs" />
     <Compile Include="Main\LovinCasual\JobDriver_LeadHookup.cs" />
     <Compile Include="Main\LovinCasual\JoyGiver_CasualHookup.cs" />
     <Compile Include="Main\LovinCasual\Comp_PartnerList.cs" />
     <Compile Include="Harmony\RomanceAndFamily\JoyKindDef.cs" />
     <Compile Include="Harmony\RomanceAndFamily\JobDriver_Lovin.cs" />
     <Compile Include="Harmony\RomanceAndFamily\RelationsUtility.cs" />
+    <Compile Include="Harmony\RomanceAndFamily\RomancePatchUtility.cs" />
+    <Compile Include="Harmony\Sleep\RestUtility.cs" />
+    <Compile Include="Main\Helpers\ExtensionHelper.cs" />
+    <Compile Include="Main\Helpers\PsycheHelper.cs" />
+    <Compile Include="Main\Helpers\SpeciesHelper.cs" />
+    <Compile Include="Main\Helpers\CustomXMLPatchOperations.cs" />
+    <Compile Include="Main\Helpers\SexualityHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\About\preview.png">
@@ -822,6 +817,7 @@
     <Folder Include="Main\Translation\" />
     <Folder Include="Main\LovinCasual\" />
     <Folder Include="Common\Defs\JoyDefs\" />
+    <Folder Include="Main\Helpers\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

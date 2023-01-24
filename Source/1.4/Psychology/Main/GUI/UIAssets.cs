@@ -5,142 +5,175 @@ using System.Text;
 using RimWorld;
 using Verse;
 using UnityEngine;
+using Verse.Sound;
+using HarmonyLib;
 
 namespace Psychology;
 
 [StaticConstructorOnStartup]
 public static class UIAssets
 {
-    public static readonly Color ButtonDarkColor = new Color(0.623529f, 0.623529f, 0.623529f);
-    public static readonly Color ButtonLightColor = new Color(0.97647f, 0.97647f, 0.97647f);
-    public static readonly Color LineColor = new Color(1f, 1f, 1f, 0.5f);
-    public static readonly Color ModEntryLineColor = new Color(0.3f, 0.3f, 0.3f);
-    public static readonly Color TitleColor = ColoredText.TipSectionTitleColor;
-    public static readonly Color RatingColor = Color.yellow;
+  public static readonly Color ButtonDarkColor = new Color(0.623529f, 0.623529f, 0.623529f);
+  public static readonly Color ButtonLightColor = new Color(0.97647f, 0.97647f, 0.97647f);
+  public static readonly Color LineColor = new Color(1f, 1f, 1f, 0.5f);
+  public static readonly Color ModEntryLineColor = new Color(0.3f, 0.3f, 0.3f);
+  public static readonly Color TitleColor = ColoredText.TipSectionTitleColor;
+  public static readonly Color RatingColor = Color.yellow;
 
-    public static readonly Texture2D OfficeTable = ContentFinder<Texture2D>.Get("UI/Commands/MayoralTable", true);
-    public static readonly Texture2D PsycheButton = ContentFinder<Texture2D>.Get("Buttons/ButtonPsyche", true);
-    public static readonly Texture2D PsycheLineTex = new Texture2D(1, 3, TextureFormat.ARGB32, mipChain: false);
-    public static readonly Material PsycheYellowMat = SolidColorMaterials.SimpleSolidColorMaterial(new Color(1f, 1f, 0f, 0.5f));
-    public static readonly Material PsycheHighlightMat = SolidColorMaterials.SimpleSolidColorMaterial(new Color(1f, 1f, 1f, 0.1f));
+  public static readonly Texture2D OfficeTable = ContentFinder<Texture2D>.Get("UI/Commands/MayoralTable", true);
+  public static readonly Texture2D PsycheButton = ContentFinder<Texture2D>.Get("Buttons/ButtonPsyche", true);
+  public static readonly Texture2D PsycheLineTex = new Texture2D(1, 3, TextureFormat.ARGB32, mipChain: false);
+  public static readonly Material PsycheYellowMat = SolidColorMaterials.SimpleSolidColorMaterial(new Color(1f, 1f, 0f, 0.5f));
+  public static readonly Material PsycheHighlightMat = SolidColorMaterials.SimpleSolidColorMaterial(new Color(1f, 1f, 1f, 0.1f));
 
-    public static readonly KeyCode[] unfocusKeyCodes = new KeyCode[] { KeyCode.Escape, KeyCode.KeypadEnter, KeyCode.Return };
+  public static readonly Texture2D SliderRailAtlas = (Texture2D)AccessTools.Field(typeof(Widgets), "SliderRailAtlas").GetValue(null);
+  public static readonly Texture2D SliderHandle = (Texture2D)AccessTools.Field(typeof(Widgets), "SliderHandle").GetValue(null);
+  public static readonly Color RangeControlTextColor = (Color)AccessTools.Field(typeof(Widgets), "RangeControlTextColor").GetValue(null);
 
-    public static void DrawLineHorizontal(float x, float y, float length, Color color)
+  public const float SliderHandleSize = 12f;
+  public static int sliderDraggingID;
+
+  public static readonly KeyCode[] unfocusKeyCodes = new KeyCode[] { KeyCode.Escape, KeyCode.KeypadEnter, KeyCode.Return };
+
+  public static void DrawLineHorizontal(float x, float y, float length, Color color)
+  {
+    Color oldColor = GUI.color;
+    GUI.color = color;
+    Widgets.DrawLineHorizontal(x, y, length);
+    GUI.color = oldColor;
+  }
+
+  public static void DrawLineVertical(float x, float y, float height, Color color)
+  {
+    Color oldColor = GUI.color;
+    GUI.color = color;
+    Widgets.DrawLineVertical(x, y, height);
+    GUI.color = oldColor;
+  }
+
+  public static void DrawTexture(Vector2 start, Vector2 end, float width, Color color, Texture2D texture)
+  {
+    float xDiff = end.x - start.x;
+    float yDiff = end.y - start.y;
+    float length = Mathf.Sqrt(xDiff * xDiff + yDiff * yDiff);
+    if (length > 0.01f)
     {
-        Color oldColor = GUI.color;
-        GUI.color = color;
-        Widgets.DrawLineHorizontal(x, y, length);
-        GUI.color = oldColor;
+      float z = Mathf.Atan2(yDiff, xDiff) * Mathf.Rad2Deg;
+      Matrix4x4 m = Matrix4x4.TRS(start, Quaternion.Euler(0f, 0f, z), Vector3.one) * Matrix4x4.TRS(-start, Quaternion.identity, Vector3.one);
+      Rect position = new Rect(start.x, start.y - 0.5f * width, length, width);
+      GL.PushMatrix();
+      GL.MultMatrix(m);
+      GUI.DrawTexture(position, texture, ScaleMode.StretchToFill, alphaBlend: true, 0f, color, 0f, 0f);
+      GL.PopMatrix();
+    }
+  }
+
+  public static void DrawLine(Vector2 start, Vector2 end, float width, Color color)
+  {
+    DrawTexture(start, end, width, color, PsycheLineTex);
+  }
+
+  public static float HorizontalSlider(Rect rect, float value, float min, float max)
+  {
+    Vector2 start = new Vector2(rect.xMin, rect.center.y);
+    Vector2 end = new Vector2(rect.xMax, rect.center.y);
+    return Slider(start, end, rect.height, value, min, max);
+  }
+
+  public static float VerticalSlider(Rect rect, float value, float min, float max)
+  {
+    Vector2 start = new Vector2(rect.center.x, rect.yMin);
+    Vector2 end = new Vector2(rect.center.x, rect.yMax);
+    return Slider(start, end, rect.width, value, min, max);
+  }
+
+  public static float Slider(Vector2 start, Vector2 end, float width, float value, float min, float max)
+  {
+    float num = value;
+
+    Vector2 diff = end - start;
+    float length = diff.magnitude;
+    float altasWidth = 8f;
+    if (length < SliderHandleSize)
+    {
+      return value;
+    }
+    float radians = Mathf.Atan2(diff.y, diff.x);
+    float z = radians * Mathf.Rad2Deg;
+
+    float c = diff.x / length;
+    float s = diff.y / length;
+    Vector2 unitVector = diff / length;
+
+
+    Vector2 atlasStart = start + 0.5f * SliderHandleSize * unitVector;
+    Vector2 atlasEnd = end - 0.5f * SliderHandleSize * unitVector;
+    Vector2 atlasDiff = atlasEnd - atlasStart;
+    float atlasMagnitude = atlasDiff.magnitude;
+
+
+
+    Rect atlasRect = new Rect(start.x + 0.5f * SliderHandleSize, start.y - 0.5f * altasWidth, atlasMagnitude, altasWidth);
+
+    float x = start.x + atlasMagnitude * Mathf.InverseLerp(min, max, num);
+
+    Rect handleRect = new Rect(x, atlasRect.center.y - 0.5f * SliderHandleSize, SliderHandleSize, SliderHandleSize);
+
+    Matrix4x4 m = Matrix4x4.TRS(start, Quaternion.Euler(0f, 0f, z), Vector3.one) * Matrix4x4.TRS(-start, Quaternion.identity, Vector3.one);
+    GL.PushMatrix();
+    GL.MultMatrix(m);
+    GUI.color = RangeControlTextColor;
+    Widgets.DrawAtlas(atlasRect, SliderRailAtlas);
+    GUI.color = Color.white;
+    GUI.DrawTexture(handleRect, SliderHandle);
+    GL.PopMatrix();
+
+    int hashCode = UI.GUIToScreenPoint(new Vector2(start.x, start.y)).GetHashCode();
+    hashCode = Gen.HashCombine(hashCode, end.x);
+    hashCode = Gen.HashCombine(hashCode, end.y);
+    hashCode = Gen.HashCombine(hashCode, min);
+    hashCode = Gen.HashCombine(hashCode, max);
+
+
+    Vector2 orthoWidthVector = 0.5f * width * new Vector2(-s, c);
+    Vector2 v1 = start + orthoWidthVector;
+    Vector2 v2 = start - orthoWidthVector;
+    Vector2 v3 = end - orthoWidthVector;
+    Vector2 v4 = end + orthoWidthVector;
+    List<Vector2> vertexList = new List<Vector2>() { v1, v2, v3, v4 };
+
+    if (Event.current.type == EventType.MouseDown && PolygonUtility.IsMouseoverPolygon(vertexList) && sliderDraggingID != hashCode)
+    {
+      sliderDraggingID = hashCode;
+      SoundDefOf.DragSlider.PlayOneShotOnCamera();
+      Event.current.Use();
+    }
+    if (sliderDraggingID == hashCode && UnityGUIBugsFixer.MouseDrag())
+    {
+      Vector2 mousePositionShifted = Event.current.mousePosition - atlasStart;
+      float val = (mousePositionShifted.x * atlasDiff.x + mousePositionShifted.y * atlasDiff.y) / atlasDiff.sqrMagnitude;
+      num = Mathf.Clamp(val * (max - min) + min, min, max);
+      if (Event.current.type == EventType.MouseDrag)
+      {
+        Event.current.Use();
+      }
     }
 
-    public static void DrawLineVertical(float x, float y, float height, Color color)
+    if (value != num)
     {
-        Color oldColor = GUI.color;
-        GUI.color = color;
-        Widgets.DrawLineVertical(x, y, height);
-        GUI.color = oldColor;
+      AccessTools.Method(typeof(Widgets), "CheckPlayDragSliderSound").Invoke(null, new object[] { });
     }
+    return num;
+  }
 
-    public static void DrawLine(Vector2 start, Vector2 end, Color color, float width)
-    {
-        float xDiff = end.x - start.x;
-        float yDiff = end.y - start.y;
-        float length = Mathf.Sqrt(xDiff * xDiff + yDiff * yDiff);
-        if (length > 0.01f)
-        {
-            float z = Mathf.Atan2(yDiff, xDiff) * Mathf.Rad2Deg;
-            Matrix4x4 m = Matrix4x4.TRS(start, Quaternion.Euler(0f, 0f, z), Vector3.one) * Matrix4x4.TRS(-start, Quaternion.identity, Vector3.one);
-            Rect position = new Rect(start.x, start.y - 0.5f * width, length, width);
-            GL.PushMatrix();
-            GL.MultMatrix(m);
-            GUI.DrawTexture(position, PsycheLineTex, ScaleMode.StretchToFill, alphaBlend: true, 0f, color, 0f, 0f);
-            GL.PopMatrix();
-        }
-    }
 
-    public static float TextCalcHeight(string text, float width)
-    {
-        Vector2 size = Text.CalcSize(text);
-        float multiplier = Mathf.Ceil(size.x / width);
-        return multiplier * size.y;
-    }
 
-    public static void TextFieldFloat(Rect rect, ref float val, ref string buffer, float min = 0f, float max = 1E+09f, string customControlName = null)
-    {
-        if (buffer == null)
-        {
-            buffer = val.ToString();
-        }
-        buffer = TextFieldCommon(rect, buffer, customControlName, "Float");
-        if (float.TryParse(buffer, out float parsedValue))
-        {
-            val = Mathf.Clamp(parsedValue, min, max);
-        }
-    }
 
-    public static void TextFieldInt(Rect rect, ref int val, ref string buffer, int min = 0, int max = 1000000000, string customControlName = null)
-    {
-        if (buffer == null)
-        {
-            buffer = val.ToString();
-        }
-        buffer = TextFieldCommon(rect, buffer, customControlName, "Int");
-        if (int.TryParse(buffer, out int parsedInt))
-        {
-            val = Mathf.Clamp(parsedInt, min, max);
-        }
-        else if (float.TryParse(buffer, out float parsedFloat))
-        {
-            val = Mathf.Clamp(Mathf.RoundToInt(parsedFloat), min, max);
-        }
-    }
-
-    public static string TextFieldCommon(Rect rect, string buffer, string customControlName, string valueTypeString)
-    {
-        string controlName = "TextField" + valueTypeString + "_" + (customControlName.NullOrEmpty() ? rect.x.ToString("F0") + "_" + rect.y.ToString("F0") : customControlName);
-        GUI.SetNextControlName(controlName);
-        buffer = Widgets.TextField(rect, buffer);
-        if (GUI.GetNameOfFocusedControl() == controlName && Event.current.type == EventType.KeyDown && unfocusKeyCodes.Contains(Event.current.keyCode))
-        {
-            UI.UnfocusCurrentControl();
-            Event.current.Use();
-        }
-        if (GUI.GetNameOfFocusedControl() == controlName && OriginalEventUtility.EventType == EventType.MouseDown && !Mouse.IsOver(rect.ExpandedBy(2f)))
-        {
-            Log.Message("TextFieldCommon, unfocus");
-            UI.UnfocusCurrentControl();
-        }
-        return buffer;
-    }
-
-    public static bool ButtonLabel(Rect rect, string label, bool doMouseOverSound = true)
-    {
-        Widgets.Label(rect, label);
-        return Widgets.ButtonInvisible(rect, doMouseOverSound);
-    }
-
-    //public static void DrawSlider(Vector2 start, Vector2 end, float width, ref float sliderVal)
-    //{
-    //    //Log.Message("DrawSlider, start");
-    //    float xDiff = end.x - start.x;
-    //    float yDiff = end.y - start.y;
-    //    float length = Mathf.Sqrt(xDiff * xDiff + yDiff * yDiff);
-    //    if (length > 0.01f)
-    //    {
-    //        //Log.Message("DrawSlider, length > 0.01f");
-    //        float z = Mathf.Atan2(yDiff, xDiff) * Mathf.Rad2Deg;
-    //        Matrix4x4 m = Matrix4x4.TRS(start, Quaternion.Euler(0f, 0f, z), Vector3.one) * Matrix4x4.TRS(-start, Quaternion.identity, Vector3.one);
-    //        Rect rect = new Rect(start.x, start.y - 0.5f * width, length, width);
-    //        GL.PushMatrix();
-    //        GL.MultMatrix(m);
-    //        //Log.Message("DrawSlider, draw horizontal slider");
-    //        sliderVal = Widgets.HorizontalSlider(rect, sliderVal, 0f, 1f);
-    //        GL.PopMatrix();
-    //    }
-    //    //Log.Message("DrawSlider, end");
-    //}
-
+  public static bool ButtonLabel(Rect rect, string label, bool doMouseOverSound = true)
+  {
+    Widgets.Label(rect, label);
+    return Widgets.ButtonInvisible(rect, doMouseOverSound);
+  }
 
 }
 

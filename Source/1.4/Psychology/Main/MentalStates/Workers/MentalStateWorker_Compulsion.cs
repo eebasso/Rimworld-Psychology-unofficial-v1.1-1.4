@@ -8,11 +8,11 @@ using Verse.AI;
 
 namespace Psychology
 {
-    public class MentalStateWorker_Compulsion : MentalStateWorker
+  public class MentalStateWorker_Compulsion : MentalStateWorker
+  {
+    public override bool StateCanOccur(Pawn pawn)
     {
-        public override bool StateCanOccur(Pawn pawn)
-        {
-            return !pawn.WorkTagIsDisabled(WorkTags.Cleaning) || !pawn.WorkTagIsDisabled(WorkTags.Hauling);
-        }
+      return !pawn.WorkTagIsDisabled(WorkTags.Cleaning) || !pawn.WorkTagIsDisabled(WorkTags.Hauling);
     }
+  }
 }
